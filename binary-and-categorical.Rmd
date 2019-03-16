@@ -11,14 +11,17 @@ output:
 library(readr)
 library(knitr)
 library(kableExtra)
-library(pander)
 library(lme4)
 library(lmerTest)
-library(lattice)
+
 
 refresh = FALSE # set to true to re-run models
+order1<-paste(c(1,2,3,4,5,6,7,8,9,22,201,202,203,204,205,206))
+gpInsensitive <- paste(c(1,12,14,15,19,2,20,203,21,210,22,4,6))
+morder<-paste(c(3,8,4,9,14,13,12,2,7,10,1,16,5,15,1,16))
+sorder<-paste(c(7,10,1,16,5,15,11,6,3,8,4,9,14,13,12,2))
 
-mdata <- read_csv("dissertation/csvs/got_prosody.csv")
+mdata <- read_csv("csvs/got_prosody.csv")
 mdata$V<-mdata$V == "YES"
 mdata$OBJ<-mdata$OBJ == "YES"
 mdata$PP1<-mdata$PP1 == "YES"
@@ -36,22 +39,10 @@ mdata$lowAttach <- mdata$two_level_prosody %in% c("PP1", "PP1 > OBJ")
 mdata$IID[mdata$IID == 108] <- 8
 mdata$LQI <- mdata$QI == "YES"
 mdata$HtOrMs_QI <- mdata$LQI == mdata$Condition_Q
-
+mdata$Sorder <- 2
+mdata$Sorder[mdata$SID %in% order1] <- 1
 mdata$condition <- paste(ifelse(mdata$Condition_GP, "+GP", "-GP")," ",ifelse(mdata$Condition_Q, "+Q", "-Q"))
-
-gpInsensitive <- paste(c(1,
-12,
-14,
-15,
-19,
-2,
-20,
-203,
-21,
-210,
-22,
-4,
-6))
+mdata$Iorder <- ifelse(mdata$Sorder==1,match(mdata$SID,morder),match(mdata$SID,sorder))
 
 ```
 
@@ -192,16 +183,19 @@ kable(prosodies.r2, caption = "reading 2") %>%
 # Logit models
 
 ```{r pp1logit}
-if(!exists("models.logi.pp1.full") | refresh){
-  models.logi.pp1.full <- glmer(
-    PP1~OBJ * Condition_Q * Condition_GP * Reading + 
-      (1+OBJ*Condition_Q*Condition_GP*Reading | SID) + 
-      (1+OBJ*Condition_Q*Condition_GP*Reading | IID),
-    family = binomial, 
-    data = mdata,
-    control = glmerControl(optimizer = "bobyqa", calc.derivs=F,optCtrl=list(maxfun=2e8))
-  )
-}
+
+models.logi.pp1.full <- glmer(
+  PP1~OBJ + Condition_Q * Condition_GP + Reading + 
+    (OBJ+Condition_Q*Condition_GP+Reading | SID) + 
+    (OBJ+Condition_Q*Condition_GP+Reading | IID),
+  family = binomial, 
+  data = mdata,
+  control = glmerControl(optimizer = "bobyqa",
+                         optCtrl=list(maxfun=2e8)),
+  verbose = 2
+)
+
+summary(models.logi.pp1.full)
 ```
 ```{r attachment}
 if(!exists("models.logi.attach.full") | refresh){
@@ -211,7 +205,8 @@ if(!exists("models.logi.attach.full") | refresh){
       (1+Condition_Q*Condition_GP*Reading | IID),
     data = mdata,
     family = binomial, 
-    control = glmerControl(optimizer = "bobyqa", calc.derivs=F, optCtrl=list(maxfun=2e8))
+    control = glmerControl(optimizer = "bobyqa", calc.derivs=F, optCtrl=list(maxfun=2e8)),
+    verbose = 2
   )
 }
 ```
