@@ -1,0 +1,148 @@
+---
+title: "Summary"
+author: "Tyler Peckenpaugh"
+date: "3/5/2019"
+output:
+  pdf_document: default
+  html_document:
+    highlight: tango
+    theme: journal
+---
+
+```{r setup, include=FALSE}
+library(readr)
+library(knitr)
+library(pander)
+library(lme4)
+library(lmerTest)
+library(lattice)
+
+got_prosody <- read_csv("dissertation/csvs/got_prosody.csv")
+
+mdata <- read_csv("dissertation/csvs/got_prosody.csv")
+mdata$V<-mdata$V == "YES"
+mdata$OBJ<-mdata$OBJ == "YES"
+mdata$PP1<-mdata$PP1 == "YES"
+mdata$STRUG<-mdata$STRUG == "YES"
+mdata$STRONG <- as.factor(mdata$STRONG)
+mdata$WEAK <- as.factor(mdata$WEAK)
+mdata$Reading <- as.factor(mdata$Reading)
+mdata$prosody <- as.factor(mdata$prosody)
+mdata$two_level_prosody <- as.factor(mdata$two_level_prosody)
+mdata$IID <- as.factor(mdata$IID)
+mdata$UID <- as.factor(mdata$UID)
+mdata$SID <- as.factor(mdata$SID)
+mdata$STRUG_START <- as.factor(mdata$STRUG_START)
+mdata$goodProsody <- mdata$two_level_prosody %in% c("PP1", "PP1 > OBJ")
+
+inter_item_timings_all <- read_csv("dissertation/csvs/inter_item_timings.csv", 
+    col_types = cols(item = col_character(), 
+        participant = col_character()))
+
+inter_item_timings_all$inter_reading[inter_item_timings_all$inter_reading <0] <- NA
+inter_item_timings_all$Exp <- FALSE == grepl("F",inter_item_timings_all$filename)
+inter_item_timings <- subset(inter_item_timings_all, Exp & participant != "108")
+
+gpInsensitive <- paste(c(1,
+12,
+14,
+15,
+19,
+2,
+20,
+203,
+21,
+210,
+22,
+4,
+6))
+
+```
+
+# 3-level prosodic pattern
+```{r 3lvlxtabs}
+prosodies.full <- xtabs(~ prosody + Condition_Q + Condition_GP, mdata)
+prosodies.r1 <- xtabs(~ prosody + Condition_Q + Condition_GP, subset(mdata,Reading==1))
+prosodies.r2 <- xtabs(~ prosody + Condition_Q + Condition_GP, subset(mdata,Reading==2))
+pander(prosodies.full, caption = "both readings")
+pander(prosodies.r1, caption = "reading 1")
+pander(prosodies.r2, caption = "reading 2")
+```
+
+# 2-level prosodic pattern
+```{r 2lvlxtabs}
+prosodies.full <- xtabs(~ two_level_prosody + Condition_Q + Condition_GP, mdata)
+prosodies.r1 <- xtabs(~ two_level_prosody + Condition_Q + Condition_GP, subset(mdata,Reading==1))
+prosodies.r2 <- xtabs(~ two_level_prosody + Condition_Q + Condition_GP, subset(mdata,Reading==2))
+pander(prosodies.full)
+pander(prosodies.r1, caption = "reading 1")
+pander(prosodies.r2, caption = "reading 2")
+```
+
+
+# Timing models (ME Linear Regression)
+```{r lmerModel,echo=FALSE}
+if(!exists("models.timing")){
+  models.timing <- lmer(inter_reading ~ GP_condition * Q_condition + (1 + GP_condition * Q_condition | participant) + (1 + GP_condition * Q_condition | item), data=inter_item_timings, control=lmerControl(optCtrl=list(maxfun=2e12) ), REML=FALSE)
+}
+if(!exists("models.timingNoInt")){
+  models.timingNoInt <- lmer(inter_reading ~ GP_condition * Q_condition + (1 + GP_condition * Q_condition | participant) + (1 + GP_condition * Q_condition | item), data=inter_item_timings, control=lmerControl(optCtrl=list(maxfun=2e12) ), REML=FALSE)
+}
+
+if(!exists("models.timing.Sense")){
+  models.timing.Sense <- lmer(inter_reading ~ GP_condition + Q_condition + (1 + GP_condition + Q_condition | participant) + (1 + GP_condition + Q_condition | item), data=subset(inter_item_timings, !(participant %in% gpInsensitive)), control=lmerControl(optCtrl=list(maxfun=2e12) ), REML=FALSE)
+}
+if(!exists("models.timingNoInt.Sense")){
+  models.timingNoInt.Sense <- lmer(inter_reading ~ GP_condition + Q_condition + (1 + GP_condition + Q_condition | participant) + (1 + GP_condition + Q_condition | item), data=subset(inter_item_timings, !(participant %in% gpInsensitive)), control=lmerControl(optCtrl=list(maxfun=2e12) ), REML=FALSE)
+}
+```
+```{r assumptionChecks}
+inter_item_timings$resids_main[!is.na(inter_item_timings$inter_reading)] <- residuals(models.timing)
+inter_item_timings$resids_main.abs <- abs(inter_item_timings$resids_main)
+inter_item_timings$resids_main.sq <-inter_item_timings$resids_main.abs^2
+sensitive_timings <- subset(inter_item_timings, !(participant %in% gpInsensitive))
+
+timings_sq_resid <- lm(inter_item_timings$resids_main.sq ~ inter_item_timings$participant, data=inter_item_timings) #ANOVA of the squared residuals
+sens_timings_sq_resid <- lm(resids_main.sq ~ participant, data=sensitive_timings) #ANOVA of the squared residuals
+```
+# Homogeneity of variance
+Anova of squared residuals ~ participant for full data and "GP-sensitive" subset
+```{r homovar}
+anova(timings_sq_resid) #displays the results
+anova(sens_timings_sq_resid) #displays the results
+```
+# Normal distribution of residuals
+All participants
+`r qqmath(models.timing, id=0.05)`
+Only GP-sensitive participants
+`r qqmath(models.timing.Sense, id=0.05)`
+```
+# Models
+## Full model
+```{r full}
+summary(models.timing)
+```
+## Without interacton term
+```{r noInt}
+summary(models.timingNoInt)
+```
+## Only "gp-sensitive"
+The following excludes all participants whose mean inter-item reading time for `+GP` items is less than for `-GP` items
+### With interaction
+```{r gpSense}
+summary(models.timing.Sense)
+```
+## Without interaction
+```{r gpSenseNoInt}
+summary(models.timingNoInt.Sense)
+
+```
+# Logit models
+```{r logitModels}
+# models.full <- glmer(PP1~V*OBJ+Condition_Q*Condition_GP+Reading + (1+V*OBJ+Condition_Q*Condition_GP+Reading | SID) + (1+V*OBJ+Condition_Q*Condition_GP+Reading | IID),data=mdata,family = binomial, control = glmerControl(optimizer = "bobyqa",optCtrl=list(maxfun=2e8)))
+# summary(models.full)
+if(!exists("models.goodP")){
+  models.goodP <- glmer(goodProsody~Condition_Q*Condition_GP*Reading + (1+Condition_Q*Condition_GP*Reading | SID) + (1+Condition_Q*Condition_GP*Reading | IID),data=mdata,family = binomial, control = glmerControl(optimizer = "bobyqa",optCtrl=list(maxfun=2e8)))
+}
+summary(models.goodP)
+```

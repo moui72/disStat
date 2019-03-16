@@ -1,0 +1,70 @@
+---
+title: "Summary"
+author: "Tyler Peckenpaugh"
+date: "3/5/2019"
+output:
+  pdf_document: default
+  html_document:
+    highlight: tango
+    theme: journal
+---
+
+```{r setup, include=FALSE}
+library(readr)
+library(knitr)
+library(pander)
+library(lme4)
+library(lmerTest)
+library(lattice)
+
+got_prosody <- read_csv("dissertation/csvs/got_prosody.csv")
+
+mdata <- read_csv("dissertation/csvs/got_prosody.csv")
+mdata$V<-mdata$V == "YES"
+mdata$OBJ<-mdata$OBJ == "YES"
+mdata$PP1<-mdata$PP1 == "YES"
+mdata$STRUG<-mdata$STRUG == "YES"
+mdata$STRONG <- as.factor(mdata$STRONG)
+mdata$WEAK <- as.factor(mdata$WEAK)
+mdata$Reading <- as.factor(mdata$Reading)
+mdata$prosody <- as.factor(mdata$prosody)
+mdata$two_level_prosody <- as.factor(mdata$two_level_prosody)
+mdata$IID <- as.factor(mdata$IID)
+mdata$UID <- as.factor(mdata$UID)
+mdata$SID <- as.factor(mdata$SID)
+mdata$STRUG_START <- as.factor(mdata$STRUG_START)
+mdata$goodProsody <- mdata$two_level_prosody %in% c("PP1", "PP1 > OBJ")
+
+inter_item_timings_all <- read_csv("dissertation/csvs/inter_item_timings.csv", 
+    col_types = cols(item = col_character(), 
+        participant = col_character()))
+
+inter_item_timings_all$inter_reading[inter_item_timings_all$inter_reading <0] <- NA
+inter_item_timings_all$Exp <- FALSE == grepl("F",inter_item_timings_all$filename)
+inter_item_timings <- subset(inter_item_timings_all, Exp & participant != "108")
+
+gpInsensitive <- paste(c(1,
+12,
+14,
+15,
+19,
+2,
+20,
+203,
+21,
+210,
+22,
+4,
+6))
+
+```
+
+# Logit models
+```{r logitModels}
+# models.full <- glmer(PP1~V*OBJ+Condition_Q*Condition_GP+Reading + (1+V*OBJ+Condition_Q*Condition_GP+Reading | SID) + (1+V*OBJ+Condition_Q*Condition_GP+Reading | IID),data=mdata,family = binomial, control = glmerControl(optimizer = "bobyqa",optCtrl=list(maxfun=2e8)))
+# summary(models.full)
+if(!exists("models.goodP")){
+  models.goodP <- glmer(goodProsody~Condition_Q*Condition_GP*Reading + (1+Condition_Q*Condition_GP*Reading | SID) + (1+Condition_Q*Condition_GP*Reading | IID),data=mdata,family = binomial, control = glmerControl(optimizer = "bobyqa",optCtrl=list(maxfun=2e8)))
+}
+summary(models.goodP)
+```

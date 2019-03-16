@@ -1,0 +1,162 @@
+---
+title: "LME Inter-Item Timing, Inverse transform"
+author: "Tyler Peckenpaugh"
+date: "3/5/2019"
+output:
+  html_document:
+    theme: journal
+    toc: true
+  pdf_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+library(readr)
+library(knitr)
+library(pander)
+library(lme4)
+library(lmerTest)
+library(lattice)
+
+# set to true to re-run modelsqqnorm(myModel.lme, ~ranef(., level=2))
+refresh = TRUE
+
+inter_item_timings_all <- read_csv("dissertation/csvs/inter_item_timings.csv", 
+    col_types = cols(item = col_character(), 
+        participant = col_character()))
+
+inter_item_timings_all$inter_reading[inter_item_timings_all$inter_reading < 0] <- NA
+inter_item_timings_all$inter_reading <- inter_item_timings_all$inter_reading + 1
+inter_item_timings_all$Exp <- FALSE == grepl("F",inter_item_timings_all$filename)
+inter_item_timings_all$participant[inter_item_timings_all$participant == 108] <- 8
+inter_item_timings <- subset(inter_item_timings_all, Exp)
+
+inter_item_timings$inter_reading_raw <- inter_item_timings$inter_reading
+inter_item_timings$inter_reading <- 1/(inter_item_timings$inter_reading)
+  
+gpInsensitive <- paste(c(1,
+12,
+14,
+15,
+19,
+2,
+20,
+203,
+21,
+210,
+22,
+4,
+6))
+
+```
+
+
+
+# Inter-item timing analyses
+
+## boxplot of mean inter-item time by condition
+```{r echo=FALSE}
+boxplot(inter_reading ~ GP_condition*Q_condition, col=c("white","lightgray"),inter_item_timings,names=c("-GP -Q", "+GP -Q", "-GP +Q", "+GP +Q"))
+```
+```{r lmerModel,echo=FALSE}
+if(refresh | !exists("models.timing")){
+  models.timing <- lmer(inter_reading ~ GP_condition * Q_condition + (1 + GP_condition * Q_condition | participant) + (1 + GP_condition * Q_condition | item), data=inter_item_timings, control=lmerControl(optCtrl=list(maxfun=2e12) ), REML=FALSE)
+}
+if(refresh | !exists("models.timingNoInt")){
+  models.timingNoInt <- lmer(inter_reading ~ GP_condition * Q_condition + (1 + GP_condition * Q_condition | participant) + (1 + GP_condition * Q_condition | item), data=inter_item_timings, control=lmerControl(optCtrl=list(maxfun=2e12) ), REML=FALSE)
+}
+
+if(refresh | !exists("models.timing.Sense")){
+  models.timing.Sense <- lmer(inter_reading ~ GP_condition + Q_condition + (1 + GP_condition + Q_condition | participant) + (1 + GP_condition + Q_condition | item), data=subset(inter_item_timings, !(participant %in% gpInsensitive)), control=lmerControl(optCtrl=list(maxfun=2e12) ), REML=FALSE)
+}
+if(refresh | !exists("models.timingNoInt.Sense")){
+  models.timingNoInt.Sense <- lmer(inter_reading ~ GP_condition + Q_condition + (1 + GP_condition + Q_condition | participant) + (1 + GP_condition + Q_condition | item), data=subset(inter_item_timings, !(participant %in% gpInsensitive)), control=lmerControl(optCtrl=list(maxfun=2e12) ), REML=FALSE)
+}
+```
+```{r assumptionChecks, include=FALSE, echo=FALSE}
+inter_item_timings$resids_main <- NA
+inter_item_timings$resids_main[!is.na(inter_item_timings$inter_reading)] <- residuals(models.timing)
+inter_item_timings$resids_main.abs <- abs(inter_item_timings$resids_main)
+inter_item_timings$resids_main.sq <-inter_item_timings$resids_main.abs^2
+sensitive_timings <- subset(inter_item_timings, !(participant %in% gpInsensitive))
+sensitive_timings$resids_main[!is.na(sensitive_timings$inter_reading)] <- residuals(models.timing.Sense)
+sensitive_timings$resids_main.abs <- abs(sensitive_timings$resids_main)
+sensitive_timings$resids_main.sq <- sensitive_timings$resids_main.abs^2
+
+# ANOVA of the squared residuals
+timings_sq_resid <- lm(resids_main.sq ~ participant, data=inter_item_timings) 
+# ANOVA of the squared residuals
+sens_timings_sq_resid <- lm(resids_main.sq ~ participant, data=sensitive_timings)
+```
+
+# Models
+
+## All participants
+These models use all 32 participants
+
+### Full model
+```{r full}
+summary(models.timing)
+```
+
+### Without interacton 
+```{r noInt}
+summary(models.timingNoInt)
+```
+
+## Only "gp-sensitive"
+The following models exclude all participants whose mean inter-item reading time for `+GP` items is less than for `-GP` items
+
+### With interaction
+```{r gpSense}
+summary(models.timing.Sense)
+```
+
+### Without interaction
+```{r gpSenseNoInt}
+summary(models.timingNoInt.Sense)
+
+```
+# Checking assumptions
+The following checks assumptions about the data
+
+## Homogeneity of variance
+Anova of squared residuals (full model) by participant 
+
+### All Ps
+```{r homovar}
+# all participants
+anova(timings_sq_resid) 
+```
+
+### Only GP-sense
+```{r homovarSense}
+# GP-sensitive only
+anova(sens_timings_sq_resid)
+```
+
+## Normal distribution of residuals
+QQ plots of full models
+
+### All participants
+```{r normdres}
+qqmath(models.timing, id=0.05)
+```
+
+### Only GP-sensitive participants
+```{r normdresSense}
+qqmath(models.timing.Sense, id=0.05)
+```
+
+## Linearity
+Plots of residuals vs. observed
+
+### All Ps
+```{r lin}
+plot(resid(models.timing),na.omit(inter_item_timings$inter_reading),xlab="Residuals",ylab="Observed values")
+```
+
+### GP-sensitive only
+```{r linsense}
+plot(resid(models.timing.Sense),na.omit(sensitive_timings$inter_reading),xlab="Residuals",ylab="Observed values")
+```

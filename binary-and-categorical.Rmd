@@ -1,0 +1,233 @@
+---
+title: "Summary"
+author: "Tyler Peckenpaugh"
+date: "3/5/2019"
+output:
+  html_document:
+    theme: journal
+---
+
+```{r setup, include=FALSE}
+library(readr)
+library(knitr)
+library(kableExtra)
+library(pander)
+library(lme4)
+library(lmerTest)
+library(lattice)
+
+refresh = FALSE # set to true to re-run models
+
+mdata <- read_csv("dissertation/csvs/got_prosody.csv")
+mdata$V<-mdata$V == "YES"
+mdata$OBJ<-mdata$OBJ == "YES"
+mdata$PP1<-mdata$PP1 == "YES"
+mdata$STRUG<-mdata$STRUG == "YES"
+mdata$STRONG <- as.factor(mdata$STRONG)
+mdata$WEAK <- as.factor(mdata$WEAK)
+mdata$Reading <- as.factor(mdata$Reading)
+mdata$prosody <- as.factor(mdata$prosody)
+mdata$two_level_prosody <- as.factor(mdata$two_level_prosody)
+mdata$IID <- as.factor(mdata$IID)
+mdata$UID <- as.factor(mdata$UID)
+mdata$SID <- as.factor(mdata$SID)
+mdata$STRUG_START <- as.factor(mdata$STRUG_START)
+mdata$lowAttach <- mdata$two_level_prosody %in% c("PP1", "PP1 > OBJ")
+mdata$IID[mdata$IID == 108] <- 8
+mdata$LQI <- mdata$QI == "YES"
+mdata$HtOrMs_QI <- mdata$LQI == mdata$Condition_Q
+
+mdata$condition <- paste(ifelse(mdata$Condition_GP, "+GP", "-GP")," ",ifelse(mdata$Condition_Q, "+Q", "-Q"))
+
+gpInsensitive <- paste(c(1,
+12,
+14,
+15,
+19,
+2,
+20,
+203,
+21,
+210,
+22,
+4,
+6))
+
+```
+
+# Crosstabs
+
+## Struggle 
+
+Note that struggle does not show good cross-rater reliability
+
+```{r strug}
+label = "struggle:"
+f <- ~STRUG + condition
+full <- xtabs(f, mdata)
+r1 <- xtabs(f, subset(mdata,Reading==1))
+r2 <- xtabs(f, subset(mdata,Reading==2))
+kable(full, caption = paste(label,"both readings")) %>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T)
+kable(r1, caption = paste(label,"reading 1")) %>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T)
+kable(r2, caption = paste(label,"reading 2")) %>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T)
+```
+
+## V break
+
+Note that V break does not show good cross-rater reliability
+
+```{r v}
+label = "pp1 break:"
+f <- ~V + condition
+full <- xtabs(f, mdata)
+r1 <- xtabs(f, subset(mdata,Reading==1))
+r2 <- xtabs(f, subset(mdata,Reading==2))
+kable(full, caption = paste(label,"both readings")) %>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T)
+kable(r1, caption = paste(label,"reading 1")) %>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T)
+kable(r2, caption = paste(label,"reading 2")) %>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T)
+```
+
+## PP1 break
+
+```{r pp1}
+label = "pp1 break:"
+f <- ~PP1 + condition
+full <- xtabs(f, mdata)
+r1 <- xtabs(f, subset(mdata,Reading==1))
+r2 <- xtabs(f, subset(mdata,Reading==2))
+kable(full, caption = paste(label,"both readings")) %>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T)
+kable(r1, caption = paste(label,"reading 1")) %>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T)
+kable(r2, caption = paste(label,"reading 2")) %>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T)
+```
+## OBJ break
+
+```{obj}
+label <- "obj:"
+f <- ~OBJ + condition
+full <- xtabs(f, mdata)
+r1 <- xtabs(f, subset(mdata,Reading==1))
+r2 <- xtabs(f, subset(mdata,Reading==2))
+kable(full, caption =paste(label,"both readings")) %>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T)
+kable(r1, caption = paste(label,"reading 1")) %>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T)
+kable(r2, caption = paste(label,"reading 2")) %>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T)
+```
+
+## Question intonation hit/miss
+
+```{r qihit}
+label <- "QI hit:"
+f <- ~HtOrMs_QI + condition
+full <- xtabs(f, mdata)
+r1 <- xtabs(f, subset(mdata,Reading==1))
+r2 <- xtabs(f, subset(mdata,Reading==2))
+kable(full, caption = paste(label,"both readings")) %>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T)
+kable(r1, caption = paste(label,"reading 1")) %>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T)
+kable(r2, caption = paste(label,"reading 2")) %>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T)
+```
+
+# 3-level prosodic pattern
+```{r 3lvlxtabs}
+f <- ~ prosody + condition
+prosodies.full <- xtabs(f, mdata)
+prosodies.r1 <- xtabs(f, subset(mdata,Reading==1))
+prosodies.r2 <- xtabs(f, subset(mdata,Reading==2))
+kable(prosodies.full, caption = "both readings") %>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T)
+kable(prosodies.r1, caption = "reading 1") %>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T)
+kable(prosodies.r2, caption = "reading 2") %>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T)
+```
+
+# 2-level prosodic pattern
+```{r 2lvlxtabs}
+form <- ~ condition+ two_level_prosody
+prosodies.full <- xtabs(form, mdata)
+prosodies.r1 <- xtabs(form, subset(mdata,Reading==1))
+prosodies.r2 <- xtabs(form, subset(mdata,Reading==2))
+kable(prosodies.full) %>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T)
+kable(prosodies.r1, caption = "reading 1") %>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T)
+kable(prosodies.r2, caption = "reading 2") %>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T) 
+```
+
+# Logit models
+
+```{r pp1logit}
+if(!exists("models.logi.pp1.full") | refresh){
+  models.logi.pp1.full <- glmer(
+    PP1~OBJ * Condition_Q * Condition_GP * Reading + 
+      (1+OBJ*Condition_Q*Condition_GP*Reading | SID) + 
+      (1+OBJ*Condition_Q*Condition_GP*Reading | IID),
+    family = binomial, 
+    data = mdata,
+    control = glmerControl(optimizer = "bobyqa", calc.derivs=F,optCtrl=list(maxfun=2e8))
+  )
+}
+```
+```{r attachment}
+if(!exists("models.logi.attach.full") | refresh){
+  models.logi.attach.full <- glmer(
+    lowAttach~Condition_Q*Condition_GP*Reading + 
+      (1+Condition_Q*Condition_GP*Reading | SID) + 
+      (1+Condition_Q*Condition_GP*Reading | IID),
+    data = mdata,
+    family = binomial, 
+    control = glmerControl(optimizer = "bobyqa", calc.derivs=F, optCtrl=list(maxfun=2e8))
+  )
+}
+```
+
+## Predicting PP1
+
+Is the existence of PP1 break predicted by condition * reading?
+
+```{r summarizePP1}
+summary(models.logi.pp1.full)
+```
+
+## Predicting PP1 as strongest or only break
+
+Is PP1 being the strongest or only break predicted by condition * reading?
+
+```{r summarizeAttach}
+summary(models.logi.attach.full)
+```
