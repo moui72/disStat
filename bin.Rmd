@@ -68,20 +68,20 @@ mdata$condition <- paste(ifelse(mdata$Condition_GP, "+GP", "-GP")," ",ifelse(mda
 
 ```{r pp1logit}
 # model failse to converge
-if(F & !exists("models.logi.attach.full") | refresh){
-  models.logi.pp1.full <- glmer(
-    PP1~OBJ + Condition_Q * Condition_GP + Reading + 
-      (OBJ+Condition_Q*Condition_GP+Reading | SID) + 
-      (OBJ+Condition_Q*Condition_GP+Reading | IID),
-    family = binomial, 
-    data = mdata,
-    control = glmerControl(optimizer = "bobyqa",
-                           optCtrl=list(maxfun=2e8)),
-    verbose = 2
-  )
-}
+# if(F & !exists("models.logi.attach.full") | refresh){
+#   models.logi.pp1.full <- glmer(
+#     PP1~OBJ + Condition_Q * Condition_GP + Reading + 
+#       (OBJ+Condition_Q*Condition_GP+Reading | SID) + 
+#       (OBJ+Condition_Q*Condition_GP+Reading | IID),
+#     family = binomial, 
+#     data = mdata,
+#     control = glmerControl(optimizer = "bobyqa",
+#                            optCtrl=list(maxfun=2e8)),
+#     verbose = 2
+#   )
+# }
 ```
-```{r attachment,echo=F}
+```{r attachment,echo=FALSE}
 if(!exists("models.logi.attach.full.wD") | refresh){
   models.logi.attach.full.wD <- glmer(
     lowAttach~Condition_Q*Condition_GP*Reading + 
@@ -94,7 +94,6 @@ if(!exists("models.logi.attach.full.wD") | refresh){
   )
 }
 ```
-
 ```{r attachment_noRint}
 if(!exists("models.logi.attach.noRint") | refresh){
   models.logi.attach.noRint <- glmer(
@@ -135,23 +134,37 @@ if(!exists("models.logi.attach.noR.r2") | refresh){
 }
 ```
 
-## Predicting PP1
-
-Is the existence of PP1 break predicted by condition * reading?
-
-Model `r dels.logi.attach.full <- glmer(lowAttach~Condition_Q*Condition_GP*Reading + (1+Condition_Q*Condition_GP*Reading | SID) + (1+Condition_Q*Condition_GP*Reading | IID)` fails to converge.
-
-```{r summarizePP1}
-summary(models.logi.pp1.full)
-```
 
 ## Predicting PP1 as strongest or only break
 
 Is PP1 being the strongest or only break predicted by condition * reading?
 
+# Full model
+
 ```{r summarizeAttach}
-summary(models.logi.attach.full)
+summary(models.logi.attach.full.wD)
+```
+
+# Model with no interaction of reading
+Simplified model and comparison to full model
+
+```{r sumNoRInt}
 summary(models.logi.attach.noRint)
+anova(models.logi.attach.full.wD,models.logi.attach.noRint)
+```
+
+# Model with no fixed effect of reading
+Simplified model and comparison to full model
+
+```{r sumNoR}
 summary(models.logi.attach.noR)
-anova(models.logi.attach.full,models.logi.attach.noRint)
+anova(models.logi.attach.full.wD,models.logi.attach.noR)
+```
+
+# Model with just reading 2
+Simplified model and comparison to full model
+
+```{r sumR2}
+summary(models.logi.attach.noR.r2)
+#anova(models.logi.attach.full.wD,models.logi.attach.noR.r2)
 ```
