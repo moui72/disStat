@@ -1,0 +1,170 @@
+---
+title: "Binomial models"
+author: "Tyler Peckenpaugh"
+date: "3/5/2019"
+output:
+  html_document:
+    highlight: pygments
+    number_sections: yes
+    theme: journal
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+library(readr)
+library(knitr)
+library(kableExtra)
+library(lme4)
+library(lmerTest)
+
+refresh = FALSE # set to true to re-run models
+order1<-paste(c(1,2,3,4,5,6,7,8,9,22,201,202,203,204,205,206))
+gpInsensitive <- paste(c(1,12,14,15,19,2,20,203,21,210,22,4,6))
+
+morder<-c(3,8,4,9,14,13,12,2,7,10,1,16,5,15,11,6)
+sorder<-c(7,10,1,16,5,15,11,6,3,8,4,9,14,13,12,2)
+
+getIOrd<-function (x,s){
+  if(s==1){
+    return (match(x,morder))
+  } else {
+    return (match(x,sorder))
+  }
+}
+
+mdata <- read_csv("csvs/got_prosody.csv")
+
+mdata$Sorder <- 2
+mdata$Sorder[mdata$SID %in% order1] <- 1
+mdata$Iorder <- getIOrd(mdata$IID,mdata$Sorder)
+
+mdata<-subset(mdata,!is.na(PP1) & !is.na(two_level_prosody))
+mdata$V<-mdata$V == "YES"
+mdata$OBJ<-mdata$OBJ == "YES"
+mdata$PP1<-mdata$PP1 == "YES"
+mdata$STRUG<-mdata$STRUG == "YES"
+mdata$STRONG <- as.factor(mdata$STRONG)
+mdata$WEAK <- as.factor(mdata$WEAK)
+mdata$Reading <- as.factor(mdata$Reading)
+mdata$prosody <- as.factor(mdata$prosody)
+mdata$two_level_prosody <- as.factor(mdata$two_level_prosody)
+mdata$IID <- as.factor(mdata$IID)
+mdata$UID <- as.factor(mdata$UID)
+mdata$SID <- as.factor(mdata$SID)
+mdata$STRUG_START <- as.factor(mdata$STRUG_START)
+mdata$lowAttach <- mdata$two_level_prosody %in% c("PP1", "PP1 > OBJ")
+mdata$IID[mdata$IID == 108] <- 8
+mdata$LQI <- mdata$QI == "YES"
+mdata$HtOrMs_QI <- mdata$LQI == mdata$Condition_Q
+
+mdata$condition <- paste(ifelse(mdata$Condition_GP, "+GP", "-GP")," ",ifelse(mdata$Condition_Q, "+Q", "-Q"))
+
+
+
+
+```
+
+# Logit models
+
+```{r pp1logit}
+# model failse to converge
+# if(F & !exists("models.logi.attach.full") | refresh){
+#   models.logi.pp1.full <- glmer(
+#     PP1~OBJ + Condition_Q * Condition_GP + Reading + 
+#       (OBJ+Condition_Q*Condition_GP+Reading | SID) + 
+#       (OBJ+Condition_Q*Condition_GP+Reading | IID),
+#     family = binomial, 
+#     data = mdata,
+#     control = glmerControl(optimizer = "bobyqa",
+#                            optCtrl=list(maxfun=2e8)),
+#     verbose = 2
+#   )
+# }
+```
+```{r attachment,echo=FALSE}
+if(!exists("models.logi.attach.full.wD") | refresh){
+  models.logi.attach.full.wD <- glmer(
+    lowAttach~Condition_Q*Condition_GP*Reading + 
+      (1+Condition_Q*Condition_GP*Reading | SID) + 
+      (1+Condition_Q*Condition_GP*Reading | IID),
+    data = mdata,
+    family = binomial, 
+    control = glmerControl(optimizer = "bobyqa", optCtrl=list(maxfun=2e8)),
+    verbose = 2
+  )
+}
+```
+```{r attachment_noRint}
+if(!exists("models.logi.attach.noRint") | refresh){
+  models.logi.attach.noRint <- glmer(
+    lowAttach~Condition_Q*Condition_GP+Reading + 
+      (1+Condition_Q*Condition_GP+Reading | SID) + 
+      (1+Condition_Q*Condition_GP+Reading | IID),
+    data = mdata,
+    family = binomial, 
+    control = glmerControl(optimizer = "bobyqa", optCtrl=list(maxfun=2e8)),
+    verbose = 2
+  )
+}
+```
+```{r attachment_noR}
+if(!exists("models.logi.attach.noR") | refresh){
+  models.logi.attach.noR <- glmer(
+    lowAttach~Condition_Q*Condition_GP + 
+      (1+Condition_Q*Condition_GP | SID) + 
+      (1+Condition_Q*Condition_GP | IID),
+    data = mdata,
+    family = binomial, 
+    control = glmerControl(optimizer = "bobyqa", optCtrl=list(maxfun=2e8)),
+    verbose = 2
+  )
+}
+```
+```{r attachment_noR_r2}
+if(!exists("models.logi.attach.noR.r2") | refresh){
+  models.logi.attach.noR.r2 <- glmer(
+    lowAttach~Condition_Q*Condition_GP + 
+      (1+Condition_Q*Condition_GP | SID) + 
+      (1+Condition_Q*Condition_GP | IID),
+    data = subset(mdata, Reading == 2),
+    family = binomial, 
+    control = glmerControl(optimizer = "bobyqa", optCtrl=list(maxfun=2e8)),
+    verbose = 2
+  )
+}
+```
+
+
+## Predicting PP1 as strongest or only break
+
+Is PP1 being the strongest or only break predicted by condition * reading?
+
+# Full model
+
+```{r summarizeAttach}
+summary(models.logi.attach.full.wD)
+```
+
+# Model with no interaction of reading
+Simplified model and comparison to full model
+
+```{r sumNoRInt}
+summary(models.logi.attach.noRint)
+anova(models.logi.attach.full.wD,models.logi.attach.noRint)
+```
+
+# Model with no fixed effect of reading
+Simplified model and comparison to full model
+
+```{r sumNoR}
+summary(models.logi.attach.noR)
+anova(models.logi.attach.full.wD,models.logi.attach.noR)
+```
+
+# Model with just reading 2
+Simplified model and comparison to full model
+
+```{r sumR2}
+summary(models.logi.attach.noR.r2)
+#anova(models.logi.attach.full.wD,models.logi.attach.noR.r2)
+```

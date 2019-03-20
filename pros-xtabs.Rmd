@@ -1,10 +1,13 @@
 ---
-title: "Binomial models"
+title: "Prosodic descriptions"
 author: "Tyler Peckenpaugh"
 date: "3/5/2019"
 output:
   html_document:
+    highlight: pygments
+    number_sections: yes
     theme: journal
+    toc: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -18,10 +21,25 @@ library(lmerTest)
 refresh = FALSE # set to true to re-run models
 order1<-paste(c(1,2,3,4,5,6,7,8,9,22,201,202,203,204,205,206))
 gpInsensitive <- paste(c(1,12,14,15,19,2,20,203,21,210,22,4,6))
-morder<-paste(c(3,8,4,9,14,13,12,2,7,10,1,16,5,15,1,16))
-sorder<-paste(c(7,10,1,16,5,15,11,6,3,8,4,9,14,13,12,2))
+
+morder<-c(3,8,4,9,14,13,12,2,7,10,1,16,5,15,11,6)
+sorder<-c(7,10,1,16,5,15,11,6,3,8,4,9,14,13,12,2)
+
+getIOrd<-function (x,s){
+  if(s==1){
+    return (match(x,morder))
+  } else {
+    return (match(x,sorder))
+  }
+}
 
 mdata <- read_csv("csvs/got_prosody.csv")
+
+mdata$Sorder <- 2
+mdata$Sorder[mdata$SID %in% order1] <- 1
+mdata$Iorder <- getIOrd(mdata$IID,mdata$Sorder)
+
+mdata<-subset(mdata,!is.na(PP1) & !is.na(two_level_prosody))
 mdata$V<-mdata$V == "YES"
 mdata$OBJ<-mdata$OBJ == "YES"
 mdata$PP1<-mdata$PP1 == "YES"
@@ -39,10 +57,10 @@ mdata$lowAttach <- mdata$two_level_prosody %in% c("PP1", "PP1 > OBJ")
 mdata$IID[mdata$IID == 108] <- 8
 mdata$LQI <- mdata$QI == "YES"
 mdata$HtOrMs_QI <- mdata$LQI == mdata$Condition_Q
-mdata$Sorder <- 2
-mdata$Sorder[mdata$SID %in% order1] <- 1
+
 mdata$condition <- paste(ifelse(mdata$Condition_GP, "+GP", "-GP")," ",ifelse(mdata$Condition_Q, "+Q", "-Q"))
-mdata$Iorder <- ifelse(mdata$Sorder==1,match(mdata$SID,morder),match(mdata$SID,sorder))
+
+
 
 ```
 
@@ -74,7 +92,7 @@ kable(r2, caption = paste(label,"reading 2")) %>%
 Note that V break does not show good cross-rater reliability
 
 ```{r v}
-label = "pp1 break:"
+label = "v break:"
 f <- ~V + condition
 full <- xtabs(f, mdata)
 r1 <- xtabs(f, subset(mdata,Reading==1))
@@ -111,7 +129,7 @@ kable(r2, caption = paste(label,"reading 2")) %>%
 
 ## OBJ break
 
-```{obj}
+```{r obj}
 label <- "obj:"
 f <- ~OBJ + condition
 full <- xtabs(f, mdata)
@@ -179,63 +197,4 @@ kable(prosodies.r1, caption = "reading 1") %>%
 kable(prosodies.r2, caption = "reading 2") %>%
   kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
   column_spec(1,bold=T) 
-```
-
-# Logit models
-
-```{r pp1logit}
-
-models.logi.pp1.full <- glmer(
-  PP1~Condition_Q * Condition_GP * Reading + 
-    (Condition_Q*Condition_GP+Reading | SID) + 
-    (Condition_Q*Condition_GP+Reading | IID),
-  family = binomial, 
-  data = mdata,
-  control = glmerControl(optimizer = "bobyqa",
-                         optCtrl=list(maxfun=2e8)),
-  verbose = 2
-)
-
-if(!exists("models.logi.attach.full") | refresh){
-  models.logi.pp1.full <- glmer(
-    PP1~OBJ + Condition_Q * Condition_GP + Reading + 
-      (OBJ+Condition_Q*Condition_GP+Reading | SID) + 
-      (OBJ+Condition_Q*Condition_GP+Reading | IID),
-    family = binomial, 
-    data = mdata,
-    control = glmerControl(optimizer = "bobyqa",
-                           optCtrl=list(maxfun=2e8)),
-    verbose = 2
-  )
-}
-
-```
-```{r attachment}
-if(!exists("models.logi.attach.full") | refresh){
-  models.logi.attach.full <- glmer(
-    lowAttach~Condition_Q*Condition_GP+Reading + 
-      (1+Condition_Q*Condition_GP+Reading | SID) + 
-      (1+Condition_Q*Condition_GP+Reading | IID),
-    data = mdata,
-    family = binomial, 
-    control = glmerControl(optimizer = "bobyqa", calc.derivs=F, optCtrl=list(maxfun=2e8)),
-    verbose = 2
-  )
-}
-```
-
-## Predicting PP1
-
-Is the existence of PP1 break predicted by condition * reading?
-
-```{r summarizePP1}
-summary(models.logi.pp1.full)
-```
-
-## Predicting PP1 as strongest or only break
-
-Is PP1 being the strongest or only break predicted by condition * reading?
-
-```{r summarizeAttach}
-summary(models.logi.attach.full)
 ```
