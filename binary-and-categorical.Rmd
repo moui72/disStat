@@ -185,9 +185,9 @@ kable(prosodies.r2, caption = "reading 2") %>%
 ```{r pp1logit}
 
 models.logi.pp1.full <- glmer(
-  PP1~OBJ + Condition_Q * Condition_GP + Reading + 
-    (OBJ+Condition_Q*Condition_GP+Reading | SID) + 
-    (OBJ+Condition_Q*Condition_GP+Reading | IID),
+  PP1~Condition_Q * Condition_GP * Reading + 
+    (Condition_Q*Condition_GP+Reading | SID) + 
+    (Condition_Q*Condition_GP+Reading | IID),
   family = binomial, 
   data = mdata,
   control = glmerControl(optimizer = "bobyqa",
@@ -200,9 +200,9 @@ summary(models.logi.pp1.full)
 ```{r attachment}
 if(!exists("models.logi.attach.full") | refresh){
   models.logi.attach.full <- glmer(
-    lowAttach~Condition_Q*Condition_GP*Reading + 
-      (1+Condition_Q*Condition_GP*Reading | SID) + 
-      (1+Condition_Q*Condition_GP*Reading | IID),
+    lowAttach~Condition_Q*Condition_GP+Reading + 
+      (1+Condition_Q*Condition_GP+Reading | SID) + 
+      (1+Condition_Q*Condition_GP+Reading | IID),
     data = mdata,
     family = binomial, 
     control = glmerControl(optimizer = "bobyqa", calc.derivs=F, optCtrl=list(maxfun=2e8)),

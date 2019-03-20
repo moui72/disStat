@@ -34,10 +34,10 @@ inter_item_timings_all$inter_reading[inter_item_timings_all$inter_reading < 1] <
 inter_item_timings_all$Exp <- FALSE == grepl("F",inter_item_timings_all$filename)
 inter_item_timings_all$participant[inter_item_timings_all$participant == 108] <- 8
 
-# inter_item_timings_all<-transform(inter_item_timings_all,winsrdIRT = ave(inter_reading,participant,FUN=winsor))
-# 
-# inter_item_timings_all$raw_irt <- inter_item_timings_all$inter_reading
-# inter_item_timings_all$inter_reading <- inter_item_timings_all$winsrdIRT
+inter_item_timings_all<-transform(inter_item_timings_all,winsrdIRT = ave(inter_reading,participant,FUN=winsor))
+
+inter_item_timings_all$raw_irt <- inter_item_timings_all$inter_reading
+inter_item_timings_all$inter_reading <- inter_item_timings_all$winsrdIRT
 
 inter_item_timings <- subset(inter_item_timings_all, Exp)
 
