@@ -1,0 +1,295 @@
+---
+title: "Binomial models"
+author: "Tyler Peckenpaugh"
+date: "3/5/2019"
+output:
+  html_document:
+    highlight: pygments
+    number_sections: yes
+    theme: journal
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+library(readr)
+library(knitr)
+library(kableExtra)
+library(lme4)
+library(lmerTest)
+library(glue)
+excl <- c(5,11)
+refresh = FALSE # set to true to re-run models
+order1<-paste(c(1,2,3,4,5,6,7,8,9,22,201,202,203,204,205,206))
+gpInsensitive <- paste(c(1,12,14,15,19,2,20,203,21,210,22,4,6))
+
+morder<-c(3,8,4,9,14,13,12,2,7,10,1,16,5,15,11,6)
+sorder<-c(7,10,1,16,5,15,11,6,3,8,4,9,14,13,12,2)
+
+getIOrd<-function (x,s){
+  if(s==1){
+    return (match(x,morder))
+  } else {
+    return (match(x,sorder))
+  }
+}
+
+mdata <- read_csv("csvs/got_prosody.csv")
+fmdata<-mdata
+mdata<-subset(mdata,!SID %in% excl)
+mdata$SID <- as.factor(mdata$SID)
+mdata$Sorder <- 2
+mdata$Sorder[mdata$SID %in% order1] <- 1
+mdata$Iorder <- getIOrd(mdata$IID,mdata$Sorder)
+
+mdata<-subset(mdata,!is.na(PP1) & !is.na(two_level_prosody))
+mdata$V<-mdata$V == "YES"
+mdata$OBJ<-mdata$OBJ == "YES"
+mdata$PP1<-mdata$PP1 == "YES"
+mdata$STRUG<-mdata$STRUG == "YES"
+mdata$STRONG <- as.factor(mdata$STRONG)
+mdata$WEAK <- as.factor(mdata$WEAK)
+mdata$Reading <- as.factor(mdata$Reading)
+mdata$prosody <- as.factor(mdata$prosody)
+mdata$two_level_prosody <- as.factor(mdata$two_level_prosody)
+mdata$IID <- as.factor(mdata$IID)
+mdata$UID <- as.factor(mdata$UID)
+mdata$SID <- as.factor(mdata$SID)
+mdata$STRUG_START <- as.factor(mdata$STRUG_START)
+mdata$lowAttach <- mdata$two_level_prosody %in% c("PP1", "PP1 > OBJ")
+mdata$IID[mdata$IID == 108] <- 8
+mdata$LQI <- mdata$QI == "YES"
+mdata$HtOrMs_QI <- mdata$LQI == mdata$Condition_Q
+
+mdata$condition <- paste(ifelse(mdata$Condition_GP, "+GP", "-GP")," ",ifelse(mdata$Condition_Q, "+Q", "-Q"))
+
+mdata$flat_2lp <- trim(paste(ifelse(mdata$PP1, "+PP1", "-PP1"),ifelse(mdata$OBJ,"+OBJ","-OBJ")))
+
+```
+# crosstab
+```{r xt}
+
+# PP1
+kable(xtabs(~PP1+condition,data=mdata),caption="PP1 break by condition")%>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T) %>%
+  row_spec(1:2,color="#444444")
+
+kable(xtabs(~PP1+Condition_Q,data=mdata),caption="PP1 break by Q",col.names = c("+Q","-Q"))%>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T) %>%
+  row_spec(1:2,color="#444444")
+
+kable(xtabs(~PP1+Condition_GP,data=mdata),caption="PP1 break by GP",col.names = c("+GP","-GP"))%>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T) %>%
+  row_spec(1:2,color="#444444")
+
+
+# OBJ
+kable(xtabs(~OBJ+Condition_Q,data=mdata),caption="OBJ break by Q",col.names = c("+Q","-Q"))%>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T) %>%
+  row_spec(1:2,color="#444444")
+kable(xtabs(~OBJ+Condition_GP,data=mdata),caption="OBJ break by GP",col.names = c("+GP","-GP"))%>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T) %>%
+  row_spec(1:2,color="#444444")
+
+kable(xtabs(~OBJ+condition,data=mdata),caption="OBJ break by condition")%>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T) %>%
+  row_spec(1:2,color="#444444")
+
+kable(xtabs(~flat_2lp + Condition_Q, data=mdata), caption="PP1+OBJ by Q",col.names = c("+Q","-Q"))%>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T) %>%
+  row_spec(1:3,color="#444444")
+
+kable(xtabs(~flat_2lp + Condition_GP, data=mdata),col.names = c("+GP","-GP"), caption="PP1+OBJ by GP")%>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T) %>%
+  row_spec(1:3,color="#444444")
+
+kable(xtabs(~flat_2lp+condition,data=mdata), caption="PP1+OBJ by condition")%>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T) %>%
+  row_spec(1:3,color="#444444")
+
+```
+
+# Logit models
+
+## Both readings
+
+```{r pp1SimpleBothR}
+lrm.PP1.simple <- glmer(
+  PP1 ~ Reading + Condition_GP * Condition_Q + (1 | SID) + (1 | IID),
+  data=mdata,
+  family=binomial,
+  control=glmerControl(optimizer = "bobyqa")
+)
+lrm.PP1.simple.noR <- glmer(
+  PP1 ~ Condition_GP * Condition_Q + 
+    (1 | SID) + (1 | IID),
+  data=mdata,
+  family=binomial,
+  control=glmerControl(optimizer = "bobyqa")
+)
+anova(lrm.PP1.simple.noR,lrm.PP1.simple)
+lrm.PP1.simple.noInt <- glmer(
+  PP1 ~ Condition_GP + Condition_Q + 
+    (1 | SID) + (1 | IID),
+  data=mdata,
+  family=binomial,
+  control=glmerControl(optimizer = "bobyqa")
+)
+anova(lrm.PP1.simple,lrm.PP1.simple.noInt)
+anova(lrm.PP1.simple.noR,lrm.PP1.simple.noInt)
+lrm.PP1.simple.noQ <- glmer(
+  PP1 ~ Condition_GP + 
+    (1 | SID) + (1 | IID),
+  data=mdata,
+  family=binomial,
+  control=glmerControl(optimizer = "bobyqa")
+)
+anova(lrm.PP1.simple.noInt,lrm.PP1.simple.noQ)
+lrm.PP1.simple.noGP <- glmer(
+  PP1 ~ Condition_Q + 
+    (1 | SID) + (1 | IID),
+  data=mdata,
+  family=binomial,
+  control=glmerControl(optimizer = "bobyqa")
+)
+anova(lrm.PP1.simple.noInt,lrm.PP1.simple.noGP)
+
+anova(lrm.PP1.simple.noInt,lrm.PP1.simple.noQ)
+lrm.PP1.null <- glmer(
+  PP1 ~ 1 + 
+    (1 | SID) + (1 | IID),
+  data=mdata,
+  family=binomial,
+  control=glmerControl(optimizer = "bobyqa"),
+  REML=F
+)
+anova(lrm.PP1.simple.noInt,lrm.PP1.simple.noGP)
+
+
+```
+# reading 1
+
+```{r pp1simpleR1}
+# ---- these fail to converge -----
+# lrm.PP1.full.r1 <- glmer(
+#   PP1 ~ Condition_GP * 
+#     Condition_Q + 
+#     (1 + Condition_GP * Condition_Q| SID) +
+#     (1 +Condition_GP * Condition_Q| IID),
+#   data=subset(mdata,Reading==1),
+#   family=binomial
+# )
+
+# lrm.PP1.simple.r1 <- glmer(
+#   PP1 ~ Condition_GP * Condition_Q + 
+#     (1 + Condition_GP + Condition_Q| SID) + 
+#     (1 +Condition_GP + Condition_Q| IID),
+#   data=subset(mdata,Reading==1),
+#   family=binomial
+# )
+# ---------------------------------
+lrm.PP1.simplest.r1 <- glmer(
+  PP1 ~ Condition_GP * Condition_Q + (1 | SID) + (1 | IID),
+  data=subset(mdata,Reading==1),
+  family=binomial,
+  control=glmerControl(optimizer = "bobyqa")
+)
+lrm.PP1.simplest.r1.noInt <- glmer(
+  PP1 ~ Condition_GP + Condition_Q + (1 | SID) + (1 | IID),
+  data=subset(mdata,Reading==1),
+  family=binomial,
+  control=glmerControl(optimizer = "bobyqa")
+)
+anova(lrm.PP1.simplest.r1,lrm.PP1.simplest.r1.noInt)
+```
+
+# reading 2
+
+```{r pp1simpleR2}
+
+lrm.PP1.simplest.r2 <- glmer(
+  PP1 ~ Condition_GP * Condition_Q + (1 | SID) + (1 | IID),
+  data=subset(mdata,Reading==2),
+  family=binomial,
+  control=glmerControl(optimizer = "bobyqa")
+)
+
+
+lrm.PP1.simplest.r2.noInt <- glmer(
+  PP1 ~ Condition_GP + Condition_Q + (1 | SID) + (1 | IID),
+  data=subset(mdata,Reading==2),
+  family=binomial,
+  control=glmerControl(optimizer = "bobyqa")
+)
+anova(lrm.PP1.simplest.r2,lrm.PP1.simplest.r2.noInt)
+```
+# OBJ
+
+```{r objSimple}
+lrm.OBJ.simple <- glmer(
+  OBJ ~ Reading +  Condition_GP * Condition_Q + (1 | SID) + (1 | IID),
+  data=mdata,
+  family=binomial
+)
+lrm.OBJ.simple.noR <- glmer(
+  OBJ ~ Condition_GP * Condition_Q + (1 | SID) + (1 | IID),
+  data=mdata,
+  family=binomial
+)
+lrm.OBJ.simple.noInt <- glmer(
+  OBJ ~ Condition_GP + Condition_Q + (1 | SID) + (1 | IID),
+  data=mdata,
+  family=binomial
+)
+anova(lrm.OBJ.simple, lrm.OBJ.simple.noR)
+anova(lrm.OBJ.simple.noInt, lrm.OBJ.simple.noR)
+```
+```{r objR1}
+lrm.OBJ.simple.r1 <- glmer(
+  OBJ ~ Condition_GP * Condition_Q + (1 | SID) + (1 | IID),
+  data=subset(mdata,Reading==1),
+  family=binomial
+)
+```
+```{r objR2}
+lrm.OBJ.simple.r2 <- glmer(
+  OBJ ~  Condition_GP * Condition_Q + (1 | SID) + (1 | IID),
+  data=subset(mdata,Reading==2),
+  family=binomial
+)
+```
+```{r qi, include=F}
+# lrm.QI.simple <- glmer(
+#   HtOrMs_QI~Reading + Condition_GP * Condition_Q + (1 | SID) + (1 | IID), 
+#   data=mdata,
+#   family=binomial
+# )
+lrm.QI.simple.r1 <- glmer(
+  HtOrMs_QI~ Condition_GP * Condition_Q + PP1+OBJ + (1 | SID) + (1 | IID), 
+  data=subset(mdata,Reading==1),
+  family=binomial
+)
+
+```
+
+```{r strug, include=F}
+lrm.STRUG.simple <- glmer(
+  STRUG ~ Condition_GP * Condition_Q + Reading + (1 | SID) + (1 | IID), 
+  data=mdata,
+  family=binomial
+)
+lrm.STRUG.simple.r1 <- glmer(
+  STRUG ~ Condition_GP * Condition_Q + (1 | SID) + (1 | IID), 
+  data=subset(mdata,Reading==1),
+  family=binomial
+)
+
+```

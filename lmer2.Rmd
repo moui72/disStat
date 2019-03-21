@@ -1,0 +1,187 @@
+---
+title: "LME Inter-Item Timing (winsorized)"
+author: "Tyler Peckenpaugh"
+date: "3/5/2019"
+output:
+  html_document:
+    theme: journal
+    toc: true
+  pdf_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+library(readr)
+library(knitr)
+library(kableExtra)
+library(pander)
+library(lme4)
+library(lmerTest)
+library(lattice)
+library(psych)
+library(geepack)
+library(tidyr)
+getIOrd<-function (x,s){
+  if(s==1){
+    return (match(x,morder))
+  } else {
+    return (match(x,sorder))
+  }
+}
+
+mean.sd <- function(x) c(mean = mean(x), sd = sd(x))
+# set to true to re-run modelsqqnorm(myModel.lme, ~ranef(., level=2))
+refresh = TRUE
+inter_item_timings_all <- read_csv("csvs/irt-20190320-142840.csv")
+
+
+inter_item_timings_all$condition <- paste(ifelse(inter_item_timings_all$is_filler,ifelse(inter_item_timings_all$GP_condition,"+PP","-PP"),ifelse(inter_item_timings_all$GP_condition,"+GP","-GP")),ifelse(inter_item_timings_all$Q_condition,"+Q","-Q"))
+
+
+inter_item_timings_all<-transform(inter_item_timings_all,winsrdIRT = ave(inter_reading,participant,FUN=winsor))
+
+inter_item_timings_all$raw_irt <- inter_item_timings_all$inter_reading
+inter_item_timings_all$inter_reading <- inter_item_timings_all$winsrdIRT
+
+inter_item_timings <- subset(inter_item_timings_all, inter_reading > 150 & !is_filler & participant != 206)
+
+inter_item_timings$inter_reading.ln <- log(inter_item_timings$inter_reading)
+inter_item_timings$inter_reading.log10 <- log10(inter_item_timings$inter_reading)
+inter_item_timings$inter_reading.inverse <- 1/(inter_item_timings$inter_reading)
+inter_item_timings$inter_reading.sqred <- (inter_item_timings$inter_reading)^2
+
+
+order1<-paste(c(1,2,3,4,5,6,7,8,9,22,201,202,203,204,205,206))
+
+morder<-c(3,8,4,9,14,13,12,2,7,10,1,16,5,15,11,6)
+sorder<-c(7,10,1,16,5,15,11,6,3,8,4,9,14,13,12,2)
+inter_item_timings$Sorder <- 2
+inter_item_timings$Sorder[inter_item_timings$participant %in% order1] <- 1
+inter_item_timings$Iorder <- getIOrd(inter_item_timings$item,inter_item_timings$Sorder)
+```
+
+# Inter-item timing analyses
+
+Mean inter-reading time (IRT) is a measure of the amount of time in ms between when a subject stops speaking during a cold reading and when they begin speaking for a previewed reading.
+
+Subjects were asked to read each sentence twice, once with no preview at all, and then again after unlimited preview. IRT is meant to represent their chosen preview time for the second reading.
+
+## histograms
+```{r hist}
+hist(inter_item_timings$raw_irt, breaks=50,xlab="raw IRT",main=" Raw IRT)")
+
+hist(inter_item_timings$inter_reading, breaks=50,xlab="IRT",main="HWinsorized IRT")
+
+hist(inter_item_timings$inter_reading.log10, breaks=50,xlab="log10 IRT",main="Common log of winsorized IRT")
+```
+
+## Mean and SD of winsorized IRT by condition
+
+Mean and SD winsorized inter-reading time (IRT) in ms
+
+
+```{r sdtable, echo=FALSE}
+mtable <- with(na.omit(subset(inter_item_timings,!is_filler)),tapply(inter_reading, condition, mean))
+
+sdtable <- with(na.omit(subset(inter_item_timings,!is_filler)),tapply(inter_reading, condition, sd))
+
+ctable <- rbind(mtable,sdtable)
+row.names(ctable) <- c("Mean", "SD")
+
+kable(t(ctable), align="r") %>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T)
+```
+## Means by conidtion and item/subject
+```{r meantable, echo=FALSE}
+
+mstable <-  aggregate(inter_reading ~ condition + participant, data=inter_item_timings, mean)
+mitable <- aggregate(inter_reading ~ condition + item, data=inter_item_timings, mean)
+
+mitable<-spread(mitable, key=condition, value=inter_reading, fill = NA, convert = FALSE)
+mstable<-spread(mstable, key=condition, value=inter_reading, fill = NA, convert = FALSE)
+
+mstable$pattern <- mstable$`+GP +Q` - mstable$`-GP +Q` < mstable$`+GP -Q` - mstable$`-GP -Q` 
+mitable$pattern <- mitable$`+GP +Q` - mitable$`-GP +Q` < mitable$`+GP -Q` - mitable$`-GP -Q` 
+```
+### Number of participants who show predicted pattern
+```{r PmatchesPatterns}
+summary(mstable$pattern)
+```
+### Number of items that show predicted pattern
+```{r ImatchesPat}
+summary(mitable$pattern)
+```
+
+```{r meansbyp}
+kable(mstable, align="r") %>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T)
+```
+```{r meansbyi}
+kable(mitable, align="r") %>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T)
+```
+
+
+## boxplot of mean inter-item time by condition
+
+Inter reading time (IRT) in ms
+
+```{r echo=FALSE}
+boxplot(inter_reading ~condition, main="plain IRT", col=c("white","lightgray"),inter_item_timings)
+
+boxplot(inter_reading.log10 ~ condition,main="common log of IRT", col=c("white","lightgray"),inter_item_timings)
+
+```
+
+# Models
+
+```{r lmerModel,echo=F}
+
+if(refresh | !exists("models.timing.simple")){
+  models.timing.simple <- lmer(
+    inter_reading.log10 ~ GP_condition * Q_condition + (1 | participant) + (1 | item),
+    data=inter_item_timings,
+    control=lmerControl(optCtrl=list(maxfun=2e12)), 
+    REML=FALSE)
+}
+if(refresh | !exists("models.timing.orderCheck")){
+  models.timing.orderCheck <- lmer(
+    inter_reading.log10 ~ Iorder + GP_condition * Q_condition + (1 | participant) + (1 | item),
+    data=inter_item_timings,
+    control=lmerControl(optCtrl=list(maxfun=2e12)), 
+    REML=FALSE)
+}
+
+
+if(refresh | !exists("models.timing.simple.noint")){
+  models.timing.simple.noint <- lmer(
+    inter_reading.log10 ~ GP_condition + Q_condition + (1 | participant) + (1 | item),
+    data=inter_item_timings,
+    control=lmerControl(optCtrl=list(maxfun=2e12)), 
+    REML=FALSE)
+}
+
+if(refresh | !exists("models.timing.simple.noGP")){
+  models.timing.simple.noQ <- lmer(
+    inter_reading.log10 ~  Q_condition + (1 | participant) + (1 | item),
+    data=inter_item_timings,
+    control=lmerControl(optCtrl=list(maxfun=2e12)), 
+    REML=FALSE)
+}
+summary(models.timing.simple)
+summary(models.timing.orderCheck)
+summary(models.timing.simple.noint)
+summary(models.timing.simple.noQ)
+anova(models.timing.simple.noint,models.timing.simple)
+anova(models.timing.simple,models.timing.orderCheck)
+anova(models.timing.simple,models.timing.simple.noQ)
+```
+```{r gee}
+gee.byP <- geeglm( inter_reading.log10 ~ GP_condition * Q_condition,id=participant,data=inter_item_timings)
+gee.byI <- geeglm( inter_reading.log10 ~ GP_condition * Q_condition,id=item,data=inter_item_timings)
+summary(gee.byP)
+summary(gee.byI)
+```
