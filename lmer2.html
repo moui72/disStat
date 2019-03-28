@@ -1324,6 +1324,7 @@ FALSE
 </div>
 <div id="models" class="section level1">
 <h1>Models</h1>
+<pre><code>## singular fit</code></pre>
 <pre><code>## Linear mixed model fit by maximum likelihood . t-tests use
 ##   Satterthwaite's method [lmerModLmerTest]
 ## Formula: 
@@ -1373,41 +1374,68 @@ FALSE
 ## Control: lmerControl(optCtrl = list(maxfun = 2e+12))
 ## 
 ##      AIC      BIC   logLik deviance df.resid 
-##   -519.0   -485.4    267.5   -535.0      482 
+##   -512.7   -420.4    278.4   -556.7      468 
 ## 
 ## Scaled residuals: 
-##     Min      1Q  Median      3Q     Max 
-## -2.2919 -0.7683  0.1013  0.7657  2.2966 
+##      Min       1Q   Median       3Q      Max 
+## -2.25042 -0.75424  0.07476  0.77158  2.43183 
 ## 
 ## Random effects:
-##  Groups      Name        Variance  Std.Dev.
-##  participant (Intercept) 0.0155807 0.1248  
-##  item        (Intercept) 0.0002787 0.0167  
-##  Residual                0.0162156 0.1273  
+##  Groups      Name        Variance  Std.Dev. 
+##  participant (Intercept) 1.570e-02 1.253e-01
+##  item        (Intercept) 3.991e-20 1.998e-10
+##  Residual                1.567e-02 1.252e-01
 ## Number of obs: 490, groups:  participant, 32; item, 16
 ## 
 ## Fixed effects:
 ##                                    Estimate Std. Error         df t value
-## (Intercept)                       3.205e+00  2.838e-02  5.396e+01 112.912
-## Iorder                           -1.354e-04  1.549e-03  1.531e+01  -0.087
-## GP_conditionTRUE                  1.816e-02  1.628e-02  4.434e+02   1.115
-## Q_conditionTRUE                  -1.814e-02  1.628e-02  4.432e+02  -1.115
-## GP_conditionTRUE:Q_conditionTRUE -1.107e-02  2.302e-02  4.424e+02  -0.481
+## (Intercept)                        3.204420   0.032813 124.183520  97.657
+## Iorder2                           -0.026410   0.031315 457.561131  -0.843
+## Iorder3                            0.015077   0.031307 457.561098   0.482
+## Iorder4                            0.023918   0.031577 457.670337   0.757
+## Iorder5                            0.013429   0.031585 457.668216   0.425
+## Iorder6                            0.004962   0.031589 457.666431   0.157
+## Iorder7                           -0.045790   0.031876 457.857260  -1.436
+## Iorder8                           -0.055858   0.031573 457.670318  -1.769
+## Iorder9                            0.018597   0.031884 457.950920   0.583
+## Iorder10                           0.049417   0.031876 457.950880   1.550
+## Iorder11                           0.025460   0.031584 457.754740   0.806
+## Iorder12                          -0.017852   0.032179 458.012577  -0.555
+## Iorder13                          -0.005173   0.031876 457.950880  -0.162
+## Iorder14                           0.017824   0.031884 457.950920   0.559
+## Iorder15                           0.006813   0.031884 457.950920   0.214
+## Iorder16                          -0.035129   0.031876 457.950880  -1.102
+## GP_conditionTRUE                   0.017532   0.016018 457.592235   1.095
+## Q_conditionTRUE                   -0.018257   0.016015 457.576524  -1.140
+## GP_conditionTRUE:Q_conditionTRUE  -0.010781   0.022634 457.583721  -0.476
 ##                                  Pr(&gt;|t|)    
 ## (Intercept)                        &lt;2e-16 ***
-## Iorder                              0.931    
-## GP_conditionTRUE                    0.265    
-## Q_conditionTRUE                     0.266    
-## GP_conditionTRUE:Q_conditionTRUE    0.631    
+## Iorder2                            0.3995    
+## Iorder3                            0.6303    
+## Iorder4                            0.4492    
+## Iorder5                            0.6709    
+## Iorder6                            0.8752    
+## Iorder7                            0.1515    
+## Iorder8                            0.0775 .  
+## Iorder9                            0.5600    
+## Iorder10                           0.1218    
+## Iorder11                           0.4206    
+## Iorder12                           0.5793    
+## Iorder13                           0.8711    
+## Iorder14                           0.5764    
+## Iorder15                           0.8309    
+## Iorder16                           0.2710    
+## GP_conditionTRUE                   0.2743    
+## Q_conditionTRUE                    0.2549    
+## GP_conditionTRUE:Q_conditionTRUE   0.6341    
 ## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Correlation of Fixed Effects:
-##             (Intr) Iorder GP_cTRUE Q_TRUE
-## Iorder      -0.457                       
-## GP_cndtTRUE -0.285  0.000                
-## Q_cndtnTRUE -0.285 -0.001  0.498         
-## GP_TRUE:Q_T  0.200  0.003 -0.707   -0.707</code></pre>
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+<pre><code>## 
+## Correlation matrix not shown by default, as p = 19 &gt; 12.
+## Use print(x, correlation=TRUE)  or
+##     vcov(x)        if you need it</code></pre>
+<pre><code>## convergence code: 0
+## singular fit</code></pre>
 <pre><code>## Linear mixed model fit by maximum likelihood . t-tests use
 ##   Satterthwaite's method [lmerModLmerTest]
 ## Formula: 
@@ -1493,10 +1521,10 @@ FALSE
 ## models.timing.orderCheck:     participant) + (1 | item)
 ##                          Df     AIC     BIC logLik deviance  Chisq Chi Df
 ## models.timing.simple      7 -520.96 -491.60 267.48  -534.96              
-## models.timing.orderCheck  8 -518.96 -485.41 267.48  -534.96 0.0076      1
+## models.timing.orderCheck 22 -512.71 -420.44 278.36  -556.71 21.759     15
 ##                          Pr(&gt;Chisq)
 ## models.timing.simple               
-## models.timing.orderCheck     0.9304</code></pre>
+## models.timing.orderCheck     0.1143</code></pre>
 <pre><code>## Data: inter_item_timings
 ## Models:
 ## models.timing.simple.noQ: inter_reading.log10 ~ Q_condition + (1 | participant) + (1 | 
@@ -1509,9 +1537,42 @@ FALSE
 ##                          Pr(&gt;Chisq)
 ## models.timing.simple.noQ           
 ## models.timing.simple         0.4892</code></pre>
-<pre class="r"><code>gee.byP &lt;- geeglm( inter_reading.log10 ~ GP_condition * Q_condition,id=participant,data=inter_item_timings)
-gee.byI &lt;- geeglm( inter_reading.log10 ~ GP_condition * Q_condition,id=item,data=inter_item_timings)
-summary(gee.byP)</code></pre>
+<pre class="r"><code>gee.byP &lt;- geeglm(inter_reading.log10 ~ GP_condition * Q_condition,id=participant,data=inter_item_timings)
+gee.byI &lt;- geeglm(inter_reading.log10 ~ GP_condition * Q_condition,id=item,data=inter_item_timings)</code></pre>
+<pre class="r"><code>summary(inter_item_timings)</code></pre>
+<pre><code>##    filename          participant  GP_condition    Q_condition    
+##  Length:490         1      : 16   Mode :logical   Mode :logical  
+##  Class :character   2      : 16   FALSE:245       FALSE:245      
+##  Mode  :character   3      : 16   TRUE :245       TRUE :245      
+##                     4      : 16                                  
+##                     6      : 16                                  
+##                     7      : 16                                  
+##                     (Other):394                                  
+##       item     inter_reading  is_filler        condition        
+##  3      : 32   Min.   : 400   Mode :logical   Length:490        
+##  4      : 32   1st Qu.:1220   FALSE:490       Class :character  
+##  8      : 32   Median :1600                   Mode  :character  
+##  1      : 31   Mean   :1692                                     
+##  2      : 31   3rd Qu.:2100                                     
+##  9      : 31   Max.   :4080                                     
+##  (Other):301                                                    
+##    winsrdIRT       raw_irt     inter_reading.ln inter_reading.log10
+##  Min.   : 400   Min.   :   0   Min.   :5.991    Min.   :2.602      
+##  1st Qu.:1220   1st Qu.:1150   1st Qu.:7.107    1st Qu.:3.086      
+##  Median :1600   Median :1600   Median :7.378    Median :3.204      
+##  Mean   :1692   Mean   :1812   Mean   :7.356    Mean   :3.195      
+##  3rd Qu.:2100   3rd Qu.:2288   3rd Qu.:7.650    3rd Qu.:3.322      
+##  Max.   :4080   Max.   :6500   Max.   :8.314    Max.   :3.611      
+##                                                                    
+##  inter_reading.inverse inter_reading.sqred Sorder      Iorder   
+##  Min.   :0.0002451     Min.   :  160000    1:207   1      : 32  
+##  1st Qu.:0.0004762     1st Qu.: 1488400    2:283   2      : 32  
+##  Median :0.0006250     Median : 2560000            3      : 32  
+##  Mean   :0.0006979     Mean   : 3292066            4      : 31  
+##  3rd Qu.:0.0008197     3rd Qu.: 4410000            5      : 31  
+##  Max.   :0.0025000     Max.   :16646400            6      : 31  
+##                                                    (Other):301</code></pre>
+<pre class="r"><code>summary(gee.byP)</code></pre>
 <pre><code>## 
 ## Call:
 ## geeglm(formula = inter_reading.log10 ~ GP_condition * Q_condition, 

@@ -1,0 +1,282 @@
+---
+title: "Description of Inter-Item Timing"
+author: "Tyler Peckenpaugh"
+date: "3/25/2019"
+output:
+  html_document:
+    theme: journal
+    toc: true
+  pdf_document:
+    latex_engine: xelatex
+    toc: true
+    fig_caption: true
+mainfont: Georgia
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE, fig.height = 3, table)
+library(readr)
+library(knitr)
+library(kableExtra)
+library(pander)
+library(lme4)
+library(lmerTest)
+library(lattice)
+library(psych)
+library(geepack)
+library(tidyr)
+library(ggplot2)
+getIOrd<-function (x,s){
+  if(s==1){
+    return (match(x,morder))
+  } else {
+    return (match(x,sorder))
+  }
+}
+
+mean.sd <- function(x) c(mean = mean(x), sd = sd(x))
+# set to true to re-run modelsqqnorm(myModel.lme, ~ranef(., level=2))
+refresh = TRUE
+inter_item_timings_new <- read_csv("csvs/src/vad-irt-all-48k_agg-3_2019-03-26_131537.csv")
+inter_item_timings_new$GP_condition <- inter_item_timings_new$Condition_GP
+inter_item_timings_new$Q_condition <- inter_item_timings_new$Condition_Q
+inter_item_timings_new$Condition_Q <- NULL
+inter_item_timings_new$Condition_GP <- NULL
+
+
+inter_item_timings_new$condition <- paste(
+  ifelse(inter_item_timings_new$Q_condition,"+Q","-Q"),
+  ifelse(
+    inter_item_timings_new$isFiller,
+    ifelse(inter_item_timings_new$GP_condition,"+PP","-PP"),
+    ifelse(inter_item_timings_new$GP_condition,"+GP","-GP")
+  )
+)
+
+inter_item_timings_new$participant <- as.factor(inter_item_timings_new$Participant)
+
+allparts <- subset(
+  inter_item_timings_new, 
+   !isFiller
+)
+
+inter_item_timings <- subset(
+  inter_item_timings_new, 
+   !isFiller
+  # exclude ps where number of IRTs < 35/48 (72.9%)
+  & !Participant %in% c(7,13,5,17,12,21,22,3) 
+  & irt < 20000
+  & irt > 150
+)
+inter_item_timings$item <- as.factor(inter_item_timings$Item)
+
+inter_item_timings<-transform(inter_item_timings,winsrdIRT = ave(irt,participant,FUN=winsor))
+
+inter_item_timings$inter_reading <- inter_item_timings$winsrdIRT
+
+inter_item_timings$inter_reading.ln <- log(inter_item_timings$inter_reading)
+inter_item_timings$inter_reading.log10 <- log10(inter_item_timings$inter_reading)
+inter_item_timings$inter_reading.inverse <- 1/(inter_item_timings$inter_reading)
+inter_item_timings$inter_reading.sqred <- (inter_item_timings$inter_reading)^2
+
+
+order1<-paste(c(1,2,3,4,5,6,7,8,9,22,201,202,203,204,205,206))
+
+morder<-c(3,8,4,9,14,13,12,2,7,10,1,16,5,15,11,6)
+sorder<-c(7,10,1,16,5,15,11,6,3,8,4,9,14,13,12,2)
+inter_item_timings$Sorder <- 2
+inter_item_timings$Sorder[inter_item_timings$Participant %in% order1] <- 1
+inter_item_timings$Iorder <- getIOrd(inter_item_timings$item,inter_item_timings$Sorder)
+inter_item_timings$Sorder <- as.factor(inter_item_timings$Sorder)
+inter_item_timings$list <- inter_item_timings$Participant %% 4
+inter_item_timings$grp <- paste(inter_item_timings$Sorder,inter_item_timings$list,sep="-")
+```
+
+# Inter-item timing
+
+Inter-reading time (IRT) is a measure of the amount of time inbetween when a subject stops speaking during a cold reading and when they begin speaking for a previewed reading. Practically, this was done over 1,533 recording (33 participants, 48 items = `r 33 * 48` pairs, with some missing data resulting in the 1,533). This was measured using Google's WebRTC Voice Activity Detection (VAD).
+
+> IRT(item) = the timestamp of the start of speech for item[reading one] plus (the length of item[reading two] minus the timestamp of the end of speech)
+
+Subjects were asked to read each sentence twice, once with no preview at all, and then again after unlimited preview. IRT is meant to represent their chosen preview time for the second reading.
+
+# Distribution of IRTs, all participants
+
+```{r}
+gmean <- mean(inter_item_timings_new$irt)
+gsd<-sd(inter_item_timings_new$irt)
+gmax<-gmean+3*gsd
+```
+The overal mean IRT for all participants, all items (including fillers), and all conditions is `r gmean`ms (`r gsd`).
+
+The following histograms show the distribution of IRT across all items and all participants. In the second graph, overly short IRTs (shorter than 150ms) are excluded. In the third, overly long (longer than ~18s) and overly short IRTs are excluded.
+
+```{r fig.cap="Raw IRT"}
+allparts <- inter_item_timings_new
+hist(na.omit(allparts$irt), breaks=50,xlab="Raw IRT",main="Raw IRT, all Parts",xlim=c(0,20000))
+```
+```{r}
+hist(subset(allparts, irt>150)$irt, breaks=50,xlab="Raw IRT",main="Raw IRT, all Parts, short excluded",xlim=c(0,20000))
+```
+```{r}
+hist(subset(allparts, irt>150 & irt < gmax)$irt, breaks=50,xlab="Raw IRT",main="Raw IRT, all Parts, short and long excluded",xlim=c(0,20000))
+
+```
+
+# Missing data and attrition
+
+Due to noise in recordings and/or technical difficulties during data collection, a number of IRTs are missing in the data. The following total shows which participants are missing how many IRTs; ideally each would have 48 IRTs.
+
+```{r}
+missingIrts<-read.csv("~/Downloads/missing_irts - Sheet2.csv")
+kable(missingIrts, caption="Missing IRTs",
+      col.names = c(
+        "Participant",
+        "IRTs missing",
+        "IRTs availble",
+        "Recording pairs",
+        "Percentage available",
+        "Group"
+      ),
+      align="c")%>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T)
+```
+
+Participants with fewer than 72% of the expected number of IRTs are excluded: 7, 13, 5, 17, 12, 21, 22, and 3, 8 in total. The resulting number of remaining participants is 25.
+
+## Group sizes after attrition
+
+The following table shows how the participants are distributed across groups after attrition. While each group and each split are similar in size overall, there is an unfortunate disparity across ordering for two groups: Group 2 and Group 4.
+
+```{r}
+groupses<-addmargins(with(inter_item_timings[!duplicated(inter_item_timings$Participant),],table(list,Sorder)))
+row.names(groupses) <- c(paste("Group",1:4),"Split Total")
+kable(groupses, caption="Group/order totals after attrition", align="c",
+      col.names = c("Split AB","Split BA","Group Total")) %>%
+  kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>%
+  column_spec(1,bold=T)
+```
+
+### Avaialability of experimental item IRT after attrition
+
+For the remaining participants, the availability of IRT for experimental items was 88.7%, ranging by participant from 16/16 to 10/16.
+
+In detail, 13 of 25 participants had all experimental IRTs available, while five had 11/16. There were two participants who had 12/16, 14/16 and 15/16 respectively, and one with 10/16.
+
+## Distribution of experimental item IRT after attrition
+
+The following histograms show the distribution of experimental item IRTs after attrition, and then the Winsorized IRTs, and finally the common log of winsorized IRTs, which are the shape of the data most suited to regression analyses.
+
+```{r hist}
+
+hist(inter_item_timings$irt, breaks=50,xlab="raw IRT",main="Raw IRT",xlim=c(0,20000))
+
+hist(inter_item_timings$inter_reading, breaks=50,xlab="IRT",main="Winsorized IRT",xlim=c(0,20000))
+
+hist(inter_item_timings$inter_reading.log10, breaks=50,xlab="log10 IRT",main="Common log of winsorized IRT",xlim=c(2.5,4.5))
+```
+
+# Mean and SD of winsorized IRT by condition
+
+If we assume that interrogative PP-attachment garden paths are easier to process as an interrogative than in the declarative, and that IRT represents how difficult a sentence is to process, we would expect the difference in mean IRT to be larger for declarative garden paths compared to declarative controls than for the same comparison of interrogatives.
+
+The means of the Winsorized IRT by condition indeed show this pattern.
+
+```{r sdtable, echo=FALSE}
+mtable <- with(na.omit(inter_item_timings),tapply(inter_reading, condition, mean))
+
+sdtable <- with(na.omit(inter_item_timings),tapply(inter_reading, condition, sd))
+
+ctable <- rbind(mtable,sdtable)
+row.names(ctable) <- c("Mean", "SD")
+```
+
+Difference for declaratives: `r round(mtable[2] - mtable[1],2)`; for interrogatives: `r round(mtable[4]-mtable[3],2)`. While the difference across the interrogative/declarative condition is not huge, it is there.
+
+```{r sdtableOut}
+kable(t(ctable), align="r", caption="Condition means") %>%
+  kable_styling(bootstrap_options = c("striped")) %>%
+  column_spec(1,bold=T)
+```
+
+<!-- ## Means by condition and item/subject (all data) -->
+
+<!-- There is variation across participants in terms of whether or not they show this pattern. -->
+
+<!-- ```{r allmeantable, echo=FALSE} -->
+<!-- mstable <- aggregate(irt ~ condition + Participant, data=na.omit(inter_item_timings_new), mean) -->
+<!-- mitable <- aggregate(irt ~ condition + Item, data=na.omit(inter_item_timings_new), mean) -->
+
+<!-- mitable<-spread(mitable, key=condition, value=irt, fill = NA, convert = FALSE) -->
+<!-- mstable<-spread(mstable, key=condition, value=irt, fill = NA, convert = FALSE) -->
+
+<!-- mstable$pattern <- mstable$`-Q +GP` - mstable$`-Q -GP` > mstable$`+Q -GP` - mstable$`+Q -GP`  -->
+<!-- mitable$pattern <- mitable$`-Q +GP` - mitable$`-Q -GP` > mitable$`+Q -GP` - mitable$`+Q -GP` -->
+<!-- ``` -->
+
+<!-- ```{r allmeansbyp} -->
+<!-- kable(mstable, align="r") %>% -->
+<!--   kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>% -->
+<!--   column_spec(1,bold=T) -->
+<!-- ``` -->
+<!-- ```{r allmeansbyi} -->
+<!-- kable(mitable, align="r") %>% -->
+<!--   kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>% -->
+<!--   column_spec(1,bold=T) -->
+<!-- ``` -->
+
+# Item and subject variation
+
+There is variation across participants in terms of whether or not they show this pattern.
+
+```{r meantable, echo=FALSE}
+mstable <- aggregate(inter_reading ~ condition + participant, data=na.omit(inter_item_timings), mean)
+mitable <- aggregate(inter_reading ~ condition + item, data=na.omit(inter_item_timings), mean)
+
+mitable<-spread(mitable, key=condition, value=inter_reading, fill = NA, convert = FALSE)
+mstable<-spread(mstable, key=condition, value=inter_reading, fill = NA, convert = FALSE)
+
+mstable$pattern <- mstable$`-Q +GP` - mstable$`-Q -GP` > mstable$`+Q -GP` - mstable$`+Q -GP` 
+mitable$pattern <- mitable$`-Q +GP` - mitable$`-Q -GP` > mitable$`+Q -GP` - mitable$`+Q -GP`
+```
+
+
+## Number of participants who show predicted pattern
+
+17 of 25 participants show the expected pattern (p = 0.05 in a one-tailedd binomial test). This suggests that the pattern generalizes across participants.
+
+<!-- # ```{r PmatchesPatterns} -->
+<!-- # pc <- table(mstable$pattern) -->
+<!-- # row.names(pc) <- c("Does not show pattern", "Shows pattern") -->
+<!-- # kable(pc, col.names = c("", "Number of participants"),caption="Participants who show expected pattern") %>% -->
+<!-- #   kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>% -->
+<!-- #   column_spec(1,bold=T) -->
+<!-- # ``` -->
+
+```{r meansbyp}
+kable(mstable, align="r",caption="Mean IRT by condition and participant") %>%
+  kable_styling(bootstrap_options = c("striped")) %>%
+  column_spec(1,bold=T)
+```
+
+## Number of items that show predicted pattern
+
+Notably, only 9 of 16 items show the pattern (p = 0.4 in a one-tailed binomial test). This suggests that the pattern does not generalize across items. This is likely problematic for any regression analyses.
+
+<!-- # ```{r ImatchesPat} -->
+<!-- # ic <- table(mitable$pattern) -->
+<!-- # row.names(ic) <- c("Does not show pattern", "Shows pattern") -->
+<!-- # kable(ic, col.names = c("", "Number of items"),caption="Items that show expected pattern") %>% -->
+<!-- #   kable_styling(bootstrap_options = c("striped",full_width=F,position="left")) %>% -->
+<!-- #   column_spec(1,bold=T) -->
+<!-- # ``` -->
+
+
+```{r meansbyi}
+kable(mitable, align="r",caption="Mean IRT by condition and item") %>%
+  kable_styling(bootstrap_options = c("striped")) %>%
+  column_spec(1,bold=T)
+```
+
+

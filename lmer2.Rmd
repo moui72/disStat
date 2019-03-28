@@ -58,6 +58,10 @@ sorder<-c(7,10,1,16,5,15,11,6,3,8,4,9,14,13,12,2)
 inter_item_timings$Sorder <- 2
 inter_item_timings$Sorder[inter_item_timings$participant %in% order1] <- 1
 inter_item_timings$Iorder <- getIOrd(inter_item_timings$item,inter_item_timings$Sorder)
+inter_item_timings$item <- as.factor(inter_item_timings$item)
+inter_item_timings$participant <- as.factor(inter_item_timings$participant)
+inter_item_timings$Iorder <- as.factor(inter_item_timings$Iorder)
+inter_item_timings$Sorder <- as.factor(inter_item_timings$Sorder)
 ```
 
 # Inter-item timing analyses
@@ -180,8 +184,11 @@ anova(models.timing.simple,models.timing.orderCheck)
 anova(models.timing.simple,models.timing.simple.noQ)
 ```
 ```{r gee}
-gee.byP <- geeglm( inter_reading.log10 ~ GP_condition * Q_condition,id=participant,data=inter_item_timings)
-gee.byI <- geeglm( inter_reading.log10 ~ GP_condition * Q_condition,id=item,data=inter_item_timings)
+gee.byP <- geeglm(inter_reading.log10 ~ GP_condition * Q_condition,id=participant,data=inter_item_timings)
+gee.byI <- geeglm(inter_reading.log10 ~ GP_condition * Q_condition,id=item,data=inter_item_timings)
+```
+```{r geeSums}
+summary(inter_item_timings)
 summary(gee.byP)
 summary(gee.byI)
 ```
