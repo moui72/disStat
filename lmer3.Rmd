@@ -58,7 +58,7 @@ inter_item_timings <- subset(
   # missing more than 25 irts (7,12,13,17,21)
   # lack a mean for some condition (22)
   & !Participant %in% c(7,9,12,13,17,21,22) 
-  & irt < 20000
+  # & irt < 20000
   & irt > 150
 )
 inter_item_timings$item <- as.factor(inter_item_timings$Item)

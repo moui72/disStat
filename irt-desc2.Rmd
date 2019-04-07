@@ -1,0 +1,422 @@
+---
+title: "Description of Inter-Item Timings (IRTs)"
+author: "Tyler Peckenpaugh"
+date: "3/29/2019"
+output:
+  tufte::tufte_html: 
+    tufte_features: ["fonts", "italics"]
+    toc: True
+  tufte::tufte_handout: 
+    toc: True  
+    latex_engine: xelatex
+
+---
+
+```{r setup, echo=FALSE, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE, fig.height = 3)
+library(readr)
+library(knitr)
+library(kableExtra)
+library(pander)
+library(lme4)
+library(lmerTest)
+library(sjPlot) # table functions
+library(lattice)
+library(psych)
+library(geepack)
+library(tidyr)
+library(ggplot2)
+
+getIOrd<-function (x,s){
+  if(s==1){
+    return (match(x,morder))
+  } else {
+    return (match(x,sorder))
+  }
+}
+
+inter_item_timings_new <- read_csv("csvs/irt-all-48k_agg-3_2019-04-01_173138.csv")
+inter_item_timings_new$GP_condition <- inter_item_timings_new$Condition_GP
+inter_item_timings_new$Q_condition <- inter_item_timings_new$Condition_Q
+inter_item_timings_new$Condition_Q <- NULL
+inter_item_timings_new$Condition_GP <- NULL
+
+inter_item_timings_new<-subset(inter_item_timings_new,irt>0)
+
+inter_item_timings_new$condition <- paste(
+  ifelse(inter_item_timings_new$Q_condition,"+Q","-Q"),
+  ifelse(
+    inter_item_timings_new$isFiller,
+    ifelse(inter_item_timings_new$GP_condition,"+PP","-PP"),
+    ifelse(inter_item_timings_new$GP_condition,"+GP","-GP")
+  )
+)
+
+inter_item_timings_new$participant <- as.factor(inter_item_timings_new$Participant)
+inter_item_timings_new$item <- as.factor(inter_item_timings_new$Item)
+
+allparts <- droplevels(subset(inter_item_timings_new, !isFiller==T))
+allparts<-transform(allparts,winsrdIRT = ave(irt,participant,FUN=winsor))
+write_csv2(allparts,"csvs/irt-working.csv")
+descrip <- describe(inter_item_timings_new$irt)
+gmean <- round(descrip$mean,2)
+gsd <- round(descrip$sd,2)
+# EXCLUDE TOP AND BOTTOM 5% (N=77)
+# quantile(inter_item_timings_new$irt,c(.02,.05,.1,.9,.95,.98))
+#   2%    5%   10%   90%   95%   98% 
+# 1442  1823  2596 11581 13798 17554 
+QS<-quantile(inter_item_timings_new$irt,c(.02,.05,.1,.9,.95,.98))
+cutoff=5
+gmax <- 25000
+gmin <- 250
+#--------------------------
+numOver <- nrow(inter_item_timings_new[inter_item_timings_new$irt > gmax,])
+numUnder <- nrow(inter_item_timings_new[inter_item_timings_new$irt < gmin,])
+
+irt_no_excl <- droplevels(subset(
+  inter_item_timings_new, 
+   !isFiller & irt > gmin & irt < gmax
+))
+mitable <- aggregate(irt ~ condition + item, data=na.omit(irt_no_excl), mean)
+maxmiss = 4
+misstab<-with(irt_no_excl, table(participant))
+exclude<-names(misstab[misstab<16-maxmiss])
+exclude_items<-mitable[mitable$`-Q -GP` > 7000,]$item
+
+irt_data <- droplevels(subset(
+  inter_item_timings_new, 
+    !participant %in% exclude &
+    !isFiller & 
+    irt > gmin &
+    irt < gmax 
+))
+
+irt_data_itemsExcluded <- droplevels(subset(
+  inter_item_timings_new, 
+    !isFiller & 
+    irt > gmin &
+    irt < gmax &
+    !item %in% exclude_items
+))
+inter_item_timings <- irt_data
+
+inter_item_timings<-transform(inter_item_timings,winsrdIRT = ave(irt,participant,FUN=winsor))
+
+inter_item_timings$inter_reading <- inter_item_timings$winsrdIRT
+inter_item_timings$inter_reading.log10 <- log10(inter_item_timings$inter_reading)
+
+
+
+order1<-paste(c(1,2,3,4,5,6,7,8,9,22,201,202,203,204,205,206))
+
+morder<-c(3,8,4,9,14,13,12,2,7,10,1,16,5,15,11,6)
+sorder<-c(7,10,1,16,5,15,11,6,3,8,4,9,14,13,12,2)
+inter_item_timings$Sorder <- 2
+inter_item_timings$Sorder[inter_item_timings$Participant %in% order1] <- 1
+inter_item_timings$Iorder <- getIOrd(inter_item_timings$item,inter_item_timings$Sorder)
+inter_item_timings$Sorder <- as.factor(inter_item_timings$Sorder)
+inter_item_timings$list <- inter_item_timings$Participant %% 4
+inter_item_timings$grp <- paste(inter_item_timings$Sorder,inter_item_timings$list,sep="-")
+```
+
+# Inter-item timing
+
+Subjects were asked to read each sentence twice, once with no preview at all, and then again after unlimited preview. Inter-reading time (IRT) is a measure of the amount of time between when a subject stops speaking after a cold reading and when they begin speaking for a previewed reading. 
+
+> IRT = delay after the end of a cold reading and before the start of a previewed reading
+
+Practically, this was done over `r nrow(inter_item_timings_new)` recordings (33 participants, 48 items = `r 33 * 48` pairs, with `r  33 * 48 - nrow(inter_item_timings_new)` missing data). This was measured using Google's WebRTC Voice Activity Detection (VAD) over .wav files that had been subjected to a band-pass filter with a low threshold of 200Hz[^hum] and a high threshold of 3100Hz.
+
+[^hum]: a low hum in the room needed to be accounted for
+
+## Description and cleanup
+
+The following section details the IRT data and the outlier removal and resulting participant attrition. 
+
+## Distribution of IRTs, all participants
+
+The overal mean IRT for all participants, all items (including fillers), and all conditions is `r gmean`ms (sd = `r gsd`). The highest IRT was `r paste(round(descrip$max,2))`ms.
+
+The following histograms show the distribution of IRT across all items and all participants. In the second graph, overly short IRTs (shorter than `r gmin`ms; `r numUnder`[^lo] such data) are excluded. In the third, overly long (longer than `r paste(gmax)`; `r numOver` such data) and overly short IRTs are excluded.
+
+[^lo]: This is `r cutoff`% of the `r nrow(inter_item_timings_new)` total data
+
+```{r allhist}
+allparts <- inter_item_timings_new
+hist(subset(allparts,irt<250)$irt, breaks=100,xlab="Raw IRT",main="Raw IRT, all Parts")
+```
+```{r nolowhist}
+hist(
+  subset(allparts, irt > gmin)$irt, 
+  breaks=16,
+  xlab="Raw IRT",
+  main="Raw IRT, all Parts, short excluded"
+)
+```
+```{r nolownohighhist, include=FALSE}
+hist(
+  subset(allparts, irt > gmin & irt < gmax)$irt,
+  breaks=16,
+  xlab="Raw IRT",
+  main="Raw IRT, all Parts, short and long excluded"
+)
+
+```
+
+## Missing data and attrition
+
+Due to noise in recordings and/or technical difficulties during data collection, a number of IRTs are missing for experimental items in the data. The following table shows which participants are missing how many IRTs; ideally each would have 48 IRTs and 16 experimental IRTs.
+
+```{r missingData}
+kable(
+  caption="Mising data, by participant",
+  align="r",
+  cbind(
+    with(inter_item_timings_new[inter_item_timings_new$irt>0,], 48-table(participant)),
+    with(inter_item_timings_new[inter_item_timings_new$irt>0,], paste(round(100 * (table(participant)/48),2),"%",sep="")),
+    with(irt_no_excl, 16-table(participant)),
+    with(irt_no_excl, paste(100 * (table(participant)/16),"%",sep=""))
+  ), col.names = c("Missing IRTs", "Available % of IRTs", "Missing experimental IRTs", "Available % of experimental IRTs")
+)
+np <- nrow(levels(inter_item_timings$Participant))
+```
+
+The `r length(exclude)` participants missing more than `r maxmiss` experimental IRTs (`r exclude`) are excluded.
+
+## Group sizes after attrition
+
+The following table[^g1] shows how the participants are distributed across groupsafter attrition. Ideally, there would be 4 per group-order cell, but because of attrition the cells are uneven. Because regression is able to account for uneven groups, this defect will hopefully not play an important role in the analyses that follow.
+
+[^g1]: There is 5 in Group 1, Split BA because I ran four participants per group-order, and then one extra who happened to be assigned to group 1, split BA; and by happenstance, none of the participants from that cell needed to be excluded.
+
+```{r groupses}
+groupses<-addmargins(with(inter_item_timings[!duplicated(inter_item_timings$Participant),],table(list,Sorder)))
+row.names(groupses) <- c(paste("Group",1:4),"Split Total")
+kable(groupses, caption="Group/order totals after attrition", 
+  col.names = c("Split AB","Split BA","Group Total"))
+```
+## Distribution of experimental item IRT after attrition
+
+The following histograms show the distribution of experimental item IRTs after attrition, and then the Winsorized IRTs, and finally the common log of winsorized IRTs, which are the shape of the data most suited to regression analyses.
+
+```{r attritionhists}
+
+hist(inter_item_timings$irt, breaks=8,xlab="raw IRT",main="Raw IRT")
+
+hist(inter_item_timings$inter_reading, breaks=8,xlab="IRT",main="Winsorized IRT")
+
+hist(inter_item_timings$inter_reading.log10, breaks=8,xlab="log10 IRT",main="Common log of winsorized IRT")
+```
+
+## Mean and SD of winsorized IRT by condition
+
+If we assume that interrogative PP-attachment garden paths are easier to process as an interrogative than in the declarative, and that IRT represents how difficult a sentence is to process, we would expect the difference in mean IRT to be larger for declarative garden paths compared to declarative controls than for the same comparison of interrogatives.
+
+The means of the Winsorized IRT by condition indeed show this pattern.
+
+```{r sdtable, echo=FALSE}
+mtable <- with(na.omit(inter_item_timings),tapply(inter_reading, condition, mean))
+
+sdtable <- with(na.omit(inter_item_timings),tapply(inter_reading, condition, sd))
+
+ctable <- rbind(mtable,sdtable)
+row.names(ctable) <- c("Mean", "SD")
+decl <- round(mtable["-Q +GP"] - mtable["-Q -GP"],2)
+int <- round(mtable["+Q +GP"] - mtable["+Q -GP"],2)
+diffGPQ <- decl - int
+```
+
+Difference for declaratives: `r decl`; for interrogatives: `r int`. While a difference across the interrogative/declarative condition of `r diffGPQ` is not huge, it does match the hypothesized pattern.
+
+```{r sdtableOut}
+kable(t(ctable), caption="Condition means")
+```
+
+## Item and subject variation
+
+There is variation across participants in terms of whether or not they show this pattern.
+
+```{r meantable, echo=FALSE}
+mstable <- aggregate(inter_reading ~ condition + participant, data=inter_item_timings, mean)
+mitable <- aggregate(inter_reading ~ condition + item, data=na.omit(inter_item_timings), mean)
+
+mitable<-spread(mitable, key=condition, value=inter_reading, fill = NA, convert = FALSE)
+mstable<-spread(mstable, key=condition, value=inter_reading, fill = NA, convert = FALSE)
+
+mstable$pattern <- mstable$`-Q +GP` - mstable$`-Q -GP` > mstable$`+Q -GP` - mstable$`+Q -GP` 
+mitable$pattern <- mitable$`-Q +GP` - mitable$`-Q -GP` > mitable$`+Q -GP` - mitable$`+Q -GP`
+
+binP <- binom.test(table(mstable$pattern)["TRUE"],nrow(mstable),alternative="less")
+binI <- binom.test(table(mitable$pattern)["TRUE"],nrow(mitable),alternative="less")
+
+```
+
+
+## Number of participants who show predicted pattern
+
+In the analyzed data,`r table(mstable$pattern)["TRUE"]` of `r nrow(mstable)` participants show the expected pattern. A one-tailed binomial allows against the null hyopthesis that the true probability of the pattern holding across participants is less than 50% is significant (p = `r round(1-binP$p.value,2)`).
+
+```{r meansbyp}
+kable(mstable, caption="Mean IRT by condition and participant")
+```
+
+## Number of items that show predicted pattern
+
+ For items, `r table(mitable$pattern)["TRUE"]` of `r nrow(mitable)` show the pattern. A one-tailed binomial against the null hyopthesis that the true probability of the pattern holding across items is less than 50% is satistically significant (p = `r round( 1-binI$p.value,2)`).
+
+
+```{r meansbyi}
+kable(mitable, caption="Mean IRT by condition and item")
+```
+# Analyses
+
+The following models explore the effect of garden path (&plusmn;GP) and interrogativeness (&plusmn;Q) on IRT.
+
+## Regression analyses
+
+A full model with random slopes for GP, Q, and their interaction for both error terms fails to converge. A model with random slopes for just GP `+` Q likewise fails to converge. Simple models with no random slopes are shown below. 
+
+```{r lmerfull}
+full <- lmer(
+  inter_reading.log10 ~ 
+  GP_condition * Q_condition + 
+  (1 | item) +
+  (1 | participant),
+  REML=F,
+  data = inter_item_timings,
+  control = lmerControl(optCtrl = list(maxfun=2e20))
+)
+no_interaction <- lmer(
+  inter_reading.log10 ~ 
+  GP_condition + Q_condition + 
+  (1 | item) +
+  (1 | participant),
+  REML=F,
+  data = inter_item_timings,
+  control = lmerControl(optCtrl = list(maxfun=2e20))
+)
+tab_model(full,no_interaction)
+irt.compared <- anova(full,no_interaction)
+```
+
+
+The interaction model does not represent a statistically significant improvement in fit (&Chi;^2^ = `r round(irt.compared$Chisq[2],3)`, p < `r round(irt.compared["Pr(>Chisq)"],2)[2,1]`), and so does not support the primary hypothesis.
+
+```{r lmernorand}
+no_item <- lmer(
+  inter_reading.log10 ~ 
+  GP_condition * Q_condition + 
+  (1 | participant),
+  REML=F,
+  data = inter_item_timings,
+  control = lmerControl(optCtrl = list(maxfun=2e20))
+)
+no_item_no_interaction <- lmer(
+  inter_reading.log10 ~ 
+  GP_condition + Q_condition + 
+  (1 | participant),
+  REML=F,
+  data = inter_item_timings,
+  control = lmerControl(optCtrl = list(maxfun=2e20))
+)
+no_participant <- lmer(
+  inter_reading.log10 ~ 
+  GP_condition + Q_condition + 
+  (1 | item),
+  REML=F,
+  data = inter_item_timings,
+  control = lmerControl(optCtrl = list(maxfun=2e20))
+)
+
+irt.noParticipant.compared <- anova(full,no_participant)
+irt.noItem.compared <-anova(full,no_item)
+```
+
+The simplified model still does not show a statstically significant interaction.
+
+```{r lmertable}
+tab_model(no_item)
+```
+
+Removing the random effect of item does not degrade the model in a stastically significant way (&Chi;^2^ = `r round(irt.noItem.compared$Chisq[2],2)`, p = `r round( irt.noItem.compared["Pr(>Chisq)"][2,1],2)`), but removing the random effect of participant does (&Chi;^2^ = `r round(irt.noParticipant.compared$Chisq[2],2)`, p = `r round( irt.noParticipant.compared["Pr(>Chisq)"][2,1],2)`).
+
+## GEE Analyses
+
+Generalized Estimating Equation (GEE) analyses with participant as the error term show much the same results.
+
+```{r gee1}
+gee.byP <- geeglm(
+  inter_reading.log10 ~ GP_condition * Q_condition,
+  id=participant,
+  data=inter_item_timings
+)
+gee.byP.noInt<- geeglm(
+  inter_reading.log10 ~ GP_condition + Q_condition,
+  id=participant,
+  data=inter_item_timings
+)
+tab_model(gee.byP,gee.byP.noInt)
+irt.compared<-anova(gee.byP,gee.byP.noInt)
+```
+
+The interaction model does not represent a statistically significant improvement in fit (&Chi; = `r round(irt.compared$X2[1],3)`, p < `r round(irt.compared["P(>|Chi|)"],2)`), and so does not support the primary hypothesis.
+
+# Excluding items
+
+If we exclude items where the IRT for the control condition (-Q, -GP) is longer than 7s, we get the following:
+```{r gee2, echo=FALSE}
+inter_item_timings<-irt_data_itemsExcluded
+inter_item_timings$inter_reading <- inter_item_timings$irt
+inter_item_timings$inter_reading.log10 <- log10(inter_item_timings$irt)
+
+mtable <- with(na.omit(inter_item_timings),tapply(inter_reading, condition, mean))
+
+sdtable <- with(na.omit(inter_item_timings),tapply(inter_reading, condition, sd))
+
+ctable <- rbind(mtable,sdtable)
+row.names(ctable) <- c("Mean", "SD")
+decl <- round(mtable["-Q +GP"] - mtable["-Q -GP"],2)
+int <- round(mtable["+Q +GP"] - mtable["+Q -GP"],2)
+diffGPQ <- decl - int
+```
+
+Difference for declaratives: `r decl`; for interrogatives: `r int`; difference of differences: `r diffGPQ`.
+
+```{r exclit}
+kable(t(ctable), caption="Condition means")
+```
+
+## GEE Analyses
+
+Generalized Estimating Equation (GEE) analyses with participant as the error term show much the same results.
+
+```{r exclitgee}
+gee.byP <- geeglm(
+  inter_reading.log10 ~ GP_condition * Q_condition,
+  id=participant,
+  data=inter_item_timings
+)
+gee.byP.noInt<- geeglm(
+  inter_reading.log10 ~ GP_condition + Q_condition,
+  id=participant,
+  data=inter_item_timings
+)
+tab_model(gee.byP,gee.byP.noInt)
+irt.compared<-anova(gee.byP,gee.byP.noInt)
+```
+```{r exclitgee2}
+gee.byI <- geeglm(
+  inter_reading.log10 ~ GP_condition * Q_condition,
+  id=item,
+  data=inter_item_timings
+)
+gee.byI.noInt<- geeglm(
+  inter_reading.log10 ~ GP_condition + Q_condition,
+  id=item,
+  data=inter_item_timings
+)
+tab_model(gee.byI,gee.byI.noInt)
+irt.compared<-anova(gee.byP,gee.byP.noInt)
+```
+
+The interaction model does not represent a statistically significant improvement in fit (&Chi; = `r round(irt.compared$X2[1],3)`, p < `r round(irt.compared["P(>|Chi|)"],2)`), and so does not support the primary hypothesis.

@@ -1,0 +1,123 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+xmin = 0
+xmax = 5.668937683105469
+tiers? <exists>
+size = 3
+item []:
+item [1]:
+class = "TextTier"
+name = "tones"
+xmin = 0
+xmax = 5.668937683105469
+points: size = 0
+item [2]:
+class = "IntervalTier"
+name = "words"
+xmin = 0
+xmax = 5.668937683105469
+intervals: size = 14
+intervals [1]:
+xmin = 1.01
+xmax = 1.19
+text = ""
+intervals [2]:
+xmin = 1.19
+xmax = 1.67
+text = ""
+intervals [3]:
+xmin = 1.67
+xmax = 1.85
+text = ""
+intervals [4]:
+xmin = 1.85
+xmax = 2.03
+text = ""
+intervals [5]:
+xmin = 2.03
+xmax = 2.27
+text = ""
+intervals [6]:
+xmin = 2.27
+xmax = 2.49
+text = ""
+intervals [7]:
+xmin = 2.49
+xmax = 2.8
+text = ""
+intervals [8]:
+xmin = 2.8
+xmax = 3.48
+text = ""
+intervals [9]:
+xmin = 3.48
+xmax = 3.83
+text = ""
+intervals [10]:
+xmin = 3.83
+xmax = 4.0
+text = ""
+intervals [11]:
+xmin = 4.0
+xmax = 4.15
+text = ""
+intervals [12]:
+xmin = 4.15
+xmax = 4.43
+text = ""
+intervals [13]:
+xmin = 4.43
+xmax = 4.63
+text = ""
+intervals [14]:
+xmin = 4.63
+xmax = 5.668937683105469
+text = ""
+item [3]:
+class = "TextTier"
+name = "breaks"
+xmin = 0
+xmax = 5.668937683105469
+points: size = 14
+points [1]:
+time = 1.19
+mark = "1"
+points [2]:
+time = 1.67
+mark = "1"
+points [3]:
+time = 1.85
+mark = "1"
+points [4]:
+time = 2.03
+mark = "1"
+points [5]:
+time = 2.27
+mark = "1"
+points [6]:
+time = 2.49
+mark = "1"
+points [7]:
+time = 2.8
+mark = "1"
+points [8]:
+time = 3.48
+mark = "1"
+points [9]:
+time = 3.83
+mark = "1"
+points [10]:
+time = 4.0
+mark = "1"
+points [11]:
+time = 4.15
+mark = "1"
+points [12]:
+time = 4.43
+mark = "1"
+points [13]:
+time = 4.63
+mark = "1"
+points [14]:
+time = 5.668937683105469
+mark = "1"

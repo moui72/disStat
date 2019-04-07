@@ -1,0 +1,636 @@
+---
+title: "Working results"
+author: "Tyler Peckenpaugh"
+date: "4/3/2019"
+output:
+  tufte::tufte_handout: 
+    toc: True  
+    latex_engine: xelatex
+  tufte::tufte_html: 
+    tufte_features: ["fonts", "italics"]
+---
+
+```{r setup, echo=FALSE, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE, fig.height = 3)
+library(readr)
+library(knitr)
+library(pander)
+library(lme4)
+library(lattice)
+library(psych)
+library(geepack)
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+library(stargazer)
+
+getIOrd<-function (x,s){
+  if(s==1){
+    return (match(x,morder))
+  } else {
+    return (match(x,sorder))
+  }
+}
+
+# load file, set columns
+inter_item_timings_new <- read_csv("csvs/irt-rvad-all-48k-2019-04-03_17h03m24s.csv")
+inter_item_timings_new$GP_condition <- inter_item_timings_new$Condition_GP
+inter_item_timings_new$Q_condition <- inter_item_timings_new$Condition_Q
+inter_item_timings_new$Condition_Q <- NULL
+inter_item_timings_new$Condition_GP <- NULL
+
+# remove 0 irts
+zeros<-subset(inter_item_timings_new,irt==0)
+inter_item_timings_new<-subset(inter_item_timings_new,irt>0)
+
+# generate condition column for ease of display
+inter_item_timings_new$condition <- paste(
+  ifelse(inter_item_timings_new$Q_condition,"+Q","-Q"),
+  ifelse(
+    inter_item_timings_new$isFiller,
+    ifelse(inter_item_timings_new$GP_condition,"+PP","-PP"),
+    ifelse(inter_item_timings_new$GP_condition,"+GP","-GP")
+  )
+)
+
+# make lowercase columns
+inter_item_timings_new$participant <- as.factor(inter_item_timings_new$Participant)
+inter_item_timings_new$item <- as.factor(inter_item_timings_new$Item)
+
+# basic outlier removal
+descrip <- describe(inter_item_timings_new$irt)
+gmean <- round(descrip$mean,2)
+gsd <- round(descrip$sd,2)
+QS<-quantile(inter_item_timings_new$irt,c(.02,.05,.1,.9,.95,.98))
+cutoff=5
+gmax <- QS[paste(100-cutoff,"%",sep="")]
+gmin <- QS[paste(cutoff,"%",sep="")]
+numOver <- nrow(inter_item_timings_new[inter_item_timings_new$irt > gmax,])
+numUnder <- nrow(inter_item_timings_new[inter_item_timings_new$irt < gmin,])
+
+data <- droplevels(subset(
+  inter_item_timings_new, 
+  !isFiller==T & irt > gmin & irt < gmax
+))
+
+# get only experimental items
+allparts <- droplevels(subset(inter_item_timings_new, !isFiller==T))
+
+# OR winsorize all irt by participant?
+data<-transform(
+  data,
+  winsrdIRT = ave(irt,participant,FUN=winsor)
+)
+
+# for Martin...
+# write_csv2(data,"csvs/irt-working.csv")
+
+# preserve data before attrition
+irt_no_excl <-data
+
+# attritionize prep
+expdata <- subset(data, !isFiller)
+mitable <- aggregate(irt ~ condition + item, data=na.omit(expdata), mean)
+sbjmean <- aggregate(irt ~ participant, data=na.omit(expdata), mean)
+maxmiss = 3
+misstab<-with(expdata, table(participant))
+exclude_miss<-names(misstab[misstab<16-maxmiss])
+exclude_mean<-sbjmean[sbjmean$irt<2400|sbjmean$irt>10000,]$participant
+exclude_items<-mitable[mitable$`-Q -GP` > 7000,]$item
+exclude<-append(exclude_miss,exclude_mean)
+# attritionize do
+irt_data <- droplevels(subset(
+  expdata, 
+  !participant %in% exclude
+))
+
+irt_data_itemsExcluded <- droplevels(subset(
+  irt_data, 
+  !item %in% exclude_items
+))
+
+# name swap!
+inter_item_timings <- irt_data
+inter_item_timings$inter_reading <- inter_item_timings$winsrdIRT
+# transform!
+inter_item_timings$inter_reading.log10 <- log10(inter_item_timings$inter_reading)
+
+# set order/group vals
+order1<-paste(c(1,2,3,4,5,6,7,8,9,22,201,202,203,204,205,206))
+morder<-c(3,8,4,9,14,13,12,2,7,10,1,16,5,15,11,6)
+sorder<-c(7,10,1,16,5,15,11,6,3,8,4,9,14,13,12,2)
+inter_item_timings$Sorder <- 2
+inter_item_timings$Sorder[inter_item_timings$Participant %in% order1] <- 1
+inter_item_timings$Iorder <- getIOrd(
+  inter_item_timings$item,inter_item_timings$Sorder
+)
+inter_item_timings$Sorder <- as.factor(inter_item_timings$Sorder)
+inter_item_timings$list <- inter_item_timings$Participant %% 4
+inter_item_timings$grp <- paste(
+  inter_item_timings$Sorder,
+  inter_item_timings$list,
+  sep="-"
+)
+```
+
+# Inter-item timing
+
+Subjects were asked to read each sentence twice, once with no preview at all, and then again after unlimited preview. Inter-reading time (IRT) is a measure of the amount of time between when a subject stops speaking after a cold reading and when they begin speaking for a previewed reading. 
+
+> IRT = delay after the end of a cold reading and before the start of a previewed reading
+
+Practically, this was done over `r nrow(inter_item_timings_new)` recordings (33 participants, 48 items = `r 33 * 48` pairs, with `r  33 * 48 - nrow(inter_item_timings_new)` missing data). This was measured using Google's WebRTC Voice Activity Detection (VAD) over .wav files that had been subjected to a high-pass filter with a low threshold of 0 to 500Hz[^hum] using the highest aggressiveness that yielded good results, depending on the noise level in the recording.
+
+[^hum]: a low hum in the room needed to be accounted for; the exact algorithm is available at [github](https://gist.github.com/moui72/4ebc4eb8f69eb9fdb1cab160ce299675) (URL: bit.ly/2uMrcrG)
+
+## Description and cleanup
+
+The following section details the IRT data and the outlier removal and resulting participant attrition. 
+
+## Distribution of IRTs, all participants
+
+The overal mean IRT for all participants, all items (including fillers), and all conditions is `r gmean`ms (sd = `r gsd`). The highest IRT was `r paste(round(descrip$max,2))`ms.
+
+The following histograms show the distribution of IRT across all items and all participants. In the second graph, overly short IRTs (shorter than `r gmin`ms; `r numUnder`[^lo] such data) are excluded. In the third, overly long (longer than `r paste(gmax)`; `r numOver` such data) and overly short IRTs are excluded.
+
+The third graph represent what I will call data that has undergone "basic outlier removal."
+
+[^lo]: This is `r cutoff`% of the `r nrow(inter_item_timings_new)` total data
+
+```{r allhist}
+allparts <- inter_item_timings_new
+hist(na.omit(allparts$irt), breaks=16,xlab="Raw IRT",main="Raw IRT, all Parts")
+```
+```{r nolowhist}
+hist(
+  subset(allparts, irt > gmin)$irt, 
+  breaks=16,
+  xlab="Raw IRT",
+  main="Raw IRT, all Parts, short excluded"
+)
+```
+```{r nolownohighhist}
+hist(
+  subset(allparts, irt > gmin & irt < gmax)$irt,
+  breaks=16,
+  xlab="Raw IRT",
+  main="Raw IRT, all Parts, short and long excluded"
+)
+```
+
+IRTs were finally winsorized to lessen the impact of outliers.
+
+> A question for DCB: should the IRTs be winsorized by a participant's mean/sd for all items (including fillers), or only by experimental item mean/sd? I assume the former in this document. Should this be done before or after basic outlier removal? I assume after in this document.
+
+```{r winshist}
+hist(
+  data$winsrdIRT,
+  breaks=16,
+  xlab="Raw IRT",
+  main="Raw IRT, all Parts, short and long excluded"
+)
+```
+
+## Missing data and attrition
+
+Due to noise in recordings and/or technical difficulties during data collection, a number of IRTs are missing for experimental items in the data. The following table shows which participants are missing how many IRTs; ideally each would have 48 IRTs and 16 experimental IRTs.
+
+```{r missingData}
+kable(
+  caption="Missing data, by participant",
+  align="r",
+  cbind(
+    with(inter_item_timings_new, 48-table(participant)),
+    with(
+      inter_item_timings_new, 
+      paste(round(100 * (table(participant)/48),2),"%",sep="")
+    ),
+    with(irt_no_excl, 16-table(participant)),
+    with(irt_no_excl, paste(100 * (table(participant)/16),"%",sep=""))
+  ), 
+  col.names = c(
+    "Missing IRTs", "Available % of IRTs", 
+    "Missing experimental IRTs", 
+    "Available % of experimental IRTs"
+  )
+)
+np <- nrow(levels(inter_item_timings$Participant))
+```
+
+The `r length(exclude)` participants missing more than `r maxmiss` experimental IRTs (`r exclude_miss`) are excluded.
+
+Subjects with overall mean IRTs that are very short (< 2200) or very long (> 10000) are also excluded (`r setdiff(exclude_mean,exclude_miss)`)
+
+## Group sizes after attrition
+
+The following table[^g1] shows how the participants are distributed across groupsafter attrition. Ideally, there would be 4 per group-order cell, but because of attrition the cells are uneven. Because regression is able to account for uneven groups, this defect will hopefully not play an important role in the analyses that follow.
+
+[^g1]: There are 5 particpiants in Group 1, Split BA because I ran four participants per group-order, and then one extra who happened to be assigned to group 1, split BA; and by happenstance, none of the participants from that cell needed to be excluded.
+
+```{r groupses}
+groupses<-addmargins(with(inter_item_timings[!duplicated(inter_item_timings$Participant),],table(list,Sorder)))
+row.names(groupses) <- c(paste("Group",1:4),"Split Total")
+kable(groupses, caption="Group/order totals after attrition", 
+  col.names = c("Split AB","Split BA","Group Total"))
+```
+
+## Distribution of experimental item IRT after attrition
+
+The following histograms show the distribution of experimental item IRTs after attrition, and then the Winsorized IRTs, and finally the common log of winsorized IRTs, which are the shape of the data most suited to regression analyses.
+
+```{r attritionhists}
+
+hist(inter_item_timings$irt, breaks=8,xlab="raw IRT",main="Raw IRT")
+
+hist(inter_item_timings$inter_reading, breaks=8,xlab="IRT",main="Winsorized IRT")
+
+hist(inter_item_timings$inter_reading.log10, breaks=8,xlab="log10 IRT",main="Common log of winsorized IRT")
+```
+
+## Mean and SD of winsorized IRT by condition
+
+If we assume that interrogative PP-attachment garden paths are easier to process as an interrogative than in the declarative, and that IRT represents how difficult a sentence is to process, we would expect the difference in mean IRT to be larger for declarative garden paths compared to declarative controls than for the same comparison of interrogatives.
+```{r sdtable, echo=FALSE}
+mtable <- with(na.omit(inter_item_timings),tapply(inter_reading, condition, mean))
+
+sdtable <- with(na.omit(inter_item_timings),tapply(inter_reading, condition, sd))
+
+ctable <- rbind(mtable,sdtable)
+row.names(ctable) <- c("Mean", "SD")
+decl <- round(mtable["-Q +GP"] - mtable["-Q -GP"],2)
+int <- round(mtable["+Q +GP"] - mtable["+Q -GP"],2)
+diffGPQ <- decl - int
+```
+```{r sdtableOut}
+kable(t(ctable), caption="Condition means")
+```
+
+The means of the Winsorized IRT by condition indeed show this pattern.
+
+```{r interactionPlot, fig.cap="Mean experimental IRT by condition"}
+groupedMeans<-inter_item_timings %>%
+  group_by(GP_condition,Q_condition) %>%
+  summarise(mean(irt))
+groupedMeans$GP_condition <- ifelse(
+  groupedMeans$GP_condition, "Garden path", "Non-garden path"
+)
+groupedMeans$Q_condition <- ifelse(
+  groupedMeans$Q_condition, "Interrogative", "Declarative"
+)
+ggplot(
+  groupedMeans, 
+  aes(x=GP_condition,y=`mean(irt)`,group=Q_condition,linetype=Q_condition)
+) + ylim(4000,6000) +
+  geom_line() +
+  geom_point(stat="identity") +
+  theme_classic(base_family = "Palatino",base_size = 12) + 
+  theme(
+    axis.title=element_text(size = "14",face="bold"),
+    legend.title =element_text(size = "14",face="bold")
+  ) +
+  labs(x="", y="Mean IRT",linetype="Interrogative")
+
+```
+The difference in mean IRT acriss &plusmn; for declaratives is `r decl`; for interrogatives, it's `r int`. This is a difference of `r diffGPQ`, representing the impact of &plusmn;GP for +Q compared to -Q. This supports the hypothesis that garden paths are easier to comprehend when presented as interrogative. It is strange that the garden-path interrogatives appear to be comprehended more quickly than the non-garden path interrogatives. A possible explanation will be explored in the discussion section.
+
+## Item and subject variation
+
+There is variation across participants in terms of whether or not they show this pattern.
+
+```{r meantable, echo=FALSE}
+mstable <- aggregate(inter_reading ~ condition + participant, data=inter_item_timings, mean)
+mitable <- aggregate(inter_reading ~ condition + item, data=na.omit(inter_item_timings), mean)
+
+mitable<-spread(mitable, key=condition, value=inter_reading, fill = NA, convert = FALSE)
+mstable<-spread(mstable, key=condition, value=inter_reading, fill = NA, convert = FALSE)
+
+mstable$pattern <- mstable$`-Q +GP` - mstable$`-Q -GP` > mstable$`+Q -GP` - mstable$`+Q -GP` 
+mitable$pattern <- mitable$`-Q +GP` - mitable$`-Q -GP` > mitable$`+Q -GP` - mitable$`+Q -GP`
+
+binP <- binom.test(table(mstable$pattern)["TRUE"],nrow(mstable),alternative="less")
+binI <- binom.test(table(mitable$pattern)["TRUE"],nrow(mitable),alternative="less")
+
+```
+
+
+## Number of participants who show predicted pattern
+
+In the analyzed data,`r table(mstable$pattern)["TRUE"]` of `r nrow(mstable)` participants show the expected pattern. 
+
+```{r meansbyp}
+kable(mstable, caption="Mean IRT by condition and participant")
+```
+
+## Number of items that show predicted pattern
+
+For items, `r table(mitable$pattern)["TRUE"]` of `r nrow(mitable)` show the pattern. 
+
+```{r meansbyi}
+kable(mitable, caption="Mean IRT by condition and item")
+```
+
+# Analyses
+
+The following models explore the effect of garden path (&plusmn;GP) and interrogativeness (&plusmn;Q) on IRT.
+
+## Regression analyses
+
+Regression models with fixed effects of &plusmn;GP and &plusmn;Q were run, one including the interaction of &plusmn;GP and &plusmn;Q and one without the interaction term. Both included random effects for item and participant.
+
+Models with random slopes for GP, Q, and their interaction for both error terms fails to converge. A model with random slopes for just GP and Q ain effects likewise fails to converge. Models without random slopes of fixed effects were used.
+
+```{r lmerfull}
+full <- lmer(
+  inter_reading.log10 ~ 
+  GP_condition * Q_condition + 
+  (1 | item) +
+  (1  | participant),
+  REML=F,
+  data = inter_item_timings,
+  control = lmerControl(optCtrl = list(maxfun=2e20))
+)
+no_interaction <- lmer(
+  inter_reading.log10 ~ 
+  GP_condition + Q_condition + 
+  (1 | item) +
+  (1 | participant),
+  REML=F,
+  data = inter_item_timings,
+  control = lmerControl(optCtrl = list(maxfun=2e20))
+)
+irt.compared <- anova(full,no_interaction)
+```
+```{r results="asis",fig.fullwidth=TRUE}
+stargazer(full,no_interaction,header=F,type="latex",covariate.labels = c("Garden path","Interrogative","Interaction"),dep.var.labels = "Common log of IRT",title = "Mixed effects model")
+```
+
+The interaction model represents a better fit; the non-interaction model represents a singular fit that is worse overall  (&Chi;^2^ = `r round(irt.compared$Chisq[2],3)`, p < `r round(irt.compared["Pr(>Chisq)"],2)[2,1]`). This supports the hypothesis and the earlier observation over the means that garden paths are more difficult as declaratives than interrogatives.
+
+The relevance of random effects were also tested, by comparing models that exclude each to the model with both random effects (I call this the "full model" in what follows).
+
+```{r lmernorand}
+no_item <- lmer(
+  inter_reading.log10 ~ 
+  GP_condition * Q_condition + 
+  (1 | participant),
+  REML=F,
+  data = inter_item_timings,
+  control = lmerControl(optCtrl = list(maxfun=2e20))
+)
+no_item_no_interaction <- lmer(
+  inter_reading.log10 ~ 
+  GP_condition + Q_condition + 
+  (1 | participant),
+  REML=F,
+  data = inter_item_timings,
+  control = lmerControl(optCtrl = list(maxfun=2e20))
+)
+no_participant <- lmer(
+  inter_reading.log10 ~ 
+  GP_condition * Q_condition + 
+  (1 | item),
+  REML=F,
+  data = inter_item_timings,
+  control = lmerControl(optCtrl = list(maxfun=2e20))
+)
+no_participant_no_interaction <- lmer(
+  inter_reading.log10 ~ 
+  GP_condition + Q_condition + 
+  (1 | item),
+  REML=F,
+  data = inter_item_timings,
+  control = lmerControl(optCtrl = list(maxfun=2e20))
+)
+no_random = lm(  
+  inter_reading.log10 ~ 
+  GP_condition + Q_condition,
+  data = inter_item_timings,
+  control = lmerControl(optCtrl = list(maxfun=2e20))
+)
+irt.noParticipant.compared <- anova(full,no_participant)
+irt.noItem.compared <-anova(full,no_item)
+irt.norandom.compared <-anova(full,no_random)
+irt.norandom2noitem.compared <-anova(no_item,no_random)
+```
+
+Removing the random effect of item does not degrade the model in a stastically significant way (AIC~full model~ = -305; AIC~no item error~ = -307; -&Chi;^2^ = `r round(irt.noItem.compared$Chisq[2],2)`, p = `r round( irt.noItem.compared["Pr(>Chisq)"][2,1],2)`), but removing the random effect of participant does (AIC~full model~ = -305; AIC~no participant error~ = 47; &Chi;^2^ = `r round(irt.noParticipant.compared$Chisq[2],2)`, p = `r round( irt.noParticipant.compared["Pr(>Chisq)"][2,1],2)`). The model with no random effects is worse than both the full model and the model with only item removed. Ultimately, it's difficult to select between the full model and the "no item" model, as both offer strong fits with more or less the same outcome.
+
+```{r setup2, include=FALSE}
+library(readr)
+library(knitr)
+library(pander)
+library(lme4)
+library(stargazer)
+library(lattice)
+library(ggplot2)
+library(dplyr)
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE, fig.height = 3)
+mdata <- read_csv("~/dissertation/csvs/got_prosody.csv")
+mdata$V<-mdata$V == "YES"
+mdata$OBJ<-mdata$OBJ == "YES"
+mdata$PP1<-mdata$PP1 == "YES"
+mdata$STRUG<-mdata$STRUG == "YES"
+mdata$condition <- with(mdata,
+  paste(
+    ifelse(Condition_Q,"+Q","-Q"),
+    ifelse(Condition_GP,"+GP","-GP")
+  )
+)
+mdata$STRONG <- as.factor(mdata$STRONG)
+mdata$WEAK <- as.factor(mdata$WEAK)
+mdata$Reading <- as.factor(mdata$Reading)
+mdata$prosody <- as.factor(mdata$prosody)
+mdata$two_level_prosody <- as.factor(mdata$two_level_prosody)
+mdata$IID <- as.factor(mdata$IID)
+mdata$UID <- as.factor(mdata$UID)
+mdata$SID <- as.factor(mdata$SID)
+mdata$STRUG_START <- as.factor(mdata$STRUG_START)
+mdata$pdom <- mdata$two_level_prosody %in% c("PP1", "PP1 > OBJ")
+mdata$odom <- mdata$two_level_prosody %in% c("OBJ", "OBJ > PP1")
+gpInsensitive <- paste(c(1,
+12,
+14,
+15,
+19,
+2,
+20,
+203,
+21,
+210,
+22,
+4,
+6))
+
+```
+
+# Breaks by condition
+
+## PP1 Break
+
+```{r pp1breaks, fig.cap="PP1 Break"}
+br_rows <- c("No break", "Break")
+pp1br <- xtabs(~PP1 + condition, mdata)
+row.names(pp1br) <- br_rows
+pp1br.r1 <- xtabs(~PP1 + condition, subset(mdata, Reading==1))
+row.names(pp1br.r1) <- br_rows        
+pp1br.r2 <- xtabs(~PP1 + condition, subset(mdata, Reading==2))
+row.names(pp1br.r2) <- br_rows
+
+kable(pp1br, caption="Both readings")
+kable(pp1br.r1, caption="Reading 1")
+kable(pp1br.r2, caption="Reading 2")
+```
+
+## OBJ Break
+
+```{r objbreaks, fig.cap="OBJ Break"}
+br_rows <- c("No break", "Break")
+pp1br <- xtabs(~OBJ + condition, mdata)
+row.names(pp1br) <- br_rows
+pp1br.r1 <- xtabs(~OBJ + condition, subset(mdata, Reading==1))
+row.names(pp1br.r1) <- br_rows        
+pp1br.r2 <- xtabs(~OBJ + condition, subset(mdata, Reading==2))
+row.names(pp1br.r2) <- br_rows
+
+kable(pp1br, caption="Both readings")
+kable(pp1br.r1, caption="Reading 1")
+kable(pp1br.r2, caption="Reading 2")
+```
+
+# Breaks by &plusmn;Q
+
+## PP1 Break by &plusmn;Q
+
+```{r gpp1, fig.cap="OBJ Break"}
+br_rows <- c("No break", "Break")
+pp1br <- xtabs(~PP1 + Condition_Q, mdata)
+row.names(pp1br) <- br_rows
+pp1br.r1 <- xtabs(~PP1 + Condition_Q, subset(mdata, Reading==1))
+row.names(pp1br.r1) <- br_rows        
+pp1br.r2 <- xtabs(~PP1 + Condition_Q, subset(mdata, Reading==2))
+row.names(pp1br.r2) <- br_rows
+
+kable(pp1br, caption="Both readings",col.names=c("-Q","+Q"))
+kable(pp1br.r1, caption="Reading 1",col.names=c("-Q","+Q"))
+kable(pp1br.r2, caption="Reading 2",col.names=c("-Q","+Q"))
+```
+
+## OBJ Break by &plusmn;Q
+
+```{r gpobj, fig.cap="OBJ Break"}
+br_rows <- c("No break", "Break")
+pp1br <- xtabs(~OBJ + Condition_Q, mdata)
+row.names(pp1br) <- br_rows
+pp1br.r1 <- xtabs(~OBJ + Condition_Q, subset(mdata, Reading==1))
+row.names(pp1br.r1) <- br_rows        
+pp1br.r2 <- xtabs(~OBJ + Condition_Q, subset(mdata, Reading==2))
+row.names(pp1br.r2) <- br_rows
+
+kable(pp1br, caption="Both readings",col.names=c("-Q","+Q"))
+kable(pp1br.r1, caption="Reading 1",col.names=c("-Q","+Q"))
+kable(pp1br.r2, caption="Reading 2",col.names=c("-Q","+Q"))
+```
+
+# Breaks by &plusmn;GP
+
+## PP1 Break by &plusmn;GP
+
+```{r qpp1, fig.cap="OBJ Break"}
+br_rows <- c("No break", "Break")
+pp1br <- xtabs(~PP1 + Condition_GP, mdata)
+row.names(pp1br) <- br_rows
+pp1br.r1 <- xtabs(~PP1 + Condition_GP, subset(mdata, Reading==1))
+row.names(pp1br.r1) <- br_rows        
+pp1br.r2 <- xtabs(~PP1 + Condition_GP, subset(mdata, Reading==2))
+row.names(pp1br.r2) <- br_rows
+
+kable(pp1br, caption="Both readings",col.names=c("-GP","+GP"))
+kable(pp1br.r1, caption="Reading 1",col.names=c("-GP","+GP"))
+kable(pp1br.r2, caption="Reading 2",col.names=c("-GP","+GP"))
+```
+
+## OBJ Break by &plusmn;GP
+
+```{r qobj, fig.cap="OBJ Break"}
+br_rows <- c("No break", "Break")
+pp1br <- xtabs(~OBJ + Condition_GP, mdata)
+row.names(pp1br) <- br_rows
+pp1br.r1 <- xtabs(~OBJ + Condition_GP, subset(mdata, Reading==1))
+row.names(pp1br.r1) <- br_rows        
+pp1br.r2 <- xtabs(~OBJ + Condition_GP, subset(mdata, Reading==2))
+row.names(pp1br.r2) <- br_rows
+
+kable(pp1br, caption="Both readings",col.names=c("-GP","+GP"))
+kable(pp1br.r1, caption="Reading 1",col.names=c("-GP","+GP"))
+kable(pp1br.r2, caption="Reading 2",col.names=c("-GP","+GP"))
+```
+
+# 3-level prosodic pattern
+
+```{r 3lvlxtabs}
+prosodies.full <- xtabs(~ prosody +condition, mdata)
+prosodies.r1 <- xtabs(~ prosody +condition, subset(mdata,Reading==1))
+prosodies.r2 <- xtabs(~ prosody +condition, subset(mdata,Reading==2))
+kable(prosodies.full, caption = "Both readings")
+kable(prosodies.r1, caption = "Reading 1")
+kable(prosodies.r2, caption = "Reading 2")
+```
+
+# 2-level prosodic pattern
+
+```{r 2lvlxtabs}
+prosodies.full <- xtabs(~ two_level_prosody +condition, mdata)
+prosodies.r1 <- xtabs(~ two_level_prosody +condition, subset(mdata,Reading==1))
+prosodies.r2 <- xtabs(~ two_level_prosody +condition, subset(mdata,Reading==2))
+kable(prosodies.full, caption = "Both readings")
+kable(prosodies.r1, caption = "Reading 1")
+kable(prosodies.r2, caption = "Reading 2")
+```
+
+# PP1 or PP1 > OBJ
+
+```{r pdom}
+pdom <- xtabs(~condition+pdom,data=mdata)
+pdom.r1 <- xtabs(~condition+pdom,data=subset(mdata,Reading==1))
+pdom.r2 <- xtabs(~condition+pdom,data=subset(mdata,Reading==2))
+
+
+kable(
+  pdom, caption="Both readings",
+  col.names = c("PP1 Not Dominant", "PP1 Dominant")
+)
+kable(
+  pdom.r1, caption="Reading 1",
+  col.names = c("PP1 Not Dominant", "PP1 Dominant")
+)
+kable(
+  pdom.r2, caption="Reading 2",
+  col.names = c("PP1 Not Dominant", "PP1 Dominant")
+)
+```
+
+# OBJ or OBJ > PP1
+
+```{r odom}
+odom <- xtabs(~condition + odom ,data=mdata)
+odom.r1 <- xtabs(~condition + odom,data=subset(mdata,Reading==1))
+odom.r2 <- xtabs(~condition + odom,data=subset(mdata,Reading==2))
+
+kable(odom, caption="Both readings",
+      col.names = c("OBJ Not Dominant", "OBJ Dominant"))
+kable(odom.r1, caption="Reading 1",
+      col.names = c("OBJ Not Dominant", "OBJ Dominant"))
+kable(odom.r2, caption="Reading 2",
+      col.names = c("OBJ Not Dominant", "OBJ Dominant"))
+```
+
+# Logistic regression models
+
+The interaction between &plusmn;GP and &plusmn;Q approaches significance (p < 0.06) as a predictor of the object break, but not the PP1 break.
+
+```{r models,results="asis"}
+obj <- glmer(OBJ~Condition_GP*Condition_Q+Reading+(1|IID)+(1|SID),data=mdata,family=binomial)
+pp <- glmer(PP1~Condition_GP*Condition_Q+Reading+(1|IID)+(1|SID),data=mdata,family=binomial)
+
+stargazer(obj,pp,header=F)
+```

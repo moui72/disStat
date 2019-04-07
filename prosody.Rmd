@@ -1,13 +1,15 @@
 ---
-title: "Binomial models"
+title: "Prosodic properties"
 author: "Tyler Peckenpaugh"
-date: "3/5/2019"
+date: "4/2/2019"
 output:
-  html_document:
-    highlight: pygments
-    number_sections: yes
-    theme: journal
-    toc: yes
+output:
+  tufte::tufte_html: 
+    tufte_features: ["fonts", "italics"]
+    toc: True
+  tufte::tufte_handout: 
+    toc: True  
+    latex_engine: xelatex
 ---
 
 ```{r setup, include=FALSE}

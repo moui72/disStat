@@ -1,0 +1,83 @@
+
+<!--
+## Generalized Estimating Equation
+
+Generalized Estimating Equation (GEE) analyses with participant as the error term show much the same results.
+
+```{r gee1}
+gee.byP <- geeglm(
+  inter_reading.log10 ~ GP_condition * Q_condition,
+  id=participant,
+  data=inter_item_timings
+)
+gee.byP.noInt<- geeglm(
+  inter_reading.log10 ~ GP_condition + Q_condition,
+  id=participant,
+  data=inter_item_timings
+)
+tab_model(gee.byP,gee.byP.noInt)
+irt.compared<-anova(gee.byP,gee.byP.noInt)
+```
+
+The interaction model does not represent a statistically significant improvement in fit (&Chi; = `r round(irt.compared$X2[1],3)`, p < `r round(irt.compared["P(>|Chi|)"],2)`), but the improvement it does approach significance.
+
+<!--
+# Excluding items
+
+If we exclude items where the IRT for the control condition (-Q, -GP) is longer than 7s, we get the following:
+```{r gee2, echo=FALSE}
+inter_item_timings<-irt_data_itemsExcluded
+inter_item_timings$inter_reading <- inter_item_timings$irt
+inter_item_timings$inter_reading.log10 <- log10(inter_item_timings$irt)
+
+mtable <- with(na.omit(inter_item_timings),tapply(inter_reading, condition, mean))
+
+sdtable <- with(na.omit(inter_item_timings),tapply(inter_reading, condition, sd))
+
+ctable <- rbind(mtable,sdtable)
+row.names(ctable) <- c("Mean", "SD")
+decl <- round(mtable["-Q +GP"] - mtable["-Q -GP"],2)
+int <- round(mtable["+Q +GP"] - mtable["+Q -GP"],2)
+diffGPQ <- decl - int
+```
+
+Difference for declaratives: `r decl`; for interrogatives: `r int`; difference of differences: `r diffGPQ`.
+
+```{r exclit}
+kable(t(ctable), caption="Condition means")
+```
+
+## GEE Analyses
+
+Generalized Estimating Equation (GEE) analyses with participant as the error term show much the same results.
+
+```{r exclitgee}
+gee.byP <- geeglm(
+  inter_reading.log10 ~ GP_condition * Q_condition,
+  id=participant,
+  data=inter_item_timings
+)
+gee.byP.noInt<- geeglm(
+  inter_reading.log10 ~ GP_condition + Q_condition,
+  id=participant,
+  data=inter_item_timings
+)
+tab_model(gee.byP,gee.byP.noInt)
+irt.compared<-anova(gee.byP,gee.byP.noInt)
+```
+```{r exclitgee2}
+gee.byI <- geeglm(
+  inter_reading.log10 ~ GP_condition * Q_condition,
+  id=item,
+  data=inter_item_timings
+)
+gee.byI.noInt<- geeglm(
+  inter_reading.log10 ~ GP_condition + Q_condition,
+  id=item,
+  data=inter_item_timings
+)
+tab_model(gee.byI,gee.byI.noInt)
+irt.compared<-anova(gee.byP,gee.byP.noInt)
+```
+
+The interaction model does not represent a statistically significant improvement in fit (&Chi; = `r round(irt.compared$X2[1],3)`, p < `r round(irt.compared["P(>|Chi|)"],2)`), and so does not support the primary hypothesis. -->

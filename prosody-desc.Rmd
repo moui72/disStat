@@ -1,0 +1,238 @@
+---
+title: "Prosodic patterns"
+author: "Tyler Peckenpaugh"
+date: "4/2/2019"
+output:
+  tufte::tufte_handout: 
+    toc: True  
+    latex_engine: xelatex
+  tufte::tufte_html: 
+    tufte_features: ["fonts", "italics"]
+    toc: True
+---
+
+```{r setup, include=FALSE}
+library(readr)
+library(knitr)
+library(pander)
+library(lme4)
+library(stargazer)
+library(lattice)
+library(ggplot2)
+library(dplyr)
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE, fig.height = 3)
+mdata <- read_csv("~/dissertation/csvs/got_prosody.csv")
+mdata$V<-mdata$V == "YES"
+mdata$OBJ<-mdata$OBJ == "YES"
+mdata$PP1<-mdata$PP1 == "YES"
+mdata$STRUG<-mdata$STRUG == "YES"
+mdata$condition <- with(mdata,
+  paste(
+    ifelse(Condition_Q,"+Q","-Q"),
+    ifelse(Condition_GP,"+GP","-GP")
+  )
+)
+mdata$STRONG <- as.factor(mdata$STRONG)
+mdata$WEAK <- as.factor(mdata$WEAK)
+mdata$Reading <- as.factor(mdata$Reading)
+mdata$prosody <- as.factor(mdata$prosody)
+mdata$two_level_prosody <- as.factor(mdata$two_level_prosody)
+mdata$IID <- as.factor(mdata$IID)
+mdata$UID <- as.factor(mdata$UID)
+mdata$SID <- as.factor(mdata$SID)
+mdata$STRUG_START <- as.factor(mdata$STRUG_START)
+mdata$pdom <- mdata$two_level_prosody %in% c("PP1", "PP1 > OBJ")
+mdata$odom <- mdata$two_level_prosody %in% c("OBJ", "OBJ > PP1")
+gpInsensitive <- paste(c(1,
+12,
+14,
+15,
+19,
+2,
+20,
+203,
+21,
+210,
+22,
+4,
+6))
+
+```
+
+# Breaks by condition
+
+## PP1 Break
+
+```{r pp1breaks, fig.cap="PP1 Break"}
+br_rows <- c("No break", "Break")
+pp1br <- xtabs(~PP1 + condition, mdata)
+row.names(pp1br) <- br_rows
+pp1br.r1 <- xtabs(~PP1 + condition, subset(mdata, Reading==1))
+row.names(pp1br.r1) <- br_rows        
+pp1br.r2 <- xtabs(~PP1 + condition, subset(mdata, Reading==2))
+row.names(pp1br.r2) <- br_rows
+
+kable(pp1br, caption="Both readings")
+kable(pp1br.r1, caption="Reading 1")
+kable(pp1br.r2, caption="Reading 2")
+```
+
+## OBJ Break
+
+```{r objbreaks, fig.cap="OBJ Break"}
+br_rows <- c("No break", "Break")
+pp1br <- xtabs(~OBJ + condition, mdata)
+row.names(pp1br) <- br_rows
+pp1br.r1 <- xtabs(~OBJ + condition, subset(mdata, Reading==1))
+row.names(pp1br.r1) <- br_rows        
+pp1br.r2 <- xtabs(~OBJ + condition, subset(mdata, Reading==2))
+row.names(pp1br.r2) <- br_rows
+
+kable(pp1br, caption="Both readings")
+kable(pp1br.r1, caption="Reading 1")
+kable(pp1br.r2, caption="Reading 2")
+```
+
+# Breaks by &plusmn;Q
+
+## PP1 Break by &plusmn;Q
+
+```{r gpp1, fig.cap="OBJ Break"}
+br_rows <- c("No break", "Break")
+pp1br <- xtabs(~PP1 + Condition_Q, mdata)
+row.names(pp1br) <- br_rows
+pp1br.r1 <- xtabs(~PP1 + Condition_Q, subset(mdata, Reading==1))
+row.names(pp1br.r1) <- br_rows        
+pp1br.r2 <- xtabs(~PP1 + Condition_Q, subset(mdata, Reading==2))
+row.names(pp1br.r2) <- br_rows
+
+kable(pp1br, caption="Both readings",col.names=c("-Q","+Q"))
+kable(pp1br.r1, caption="Reading 1",col.names=c("-Q","+Q"))
+kable(pp1br.r2, caption="Reading 2",col.names=c("-Q","+Q"))
+```
+
+## OBJ Break by &plusmn;Q
+
+```{r gpobj, fig.cap="OBJ Break"}
+br_rows <- c("No break", "Break")
+pp1br <- xtabs(~OBJ + Condition_Q, mdata)
+row.names(pp1br) <- br_rows
+pp1br.r1 <- xtabs(~OBJ + Condition_Q, subset(mdata, Reading==1))
+row.names(pp1br.r1) <- br_rows        
+pp1br.r2 <- xtabs(~OBJ + Condition_Q, subset(mdata, Reading==2))
+row.names(pp1br.r2) <- br_rows
+
+kable(pp1br, caption="Both readings",col.names=c("-Q","+Q"))
+kable(pp1br.r1, caption="Reading 1",col.names=c("-Q","+Q"))
+kable(pp1br.r2, caption="Reading 2",col.names=c("-Q","+Q"))
+```
+
+# Breaks by &plusmn;GP
+
+## PP1 Break by &plusmn;GP
+
+```{r qpp1, fig.cap="OBJ Break"}
+br_rows <- c("No break", "Break")
+pp1br <- xtabs(~PP1 + Condition_GP, mdata)
+row.names(pp1br) <- br_rows
+pp1br.r1 <- xtabs(~PP1 + Condition_GP, subset(mdata, Reading==1))
+row.names(pp1br.r1) <- br_rows        
+pp1br.r2 <- xtabs(~PP1 + Condition_GP, subset(mdata, Reading==2))
+row.names(pp1br.r2) <- br_rows
+
+kable(pp1br, caption="Both readings",col.names=c("-GP","+GP"))
+kable(pp1br.r1, caption="Reading 1",col.names=c("-GP","+GP"))
+kable(pp1br.r2, caption="Reading 2",col.names=c("-GP","+GP"))
+```
+
+## OBJ Break by &plusmn;GP
+
+```{r qobj, fig.cap="OBJ Break"}
+br_rows <- c("No break", "Break")
+pp1br <- xtabs(~OBJ + Condition_GP, mdata)
+row.names(pp1br) <- br_rows
+pp1br.r1 <- xtabs(~OBJ + Condition_GP, subset(mdata, Reading==1))
+row.names(pp1br.r1) <- br_rows        
+pp1br.r2 <- xtabs(~OBJ + Condition_GP, subset(mdata, Reading==2))
+row.names(pp1br.r2) <- br_rows
+
+kable(pp1br, caption="Both readings",col.names=c("-GP","+GP"))
+kable(pp1br.r1, caption="Reading 1",col.names=c("-GP","+GP"))
+kable(pp1br.r2, caption="Reading 2",col.names=c("-GP","+GP"))
+```
+
+# 3-level prosodic pattern
+
+```{r 3lvlxtabs}
+prosodies.full <- xtabs(~ prosody +condition, mdata)
+prosodies.r1 <- xtabs(~ prosody +condition, subset(mdata,Reading==1))
+prosodies.r2 <- xtabs(~ prosody +condition, subset(mdata,Reading==2))
+kable(prosodies.full, caption = "Both readings")
+kable(prosodies.r1, caption = "Reading 1")
+kable(prosodies.r2, caption = "Reading 2")
+```
+
+# 2-level prosodic pattern
+
+```{r 2lvlxtabs}
+prosodies.full <- xtabs(~ two_level_prosody +condition, mdata)
+prosodies.r1 <- xtabs(~ two_level_prosody +condition, subset(mdata,Reading==1))
+prosodies.r2 <- xtabs(~ two_level_prosody +condition, subset(mdata,Reading==2))
+kable(prosodies.full, caption = "Both readings")
+kable(prosodies.r1, caption = "Reading 1")
+kable(prosodies.r2, caption = "Reading 2")
+```
+
+# PP1 or PP1 > OBJ
+
+```{r pdom}
+pdom <- xtabs(~condition+pdom,data=mdata)
+pdom.r1 <- xtabs(~condition+pdom,data=subset(mdata,Reading==1))
+pdom.r2 <- xtabs(~condition+pdom,data=subset(mdata,Reading==2))
+
+
+kable(
+  pdom, caption="Both readings",
+  col.names = c("PP1 Not Dominant", "PP1 Dominant")
+)
+kable(
+  pdom.r1, caption="Reading 1",
+  col.names = c("PP1 Not Dominant", "PP1 Dominant")
+)
+kable(
+  pdom.r2, caption="Reading 2",
+  col.names = c("PP1 Not Dominant", "PP1 Dominant")
+)
+```
+
+# OBJ or OBJ > PP1
+
+```{r odom}
+odom <- xtabs(~condition + odom ,data=mdata)
+odom.r1 <- xtabs(~condition + odom,data=subset(mdata,Reading==1))
+odom.r2 <- xtabs(~condition + odom,data=subset(mdata,Reading==2))
+
+kable(odom, caption="Both readings",
+      col.names = c("OBJ Not Dominant", "OBJ Dominant"))
+kable(odom.r1, caption="Reading 1",
+      col.names = c("OBJ Not Dominant", "OBJ Dominant"))
+kable(odom.r2, caption="Reading 2",
+      col.names = c("OBJ Not Dominant", "OBJ Dominant"))
+```
+
+
+```{r}
+  
+```
+
+
+# Logistic regression models
+
+The interaction between &plusmn;GP and &plusmn;Q approaches significance (p < 0.06) as a predictor of the object break, but not the PP1 break.
+
+```{r models,results="asis"}
+obj <- glmer(OBJ~Condition_GP*Condition_Q+Reading+(1|IID)+(1|SID),data=mdata,family=binomial)
+pp <- glmer(PP1~Condition_GP*Condition_Q+Reading+(1|IID)+(1|SID),data=mdata,family=binomial)
+
+stargazer(obj,pp)
+```
