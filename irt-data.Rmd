@@ -11,6 +11,10 @@ knitr::opts_chunk$set(echo = FALSE)
 library(readr)
 library(psych)
 library(dplyr)
+library(tidyr)
+library(knitr)
+library(lme4)
+library(sjPlot)
 
 raw_file <- read_csv("csvs/irt-rvad-all-48k-2019-04-03_17h03m24s.csv", 
     col_types = cols(
@@ -54,28 +58,60 @@ irt_max <- 23000
 
 irt_lo <- subset(irt_data, irt < irt_min)
 irt_hi <- subset(irt_data, irt > irt_max)
+
 irt_data <- subset(
   irt_data, 
-  irt > irt_min & irt < irt_max
+  irt > irt_min & irt < irt_max & !isFiller
 )
 
 # winsorize top/bottom 5% of data (for normal distrbution, this is +/- 2sd)
 # see: https://sciencing.com/relationship-between-standard-deviations-percentiles-8768703.html
 win_trim=0.05
 irt_data <- irt_data %>% group_by(Participant) %>% mutate(win_irt = winsor(irt, trim=win_trim))
+
 # log 10 transform
 irt_data$wirt.log10 <- log10(irt_data$win_irt)
 
+# means by condition
+meansByCondition <- aggregate(
+  irt_data$irt,
+  by=list(
+    "Q"=irt_data$Q,
+    "GP"=irt_data$GP
+  ),
+FUN=mean
+) %>% spread(Q,x) 
+names(meansByCondition)[1] <- "Condition"
+diffs<-list(Condition="Difference", `-Q`=diff(meansByCondition$`-Q`), `+Q`= diff(meansByCondition$`+Q`))
+meansByCondition<-rbind(meansByCondition, diffs)
+cdiff <- round(meansByCondition$`-Q`[3]-meansByCondition$`+Q`[3],1)
 
-meansByCondition <- 
-  aggregate(
-    irt_data$irt,
-    by=list(
-      "Q"=irt_data$Condition_Q,
-      "GP"=irt_data$Condition_GP
-    ),
-    FUN=mean
-  )
+# participant means by condition
+pmeansByCondition <- aggregate(
+  irt_data$irt,
+  by=list(
+    "Condition"=irt_data$cond,
+    "Participant"=irt_data$Participant
+  ),
+  FUN=mean
+) %>% spread(Condition,x) 
+pmeansByCondition$pattern <- (
+  pmeansByCondition$`+Q +GP` - pmeansByCondition$`+Q -GP` <
+  pmeansByCondition$`-Q +GP` - pmeansByCondition$`-Q -GP`
+) 
+
+# simple P means
+spm <- aggregate(
+  irt_data$irt,
+  by=list(
+    "Participant"=irt_data$Participant
+  ),
+  FUN=mean
+) 
+exclude_spm <- spm[spm$x>10000,]
+
+irt_spmSplit <- subset(irt_data, !Participant %in% exclude_spm$Participant)
+
 ```
 
 # Distribution of IRT
@@ -107,4 +143,80 @@ hist(
   breaks=80, xlab="IRT",
   main = "Common log of Winsorized IRT"
 )
+```
+
+# Means by condition
+
+```{r mns}
+kable(meansByCondition)
+```
+
+The relevant difference here is `r round(cdiff,1)`ms, which is in the direction that supports the hypothesis.
+
+# Regression models
+
+```{r lmeMod}
+
+irt.full <- lmer(
+  win_irt ~ Condition_Q * Condition_GP + 
+    (1 | Participant) + 
+    (1 | Item),
+  data = irt_data,
+  REML=F
+)
+
+irt.noInteraction <- lmer(
+  win_irt ~ Condition_Q + Condition_GP + 
+    (1 | Participant) + 
+    (1 | Item),
+  data = irt_data,
+  REML=F
+)
+
+irt.noFxd <- lmer(
+  win_irt ~
+    (1 | Participant) + 
+    (1 | Item),
+  data = irt_data,
+  REML=F
+)
+tab_model(irt.full,irt.noInteraction)
+interaction <- anova(irt.full,irt.noInteraction)
+```
+
+# Regression models
+
+```{r lmeMod-spmsplit}
+
+irt.full <- lmer(
+  win_irt ~ Condition_Q * Condition_GP + 
+    (1 | Participant) + 
+    (1 | Item),
+  data = irt_spmSplit,
+  REML=F
+)
+
+irt.noInteraction <- lmer(
+  win_irt ~ Condition_Q + Condition_GP + 
+    (1 | Participant) + 
+    (1 | Item),
+  data = irt_spmSplit,
+  REML=F
+)
+
+irt.noFxd <- lmer(
+  win_irt ~
+    (1 | Participant) + 
+    (1 | Item),
+  data = irt_spmSplit,
+  REML=F
+)
+tab_model(irt.full,irt.noInteraction)
+interaction <- anova
+tab_model(irt.full,irt.noFxd)
+interaction <- anova(irt.full,irt.noFxd)
+```
+
+```{r pPattern}
+
 ```
