@@ -16,14 +16,13 @@ library(knitr)
 library(lme4)
 library(sjPlot)
 
-raw_file <- read_csv("csvs/irt-rvad-all-48k-2019-04-03_17h03m24s.csv", 
-    col_types = cols(
-      Item = col_factor(levels = seq(1,48)), 
-      Participant = col_character(), 
-      Reading = col_factor(levels = c(
-        "1", 
-        "2"
-))))
+raw_file <- read_csv("csvs/irt-rvad2.csv", 
+  col_types = cols(
+    Item = col_factor(levels = seq(1,48)), 
+    Participant = col_character()
+  )
+)
+
 raw_file$Participant <- as.factor(raw_file$Participant)
 irt_data <- raw_file
 
@@ -46,15 +45,15 @@ irt_data$GP <- ifelse(
   "+GP",
   "-GP"
 )
+# P 8 is messed up
+irt_data<-subset(irt_data,Participant != 8)
 irt_props_all <- describe(irt_data$irt)
-utl_props <- describe(irt_data$`Utterance length`)
-
-# exclude utterances under 1s
-irt_data <- subset(irt_data, `Utterance length` > 1000)
+utl_props <- describe(append(irt_data$`R1 UL`,irt_data$`R2 UL`))
+irt_data_all <- irt_data
 
 # exclude 200 < IRTs > 25000
-irt_min <- 400
-irt_max <- 23000
+irt_min <- 500
+irt_max <- 25000
 
 irt_lo <- subset(irt_data, irt < irt_min)
 irt_hi <- subset(irt_data, irt > irt_max)
@@ -74,12 +73,12 @@ irt_data$wirt.log10 <- log10(irt_data$win_irt)
 
 # means by condition
 meansByCondition <- aggregate(
-  irt_data$irt,
+  irt_data$win_irt,
   by=list(
     "Q"=irt_data$Q,
     "GP"=irt_data$GP
   ),
-FUN=mean
+  FUN=mean
 ) %>% spread(Q,x) 
 names(meansByCondition)[1] <- "Condition"
 diffs<-list(Condition="Difference", `-Q`=diff(meansByCondition$`-Q`), `+Q`= diff(meansByCondition$`+Q`))
@@ -119,7 +118,14 @@ irt_spmSplit <- subset(irt_data, !Participant %in% exclude_spm$Participant)
 The raw IRTs are distributed as shown below.
 
 ```{r rawIRThist}
-hist(irt_data$irt, breaks=80, xlab="IRT",main = "Raw IRT")
+hist(irt_data_all$irt, breaks=80, xlab="IRT",main = "Raw IRT")
+```
+
+```{r zoomLft}
+hist(subset(irt_data_all,irt<1000)$irt, breaks=20, xlab="IRT",main = "Left tail")
+```
+```{r zoomRgt}
+hist(subset(irt_data_all,irt>20000)$irt, breaks=20, xlab="IRT",main = "Right tail")
 ```
 
 IRTs below `r irt_min`ms (`r nrow(irt_lo)`) and above `r round(irt_max/1000,1)`s (`r nrow(irt_hi)`) are assumed to be implausible, and are omitted.
@@ -158,7 +164,7 @@ The relevant difference here is `r round(cdiff,1)`ms, which is in the direction 
 ```{r lmeMod}
 
 irt.full <- lmer(
-  win_irt ~ Condition_Q * Condition_GP + 
+  irt ~ Condition_Q * Condition_GP + 
     (1 | Participant) + 
     (1 | Item),
   data = irt_data,
@@ -166,7 +172,7 @@ irt.full <- lmer(
 )
 
 irt.noInteraction <- lmer(
-  win_irt ~ Condition_Q + Condition_GP + 
+  irt ~ Condition_Q + Condition_GP + 
     (1 | Participant) + 
     (1 | Item),
   data = irt_data,
@@ -174,7 +180,7 @@ irt.noInteraction <- lmer(
 )
 
 irt.noFxd <- lmer(
-  win_irt ~
+  irt ~
     (1 | Participant) + 
     (1 | Item),
   data = irt_data,
@@ -218,5 +224,58 @@ interaction <- anova(irt.full,irt.noFxd)
 ```
 
 ```{r pPattern}
+kable(pmeansByCondition)
+```
 
+# Delay before cold readings
+What follows is a description of the delay between the start of recording (i.e. a button press that transitioned the display from fixation screen to the sentence) until the onset of phonation. 
+```{r howcold}
+if (FALSE | !exists("rvad_raw")){
+  rvad_raw <- read_csv("csvs/rvad-raw.csv", 
+    col_types = cols(
+      Item = col_character(), 
+      Participant = col_character(), 
+      Reading = col_character()
+    )
+  )
+}
+raw_r1s <- subset(rvad_raw,!isFiller & Reading=="1" & Leading < 10000)
+des<-describe(raw_r1s$Leading)
+```
+
+In `r des$n` recordings of cold readings of experimental items (participant n = `r length(unique(raw_r1s$Participant))`; item n = 16; 14 data missing due to technical issues), the mean delay is `r round(des$mean,0)`ms (sd = `r round(des$sd,0)`). The longest delay, (one value longer than 10s was removed) is `r des$max` and the shortest is `r des$min`. The median is `r des$median`.
+```{r coldhist}
+hist(raw_r1s$Leading,breaks=80,xlab="Reading 1 delay",main="Only delays > 10s removed")
+
+raw_r1s <- subset(rvad_raw,Reading=="1" & Leading < 4000)
+hist(raw_r1s$Leading,breaks=80,xlab="Reading 1 delay",main="Delays > 4s removed")
+
+hist(subset(raw_r1s, Leading < 1000)$Leading,breaks=80,xlab="Reading 1 delay",main="Zoom on < 1s (Left tail)",xlim=c(0,1000))
+hist(subset(raw_r1s, Leading > 2500)$Leading,breaks=80,xlab="Reading 1 delay",main="Zoom on > 2.5s (Right tail)",xlim=c(2500,3600))
+```
+
+# Delay before previewed readings
+
+What follows is a description of the delay between the start of recording of a second reading of a sentence (i.e. a button press that transitioned the display from an intermediate screen to the sentence) until the onset of phonation. 
+
+```{r howprevs}
+if (FALSE | !exists("rvad_raw")){
+  rvad_raw <- read_csv("csvs/rvad-raw.csv", 
+    col_types = cols(
+      Item = col_character(), 
+      Participant = col_character(), 
+      Reading = col_character()
+    )
+  )
+}
+raw_r2s <- subset(rvad_raw,!isFiller & Reading=="2")
+des<-describe(raw_r2s$Leading)
+```
+
+In `r des$n` recordings of previewed readings of experimental items (participant n = `r length(unique(raw_r1s$Participant))`; item n = 16; `r length(unique(raw_r1s$Participant))*16 - des$n` data missing due to technical issues), the mean delay is `r round(des$mean,0)`ms (sd = `r round(des$sd,0)`). The longest delay is `r round(des$max/1000,1)`s and the shortest is `r des$min`ms. The median is `r des$median`.
+
+```{r prevhist}
+hist(raw_r2s$Leading,breaks=80,xlab="Reading 2 delay",main="All data")
+hist(subset(raw_r2s, Leading < 1000)$Leading,breaks=50,xlab="Reading 2 delay",main="Zoom on < 1s (Left tail)",xlim=c(0,1000))
+hist(subset(raw_r2s, Leading > 10000)$Leading,breaks=50,xlab="Reading 2 delay",main="Zoom on > 10s (Right tail)")
 ```
