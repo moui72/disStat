@@ -2,6 +2,7 @@
 title: "Inter-reading timing"
 author: "Tyler Peckenpaugh"
 date: "April 7, 2019"
+bibliography: refs.bib
 tables: true
 output: 
   bookdown::tufte_handout2: 
@@ -26,9 +27,9 @@ library(ggthemes)
 library(jsonlite)
 
 use_old <- FALSE
-DianneData<-"csvs/irt-rvad-all-48k-2019-04-03_17h03m24s.csv"
-NewData<-"csvs/irt-rvad-4_11.csv"
-raw_file <- read_csv(ifelse(use_old,DianneData,NewData), 
+old<-"csvs/irt-rvad-4_11.csv"
+new<-"csvs/irt-rvad-8k.csv"
+raw_file <- read_csv(ifelse(use_old,old,new), 
   col_types = cols(
     Item = col_factor(levels = seq(1,48)), 
     Participant = col_character()
@@ -42,6 +43,7 @@ irt_data<-subset(irt_data,Participant != 8)
 
 # counts
 irt_data$Participant <- as.factor(irt_data$Participant)
+irt_data$Participant <- relevel(irt_data$Participant,ref=9)
 recs<-nrow(irt_data)
 subjs<-length(levels(irt_data$Participant))
 items<-length(levels(irt_data$Item))
@@ -89,7 +91,7 @@ irt_data <- subset(
   irt_data, 
   irt > irt_min & irt < irt_max & !isFiller
 )
-irt_data$Participant<-relevel(irt_data$Participant,ref="1")
+irt_data$Participant<-relevel(irt_data$Participant,ref=5)
 irt_data$Item<-relevel(irt_data$Item,ref="1")
 # winsorize top/bottom 5% of data (for normal distrbution, this is +/- 2sd)
 # see: https://sciencing.com/relationship-between-standard-deviations-percentiles-8768703.html
@@ -106,7 +108,7 @@ meansByConditionLong <- aggregate(
     "Q"=irt_data$Q,
     "GP"=irt_data$GP
   ),
-  FUN=function(x){round(mean(x),0)}
+  FUN=mean
 ) 
 meansByCondition <- meansByConditionLong %>% spread(Q,x) 
 names(meansByCondition)[1] <- "Condition"
@@ -149,7 +151,7 @@ This document examines the inter-reading time (IRT) from the study. Subjects wer
 
 ## IRT measurement
 
-This was measured using a Python script and Google's WebRTC Voice Activity Detection (VAD) over 44.1kHz WAV files downsampled to 8kHz via SOX[^upsamp].
+IRT was measured using a Python script and Google's WebRTC Voice Activity Detection (VAD) over 44.1kHz WAV files downsampled to 8kHz via SOX[^upsamp]. This VAD system uses Gaussian Mixture Models to make probabilistic decisions on whether a given audio frame is speech or noise (see [@gmm1] for a complete explanation). Google's implementation takes one paramater, which they call aggressiveness: a 4-tier setting for the level of confidence necessary to call a gvien frame speech. I call this "rejection rate", where a higher rejection rate means that the model requires a high level of confidence before assuming a frame is speech, i.e. it is more likely to label something noise than speech. The implementation codes this setting as 0-3, where 0 is the most lenient (most likely to label a frame as speech) and 3 is the most stringent (most likely to label a frame as noise).
 
 [^upsamp]: Google's VAD API only accepts WAV files with sample rates that are a multiple of 8kHz. It ultimately downsamples all files to 8kHz, regardless of the input rate.
 
@@ -175,11 +177,9 @@ row.names(metaTable)<-c("Lowest rejection rate","...","...","Highest rejection r
 kable(
   metaTable, 
   col.names = c("No HPF", "HPF at 200Hz", "HPF at 400Hz"),
-  caption="Rejection rate and HPF values"
-) %>%
-  kable_styling(c("striped", "condensed"), 
-                latex_options = "striped", 
-                full_width = F)
+  caption="Rejection rate and HPF values",
+  booktab=T
+)
 ```
 
 Of the `r nrow(meta)` recordings subjected to this treatment, `r nrow(meta[meta$success,])` resulted in plausible timings. For those that were successfull, the breakdown of HPF and rejection rate used is reported in Table \ref{tab:metable}.
@@ -190,9 +190,9 @@ Of the `r nrow(meta)` recordings subjected to this treatment, `r nrow(meta[meta$
 
 # Distribution of IRT
 
-The raw IRTs are distributed as shown below. Overall mean IRT before any outlier remediation, with both experimental and filler items included (n = `r irt_props_all$n`), is `r round(irt_props_all$mean/1000,1)`s. The longest is `r round(irt_props_all$max/1000,1)`s and the shortest `r round(irt_props_all$min,0)`ms. Median IRT is `r round(irt_props_all$median/1000,1)`s.
+The raw IRTs including fillers and before any outliers are trimmed are distributed as shown in Figure \ref{fig:rawIRThist}. Overall mean IRT of these data (n = `r irt_props_all$n`), is `r round(irt_props_all$mean/1000,1)`s. The longest is `r round(irt_props_all$max/1000,1)`s and the shortest `r round(irt_props_all$min,0)`ms. Median IRT is `r round(irt_props_all$median/1000,1)`s.
 
-```{r rawIRThist,fig,cap="Distribution of raw IRT",fig.fullwidth=T}
+```{r rawIRThist,fig.cap="Distribution of raw IRT"}
 histSettings = geom_histogram(binwidth = 500,color="white",fill="#333333")
 ggplot(irt_data_all, aes(irt)) +
   histSettings + theme_tufte() +
@@ -201,50 +201,21 @@ ggplot(irt_data_all, aes(irt)) +
   ggtitle("Distribution of raw IRT",subtitle="Bin size = 500ms")
 ```
 
+IRTs below `r irt_min`ms (`r nrow(irt_lo)`) and above `r round(irt_max/1000,1)`s (`r nrow(irt_hi)`) are (assumed to be implausible) omitted. Experimental data were then Winsorized by participant to bring data in the `r win_trim*100`th and `r 100-(100*win_trim)`th percentile of data to the value at those tresholds. The resulting measure is referred to as wIRT and is distribued as shown in Figure \ref{fig:wIRT} (n = `r wirt_props$n`). Overall mean for wIRT is `r round(wirt_props$mean/1000,1)`s. The longest IRT is `r round(wirt_props$max/1000,1)`s and the shortest is `r round(wirt_props$min,0)`ms. Median wIRT is `r round(wirt_props$median/1000,1)`s.
 
-```{r irtzoomLft}
-ggplot(subset(irt_data_all,irt<1000), aes(irt)) +
-  geom_histogram(binwidth = 50,color="white",fill="#333333") + theme_tufte() +
-  xlab("Raw IRT") + ylab("Frequency") + 
-  ggtitle("Left tail of IRT distribution in miliseconds",subtitle="IRT < 1s, bin size = 50ms")
-```
-
-
-```{r zoomRgt}
-ggplot(subset(irt_data_all,irt>22000), aes(irt/1000)) +
-   geom_histogram(binwidth = 1, color="white", fill="#333333") + theme_tufte() +
-  xlab("Raw IRT") + ylab("Frequency") + 
-  ggtitle("Right tail of IRT distribution in seconds", subtitle="IRT > 22s, bin size = 1s")
-```
-
-Once IRTs below `r irt_min`ms (`r nrow(irt_lo)`) and above `r round(irt_max/1000,1)`s (`r nrow(irt_hi)`) (assumed to be implausible) and filler items are omitted, the distribution of IRT is as shown below (n = `r irt_props$n`). Overall mean for trimmed experimental IRTs is `r round(irt_props$mean/1000,1)`s. The longest IRT is `r round(irt_props$max/1000,1)`s and the shortest is `r round(irt_props$min,0)`ms. Median IRT is `r round(irt_props$median/1000,1)`s.
-
-```{r allIRT,fig.fullwidth=T}
-ggplot(irt_data, aes(irt)) +
-  histSettings + theme_tufte() +
-  xlab("IRT") + ylab("Frequency") + 
-  ggtitle(
-    "Trimmed experimental IRTs", 
-    subtitle="Bin size = 500ms"
-  )
-```
-
-The data have also been Winsorized to bring data in the `r win_trim*100`th and `r 100-(100*win_trim)`th percentile of data to the value at those tresholds. This measure is referred to as wIRT and is distribued as shown below (n = `r wirt_props$n`). Overall mean for trimmed experimental IRTs is `r round(irt_props$mean/1000,1)`s. The longest IRT is `r round(wirt_props$max/1000,1)`s and the shortest is `r round(wirt_props$min,0)`ms. Median IRT is `r round(wirt_props$median/1000,1)`s.
-
-```{r winsorizedIRT,fig.fullwidth=T}
+```{r wIRT,fig.cap="Distribution of wIRT"}
 ggplot(irt_data, aes(win_irt)) +
   histSettings + theme_tufte() +
   xlab("wIRT") + ylab("Frequency") + 
   ggtitle(
-    "Distribution of wIRT", 
+    "Distribution of wIRT (ms)", 
     subtitle="Bin size = 500ms"
   )
 ```
 
+For the purposes of regression analysis, a common log transformation reduces the skew in the data. This distribution is seen in Figure \ref{fig:log10wins}.
 
-Finally the remaining data have been subjected to a common log transform to elimnate some of the skew that is common for timing data.
-
-```{r log10winsorizedIRT}
+```{r log10wins,fig.cap="Common log of wIRT"}
 ggplot(irt_data, aes(wirt.log10)) +
   geom_histogram(binwidth = 0.1, color="white",fill="#333333") + theme_tufte() +
   xlab("Common log of wIRT") + ylab("Frequency") + 
@@ -254,15 +225,23 @@ ggplot(irt_data, aes(wirt.log10)) +
 
 # Means by condition
 
-In the table below, the top left cell represents the mean IRT for the declaritive controls ("-Q -GP"). The bottom row shows the increase in IRT across the garden path condition. 
+Table \ref{tab:mns} shows the mean wIRT by experimental condition. The top left cell represents the mean wIRT for the declaritive controls ("-Q -GP"). The bottom row shows the increase in IRT across the garden path condition. 
 
 ```{r mns}
-kable(meansByCondition, caption = "Means (ms) by condition")
+meansByConditionS <- meansByCondition
+meansByConditionS$`-Q` <- meansByConditionS$`-Q`/1000
+meansByConditionS$`+Q` <- meansByConditionS$`+Q`/1000
+kable(
+  meansByConditionS, 
+  caption = "Means (s) by condition",
+  digits = 2,
+  booktab=T
+)
 ```
 
-The difference in the effect of &plusmn;GP across &plusmn;Q is `r round(cdiff,1)`ms. This difference `r ifelse(cdiff > 0, paste("is"),paste("is not"))` in the direction that supports the hypothesis.
+The difference in the effect of &plusmn;GP across &plusmn;Q is `r round(cdiff,0)`ms. This difference `r ifelse(cdiff > 0, paste("is"),paste("is not"))` in the direction that supports the hypothesis.
 
-```{r interactinplot,fig.fullwidth=T,fig.cap="Mean IRT by condition"}
+```{r interactinplot,fig.cap="Mean IRT by condition"}
 
 meansByConditionLong$Qn <- ifelse(
   meansByConditionLong$Q == "+Q", 
@@ -278,23 +257,22 @@ meansByConditionLong$GPn <- ifelse(
 
 ggplot(
   meansByConditionLong, 
-  aes(x=GPn,y=x,group=Qn,linetype=Qn)
+  aes(x,x=GPn,y=x,group=Qn,linetype=Qn)
 ) + 
-  geom_line(stat="identity") +
-  geom_point(stat="identity") +
+  geom_line() +
+  geom_point() +
   theme_tufte() +
-  labs(x="", y="Mean IRT (ms)",linetype="") +
-  ylim(5600,6400)
+  labs(x="", y="Mean IRT (ms)",linetype="") 
 ```
 
 # Regression models
 
 The models with random slopes for participant and item did not converge, so the tables in this section show models with no random slopes. 
 
-```{r lmeMod,fig.fullwidth=T}
+```{r lmeMods}
 
 irt.full <- lmer(
-  win_irt ~ Condition_GP * Condition_Q + 
+  win_irt ~ Condition_Q * Condition_GP + 
     (1 | Participant) + 
     (1 | Item),
   data = irt_data,
@@ -331,21 +309,20 @@ irt.noFxd <- lmer(
   REML=F
 )
 
-irt.noRand <- lm(win_irt ~  Condition_Q * Condition_GP,
+irt.noRand <- lm(win_irt ~ Condition_Q * Condition_GP,
                  data = irt_data)
 
-irt.dummy <- lm(win_irt ~  Condition_Q * Condition_GP + 
-                  Participant,
+irt.dummy <- lm(win_irt ~ Condition_Q * Condition_GP,
                   data = irt_data
                 )
 irt.dummy.noInt <- lm(win_irt ~  Condition_Q + Condition_GP + 
-                  Participant,
+                  Participant + Item,
                   data = irt_data
                 )
 ```
 For the first model, fixed effects of &plusmn;GP and &plusmn;Q as well is the interaction between them were included, along with random effects of participant and item. The second model removes the interaction, but keeps both main effects.
 
-```{r modTabLME,results="asis",fig.fullwidth=T}
+```{r modTabLME,results="asis"}
 stargazer(
   irt.full,irt.noInteraction,
   header = F,
@@ -361,7 +338,7 @@ stargazer(
 
 A model with no fixed effects was also run, here it is shown beside the interaction model from the previous table.
 
-```{r modelsTables, results="asis",echo=F,fig.fullwidth=T}
+```{r modelsTables, results="asis"}
 stargazer(
   irt.full,irt.noFxd,
   header = F,
@@ -374,11 +351,11 @@ stargazer(
   )
 )
 ```
-```{r, results="asis",echo=F,fig.fullwidth=T}
+```{r, results="asis"}
 stargazer(
-  irt.full,irt.noFxd,
+  irt.full,irt.noRand,
   header = F,
-  title="Interaction vs. no fixed effects",
+  title="Interaction vs. no random effects",
   dep.var.labels=c("Winsorized IRT"),
   covariate.labels=c(
     "+GP",
@@ -394,8 +371,8 @@ A comparison of the delay for cold readings compared with that of previewed read
 
 "Delay" here is the amount of time after the start of a recording until the beginning of phonation of the target sentence. Cold readings are also called "reading 1", while previewed readings are the same as "reading 2". Implausible delays of >15s are excluded in the data shown here.
 
-```{r delayComparison, echo=F,fig.fullwidth=T}
-raw_rs_file <- read_csv("csvs/rvad-raw-4_11.csv")
+```{r delayComparison, echo=F}
+raw_rs_file <- read_csv("csvs/rvad-raw-8k.csv")
 raw_rs <- subset(raw_rs_file,!isFiller & Leading < 15000)
 raw_rs$reading <- raw_rs$Reading
 raw_rs$Reading <- ifelse(raw_rs$reading == 1, "Cold", "Previewed")
@@ -411,32 +388,41 @@ diffs$diffs <- diffs$Previewed-diffs$Cold
 diffDis<- describe(diffs$diffs)
 diffsByP<-aggregate(diffs~Participant,data=diffs,FUN=function(x){round(mean(x))})
 colnames(diffsByP) <- c("Participant", "Mean difference in delay (ms)")
+diffsByP.props <- describe(diffsByP$`Mean difference in delay (ms)`)
 ```
 
 For cold readings, n = `r table(raw_rs$Reading)["Cold"]` and for previewed, n = `r table(raw_rs$Reading)["Previewed"]`. 
 
 ## Difference in delay across paired readings
 
-Overall, each recording pair (n = `r diffDis$n`) has a mean difference in delay (previewed delay - cold delay) of `r round(diffDis$mean/1000,1)`s (sd = `r round(diffDis$sd/1000,1)`s), with a minumum of `r round(diffDis$min/1000,1)`s and a max of `r round(diffDis$max/1000,1)`s. The median difference in delay is `r round(diffDis$median/1000,1)`s. The distribution is shown in the histogram.
+Overall, each recording pair (n = `r diffDis$n`) has a mean difference in delay (DelDif = previewed delay - cold delay) of `r round(diffDis$mean/1000,1)`s (sd = `r round(diffDis$sd/1000,1)`s), with a minumum of `r round(diffDis$min/1000,1)`s and a max of `r round(diffDis$max/1000,1)`s. The median DelDif is `r round(diffDis$median/1000,1)`s. The distribution DelDif is shown in Figure \ref{fig:deddif}.
 
-```{r deddif}
+```{r deddif, fig.cap="Distribution of DelDif"}
 ggplot(na.omit(diffs), aes(diffs)) +
   geom_histogram(binwidth = 500,color="white",fill="black") +
   theme_tufte() +
   labs(x="Difference in delay", y="Count",title="Distribution of difference in delay",subtitle="Bin width = 500ms")
 ```
 
-Mean delay difference by participant shows that all participants have mean delay differences above zero. 
+If we calculate the mean delay difference by participant, we find a mean participant DelDef of `r round(diffsByP.props$mean/1000,1)`s. Each participant's DelDif is &le; `r diffsByP.props$min`ms and &ge; `r round( diffsByP.props$max/1000,1)`s, with a median of `r round(diffsByP.props$median/1000,2)`s. Table \ref{tab:difsbyp} shows these values.
 
 ```{r difsbyp}
-kable(diffsByP[order(diffsByP[,2]),])
+kable(
+  diffsByP[order(diffsByP[,2]),],
+  digits = 0,
+  caption="Delay differences by participant",
+  booktab=T,
+  longtab=T
+)
 ```
 
-```{r difhistbyp}
-ggplot(diffsByP, aes(`Mean difference in delay (ms)`)) +
-  geom_histogram(binwidth = 250,color="white",fill="black") +
+The distribution of the participants' DelDifs can be found in Figure \ref{fig:difhistbyp}.
+
+```{r difhistbyp, fig.cap="Mean difference in delay by participant"}
+ggplot(diffsByP, aes(`Mean difference in delay (ms)`/1000)) +
+  geom_histogram(binwidth = 1,color="white",fill="black") +
   theme_tufte() +
-  labs(x="Mean difference in delay", y="Count",title="Distribution of mean difference in delay by participant", subtitle="Bin size = 250ms")
+  labs(x="Mean difference in delay", y="Count",title="Mean difference in delay by participant", subtitle="Bin size = 1s")
 ```
 
 # Individual variation
@@ -444,6 +430,27 @@ ggplot(diffsByP, aes(`Mean difference in delay (ms)`)) +
 Individuals vary with regard to the effect of the garden path condition on IRT. For `r table(pmeansByCondition$pattern)["TRUE"]` of `r nrow(pmeansByCondition)`, the increase in IRT for garden paths is greater for interrogatives than it is for declaratives.
 
 ```{r pPattern}
-kable(pmeansByCondition[c(1:5)],caption="Means (ms) by condition and participant")
+kable(
+  pmeansByCondition[c(1:5)],
+  caption="Mean wIRT (ms) by condition and participant",
+  booktab=T,
+  longtab=T
+)
 ```
 
+```{r irtzoomLft, fig.cap="Left tail of raw IRT distribution"}
+ggplot(subset(irt_data_all,irt<1000), aes(irt)) +
+  geom_histogram(binwidth = 50,color="white",fill="#333333") + theme_tufte() +
+  xlab("Raw IRT") + ylab("Frequency") + 
+  ggtitle("Left tail of IRT distribution (ms)",subtitle="IRT < 1s, bin size = 50ms")
+```
+
+
+```{r zoomRgt, fig.cap="Right tail of raw IRT distribution"}
+ggplot(subset(irt_data_all,irt>22000), aes(irt/1000)) +
+   geom_histogram(binwidth = 1, color="white", fill="#333333") + theme_tufte() +
+  xlab("Raw IRT") + ylab("Frequency") + 
+  ggtitle("Right tail of IRT distribution (s)", subtitle="IRT > 22s, bin size = 1s")
+```
+
+# References
