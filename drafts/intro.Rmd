@@ -1,0 +1,40 @@
+Dissertation introduction
+
+<!--
+%This is the first content section
+
+%Previous section: Front matter
+%Following section: Background
+-->
+# Introduction
+Before the details of the current research can be outlined, it’s first necessary to explain some of the terms and mechanisms involved. Most critically, it’s necessary to be clear on what a garden path is, and what causes the phenomena.
+## Garden paths
+ The occurrence of garden-path (GP) effects are generally attributed to a clash between structure-first parsing strategies, e.g. (Frazier, 1979) Minimal Attachment, and the actual intended structure of the sentence in question.
+Minimal Attachment: Attach incoming material into the phrase-marker being constructed using the fewest nodes consistent with the well-formedness rules of the language under analysis (Frazier, 1979, p. 24)
+If we assume that the parser builds structure by following these types of constraints or rules in a programmatic way, without concern for meaning, it’s easy to see how one might end up with a parse that denotes an implausible situation, or even an ungrammatical sentence. An example is the commonly studied garden path sentence, “The horse raced past the barn fell” (Bever, 1970). Here, the initial parse incorrectly assumes that the matrix subject is the unmodified NP the horse, per Minimal Attachment, and takes the matrix verb to be raced, as in the sentence, “The horse raced past the finish line.”
+
+1.  	The horse raced past the barn fell.
+(a)	[S [NP The horse] [VP raced past the barn]]	???  [VP fell]
+(b)	[S [NP The horse raced past the barn] [VP fell]]
+
+The attempted parse represented in structure (1a) crashes, as it isn’t possible to incorporate the final word fell in a grammatical way. In order to obtain the grammatical parse, (1b) where the matrix subject is the horse raced past the barn, almost the entire structure of (1a) must be discarded. The subject is not the horse, and the main verb is not raced. Rather, the subject is a noun phrase (NP) containing a reduced relative clause raced past the barn. Only after remediation can fell be properly incorporated as the matrix verb. This finally results in a grammatical sentence, with a structure comparable to, “The horse (that was) raced past the barn was hungry.” Garden-path effects can result any time the assumptions made by the parser clash with the actual structure of a sentence. 
+1.2 PP-attachment garden paths
+The type of garden-path sentence that this study is concerned with centers around the temporarily ambiguous attachment sites for a prepositional phrase (PP). Consider:
+2. He had planned to cram the paperwork [in the drawer] [into his briefcase].
+						PP1		  PP2
+3. He had planned to cram the paperwork [in the drawer] [of his filing cabinet].
+						PP1		  PP2
+The sentences in (2) and (3) contain a temporary ambiguity with regard to the attachment site of in the drawer (PP1). It can either attach high, as an argument of the verb (i.e., the paperwork is being crammed in the drawer), or else low, as a modifier of the direct object (i.e. the paperwork in the drawer is being crammed into his briefcase). Sentence (2) differs from (3) in the ultimate resolution of that ambiguity, although in both cases disambiguation is triggered by the preposition heading the second PP, PP2 (into/of).
+In (2), PP1 must ultimately attach high, as the locative argument of the verb, in order for a plausible parse to be obtained. This is likely to cause some difficulty for the reader or listener of the sentence, if structure-first parsing strategies like Minimal Attachment are obeyed. The parser will have attached PP1 as the verb’s locative argument, not knowing PP2 was to come. The resulting parse crashes, because with PP1 attached high, PP2 has nowhere to attach but as a modifier of the noun in PP1 (*the drawer into his briefcase), or else as a modifier of the verb/sentence (*he did so into his briefcase). The preference for VP attachment of PP1 in these kinds of sentences is supported by experimental data in studies from Rayner et al. (1983), Clifton et al. (1991) and Schutz and Gibson (1999). 
+The other sentence, (3), should not represent any difficulty. The ambiguity is resolved such that PP1 can, and in fact must, attach high, since the subsequent PP of her filing cabinet (hereafter PP2) cannot plausibly attach as a sentential modifier, nor a verbal argument or modifier, and the sentence is incomplete without a destination of the cram action. By examining these sentences, the study proposed aims to expand understanding of human sentence processing in general, and specifically the relationship between syntactic structure and prosodic structure. Further, this will explore any contrast there might be in the impact of declarative and interrogative contexts on parsing, which has been under studied.
+1.3 An intuitive observation
+These attachment ambiguities which are difficult to parse in the declarative, appear to be less difficult to parse when presented in yes-no interrogative context. Consider again the somewhat difficult to process sentence in (2), repeated below as (4) for convenience
+4. 	He had planned to cram the paperwork [PP1 in the drawer] 
+[PP2into his  briefcase].
+According to the intuition of many native speakers of American English, the difficulty of (4) is at least somewhat lessened in (5):
+5. Had he planned to cram the paperwork [PP1 in the drawer] 
+[PP2 into his briefcase]?
+That is, while both sentences contain a temporary ambiguity for the attachment of PPs occurring in string-linear sequence at the end of an utterance, it is more likely in (5) that a listener or reader will come away with a plausible interpretation. This study explores the factors involved in why that is, and seeks to uncover a behavioral correlate of this intuition.
+Frazier, L. (1979). On Comprehending Sentences: Syntactic Parsing Strategies.
+Frazier, L. (1998). Journal of Psycholinguistic Research. https://doi.org/10.1023/a:1023241830722
+
