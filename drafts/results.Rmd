@@ -5,14 +5,14 @@ date: "April 7, 2019"
 bibliography: refs.bib
 tables: true
 output: 
-  bookdown::tufte_handout2: 
+  bookdown::tufte_html2: 
     toc: True
-    latex_engine: xelatex
-#   tufte_features: ["fonts", "italics"]
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE, fig.height = 3)
+bgcolor <- if (knitr::is_html_output()) "#fffff8" else NULL
+par(bg = bgcolor)
 
 library(readr)
 library(psych)
@@ -26,9 +26,17 @@ library(ggplot2)
 library(ggthemes)
 library(jsonlite)
 
+theme_set(
+  theme_tufte() + 
+    theme(
+      plot.background = element_rect(fill = bgcolor,color=bgcolor),
+      panel.border = element_blank()
+    )
+)
+
 use_old <- FALSE
-old<-"csvs/irt-rvad-4_11.csv"
-new<-"csvs/irt-rvad-8k.csv"
+old<-"../csvs/irt-rvad-4_11.csv"
+new<-"../csvs/irt-rvad-8k.csv"
 raw_file <- read_csv(ifelse(use_old,old,new), 
   col_types = cols(
     Item = col_factor(levels = seq(1,48)), 
@@ -139,7 +147,7 @@ spm <- aggregate(
   FUN=mean
 ) 
 
-json <- read_file("meta-4_11.json")
+json <- read_file("../meta-4_11.json")
 meta<-fromJSON(json)
 irt_props <- describe(irt_data$irt)
 wirt_props <- describe(irt_data$win_irt)
@@ -195,7 +203,7 @@ The raw IRTs including fillers and before any outliers are trimmed are distribut
 ```{r rawIRThist,fig.cap="Distribution of raw IRT"}
 histSettings = geom_histogram(binwidth = 500,color="white",fill="#333333")
 ggplot(irt_data_all, aes(irt)) +
-  histSettings + theme_tufte() +
+  histSettings +
   xlab("Raw IRT") + 
   ylab("Frequency") + 
   ggtitle("Distribution of raw IRT",subtitle="Bin size = 500ms")
@@ -205,7 +213,7 @@ IRTs below `r irt_min`ms (`r nrow(irt_lo)`) and above `r round(irt_max/1000,1)`s
 
 ```{r wIRT,fig.cap="Distribution of wIRT"}
 ggplot(irt_data, aes(win_irt)) +
-  histSettings + theme_tufte() +
+  histSettings + 
   xlab("wIRT") + ylab("Frequency") + 
   ggtitle(
     "Distribution of wIRT (ms)", 
@@ -217,7 +225,7 @@ For the purposes of regression analysis, a common log transformation reduces the
 
 ```{r log10wins,fig.cap="Common log of wIRT"}
 ggplot(irt_data, aes(wirt.log10)) +
-  geom_histogram(binwidth = 0.1, color="white",fill="#333333") + theme_tufte() +
+  geom_histogram(binwidth = 0.1, color="white",fill="#333333") + 
   xlab("Common log of wIRT") + ylab("Frequency") + 
   ggtitle("Distribution of Common Log of wIRT", subtitle="Bin size = 0.1")
 
@@ -261,7 +269,6 @@ ggplot(
 ) + 
   geom_line() +
   geom_point() +
-  theme_tufte() +
   labs(x="", y="Mean IRT (ms)",linetype="") 
 ```
 
@@ -269,7 +276,7 @@ ggplot(
 
 The models with random slopes for participant and item did not converge, so the tables in this section show models with no random slopes. 
 
-```{r lmeMods}
+```{r lmeMods, cache=T}
 
 irt.full <- lmer(
   win_irt ~ Condition_Q * Condition_GP + 
@@ -372,13 +379,12 @@ A comparison of the delay for cold readings compared with that of previewed read
 "Delay" here is the amount of time after the start of a recording until the beginning of phonation of the target sentence. Cold readings are also called "reading 1", while previewed readings are the same as "reading 2". Implausible delays of >15s are excluded in the data shown here.
 
 ```{r delayComparison, echo=F}
-raw_rs_file <- read_csv("csvs/rvad-raw-8k.csv")
+raw_rs_file <- read_csv("../csvs/rvad-raw-8k.csv")
 raw_rs <- subset(raw_rs_file,!isFiller & Leading < 15000)
 raw_rs$reading <- raw_rs$Reading
 raw_rs$Reading <- ifelse(raw_rs$reading == 1, "Cold", "Previewed")
 ggplot(raw_rs, aes(Leading, fill = Reading)) +
   geom_histogram(binwidth = 400,position="dodge",color="black") +
-  theme_tufte()+
   scale_fill_manual(values=c("black","white")) +
   ggtitle("Distribution of delay by reading", subtitle = "Bin size = 400ms")
 
@@ -400,7 +406,6 @@ Overall, each recording pair (n = `r diffDis$n`) has a mean difference in delay 
 ```{r deddif, fig.cap="Distribution of DelDif"}
 ggplot(na.omit(diffs), aes(diffs)) +
   geom_histogram(binwidth = 500,color="white",fill="black") +
-  theme_tufte() +
   labs(x="Difference in delay", y="Count",title="Distribution of difference in delay",subtitle="Bin width = 500ms")
 ```
 
@@ -421,7 +426,6 @@ The distribution of the participants' DelDifs can be found in Figure \ref{fig:di
 ```{r difhistbyp, fig.cap="Mean difference in delay by participant"}
 ggplot(diffsByP, aes(`Mean difference in delay (ms)`/1000)) +
   geom_histogram(binwidth = 1,color="white",fill="black") +
-  theme_tufte() +
   labs(x="Mean difference in delay", y="Count",title="Mean difference in delay by participant", subtitle="Bin size = 1s")
 ```
 
@@ -440,7 +444,7 @@ kable(
 
 ```{r irtzoomLft, fig.cap="Left tail of raw IRT distribution"}
 ggplot(subset(irt_data_all,irt<1000), aes(irt)) +
-  geom_histogram(binwidth = 50,color="white",fill="#333333") + theme_tufte() +
+  geom_histogram(binwidth = 50,color="white",fill="#333333") + 
   xlab("Raw IRT") + ylab("Frequency") + 
   ggtitle("Left tail of IRT distribution (ms)",subtitle="IRT < 1s, bin size = 50ms")
 ```
@@ -448,9 +452,9 @@ ggplot(subset(irt_data_all,irt<1000), aes(irt)) +
 
 ```{r zoomRgt, fig.cap="Right tail of raw IRT distribution"}
 ggplot(subset(irt_data_all,irt>22000), aes(irt/1000)) +
-   geom_histogram(binwidth = 1, color="white", fill="#333333") + theme_tufte() +
+   geom_histogram(binwidth = 1, color="white", fill="#333333") +
   xlab("Raw IRT") + ylab("Frequency") + 
   ggtitle("Right tail of IRT distribution (s)", subtitle="IRT > 22s, bin size = 1s")
 ```
 
-# References
+`r if (knitr::is_html_output()) '# References {-}'`

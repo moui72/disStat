@@ -1,66 +1,88 @@
-Background on prosody and parsing
-This is the second content section
-2 Background on prosody and parsing	1
-2.1 Can prosody affect parsing?	1
-2.2 Prosody and sentence processing in silent reading	2
-2.2 Prosody of questions vs. declaratives	6
-2.3 Prosody and the intuition at large	8
+---
+bibliography: refs.bib
+biblio-style: "apalike"
+output: 
+  bookdown::html_document2: 
+    toc: true
+---
+<!-- Background on prosody and parsing -->
+<!-- This is the second content section -->
+<!-- Previous section: introduction -->
+<!-- Following section: methodology -->
 
-Previous section: introduction
-Following section: methodology
-2 Background on prosody and parsing
+# Background on prosody and parsing
 This section goes over evidence supporting the claim that prosody can impact parsing decisions, even in silent reading.
-2.1 Can prosody affect parsing?
-TODO Lehiste (1973)
-DONE Kjelgaard & Speer (1999)
-TODO Deniz and Fodor (2016)
 
-A number of studies have shown that in listening to speech, prosodic cues appear to help reduce the frequency with which incorrect parsing (i.e. a garden path) occurs. For example, Kjelgaard and Speer (1999) conducted a study using digital manipulation of  recorded speech to create three versions of sentences containing a garden path temporary ambiguity (discussed above). They recorded speakers saying sentences with natural prosody, such as the following pair:
-1. 		[When Roger leaves] the house is dark. (Early closure)
-2. 		[When Roger leaves the house] it’s dark. (Late closure)
-They then cross-spliced these together to make several versions. One version had prosodic cues which cooperated with the intended reading of the sentence; another attempted to have “neutral” prosody; and the third used intentionally misleading prosody. The initial fragment of each was then presented to participants (the portion from the beginning of the sentence to the word house in (1-2) and they were asked to agree or disagree with whether a visually presented word, either is or it’s was likely to be the next word in the sentence. Participants gave more accurate and speedier judgements when the prosodic cues lined up with the correct parsing. The results of this study, as well as a growing body of literature, suggest that that prosodic information can (or perhaps must) be used by the parser to in making processing decisions.
-2.2 Prosody and sentence processing in silent reading
-The experiment presented in this paper is conducted using silent reading, and it is perhaps less intuitive to assume that prosody might play a role in the processing of silent reading compared to the processing of spoken utterances. Nonetheless, there is some evidence to support such an effect; as such, a positive result here is not a reason to dismiss the prosodic explanation for the effect, although it also can’t support that explanation over others. Consider Fodor’s (2002) analysis of relative clause attachment preference. This concerns sentences such as (3):
-3. Someone shot the servantN1 of the actressN2 [RC who was on the balcony].
-The relative clause who was on the balcony can attach either locally (low, modifying N2), making it the actress who was on the balcony, or higher up (non-locally, modifying N1), so that we understand the servant to be the one who was on the balcony. In these sorts of sentences, Cuetos and Mitchell (1988) found a 60% preference for low attachment in English speakers, but only a 40% preference for low attachment in Spanish speakers. In apparent violation of the general preference for local attachment, recall (6) Late Closure, from Frazier (1979), some languages, like French and Spanish (and Russian, but not Romanian or Brazilian Portuguese, so this is not a general feature of Romance languages), prefer to attach relative clauses higher, while others more often obey Late Closure (e.g., Swedish, Egyptian Arabic, and English). This non-local preference is weakened in cases where the ambiguous RC is short (one prosodic word). Fodor (2002) asserts that these tendencies exist in both listening to spoken words (under conditions where a particular parse is not favored by the explicit prosody) and in silent reading.
-Fodor notes that other researchers have shown the presence and absence of prosodic breaks to influence parsing decisions, and specifically that the presence of a prosodic break before the RC in sentences like (5) encourages high attachment. Fodor leverages this in order to explain the difference in RC attachment site tendency between languages. She argues that the phenomenon can be neatly account for by linking attachment site preference to the likelihood of a prosodic break before the RC. This difference in prosodic tendency, in turn, can be explained using a constraints-based approach. Consider Selkirk’s (1986) alignment constraints:
-4. Generalised Alignment: Align(aCat, E; βCat, E) 
-Align (GCat, E; PCat, E)
-Align (PCat, E; GCat, E) 
-Align (PCat, E; PCat, E)
-(GCat ranges over morphological and syntactic categories; PCat ranges over prosodic categories; E= Right or Left)  (Selkirk, 1986, p. 9)
+## Can prosody affect parsing?
+<!-- TODO Lehiste (1973) -->
+<!-- DONE Kjelgaard & Speer (1999) -->
+<!-- TODO Deniz and Fodor (2016) -->
+A number of studies have shown that in listening to speech, prosodic cues appear to help reduce the frequency with which incorrect parsing (i.e. a garden path) occurs. For example, @Kjelgaard1999-xd conducted a study using digital manipulation of  recorded speech to create three versions of sentences containing a garden path temporary ambiguity (discussed above). They recorded speakers saying sentences with natural prosody, such as the following pair:
 
-Truckenbrodt (1999) provides a prose-based formalization of the same idea. He describes what I will call AlignR which can be easily generalized to described what I will call AlignL, the same constraint except that it calls for aligning phrases at their left edges rather than their right edges.
-5. 	Align-XP/R 
-For each XP there is a PP such that the right edge of the XP coincides with the right edge of the PP, where XP is a maximal projection and PP is a Phonological Phrase. This constraint represents the end based mapping assumption for Major Phonological Phrases in English, whose right end is supposed to align with the right end of Maximal Projections (Truckenbrodt, 1999, p. 223).
-Essentially, she argues that relative ranking of alignment constraints for the left edge of phrases (AlignL) with those for the right edge of phrases (AlignR) can impact the distribution of prosodic breaks. These alignment constraints dictate that the edges of prosodic units (and thus the location of prosodic breaks) should align with the edges of syntactic constituents. Because the prosodic break that encourages high attachment is one which aligns with the left edge of the RC, postulating that AlignL is ranked above AlignR in languages like French that prefer high attachment can account for that preference (remember that a prosodic break in that place has been shown to encourage a high attachment interpretation). In languages where low attachment is preferred, we can assume that AlignR is ranked higher, and thus a prosodic break is more likely to occur after the RC than before.
-The same sort of argument can explain the difference in tendency between long and short RCs. Consider Selkirk’s (2011) BinMin defined below.
-6. 	BinMin(φ): A φ (phonological phrase) must consist of at least two ω 
-(phonological words).  
-If we assume, in Optimality Theoretic (Prince & Smolensky, 1993) terms, that a constraint like BinMin is ranked above AlignL, then it seems quite reasonable to assume that  a prosodic break before a short RC (which would encourage high attachment) is much less likely than before a long RC. That is, when the RC is short, its left edge is prevented from aligning with the beginning of a prosodic phrase (it violates AlignL) by the higher ranked BinMin. Longer RCs can have their left edge align with the start of a prosodic phrase, and thus can have the high-attachment encouraging prosodic break.
+  (@ec) [When Roger leaves] the house is dark. (Early closure)
+  (@lc)	[When Roger leaves the house] it&apos;s dark. (Late closure)
+  
+They then cross-spliced these together to make several versions. One version had prosodic cues which cooperated with the intended reading of the sentence; another attempted to have &ldquo;neutral&rdquo; prosody; and the third used intentionally misleading prosody. The initial fragment of each was then presented to participants (the portion from the beginning of the sentence to the word house in (@ec - @lc) and they were asked to agree or disagree with whether a visually presented word, either *is* or *it&apos;s* was likely to be the next word in the sentence. Participants gave more accurate and speedier judgements when the prosodic cues lined up with the correct parsing. The results of this study, as well as a growing body of literature, suggest that that prosodic information can (or perhaps must) be used by the parser in making processing decisions.
+
+## Prosody and sentence processing in silent reading
+
+The experiment presented in this paper is conducted using silent reading, and it is perhaps less intuitive to assume that prosody might play a role in the processing of silent reading compared to the processing of spoken utterances. Nonetheless, there is some evidence to support such an effect; as such, a positive result here is not a reason to dismiss the prosodic explanation for the effect, although it also can&apos;t support that explanation over others. Consider @Fodor2002-io analysis of relative clause attachment preference. This concerns sentences such as (@servant):
+
+  (@servant) Someone shot the servant~N1~ of the actress~N2~ [~RC~ who was on the balcony].
+
+The relative clause (RC) who was on the balcony can attach either locally (low, modifying N2), making it *the actress* who was *on the balcony*, or higher up (non-locally, modifying N1), so that we understand *the servant* to be the one who was *on the balcony*. In these sorts of sentences, @Cuetos1988-tm found a 60% preference for low attachment in English speakers, but only a 40% preference for low attachment in Spanish speakers. In apparent violation of the general preference for local attachment, recall *Minimal Attachment* (\@ref(def:MinAtt)), from @Frazier1979-pb, some languages, like French and Spanish (and Russian, but not Romanian or Brazilian Portuguese, so this is not a general feature of Romance languages), prefer to attach relative clauses higher, while others more often obey Late Closure (e.g., Swedish, Egyptian Arabic, and English). This non-local preference is weakened in cases where the ambiguous RC is short (one prosodic word). @Fodor2002-io asserts that these tendencies exist in both listening to spoken words (under conditions where a particular parse is not favored by the explicit prosody) and in silent reading.
+
+Fodor notes that other researchers have shown the presence and absence of prosodic breaks to influence parsing decisions, and specifically that the presence of a prosodic break before the RC in sentences like (5) encourages high attachment. Fodor leverages this in order to explain the difference in RC attachment site tendency between languages. She argues that the phenomenon can be neatly account for by linking attachment site preference to the likelihood of a prosodic break before the RC. This difference in prosodic tendency, in turn, can be explained using a constraints-based approach. Consider Selkirk&apos;s [-@Selkirk1986-hc] alignment constraints:
+
+```{definition,galign,name="Generalised Alignment"}
+
+Align(&alpha;Cat, E; &beta;Cat, E)
+
+  a. Align (GCat, E; PCat, E)
+  b. Align (PCat, E; GCat, E) 
+  c. Align (PCat, E; PCat, E)
+  
+*GCat ranges over morphological and syntactic categories; PCat ranges over prosodic categories; E = Right or Left [@Selkirk1986-hc, p. 6]*
+
+```
+
+@Truckenbrodt1999-vd provides a prose-based formalization of the same idea. He describes what I will call *Align~R~* which can be easily generalized to described what I will call *Align~L~*, the same constraint except that it calls for aligning phrases at their left edges rather than their right edges.
+
+  (@alignxp) **Align-XP/R** <br>
+  For each XP there is a PP such that the right edge of the XP coincides with the right edge of the PP, where XP is a maximal projection and PP is a Phonological Phrase. This constraint represents the end based mapping assumption for Major Phonological Phrases in English, whose right end is supposed to align with the right end of Maximal Projections [@Truckenbrodt1999-vd, p. 223].
+
+Essentially, Selkirk argues that relative ranking of alignment constraints for the left edge of phrases (*Align~L~*) with those for the right edge of phrases (*Align~R~*) can impact the distribution of prosodic breaks. These alignment constraints dictate that the edges of prosodic units (and thus the location of prosodic breaks) should align with the edges of syntactic constituents. Because the prosodic break that encourages high attachment is one which aligns with the left edge of the RC, postulating that *Align~L~* is ranked above *Align~R~* in languages like French that prefer high attachment can account for that preference (remember that a prosodic break in that place has been shown to encourage a high attachment interpretation). In languages where low attachment is preferred, we can assume that *Align~R~* is ranked higher, and thus a prosodic break is more likely to occur after the RC than before.
+
+The same sort of argument can explain the difference in tendency between long and short RCs. Consider Selkirk&apos;s [-@selkirk2011-hp] *BinMin* defined below.
+
+  (@binmin)	**BinMin(&phi;)** <br>
+  A &phi; (phonological phrase) must consist of at least two &omega; (phonological words).  
+  
+If we assume, in Optimality Theoretic (Prince & Smolensky, 1993) terms, that a constraint like *BinMin* is ranked above *Align~L~*, then it seems quite reasonable to assume that  a prosodic break before a short RC (which would encourage high attachment) is much less likely than before a long RC. That is, when the RC is short, its left edge is prevented from aligning with the beginning of a prosodic phrase (it violates *Align~L~*) by the higher ranked BinMin. Longer RCs can have their left edge align with the start of a prosodic phrase, and thus can have the high-attachment encouraging prosodic break.
+
 This analysis, of course, assumes the presence of prosodic cues, which are only overtly present in spoken utterances (punctuation aside). Given the elegance and explanatory power of this analysis, it seems reasonable to at least consider the further assumption necessary for it to also explain the phenomenon as it occurs in silent reading; which is that readers project prosodic structure over sentences even when they are read silently.
-2.2 Prosody of questions vs. declaratives
-DONE What questions sound like
-DONE Hedberg & Sosa (2002) 
-DONE Informal pilot (Peckenpaugh 2018)
-DONE What the prosodies of questions mean
-DONE Hedberg et al. (2014/7)
 
-In pursuing the possibility that it is the intonation and prosody of polar interrogatives which creates the intuitive contrast that this study investigates, we must consider what question intonation actually sounds like. It is generally agreed that in American English, the intonation of a polar (yes/no) question has the property of a final rise. Indeed, this has been confirmed in corpus studies such as Hedberg et al. (2017) who found that 79.8% of the 410 American English yes/no questions in their study (ten-minute phone conversations from  the CallHome Corpus of American English and  the Fisher English Corpus) had a “low-rise nuclear contour” (L*H-H%, L*H-↑H%, or L*L-H%). To briefly explain their ToBI notation, a tone T is either L for low or H for high; T* is anchored to the stressed syllable, and T- and T% are boundary tones (intermediate phrase boundary and intonational phrase boundary respectively). See, e.g., Guidleines for ToBI labeling (Beckman & Ayers, 1997) for a more thorough explanation of ToBI. An additional 10.7% of the Hedberg et al. (2017) data had a “high-rise nuclear contour” (Hedberg et al. categorizes the following tunes as “high-rise nuclear contours:” H*H-H%, or !H*L-L%). That leaves only 9.5% spread across the other 5 categories (High-fall, Rise-fall, Low-fall, Fall-rise, and Level). Only 5.6% of the data showed a falling contour. According to the authors’ analyses, these contours occur on the final main stress of a sentence and thereafter. In the case of the types of sentences examined in the current study,that would result in a rising contour on the head noun of the final PP.
-7.	Did Jed cram the newspapers under the sofa in the	[guestroom].
-							      	 	   L*H-H%
+## Prosody of questions vs. declaratives
+
+<!-- DONE What questions sound like -->
+<!-- DONE Hedberg & Sosa (2002)  -->
+<!-- DONE Informal pilot (Peckenpaugh 2018) -->
+<!-- DONE What the prosodies of questions mean -->
+<!-- DONE Hedberg et al. (2014/7) -->
+
+In pursuing the possibility that it is the intonation and prosody of polar interrogatives which creates the intuitive contrast that this study investigates, we must consider what question intonation actually sounds like. It is generally agreed that in American English, the intonation of a polar (yes/no) question has the property of a final rise. Indeed, this has been confirmed in corpus studies such as @Hedberg2017-er who found that 79.8% of the 410 American English yes/no questions in their study (ten-minute phone conversations from  the CallHome Corpus of American English and  the Fisher English Corpus) had a &ldquo;low-rise nuclear contour&rdquo; (L\*H-H%, L\*H-&uarr;H%, or L\*L-H%)[^uar]. To briefly explain their ToBI notation, a tone T is either L for low or H for high; T\* is anchored to the stressed syllable, and T- and T% are boundary tones (intermediate phrase boundary and intonational phrase boundary respectively). See, e.g., *Guidleines for ToBI labeling* [@Beckman1997-eu] for a more thorough explanation of ToBI. An additional 10.7% of the @Hedberg2017-er data had a &ldquo;high-rise nuclear contour&rdquo; (the authors categorizes the following tunes as &ldquo;high-rise nuclear contours:&rdquo; H\*H-H%, or !H\*L-L%). That leaves only 9.5% spread across the other 5 categories (High-fall, Rise-fall, Low-fall, Fall-rise, and Level). Only 5.6% of the data showed a falling contour. According to the authors&apos; analyses, these contours occur on the final main stress of a sentence and thereafter. In the case of the types of sentences examined in the current study,that would result in a rising contour on the head noun of the final PP.
+
+[^uar]: @Hedberg2017-er use &uarr; to indicate an upstep, which is not standardly transcribed with ToBI.
+
+  (@rise) Did Jed cram the newspapers under the sofa in the	[~L\*H-H%~ guestroom].
+							      	 	                                    
 The need to prepare for that rising tone might make a prosodic break before the PP more likely, and thus ease reanalysis or even encourage a different prosodic chunking which might encourage high attachment.
-A brief informal survey found that most speakers maintain low tones on prior stresses, although some had a H tone on the subject noun. It also varied between speakers and between sentences as to whether there is a prosodic boundary (marked by a low tone and/or pause) immediately before the rise (after PP1) or not. 
-2.3 Prosody and PP-attachment garden paths
-TODO (Bader, 1998)
-Bader, M. (1998). Prosodic Influences on Reading Syntactically Ambiguous Sentences. Studies in Theoretical Psycholinguistics. https://doi.org/10.1007/978-94-015-9070-9_1
-Beckman, M. E., & Ayers, G. (1997). Guidelines for ToBI labelling. The OSU Research Foundation, 3, 30.
-Cuetos, F., & Mitchell, D. C. (1988). Cross-linguistic differences in parsing: restrictions on the use of the Late Closure strategy in Spanish. Cognition, 30(1), 73–105.
-Fodor, J. D. (2002). Psycholinguistics cannot escape prosody. In Speech Prosody 2002, International Conference.
-Frazier, L. (1979). On Comprehending Sentences: Syntactic Parsing Strategies. Indiana Univ. Linguistics Club.
-Hedberg, N., Sosa, J. M., & Görgülü, E. (2017). The meaning of intonation in yes-no questions in American English: A corpus study. Corpus Linguistics and Linguistic Theory. https://doi.org/10.1515/cllt-2014-0020
-Kjelgaard, M. M., & Speer, S. R. (1999). Prosodic Facilitation and Interference in the Resolution of Temporary Syntactic Closure Ambiguity. Journal of Memory and Language. https://doi.org/10.1006/jmla.1998.2620
-Prince, A., & Smolensky, P. (1993). Optimality Theory: Constraint Interaction in Generative Grammar. Optimality Theory in Phonology. https://doi.org/10.1002/9780470756171.ch1
-Selkirk, E. O. (1986). Phonology and Syntax: The Relation Between Sound and Structure. MIT Press (MA).
-Truckenbrodt, H. (1999). On the Relation between Syntactic Phrases and Phonological Phrases. Linguistic Inquiry. https://doi.org/10.1162/002438999554048
 
+A brief informal survey found that most speakers maintain low tones on prior stresses, although some had a H tone on the subject noun. It also varied between speakers and between sentences as to whether there is a prosodic boundary (marked by a low tone and/or pause) immediately before the rise (after PP1) or not. 
+
+The prosodic structures found in the data collected for the current study are discussed in \@ref(pros-results).
+
+## Prosody and PP-attachment garden paths 
+<!-- TODO (Bader, 1998) -->
+
+`r if (knitr::is_html_output()) '# References {-}'`
