@@ -165,11 +165,13 @@ Plausible timings had to meet the following criteria:
 
 3. A trailing silence length of less than 95% of the entire recording's duraton.
 
+<!-- TODO add Goldman-Eisler & Jacewicz to bib -->
+
 [^humanRT]: Human reaction time should not permit a smaller delay.
 
-[^spchRate]: Stimuli range from 18-22 syllables in length. If we assume a speeach rate of 3 to 7 syllables per second (Jacewicz et al. 2010) we would expect utterances between 2.5s and 7.3s. Conservative thresholds higher and lower than the expected were used, especially on the higher end to allow for any processing or fluency difficulty.
+[^spchRate]: Stimuli range from 18-22 syllables in length. If we assume a speeach rate of 3 to 7 syllables per second [@jacewicz2010-sr] we would expect utterances between 2.5s and 7.3s. Conservative thresholds higher and lower than the expected were used, especially on the higher end to allow for any processing or fluency difficulty.
 
-[^shortPauses]: Goldman-Eisler (1961) found that a large majority (82.5 to 87%) of pauses in fluent speech are less than 1s.
+[^shortPauses]: @goldman1961-pa found that a large majority (82.5 to 87%) of pauses in fluent speech are less than 1s.
 
 ```{r metable, tidy=FALSE}
 metaTable<-xtabs(~agg+hpf, meta[meta$success,])
@@ -184,8 +186,6 @@ kable(
 
 Of the `r nrow(meta)` recordings subjected to this treatment, `r nrow(meta[meta$success,])` resulted in plausible timings. For those that were successfull, the breakdown of HPF and rejection rate used is reported in Table \ref{tab:metable}.
 
-
-
 [^alg]: The exact algorithm is available at [github](https://gist.github.com/moui72/4ebc4eb8f69eb9fdb1cab160ce299675) (URL: [bit.ly/2uMrcrG](https://bit.ly/2uMrcrG))
 
 # Distribution of IRT
@@ -195,7 +195,8 @@ The raw IRTs including fillers and before any outliers are trimmed are distribut
 ```{r rawIRThist,fig.cap="Distribution of raw IRT"}
 histSettings = geom_histogram(binwidth = 500,color="white",fill="#333333")
 ggplot(irt_data_all, aes(irt)) +
-  histSettings + theme_tufte() +
+  histSettings + 
+  theme_tufte() +
   xlab("Raw IRT") + 
   ylab("Frequency") + 
   ggtitle("Distribution of raw IRT",subtitle="Bin size = 500ms")

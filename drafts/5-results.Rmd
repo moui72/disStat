@@ -180,7 +180,7 @@ spm <- aggregate(
 # meta 
 json <- read_file("../meta-4_11.json")
 meta<-fromJSON(json)
-handset <- read.csv("../_SITA_SET_VALUES.csv")
+handset <- read.csv("../csvs/_SITA_SET_VALUES.csv")
 meta[meta$file %in% handset$Filename,]$agg <- NA
 meta[meta$file %in% handset$Filename,]$hpf <- NA
 hscount <- sum(handset$Filename %in% meta$file)
@@ -202,36 +202,30 @@ IRT was measured using a Python script and Google's WebRTC Voice Activity Detect
 
 The recordngs vary in the volume of the speaker's voice and the amount of background noise present. An algorothm was constructed to allow for the most stringent measurement of the least modified data that gave plausible measurements. Specifically, each file was measured using the highest possible rejection rate for the VAD algorithm and no modification of the file. If the timings detected were not plausible, the timings were re-measured with the same rejection rate, but after the recording had undergone a 200Hz high-pass filter[^alg] (HPF). If that still failed, a 400Hz HPF was used. After a further failure, the rejection rate for the VAD was lowered, and the whole thing was tried again (0, 200Hz, 400Hz); and that process was itself repeated until the lowest possible rejection rate was tried of the four possible settings. 
 
-Plausible timings had to meet the following criteria: 
+Of the `r nrow(meta)` recordings subjected to this treatment, `r nrow(meta[meta$success & !is.na(meta$agg),])` resulted in plausible timings. For those that were successfull, the breakdown of HPF and rejection rate used is reported in Table \@ref(tab:metable). A further `r hscount` were set by hand, resulting in a total of `r nrow(meta[meta$success,])` recordings.
 
-1. An utterance length between 2s and 10s[^spchRate], where utterance timing is the longest contiguous span in the recording that VAD reports as phonation, with breaks in phonation of less than 1s[^shortPauses] not breaking contiguity.
-
-2. A leading silence (delay) length of more than 120ms[^humanRT] and less than 95% of the entire recording's duration.
-
-3. A trailing silence length of less than 95% of the entire recording's duraton.
-
-[^humanRT]: Human reaction time should not permit a smaller delay.
-
-[^spchRate]: Stimuli range from 18-22 syllables in length. If we assume a speeach rate of 3 to 7 syllables per second (Jacewicz et al. 2010) we would expect utterances between 2.5s and 7.3s. Conservative thresholds higher and lower than the expected were used, especially on the higher end to allow for any processing or fluency difficulty.
-
-[^shortPauses]: Goldman-Eisler (1961) found that a large majority (82.5 to 87%) of pauses in fluent speech are less than 1s.
+[^alg]: The exact algorithm is available at [github](https://gist.github.com/moui72/4ebc4eb8f69eb9fdb1cab160ce299675) (URL: [bit.ly/2uMrcrG](https://bit.ly/2uMrcrG))
 
 ```{r metable, tidy=FALSE}
 metaTable<-xtabs(~agg+hpf, meta[meta$success,])
-row.names(metaTable)<-c("Lowest rejection rate","...","...","Highest rejection rate")
+row.names(metaTable)<-c("Lowest VAD rejection rate","...","...","Highest VAD rejection rate")
 kable(
   metaTable, 
   col.names = c("No HPF", "HPF at 200Hz", "HPF at 400Hz"),
-  caption="Rejection rate and HPF values",
+  caption="VAD rejection rate and HPF values",
   booktab=T
 )
 ```
 
-Of the `r nrow(meta)` recordings subjected to this treatment, `r nrow(meta[meta$success & !is.na(meta$agg),])` resulted in plausible timings. For those that were successfull, the breakdown of HPF and rejection rate used is reported in Table \@ref(tab:metable). A further `r hscount` were set by hand, resulting in a total of `r nrow(meta[meta$success,])` recordings.
+Plausible timings had to meet the following criteria: 
 
+1. An utterance length between 2s and 10s, where utterance timing is the longest contiguous span in the recording that VAD reports as phonation, with breaks in phonation of less than 1s not breaking contiguity.
 
+2. A leading silence ("delay") length of more than 120ms and less than 95% of the entire recording's duration.
 
-[^alg]: The exact algorithm is available at [github](https://gist.github.com/moui72/4ebc4eb8f69eb9fdb1cab160ce299675) (URL: [bit.ly/2uMrcrG](https://bit.ly/2uMrcrG))
+3. A trailing silence length of less than 95% of the entire recording's duraton.
+
+Stimuli range from 18-22 syllables in length. If we assume a speeach rate of 3 to 7 syllables per second (Jacewicz et al. 2010) we would expect utterances between 2.5s and 7.3s. Conservative thresholds higher and lower than the expected were used, especially on the higher end to allow for any processing or fluency. @goldman1961-pa found that a large majority (82.5 to 87%) of pauses in fluent speech are less than 1s. Even a very fast human reaction time should not permit a delay shorter than 120ms.
 
 # Distribution of IRT
 
@@ -366,6 +360,7 @@ irt.dummy.noInt <- lm(win_irt ~  Condition_Q + Condition_GP +
                   data = irt_data
                 )
 ```
+
 For the first model, fixed effects of &plusmn;GP and &plusmn;Q as well is the interaction between them were included, along with random effects of participant and item. The second model removes the interaction, but keeps both main effects.
 
 ```{r modTabLME,fig.fullwidth=T,fig.align="left",fig.cap="Models"}

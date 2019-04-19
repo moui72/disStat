@@ -1,0 +1,16 @@
+---
+bibliography: refs.bib
+output: 
+  bookdown::html_document2: 
+    toc: true
+---
+
+# Materials
+
+A number of considerations went into creating the materials for this study. Stimuli are based on earlier pilot study exploring this same phenomenon [@qp2], but with several issues with its materials corrected. One of these issues was that the verbs did not all strongly subcategorize for a PP-argument. This could affect the strength of the garden path effect, since the strength of that subcategorization might impact the amount of sway that the parsing strategy of *Minimal Attachment* or *Argument Preference* has on the parse. Theoretically, verbs with stronger subcategorization for a PP-argument would result in a stronger garden path effect, or more difficulty in understanding the sentence. Another issue had to do with the level of detail present in the sentences, especially when they were presented as yes/no-questions. When it’s clear that the speaker already knows so much about the situation, it becomes difficult to imagine a pragmatically plausible context where the question would be asked. Such sentences might be described as “prosecutorial[^dcb-prosec].” There was also an issue of whether the temporary ambiguity in some of the non-garden path items was ever fully disambiguated. This section will go over considerations taken in order to adjust the stimuli from the earlier study into more systematic and consistent format.
+
+[^dcb-prosec]: Thank you to Dianne Bradley for making this observation, and for the very clever “prosecutorial” descriptor.
+
+
+`r if (knitr::is_html_output()) '# References {-}'`
+
