@@ -7,6 +7,9 @@ tables: true
 output: 
   bookdown::tufte_html2: 
     toc: True
+    toc: true
+  bookdown::tufte_handout:
+    toc: true
 ---
 <!-- Results -->
 <!-- This is the fourth content section -->
@@ -279,6 +282,7 @@ kable(
 ```
 
 The difference in the effect of &plusmn;GP across &plusmn;Q is `r round(cdiff,0)`ms. This difference `r ifelse(cdiff > 0, paste("is"),paste("is not"))` in the direction that supports the hypothesis.
+The difference in the effect of &plusmn;GP across &plusmn;Q is `r round(cdiff,0)`ms. That is, the mean amount that IRT increased for a garden path declarative compared to a non-garden path declarative is `r round(cdiff,0)`ms `r ifelse(cdiff > 0, paste("more"),paste("less"))` than the amount that IRT increased for a garden path interrogative compared to a non-garden path interrogative.
 
 ```{r interactinplot,fig.cap="Mean IRT by condition",fig.height=4}
 
@@ -386,6 +390,8 @@ huxreg(
 
 A model with no fixed effects and one with no random effects were also run. The estimates from these models can be seen in in table \@ref(tab:models). A comparison between the interaction model and the model without the interaction is shown in table (\@ref(tab:modComp)). 
 
+## Model comparisons
+
 ```{r modCom,sh}
 comp <-anova(irt.full,irt.noInteraction)
 tab <- hux(comp[,c(1:2,4,6:8)],autoformat = T)
@@ -396,11 +402,54 @@ tab <- add_rows(
 )
 tab <- insert_column(
   tab, c("","No interaction model", "Full model")
+  tab, c("","No interaction", "Full")
 )
 
 tab %>% set_escape_contents(F,row=1,col=5:7) %>%
   set_number_format(value=2,col = c(3:5,7),row=2:3) %>%
   set_label("tab:modComp") %>% 
+  set_caption("Model comparisons") %>%
+  set_top_border(row=1,value=1,col=everywhere) %>%
+  set_bottom_border(row=1,value=1,col=2:7) %>% 
+  set_bottom_border(row=final(1),value=1,col=everywhere) %>% 
+  set_position("left")
+```
+```{r modCom2}
+comp <-anova(irt.full,irt.noRand)
+tab <- hux(comp[,c(1:2,4,6:8)],autoformat = T)
+tab <- add_rows(
+  tab, 
+  hux("Df","AIC","logLik","&Chi;<sup>2</sup>","Df(&Chi;)","p value"),
+  after=0
+)
+tab <- insert_column(
+  tab, c("","No random effects", "Full")
+)
+
+tab %>% set_escape_contents(F,row=1,col=5:7) %>%
+  set_number_format(value=2,col = c(3:5,7),row=2:3) %>%
+  set_label("tab:modComp2") %>% 
+  set_caption("Model comparisons") %>%
+  set_top_border(row=1,value=1,col=everywhere) %>%
+  set_bottom_border(row=1,value=1,col=2:7) %>% 
+  set_bottom_border(row=final(1),value=1,col=everywhere) %>% 
+  set_position("left")
+```
+```{r modCom3,sh}
+comp <-anova(irt.full,irt.noFxd)
+tab <- hux(comp[,c(1:2,4,6:8)],autoformat = T)
+tab <- add_rows(
+  tab, 
+  hux("Df","AIC","logLik","&Chi;<sup>2</sup>","Df(&Chi;)","p value"),
+  after=0
+)
+tab <- insert_column(
+  tab, c("","No fixed effects model", "Full model")
+)
+
+tab %>% set_escape_contents(F,row=1,col=5:7) %>%
+  set_number_format(value=2,col = c(3:5,7),row=2:3) %>%
+  set_label("tab:modComp3") %>% 
   set_caption("Model comparisons") %>%
   set_top_border(row=1,value=1,col=everywhere) %>%
   set_bottom_border(row=1,value=1,col=2:7) %>% 
@@ -493,6 +542,13 @@ ggplot(subset(irt_data_all,irt>22000), aes(irt/1000)) +
    geom_histogram(binwidth = 1, color="white", fill="#333333") +
   xlab("Raw IRT") + ylab("Frequency") + 
   ggtitle("Right tail of IRT distribution (s)", subtitle="IRT > 22s, bin size = 1s")
+```
+
+# Interrogative parsing cost
+
+As previously discussed, interrogatives appear to have a computational processing cost when compared to interrogatives [cf. @lehiste1973phonetic]. The filler sentences in this study were designed so as to provide a diagnostic of the interrogative effect on IRT.
+
+```{r fillers}
 ```
 
 `r if (knitr::is_html_output()) '# References {-}'`
