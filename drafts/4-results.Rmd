@@ -1,12 +1,11 @@
 ---
-title: "Inter-reading timing"
+title: "Results and analyses"
 author: "Tyler Peckenpaugh"
 date: "April 7, 2019"
 bibliography: refs.bib
 tables: true
 output: 
   bookdown::tufte_html2: 
-    toc: True
     toc: true
   bookdown::tufte_handout:
     toc: true
@@ -31,6 +30,158 @@ library(kableExtra)
 library(ggplot2)
 library(ggthemes)
 library(jsonlite)
+```
+
+This section reports various analyses of the recordings obtained.
+
+# Prosody {#results-prod}
+
+```{r prosody-setup}
+mdata <- read_csv("../csvs/got_prosody.csv")
+mdata$V<-mdata$V == "YES"
+mdata$OBJ<-mdata$OBJ == "YES"
+mdata$PP1<-mdata$PP1 == "YES"
+mdata$STRUG<-mdata$STRUG == "YES"
+mdata$condition <- with(mdata,
+  paste(
+    ifelse(Condition_Q,"+Q","-Q"),
+    ifelse(Condition_GP,"+GP","-GP")
+  )
+)
+mdata$STRONG <- as.factor(mdata$STRONG)
+mdata$WEAK <- as.factor(mdata$WEAK)
+mdata$Reading <- as.factor(mdata$Reading)
+mdata$prosody <- as.factor(mdata$prosody)
+mdata$two_level_prosody <- as.factor(mdata$two_level_prosody)
+mdata$IID <- as.factor(mdata$IID)
+mdata$UID <- as.factor(mdata$UID)
+mdata$SID <- as.factor(mdata$SID)
+mdata$STRUG_START <- as.factor(mdata$STRUG_START)
+mdata$pdom <- mdata$two_level_prosody %in% c("PP1", "PP1 > OBJ")
+mdata$odom <- mdata$two_level_prosody %in% c("OBJ", "OBJ > PP1")
+mdata<-subset(mdata,SID!=8)
+```
+
+## Breaks after PP1 and direct object
+
+Across all experimental items, there was a break after the direct object in `r round(nrow(mdata[mdata$OBJ,])/nrow(subset(mdata,!is.na(OBJ)))*100,1)`% of recordings and a break after PP1 in `r round(nrow(mdata[mdata$PP1,])/nrow(subset(mdata,!is.na(PP1)))*100,1)`%.
+
+```{r obj}
+objtab<-subset(mdata, !is.na(OBJ)) %>%
+  group_by(OBJ,Condition_GP) %>%
+  summarise(n=n())
+
+objyGP <- objtab[objtab$OBJ & objtab$Condition_GP,]$n/sum(objtab[objtab$Condition_GP,]$n) * 100
+objnGP <- objtab[objtab$OBJ & !objtab$Condition_GP,]$n/sum(objtab[!objtab$Condition_GP,]$n) * 100
+```
+```{r pp1}
+pp1tab<-subset(mdata, !is.na(PP1)) %>%
+  group_by(PP1,Condition_GP) %>%
+  summarise(n=n())
+
+pp1yGP <- pp1tab[pp1tab$PP1 & pp1tab$Condition_GP,]$n/sum(pp1tab[pp1tab$Condition_GP,]$n) * 100
+pp1nGP <- pp1tab[pp1tab$PP1 & !pp1tab$Condition_GP,]$n/sum(pp1tab[!pp1tab$Condition_GP,]$n) * 100
+```
+
+For garden paths, there is a PP1 break in `r round(pp1yGP,1)`% of items, while non-garden paths had a PP1 break in `r round(pp1nGP,1)`% of cases.
+
+```{r cond_obj}
+objtabTotal<-subset(mdata, !is.na(OBJ)) %>%
+  group_by(Condition_Q,Condition_GP) %>%
+  summarise(n=n()) %>% 
+  mutate(Q=ifelse(Condition_Q,"Interrogative","Declarative"))%>%
+  mutate(GP=ifelse(Condition_GP,"Garden path","Non-garden path"))%>%
+  subset(select=c("Q","GP","n")) %>%
+  spread(GP,n)
+
+objtab<-subset(mdata, !is.na(OBJ)) %>%
+  group_by(OBJ,Condition_Q,Condition_GP) %>%
+  summarise(n=n()) %>% 
+  subset(OBJ) %>%
+  mutate(Q=ifelse(Condition_Q,"Interrogative","Declarative"))%>%
+  mutate(GP=ifelse(Condition_GP,"Garden path","Non-garden path"))%>%
+  subset(select=c("Q","GP","n")) %>%
+  spread(GP,n)
+
+colnames(objtab)[1]<-""
+objtab[,c(2:3)] <- objtab[,c(2:3)]/objtabTotal[,c(2:3)]*100
+kable(objtab,digits=1,caption="Percentage of recordings with an object break, by condition")
+```
+
+## &plusmn;Struggle
+
+This section presents the counts of recordings where the reader struggled to maintain fluency. Table \@ref(tab:strug) shows the overall pattern across reading.
+
+```{r strug}
+all_strug <-table(mdata$STRUG,mdata$Reading)
+colnames(all_strug)<-c("Cold reading", "Previewed reading")
+row.names(all_strug)<-c("Fluent", "Struggle")
+kable(all_strug, caption="Difficulty in reading by reading type")
+```
+
+Table \@ref(tab:gpstrug) shows the pattern across reading for just +GP items.
+
+```{r gpstrug}
+GP_strug <- with(subset(mdata,Condition_GP==TRUE),table(STRUG,Reading))
+colnames(GP_strug)<-c("Cold reading", "Previewed reading")
+row.names(GP_strug)<-c("Fluent", "Struggle")
+kable(GP_strug, caption="Difficulty in reading by reading type for garden paths")
+```
+
+Table \@ref(tab:strugModel) shows a number of logistic regression models. Models with complex random slope structures failed to converge, and models with random slopes for just *Previewed Reading* were worse than those without random slopes, so the models presented have no random slopes for any predictors. None of the models differ in statistically significant ways, except that the model with no random effects is significantly worse than the others (e.g. no random effects (AIC=575) compared to full model (AIC=547), &Chi;^2(3)^=3, p < 0.001).
+
+```{r strugModel, cache=T}
+models.strug <- glmer(STRUG~Condition_Q*Condition_GP+Reading+(1|IID)+(1|SID),data=mdata,family=binomial)
+models.strug.noRand <- glm(STRUG~Condition_Q+Condition_GP+Reading,data=mdata,family=binomial)
+models.strug.noInt <- glmer(STRUG~Condition_Q+Condition_GP+Reading+(1|IID)+(1|SID),data=mdata,family=binomial)
+models.strug.noCon <- glmer(STRUG~Reading+(1|IID)+(1|SID),data=mdata,family=binomial)
+huxreg(
+  list(
+    "Full"=models.strug, 
+    "No random effects"=models.strug.noRand,
+    "No interaction"=models.strug.noInt, 
+    "Reading as only pred"=models.strug.noCon
+  ),
+  coefs = c(
+    "Intercept"="(Intercept)",
+    "+GP"="Condition_GPTRUE",
+    "+Q"="Condition_QTRUE",
+    "+GP +Q"="Condition_QTRUE:Condition_GPTRUE",
+    "Previewed reading" = "Reading2",
+    "Participant"="sd_(Intercept).SID",
+    "Item"="sd_(Intercept).IID"
+  ),
+  statistics = c(
+    N="nobs",
+    "logLik",
+    "AIC"
+  ),
+  align="."
+) %>% 
+  set_caption("Logistic regression models of disfluency") %>% 
+  set_label("strugMod")%>%
+  set_position("left")
+
+compNoRand <- anova (models.strug,models.strug.noRand)
+```
+
+Cold vs. previewed reading is a statistically significant predictor in every case.
+
+# Inter-reading time (IRT) {#results-irt}
+
+```{r irt-setup}
+items <- read_csv(
+  "../csvs/src/items.csv", 
+  col_types = cols(
+    OBJ = col_skip(), 
+    `P>NP1` = col_skip(), 
+    `P>NP2+GP` = col_skip(), 
+    `P>NP2-GP` = col_skip(), 
+    target = col_character()
+  )
+)
+
+items$Item<-items$target
 
 # global plot themeing
 theme_set(
@@ -53,7 +204,7 @@ raw_file <- read_csv(ifelse(use_old,old,new),
 )
 
 irt_data <- raw_file
-
+irt_data <- (merge(items, irt_data, by = 'Item'))
 # P 8 is messed up
 irt_data<-subset(irt_data,Participant != 8)
 
@@ -112,7 +263,7 @@ irt_data <- subset(
 )
 # make Participant and Item factors with specified ref levels 
 irt_data$Participant<-relevel(irt_data$Participant,ref=5)
-irt_data$Item<-relevel(irt_data$Item,ref=1)
+irt_data$Item<-relevel(as.factor(irt_data$Item),ref=1)
 # winsorize top/bottom 5% of data (for normal distrbution, this is +/- 2sd)
 # see: https://sciencing.com/relationship-between-standard-deviations-percentiles-8768703.html
 win_trim=0.05
@@ -189,12 +340,6 @@ meta[meta$file %in% handset$Filename,]$hpf <- NA
 hscount <- sum(handset$Filename %in% meta$file)
 ```
 
-# Results
-
-This section reports various analyses of the recordings obtained.
-
-## Inter-reading time (IRT)
-
 This document examines the inter-reading time (IRT) from the study. Subjects were asked to read each sentence twice, once with no preview at all (reading 1, a cold reading), and then again after unlimited preview (reading 2, a previewed reading). Inter-reading time (IRT) is a measure of the amount of time between when a subject stops speaking after a cold reading and when they begin speaking for a previewed reading. IRT was measured over `r recs` recordings: 32 participants, 48 items = `r subjs * items` recording pairs (reading 1 and reading 2), with `r  subjs * items - recs` missing pairs. The missing data are a result of one or both recordings from a pair being unusable due to technical issues (e.g. a failure of recording equipment, or participant error).
 
 ## IRT measurement
@@ -207,7 +352,7 @@ The recordngs vary in the volume of the speaker's voice and the amount of backgr
 
 Of the `r nrow(meta)` recordings subjected to this treatment, `r nrow(meta[meta$success & !is.na(meta$agg),])` resulted in plausible timings. For those that were successfull, the breakdown of HPF and rejection rate used is reported in Table \@ref(tab:metable). A further `r hscount` were set by hand, resulting in a total of `r nrow(meta[meta$success,])` recordings.
 
-[^alg]: The exact algorithm is available at [github](https://gist.github.com/moui72/4ebc4eb8f69eb9fdb1cab160ce299675) (URL: [bit.ly/2uMrcrG](https://bit.ly/2uMrcrG))
+[^alg]: The exact algorithm is available on [github](https://gist.github.com/moui72/4ebc4eb8f69eb9fdb1cab160ce299675) (URL: [bit.ly/2uMrcrG](https://bit.ly/2uMrcrG))
 
 ```{r metable, tidy=FALSE}
 metaTable<-xtabs(~agg+hpf, meta[meta$success,])
@@ -226,9 +371,9 @@ Plausible timings had to meet the following criteria:
 
 2. A leading silence ("delay") length of more than 120ms and less than 95% of the entire recording's duration.
 
-3. A trailing silence length of less than 95% of the entire recording's duraton.
+3. A trailing silence length of less than 95% of the entire recording's duration.
 
-Stimuli range from 18-22 syllables in length. If we assume a speeach rate of 3 to 7 syllables per second (Jacewicz et al. 2010) we would expect utterances between 2.5s and 7.3s. Conservative thresholds higher and lower than the expected were used, especially on the higher end to allow for any processing or fluency. @goldman1961-pa found that a large majority (82.5 to 87%) of pauses in fluent speech are less than 1s. Even a very fast human reaction time should not permit a delay shorter than 120ms.
+Stimuli range from 18-22 syllables in length. If we assume a speeach rate of 3 to 7 syllables per second [@jacewicz2010-sr] we would expect utterances between 2.5s and 7.3s. Conservative thresholds higher and lower than the expected were used, especially on the higher end to allow for any processing or fluency. @goldman1961-pa found that a large majority (82.5 to 87%) of pauses in fluent speech are less than 1s. Even a very fast human reaction time should not permit a delay shorter than 120ms.
 
 # Distribution of IRT
 
@@ -281,8 +426,7 @@ kable(
 )
 ```
 
-The difference in the effect of &plusmn;GP across &plusmn;Q is `r round(cdiff,0)`ms. This difference `r ifelse(cdiff > 0, paste("is"),paste("is not"))` in the direction that supports the hypothesis.
-The difference in the effect of &plusmn;GP across &plusmn;Q is `r round(cdiff,0)`ms. That is, the mean amount that IRT increased for a garden path declarative compared to a non-garden path declarative is `r round(cdiff,0)`ms `r ifelse(cdiff > 0, paste("more"),paste("less"))` than the amount that IRT increased for a garden path interrogative compared to a non-garden path interrogative.
+The difference in the effect of &plusmn;GP across &plusmn;Q is `r round(cdiff/1000,2)`s. That is, the mean amount that IRT increased for a garden path declarative compared to a non-garden path declarative is `r round(cdiff/1000,2)`s `r ifelse(cdiff > 0, paste("more"),paste("less"))` than the amount that IRT increased for a garden path interrogative compared to a non-garden path interrogative.
 
 ```{r interactinplot,fig.cap="Mean IRT by condition",fig.height=4}
 
@@ -309,14 +453,14 @@ ggplot(
   labs(x="", y="Mean IRT (ms)",linetype="",title="Mean IRT by condition", subtitle = "Confidence intervals represent one standard error")
 ```
 
-# Regression models
+# Regression models of IRT
 
 The models with random slopes for participant and item did not converge, so the tables in this section show models with no random slopes. 
 
 ```{r lmeMods, cache=T}
 
 irt.full <- lmer(
-  win_irt ~ Condition_Q * Condition_GP + 
+  wirt.log10 ~ Condition_Q * Condition_GP + 
     (1 | Participant) + 
     (1 | Item),
   data = irt_data,
@@ -324,7 +468,7 @@ irt.full <- lmer(
 )
 
 irt.noInteraction <- lmer(
-  win_irt ~ Condition_Q + Condition_GP + 
+  wirt.log10 ~ Condition_Q + Condition_GP + 
     (1 | Participant) + 
     (1 | Item),
   data = irt_data,
@@ -332,34 +476,34 @@ irt.noInteraction <- lmer(
 )
 
 irt.noParticipant <- lmer(
-  win_irt ~ Condition_Q * Condition_GP + 
+  wirt.log10 ~ Condition_Q * Condition_GP + 
     (1 | Item),
   data = irt_data,
   REML=F
 )
 
 irt.noItem <- lmer(
-  win_irt ~ Condition_Q * Condition_GP + 
+  wirt.log10 ~ Condition_Q * Condition_GP + 
     (1 | Participant),
   data = irt_data,
   REML=F
 )
 
 irt.noFxd <- lmer(
-  win_irt ~
+  wirt.log10 ~
     (1 | Participant) + 
     (1 | Item),
   data = irt_data,
   REML=F
 )
 
-irt.noRand <- lm(win_irt ~ Condition_Q * Condition_GP,
+irt.noRand <- lm(wirt.log10 ~ Condition_Q * Condition_GP,
                  data = irt_data)
 
-irt.dummy <- lm(win_irt ~ Condition_Q * Condition_GP,
+irt.dummy <- lm(wirt.log10 ~ Condition_Q * Condition_GP,
                   data = irt_data
                 )
-irt.dummy.noInt <- lm(win_irt ~  Condition_Q + Condition_GP + 
+irt.dummy.noInt <- lm(wirt.log10 ~  Condition_Q + Condition_GP + 
                   Participant + Item,
                   data = irt_data
                 )
@@ -388,11 +532,37 @@ huxreg(
   set_label("tab:models")
 ```
 
-A model with no fixed effects and one with no random effects were also run. The estimates from these models can be seen in in table \@ref(tab:models). A comparison between the interaction model and the model without the interaction is shown in table (\@ref(tab:modComp)). 
+A model with no fixed effects and one with no random effects were also run. The estimates from these models can be seen in table \@ref(tab:models). 
 
 ## Model comparisons
 
-```{r modCom,sh}
+Several model comparisons were made, seen in the following tables.
+
+```{r modCom3}
+comp <-anova(irt.full,irt.noFxd)
+tab <- hux(comp[,c(1:2,4,6:8)],autoformat = T)
+tab <- add_rows(
+  tab, 
+  hux("Df","AIC","logLik","&Chi;<sup>2</sup>","Df(&Chi;)","p value"),
+  after=0
+)
+tab <- insert_column(
+  tab, c("","No fixed effects model", "Full model")
+)
+
+tab %>% set_escape_contents(F,row=1,col=5:7) %>%
+  set_number_format(value=2,col = c(3:5,7),row=2:3) %>%
+  set_label("tab:modComp3") %>% 
+  set_caption("No fixed effects vs. full model") %>%
+  set_top_border(row=1,value=1,col=everywhere) %>%
+  set_bottom_border(row=1,value=1,col=2:7) %>% 
+  set_bottom_border(row=final(1),value=1,col=everywhere) %>% 
+  set_position("left")
+```
+
+There are clearly main effects of both &plusmn;GP and &plusmn;Q: table \@ref(tab:modComp3) shows that the full model is significantly better than the one with no fixed effects. 
+
+```{r modCom}
 comp <-anova(irt.full,irt.noInteraction)
 tab <- hux(comp[,c(1:2,4,6:8)],autoformat = T)
 tab <- add_rows(
@@ -401,19 +571,21 @@ tab <- add_rows(
   after=0
 )
 tab <- insert_column(
-  tab, c("","No interaction model", "Full model")
   tab, c("","No interaction", "Full")
 )
 
 tab %>% set_escape_contents(F,row=1,col=5:7) %>%
   set_number_format(value=2,col = c(3:5,7),row=2:3) %>%
   set_label("tab:modComp") %>% 
-  set_caption("Model comparisons") %>%
+  set_caption("No interaction vs. full model") %>%
   set_top_border(row=1,value=1,col=everywhere) %>%
   set_bottom_border(row=1,value=1,col=2:7) %>% 
   set_bottom_border(row=final(1),value=1,col=everywhere) %>% 
   set_position("left")
 ```
+
+The interaction between main effects, though, is not able to be confirmed (in fact, table \@ref(tab:modComp) shows the non-interaction to be better, but not to a stastically significance degree).
+
 ```{r modCom2}
 comp <-anova(irt.full,irt.noRand)
 tab <- hux(comp[,c(1:2,4,6:8)],autoformat = T)
@@ -429,35 +601,14 @@ tab <- insert_column(
 tab %>% set_escape_contents(F,row=1,col=5:7) %>%
   set_number_format(value=2,col = c(3:5,7),row=2:3) %>%
   set_label("tab:modComp2") %>% 
-  set_caption("Model comparisons") %>%
-  set_top_border(row=1,value=1,col=everywhere) %>%
-  set_bottom_border(row=1,value=1,col=2:7) %>% 
-  set_bottom_border(row=final(1),value=1,col=everywhere) %>% 
-  set_position("left")
-```
-```{r modCom3,sh}
-comp <-anova(irt.full,irt.noFxd)
-tab <- hux(comp[,c(1:2,4,6:8)],autoformat = T)
-tab <- add_rows(
-  tab, 
-  hux("Df","AIC","logLik","&Chi;<sup>2</sup>","Df(&Chi;)","p value"),
-  after=0
-)
-tab <- insert_column(
-  tab, c("","No fixed effects model", "Full model")
-)
-
-tab %>% set_escape_contents(F,row=1,col=5:7) %>%
-  set_number_format(value=2,col = c(3:5,7),row=2:3) %>%
-  set_label("tab:modComp3") %>% 
-  set_caption("Model comparisons") %>%
+  set_caption("No random effects vs. full model") %>%
   set_top_border(row=1,value=1,col=everywhere) %>%
   set_bottom_border(row=1,value=1,col=2:7) %>% 
   set_bottom_border(row=final(1),value=1,col=everywhere) %>% 
   set_position("left")
 ```
 
-While there are clearly main effects of both &plusmn;GP and &plusmn;Q, the interaction is not able to be confirmed with any resonable degree of confidence.
+Table \@ref(tab:modComp2) shows that the random effects of participant and item improve the model in a stastically signifcant way.
 
 # Delay comparison for cold vs. previewed readings
 
@@ -516,7 +667,7 @@ ggplot(diffsByP, aes(`Mean difference in delay (ms)`/1000)) +
   labs(x="Mean difference in delay", y="Count",title="Mean difference in delay by participant", subtitle="Bin size = 1s")
 ```
 
-# Individual variation
+# Individual variation in IRT
 
 Individuals vary with regard to the effect of the garden path condition on IRT. For `r table(pmeansByCondition$pattern)["TRUE"]` of `r nrow(pmeansByCondition)`, the increase in IRT for garden paths is greater for interrogatives than it is for declaratives.
 

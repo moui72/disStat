@@ -10,10 +10,10 @@ output:
 <!-- Previous section: introduction -->
 <!-- Following section: methodology -->
 
-# Background on prosody and parsing
+
 This section goes over evidence supporting the claim that prosody can impact parsing decisions, even in silent reading.
 
-## Can prosody affect parsing?
+# Can prosody affect parsing?
 <!-- TODO Lehiste (1973) -->
 <!-- DONE Kjelgaard & Speer (1999) -->
 <!-- TODO Deniz and Fodor (2016) -->
@@ -24,7 +24,7 @@ A number of studies have shown that in listening to speech, prosodic cues appear
   
 They then cross-spliced these together to make several versions. One version had prosodic cues which cooperated with the intended reading of the sentence; another attempted to have &ldquo;neutral&rdquo; prosody; and the third used intentionally misleading prosody. The initial fragment of each was then presented to participants (the portion from the beginning of the sentence to the word house in (@ec - @lc) and they were asked to agree or disagree with whether a visually presented word, either *is* or *it&apos;s* was likely to be the next word in the sentence. Participants gave more accurate and speedier judgements when the prosodic cues lined up with the correct parsing. The results of this study, as well as a growing body of literature, suggest that that prosodic information can (or perhaps must) be used by the parser in making processing decisions.
 
-## Prosody and sentence processing in silent reading
+# Prosody in silent reading
 
 The experiment presented in this paper is conducted using silent reading, and it is perhaps less intuitive to assume that prosody might play a role in the processing of silent reading compared to the processing of spoken utterances. Nonetheless, there is some evidence to support such an effect; as such, a positive result here is not a reason to dismiss the prosodic explanation for the effect, although it also can&apos;t support that explanation over others. Consider @Fodor2002-io analysis of relative clause attachment preference. This concerns sentences such as (@servant):
 
@@ -62,7 +62,7 @@ If we assume, in Optimality Theoretic (Prince & Smolensky, 1993) terms, that a c
 
 This analysis, of course, assumes the presence of prosodic cues, which are only overtly present in spoken utterances (punctuation aside). Given the elegance and explanatory power of this analysis, it seems reasonable to at least consider the further assumption necessary for it to also explain the phenomenon as it occurs in silent reading; which is that readers project prosodic structure over sentences even when they are read silently.
 
-## Prosody of questions vs. declaratives
+# Prosody of questions vs. declaratives
 
 <!-- DONE What questions sound like -->
 <!-- DONE Hedberg & Sosa (2002)  -->
@@ -80,9 +80,6 @@ The need to prepare for that rising tone might make a prosodic break before the 
 
 A brief informal survey found that most speakers maintain low tones on prior stresses, although some had a H tone on the subject noun. It also varied between speakers and between sentences as to whether there is a prosodic boundary (marked by a low tone and/or pause) immediately before the rise (after PP1) or not. 
 
-The prosodic structures found in the data collected for the current study are discussed in \@ref(pros-results).
-
-## Prosody and PP-attachment garden paths 
-<!-- TODO (Bader, 1998) -->
+The prosodic structures found in the data collected for the current study are discussed in \@ref(results-prosody).
 
 `r if (knitr::is_html_output()) '# References {-}'`

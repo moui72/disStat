@@ -1,0 +1,13 @@
+base
+readr
+huxtable
+psych
+dplyr
+tidyr
+knitr
+Matrix
+lme4
+kableExtra
+ggplot2
+ggthemes
+jsonlite

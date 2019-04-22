@@ -11,10 +11,10 @@ output:
 %Following section: Background
 -->
 
-# Introduction
+
 Before the details of the current research can be outlined, it&apos;s first necessary to explain some of the terms and mechanisms involved. Most critically, it&apos;s necessary to be clear on what a garden path is, and what causes the phenomena.
 
-## Garden paths
+# What is a garden path?
 The occurrence of garden-path (GP) effects are generally attributed to a clash between structure-first parsing strategies, e.g. @Frazier1979-pb's *Minimal Attachment*, and the actual intended structure of the sentence in question.
 
 ```{definition,MinAtt,name="Minimal Attachment"}
@@ -32,7 +32,7 @@ If we assume that the parser builds structure by following these types of constr
 
 The attempted parse represented in structure (@hbf) crashes, as it isn"t possible to incorporate the final word fell in a grammatical way. In order to obtain the grammatical parse, (@hbf b) where the matrix subject is the horse raced past the barn, almost the entire structure of (@hbf a) must be discarded. The subject is not the horse, and the main verb is not raced. Rather, the subject is a noun phrase (NP) containing a reduced relative clause raced past the barn. Only after remediation can fell be properly incorporated as the matrix verb. This finally results in a grammatical sentence, with a structure comparable to, "The horse (that was) raced past the barn was hungry." Garden-path effects can result any time the assumptions made by the parser clash with the actual structure of a sentence. 
 
-## PP-attachment garden paths
+# PP-attachment garden paths
 
 The type of garden-path sentence that this study is concerned with centers around the temporarily ambiguous attachment sites for a prepositional phrase (PP). Consider:
 
@@ -46,7 +46,7 @@ In (@cramGPy), PP1 must ultimately attach high, as the locative argument of the 
 
 The other sentence, (@cramGPn), should not represent any difficulty. The ambiguity is resolved such that PP1 can, and in fact must, attach high, since the subsequent PP of her filing cabinet (PP2) cannot plausibly attach as a sentential modifier, nor a verbal argument or modifier, and the sentence is incomplete without a destination of the cram action. By examining these sentences, the study proposed aims to expand understanding of human sentence processing in general, and specifically the relationship between syntactic structure and prosodic structure. Further, this will explore any contrast there might be in the impact of declarative and interrogative contexts on parsing, which has been under studied.
 
-## An intuitive observation
+## An observation
 
 These attachment ambiguities which are difficult to parse in the declarative, appear to be less difficult to parse when presented in yes-no interrogative context. Consider again the somewhat difficult to process sentence in (@cramGPy), repeated below as (@dec) for convenience.
 

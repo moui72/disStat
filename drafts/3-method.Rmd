@@ -7,9 +7,92 @@ output:
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE, fig.height = 3)
+library(huxtable)
+library(dplyr)
 ```
 
-This section outlines the methodology employed for the reported study.
+This section outlines the methodology employed for the reported study. The methodology outlined is referred to as the *Double Reading Procedure* and was first implemented by @fodor2019center. Participants are asked to read sentences twice, once without any previewed (cold reading or reading-1), and then again after unlimited preview (previewed reading or reading-2).
+
+# Participants recruitment
+
+The participants in this study were all undergraduate students at Queens College, CUNY, enrolled in Psychology 101. These students were required by the university to participant in studies for course credit. Self reported age ranged from 18 to 25 years. Participants were recruited using the Queens College Sona system, which is software designed for univeristy participant pools. Students saw the blurb in (@rec) and were able to schedule their own appointment time within the hours offered (Monday - Thursday, 10am to 4pm).
+
+  (@rec)  **Recruitment blurb**<br>
+          You will be asked about your reading habits and then asked to read complex sentences out loud while being audio recorded. Recordings of your voice will be analyzed, but will be kept strictly confidential. The process will take no more than 1 hour. Note that the study takes place in Queens Hall, which is about half a mile from the main Queens campus. See directions on the QC website, URL below, for how to get here. The room is 335D, on the third floor. Entrance to the building is in the back. 
+
+All participants were self identified native and primary speakers of American English. One participant was disqualified post-hoc, although still paid for time spent, after producing a Carribean English pronucnciation pattern. One other participant was excluded post-hoc due to an extremely disfluent reading cadence.
+ 
+# Location
+
+All data were collected in a private room of Queens Hall, Queens College with only the experimenter and participant present. While every effort was undertaken to ensure a quiet environment, intrusive noise from passersby or neighboring rooms were sometimes unavoidable. This resulted in some unusable or partially unusable recordings (discussed in section \@ref(results-irt) of the results chapter).
+
+# Equipment and software
+
+The experiemnt was presented on a laptop running Windows 10 with stickers on the keyboard labeling relevant keys. The left shift key was labeled *START*, right shift was labeled *NEXT*, and the touchpad was labeled *DONE*.
+
+The presentation of items and instruction[^instr] was done using the Open Sesame software [@os2012] which provides both a graphical user interface, scripting language, and interpretation of Python code, for precise control of experimental presentation.
+
+Recording was done using a Blue Yeti USB microphone position near the participant's left hand and angled to point at the space in front of the participant's mouth. The angle was adjusted for each participant's height. It recording 44.1kHz single-channel audio. Each recording was saved to the laptop's hard drive and also immediately uploaded to a Microsoft OneDrive account provided to the author by the Graduate Center, CUNY. No personally identifying information other than the quality of the participants' voices was embedded in the recordings. Only a handwritten ledger tied participants to the identifier used in the filename of the recordings.
+
+[^instr]: Instructions were also provided verbally and via printout. Details on the instructions are available in section \@ref(inst) of this chapter.
+
+# Procedure
+
+Participants sat at a computer and used keyboard button presses to navigate the experimental presentation. They recieved thorough instructions and completed three practice items, the consulted with the experimenter, before beginning the main portion of the study. The study also began and end ended with two pseudo-practice items that were not included in any analyses, in an attempt to prevent confusion or fatigue from impacting the results. 
+
+## Instructions to participants {#inst}
+
+Participants were given a verbal overview of the experimental procedure and then asked to read a one page printout of the procedure before signing a consent form. After signing a consent form, participants sat at the computer and were once again walked through instructions before the first practice item was presented.
+
+The instructions are presented below.
+
+>Thank you kindly for your participation. In this study, you are being asked to read complex sentences out loud, twice each. It is very important that you follow these guidelines for each of your readings.
+>
+>First reading: Begin reading immediately, without giving yourself a chance to look ahead. Imagine you are a television reporter reading an urgent update from a teleprompter. You must be as quick as possible, without taking any time to read ahead.  You want to sound natural if you can, but it is more important to not delay. These sentences are complicated and potentially confusing. It’s very important that you read the sentence out loud as soon as it appears. It’s OK if you make mistakes or don’t understand, that is an important part of what I want to know. Do the best you can, and remember you have another chance to read it. 
+>
+>Second reading: This time you have the luxury of pacing yourself as you please. Imagine you are providing a voice-over for a documentary. You want to sound conversational and clear, without being overly dramatic or formal. Study the sentence as long as you like, and be sure that you understand it before you begin reading. It is most important to sound natural, without worrying about how long it takes to prepare.
+>
+>The experiment will begin with brief instructions, recapping what you are reading now. There will then be a practice session to get you comfortable with the task and a chance for you to ask any questions you have. Finally, after your questions are answered, the study will begin in earnest.
+>
+>Each sentence will follow the same pattern. You will be presented with a screen which displays a series of plus signs. This indicates that the system is ready and that you should press the button labeled “START” when you are ready to read a sentence. As soon as you press the button, the sentence will appear and you should begin your first reading. After you have completed the reading, press the button labeled “NEXT.” You should allow a small amount of time after you finish and before you hit “NEXT,” to ensure that the recording is not cut off too early. 
+>
+>Once you have pressed “NEXT,” you will see a brief instructions slide to help you keep track of where you are. You should then press “START” and begin preparing to read the second time. The background color will change to confirm that the computer has registered your key press. Once you’re ready, read the sentence aloud for the second time and then press “DONE.” Once again, be sure not to cut yourself off. Wait a moment after you finish reading before pressing “DONE.”
+>
+>You are not being judged or measured in any way. Rather, we are interested in how these sentences are pronounced by native speakers of English. Any confusion you have or mistakes you make are interesting properties of the sentences, not failings of you, the speaker.
+>
+>The keys used during the experiment are clearly labeled, but the function of each key is listed below for your reference. There is no hurry for pressing the keys. The only timing of importance is that you begin reading as quickly as possible after pressing “START.” The task should take no longer than one hour
+
+The instruction also contained a table (table \@ref(tab:keytab)) which described the purpose and position of the relevant buttons on the keyboard. A separate page with just this table was also provided, and participants were allowed to keep the instructions with them during the entire procedure.
+
+```{r keytab}
+Labels <- c("Start", "Next", "Done")
+Positions <- c("Left shift", "Right shift", "Thumb pad")
+Descriptions <- c("Revewal a sentence and begin your reading.", "End your first reading.", "End your second reading and prepare for the next sentence.")
+keyTable <- data.frame(Labels,Positions,Descriptions)
+hux(keyTable) %>% add_colnames() %>%
+  set_top_border(value=2,row=1,col=everything()) %>%
+  set_bottom_border(value=1,row=1,col=everything()) %>%
+  set_bottom_border(value=2,row=final(1),col=everything()) %>%
+  set_caption("Table of relevant keys") %>%
+  set_label("tab:keytab") %>%
+  set_bold(TRUE,row=2:4,col=1) %>%
+  set_bold(TRUE,row=1,col=everything()) %>%
+  set_italic(TRUE,row=2:4,col=2) 
+```
+
+## The task
+
+Each experimental item was preceeded by a screen showing a line of ten Xs with its left edge aligned with the left edge of the to-be-revealed sentence. This was intended to fix the participant's attention on the start of the sentence. This screened remained visible indefintely, until the participant pressed *START*.
+
+Immediately after *START* was pressed, recording of the first reading began and the sentence appeared on the screen on a blue background. The recording continued and the screened remained visible until the participant pressed *NEXT*.
+
+After pressing *NEXT*, a screen appeared with the following message:
+
+> You have completed your first reading. When you are ready to prepare for your second reading, press *START*.
+
+Immediately after *START* was pressed, the first recording ended and the second recording began, and the sentence reappeared, this time on a green background.
+
+The shifting of required key presses and the changing background color were intended to aid the participant in remember where they were in the process, and to prevent accidental double-presses of any given button from having unintended side effects. It took some time for the participants to adapt to the somewhat complicated procedure, but most seem to have gotten the hang of it before the first real item was presented.
 
 # Materials
 
@@ -23,13 +106,11 @@ There was also an issue of whether the temporary ambiguity in some of the non-ga
 
 [^dcb-prosec]: Thank you to Dianne Bradley for making this observation, and for the very clever “prosecutorial” descriptor.
 
-## Experimental item versions
+## Four versions of the experimental items
 
 The experimental items for this study consisted of 16 sentences in 4 versions: declarative and yes/no interrogative versions of both a PP-attachment garden path of the type discussion earlier, and a non-garden path control which is identical to the garden path up until the final PP, when that PP disambiguates the sentence such that the parse is plausible with a PP2 that modifies the head noun of PP1. The interrogative is always identical to the declarative in every way except for inversion of the order of the subject and auxiliary verb, and the replacement of a final period with a final question mark. An example item in all four versions is shown in \@ref(tab:sentences).
 
 ```{r sentences}
-library(huxtable)
-library(dplyr)
 sentences <- list(
   "Declarative non-garden path" = "He had intended to cram the paperwork in the drawer of his filing cabinet.",
   "Interrogative non-garden path" = "Had he intended to cram the paperwork in the drawer of his filing cabinet?",
@@ -47,7 +128,7 @@ tab %>% add_colnames() %>%
   set_italic(TRUE,row=2:5,col=1) 
 ```
 
-## Main verbs
+## Main verbs in experimental items
 
 An earlier pilot study exploring this same phenomenon (Peckenpaugh, 2016) had several issues with its materials. One of these issues was that the verbs did not all strongly subcategorize for a PP-argument. This could affect the strength of the garden path effect, since the strength of that subcategorization might impact the amount of sway that the parsing strategy of Minimal Attachment or Argument Preference has on the parse. Theoretically, verbs with stronger subcategorization for a PP-argument would result in a strong garden path effect. Consider:
 
@@ -59,17 +140,42 @@ An earlier pilot study exploring this same phenomenon (Peckenpaugh, 2016) had se
             a. Justin had crammed the old newspapers under the couch in a small wastebasket. <br>
             b. * Justin had crammed the old newspapers.
             
-The examples in (@weak) and (@strong) point out that while you really must cram something somewhere, you don’t necessarily need to say where you hide something. That is, the verb *hide* seen in (@weak) does not strongly subcategorize for a locative argument (hence the acceptability of (@weak~\tiny ~b)), while cram (@strong) does, rendering (@strong~\tiny ~b) unacceptable. Because of the asymmetry in subcategorization strength, sentences like (@weak) might not trigger as strong a garden-path effect, because the parser might assume that no PP-argument is forthcoming, while for (@strong) the parser will jump at the opportunity to parse a PP as an argument.  In designing the items for this study, only verbs with strong PP-argument subcategorization will be used.
+The examples in (@weak) and (@strong) point out that while you really must cram something somewhere, you don’t necessarily need to say where you hide something. That is, the verb *hide* seen in (@weak) does not strongly subcategorize for a locative argument (hence the acceptability of (@weak~\tiny ~b)), while cram (@strong) does, rendering (@strong~\tiny ~b) unacceptable. Because of the asymmetry in subcategorization strength, sentences like (@weak) might not trigger as strong a garden-path effect, because the parser might assume that no PP-argument is forthcoming, while for (@strong) the parser will jump at the opportunity to parse a PP as an argument.  In designing the items for this study, only verbs with strong PP-argument subcategorization will be used. The four verbs selected were: *cram*, *put*, *stick* and *set*.
+
+## Complex tense
+
+To minimize the morphology present on the PP-argument-selecting main verb (e.g. *cram*), each sentence contained a past-tense auxiliary verb and past participle verb before the infinitive version of the main verb. The use of an auxiliary makes the words present in the declarative exactly the same as in the interrogative by eliminating the need for "do-support" and adjusted morphology on the main verb (i.e. rather than "He crammed ..." vs. "Did he cram ...?" we have "He had crammed ..." vs. "Had he crammed ...?"). The auxiliary is always *had* and the past participle is always one of the following four: *decided*, *intended*, *wanted*, and *planned*. The presence of these preface verbs also help to aleviate the oddity of the yes/no questions, because it is understandable to question someone's intentions, even when a large amount of detail is already known; whereas, questioning the details themselves when they are already known leads to the "prosecutorial" issue mentioned earlier.
+
+  (@lessPros) Had he planned to set the appetizers on the platter from his cousin?
+  (@pros) Had he set the appetizers on the platter from his cousin?
+  
+It seems less odd to wonder whether *he had planned* to do something, as in (@lessPros) when we know so many details, rather than to wonder if he did as in (@pros). The preface verb also seems to attract the focus of the yes/no question, providing a somewhat controlled environment for what can be difficult to ascertain: in (@pros) the focus could be on any number of elements, with no easily assumed default. The default focus in (@lessPros) seems to me to be on *planned*.
+
+
+## Prepositions and disambiguation
+
+Every version of each experimental item should be fully disambiguated by the preposition heading the final PP. When PP2 attaches low, a preposition that is not compatable with being the resultative/locative argument of the verb but can be a modifier of the noun of the preceeding PP is used: *from* or *of*. When the final PP attaches high, a preposition that is not compatable with being a modifier of the noun in the preceeding PP but can be the resultative/locative argument of the verb is used: *into* or *onto*.
+
+  (@low)  Had he planned to set the appetizers on [~NP~ the platter [~PP2~ *from* his cousin]]?
+  (@high) Had he planned to set the appetizers on [~NP~ the platter] [~PP2~ *onto* the buffet]?
+  
+This clear disambiguation should prevent any lingering processing issues due to ambiguity in the non-garden path versions of the sentences.
 
 ## Fillers
 
-There were 32 filler items that ranged in complexity. Half (16) were designed to end in a sequence of two PPs, to mirror the experimental item. The other half contained no final PPs. All fillers were designed in two versions: declarative and interrogative. A full list of fillers is available in \@ref(appendix-fillers).
+There were 32 filler items that ranged in complexity. Half (16) were designed to end in a sequence of two PPs, to mirror the experimental item. The other half contained no final PPs. All fillers were designed in two versions: declarative and interrogative. A full list of fillers is available in \@ref(appendix-fillers). Fillers were not limited to the four main verbs of the experimental item, but did always follow the same pattern of *had* followed by a past participle. The past participle was always one of the four used for experimental item, or one of these additional four: *forgotten*, *remembered*, *wanted*
 
 ## Length
 
 Length was tightly controlled across items. For experimental items, all sentences were between 66 and 75 characters long, and between 13 and 15 words long. The length never varied across the &plusmn;Q condition. Across the &plusmn;GP condition there was a maximum length difference of one character. Two items varied in word length across &plusmn; by one word. For all length variations (word and character), an equal number were longer in the +GP condition as in the -GP condition. They ranged from 18 to 22 syllables.
 
 Control over filler length was slightly less stringent. They ranged from 63 to 79 characters and 12 to 14 words. 
+
+# Experimental groups and order of items
+
+No participant saw more than one version of each sentence, and each participant saw one version of every sentence. Each participant saw the same number of each type of sentence: 4 garden path declaratives, 4 garden path interrogatives, 4 non-garden path declaratives and 4 non-garden path interrogatives. The experimental item were presented in pseudo-random order, interspersed with 1 to 3 fillers and with two experimental items never occuring in the same version twice in a row (e.g. after declarative garden path, the next experimental item was never also a declarative garden path).
+
+The four versions of the experimental sentences resulted in four groups. A split-half ordering (where the first 24 of the items presented to one group was the second 24 presented to the other) resulted in 2 versions for each group, and so there were 8 groups in total.
 
 `r if (knitr::is_html_output()) '# References {-}'`
 
