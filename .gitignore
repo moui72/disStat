@@ -10,4 +10,7 @@ recordings*
 *.md
 *.log
 .DS_Store
-**_cache/
+*.rdb
+*.rdx
+*.RData
+**/*_*/
