@@ -8,6 +8,7 @@ output:
   bookdown::pdf_document2:
     toc: true
     latex_engine: xelatex
+    citation_package: natbib
   bookdown::tufte_html2:  
     toc: false
 ---
@@ -20,6 +21,10 @@ knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE, fig.height = 3)
 options(tinytex.verbose = TRUE)
 bgcolor <- if (knitr::is_html_output()) "#fffff8" else "#ffffff"
 par(bg = bgcolor)
+
+kable <- function(data,...) {
+  knitr::kable(data, booktabs = TRUE,...)
+}
 
 library(readr)
 library(huxtable)
@@ -37,6 +42,8 @@ library(lme4)
 This section reports various analyses of the recordings obtained.
 
 # Prosody {#results-prod}
+
+This subsection presents the results of the independent rater's judgements regarding prosodic boundaries.
 
 ```{r prosody-setup}
 mdata <- read_csv("../csvs/got_prosody.csv")
@@ -373,6 +380,8 @@ allpros$`Previewed readings` <- r2pros$r2
 kable(allpros,caption="Prosodic pattern by reading")
 ```
 
+\clearpage
+
 ## Prosody models
 
 Models predicting the PP1 break and the object break are presented in table \@ref(tab:lmPros). No random slopes were included, as those models did not converge.
@@ -401,8 +410,11 @@ huxreg(
   )
 ) %>%
   set_caption("Logistic regression models of prosody") %>%
-  set_label("lmPros")
+  set_label("lmPros") %>%
+  set_tabular_environment("tabular")
 ```
+
+\clearpage
 
 # Fluency
 
@@ -426,7 +438,7 @@ row.names(GP_strug)<-c("Fluent", "Struggle")
 kable(GP_strug, caption="Difficulty in reading by reading type for garden paths")
 ```
 
-Table \@ref(tab:strugModel) shows a number of logistic regression models. Models with complex random slope structures failed to converge, and models with random slopes for just *Previewed Reading* were worse than those without random slopes, so the models presented have no random slopes for any predictors. None of the models differ in statistically significant ways, except that the model with no random effects is significantly worse than the others (e.g. no random effects (AIC=575) compared to full model (AIC=547), &Chi;^2(3)^=3, p < 0.001).
+Table \@ref(tab:strugModel) shows a number of logistic regression models. Models with complex random slope structures failed to converge, and models with random slopes for just *Previewed Reading* were worse than those without random slopes, so the models presented have no random slopes for any predictors. None of the models differ in statistically significant ways, except that the model with no random effects is significantly worse than the others (e.g. no random effects (AIC=575) compared to full model (AIC=547), &Chi;^2^(3)=3, p < 0.001).
 
 ```{r strugModelPre,cache=T}
 models.strug <- glmer(STRUG~Condition_Q*Condition_GP+Reading+(1|IID)+(1|SID),data=mdata,family=binomial)
@@ -438,9 +450,8 @@ models.strug.noCon <- glmer(STRUG~Reading+(1|IID)+(1|SID),data=mdata,family=bino
 huxreg(
   list(
     "Full"=models.strug, 
-    "No random effects"=models.strug.noRand,
     "No interaction"=models.strug.noInt, 
-    "Reading as only pred"=models.strug.noCon
+    "Reading only"=models.strug.noCon
   ),
   coefs = c(
     "Intercept"="(Intercept)",
@@ -455,16 +466,20 @@ huxreg(
     N="nobs",
     "logLik",
     "AIC"
-  ),
-  align="."
+  )
 ) %>% 
   set_caption("Logistic regression models of disfluency") %>% 
-  set_label("strugMod")
+  set_label("strugMod") %>%
+  set_latex_float("htbp") %>%
+  set_tabular_environment("tabular")
+
 
 compNoRand <- anova (models.strug,models.strug.noRand)
 ```
 
 Cold vs. previewed reading is a statistically significant predictor in every case.
+
+\clearpage
 
 # Inter-reading time (IRT) {#results-irt}
 
@@ -711,6 +726,8 @@ ggplot(irt_data, aes(wirt.log10)) +
 
 ```
 
+\clearpage
+
 # Means by condition
 
 Table \@ref(tab:mns) shows the mean wIRT by experimental condition. The top left cell represents the mean wIRT for the declaritive controls ("-Q -GP"). The bottom row shows the increase in IRT across the garden path condition. 
@@ -760,6 +777,8 @@ ggplot(
     subtitle = "Confidence intervals represent one standard error"
   )
 ```
+
+\clearpage
 
 # Regression models of IRT
 
@@ -836,10 +855,13 @@ huxreg(
   statistics = c(N="nobs","logLik","AIC")
 ) %>% 
   set_caption("Models") %>% 
-  set_label("tab:models")
+  set_label("tab:models") %>%
+  set_tabular_environment("tabular")
 ```
 
 A model with no fixed effects and one with no random effects were also run. The estimates from these models can be seen in table \@ref(tab:models). 
+
+\clearpage
 
 ## Model comparisons
 
@@ -914,13 +936,15 @@ tab %>% set_escape_contents(F,row=1,col=5:7) %>%
 
 Table \@ref(tab:modComp2) shows that the random effects of participant and item improve the model in a stastically signifcant way.
 
+\clearpage
+
 # Delay comparison for cold vs. previewed readings
 
 A comparison of the delay for cold readings compared with that of previewed readings can lend insight into the extent to which subjects followed task instructions.
 
 "Delay" here is the amount of time after the start of a recording until the beginning of phonation of the target sentence. Cold readings are also called "reading 1", while previewed readings are the same as "reading 2". Implausible delays of >15s are excluded in the data shown here.
 
-```{r delayComparison}
+```{r delayComparison, fig.cap="Delay comparison across reading"}
 raw_rs_file <- read_csv("../csvs/merged.csv")
 raw_rs <- subset(raw_rs_file,!isFiller & Leading < 15000)
 raw_rs$reading <- raw_rs$Reading
@@ -958,7 +982,6 @@ kable(
   diffsByP[order(diffsByP[,2]),],
   digits = 0,
   caption="Delay differences by participant",
-  booktab=T,
   longtab=T
 )
 ```
@@ -971,6 +994,8 @@ ggplot(diffsByP, aes(`Mean difference in delay (ms)`/1000)) +
   labs(x="Mean difference in delay", y="Count",title="Mean difference in delay by participant", subtitle="Bin size = 1s")
 ```
 
+\clearpage
+
 # Individual variation in IRT
 
 Individuals vary with regard to the effect of the garden path condition on IRT. For `r table(pmeansByCondition$pattern)["TRUE"]` of `r nrow(pmeansByCondition)`, the increase in IRT for garden paths is greater for interrogatives than it is for declaratives.
@@ -979,7 +1004,6 @@ Individuals vary with regard to the effect of the garden path condition on IRT. 
 kable(
   pmeansByCondition[c(1:5)],
   caption="Mean wIRT (ms) by condition and participant",
-  booktab=T,
   longtab=T
 )
 ```
@@ -998,6 +1022,8 @@ ggplot(subset(irt_data_all,irt>22000), aes(irt/1000)) +
   xlab("Raw IRT") + ylab("Frequency") + 
   ggtitle("Right tail of IRT distribution (s)", subtitle="IRT > 22s, bin size = 1s")
 ```
+
+\clearpage
 
 # Interrogative parsing cost
 
