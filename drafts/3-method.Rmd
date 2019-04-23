@@ -2,14 +2,19 @@
 title: Methodology
 bibliography: refs.bib
 output: 
-  bookdown::html_document2: 
+  bookdown::pdf_document2: 
+    latex_engine: xelatex
+    citation_package: natbib
     toc: true
+
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE, fig.height = 3)
 library(huxtable)
 library(dplyr)
 ```
+
+# 3. Methodology {-}
 
 This section outlines the methodology employed for the reported study. The methodology outlined is referred to as the *Double Reading Procedure* and was first implemented by @fodor2019center. Participants are asked to read sentences twice, once without any previewed (cold reading or reading-1), and then again after unlimited preview (previewed reading or reading-2).
 
@@ -64,20 +69,21 @@ The instructions are presented below.
 
 The instruction also contained a table (table \@ref(tab:keytab)) which described the purpose and position of the relevant buttons on the keyboard. A separate page with just this table was also provided, and participants were allowed to keep the instructions with them during the entire procedure.
 
-```{r keytab}
-Labels <- c("Start", "Next", "Done")
-Positions <- c("Left shift", "Right shift", "Thumb pad")
-Descriptions <- c("Revewal a sentence and begin your reading.", "End your first reading.", "End your second reading and prepare for the next sentence.")
-keyTable <- data.frame(Labels,Positions,Descriptions)
+```{r keytabbloc}
+Label <- c("Start", "Next", "Done")
+Position <- c("Left shift", "Right shift", "Thumb pad")
+Description <- c("Revewal a sentence and begin your reading.", "End your first reading.", "End your second reading and prepare for the next sentence.")
+keyTable <- data.frame(Label,Position,Description)
 hux(keyTable) %>% add_colnames() %>%
-  set_top_border(value=2,row=1,col=everything()) %>%
-  set_bottom_border(value=1,row=1,col=everything()) %>%
-  set_bottom_border(value=2,row=final(1),col=everything()) %>%
+  set_top_border(value=1,row=1,col=everything()) %>%
+  set_bottom_border(value=0.5,row=1,col=everything()) %>%
+  set_bottom_border(value=1,row=final(1),col=everything()) %>%
   set_caption("Table of relevant keys") %>%
   set_label("tab:keytab") %>%
   set_bold(TRUE,row=2:4,col=1) %>%
   set_bold(TRUE,row=1,col=everything()) %>%
-  set_italic(TRUE,row=2:4,col=2) 
+  set_italic(TRUE,row=2:4,col=2)  %>%
+  set_position("left")
 ```
 
 ## The task
@@ -110,7 +116,7 @@ There was also an issue of whether the temporary ambiguity in some of the non-ga
 
 The experimental items for this study consisted of 16 sentences in 4 versions: declarative and yes/no interrogative versions of both a PP-attachment garden path of the type discussion earlier, and a non-garden path control which is identical to the garden path up until the final PP, when that PP disambiguates the sentence such that the parse is plausible with a PP2 that modifies the head noun of PP1. The interrogative is always identical to the declarative in every way except for inversion of the order of the subject and auxiliary verb, and the replacement of a final period with a final question mark. An example item in all four versions is shown in \@ref(tab:sentences).
 
-```{r sentences}
+```{r sentencesbloc}
 sentences <- list(
   "Declarative non-garden path" = "He had intended to cram the paperwork in the drawer of his filing cabinet.",
   "Interrogative non-garden path" = "Had he intended to cram the paperwork in the drawer of his filing cabinet?",
@@ -121,25 +127,31 @@ tab <- t(hux(sentences,add_colnames = T))
 names(tab) <- c("Version","Sentence")
 tab %>% add_colnames() %>%
   set_top_border(value=1,row=1,col=1:2) %>%
-  set_bottom_border(value=1,row=1,col=1:2) %>%
+  set_bottom_border(value=0.5,row=1,col=1:2) %>%
   set_bottom_border(value=1,row=final(1),col=1:2) %>%
   set_caption("Experimental item exemplars") %>%
   set_label("tab:sentences") %>%
-  set_italic(TRUE,row=2:5,col=1) 
+  set_italic(TRUE,row=2:5,col=1) %>%
+  set_bold(T,row=1,col=everywhere) %>%
+  set_position("left")
 ```
 
 ## Main verbs in experimental items
 
-An earlier pilot study exploring this same phenomenon (Peckenpaugh, 2016) had several issues with its materials. One of these issues was that the verbs did not all strongly subcategorize for a PP-argument. This could affect the strength of the garden path effect, since the strength of that subcategorization might impact the amount of sway that the parsing strategy of Minimal Attachment or Argument Preference has on the parse. Theoretically, verbs with stronger subcategorization for a PP-argument would result in a strong garden path effect. Consider:
+An earlier pilot study exploring this same phenomenon (Peckenpaugh, 2016) had several issues with its materials. One of these issues was that the verbs did not all strongly subcategorize for a PP-argument. This could affect the strength of the garden path effect, since the strength of that subcategorization might impact the amount of sway that the parsing strategy of Minimal Attachment or Argument Preference has on the parse. Theoretically, verbs with stronger subcategorization for a PP-argument would result in a strong garden path effect.
 
-  (@weak) Weak PP-argument subcategorization (*hide*) <br>
-          a. The gangsters had hidden the shotguns in a U-Haul truck in an old outhouse. <br>
-          b. &check; The gangsters had hidden the shotguns.
+
+  (@weak) Weak PP-argument subcategorization (*hide*) 
+  
+  a. The gangsters had hidden the shotguns in a U-Haul truck in an old outhouse. 
+  b. \checkmark The gangsters had hidden the shotguns.
             
-  (@strong) Strong PP-argument subcategorization (*cram*) <br>
-            a. Justin had crammed the old newspapers under the couch in a small wastebasket. <br>
-            b. * Justin had crammed the old newspapers.
-            
+  (@strong) Strong PP-argument subcategorization (*cram*) 
+  
+  a. Justin had crammed the old newspapers under the couch in a small wastebasket.
+  b. \* Justin had crammed the old newspapers.
+
+
 The examples in (@weak) and (@strong) point out that while you really must cram something somewhere, you don’t necessarily need to say where you hide something. That is, the verb *hide* seen in (@weak) does not strongly subcategorize for a locative argument (hence the acceptability of (@weak~\tiny ~b)), while cram (@strong) does, rendering (@strong~\tiny ~b) unacceptable. Because of the asymmetry in subcategorization strength, sentences like (@weak) might not trigger as strong a garden-path effect, because the parser might assume that no PP-argument is forthcoming, while for (@strong) the parser will jump at the opportunity to parse a PP as an argument.  In designing the items for this study, only verbs with strong PP-argument subcategorization will be used. The four verbs selected were: *cram*, *put*, *stick* and *set*.
 
 ## Complex tense
@@ -177,5 +189,4 @@ No participant saw more than one version of each sentence, and each participant 
 
 The four versions of the experimental sentences resulted in four groups. A split-half ordering (where the first 24 of the items presented to one group was the second 24 presented to the other) resulted in 2 versions for each group, and so there were 8 groups in total.
 
-`r if (knitr::is_html_output()) '# References {-}'`
-
+# References {-}

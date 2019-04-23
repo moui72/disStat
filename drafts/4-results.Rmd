@@ -5,31 +5,33 @@ date: "April 7, 2019"
 bibliography: refs.bib
 tables: true
 output: 
-  bookdown::tufte_html2: 
+  bookdown::pdf_document2:
     toc: true
-  bookdown::tufte_handout:
-    toc: true
+    latex_engine: xelatex
+  bookdown::tufte_html2:  
+    toc: false
 ---
 <!-- Results -->
 <!-- This is the fourth content section -->
 <!-- Previous section: methodology -->
 <!-- Following section: discussion -->
-```{r setup, include=FALSE}
+```{r setup,echo=F,warning=F,message=F}
 knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE, fig.height = 3)
-bgcolor <- if (knitr::is_html_output()) "#fffff8" else NULL
+options(tinytex.verbose = TRUE)
+bgcolor <- if (knitr::is_html_output()) "#fffff8" else "#ffffff"
 par(bg = bgcolor)
 
 library(readr)
 library(huxtable)
-library(psych)
 library(dplyr)
 library(tidyr)
 library(knitr)
-library(lme4)
-library(kableExtra)
 library(ggplot2)
 library(ggthemes)
 library(jsonlite)
+library(kableExtra)
+library(psych)
+library(lme4)
 ```
 
 This section reports various analyses of the recordings obtained.
@@ -59,33 +61,49 @@ mdata$SID <- as.factor(mdata$SID)
 mdata$STRUG_START <- as.factor(mdata$STRUG_START)
 mdata$pdom <- mdata$two_level_prosody %in% c("PP1", "PP1 > OBJ")
 mdata$odom <- mdata$two_level_prosody %in% c("OBJ", "OBJ > PP1")
+mdata$simple2lvl <- ifelse(
+  mdata$OBJ & mdata$PP1, 
+  "BOTH", ifelse(
+    mdata$OBJ,
+    "OBJ",
+    ifelse(
+      mdata$PP1,
+      "PP1",
+      "NEITHER"
+    )
+  )
+)
 mdata<-subset(mdata,SID!=8)
+
 ```
 
 ## Breaks after PP1 and direct object
 
+The garden path condition reprents the expected "correct" attachment site of PP1 and PP2. You may recall that the garden path sentences should ultimately have a PP1 that attaches low, as a modifier of the object, and a PP2 that attaches high, as an argument of the verb. To determine whether the prosody is predictive of attachment site, the distributions of breaks directly before PP1 (directly after the object; I call this the "object break") and directly before PP2 (directly after PP1; I call this the "PP1 break") are analyzed.
+
 Across all experimental items, there was a break after the direct object in `r round(nrow(mdata[mdata$OBJ,])/nrow(subset(mdata,!is.na(OBJ)))*100,1)`% of recordings and a break after PP1 in `r round(nrow(mdata[mdata$PP1,])/nrow(subset(mdata,!is.na(PP1)))*100,1)`%.
 
-```{r obj}
+```{r byGPall}
 objtab<-subset(mdata, !is.na(OBJ)) %>%
   group_by(OBJ,Condition_GP) %>%
   summarise(n=n())
 
-objyGP <- objtab[objtab$OBJ & objtab$Condition_GP,]$n/sum(objtab[objtab$Condition_GP,]$n) * 100
-objnGP <- objtab[objtab$OBJ & !objtab$Condition_GP,]$n/sum(objtab[!objtab$Condition_GP,]$n) * 100
-```
-```{r pp1}
+objyGP <- round(objtab[objtab$OBJ & objtab$Condition_GP,]$n/sum(objtab[objtab$Condition_GP,]$n) * 100,1)
+objnGP <- round(objtab[objtab$OBJ & !objtab$Condition_GP,]$n/sum(objtab[!objtab$Condition_GP,]$n) * 100,1)
+
 pp1tab<-subset(mdata, !is.na(PP1)) %>%
   group_by(PP1,Condition_GP) %>%
   summarise(n=n())
 
-pp1yGP <- pp1tab[pp1tab$PP1 & pp1tab$Condition_GP,]$n/sum(pp1tab[pp1tab$Condition_GP,]$n) * 100
-pp1nGP <- pp1tab[pp1tab$PP1 & !pp1tab$Condition_GP,]$n/sum(pp1tab[!pp1tab$Condition_GP,]$n) * 100
+pp1yGP <- round(pp1tab[pp1tab$PP1 & pp1tab$Condition_GP,]$n/sum(pp1tab[pp1tab$Condition_GP,]$n) * 100,1)
+pp1nGP <- round(pp1tab[pp1tab$PP1 & !pp1tab$Condition_GP,]$n/sum(pp1tab[!pp1tab$Condition_GP,]$n) * 100,1)
 ```
 
-For garden paths, there is a PP1 break in `r round(pp1yGP,1)`% of items, while non-garden paths had a PP1 break in `r round(pp1nGP,1)`% of cases.
+For garden paths, there is a break after PP1 in `r round(pp1yGP,1)`% of items and after the object in `r round(objyGP,1)`% , while non-garden paths had the post-PP1 break in `r round(pp1nGP,1)`% of cases and post-object break in `r round(objnGP,1)`%. 
 
-```{r cond_obj}
+The post-object break split across both conditions are shown in table \@ref(tab:condobj).
+
+```{r condobjPre}
 objtabTotal<-subset(mdata, !is.na(OBJ)) %>%
   group_by(Condition_Q,Condition_GP) %>%
   summarise(n=n()) %>% 
@@ -104,18 +122,300 @@ objtab<-subset(mdata, !is.na(OBJ)) %>%
   spread(GP,n)
 
 colnames(objtab)[1]<-""
-objtab[,c(2:3)] <- objtab[,c(2:3)]/objtabTotal[,c(2:3)]*100
-kable(objtab,digits=1,caption="Percentage of recordings with an object break, by condition")
+objtab[,c(2:3)] <- round(objtab[,c(2:3)]/objtabTotal[,c(2:3)]*100,1)
+objtab<-rbind(objtab,c("Both",objyGP,objnGP))
+objtab$Difference <- as.numeric(objtab$`Garden path`) - as.numeric(objtab$`Non-garden path`)
+```
+```{r condobj}
+kable(
+  objtab,
+  digits=1,
+  caption="Percentage of recordings with an object break, by condition"
+)
 ```
 
-## &plusmn;Struggle
+The distribution of post-PP1 breaks split by both conditions can be seen in table \@ref(tab:condpp1).
+
+```{r condpp1Pre}
+objtabTotal<-subset(mdata, !is.na(PP1)) %>%
+  group_by(Condition_Q,Condition_GP) %>%
+  summarise(n=n()) %>% 
+  mutate(Q=ifelse(Condition_Q,"Interrogative","Declarative"))%>%
+  mutate(GP=ifelse(Condition_GP,"Garden path","Non-garden path"))%>%
+  subset(select=c("Q","GP","n")) %>%
+  spread(GP,n)
+
+objtab<-subset(mdata, !is.na(PP1)) %>%
+  group_by(PP1,Condition_Q,Condition_GP) %>%
+  summarise(n=n()) %>% 
+  subset(PP1) %>%
+  mutate(Q=ifelse(Condition_Q,"Interrogative","Declarative"))%>%
+  mutate(GP=ifelse(Condition_GP,"Garden path","Non-garden path"))%>%
+  subset(select=c("Q","GP","n")) %>%
+  spread(GP,n)
+
+colnames(objtab)[1]<-""
+objtab[,c(2:3)] <- round(objtab[,c(2:3)]/objtabTotal[,c(2:3)]*100,1)
+objtab<-rbind(objtab,c("Both",pp1yGP,pp1nGP))
+objtab$Difference <- as.numeric(objtab$`Garden path`) - as.numeric(objtab$`Non-garden path`)
+```
+```{r condpp1}
+kable(
+  objtab,
+  caption="Recordings with a PP1 break by condition"
+)
+```
+
+## Previewed readings only
+
+Because "natural prosody" is likely to be less often produced in a cold reading than in a previewed one, it's important to consider the prosodic patterns for the two readings independently. This subsection describes previewed readings.
+
+```{r byGPr2}
+r2data <- subset(mdata,Reading==2)
+objtab<-subset(r2data, !is.na(OBJ)) %>%
+  group_by(OBJ,Condition_GP) %>%
+  summarise(n=n())
+
+objyGP <- round(objtab[objtab$OBJ & objtab$Condition_GP,]$n/sum(objtab[objtab$Condition_GP,]$n) * 100,1)
+objnGP <- round(objtab[objtab$OBJ & !objtab$Condition_GP,]$n/sum(objtab[!objtab$Condition_GP,]$n) * 100,1)
+
+pp1tab<-subset(r2data, !is.na(PP1)) %>%
+  group_by(PP1,Condition_GP) %>%
+  summarise(n=n())
+
+pp1yGP <- round(pp1tab[pp1tab$PP1 & pp1tab$Condition_GP,]$n/sum(pp1tab[pp1tab$Condition_GP,]$n) * 100,1)
+pp1nGP <- round(pp1tab[pp1tab$PP1 & !pp1tab$Condition_GP,]$n/sum(pp1tab[!pp1tab$Condition_GP,]$n) * 100,1)
+```
+
+The prevalence object break in previewed readings is described in table \@ref(tab:condobjr2).
+
+```{r condobjr2Pre}
+objtabTotal<-subset(r2data, !is.na(OBJ)) %>%
+  group_by(Condition_Q,Condition_GP) %>%
+  summarise(n=n()) %>% 
+  mutate(Q=ifelse(Condition_Q,"Interrogative","Declarative"))%>%
+  mutate(GP=ifelse(Condition_GP,"Garden path","Non-garden path"))%>%
+  subset(select=c("Q","GP","n")) %>%
+  spread(GP,n)
+
+objtab<-subset(r2data, !is.na(OBJ)) %>%
+  group_by(OBJ,Condition_Q,Condition_GP) %>%
+  summarise(n=n()) %>% 
+  subset(OBJ) %>%
+  mutate(Q=ifelse(Condition_Q,"Interrogative","Declarative"))%>%
+  mutate(GP=ifelse(Condition_GP,"Garden path","Non-garden path"))%>%
+  subset(select=c("Q","GP","n")) %>%
+  spread(GP,n)
+
+colnames(objtab)[1]<-""
+objtab[,c(2:3)] <- round(objtab[,c(2:3)]/objtabTotal[,c(2:3)]*100,1)
+objtab<-rbind(objtab,c("Both",objyGP,objnGP))
+objtab$Difference <- as.numeric(objtab$`Garden path`) - as.numeric(objtab$`Non-garden path`)
+```
+```{r condobjr2}
+kable(
+  objtab,
+  caption="Percentage of previewed recordings with an object break, by condition"
+)
+```
+
+The occurence of a PP1 break in previewed readings is shown in table \@ref(tab:condpp1r2).
+
+```{r condpp1r2pre}
+objtabTotal<-subset(r2data, !is.na(PP1)) %>%
+  group_by(Condition_Q,Condition_GP) %>%
+  summarise(n=n()) %>% 
+  mutate(Q=ifelse(Condition_Q,"Interrogative","Declarative"))%>%
+  mutate(GP=ifelse(Condition_GP,"Garden path","Non-garden path"))%>%
+  subset(select=c("Q","GP","n")) %>%
+  spread(GP,n)
+
+objtab<-subset(r2data, !is.na(PP1)) %>%
+  group_by(PP1,Condition_Q,Condition_GP) %>%
+  summarise(n=n()) %>% 
+  subset(PP1) %>%
+  mutate(Q=ifelse(Condition_Q,"Interrogative","Declarative"))%>%
+  mutate(GP=ifelse(Condition_GP,"Garden path","Non-garden path"))%>%
+  subset(select=c("Q","GP","n")) %>%
+  spread(GP,n)
+
+colnames(objtab)[1]<-""
+objtab[,c(2:3)] <- round(objtab[,c(2:3)]/objtabTotal[,c(2:3)]*100,1)
+objtab<-rbind(objtab,c("Both",pp1yGP,pp1nGP))
+objtab$Difference <- as.numeric(objtab$`Garden path`) - as.numeric(objtab$`Non-garden path`)
+```
+```{r condpp1r2}
+kable(
+  objtab,
+  caption="Percentage of previewed recordings with a PP1 break, by condition"
+)
+```
+
+## PP1 and object breaks combined
+
+Less than 1% of the data had neither break. Those data are excluded.
+
+```{r combobreaksPre}
+pdata <- subset(mdata,OBJ|PP1)
+allpros <- table(pdata$simple2lvl) %>%
+  prop.table() %>% 
+  `*` (100) %>%
+  round(1) %>%
+  hux() %>%
+  setNames(c("Combined breaks", "Percent of all data"))
+
+r2pros<-table(
+  subset(pdata,Reading==2)$simple2lvl
+) %>%
+  prop.table() %>% 
+  `*` (100) %>%
+  round(1) %>%
+  hux() %>%
+  setNames(c("Pattern", "r2")) 
+
+r1pros<-table(
+  subset(pdata,Reading==1)$simple2lvl
+) %>%
+  prop.table() %>% 
+  `*` (100) %>%
+  round(1) %>%
+  hux() %>%
+  setNames(c("Pattern", "r1")) 
+
+allpros$`Cold readings` <- r1pros$r1
+allpros$`Previewed readings` <- r2pros$r2
+```
+```{r combobreaks}
+kable(allpros,caption="Combined breaks by reading") 
+```
+
+Table \@ref(tab:combobreaksBycond) shows the distribution of the combination of the breaks by condition.
+
+```{r combobreaksBycondPre}
+qdata <- subset(pdata,Condition_Q)
+ddata <- subset(pdata,!Condition_Q)
+qpros<-table(qdata$simple2lvl,qdata$Condition_GP) %>%
+  prop.table(margin=2) %>% `*`(100) %>%
+  round(1)
+colnames(qpros)<-c("-GP","+GP")
+
+dpros<-table(ddata$simple2lvl,ddata$Condition_GP) %>%
+  prop.table(margin=2) %>% `*`(100) %>%
+  round(1)
+colnames(dpros)<-c("-GP","+GP")
+
+combo<-cbind(dpros,qpros)
+```
+```{r combobreaksBycond}
+kable(combo,caption="Combined breaks by condition for both readings") %>%
+  add_header_above(c(" "=1,"Declarative" = 2, "Interrogative"=2)) %>%
+  column_spec(1,bold=T)
+
+```
+
+The distrbution of the combined breaks for only previewed readings is shown in table \@ref(tab:r2combobreaksBycond).
+
+```{r r2combobreaksBycondpre}
+r2pdata<-subset(pdata,Reading==2)
+qdata <- subset(r2pdata,Condition_Q)
+ddata <- subset(r2pdata,!Condition_Q)
+qpros<-table(qdata$simple2lvl,qdata$Condition_GP) %>%
+  prop.table(margin=2) %>% `*`(100) %>%
+  round(1)
+colnames(qpros)<-c("-GP","+GP")
+
+dpros<-table(ddata$simple2lvl,ddata$Condition_GP) %>%
+  prop.table(margin=2) %>% `*`(100) %>%
+  round(1)
+colnames(dpros)<-c("-GP","+GP")
+
+combo<-cbind(dpros,qpros)
+```
+```{r r2combobreaksBycond}
+kable(combo,caption="Combined breaks by condition for previewed readings") %>%
+  add_header_above(c(" "=1,"Declarative" = 2, "Interrogative"=2)) %>%
+  column_spec(1,bold=T)
+
+```
+
+## PP1 and object breaks and their relative prominence
+
+Table \@ref(tab:pros2lvl) presents data similar to those in the previous section, but it incorporates the rater's judgement of the relative prominence of the breaks. The &gt; symbol indicates that the rater found the break on the left of that symbol to be stronger, or more prominent, than the break on the left. When no symbol is shown between the two breaks, the rather found them to be of equal prominence. Please be aware that inter-rater reliability for relative prominence was not good, as discussed in section \@ref(raterRel).
+
+```{r pros2lvlPre}
+allpros<-table(mdata$two_level_prosody)%>%
+  prop.table() %>% 
+  `*` (100) %>%
+  round(1) %>%
+  hux() %>%
+  setNames(c("Pattern", "Percent of all data"))
+r2pros<-table(
+  subset(mdata,Reading==2)$two_level_prosody
+) %>%
+  prop.table() %>% 
+  `*` (100) %>%
+  round(1) %>%
+  hux() %>%
+  setNames(c("Pattern", "r2")) 
+r1pros<-table(
+  subset(mdata,Reading==1)$two_level_prosody
+) %>%
+  prop.table() %>% 
+  `*` (100) %>%
+  round(1) %>%
+  hux() %>%
+  setNames(c("Pattern", "r1")) 
+
+allpros$`Cold readings` <- r1pros$r1
+allpros$`Previewed readings` <- r2pros$r2
+```
+```{r pros2lvl}
+kable(allpros,caption="Prosodic pattern by reading")
+```
+
+## Prosody models
+
+Models predicting the PP1 break and the object break are presented in table \@ref(tab:lmPros). No random slopes were included, as those models did not converge.
+
+```{r prosmodelsPre,cache=T}
+mmdata <- subset(mdata,!is.na(OBJ)&!is.na(PP1))
+pp1Mod<- glmer(PP1~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=mmdata,family=binomial)
+objMod<- glmer(OBJ~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=mmdata,family=binomial)
+```
+```{r prosmodels}
+ta<-huxreg(  
+  list("PP1"=pp1Mod,"Object"=objMod),
+  coefs = c(
+    "Intercept"="(Intercept)",
+    "+GP"="Condition_GPTRUE",
+    "+Q"="Condition_QTRUE",
+    "+GP +Q"="Condition_QTRUE:Condition_GPTRUE",
+    "Preview" = "Reading2",
+    "Participant"="sd_(Intercept).SID",
+    "Item"="sd_(Intercept).IID"
+  ),
+  statistics = c(
+    N="nobs",
+    "logLik",
+    "AIC"
+  )
+) %>%
+set_position("left") %>%
+set_caption("Logistic regression models of prosody") %>%
+set_label("lmPros")
+ta
+```
+
+# Fluency
 
 This section presents the counts of recordings where the reader struggled to maintain fluency. Table \@ref(tab:strug) shows the overall pattern across reading.
 
-```{r strug}
+```{r strugpre}
 all_strug <-table(mdata$STRUG,mdata$Reading)
 colnames(all_strug)<-c("Cold reading", "Previewed reading")
 row.names(all_strug)<-c("Fluent", "Struggle")
+```
+```{r strug}
 kable(all_strug, caption="Difficulty in reading by reading type")
 ```
 
@@ -130,11 +430,13 @@ kable(GP_strug, caption="Difficulty in reading by reading type for garden paths"
 
 Table \@ref(tab:strugModel) shows a number of logistic regression models. Models with complex random slope structures failed to converge, and models with random slopes for just *Previewed Reading* were worse than those without random slopes, so the models presented have no random slopes for any predictors. None of the models differ in statistically significant ways, except that the model with no random effects is significantly worse than the others (e.g. no random effects (AIC=575) compared to full model (AIC=547), &Chi;^2(3)^=3, p < 0.001).
 
-```{r strugModel, cache=T}
+```{r strugModelPre,cache=T}
 models.strug <- glmer(STRUG~Condition_Q*Condition_GP+Reading+(1|IID)+(1|SID),data=mdata,family=binomial)
 models.strug.noRand <- glm(STRUG~Condition_Q+Condition_GP+Reading,data=mdata,family=binomial)
 models.strug.noInt <- glmer(STRUG~Condition_Q+Condition_GP+Reading+(1|IID)+(1|SID),data=mdata,family=binomial)
 models.strug.noCon <- glmer(STRUG~Reading+(1|IID)+(1|SID),data=mdata,family=binomial)
+```
+```{r strugModel}
 huxreg(
   list(
     "Full"=models.strug, 
@@ -169,8 +471,8 @@ Cold vs. previewed reading is a statistically significant predictor in every cas
 
 # Inter-reading time (IRT) {#results-irt}
 
-```{r irt-setup}
-items <- read_csv(
+```{r irt-setup, cache=T}
+itemsDf <- read_csv(
   "../csvs/src/items.csv", 
   col_types = cols(
     OBJ = col_skip(), 
@@ -181,7 +483,7 @@ items <- read_csv(
   )
 )
 
-items$Item<-items$target
+itemsDf$Item<-itemsDf$target
 
 # global plot themeing
 theme_set(
@@ -204,7 +506,7 @@ raw_file <- read_csv(ifelse(use_old,old,new),
 )
 
 irt_data <- raw_file
-irt_data <- (merge(items, irt_data, by = 'Item'))
+
 # P 8 is messed up
 irt_data<-subset(irt_data,Participant != 8)
 
@@ -257,10 +559,14 @@ irt_lo <- subset(irt_data, irt < irt_min)
 irt_hi <- subset(irt_data, irt > irt_max)
 
 # subset to trimmed experimental items
+
 irt_data <- subset(
   irt_data, 
-  irt > irt_min & irt < irt_max & !isFiller
+  irt > irt_min & irt < irt_max
 )
+irt_fillers <- subset(irt_data,isFiller)
+irt_data<-subset(irt_data,!isFiller)
+irt_data <- (merge(itemsDf, irt_data, by = 'Item'))
 # make Participant and Item factors with specified ref levels 
 irt_data$Participant<-relevel(irt_data$Participant,ref=5)
 irt_data$Item<-relevel(as.factor(irt_data$Item),ref=1)
@@ -354,14 +660,13 @@ Of the `r nrow(meta)` recordings subjected to this treatment, `r nrow(meta[meta$
 
 [^alg]: The exact algorithm is available on [github](https://gist.github.com/moui72/4ebc4eb8f69eb9fdb1cab160ce299675) (URL: [bit.ly/2uMrcrG](https://bit.ly/2uMrcrG))
 
-```{r metable, tidy=FALSE}
+```{r metable, include=FALSE}
 metaTable<-xtabs(~agg+hpf, meta[meta$success,])
 row.names(metaTable)<-c("Lowest VAD rejection rate","...","...","Highest VAD rejection rate")
 kable(
   metaTable, 
   col.names = c("No HPF", "HPF at 200Hz", "HPF at 400Hz"),
-  caption="VAD rejection rate and HPF values",
-  booktab=T
+  caption="VAD rejection rate and HPF values"
 )
 ```
 
@@ -384,8 +689,7 @@ histSettings = geom_histogram(binwidth = 500,color="white",fill="#333333")
 ggplot(irt_data_all, aes(irt)) +
   histSettings +
   xlab("Raw IRT") + 
-  ylab("Frequency") + 
-  ggtitle("Distribution of raw IRT",subtitle="Bin size = 500ms")
+  ylab("Frequency")
 ```
 
 IRTs below `r irt_min`ms (`r nrow(irt_lo)`) and above `r round(irt_max/1000,1)`s (`r nrow(irt_hi)`) are (assumed to be implausible) omitted. Experimental data were then Winsorized by participant to bring data in the `r win_trim*100`th and `r 100-(100*win_trim)`th percentile of data to the value at those tresholds. The resulting measure is referred to as wIRT and is distribued as shown in Figure \@ref(fig:wIRT) (n = `r wirt_props$n`). Overall mean for wIRT is `r round(wirt_props$mean/1000,1)`s. The longest IRT is `r round(wirt_props$max/1000,1)`s and the shortest is `r round(wirt_props$min,0)`ms. Median wIRT is `r round(wirt_props$median/1000,1)`s.
@@ -418,11 +722,12 @@ Table \@ref(tab:mns) shows the mean wIRT by experimental condition. The top left
 meansByConditionS <- meansByCondition
 meansByConditionS$`-Q` <- meansByConditionS$`-Q`/1000
 meansByConditionS$`+Q` <- meansByConditionS$`+Q`/1000
+```
+```{r include=F}
 kable(
   meansByConditionS, 
   caption = "Means (s) by condition",
-  digits = 2,
-  booktab=T
+  digits = 2
 )
 ```
 
@@ -450,7 +755,13 @@ ggplot(
   geom_point() +
   ylim(6000,7200) +
   geom_errorbar(aes(ymin=mean-se, ymax=mean+se), width=.125) +
-  labs(x="", y="Mean IRT (ms)",linetype="",title="Mean IRT by condition", subtitle = "Confidence intervals represent one standard error")
+  labs(
+    x="", 
+    y="Mean IRT (ms)",
+    linetype="",
+    title="Mean IRT by condition", 
+    subtitle = "Confidence intervals represent one standard error"
+  )
 ```
 
 # Regression models of IRT
@@ -459,7 +770,7 @@ The models with random slopes for participant and item did not converge, so the 
 
 ```{r lmeMods, cache=T}
 
-irt.full <- lmer(
+irt.full <- lme4::lmer(
   wirt.log10 ~ Condition_Q * Condition_GP + 
     (1 | Participant) + 
     (1 | Item),
@@ -467,7 +778,7 @@ irt.full <- lmer(
   REML=F
 )
 
-irt.noInteraction <- lmer(
+irt.noInteraction <- lme4::lmer(
   wirt.log10 ~ Condition_Q + Condition_GP + 
     (1 | Participant) + 
     (1 | Item),
@@ -475,21 +786,21 @@ irt.noInteraction <- lmer(
   REML=F
 )
 
-irt.noParticipant <- lmer(
+irt.noParticipant <- lme4::lmer(
   wirt.log10 ~ Condition_Q * Condition_GP + 
     (1 | Item),
   data = irt_data,
   REML=F
 )
 
-irt.noItem <- lmer(
+irt.noItem <- lme4::lmer(
   wirt.log10 ~ Condition_Q * Condition_GP + 
     (1 | Participant),
   data = irt_data,
   REML=F
 )
 
-irt.noFxd <- lmer(
+irt.noFxd <- lme4::lmer(
   wirt.log10 ~
     (1 | Participant) + 
     (1 | Item),
@@ -511,7 +822,7 @@ irt.dummy.noInt <- lm(wirt.log10 ~  Condition_Q + Condition_GP +
 
 For the first model, fixed effects of &plusmn;GP and &plusmn;Q as well is the interaction between them were included, along with random effects of participant and item. The second model removes the interaction, but keeps both main effects.
 
-```{r modTabLME,fig.fullwidth=T,fig.align="left",fig.cap="Models"}
+```{r modTabLME,include=FALSE}
 huxreg(
   list(
     "Full"=irt.full, 
@@ -538,7 +849,7 @@ A model with no fixed effects and one with no random effects were also run. The 
 
 Several model comparisons were made, seen in the following tables.
 
-```{r modCom3}
+```{r modCom3,include=F}
 comp <-anova(irt.full,irt.noFxd)
 tab <- hux(comp[,c(1:2,4,6:8)],autoformat = T)
 tab <- add_rows(
@@ -562,7 +873,7 @@ tab %>% set_escape_contents(F,row=1,col=5:7) %>%
 
 There are clearly main effects of both &plusmn;GP and &plusmn;Q: table \@ref(tab:modComp3) shows that the full model is significantly better than the one with no fixed effects. 
 
-```{r modCom}
+```{r modCom,include=F}
 comp <-anova(irt.full,irt.noInteraction)
 tab <- hux(comp[,c(1:2,4,6:8)],autoformat = T)
 tab <- add_rows(
@@ -586,7 +897,7 @@ tab %>% set_escape_contents(F,row=1,col=5:7) %>%
 
 The interaction between main effects, though, is not able to be confirmed (in fact, table \@ref(tab:modComp) shows the non-interaction to be better, but not to a stastically significance degree).
 
-```{r modCom2}
+```{r modCom2,include=F}
 comp <-anova(irt.full,irt.noRand)
 tab <- hux(comp[,c(1:2,4,6:8)],autoformat = T)
 tab <- add_rows(
@@ -649,7 +960,7 @@ ggplot(na.omit(diffs), aes(diffs)) +
 
 If we calculate the mean delay difference by participant, we find a mean participant DelDef of `r round(diffsByP.props$mean/1000,1)`s. Each participant's DelDif is &le; `r diffsByP.props$min`ms and &ge; `r round( diffsByP.props$max/1000,1)`s, with a median of `r round(diffsByP.props$median/1000,2)`s. Table \@ref(tab:difsbyp) shows these values.
 
-```{r difsbyp}
+```{r difsbyp,include=F}
 kable(
   diffsByP[order(diffsByP[,2]),],
   digits = 0,
@@ -671,7 +982,7 @@ ggplot(diffsByP, aes(`Mean difference in delay (ms)`/1000)) +
 
 Individuals vary with regard to the effect of the garden path condition on IRT. For `r table(pmeansByCondition$pattern)["TRUE"]` of `r nrow(pmeansByCondition)`, the increase in IRT for garden paths is greater for interrogatives than it is for declaratives.
 
-```{r pPattern}
+```{r pPattern,include=F}
 kable(
   pmeansByCondition[c(1:5)],
   caption="Mean wIRT (ms) by condition and participant",
@@ -697,9 +1008,31 @@ ggplot(subset(irt_data_all,irt>22000), aes(irt/1000)) +
 
 # Interrogative parsing cost
 
-As previously discussed, interrogatives appear to have a computational processing cost when compared to interrogatives [cf. @lehiste1973phonetic]. The filler sentences in this study were designed so as to provide a diagnostic of the interrogative effect on IRT.
+As previously discussed, interrogatives appear to have a computational processing cost when compared to interrogatives [cf. @lehiste1973phonetic]. The filler sentences in this study were designed so as to provide a diagnostic of the interrogative effect on IRT. 
 
 ```{r fillers}
+mean.irtByQ <- aggregate(
+  irt_fillers$irt, 
+  by=list("+Q"=irt_fillers$Condition_Q),
+  FUN=mean
+)
+mean.irtByPP <- aggregate(
+  irt_fillers$irt, 
+  by=list("+PP"=irt_fillers$Condition_GP),
+  FUN=mean
+)
+mean.irtByQnPP <- aggregate(
+  irt_fillers$irt, 
+  by=list("+Q"=irt_fillers$Condition_Q,"+PP"=irt_fillers$Condition_GP),
+  FUN=mean
+)
+fillerModel <- lmer(irt ~ Condition_Q + (1+Condition_Q |Participant) + (1+Condition_Q |Item),data=irt_fillers, REML=F)
+fillerModel.pp <- lmer(irt ~ Condition_Q * Condition_GP + (1+Condition_Q *Condition_GP|Participant) + (1+Condition_Q*Condition_GP |Item),data=irt_fillers, REML=F)
+fillerModel.ppNoInt <- lmer(irt ~ Condition_Q + Condition_GP + (1+Condition_Q +Condition_GP|Participant) + (1+Condition_Q+Condition_GP |Item),data=irt_fillers, REML=F)
 ```
+
+The mean IRT for interrogative fillers was `r round(mean.irtByQ[1,]$x/1000,1)`s; for declarative, `r round(mean.irtByQ[1,]$x/1000,1)`s. Interrogatives elicited a mean IRT of `r round(diff(mean.irtByQ$x),0)`ms longer than declaratives. Half of the fillers had a string of two PPs at the end. This did not impact IRT to the same degree (a difference of `r abs(round(diff(mean.irtByPP$x),0))`ms across &plusmn;PP).
+
+A mixed effects regression model with full random slope structures found a significant main effect of &plusmn;Q (estimate = 379ms, t = 2.24, p < 0.05)
 
 `r if (knitr::is_html_output()) '# References {-}'`
