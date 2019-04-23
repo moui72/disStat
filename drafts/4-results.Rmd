@@ -383,7 +383,7 @@ pp1Mod<- glmer(PP1~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=mmdata,
 objMod<- glmer(OBJ~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=mmdata,family=binomial)
 ```
 ```{r prosmodels}
-ta<-huxreg(  
+huxreg(  
   list("PP1"=pp1Mod,"Object"=objMod),
   coefs = c(
     "Intercept"="(Intercept)",
@@ -400,10 +400,8 @@ ta<-huxreg(
     "AIC"
   )
 ) %>%
-set_position("left") %>%
-set_caption("Logistic regression models of prosody") %>%
-set_label("lmPros")
-ta
+  set_caption("Logistic regression models of prosody") %>%
+  set_label("lmPros")
 ```
 
 # Fluency
@@ -461,8 +459,7 @@ huxreg(
   align="."
 ) %>% 
   set_caption("Logistic regression models of disfluency") %>% 
-  set_label("strugMod")%>%
-  set_position("left")
+  set_label("strugMod")
 
 compNoRand <- anova (models.strug,models.strug.noRand)
 ```
@@ -660,7 +657,7 @@ Of the `r nrow(meta)` recordings subjected to this treatment, `r nrow(meta[meta$
 
 [^alg]: The exact algorithm is available on [github](https://gist.github.com/moui72/4ebc4eb8f69eb9fdb1cab160ce299675) (URL: [bit.ly/2uMrcrG](https://bit.ly/2uMrcrG))
 
-```{r metable, include=FALSE}
+```{r metables}
 metaTable<-xtabs(~agg+hpf, meta[meta$success,])
 row.names(metaTable)<-c("Lowest VAD rejection rate","...","...","Highest VAD rejection rate")
 kable(
@@ -718,12 +715,12 @@ ggplot(irt_data, aes(wirt.log10)) +
 
 Table \@ref(tab:mns) shows the mean wIRT by experimental condition. The top left cell represents the mean wIRT for the declaritive controls ("-Q -GP"). The bottom row shows the increase in IRT across the garden path condition. 
 
-```{r mns}
+```{r mnspre}
 meansByConditionS <- meansByCondition
 meansByConditionS$`-Q` <- meansByConditionS$`-Q`/1000
 meansByConditionS$`+Q` <- meansByConditionS$`+Q`/1000
 ```
-```{r include=F}
+```{r mns}
 kable(
   meansByConditionS, 
   caption = "Means (s) by condition",
@@ -822,7 +819,7 @@ irt.dummy.noInt <- lm(wirt.log10 ~  Condition_Q + Condition_GP +
 
 For the first model, fixed effects of &plusmn;GP and &plusmn;Q as well is the interaction between them were included, along with random effects of participant and item. The second model removes the interaction, but keeps both main effects.
 
-```{r modTabLME,include=FALSE}
+```{r modTabLME}
 huxreg(
   list(
     "Full"=irt.full, 
@@ -839,7 +836,6 @@ huxreg(
   statistics = c(N="nobs","logLik","AIC")
 ) %>% 
   set_caption("Models") %>% 
-  set_position("left") %>% 
   set_label("tab:models")
 ```
 
@@ -867,8 +863,7 @@ tab %>% set_escape_contents(F,row=1,col=5:7) %>%
   set_caption("No fixed effects vs. full model") %>%
   set_top_border(row=1,value=1,col=everywhere) %>%
   set_bottom_border(row=1,value=1,col=2:7) %>% 
-  set_bottom_border(row=final(1),value=1,col=everywhere) %>% 
-  set_position("left")
+  set_bottom_border(row=final(1),value=1,col=everywhere) 
 ```
 
 There are clearly main effects of both &plusmn;GP and &plusmn;Q: table \@ref(tab:modComp3) shows that the full model is significantly better than the one with no fixed effects. 
@@ -891,8 +886,7 @@ tab %>% set_escape_contents(F,row=1,col=5:7) %>%
   set_caption("No interaction vs. full model") %>%
   set_top_border(row=1,value=1,col=everywhere) %>%
   set_bottom_border(row=1,value=1,col=2:7) %>% 
-  set_bottom_border(row=final(1),value=1,col=everywhere) %>% 
-  set_position("left")
+  set_bottom_border(row=final(1),value=1,col=everywhere)
 ```
 
 The interaction between main effects, though, is not able to be confirmed (in fact, table \@ref(tab:modComp) shows the non-interaction to be better, but not to a stastically significance degree).
@@ -915,8 +909,7 @@ tab %>% set_escape_contents(F,row=1,col=5:7) %>%
   set_caption("No random effects vs. full model") %>%
   set_top_border(row=1,value=1,col=everywhere) %>%
   set_bottom_border(row=1,value=1,col=2:7) %>% 
-  set_bottom_border(row=final(1),value=1,col=everywhere) %>% 
-  set_position("left")
+  set_bottom_border(row=final(1),value=1,col=everywhere) 
 ```
 
 Table \@ref(tab:modComp2) shows that the random effects of participant and item improve the model in a stastically signifcant way.
@@ -927,7 +920,7 @@ A comparison of the delay for cold readings compared with that of previewed read
 
 "Delay" here is the amount of time after the start of a recording until the beginning of phonation of the target sentence. Cold readings are also called "reading 1", while previewed readings are the same as "reading 2". Implausible delays of >15s are excluded in the data shown here.
 
-```{r delayComparison, echo=F}
+```{r delayComparison}
 raw_rs_file <- read_csv("../csvs/merged.csv")
 raw_rs <- subset(raw_rs_file,!isFiller & Leading < 15000)
 raw_rs$reading <- raw_rs$Reading
