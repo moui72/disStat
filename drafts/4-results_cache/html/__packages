@@ -11,3 +11,4 @@ kableExtra
 ggplot2
 ggthemes
 jsonlite
+lmerTest
