@@ -1003,6 +1003,7 @@ The mean IRT for interrogative fillers was `r round(mean.irtByQ[1,]$x/1000,1)`s;
 A mixed effects regression model (no random slope structure, due to convergence errors) found a significant main effect of &plusmn;Q (estimate = 379ms, t = 2.24, p < 0.05)
 
 \clearpage
+
 # Delay comparison for cold vs. previewed readings
 
 A comparison of the delay for cold readings compared with that of previewed readings can lend insight into the extent to which subjects followed task instructions.

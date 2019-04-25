@@ -254,6 +254,8 @@ Stimuli range from 18-22 syllables in length. If we assume a speeach rate of 3 t
 
 # Prosodic judgements
 
-TODO Description of Sita's work goes here
+A research assistant listened to recordings and reported the presence or absence of breaks in certain regions of the sentence. A second rater also provided these judgements for 10% of the data, and the original rater provided a blind second pass of 10% of the data. Good reliability (90%+) was found for the break after the object and the break after PP1.
+
+<!-- TODO Description of Sita's work goes here -->
 
 # References {-}

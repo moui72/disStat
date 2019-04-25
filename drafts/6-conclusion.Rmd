@@ -4,6 +4,22 @@ output:
   bookdown::html_document2: 
     toc: true
 ---
+Discussion of what is still unknown, and suggestions of future research.
+
+# Issues with the reported study
+Statistical significance for the behavioral correlate of the intuition: more participants
+
+## Ways to improve for a similar future study
+
+Follow-up task to check understanding and interpretation of the sentence
+
+Improve IRT accuracy by anticipating the participant’s desire to study slide 1 and either forcing it to disappear or else assuming that to be their study time.
+
+# Fruitful avenues for further study
+
+ERP-based study: check for Closure Positive Shift (CPS) at PP attachment sites; check for P600/N400 at site of disambiguation. CPS should reveal the tree being parsed for each condition; higher frequency and severity of P600/N400 across the GP condition in declaratives vs. interrogatives would illustrate the intuitive observation.
+
+Eye-tracking: more regressions and longer reading time across the GP condition in declaratives vs. interrogatives would illustrate the intuitive observation.
 
 `r if (knitr::is_html_output()) '# References {-}'`
 
