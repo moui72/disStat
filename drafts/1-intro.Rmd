@@ -1,5 +1,6 @@
 ---
 bibliography: refs.bib
+biblio-style: "apalike"
 output: 
   bookdown::html_document2: 
     toc: true

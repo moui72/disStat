@@ -1,6 +1,7 @@
 ---
 title: Methodology
 bibliography: refs.bib
+biblio-style: "apalike"
 output: 
   bookdown::pdf_document2: 
     latex_engine: xelatex
@@ -11,7 +12,11 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE, fig.height = 3)
 library(huxtable)
+library(readr)
+library(jsonlite)
 library(dplyr)
+library(knitr)
+library(kableExtra)
 ```
 
 # 3. Methodology {-}
@@ -69,21 +74,24 @@ The instructions are presented below.
 
 The instruction also contained a table (table \@ref(tab:keytab)) which described the purpose and position of the relevant buttons on the keyboard. A separate page with just this table was also provided, and participants were allowed to keep the instructions with them during the entire procedure.
 
-```{r keytabbloc}
+```{r keytab}
 Label <- c("Start", "Next", "Done")
 Position <- c("Left shift", "Right shift", "Thumb pad")
 Description <- c("Revewal a sentence and begin your reading.", "End your first reading.", "End your second reading and prepare for the next sentence.")
 keyTable <- data.frame(Label,Position,Description)
-hux(keyTable) %>% add_colnames() %>%
-  set_top_border(value=1,row=1,col=everything()) %>%
-  set_bottom_border(value=0.5,row=1,col=everything()) %>%
-  set_bottom_border(value=1,row=final(1),col=everything()) %>%
-  set_caption("Table of relevant keys") %>%
-  set_label("tab:keytab") %>%
-  set_bold(TRUE,row=2:4,col=1) %>%
-  set_bold(TRUE,row=1,col=everything()) %>%
-  set_italic(TRUE,row=2:4,col=2)  %>%
-  set_position("left")
+# hux(keyTable) %>% add_colnames() %>%
+#   set_top_border(value=1,row=1,col=everything()) %>%
+#   set_bottom_border(value=0.5,row=1,col=everything()) %>%
+#   set_bottom_border(value=1,row=final(1),col=everything()) %>%
+#   set_caption("Table of relevant keys") %>%
+#   set_label("tab:keytab") %>%
+#   set_bold(TRUE,row=2:4,col=1) %>%
+#   set_bold(TRUE,row=1,col=everything()) %>%
+#   set_italic(TRUE,row=2:4,col=2)  %>%
+#   set_position("left") %>%
+  kable(keyTable,booktabs=T,caption="Table of keyboard mappings") %>%
+    kable_styling(latex_options = "hold_position")
+
 ```
 
 ## The task
@@ -97,6 +105,8 @@ After pressing *NEXT*, a screen appeared with the following message:
 > You have completed your first reading. When you are ready to prepare for your second reading, press *START*.
 
 Immediately after *START* was pressed, the first recording ended and the second recording began, and the sentence reappeared, this time on a green background.
+
+<!-- TODO insert diagram of task -->
 
 The shifting of required key presses and the changing background color were intended to aid the participant in remember where they were in the process, and to prevent accidental double-presses of any given button from having unintended side effects. It took some time for the participants to adapt to the somewhat complicated procedure, but most seem to have gotten the hang of it before the first real item was presented.
 
@@ -116,24 +126,32 @@ There was also an issue of whether the temporary ambiguity in some of the non-ga
 
 The experimental items for this study consisted of 16 sentences in 4 versions: declarative and yes/no interrogative versions of both a PP-attachment garden path of the type discussion earlier, and a non-garden path control which is identical to the garden path up until the final PP, when that PP disambiguates the sentence such that the parse is plausible with a PP2 that modifies the head noun of PP1. The interrogative is always identical to the declarative in every way except for inversion of the order of the subject and auxiliary verb, and the replacement of a final period with a final question mark. An example item in all four versions is shown in \@ref(tab:sentences).
 
-```{r sentencesbloc}
-sentences <- list(
-  "Declarative non-garden path" = "He had intended to cram the paperwork in the drawer of his filing cabinet.",
-  "Interrogative non-garden path" = "Had he intended to cram the paperwork in the drawer of his filing cabinet?",
-  "Declarative garden path" = "He had intended to cram the paperwork in the drawer into his boss's desk.",
-  "Interrogative garden path" = "Had he intended to cram the paperwork in the drawer into his boss's desk?"
+```{r sentences}
+sentences <-cbind( 
+  c(
+    "Declarative non-garden path",
+    "Interrogative non-garden path" ,
+    "Declarative garden path",
+    "Interrogative garden path"
+  ), 
+  c(
+    "He had intended to cram the paperwork in the drawer of his filing cabinet.",
+    "Had he intended to cram the paperwork in the drawer of his filing cabinet?",
+    "He had intended to cram the paperwork in the drawer into his boss's desk.",
+    "Had he intended to cram the paperwork in the drawer into his boss's desk?"
+ )
 )
-tab <- t(hux(sentences,add_colnames = T)) 
-names(tab) <- c("Version","Sentence")
-tab %>% add_colnames() %>%
-  set_top_border(value=1,row=1,col=1:2) %>%
-  set_bottom_border(value=0.5,row=1,col=1:2) %>%
-  set_bottom_border(value=1,row=final(1),col=1:2) %>%
-  set_caption("Experimental item exemplars") %>%
-  set_label("tab:sentences") %>%
-  set_italic(TRUE,row=2:5,col=1) %>%
-  set_bold(T,row=1,col=everywhere) %>%
-  set_position("left")
+colnames(sentences) <- c("Version","Sentence")
+kable(sentences, booktabs=T, caption="Experimental item in four versions")
+# tab %>% add_colnames() %>%
+#   set_top_border(value=1,row=1,col=1:2) %>%
+#   set_bottom_border(value=0.5,row=1,col=1:2) %>%
+#   set_bottom_border(value=1,row=final(1),col=1:2) %>%
+#   set_caption("Experimental item exemplars") %>%
+#   set_label("tab:sentences") %>%
+#   set_italic(TRUE,row=2:5,col=1) %>%
+#   set_bold(T,row=1,col=everywhere) %>%
+#   set_position("left")
 ```
 
 ## Main verbs in experimental items
@@ -146,7 +164,7 @@ An earlier pilot study exploring this same phenomenon (Peckenpaugh, 2016) had se
   a. The gangsters had hidden the shotguns in a U-Haul truck in an old outhouse. 
   b. \checkmark The gangsters had hidden the shotguns.
             
-  (@strong) Strong PP-argument subcategorization (*cram*) 
+  (@strong) Strong PP-argument subctategorization (*cram*) 
   
   a. Justin had crammed the old newspapers under the couch in a small wastebasket.
   b. \* Justin had crammed the old newspapers.
@@ -188,5 +206,54 @@ Control over filler length was slightly less stringent. They ranged from 63 to 7
 No participant saw more than one version of each sentence, and each participant saw one version of every sentence. Each participant saw the same number of each type of sentence: 4 garden path declaratives, 4 garden path interrogatives, 4 non-garden path declaratives and 4 non-garden path interrogatives. The experimental item were presented in pseudo-random order, interspersed with 1 to 3 fillers and with two experimental items never occuring in the same version twice in a row (e.g. after declarative garden path, the next experimental item was never also a declarative garden path).
 
 The four versions of the experimental sentences resulted in four groups. A split-half ordering (where the first 24 of the items presented to one group was the second 24 presented to the other) resulted in 2 versions for each group, and so there were 8 groups in total.
+
+# Inter-reading time (IRT) measurement
+
+Subjects were asked to read each sentence twice, once with no preview at all (reading 1, a cold reading), and then again after unlimited preview (reading 2, a previewed reading). Inter-reading time (IRT) is a measure of the amount of time between when a subject stops speaking after a cold reading and when they begin speaking for a previewed reading.
+
+```{r metasetup}
+
+# meta 
+json <- read_file("../meta-4_11.json")
+meta<-fromJSON(json)
+handset <- read.csv("../csvs/_SITA_SET_VALUES.csv")
+meta[meta$file %in% handset$Filename,]$agg <- NA
+meta[meta$file %in% handset$Filename,]$hpf <- NA
+hscount <- sum(handset$Filename %in% meta$file)
+```
+IRT was measured using a Python script and Google's WebRTC Voice Activity Detection (VAD) over 44.1kHz WAV files downsampled to 8kHz via SOX[^upsamp]. This VAD system uses Gaussian Mixture Models to make probabilistic decisions on whether a given audio frame is speech or noise (see [@gmm1] for a complete explanation). Google's implementation takes one paramater, which they call aggressiveness: a 4-tier setting for the level of confidence necessary to call a gvien frame speech. I call this "rejection rate", where a higher rejection rate means that the model requires a high level of confidence before assuming a frame is speech, i.e. it is more likely to label something noise than speech. The implementation codes this setting as 0-3, where 0 is the most lenient (most likely to label a frame as speech) and 3 is the most stringent (most likely to label a frame as noise).
+
+[^upsamp]: Google's VAD API only accepts WAV files with sample rates that are a multiple of 8kHz. It ultimately downsamples all files to 8kHz, regardless of the input rate.
+
+The recordngs vary in the volume of the speaker's voice and the amount of background noise present. An algorothm was constructed to allow for the most stringent measurement of the least modified data that gave plausible measurements. Specifically, each file was measured using the highest possible rejection rate for the VAD algorithm and no modification of the file. If the timings detected were not plausible, the timings were re-measured with the same rejection rate, but after the recording had undergone a 200Hz high-pass filter[^alg] (HPF). If that still failed, a 400Hz HPF was used. After a further failure, the rejection rate for the VAD was lowered, and the whole thing was tried again (0, 200Hz, 400Hz); and that process was itself repeated until the lowest possible rejection rate was tried of the four possible settings. 
+
+Of the `r nrow(meta)` recordings subjected to this treatment, `r nrow(meta[meta$success & !is.na(meta$agg),])` resulted in plausible timings. For those that were successfull, the breakdown of HPF and rejection rate used is reported in Table \@ref(tab:metable). A further `r hscount` were set by hand, resulting in a total of `r nrow(meta[meta$success,])` recordings.
+
+[^alg]: The exact algorithm is available on [github](https://gist.github.com/moui72/4ebc4eb8f69eb9fdb1cab160ce299675) (URL: [bit.ly/2uMrcrG](https://bit.ly/2uMrcrG))
+
+```{r metable}
+metaTable<-xtabs(~agg+hpf, meta[meta$success,])
+row.names(metaTable)<-c("Lowest VAD rejection rate","...","...","Highest VAD rejection rate")
+kable(
+  metaTable, 
+  col.names = c("No HPF", "HPF at 200Hz", "HPF at 400Hz"),
+  caption="VAD rejection rate and HPF values",
+  booktabs=T
+) %>% kable_styling(latex_options = "hold_position")
+```
+
+Plausible timings had to meet the following criteria: 
+
+1. An utterance length between 2s and 10s, where utterance timing is the longest contiguous span in the recording that VAD reports as phonation, with breaks in phonation of less than 1s not breaking contiguity.
+
+2. A leading silence ("delay") length of more than 120ms and less than 95% of the entire recording's duration.
+
+3. A trailing silence length of less than 95% of the entire recording's duration.
+
+Stimuli range from 18-22 syllables in length. If we assume a speeach rate of 3 to 7 syllables per second [@jacewicz2010-sr] we would expect utterances between 2.5s and 7.3s. Conservative thresholds higher and lower than the expected were used, especially on the higher end to allow for any processing or fluency. @goldman1961-pa found that a large majority (82.5 to 87%) of pauses in fluent speech are less than 1s. Even a very fast human reaction time should not permit a delay shorter than 120ms.
+
+# Prosodic judgements
+
+TODO Description of Sita's work goes here
 
 # References {-}

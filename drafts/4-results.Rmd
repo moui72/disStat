@@ -3,6 +3,7 @@ title: "Results and analyses"
 author: "Tyler Peckenpaugh"
 date: "April 7, 2019"
 bibliography: refs.bib
+biblio-style: "apalike"
 tables: true
 output: 
   bookdown::pdf_document2:
@@ -11,13 +12,15 @@ output:
     citation_package: natbib
   bookdown::tufte_html2:  
     toc: false
+header-includes:
+- \usepackage{float}
 ---
 <!-- Results -->
 <!-- This is the fourth content section -->
 <!-- Previous section: methodology -->
 <!-- Following section: discussion -->
 ```{r setup,echo=F,warning=F,message=F}
-knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE, fig.height = 3)
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE, fig.height = 3, fig.pos="H")
 options(tinytex.verbose = TRUE)
 bgcolor <- if (knitr::is_html_output()) "#fffff8" else "#ffffff"
 par(bg = bgcolor)
@@ -37,6 +40,16 @@ library(jsonlite)
 library(kableExtra)
 library(psych)
 library(lme4)
+
+# global plot themeing
+theme_set(
+  theme_tufte() + 
+    theme(
+      plot.background = element_rect(fill = bgcolor,color=bgcolor),
+      panel.border = element_blank()
+    )
+)
+
 ```
 
 This section reports various analyses of the recordings obtained.
@@ -138,7 +151,7 @@ kable(
   objtab,
   digits=1,
   caption="Percentage of recordings with an object break, by condition"
-)
+) %>% kable_styling(latex_options = "hold_position")
 ```
 
 The distribution of post-PP1 breaks split by both conditions can be seen in table \@ref(tab:condpp1).
@@ -170,7 +183,7 @@ objtab$Difference <- as.numeric(objtab$`Garden path`) - as.numeric(objtab$`Non-g
 kable(
   objtab,
   caption="Recordings with a PP1 break by condition"
-)
+)%>% kable_styling(latex_options = "hold_position")
 ```
 
 ## Previewed readings only
@@ -223,7 +236,7 @@ objtab$Difference <- as.numeric(objtab$`Garden path`) - as.numeric(objtab$`Non-g
 kable(
   objtab,
   caption="Percentage of previewed recordings with an object break, by condition"
-)
+)%>% kable_styling(latex_options = "hold_position")
 ```
 
 The occurence of a PP1 break in previewed readings is shown in table \@ref(tab:condpp1r2).
@@ -255,7 +268,7 @@ objtab$Difference <- as.numeric(objtab$`Garden path`) - as.numeric(objtab$`Non-g
 kable(
   objtab,
   caption="Percentage of previewed recordings with a PP1 break, by condition"
-)
+)%>% kable_styling(latex_options = "hold_position")
 ```
 
 ## PP1 and object breaks combined
@@ -293,7 +306,7 @@ allpros$`Cold readings` <- r1pros$r1
 allpros$`Previewed readings` <- r2pros$r2
 ```
 ```{r combobreaks}
-kable(allpros,caption="Combined breaks by reading") 
+kable(allpros,caption="Combined breaks by reading") %>% kable_styling(latex_options = "hold_position")
 ```
 
 Table \@ref(tab:combobreaksBycond) shows the distribution of the combination of the breaks by condition.
@@ -316,7 +329,7 @@ combo<-cbind(dpros,qpros)
 ```{r combobreaksBycond}
 kable(combo,caption="Combined breaks by condition for both readings") %>%
   add_header_above(c(" "=1,"Declarative" = 2, "Interrogative"=2)) %>%
-  column_spec(1,bold=T)
+  column_spec(1,bold=T)%>% kable_styling(latex_options = "hold_position")
 
 ```
 
@@ -341,7 +354,7 @@ combo<-cbind(dpros,qpros)
 ```{r r2combobreaksBycond}
 kable(combo,caption="Combined breaks by condition for previewed readings") %>%
   add_header_above(c(" "=1,"Declarative" = 2, "Interrogative"=2)) %>%
-  column_spec(1,bold=T)
+  column_spec(1,bold=T)%>% kable_styling(latex_options = "hold_position")
 
 ```
 
@@ -377,7 +390,7 @@ allpros$`Cold readings` <- r1pros$r1
 allpros$`Previewed readings` <- r2pros$r2
 ```
 ```{r pros2lvl}
-kable(allpros,caption="Prosodic pattern by reading")
+kable(allpros,caption="Prosodic pattern by reading")%>% kable_styling(latex_options = "hold_position")
 ```
 
 \clearpage
@@ -426,7 +439,7 @@ colnames(all_strug)<-c("Cold reading", "Previewed reading")
 row.names(all_strug)<-c("Fluent", "Struggle")
 ```
 ```{r strug}
-kable(all_strug, caption="Difficulty in reading by reading type")
+kable(all_strug, caption="Difficulty in reading by reading type")%>% kable_styling(latex_options = "hold_position")
 ```
 
 Table \@ref(tab:gpstrug) shows the pattern across reading for just +GP items.
@@ -435,8 +448,10 @@ Table \@ref(tab:gpstrug) shows the pattern across reading for just +GP items.
 GP_strug <- with(subset(mdata,Condition_GP==TRUE),table(STRUG,Reading))
 colnames(GP_strug)<-c("Cold reading", "Previewed reading")
 row.names(GP_strug)<-c("Fluent", "Struggle")
-kable(GP_strug, caption="Difficulty in reading by reading type for garden paths")
+kable(GP_strug, caption="Difficulty in reading by reading type for garden paths")%>% kable_styling(latex_options = "hold_position")
 ```
+
+## Fluency models
 
 Table \@ref(tab:strugModel) shows a number of logistic regression models. Models with complex random slope structures failed to converge, and models with random slopes for just *Previewed Reading* were worse than those without random slopes, so the models presented have no random slopes for any predictors. None of the models differ in statistically significant ways, except that the model with no random effects is significantly worse than the others (e.g. no random effects (AIC=575) compared to full model (AIC=547), &Chi;^2^(3)=3, p < 0.001).
 
@@ -497,14 +512,6 @@ itemsDf <- read_csv(
 
 itemsDf$Item<-itemsDf$target
 
-# global plot themeing
-theme_set(
-  theme_tufte() + 
-    theme(
-      plot.background = element_rect(fill = bgcolor,color=bgcolor),
-      panel.border = element_blank()
-    )
-)
 
 # load files
 use_old <- FALSE
@@ -658,41 +665,9 @@ meta[meta$file %in% handset$Filename,]$hpf <- NA
 hscount <- sum(handset$Filename %in% meta$file)
 ```
 
-This document examines the inter-reading time (IRT) from the study. Subjects were asked to read each sentence twice, once with no preview at all (reading 1, a cold reading), and then again after unlimited preview (reading 2, a previewed reading). Inter-reading time (IRT) is a measure of the amount of time between when a subject stops speaking after a cold reading and when they begin speaking for a previewed reading. IRT was measured over `r recs` recordings: 32 participants, 48 items = `r subjs * items` recording pairs (reading 1 and reading 2), with `r  subjs * items - recs` missing pairs. The missing data are a result of one or both recordings from a pair being unusable due to technical issues (e.g. a failure of recording equipment, or participant error).
+This document examines the inter-reading time (IRT) from the study. IRT was measured over `r recs` recordings: 32 participants, 48 items = `r subjs * items` recording pairs (reading 1 and reading 2), with `r  subjs * items - recs` missing pairs. The missing data are a result of one or both recordings from a pair being unusable due to technical issues (e.g. a failure of recording equipment, or participant error).
 
-## IRT measurement
-
-IRT was measured using a Python script and Google's WebRTC Voice Activity Detection (VAD) over 44.1kHz WAV files downsampled to 8kHz via SOX[^upsamp]. This VAD system uses Gaussian Mixture Models to make probabilistic decisions on whether a given audio frame is speech or noise (see [@gmm1] for a complete explanation). Google's implementation takes one paramater, which they call aggressiveness: a 4-tier setting for the level of confidence necessary to call a gvien frame speech. I call this "rejection rate", where a higher rejection rate means that the model requires a high level of confidence before assuming a frame is speech, i.e. it is more likely to label something noise than speech. The implementation codes this setting as 0-3, where 0 is the most lenient (most likely to label a frame as speech) and 3 is the most stringent (most likely to label a frame as noise).
-
-[^upsamp]: Google's VAD API only accepts WAV files with sample rates that are a multiple of 8kHz. It ultimately downsamples all files to 8kHz, regardless of the input rate.
-
-The recordngs vary in the volume of the speaker's voice and the amount of background noise present. An algorothm was constructed to allow for the most stringent measurement of the least modified data that gave plausible measurements. Specifically, each file was measured using the highest possible rejection rate for the VAD algorithm and no modification of the file. If the timings detected were not plausible, the timings were re-measured with the same rejection rate, but after the recording had undergone a 200Hz high-pass filter[^alg] (HPF). If that still failed, a 400Hz HPF was used. After a further failure, the rejection rate for the VAD was lowered, and the whole thing was tried again (0, 200Hz, 400Hz); and that process was itself repeated until the lowest possible rejection rate was tried of the four possible settings. 
-
-Of the `r nrow(meta)` recordings subjected to this treatment, `r nrow(meta[meta$success & !is.na(meta$agg),])` resulted in plausible timings. For those that were successfull, the breakdown of HPF and rejection rate used is reported in Table \@ref(tab:metable). A further `r hscount` were set by hand, resulting in a total of `r nrow(meta[meta$success,])` recordings.
-
-[^alg]: The exact algorithm is available on [github](https://gist.github.com/moui72/4ebc4eb8f69eb9fdb1cab160ce299675) (URL: [bit.ly/2uMrcrG](https://bit.ly/2uMrcrG))
-
-```{r metables}
-metaTable<-xtabs(~agg+hpf, meta[meta$success,])
-row.names(metaTable)<-c("Lowest VAD rejection rate","...","...","Highest VAD rejection rate")
-kable(
-  metaTable, 
-  col.names = c("No HPF", "HPF at 200Hz", "HPF at 400Hz"),
-  caption="VAD rejection rate and HPF values"
-)
-```
-
-Plausible timings had to meet the following criteria: 
-
-1. An utterance length between 2s and 10s, where utterance timing is the longest contiguous span in the recording that VAD reports as phonation, with breaks in phonation of less than 1s not breaking contiguity.
-
-2. A leading silence ("delay") length of more than 120ms and less than 95% of the entire recording's duration.
-
-3. A trailing silence length of less than 95% of the entire recording's duration.
-
-Stimuli range from 18-22 syllables in length. If we assume a speeach rate of 3 to 7 syllables per second [@jacewicz2010-sr] we would expect utterances between 2.5s and 7.3s. Conservative thresholds higher and lower than the expected were used, especially on the higher end to allow for any processing or fluency. @goldman1961-pa found that a large majority (82.5 to 87%) of pauses in fluent speech are less than 1s. Even a very fast human reaction time should not permit a delay shorter than 120ms.
-
-# Distribution of IRT
+## Distribution of IRT
 
 The raw IRTs including fillers and before any outliers are trimmed are distributed as shown in Figure \@ref(fig:rawIRThist). Overall mean IRT of these data (n = `r irt_props_all$n`), is `r round(irt_props_all$mean/1000,1)`s. The longest is `r round(irt_props_all$max/1000,1)`s and the shortest `r round(irt_props_all$min,0)`ms. Median IRT is `r round(irt_props_all$median/1000,1)`s.
 
@@ -728,7 +703,7 @@ ggplot(irt_data, aes(wirt.log10)) +
 
 \clearpage
 
-# Means by condition
+## Means by condition
 
 Table \@ref(tab:mns) shows the mean wIRT by experimental condition. The top left cell represents the mean wIRT for the declaritive controls ("-Q -GP"). The bottom row shows the increase in IRT across the garden path condition. 
 
@@ -742,7 +717,7 @@ kable(
   meansByConditionS, 
   caption = "Means (s) by condition",
   digits = 2
-)
+)%>% kable_styling(latex_options = "hold_position")
 ```
 
 The difference in the effect of &plusmn;GP across &plusmn;Q is `r round(cdiff/1000,2)`s. That is, the mean amount that IRT increased for a garden path declarative compared to a non-garden path declarative is `r round(cdiff/1000,2)`s `r ifelse(cdiff > 0, paste("more"),paste("less"))` than the amount that IRT increased for a garden path interrogative compared to a non-garden path interrogative.
@@ -780,7 +755,7 @@ ggplot(
 
 \clearpage
 
-# Regression models of IRT
+## Regression models of IRT
 
 The models with random slopes for participant and item did not converge, so the tables in this section show models with no random slopes. 
 
@@ -863,8 +838,6 @@ A model with no fixed effects and one with no random effects were also run. The 
 
 \clearpage
 
-## Model comparisons
-
 Several model comparisons were made, seen in the following tables.
 
 ```{r modCom3,include=F}
@@ -938,6 +911,98 @@ Table \@ref(tab:modComp2) shows that the random effects of participant and item 
 
 \clearpage
 
+## Effect of verb on IRT
+
+If we consider the mean wIRT by which of the 4 verbs occured in the target sentence (*cram*, *set*, *put*, or *stick*), we see that there was some difference in how the two experimental manipulations (&plusmn;GP = garden path status and &plusmn;Q = interrogative vs. declarative status) effected wIRT. The means (and standard deviation) across the conditions are reported for each verb in \@ref(tab:verbConMeans).
+
+```{r verbMeans}
+# means by condition table
+meansByVerb <- aggregate(
+  irt_data$win_irt,
+  by=list(
+    "Condition"=irt_data$cond,
+    "Verb"=irt_data$V
+  ),
+  FUN=mean
+) %>% spread(Condition,x)
+# sd by condition table
+sdByVerb <- aggregate(
+  irt_data$win_irt,
+  by=list(
+    "Condition"=irt_data$cond,
+    "Verb"=irt_data$V
+  ),
+  FUN=sd
+) %>% spread(Condition,x)
+meansByVerb$`Declarative GP effect`<-meansByVerb$`-Q +GP`-meansByVerb$`-Q -GP`
+meansByVerb$`Interrogative GP effect`<-meansByVerb$`+Q +GP`-meansByVerb$`+Q -GP`
+meansByVerb$`Difference in effect`<-meansByVerb$`Declarative GP effect`-meansByVerb$`Interrogative GP effect`
+```
+
+```{r verbConMeans}
+meansNsd<-sdByVerb
+for (col in colnames(meansNsd)[2:5]){
+  meansNsd[[col]]<- paste(
+    round(meansByVerb[[col]],0), 
+    " (",
+    round(meansNsd[[col]],0),
+    ")",
+    sep=""
+  )
+}
+
+kable(meansNsd,caption="Mean (sd) wIRT by condition and verb")%>% kable_styling(latex_options = "hold_position")
+```
+
+To isolate the effect of the garden path for interrogatives as compared to declartives, we can subtract the mean for declarative non-garden paths from the mean for declarative garden paths, and then do the same for interrogatives. These measures are referred to as the "declarative GP effect" and "interrogative GP effect" in \@ref(verbConDiffMeans). The difference between the declarative GP effect from the interrogative GP effect is labeled the "difference in effect." We can see that for 2 of the 4 verbs (*set* and *stick*), there was a positive difference in effect, while for the other two we find a negative one.
+
+```{r verbConDiffMeans}
+kable(meansByVerb[,c(1,6:8)],caption="Effect of GP on wIRT by verb")%>% kable_styling(latex_options = "hold_position")
+```
+## Individual variation in IRT
+
+Individuals vary with regard to the effect of the garden path condition on IRT. For `r table(pmeansByCondition$pattern)["TRUE"]` of `r nrow(pmeansByCondition)`, the increase in IRT for garden paths is greater for interrogatives than it is for declaratives.
+
+```{r pPattern,include=F}
+kable(
+  pmeansByCondition[c(1:5)],
+  caption="Mean wIRT (ms) by condition and participant",
+  longtab=T
+)%>% kable_styling(latex_options = "hold_position")
+```
+
+\clearpage
+
+## Interrogative processing cost is represented in IRT
+
+Interrogatives appear to have a computational processing cost when compared to interrogatives [cf. @lehiste1973phonetic]. The filler sentences in this study were designed so as to provide a diagnostic of the interrogative effect on IRT. 
+
+```{r fillers}
+mean.irtByQ <- aggregate(
+  irt_fillers$irt, 
+  by=list("+Q"=irt_fillers$Condition_Q),
+  FUN=mean
+)
+mean.irtByPP <- aggregate(
+  irt_fillers$irt, 
+  by=list("+PP"=irt_fillers$Condition_GP),
+  FUN=mean
+)
+mean.irtByQnPP <- aggregate(
+  irt_fillers$irt, 
+  by=list("+Q"=irt_fillers$Condition_Q,"+PP"=irt_fillers$Condition_GP),
+  FUN=mean
+)
+fillerModel <- lmer(irt ~ Condition_Q + (1 |Participant) + (1 |Item),data=irt_fillers, REML=F)
+fillerModel.pp <- lmer(irt ~ Condition_Q * Condition_GP + (1|Participant) + (1 |Item),data=irt_fillers, REML=F)
+fillerModel.ppNoInt <- lmer(irt ~ Condition_Q + Condition_GP + (1|Participant) + (1 |Item),data=irt_fillers, REML=F)
+```
+
+The mean IRT for interrogative fillers was `r round(mean.irtByQ[1,]$x/1000,1)`s; for declarative, `r round(mean.irtByQ[1,]$x/1000,1)`s. Interrogatives elicited a mean IRT of `r round(diff(mean.irtByQ$x),0)`ms longer than declaratives. Half of the fillers had a string of two PPs at the end. This did not impact IRT to the same degree (a difference of `r abs(round(diff(mean.irtByPP$x),0))`ms across &plusmn;PP).
+
+A mixed effects regression model (no random slope structure, due to convergence errors) found a significant main effect of &plusmn;Q (estimate = 379ms, t = 2.24, p < 0.05)
+
+\clearpage
 # Delay comparison for cold vs. previewed readings
 
 A comparison of the delay for cold readings compared with that of previewed readings can lend insight into the extent to which subjects followed task instructions.
@@ -983,7 +1048,7 @@ kable(
   digits = 0,
   caption="Delay differences by participant",
   longtab=T
-)
+)%>% kable_styling(latex_options = "hold_position")
 ```
 
 The distribution of the participants' DelDifs can be found in Figure \@ref(fig:difhistbyp).
@@ -993,20 +1058,11 @@ ggplot(diffsByP, aes(`Mean difference in delay (ms)`/1000)) +
   geom_histogram(binwidth = 1,color="white",fill="black") +
   labs(x="Mean difference in delay", y="Count",title="Mean difference in delay by participant", subtitle="Bin size = 1s")
 ```
+\pagebreak
 
-\clearpage
+# Additional tables and figures {#etc}
 
-# Individual variation in IRT
-
-Individuals vary with regard to the effect of the garden path condition on IRT. For `r table(pmeansByCondition$pattern)["TRUE"]` of `r nrow(pmeansByCondition)`, the increase in IRT for garden paths is greater for interrogatives than it is for declaratives.
-
-```{r pPattern,include=F}
-kable(
-  pmeansByCondition[c(1:5)],
-  caption="Mean wIRT (ms) by condition and participant",
-  longtab=T
-)
-```
+Addtional figures and tables appear here without discussion, for the curious reader.
 
 ```{r irtzoomLft, fig.cap="Left tail of raw IRT distribution"}
 ggplot(subset(irt_data_all,irt<1000), aes(irt)) +
@@ -1024,34 +1080,6 @@ ggplot(subset(irt_data_all,irt>22000), aes(irt/1000)) +
 ```
 
 \clearpage
-
-# Interrogative parsing cost
-
-As previously discussed, interrogatives appear to have a computational processing cost when compared to interrogatives [cf. @lehiste1973phonetic]. The filler sentences in this study were designed so as to provide a diagnostic of the interrogative effect on IRT. 
-
-```{r fillers}
-mean.irtByQ <- aggregate(
-  irt_fillers$irt, 
-  by=list("+Q"=irt_fillers$Condition_Q),
-  FUN=mean
-)
-mean.irtByPP <- aggregate(
-  irt_fillers$irt, 
-  by=list("+PP"=irt_fillers$Condition_GP),
-  FUN=mean
-)
-mean.irtByQnPP <- aggregate(
-  irt_fillers$irt, 
-  by=list("+Q"=irt_fillers$Condition_Q,"+PP"=irt_fillers$Condition_GP),
-  FUN=mean
-)
-fillerModel <- lmer(irt ~ Condition_Q + (1+Condition_Q |Participant) + (1+Condition_Q |Item),data=irt_fillers, REML=F)
-fillerModel.pp <- lmer(irt ~ Condition_Q * Condition_GP + (1+Condition_Q *Condition_GP|Participant) + (1+Condition_Q*Condition_GP |Item),data=irt_fillers, REML=F)
-fillerModel.ppNoInt <- lmer(irt ~ Condition_Q + Condition_GP + (1+Condition_Q +Condition_GP|Participant) + (1+Condition_Q+Condition_GP |Item),data=irt_fillers, REML=F)
-```
-
-The mean IRT for interrogative fillers was `r round(mean.irtByQ[1,]$x/1000,1)`s; for declarative, `r round(mean.irtByQ[1,]$x/1000,1)`s. Interrogatives elicited a mean IRT of `r round(diff(mean.irtByQ$x),0)`ms longer than declaratives. Half of the fillers had a string of two PPs at the end. This did not impact IRT to the same degree (a difference of `r abs(round(diff(mean.irtByPP$x),0))`ms across &plusmn;PP).
-
-A mixed effects regression model with full random slope structures found a significant main effect of &plusmn;Q (estimate = 379ms, t = 2.24, p < 0.05)
+\pagebreak
 
 `r if (knitr::is_html_output()) '# References {-}'`

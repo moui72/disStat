@@ -2,7 +2,9 @@
 bibliography: refs.bib
 biblio-style: "apalike"
 output: 
-  bookdown::html_document2: 
+  bookdown::pdf_document2: 
+    latex_engine: xelatex
+    citation_package: natbib
     toc: true
 ---
 <!-- Background on prosody and parsing -->
@@ -36,7 +38,7 @@ Fodor notes that other researchers have shown the presence and absence of prosod
 
 ```{definition,galign,name="Generalised Alignment"}
 
-Align(&alpha;Cat, E; &beta;Cat, E)
+Align($\alpha$Cat, E; $\beta$Cat, E)
 
   a. Align (GCat, E; PCat, E)
   b. Align (PCat, E; GCat, E) 
@@ -55,8 +57,8 @@ Essentially, Selkirk argues that relative ranking of alignment constraints for t
 
 The same sort of argument can explain the difference in tendency between long and short RCs. Consider Selkirk&apos;s [-@selkirk2011-hp] *BinMin* defined below.
 
-  (@binmin)	**BinMin(&phi;)** <br>
-  A &phi; (phonological phrase) must consist of at least two &omega; (phonological words).  
+  (@binmin)	**BinMin($\phi$)** <br>
+  A $\phi$ (phonological phrase) must consist of at least two $\omega$ (phonological words).  
   
 If we assume, in Optimality Theoretic (Prince & Smolensky, 1993) terms, that a constraint like *BinMin* is ranked above *Align~L~*, then it seems quite reasonable to assume that  a prosodic break before a short RC (which would encourage high attachment) is much less likely than before a long RC. That is, when the RC is short, its left edge is prevented from aligning with the beginning of a prosodic phrase (it violates *Align~L~*) by the higher ranked BinMin. Longer RCs can have their left edge align with the start of a prosodic phrase, and thus can have the high-attachment encouraging prosodic break.
 
@@ -82,4 +84,19 @@ A brief informal survey found that most speakers maintain low tones on prior str
 
 The prosodic structures found in the data collected for the current study are discussed in \@ref(results-prosody).
 
-`r if (knitr::is_html_output()) '# References {-}'`
+# Syntactic structure of PP-attachment ambiguities
+
+As discussed in the introduction, this study is focused on the impact of sentence type (interrogative vs. declarative) in a particular sort of garden path. Specifically, it is concerned with garden path sentences containing a temporary ambiguity that centers on the attachment of prepositional phrases (PPs) occurring in string-linear sequence at the end of an utterance, e.g., “When he saw her, the nanny had seated the cranky little boy [~PP1~ on the swing] [~PP2~ in his stroller].”  Consider (13):
+
+  (@trash) Jed crammed the newspapers under the sofa in the trashcan.
+    
+  a. \# … [~VP~ crammed [~NP~ the newspapers] [~PP1~ under [~NP~ the sofa [~PP2~ in the trashcan]]] 
+  b. \checkmark … [~VP~ crammed [~NP~ the newspapers [~PP1~ under [~NP~ the sofa ]] [~PP2~ in the trashcan]]
+    
+*\rightline{\# indicates a structure with an implausible reading}*
+
+In the case of this sort of garden path, *Minimal Attachment*, or some variation thereof, results in a structure where the first PP attaches to the verb phrase (VP) as an argument, i.e. [~VP~ V NP PP1], which leaves nowhere for the second PP to attach but as a modifier of the noun phrase (NP) inside PP1 (#[~PP1~ on [~NP~ the swing [~PP2~ in his stroller]]]). This initial parse (@trash~ ~a) is pragmatically implausible, as one does not generally find swings inside strollers. Reanalysis is required to bring about the correct parse (@trash~ ~b), where PP1 attaches as an NP modifier of the direct object [~VP~ V [~NP~ N PP1] …] which allows PP2 to attach as a VP argument, i.e. it is the cranky little boy on the swing who is being placed in the stroller. 
+
+Note that *Minimal Attachment* as defined by Frazier (1979) is somewhat at odds with modern syntactic theory (cf. Chomsky 1995, p. 62). As originally postulated, it relies on a verb with multiple internal arguments incorporating each of those arguments as a sister (i.e. a ternary branching structure: [VP V NP PP]). With more modern theories where binary branching is obligatory, it becomes less clear that the VP attachment site for PP1 actually creates fewer nodes than the lower NP attachment site. Nonetheless, the preference for VP attachment in these kinds of sentences is there, be it due to *Minimal Attachment*, a preference for arguments over non-arguments, or whatever else:  see evidence from e.g. Rayner et al. (1983) and Clifton et al. (1991). I assume, following Frazier (1998) that it can be adequately described by reformulating *Minimal Attachment* to include a preference for argument relations over non-argument ones, or else through careful consideration of the syntactic structures involved and reformulation of *Minimal Attachment*. The precise definition of this parsing strategy is not a concern of this paper, but it is assumed to be at play.
+
+# References {-}
