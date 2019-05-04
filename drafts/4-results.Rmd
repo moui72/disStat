@@ -54,12 +54,20 @@ theme_set(
 
 This section reports various analyses of the recordings obtained.
 
-# Prosody {#results-prod}
+# Prosody {#results-prosody}
 
 This subsection presents the results of the independent rater's judgements regarding prosodic boundaries.
 
 ```{r prosody-setup}
-mdata <- read_csv("../csvs/got_prosody.csv")
+mdata_raw <- read_csv("../csvs/got_prosody.csv")
+# remove items where STRONG == NA (these are the items Sita didn't respond to)
+mdata <- mdata_raw[!is.na(mdata_raw$STRONG),]
+
+# code for pairs of SUBJ-ITEM
+mdata$pair<-paste(mdata$SID,mdata$IID,sep="-")
+# filter out rows missing its pair
+mdata<-mdata %>% group_by(pair) %>% filter(n()>1)
+
 mdata$V<-mdata$V == "YES"
 mdata$OBJ<-mdata$OBJ == "YES"
 mdata$PP1<-mdata$PP1 == "YES"
@@ -94,6 +102,7 @@ mdata$simple2lvl <- ifelse(
   )
 )
 mdata<-subset(mdata,SID!=8)
+mdata <- droplevels(mdata)
 
 ```
 
@@ -453,7 +462,7 @@ kable(GP_strug, caption="Difficulty in reading by reading type for garden paths"
 
 ## Fluency models
 
-Table \@ref(tab:strugModel) shows a number of logistic regression models. Models with complex random slope structures failed to converge, and models with random slopes for just *Previewed Reading* were worse than those without random slopes, so the models presented have no random slopes for any predictors. None of the models differ in statistically significant ways, except that the model with no random effects is significantly worse than the others (e.g. no random effects (AIC=575) compared to full model (AIC=547), &Chi;^2^(3)=3, p < 0.001).
+Table \@ref(tab:strugMod) shows a number of logistic regression models. Models with complex random slope structures failed to converge, and models with random slopes for just *Previewed Reading* were worse than those without random slopes, so the models presented have no random slopes for any predictors. None of the models differ in statistically significant ways, except that the model with no random effects is significantly worse than the others (e.g. no random effects (AIC=575) compared to full model (AIC=547), &Chi;^2^(3)=3, p < 0.001).
 
 ```{r strugModelPre,cache=T}
 models.strug <- glmer(STRUG~Condition_Q*Condition_GP+Reading+(1|IID)+(1|SID),data=mdata,family=binomial)
@@ -461,7 +470,7 @@ models.strug.noRand <- glm(STRUG~Condition_Q+Condition_GP+Reading,data=mdata,fam
 models.strug.noInt <- glmer(STRUG~Condition_Q+Condition_GP+Reading+(1|IID)+(1|SID),data=mdata,family=binomial)
 models.strug.noCon <- glmer(STRUG~Reading+(1|IID)+(1|SID),data=mdata,family=binomial)
 ```
-```{r strugModel}
+```{r strugMod}
 huxreg(
   list(
     "Full"=models.strug, 
@@ -840,74 +849,59 @@ A model with no fixed effects and one with no random effects were also run. The 
 
 Several model comparisons were made, seen in the following tables.
 
-```{r modCom3,include=F}
+```{r modCom3}
+cols <- c(
+  "Df",
+  "AIC",
+  "BIC",
+  "logLik",
+  "deviance",
+  "$\\chi^2$",
+  "Df($\\chi$)",
+  "Pr(>$\\chi^2$)"
+)
 comp <-anova(irt.full,irt.noFxd)
-tab <- hux(comp[,c(1:2,4,6:8)],autoformat = T)
-tab <- add_rows(
-  tab, 
-  hux("Df","AIC","logLik","&Chi;<sup>2</sup>","Df(&Chi;)","p value"),
-  after=0
-)
-tab <- insert_column(
-  tab, c("","No fixed effects model", "Full model")
-)
-
-tab %>% set_escape_contents(F,row=1,col=5:7) %>%
-  set_number_format(value=2,col = c(3:5,7),row=2:3) %>%
-  set_label("tab:modComp3") %>% 
-  set_caption("No fixed effects vs. full model") %>%
-  set_top_border(row=1,value=1,col=everywhere) %>%
-  set_bottom_border(row=1,value=1,col=2:7) %>% 
-  set_bottom_border(row=final(1),value=1,col=everywhere) 
+row.names(comp) <- c("No fixed effects", "Full")
+kable(comp,caption="Full model vs. no fixed effects",col.names=cols,escape=F)
 ```
 
-There are clearly main effects of both &plusmn;GP and &plusmn;Q: table \@ref(tab:modComp3) shows that the full model is significantly better than the one with no fixed effects. 
+There are clearly main effects of both &plusmn;GP and &plusmn;Q: table \@ref(tab:modCom3) shows that the full model is significantly better than the one with no fixed effects. 
 
-```{r modCom,include=F}
+```{r modCom}
+
 comp <-anova(irt.full,irt.noInteraction)
-tab <- hux(comp[,c(1:2,4,6:8)],autoformat = T)
-tab <- add_rows(
-  tab, 
-  hux("Df","AIC","logLik","&Chi;<sup>2</sup>","Df(&Chi;)","p value"),
-  after=0
-)
-tab <- insert_column(
-  tab, c("","No interaction", "Full")
-)
+row.names(comp) <- c("No interaction", "Full")
+kable(comp,caption="Full model vs. no interaction",col.names=cols,escape=F)
 
-tab %>% set_escape_contents(F,row=1,col=5:7) %>%
-  set_number_format(value=2,col = c(3:5,7),row=2:3) %>%
-  set_label("tab:modComp") %>% 
-  set_caption("No interaction vs. full model") %>%
-  set_top_border(row=1,value=1,col=everywhere) %>%
-  set_bottom_border(row=1,value=1,col=2:7) %>% 
-  set_bottom_border(row=final(1),value=1,col=everywhere)
 ```
 
-The interaction between main effects, though, is not able to be confirmed (in fact, table \@ref(tab:modComp) shows the non-interaction to be better, but not to a stastically significance degree).
+The interaction between main effects, though, is not able to be confirmed (in fact, table \@ref(tab:modCom) shows the non-interaction to be better, but not to a stastically significance degree).
 
-```{r modCom2,include=F}
-comp <-anova(irt.full,irt.noRand)
-tab <- hux(comp[,c(1:2,4,6:8)],autoformat = T)
-tab <- add_rows(
-  tab, 
-  hux("Df","AIC","logLik","&Chi;<sup>2</sup>","Df(&Chi;)","p value"),
-  after=0
-)
-tab <- insert_column(
-  tab, c("","No random effects", "Full")
-)
+```{r modCom2}
+comp <- anova(irt.full,irt.noRand)
+row.names(comp) <- c("No random effects", "Full")
 
-tab %>% set_escape_contents(F,row=1,col=5:7) %>%
-  set_number_format(value=2,col = c(3:5,7),row=2:3) %>%
-  set_label("tab:modComp2") %>% 
-  set_caption("No random effects vs. full model") %>%
-  set_top_border(row=1,value=1,col=everywhere) %>%
-  set_bottom_border(row=1,value=1,col=2:7) %>% 
-  set_bottom_border(row=final(1),value=1,col=everywhere) 
+kable(comp,caption="Full model vs. no random effects",col.names=cols,escape=F)
+# tab <- hux(comp[,c(1:2,4,6:8)],autoformat = T)
+# tab <- add_rows(
+#   tab, 
+#   hux("Df","AIC","logLik","&Chi;<sup>2</sup>","Df(&Chi;)","p value"),
+#   after=0
+# )
+# tab <- insert_column(
+#   tab, c("","No random effects", "Full")
+# )
+# 
+# tab %>% set_escape_contents(F,row=1,col=5:7) %>%
+#   set_number_format(value=2,col = c(3:5,7),row=2:3) %>%
+#   set_label("tab:modComp2") %>% 
+#   set_caption("No random effects vs. full model") %>%
+#   set_top_border(row=1,value=1,col=everywhere) %>%
+#   set_bottom_border(row=1,value=1,col=2:7) %>% 
+#   set_bottom_border(row=final(1),value=1,col=everywhere) 
 ```
 
-Table \@ref(tab:modComp2) shows that the random effects of participant and item improve the model in a stastically signifcant way.
+Table \@ref(tab:modCom2) shows that the random effects of participant and item improve the model in a stastically signifcant way.
 
 \clearpage
 
@@ -963,7 +957,7 @@ kable(meansByVerb[,c(1,6:8)],caption="Effect of GP on wIRT by verb")%>% kable_st
 
 Individuals vary with regard to the effect of the garden path condition on IRT. For `r table(pmeansByCondition$pattern)["TRUE"]` of `r nrow(pmeansByCondition)`, the increase in IRT for garden paths is greater for interrogatives than it is for declaratives.
 
-```{r pPattern,include=F}
+```{r pPattern}
 kable(
   pmeansByCondition[c(1:5)],
   caption="Mean wIRT (ms) by condition and participant",
@@ -1043,7 +1037,7 @@ ggplot(na.omit(diffs), aes(diffs)) +
 
 If we calculate the mean delay difference by participant, we find a mean participant DelDef of `r round(diffsByP.props$mean/1000,1)`s. Each participant's DelDif is &le; `r diffsByP.props$min`ms and &ge; `r round( diffsByP.props$max/1000,1)`s, with a median of `r round(diffsByP.props$median/1000,2)`s. Table \@ref(tab:difsbyp) shows these values.
 
-```{r difsbyp,include=F}
+```{r difsbyp}
 kable(
   diffsByP[order(diffsByP[,2]),],
   digits = 0,
