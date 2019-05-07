@@ -11,7 +11,9 @@ output:
     latex_engine: xelatex
     citation_package: natbib
   bookdown::tufte_html2:  
-    toc: false
+    toc: true
+fontsize: 12pt
+mainfont: Cambria
 header-includes:
 - \usepackage{float}
 ---
@@ -131,9 +133,8 @@ pp1nGP <- round(pp1tab[pp1tab$PP1 & !pp1tab$Condition_GP,]$n/sum(pp1tab[!pp1tab$
 
 For garden paths, there is a break after PP1 in `r round(pp1yGP,1)`% of items and after the object in `r round(objyGP,1)`% , while non-garden paths had the post-PP1 break in `r round(pp1nGP,1)`% of cases and post-object break in `r round(objnGP,1)`%. 
 
-The post-object break split across both conditions are shown in table \@ref(tab:condobj).
-
 ```{r condobjPre}
+cols<-c("","+GP","-GP","Difference")
 objtabTotal<-subset(mdata, !is.na(OBJ)) %>%
   group_by(Condition_Q,Condition_GP) %>%
   summarise(n=n()) %>% 
@@ -155,19 +156,9 @@ colnames(objtab)[1]<-""
 objtab[,c(2:3)] <- round(objtab[,c(2:3)]/objtabTotal[,c(2:3)]*100,1)
 objtab<-rbind(objtab,c("Both",objyGP,objnGP))
 objtab$Difference <- as.numeric(objtab$`Garden path`) - as.numeric(objtab$`Non-garden path`)
-```
-```{r condobj}
-kable(
-  objtab,
-  digits=1,
-  caption="Percentage of recordings with an object break, by condition"
-) %>% kable_styling(latex_options = "hold_position")
-```
+colnames(objtab)<-cols
 
-The distribution of post-PP1 breaks split by both conditions can be seen in table \@ref(tab:condpp1).
-
-```{r condpp1Pre}
-objtabTotal<-subset(mdata, !is.na(PP1)) %>%
+pptabTotal<-subset(mdata, !is.na(PP1)) %>%
   group_by(Condition_Q,Condition_GP) %>%
   summarise(n=n()) %>% 
   mutate(Q=ifelse(Condition_Q,"Interrogative","Declarative"))%>%
@@ -175,7 +166,7 @@ objtabTotal<-subset(mdata, !is.na(PP1)) %>%
   subset(select=c("Q","GP","n")) %>%
   spread(GP,n)
 
-objtab<-subset(mdata, !is.na(PP1)) %>%
+pptab<-subset(mdata, !is.na(PP1)) %>%
   group_by(PP1,Condition_Q,Condition_GP) %>%
   summarise(n=n()) %>% 
   subset(PP1) %>%
@@ -184,16 +175,26 @@ objtab<-subset(mdata, !is.na(PP1)) %>%
   subset(select=c("Q","GP","n")) %>%
   spread(GP,n)
 
-colnames(objtab)[1]<-""
-objtab[,c(2:3)] <- round(objtab[,c(2:3)]/objtabTotal[,c(2:3)]*100,1)
-objtab<-rbind(objtab,c("Both",pp1yGP,pp1nGP))
-objtab$Difference <- as.numeric(objtab$`Garden path`) - as.numeric(objtab$`Non-garden path`)
+colnames(pptab)[1]<-""
+pptab[,c(2:3)] <- round(pptab[,c(2:3)]/pptabTotal[,c(2:3)]*100,1)
+pptab<-rbind(pptab,c("Both",pp1yGP,pp1nGP))
+pptab$Difference <- as.numeric(pptab$`Garden path`) - as.numeric(pptab$`Non-garden path`)
+colnames(pptab)<-cols
+
+ctab<-cbind(pptab,objtab)
+ctab <- ctab[c(1:4,6:8)]
+colnames(ctab)<-c(cols,cols[2:4])
 ```
-```{r condpp1}
+
+The distribution of post-PP1 and post-object breaks split across both conditions can be seen in table \@ref(tab:condtab).
+
+```{r condtab}
 kable(
-  objtab,
-  caption="Recordings with a PP1 break by condition"
-)%>% kable_styling(latex_options = "hold_position")
+  ctab,
+  caption="Percenatge of recordings with PP1/OBJ break by condition"
+) %>% 
+  add_header_above(c(" "=1,"PP1 Break" = 3,"OBJ Break"=3)) %>% 
+  kable_styling(latex_options = "hold_position")
 ```
 
 ## Previewed readings only
@@ -220,7 +221,9 @@ pp1nGP <- round(pp1tab[pp1tab$PP1 & !pp1tab$Condition_GP,]$n/sum(pp1tab[!pp1tab$
 The prevalence object break in previewed readings is described in table \@ref(tab:condobjr2).
 
 ```{r condobjr2Pre}
-objtabTotal<-subset(r2data, !is.na(OBJ)) %>%
+r2mdata<-subset(mdata,Reading==2)
+cols<-c("","+GP","-GP","Difference")
+objtabTotal<-subset(r2mdata, !is.na(OBJ)) %>%
   group_by(Condition_Q,Condition_GP) %>%
   summarise(n=n()) %>% 
   mutate(Q=ifelse(Condition_Q,"Interrogative","Declarative"))%>%
@@ -228,7 +231,7 @@ objtabTotal<-subset(r2data, !is.na(OBJ)) %>%
   subset(select=c("Q","GP","n")) %>%
   spread(GP,n)
 
-objtab<-subset(r2data, !is.na(OBJ)) %>%
+objtab<-subset(r2mdata, !is.na(OBJ)) %>%
   group_by(OBJ,Condition_Q,Condition_GP) %>%
   summarise(n=n()) %>% 
   subset(OBJ) %>%
@@ -241,18 +244,9 @@ colnames(objtab)[1]<-""
 objtab[,c(2:3)] <- round(objtab[,c(2:3)]/objtabTotal[,c(2:3)]*100,1)
 objtab<-rbind(objtab,c("Both",objyGP,objnGP))
 objtab$Difference <- as.numeric(objtab$`Garden path`) - as.numeric(objtab$`Non-garden path`)
-```
-```{r condobjr2}
-kable(
-  objtab,
-  caption="Percentage of previewed recordings with an object break, by condition"
-)%>% kable_styling(latex_options = "hold_position")
-```
+colnames(objtab)<-cols
 
-The occurence of a PP1 break in previewed readings is shown in table \@ref(tab:condpp1r2).
-
-```{r condpp1r2pre}
-objtabTotal<-subset(r2data, !is.na(PP1)) %>%
+pptabTotal<-subset(r2mdata, !is.na(PP1)) %>%
   group_by(Condition_Q,Condition_GP) %>%
   summarise(n=n()) %>% 
   mutate(Q=ifelse(Condition_Q,"Interrogative","Declarative"))%>%
@@ -260,7 +254,7 @@ objtabTotal<-subset(r2data, !is.na(PP1)) %>%
   subset(select=c("Q","GP","n")) %>%
   spread(GP,n)
 
-objtab<-subset(r2data, !is.na(PP1)) %>%
+pptab<-subset(r2mdata, !is.na(PP1)) %>%
   group_by(PP1,Condition_Q,Condition_GP) %>%
   summarise(n=n()) %>% 
   subset(PP1) %>%
@@ -269,16 +263,26 @@ objtab<-subset(r2data, !is.na(PP1)) %>%
   subset(select=c("Q","GP","n")) %>%
   spread(GP,n)
 
-colnames(objtab)[1]<-""
-objtab[,c(2:3)] <- round(objtab[,c(2:3)]/objtabTotal[,c(2:3)]*100,1)
-objtab<-rbind(objtab,c("Both",pp1yGP,pp1nGP))
-objtab$Difference <- as.numeric(objtab$`Garden path`) - as.numeric(objtab$`Non-garden path`)
+colnames(pptab)[1]<-""
+pptab[,c(2:3)] <- round(pptab[,c(2:3)]/pptabTotal[,c(2:3)]*100,1)
+pptab<-rbind(pptab,c("Both",pp1yGP,pp1nGP))
+pptab$Difference <- as.numeric(pptab$`Garden path`) - as.numeric(pptab$`Non-garden path`)
+colnames(pptab)<-cols
+
+ctab<-cbind(pptab,objtab)
+ctab <- ctab[c(1:4,6:8)]
+colnames(ctab)<-c(cols,cols[2:4])
 ```
+
+The occurence of a PP1 or object break in previewed readings is shown in table \@ref(tab:condpp1r2).
+
 ```{r condpp1r2}
 kable(
-  objtab,
-  caption="Percentage of previewed recordings with a PP1 break, by condition"
-)%>% kable_styling(latex_options = "hold_position")
+  ctab,
+  caption="Percentage of previewed recordings with a PP1/OBJ break, by condition"
+) %>% 
+  add_header_above(c(" "=1,"PP1 Break" = 3,"OBJ Break"=3)) %>% 
+  kable_styling(latex_options = "hold_position")
 ```
 
 ## PP1 and object breaks combined
@@ -316,10 +320,9 @@ allpros$`Cold readings` <- r1pros$r1
 allpros$`Previewed readings` <- r2pros$r2
 ```
 ```{r combobreaks}
-kable(allpros,caption="Combined breaks by reading") %>% kable_styling(latex_options = "hold_position")
+kable(allpros,caption="Combined breaks by reading") %>% 
+  kable_styling(latex_options = "hold_position")
 ```
-
-Table \@ref(tab:combobreaksBycond) shows the distribution of the combination of the breaks by condition.
 
 ```{r combobreaksBycondPre}
 qdata <- subset(pdata,Condition_Q)
@@ -336,14 +339,8 @@ colnames(dpros)<-c("-GP","+GP")
 
 combo<-cbind(dpros,qpros)
 ```
-```{r combobreaksBycond}
-kable(combo,caption="Combined breaks by condition for both readings") %>%
-  add_header_above(c(" "=1,"Declarative" = 2, "Interrogative"=2)) %>%
-  column_spec(1,bold=T)%>% kable_styling(latex_options = "hold_position")
 
-```
-
-The distrbution of the combined breaks for only previewed readings is shown in table \@ref(tab:r2combobreaksBycond).
+The distrbution of the combined breaks for both readings and for only previewed readings is shown in table \@ref(tab:r2combobreaksBycond).
 
 ```{r r2combobreaksBycondpre}
 r2pdata<-subset(pdata,Reading==2)
@@ -359,11 +356,13 @@ dpros<-table(ddata$simple2lvl,ddata$Condition_GP) %>%
   round(1)
 colnames(dpros)<-c("-GP","+GP")
 
-combo<-cbind(dpros,qpros)
+ccombo<-cbind(dpros,qpros)
+cccombo<-cbind(combo,ccombo)
 ```
 ```{r r2combobreaksBycond}
-kable(combo,caption="Combined breaks by condition for previewed readings") %>%
-  add_header_above(c(" "=1,"Declarative" = 2, "Interrogative"=2)) %>%
+kable(cccombo,caption="Combined breaks by condition for previewed readings") %>%
+  add_header_above(c(" "=1,"Declarative" = 2, "Interrogative"=2,"Declarative" = 2, "Interrogative"=2)) %>%
+  add_header_above(c(" "=1,"Both readings" = 4,"Previewed readings"=4)) %>%
   column_spec(1,bold=T)%>% kable_styling(latex_options = "hold_position")
 
 ```
@@ -373,6 +372,9 @@ kable(combo,caption="Combined breaks by condition for previewed readings") %>%
 Table \@ref(tab:pros2lvl) presents data similar to those in the previous section, but it incorporates the rater's judgement of the relative prominence of the breaks. The &gt; symbol indicates that the rater found the break on the left of that symbol to be stronger, or more prominent, than the break on the left. When no symbol is shown between the two breaks, the rather found them to be of equal prominence. Please be aware that inter-rater reliability for relative prominence was not good, as discussed in section \@ref(raterRel).
 
 ```{r pros2lvlPre}
+
+# TODO present this table across condition(s)
+
 allpros<-table(mdata$two_level_prosody)%>%
   prop.table() %>% 
   `*` (100) %>%
@@ -449,6 +451,7 @@ colnames(all_strug)<-c("Cold reading", "Previewed reading")
 row.names(all_strug)<-c("Fluent", "Struggle")
 ```
 ```{r strug}
+# TODO combine this table and next
 kable(all_strug, caption="Difficulty in reading by reading type")%>% kable_styling(latex_options = "hold_position")
 ```
 
@@ -848,7 +851,7 @@ A model with no fixed effects and one with no random effects were also run. The 
 
 \clearpage
 
-Several model comparisons were made, seen in the following tables.
+Several model comparisons were made, seen in tables \@ref(tab:modCom3), \@ref(tab:modCom), and \@ref(tab:modCom2).
 
 ```{r modCom3}
 cols <- c(
@@ -938,9 +941,9 @@ meansByVerb$`Difference in effect`<-meansByVerb$`Declarative GP effect`-meansByV
 meansNsd<-sdByVerb
 for (col in colnames(meansNsd)[2:5]){
   meansNsd[[col]]<- paste(
-    round(meansByVerb[[col]]/1000,1), 
+    round(meansByVerb[[col]],1), 
     " (",
-    round(meansNsd[[col]]/1000,1),
+    round(meansNsd[[col]],1),
     ")",
     sep=""
   )
@@ -966,8 +969,8 @@ Individuals vary with regard to the effect of the garden path condition on IRT. 
 kable(
   pmeansByCondition[c(1:5)],
   caption="Mean wIRT (ms) by condition and participant",
-  longtab=T
-)%>% kable_styling(latex_options = "hold_position")
+  longtable=T
+)%>% kable_styling(latex_options = c("hold_position", "repeat_header"))
 ```
 
 \clearpage
@@ -996,7 +999,16 @@ fillerModel <- lmer(irt ~ Condition_Q + (1 |Participant) + (1 |Item),data=irt_fi
 fillerModel.pp <- lmer(irt ~ Condition_Q * Condition_GP + (1|Participant) + (1 |Item),data=irt_fillers, REML=F)
 fillerModel.ppNoInt <- lmer(irt ~ Condition_Q + Condition_GP + (1|Participant) + (1 |Item),data=irt_fillers, REML=F)
 
-tab_model(fillerModel,fillerModel.pp,fillerModel.ppNoInt)
+huxreg(
+  list("Only Interogitivity"=fillerModel,"Full"=fillerModel.pp,"No interaction"=fillerModel.ppNoInt),
+  number_format = 2, 
+  coefs=c(
+    "(Intercept)"="(Intercept)",
+    "+Q" = "Condition_QTRUE",
+    "+GP" ="Condition_GPTRUE",
+    "+Q * +GP" = "Condition_QTRUE:Condition_GPTRUE" 
+  )
+) 
 ```
 
 The mean IRT for interrogative fillers was `r round(mean.irtByQ[1,]$x/1000,1)`s; for declarative, `r round(mean.irtByQ[1,]$x/1000,1)`s. Interrogatives elicited a mean IRT of `r round(diff(mean.irtByQ$x),0)`ms longer than declaratives. Half of the fillers had a string of two PPs at the end. This did not impact IRT to the same degree (a difference of `r abs(round(diff(mean.irtByPP$x),0))`ms across &plusmn;PP).
@@ -1047,10 +1059,11 @@ If we calculate the mean delay difference by participant, we find a mean partici
 ```{r difsbyp}
 kable(
   diffsByP[order(diffsByP[,2]),],
+  row.names=F,
   digits = 0,
   caption="Delay differences by participant",
   longtab=T
-)%>% kable_styling(latex_options = "hold_position")
+)%>% kable_styling(latex_options = c("hold_position", "repeat_header"))
 ```
 
 The distribution of the participants' DelDifs can be found in Figure \@ref(fig:difhistbyp).
