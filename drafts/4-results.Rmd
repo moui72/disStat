@@ -60,10 +60,6 @@ theme_set(
 
 ```
 
-This section reports various analyses of the recordings obtained.
-
-# Prosody {#results-prosody}
-
 ```{r prosody-setup}
 mdata_raw <- read_csv("../csvs/got_prosody.csv")
 # remove items where STRONG == NA (these are the items Sita didn't respond to)
@@ -83,7 +79,7 @@ mdata$PP1<-mdata$PP1 == "YES"
 mdata$STRUG<-mdata$STRUG == "YES"
 mdata$condition <- with(mdata,
   paste(
-    ifelse(Condition_Q,"+Q","-Q"),
+    ifelse(Condition_Q,"Q","D"),
     ifelse(Condition_GP,"+GP","-GP")
   )
 )
@@ -110,16 +106,220 @@ mdata$simple2lvl <- ifelse(
     )
   )
 )
-
+mdata$simple2lvl <- as.factor(mdata$simple2lvl)
 mdata<-subset(mdata,SID!=8)
 mdata <- droplevels(mdata)
 mdata <- subset(mdata,!is.na(OBJ)|!is.na(PP1))
+
+```
+
+```{r irt-setup, cache=T}
+itemsDf <- read_csv(
+  "../csvs/src/items.csv", 
+  col_types = cols(
+    OBJ = col_skip(), 
+    `P>NP1` = col_skip(), 
+    `P>NP2+GP` = col_skip(), 
+    `P>NP2-GP` = col_skip(), 
+    target = col_character()
+  )
+)
+itemsDf$Item<-itemsDf$target
+itemsDf$target <- NULL
+# load files
+use_old <- FALSE
+old<-"../csvs/irt-rvad-4_11.csv"
+new<-"../csvs/irt-merged.csv"
+raw_file <- read_csv(ifelse(use_old,old,new), 
+  col_types = cols(
+    Item = col_factor(levels = seq(1,48)), 
+    Participant = col_character()
+  )
+)
+
+irt_data <- raw_file
+
+# P 8 is messed up
+irt_data<-subset(irt_data,Participant != 8)
+
+# demographics
+pmeta <- read_csv("../csvs/p-meta.csv")
+pmeta$Participant <- pmeta$ID
+irt_data<-merge(pmeta,irt_data,by="Participant")
+irt_data$wkd <- ifelse(irt_data$DOTW == "MONDAY", 1,
+                ifelse(irt_data$DOTW == "TUESDAY", 2, 
+                ifelse(irt_data$DOTW == "WEDNESDAY", 3, 
+                ifelse(irt_data$DOTW == "THURSDAY", 4, 
+                5))))
+
+
+
+  
+irt_data$cond <- paste(
+  ifelse(irt_data$Condition_Q,"Q","D"),
+  ifelse(
+    irt_data$isFiller,
+    ifelse(irt_data$Condition_GP,"+PP","-PP"),
+    ifelse(irt_data$Condition_GP,"+GP","-GP")
+  )
+)
+
+irt_data$Q <- ifelse(
+  irt_data$Condition_Q,
+  "Q",
+  "D"
+)
+irt_data$GP <- ifelse(
+  irt_data$Condition_GP,
+  "+GP",
+  "-GP"
+)
+
+irt_data_all <- irt_data # data before trimming
+
+# exclude 250 < IRTs > 25000
+irt_min <- 250
+irt_max <- 25000
+
+# note how many IRTs are excluded for implausibility
+irt_lo <- subset(irt_data, irt < irt_min)
+irt_hi <- subset(irt_data, irt > irt_max)
+
+# subset to trimmed items
+irt_data <- subset(
+  irt_data, 
+  irt > irt_min & irt < irt_max
+)
+
+# with fillers
+irt_data_allitems <- irt_data
+irt_fillers <- subset(irt_data,isFiller)
+
+# experimental only
+irt_data <- subset(irt_data,!isFiller)
+irt_data <- (merge(itemsDf, irt_data, by = 'Item'))
+
+# make Participant and Item factors with specified ref levels 
+irt_data$Participant<-relevel(as.factor(irt_data$Participant),ref=5)
+irt_data$Item<-relevel(as.factor(irt_data$Item),ref=1)
+
+# winsorize top/bottom 2.5% of data (for normal distrbution, this is +/- 2sd)
+# see: https://sciencing.com/relationship-between-standard-deviations-percentiles-8768703.html
+win_trim=0.025
+irt_data <- irt_data %>% group_by(Participant) %>% mutate(win_irt = winsor(irt, trim=win_trim))
+
+# log 10 transform
+irt_data$wirt.log10 <- log10(irt_data$win_irt)
+
+# meta 
+json <- read_file("../meta-4_11.json")
+meta<-fromJSON(json)
+handset <- read.csv("../csvs/_SITA_SET_VALUES.csv")
+meta[meta$file %in% handset$Filename,]$agg <- NA
+meta[meta$file %in% handset$Filename,]$hpf <- NA
+hscount <- sum(handset$Filename %in% meta$file)
+
+
+write_csv(irt_data_allitems,"export/all_data.csv")
+```
+```{r normalize sets}
+irt_data$ID <- paste0(irt_data$Participant,"-",irt_data$Item)
+mdata$ID <- paste0(mdata$SID,"-",mdata$IID)
+
+irt_data <- subset(irt_data, ID %in% mdata$ID)
+mdata <- subset(mdata,ID %in% irt_data$ID)
+```
+```{r describe}
+# counts
+irt_data$Participant <- as.factor(irt_data$Participant)
+irt_data$Participant <- relevel(irt_data$Participant,ref=9)
+recs<-nrow(irt_data)
+subjs<-length(levels(irt_data$Participant))
+items<-length(levels(irt_data$Item))
+expectN <- subjs * items
+
+
+# utterance lengths
+if(!use_old){
+  # only available in newer files
+  uls <- append(irt_data$`R1 UL`,irt_data$`R2 UL`)
+  uls_desc <- describe(uls)
+  uls_r1_desc <- describe(irt_data$`R1 UL`)
+  uls_r2_desc <- describe(irt_data$`R2 UL`)
+}
+
+# note properties
+irt_props_all <- describe(irt_data$irt)
+irt_props <- describe(irt_data$irt)
+wirt_props <- describe(irt_data$win_irt)
+
+# sd by condition table
+sdByConditionLong <- aggregate(
+  irt_data$win_irt,
+  by=list(
+    "Q"=irt_data$Q,
+    "GP"=irt_data$GP
+  ),
+  FUN=sd
+)
+
+# means by condition table
+meansByConditionLong <- aggregate(
+  irt_data$win_irt,
+  by=list(
+    "Q"=irt_data$Q,
+    "GP"=irt_data$GP
+  ),
+  FUN=mean
+)
+names(meansByConditionLong)[3] <- "mean"
+# concise means by condition table
+meansByCondition <- meansByConditionLong %>% spread(Q,mean) 
+names(meansByCondition)[1] <- "Condition"
+# add sd and se to meansByConditionLong
+meansByConditionLong$sd<-sdByConditionLong$x
+meansByConditionLong$se<-sdByConditionLong$x/sqrt(irt_props$n)
+
+
+# difference in condition means
+diffs<-list(Condition="Increase", `D`=diff(meansByCondition$`D`), `Q`= diff(meansByCondition$`Q`))
+meansByCondition<-rbind(meansByCondition, diffs)
+cdiff <- meansByCondition$`D`[3]-meansByCondition$`Q`[3]
+
+# participant means by condition
+pmeansByCondition <- aggregate(
+  irt_data$irt,
+  by=list(
+    "Condition"=irt_data$cond,
+    "Participant"=irt_data$Participant
+  ),
+  FUN=mean
+) %>% spread(Condition,x) 
+pmeansByCondition$pattern <- (
+  pmeansByCondition$`Q +GP` - pmeansByCondition$`Q -GP` <
+  pmeansByCondition$`D +GP` - pmeansByCondition$`D -GP`
+) 
+
+# simple P means
+spm <- aggregate(
+  irt_data$irt,
+  by=list(
+    "Participant"=irt_data$Participant
+  ),
+  FUN=mean
+) 
+
+ 
 prosDescrip <- describe(mdata)
 tot<-as.data.frame(xtabs( ~ Condition_GP + Condition_Q, data=mdata))
 write_csv(mdata,"export/prosody_data.csv")
 ```
 
-This subsection presents the results of the independent rater's judgements regarding prosodic boundaries. Data are excluded if either recording from a pair of recordings (that is, the cold or previewed reading) is missing (excluded `r missingPairs` incomplete pairs) because without the other member, it can't be determined whether the delay before reading constitutes a true cold or true previewed reading. Recordings with no reported breaks are also excluded from most analyses, because these are assumed to be faulty utterances (excluded `r table(mdata$simple2lvl)["NEITHER"]` such recordings) but the paired readings of these are not excluded, because delay information is available for both items.
+This section reports various analyses of the recordings obtained. There is a total of 32 participants included, 48 total items, 16 of which are experimental items, with each item read twice by each participant. There were 4 versions of the experiment. Some items are missing due to technical issues during data collection. Other data were excluded due to factors explained later. Ultimately, `r nrow(mdata)` recordings are analyzed (`r nrow(irt_data)` pairs).
+
+# Prosody {#results-prosody}
+
+This subsection presents the results of the independent rater's judgements regarding prosodic boundaries. Data are excluded if either recording from a pair of recordings (reading 1 or reading 2) is missing (there were `r missingPairs` incomplete pairs excluded) because without the other member, it is difficult to determine the extent to which the participant followed instructions (i.e. did not study the sentence before reading 1, did study the sentence before reading 2). Recordings with no reported breaks are excluded from the prosodic analyses, since they are unlikely to represent the reader's intended prosodic structure (there were `r table(mdata$simple2lvl)["NEITHER"]` such recordings). The paired readings of these are not excluded, and IRTs extracted from them are included in the timing analyses, since delay information is available for both readings.
 
 ```{r totByCond}
 totDisp <- tot %>% as.data.frame() %>%
@@ -127,19 +327,24 @@ totDisp <- tot %>% as.data.frame() %>%
 totDisp[[1]] <- c("-GP", "+GP")
 kable(
   totDisp,
-  col.names=c(" ", "-Q", "+Q"),
+  col.names=c(" ", "D", "Q"),
   caption="N by condition"
 ) %>% kable_styling(latex_options = c("hold_position"))
 ```
 
-Table \ref{tab:totByCond} shows the number of recordings included in analyses for each condition.
+Table \ref{tab:totByCond} shows the number of recordings included in analyses for each condition. If no items had been excluded, the expected number per bin would be `r 32*16/4*2`[^n].
 
+[^n]: There are 32 participants, 16 items, and 2 readings, divided across 4 bins.
+
+The sentences can be informally broken into regions as in \ref{@structure}.
+
+  (@structure) [~SUBJ~ She] [~VERBS~ had intended to set] [~OBJ~ the clothes] ~OBJ~ [~PP1~ in the hamper] ~PP1~ [~PP2~ onto the dresser].
+
+In what follows, I will discuss prosodic breaks at the points directly after the direct object (referred to as OBJ) and directly after PP1 (referred to as PP1).
 
 ## Breaks after PP1 and direct object
 
-The garden path condition reprents the expected "correct" attachment site of PP1 and PP2. You may recall that the garden path sentences should ultimately have a PP1 that attaches low, as a modifier of the object, and a PP2 that attaches high, as an argument of the verb. To determine whether the prosody is predictive of attachment site, the distributions of breaks directly before PP1 (directly after the object; I call this the "object break") and directly before PP2 (directly after PP1; I call this the "PP1 break") are analyzed.
-
-Across all experimental items, there was a break after the direct object in `r round(nrow(mdata[mdata$OBJ,])/nrow(subset(mdata,!is.na(OBJ)))*100,1)`% of recordings and a break after PP1 in `r round(nrow(mdata[mdata$PP1,])/nrow(subset(mdata,!is.na(PP1)))*100,1)`%.
+The PP1 break is expected when PP2, attaches high; i.e., the garden path condition, and is not expected in the non-garden paths, when PP2 attaches low. The OBJ break does not correspond to any expected syntactic structure, and likely represents a breath group or some other not-syntactically-motivated break reason.
 
 ```{r byGPall}
 
@@ -191,19 +396,19 @@ pp1obj[[1]] <- c("+GP","-GP")
 kable(
   pp1obj,
   caption="Percentage of recordings containing PP1/OBJ break by condition",
-  col.names = c("", "-Q", "+Q","-Q", "+Q")
+  col.names = c("", "D", "Q","D", "Q")
 ) %>% 
   add_header_above(c(" "=1,"PP1 Break"=2,"OBJ Break"=2)) %>% kable_styling(latex_options = c("hold_position"))
 ```
 
 Table \ref{tab:pp1gp} shows the presence of object and PP1 breaks by condition.
 
-## Previewed readings only
+## The two readings
 
-Because "natural prosody" is likely to be less often produced in a cold reading than in a previewed one, it's important to consider the prosodic patterns for the two readings independently. This subsection describes previewed readings.
+Because "natural prosody" is likely to be less often produced in reading 1 than in a reading 2, it's important to consider the prosodic patterns for the two readings independently. 
 
 ```{r byGPr2}
-
+# r2
 r2data <- subset(mdata,Reading==2)
 
 pp1tab<-xtabs(PP1 ~ Condition_GP + Condition_Q, data=r2data)
@@ -247,102 +452,107 @@ objdisp <- obj %>%
 
 pp1obj <- cbind(pp1disp,objdisp[2:3])
 pp1obj[[1]] <- c("-GP","+GP")
+
+# r1
+r1data <- subset(mdata,Reading==1)
+
+pp1tab<-xtabs(PP1 ~ Condition_GP + Condition_Q, data=r1data)
+objtab<-xtabs(OBJ ~ Condition_GP + Condition_Q, data=r1data)
+tot<-as.data.frame(xtabs( ~ Condition_GP + Condition_Q, data=r1data))
+
+
+pp1<-as.data.frame(pp1tab)
+pp1$tot<-tot$Freq
+pp1$pct <- pp1$Freq/pp1$tot
+pp1$pretty <- paste0(
+  pp1$Freq, 
+  " (", 
+  sprintf("%.1f",pp1$pct * 100), 
+  "%)"
+)
+pp1disp <- pp1 %>%
+  subset(select=c(
+    "Condition_GP",
+    "Condition_Q",
+    "pretty"
+  )) %>% 
+  spread(Condition_Q,pretty)
+
+obj<-as.data.frame(objtab)
+obj$tot<-tot$Freq
+obj$pct <- obj$Freq/obj$tot
+obj$pretty <- paste0(
+  obj$Freq, 
+  " (", 
+  sprintf("%.1f",obj$pct * 100), 
+  "%)"
+)
+objdisp <- obj %>%
+  subset(select=c(
+    "Condition_GP",
+    "Condition_Q",
+    "pretty"
+  )) %>% 
+  spread(Condition_Q,pretty)
+
+pp1objr1 <- cbind(pp1disp,objdisp[2:3])
+pp1objr1[[1]] <- c("-GP","+GP")
 ```
 
-The prevalence of object breaks and PP1 breaks in previewed readings is described in table \ref{tab:r2pp1obj}.
+The prevalence of object breaks and PP1 breaks for each condition in reading 2 recordings is described in table \ref{tab:r2pp1obj}.
 
 ```{r r2pp1obj}
 kable(
   pp1obj,
-  caption="Percentage of \\underline{previewed} recordings containing PP1/OBJ break by condition",
-  col.names = c("", "-Q", "+Q","-Q", "+Q")
+  caption="Reading 2 recordings containing PP1/OBJ break by condition",
+  col.names = c("", "D", "Q","D", "Q")
 ) %>% 
   add_header_above(c(" "=1,"PP1 Break"=2,"OBJ Break"=2)) %>% 
   kable_styling(latex_options = c("hold_position"))
 ```
 
+For comparison, \ref{tab:r1pp1obj} is the same table for reading 1 recordings. 
+
+```{r r1pp1obj}
+kable(
+  pp1objr1,
+  caption="Reading 1 recordings containing PP1/OBJ break by condition",
+  col.names = c("", "D", "Q","D", "Q")
+) %>% 
+  add_header_above(c(" "=1,"PP1 Break"=2,"OBJ Break"=2)) %>% 
+  kable_styling(latex_options = c("hold_position"))
+```
+
+The primary difference across readings is in the OBJ break distribution. For the analyses that follow, reading 1 will largely be ignored.
+
 ## PP1 and object breaks combined
 
-Less than 1% of the data had neither break. Those data are excluded.
-
-```{r combobreaksPre}
-pdata <- subset(mdata,OBJ|PP1)
-allpros <- table(pdata$simple2lvl) %>%
-  prop.table() %>% 
-  `*` (100) %>%
-  round(1) %>%
-  hux() %>%
-  setNames(c("Combined breaks", "Percent of all data"))
-
-r2pros<-table(
-  subset(pdata,Reading==2)$simple2lvl
-) %>%
-  prop.table() %>% 
-  `*` (100) %>%
-  round(1) %>%
-  hux() %>%
-  setNames(c("Pattern", "r2")) 
-
-r1pros<-table(
-  subset(pdata,Reading==1)$simple2lvl
-) %>%
-  prop.table() %>% 
-  `*` (100) %>%
-  round(1) %>%
-  hux() %>%
-  setNames(c("Pattern", "r1")) 
-
-allpros$`Cold readings` <- r1pros$r1
-allpros$`Previewed readings` <- r2pros$r2
-```
-
-```{r combobreaks}
-kable(allpros,caption="Combined breaks by reading") %>%
-  kable_styling(latex_options = "hold_position")
-```
-
-```{r combobreaksBycondPre}
-qdata <- subset(pdata,Condition_Q)
-ddata <- subset(pdata,!Condition_Q)
-qpros<-table(qdata$simple2lvl,qdata$Condition_GP) %>%
-  prop.table(margin=2) %>% `*`(100) %>%
-  round(1)
-colnames(qpros)<-c("-GP","+GP")
-
-dpros<-table(ddata$simple2lvl,ddata$Condition_GP) %>%
-  prop.table(margin=2) %>% `*`(100) %>%
-  round(1)
-colnames(dpros)<-c("-GP","+GP")
-
-combo<-cbind(dpros,qpros)
-```
-
-The distrbution of the combined breaks for both readings and for only previewed readings is shown in table \ref{tab:r2combobreaksBycond}.
+It is perhaps more interesting to look at the combined distribution of the breaks: i.e., a sentence can have one of four patterns: OBJ and PP1 breaks are present; only OBJ or only PP1 is present; or neither is present. As mentioned earlier, there were only 5 cases where neither are present, and those are excluded.
 
 ```{r r2combobreaksBycondpre}
 r2pdata<-subset(pdata,Reading==2)
-qdata <- subset(r2pdata,Condition_Q)
-ddata <- subset(r2pdata,!Condition_Q)
-qpros<-table(qdata$simple2lvl,qdata$Condition_GP) %>%
+qdata <- subset(r2pdata,Condition_GP)
+ddata <- subset(r2pdata,!Condition_GP)
+qpros<-table(qdata$simple2lvl,qdata$Condition_Q) %>%
   prop.table(margin=2) %>% `*`(100) %>%
   round(1)
-colnames(qpros)<-c("-GP","+GP")
+colnames(qpros)<-c("D","Q")
 
-dpros<-table(ddata$simple2lvl,ddata$Condition_GP) %>%
+dpros<-table(ddata$simple2lvl,ddata$Condition_Q) %>%
   prop.table(margin=2) %>% `*`(100) %>%
   round(1)
-colnames(dpros)<-c("-GP","+GP")
+colnames(dpros)<-c("D","Q")
 
 ccombo<-cbind(dpros,qpros)
-cccombo<-cbind(combo,ccombo)
 ```
 ```{r r2combobreaksBycond}
-kable(cccombo,caption="Combined breaks by condition for previewed readings") %>%
-  add_header_above(c(" "=1,"Declarative" = 2, "Interrogative"=2,"Declarative" = 2, "Interrogative"=2)) %>%
-  add_header_above(c(" "=1,"Both readings" = 4,"Previewed readings"=4)) %>%
+kable(ccombo,caption="Combined breaks by condition in reading 2 only") %>%
+  add_header_above(c(" "=1,"Non-garden path" = 2, "Garden path"=2)) %>%
   column_spec(1,bold=T)%>% kable_styling(latex_options = "hold_position")
 
 ```
+
+Table \ref{tab:r2combobreaksBycond} shows that for +GP sentences, there are very few instances with the OBJ-only pattern (0.8% in declaratives, 2.5% in interrogatives); whereas that pattern is fairly robust for -GP sentences (31.1% in declaratives, 31.4% in interrogatives). The pattern with both breaks is somewhat more common for +GP sentences (72.1% in declaratives, 71.7% in interrogatives) than -GP (54.1% in declaratives, 43.0% in interrogatives). The PP1-only pattern occurs at about the same rate in +GP interrogatives (25.8%) as in -GP interrogatives (25.6%) and +GP declaratives (27%), but is noticeably less common for -GP declaratives (14.8%).
 
 ## PP1 and object breaks and their relative prominence
 
@@ -461,8 +671,8 @@ huxreg(
   coefs = c(
     "Intercept"="(Intercept)",
     "+GP"="Condition_GPTRUE",
-    "+Q"="Condition_QTRUE",
-    "+GP +Q"="Condition_QTRUE:Condition_GPTRUE",
+    "Q"="Condition_QTRUE",
+    "+GP Q"="Condition_QTRUE:Condition_GPTRUE",
     "Previewed reading" = "Reading2",
     "Participant"="sd_(Intercept).SID",
     "Item"="sd_(Intercept).IID"
@@ -488,186 +698,6 @@ Cold vs. previewed reading is a statistically significant predictor in every cas
 
 # Inter-reading time (IRT) {#results-irt}
 
-```{r irt-setup, cache=T}
-itemsDf <- read_csv(
-  "../csvs/src/items.csv", 
-  col_types = cols(
-    OBJ = col_skip(), 
-    `P>NP1` = col_skip(), 
-    `P>NP2+GP` = col_skip(), 
-    `P>NP2-GP` = col_skip(), 
-    target = col_character()
-  )
-)
-itemsDf$Item<-itemsDf$target
-
-# load files
-use_old <- FALSE
-old<-"../csvs/irt-rvad-4_11.csv"
-new<-"../csvs/irt-merged.csv"
-raw_file <- read_csv(ifelse(use_old,old,new), 
-  col_types = cols(
-    Item = col_factor(levels = seq(1,48)), 
-    Participant = col_character()
-  )
-)
-
-irt_data <- raw_file
-
-# P 8 is messed up
-irt_data<-subset(irt_data,Participant != 8)
-
-# demographics
-pmeta <- read_csv("../csvs/p-meta.csv")
-pmeta$Participant <- pmeta$ID
-irt_data<-merge(pmeta,irt_data,by="Participant")
-irt_data$wkd <- ifelse(irt_data$DOTW == "MONDAY", 1,
-                ifelse(irt_data$DOTW == "TUESDAY", 2, 
-                ifelse(irt_data$DOTW == "WEDNESDAY", 3, 
-                ifelse(irt_data$DOTW == "THURSDAY", 4, 
-                5))))
-
-
-# counts
-irt_data$Participant <- as.factor(irt_data$Participant)
-irt_data$Participant <- relevel(irt_data$Participant,ref=9)
-recs<-nrow(irt_data)
-subjs<-length(levels(irt_data$Participant))
-items<-length(levels(irt_data$Item))
-expectN <- subjs * items
-  
-irt_data$cond <- paste(
-  ifelse(irt_data$Condition_Q,"+Q","-Q"),
-  ifelse(
-    irt_data$isFiller,
-    ifelse(irt_data$Condition_GP,"+PP","-PP"),
-    ifelse(irt_data$Condition_GP,"+GP","-GP")
-  )
-)
-
-irt_data$Q <- ifelse(
-  irt_data$Condition_Q,
-  "+Q",
-  "-Q"
-)
-irt_data$GP <- ifelse(
-  irt_data$Condition_GP,
-  "+GP",
-  "-GP"
-)
-
-# utterance lengths
-if(!use_old){
-  # only available in newer files
-  uls <- append(irt_data$`R1 UL`,irt_data$`R2 UL`)
-  uls_desc <- describe(uls)
-  uls_r1_desc <- describe(irt_data$`R1 UL`)
-  uls_r2_desc <- describe(irt_data$`R2 UL`)
-}
-
-irt_props_all <- describe(irt_data$irt)
-irt_data_all <- irt_data # data before trimming
-
-# exclude 250 < IRTs > 25000
-irt_min <- 250
-irt_max <- 25000
-
-# note how many IRTs are excluded for implausibility
-irt_lo <- subset(irt_data, irt < irt_min)
-irt_hi <- subset(irt_data, irt > irt_max)
-
-# subset to trimmed items
-irt_data <- subset(
-  irt_data, 
-  irt > irt_min & irt < irt_max
-)
-# with fillers
-irt_data_allitems <- irt_data
-irt_fillers <- subset(irt_data,isFiller)
-# experimental only
-irt_data <- subset(irt_data,!isFiller)
-irt_data <- (merge(itemsDf, irt_data, by = 'Item'))
-# make Participant and Item factors with specified ref levels 
-irt_data$Participant<-relevel(irt_data$Participant,ref=5)
-irt_data$Item<-relevel(as.factor(irt_data$Item),ref=1)
-# winsorize top/bottom 5% of data (for normal distrbution, this is +/- 2sd)
-# see: https://sciencing.com/relationship-between-standard-deviations-percentiles-8768703.html
-win_trim=0.05
-irt_data <- irt_data %>% group_by(Participant) %>% mutate(win_irt = winsor(irt, trim=win_trim))
-
-# log 10 transform
-irt_data$wirt.log10 <- log10(irt_data$win_irt)
-
-# note properties
-irt_props <- describe(irt_data$irt)
-wirt_props <- describe(irt_data$win_irt)
-
-# sd by condition table
-sdByConditionLong <- aggregate(
-  irt_data$win_irt,
-  by=list(
-    "Q"=irt_data$Q,
-    "GP"=irt_data$GP
-  ),
-  FUN=sd
-)
-# means by condition table
-meansByConditionLong <- aggregate(
-  irt_data$win_irt,
-  by=list(
-    "Q"=irt_data$Q,
-    "GP"=irt_data$GP
-  ),
-  FUN=mean
-)
-names(meansByConditionLong)[3] <- "mean"
-# concise means by condition table
-meansByCondition <- meansByConditionLong %>% spread(Q,mean) 
-names(meansByCondition)[1] <- "Condition"
-# add sd and se to meansByConditionLong
-meansByConditionLong$sd<-sdByConditionLong$x
-meansByConditionLong$se<-sdByConditionLong$x/sqrt(irt_props$n)
-
-
-# difference in condition means
-diffs<-list(Condition="Increase", `-Q`=diff(meansByCondition$`-Q`), `+Q`= diff(meansByCondition$`+Q`))
-meansByCondition<-rbind(meansByCondition, diffs)
-cdiff <- meansByCondition$`-Q`[3]-meansByCondition$`+Q`[3]
-
-# participant means by condition
-pmeansByCondition <- aggregate(
-  irt_data$irt,
-  by=list(
-    "Condition"=irt_data$cond,
-    "Participant"=irt_data$Participant
-  ),
-  FUN=mean
-) %>% spread(Condition,x) 
-pmeansByCondition$pattern <- (
-  pmeansByCondition$`+Q +GP` - pmeansByCondition$`+Q -GP` <
-  pmeansByCondition$`-Q +GP` - pmeansByCondition$`-Q -GP`
-) 
-
-# simple P means
-spm <- aggregate(
-  irt_data$irt,
-  by=list(
-    "Participant"=irt_data$Participant
-  ),
-  FUN=mean
-) 
-
-# meta 
-json <- read_file("../meta-4_11.json")
-meta<-fromJSON(json)
-handset <- read.csv("../csvs/_SITA_SET_VALUES.csv")
-meta[meta$file %in% handset$Filename,]$agg <- NA
-meta[meta$file %in% handset$Filename,]$hpf <- NA
-hscount <- sum(handset$Filename %in% meta$file)
-
-
-write_csv(irt_data_allitems,"export/all_data.csv")
-```
 
 This document examines the inter-reading time (IRT) from the study. IRT was measured over `r recs` recordings: 32 participants, 48 items = `r subjs * items` recording pairs (reading 1 and reading 2), with `r  subjs * items - recs` missing pairs. The missing data are a result of one or both recordings from a pair being unusable due to technical issues (e.g. a failure of recording equipment, or participant error).
 
@@ -709,12 +739,12 @@ ggplot(irt_data, aes(wirt.log10)) +
 
 ## Means by condition
 
-Table \ref{tab:mns} shows the mean wIRT by experimental condition. The top left cell represents the mean wIRT for the declaritive controls ("-Q -GP"). The bottom row shows the increase in IRT across the garden path condition. 
+Table \ref{tab:mns} shows the mean wIRT by experimental condition. The top left cell represents the mean wIRT for the declaritive controls ("D -GP"). The bottom row shows the increase in IRT across the garden path condition. 
 
 ```{r mnspre}
 meansByConditionS <- meansByCondition
-meansByConditionS$`-Q` <- meansByConditionS$`-Q`/1000
-meansByConditionS$`+Q` <- meansByConditionS$`+Q`/1000
+meansByConditionS$`D` <- meansByConditionS$`D`/1000
+meansByConditionS$`Q` <- meansByConditionS$`Q`/1000
 ```
 ```{r mns}
 kable(
@@ -729,7 +759,7 @@ The difference in the effect of &plusmn;GP across &plusmn;Q is `r round(cdiff/10
 ```{r interactinplot,fig.cap="Mean IRT by condition",fig.height=4}
 
 meansByConditionLong$Qn <- ifelse(
-  meansByConditionLong$Q == "+Q", 
+  meansByConditionLong$Q == "Q", 
   "Interrogative", 
   "Declarative"
 )
@@ -826,6 +856,13 @@ irt.demoModel <- lmerTest::lmer(
   data = irt_data,
   REML=F
 )
+
+irt.summer <- lmerTest::lmer(
+  wirt.log10 ~ Condition_Q * Condition_GP +
+    Monolingual + (1|Participant) + (1|Item), 
+  data = subset(irt_data, Semester!="Summer"),
+  REML=F
+)
 ```
 
 For the first model, fixed effects of &plusmn;GP and &plusmn;Q as well is the interaction between them were included, along with random effects of participant and item. The second model removes the interaction, but keeps both main effects.
@@ -840,8 +877,8 @@ huxreg(
   ),
   coefs = c(
     "+GP"="Condition_GPTRUE",
-    "+Q"="Condition_QTRUE",
-    "+GP +Q"="Condition_QTRUE:Condition_GPTRUE"
+    "Q"="Condition_QTRUE",
+    "+GP Q"="Condition_QTRUE:Condition_GPTRUE"
   ),
   note=NULL,
   statistics = c(N="nobs","logLik","AIC")
@@ -936,8 +973,8 @@ sdByVerb <- aggregate(
   ),
   FUN=sd
 ) %>% spread(Condition,x)
-meansByVerb$`Declarative GP effect`<-meansByVerb$`-Q +GP`-meansByVerb$`-Q -GP`
-meansByVerb$`Interrogative GP effect`<-meansByVerb$`+Q +GP`-meansByVerb$`+Q -GP`
+meansByVerb$`Declarative GP effect`<-meansByVerb$`D +GP`-meansByVerb$`D -GP`
+meansByVerb$`Interrogative GP effect`<-meansByVerb$`Q +GP`-meansByVerb$`Q -GP`
 meansByVerb$`Difference in effect`<-meansByVerb$`Declarative GP effect`-meansByVerb$`Interrogative GP effect`
 ```
 
@@ -986,7 +1023,7 @@ Interrogatives appear to have a computational processing cost when compared to i
 ```{r fillers, results="asis"}
 mean.irtByQ <- aggregate(
   irt_fillers$irt, 
-  by=list("+Q"=irt_fillers$Condition_Q),
+  by=list("Q"=irt_fillers$Condition_Q),
   FUN=mean
 )
 mean.irtByPP <- aggregate(
@@ -996,21 +1033,33 @@ mean.irtByPP <- aggregate(
 )
 mean.irtByQnPP <- aggregate(
   irt_fillers$irt, 
-  by=list("+Q"=irt_fillers$Condition_Q,"+PP"=irt_fillers$Condition_GP),
+  by=list("Q"=irt_fillers$Condition_Q,"+PP"=irt_fillers$Condition_GP),
   FUN=mean
 )
-fillerModel <- lmer(irt ~ Condition_Q + (1 |Participant) + (1 |Item),data=irt_fillers, REML=F)
-fillerModel.pp <- lmer(irt ~ Condition_Q * Condition_GP + (1|Participant) + (1 |Item),data=irt_fillers, REML=F)
-fillerModel.ppNoInt <- lmer(irt ~ Condition_Q + Condition_GP + (1|Participant) + (1 |Item),data=irt_fillers, REML=F)
+fillerModel <- lme4::lmer(
+  irt ~ Condition_Q + (1 |Participant) + (1 |Item), 
+  data=irt_fillers, 
+  REML=F
+)
+fillerModel.pp <- lme4::lmer(
+  irt ~ Condition_Q * Condition_GP + (1|Participant) + (1 |Item), 
+  data=irt_fillers,
+  REML=F
+)
+fillerModel.ppNoInt <- lme4::lmer(
+  irt ~ Condition_Q + Condition_GP + (1|Participant) + (1 |Item), 
+  data=irt_fillers,
+  REML=F
+)
 
 huxreg(
   list("Only Interogitivity"=fillerModel,"Full"=fillerModel.pp,"No interaction"=fillerModel.ppNoInt),
   number_format = 2, 
   coefs=c(
     "(Intercept)"="(Intercept)",
-    "+Q" = "Condition_QTRUE",
+    "Q" = "Condition_QTRUE",
     "+GP" ="Condition_GPTRUE",
-    "+Q * +GP" = "Condition_QTRUE:Condition_GPTRUE" 
+    "Q * +GP" = "Condition_QTRUE:Condition_GPTRUE" 
   )
 ) 
 ```
@@ -1071,10 +1120,9 @@ write_csv(irt_data,"export/exp_wins_irt.csv")
 ```
 ```{r}
 del.irt.full <- lmerTest::lmer(
-  wirt.log10 ~ Condition_Q * Condition_GP * r1DelCat +
-    (1 | Participant) + 
+  wirt.log10 ~  Condition_GP + (1 | Participant) + 
     (1 | Item),
-  data = subset(irt_data,r1DelCat != "NORMAL"),
+  data = irt_data,
   REML=F
 )
 
