@@ -113,11 +113,13 @@ mdata$simple2lvl <- ifelse(
 
 mdata<-subset(mdata,SID!=8)
 mdata <- droplevels(mdata)
+mdata <- subset(mdata,!is.na(OBJ)|!is.na(PP1))
 prosDescrip <- describe(mdata)
 tot<-as.data.frame(xtabs( ~ Condition_GP + Condition_Q, data=mdata))
+write_csv(mdata,"export/prosody_data.csv")
 ```
 
-This subsection presents the results of the independent rater's judgements regarding prosodic boundaries. Data are excluded if either recording from a pair of recordings (that is, the cold or previewed reading) is missing (excluded `r missingPairs` incomplete pairs) because without the other member, it can't be determined whether the delay before reading constitutes a true cold or true previewed reading. Recordings with no reported breaks are also excluded from most analyses, because these are assumed to be faulty utterances (excluded `r table(mdata$simple2lvl)["NEITHER"]` such recordings) but the pairs for these are not excluded, because delay information is available for both items.
+This subsection presents the results of the independent rater's judgements regarding prosodic boundaries. Data are excluded if either recording from a pair of recordings (that is, the cold or previewed reading) is missing (excluded `r missingPairs` incomplete pairs) because without the other member, it can't be determined whether the delay before reading constitutes a true cold or true previewed reading. Recordings with no reported breaks are also excluded from most analyses, because these are assumed to be faulty utterances (excluded `r table(mdata$simple2lvl)["NEITHER"]` such recordings) but the paired readings of these are not excluded, because delay information is available for both items.
 
 ```{r totByCond}
 totDisp <- tot %>% as.data.frame() %>%
@@ -387,18 +389,17 @@ kable(allpros,caption="Prosodic pattern by reading")%>% kable_styling(latex_opti
 Models predicting the PP1 break and the object break are presented in table \ref{tab:lmPros}. No random slopes were included, as those models did not converge.
 
 ```{r prosmodelsPre,cache=T}
-mmdata <- subset(mdata,!is.na(OBJ)&!is.na(PP1))
-pp1Mod<- glmer(PP1~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=mmdata,family=binomial)
-objMod<- glmer(OBJ~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=mmdata,family=binomial)
+pp1Mod<- glmer(PP1~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=mdata,family=binomial)
+objMod<- glmer(OBJ~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=mdata,family=binomial)
 ```
 ```{r prosmodels}
 huxreg(  
   list("PP1"=pp1Mod,"Object"=objMod),
   coefs = c(
     "Intercept"="(Intercept)",
-    "+GP"="Condition_GPTRUE",
-    "+Q"="Condition_QTRUE",
-    "+GP +Q"="Condition_QTRUE:Condition_GPTRUE",
+    "GP"="Condition_GPTRUE",
+    "Q"="Condition_QTRUE",
+    "GP:Q Interaction"="Condition_QTRUE:Condition_GPTRUE",
     "Preview" = "Reading2",
     "Participant"="sd_(Intercept).SID",
     "Item"="sd_(Intercept).IID"
@@ -427,7 +428,8 @@ row.names(all_strug)<-c("Fluent", "Struggle")
 ```
 ```{r strug}
 # TODO combine this table and next
-kable(all_strug, caption="Difficulty in reading by reading type")%>% kable_styling(latex_options = "hold_position")
+kable(all_strug, caption="Difficulty in reading by reading type") %>%
+  kable_styling(latex_options = "hold_position")
 ```
 
 Table \ref{tab:gpstrug} shows the pattern across reading for just +GP items.
@@ -497,9 +499,7 @@ itemsDf <- read_csv(
     target = col_character()
   )
 )
-
 itemsDf$Item<-itemsDf$target
-
 
 # load files
 use_old <- FALSE
@@ -516,6 +516,17 @@ irt_data <- raw_file
 
 # P 8 is messed up
 irt_data<-subset(irt_data,Participant != 8)
+
+# demographics
+pmeta <- read_csv("../csvs/p-meta.csv")
+pmeta$Participant <- pmeta$ID
+irt_data<-merge(pmeta,irt_data,by="Participant")
+irt_data$wkd <- ifelse(irt_data$DOTW == "MONDAY", 1,
+                ifelse(irt_data$DOTW == "TUESDAY", 2, 
+                ifelse(irt_data$DOTW == "WEDNESDAY", 3, 
+                ifelse(irt_data$DOTW == "THURSDAY", 4, 
+                5))))
+
 
 # counts
 irt_data$Participant <- as.factor(irt_data$Participant)
@@ -565,14 +576,16 @@ irt_max <- 25000
 irt_lo <- subset(irt_data, irt < irt_min)
 irt_hi <- subset(irt_data, irt > irt_max)
 
-# subset to trimmed experimental items
-
+# subset to trimmed items
 irt_data <- subset(
   irt_data, 
   irt > irt_min & irt < irt_max
 )
+# with fillers
+irt_data_allitems <- irt_data
 irt_fillers <- subset(irt_data,isFiller)
-irt_data<-subset(irt_data,!isFiller)
+# experimental only
+irt_data <- subset(irt_data,!isFiller)
 irt_data <- (merge(itemsDf, irt_data, by = 'Item'))
 # make Participant and Item factors with specified ref levels 
 irt_data$Participant<-relevel(irt_data$Participant,ref=5)
@@ -651,6 +664,9 @@ handset <- read.csv("../csvs/_SITA_SET_VALUES.csv")
 meta[meta$file %in% handset$Filename,]$agg <- NA
 meta[meta$file %in% handset$Filename,]$hpf <- NA
 hscount <- sum(handset$Filename %in% meta$file)
+
+
+write_csv(irt_data_allitems,"export/all_data.csv")
 ```
 
 This document examines the inter-reading time (IRT) from the study. IRT was measured over `r recs` recordings: 32 participants, 48 items = `r subjs * items` recording pairs (reading 1 and reading 2), with `r  subjs * items - recs` missing pairs. The missing data are a result of one or both recordings from a pair being unusable due to technical issues (e.g. a failure of recording equipment, or participant error).
@@ -797,6 +813,19 @@ irt.dummy.noInt <- lm(wirt.log10 ~  Condition_Q + Condition_GP +
                   Participant + Item,
                   data = irt_data
                 )
+
+irt.demoModel.KS <- lmerTest::lmer(
+  wirt.log10 ~ Condition_Q * Condition_GP + Semester + wkd + Gender + ease + timeslot +
+    bookReading + lightReading + Monolingual + (1|Participant) + (1|Item), 
+  data = irt_data,
+  REML=F
+)
+irt.demoModel <- lmerTest::lmer(
+  wirt.log10 ~ Condition_Q * Condition_GP + Semester + wkd +
+    Monolingual + (1|Participant) + (1|Item), 
+  data = irt_data,
+  REML=F
+)
 ```
 
 For the first model, fixed effects of &plusmn;GP and &plusmn;Q as well is the interaction between them were included, along with random effects of participant and item. The second model removes the interaction, but keeps both main effects.
@@ -1000,15 +1029,18 @@ A comparison of the delay for cold readings compared with that of previewed read
 
 ```{r delayComparison, fig.cap="Delay comparison across reading"}
 raw_rs_file <- read_csv("../csvs/merged.csv")
+raw_rs_file <- subset(raw_rs_file,!Participant %in% c(8))
 raw_rs <- subset(raw_rs_file,!isFiller & Leading < 15000)
 raw_rs$reading <- raw_rs$Reading
 raw_rs$Reading <- ifelse(raw_rs$reading == 1, "Cold", "Previewed")
 ggplot(raw_rs, aes(Leading, fill = Reading)) +
   geom_histogram(binwidth = 400,position="dodge",color="black") +
   scale_fill_manual(values=c("black","white")) +
-  ggtitle("Distribution of delay by reading", subtitle = "Bin size = 400ms")
+  ggtitle("Distribution of delay by reading", 
+          subtitle = "Bin size = 400ms")
 
-diffs <- raw_rs[c("Reading","Leading","Participant","Item","isFiller","Condition_Q","Condition_GP")]  %>% spread(Reading,Leading)
+diffs <- raw_rs[c("Reading","Leading","Participant","Item","isFiller",
+                  "Condition_Q","Condition_GP")]  %>% spread(Reading,Leading)
 
 diffs$diffs <- diffs$Previewed-diffs$Cold
 diffDis<- describe(diffs$diffs)
@@ -1019,6 +1051,43 @@ diffsByP.props <- describe(diffsByP$`Mean difference in delay (ms)`)
 
 For cold readings, n = `r table(raw_rs$Reading)["Cold"]` and for previewed, n = `r table(raw_rs$Reading)["Previewed"]`. 
 
+## Reading 1 delays by participant
+
+```{r}
+r1data <- subset(raw_rs, reading == 1)
+r1delByP <- aggregate(r1data$Leading,by=list("Participant" = r1data$Participant), FUN=mean)
+hidel <- mean(r1delByP$x) + sd(r1delByP$x)/2
+lodel <- mean(r1delByP$x) - sd(r1delByP$x)/2
+r1delByP$r1DelCat <- ifelse(r1delByP$x < lodel, "FAST", ifelse(
+  r1delByP$x > hidel, "SLOW", "NORMAL"
+))
+
+colnames(r1delByP)[2] <- "r1delbyp"
+
+irt_data<-merge(r1delByP,irt_data,by="Participant")
+mdata$Participant <- mdata$SID
+mdata<-merge(r1delByP,mdata,by="Participant")
+write_csv(irt_data,"export/exp_wins_irt.csv")
+```
+```{r}
+del.irt.full <- lmerTest::lmer(
+  wirt.log10 ~ Condition_Q * Condition_GP * r1DelCat +
+    (1 | Participant) + 
+    (1 | Item),
+  data = subset(irt_data,r1DelCat != "NORMAL"),
+  REML=F
+)
+
+mmdata <- subset(mdata,r1DelCat != "NORMAL" & Reading == 2)
+del.pp1Mod<- glmer(PP1~Condition_Q*Condition_GP*r1DelCat+
+                     (1|IID)+(1|SID),data=mmdata,family=binomial)
+del.objMod<- glmer(OBJ~Condition_Q*Condition_GP*r1DelCat+
+                     (1|IID)+(1|SID),data=mmdata,family=binomial)
+summary(del.irt.full)
+summary(del.pp1Mod)
+summary(del.objMod)
+```
+
 ## Difference in delay across paired readings
 
 Overall, each recording pair (n = `r diffDis$n`) has a mean difference in delay (DelDif = previewed delay - cold delay) of `r round(diffDis$mean/1000,1)`s (sd = `r round(diffDis$sd/1000,1)`s), with a minumum of `r round(diffDis$min/1000,1)`s and a max of `r round(diffDis$max/1000,1)`s. The median DelDif is `r round(diffDis$median/1000,1)`s. The distribution DelDif is shown in Figure \ref{fig:deddif}.
@@ -1026,7 +1095,8 @@ Overall, each recording pair (n = `r diffDis$n`) has a mean difference in delay 
 ```{r deddif, fig.cap="Distribution of DelDif"}
 ggplot(na.omit(diffs), aes(diffs)) +
   geom_histogram(binwidth = 500,color="white",fill="black") +
-  labs(x="Difference in delay", y="Count",title="Distribution of difference in delay",subtitle="Bin width = 500ms")
+  labs(x="Difference in delay", y="Count",
+       title="Distribution of difference in delay", subtitle="Bin width = 500ms")
 ```
 
 If we calculate the mean delay difference by participant, we find a mean participant DelDef of `r round(diffsByP.props$mean/1000,1)`s. Each participant's DelDif is &le; `r diffsByP.props$min`ms and &ge; `r round( diffsByP.props$max/1000,1)`s, with a median of `r round(diffsByP.props$median/1000,2)`s. Table \ref{tab:difsbyp} shows these values.
