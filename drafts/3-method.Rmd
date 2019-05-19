@@ -2,12 +2,15 @@
 title: Methodology
 bibliography: refs.bib
 biblio-style: "apalike"
+fontsize: 12pt
+mainfont: Cambria
 output: 
   bookdown::pdf_document2: 
     latex_engine: xelatex
     citation_package: natbib
     toc: true
-
+header-includes:
+  - \usepackage{setspace}\doublespacing
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE, fig.height = 3)
@@ -19,15 +22,13 @@ library(knitr)
 library(kableExtra)
 ```
 
-# 3. Methodology {-}
-
 This section outlines the methodology employed for the reported study. The methodology outlined is referred to as the *Double Reading Procedure* and was first implemented by @fodor2019center. Participants are asked to read sentences twice, once without any previewed (cold reading or reading-1), and then again after unlimited preview (previewed reading or reading-2).
 
 # Participants recruitment
 
 The participants in this study were all undergraduate students at Queens College, CUNY, enrolled in Psychology 101. These students were required by the university to participant in studies for course credit. Self reported age ranged from 18 to 25 years. Participants were recruited using the Queens College Sona system, which is software designed for univeristy participant pools. Students saw the blurb in (@rec) and were able to schedule their own appointment time within the hours offered (Monday - Thursday, 10am to 4pm).
 
-  (@rec)  **Recruitment blurb**<br>
+  (@rec)  **Recruitment**<br>
           You will be asked about your reading habits and then asked to read complex sentences out loud while being audio recorded. Recordings of your voice will be analyzed, but will be kept strictly confidential. The process will take no more than 1 hour. Note that the study takes place in Queens Hall, which is about half a mile from the main Queens campus. See directions on the QC website, URL below, for how to get here. The room is 335D, on the third floor. Entrance to the building is in the back. 
 
 All participants were self identified native and primary speakers of American English. One participant was disqualified post-hoc, although still paid for time spent, after producing a Carribean English pronucnciation pattern. One other participant was excluded post-hoc due to an extremely disfluent reading cadence.
@@ -44,71 +45,23 @@ The presentation of items and instruction[^instr] was done using the Open Sesame
 
 Recording was done using a Blue Yeti USB microphone position near the participant's left hand and angled to point at the space in front of the participant's mouth. The angle was adjusted for each participant's height. It recording 44.1kHz single-channel audio. Each recording was saved to the laptop's hard drive and also immediately uploaded to a Microsoft OneDrive account provided to the author by the Graduate Center, CUNY. No personally identifying information other than the quality of the participants' voices was embedded in the recordings. Only a handwritten ledger tied participants to the identifier used in the filename of the recordings.
 
-[^instr]: Instructions were also provided verbally and via printout. Details on the instructions are available in section \@ref(inst) of this chapter.
+[^instr]: Instructions were also provided verbally and via printout. Details on the instructions are available in the appendices \@ref(sec:instr).
 
 # Procedure
 
-Participants sat at a computer and used keyboard button presses to navigate the experimental presentation. They recieved thorough instructions and completed three practice items, the consulted with the experimenter, before beginning the main portion of the study. The study also began and end ended with two pseudo-practice items that were not included in any analyses, in an attempt to prevent confusion or fatigue from impacting the results. 
+Participants sat at a computer and used keyboard button presses to navigate the experimental presentation. They recieved thorough instructions and completed three practice items, the consulted with the experimenter, before beginning the main portion of the study. The study also contained 4 pseudo-practice items that were not included in any analyses, in order to allow some time for the participant to settle into the procedure before any results were recorded.
+
+Each experimental item was preceeded by a screen showing a line of ten Xs with its left edge aligned with the left edge of the to-be-revealed sentence. This was intended to fix the participant's attention on the start of the sentence, and hopefully avoid unintended lookahead. This screen remained visible indefintely, until the participant pressed *START*.
+
+Immediately after *START* was pressed, recording of the first reading began and the sentence appeared on the screen on a blue background. The recording continued and the screened remained visible until the participant pressed *NEXT*.After pressing *NEXT*, a screen appeared with instructions telling the participant that they were between readings, and needed to press *START* to reveal the sentence again and prepare for their second reading. Immediately after *START* was pressed, the first recording ended and the second recording began, and the sentence reappeared, this time on a green background.
+
+![Procedure diagram](dissertation-procedure.png)
+
+The shifting of required key presses and the changing background color were intended to aid the participant in remember where they were in the process, and to prevent accidental double-presses of any given button from having unintended side effects. It took some time for the participants to adapt to the somewhat complicated procedure, but most seem to have gotten the hang of it before the first real item was presented.
 
 ## Instructions to participants {#inst}
 
 Participants were given a verbal overview of the experimental procedure and then asked to read a one page printout of the procedure before signing a consent form. After signing a consent form, participants sat at the computer and were once again walked through instructions before the first practice item was presented.
-
-The instructions are presented below.
-
->Thank you kindly for your participation. In this study, you are being asked to read complex sentences out loud, twice each. It is very important that you follow these guidelines for each of your readings.
->
->First reading: Begin reading immediately, without giving yourself a chance to look ahead. Imagine you are a television reporter reading an urgent update from a teleprompter. You must be as quick as possible, without taking any time to read ahead.  You want to sound natural if you can, but it is more important to not delay. These sentences are complicated and potentially confusing. It’s very important that you read the sentence out loud as soon as it appears. It’s OK if you make mistakes or don’t understand, that is an important part of what I want to know. Do the best you can, and remember you have another chance to read it. 
->
->Second reading: This time you have the luxury of pacing yourself as you please. Imagine you are providing a voice-over for a documentary. You want to sound conversational and clear, without being overly dramatic or formal. Study the sentence as long as you like, and be sure that you understand it before you begin reading. It is most important to sound natural, without worrying about how long it takes to prepare.
->
->The experiment will begin with brief instructions, recapping what you are reading now. There will then be a practice session to get you comfortable with the task and a chance for you to ask any questions you have. Finally, after your questions are answered, the study will begin in earnest.
->
->Each sentence will follow the same pattern. You will be presented with a screen which displays a series of plus signs. This indicates that the system is ready and that you should press the button labeled “START” when you are ready to read a sentence. As soon as you press the button, the sentence will appear and you should begin your first reading. After you have completed the reading, press the button labeled “NEXT.” You should allow a small amount of time after you finish and before you hit “NEXT,” to ensure that the recording is not cut off too early. 
->
->Once you have pressed “NEXT,” you will see a brief instructions slide to help you keep track of where you are. You should then press “START” and begin preparing to read the second time. The background color will change to confirm that the computer has registered your key press. Once you’re ready, read the sentence aloud for the second time and then press “DONE.” Once again, be sure not to cut yourself off. Wait a moment after you finish reading before pressing “DONE.”
->
->You are not being judged or measured in any way. Rather, we are interested in how these sentences are pronounced by native speakers of English. Any confusion you have or mistakes you make are interesting properties of the sentences, not failings of you, the speaker.
->
->The keys used during the experiment are clearly labeled, but the function of each key is listed below for your reference. There is no hurry for pressing the keys. The only timing of importance is that you begin reading as quickly as possible after pressing “START.” The task should take no longer than one hour
-
-The instruction also contained a table (table \@ref(tab:keytab)) which described the purpose and position of the relevant buttons on the keyboard. A separate page with just this table was also provided, and participants were allowed to keep the instructions with them during the entire procedure.
-
-```{r keytab}
-Label <- c("Start", "Next", "Done")
-Position <- c("Left shift", "Right shift", "Thumb pad")
-Description <- c("Revewal a sentence and begin your reading.", "End your first reading.", "End your second reading and prepare for the next sentence.")
-keyTable <- data.frame(Label,Position,Description)
-# hux(keyTable) %>% add_colnames() %>%
-#   set_top_border(value=1,row=1,col=everything()) %>%
-#   set_bottom_border(value=0.5,row=1,col=everything()) %>%
-#   set_bottom_border(value=1,row=final(1),col=everything()) %>%
-#   set_caption("Table of relevant keys") %>%
-#   set_label("tab:keytab") %>%
-#   set_bold(TRUE,row=2:4,col=1) %>%
-#   set_bold(TRUE,row=1,col=everything()) %>%
-#   set_italic(TRUE,row=2:4,col=2)  %>%
-#   set_position("left") %>%
-  kable(keyTable,booktabs=T,caption="Table of keyboard mappings") %>%
-    kable_styling(latex_options = "hold_position")
-
-```
-
-## The task
-
-Each experimental item was preceeded by a screen showing a line of ten Xs with its left edge aligned with the left edge of the to-be-revealed sentence. This was intended to fix the participant's attention on the start of the sentence. This screened remained visible indefintely, until the participant pressed *START*.
-
-Immediately after *START* was pressed, recording of the first reading began and the sentence appeared on the screen on a blue background. The recording continued and the screened remained visible until the participant pressed *NEXT*.
-
-After pressing *NEXT*, a screen appeared with the following message:
-
-> You have completed your first reading. When you are ready to prepare for your second reading, press *START*.
-
-Immediately after *START* was pressed, the first recording ended and the second recording began, and the sentence reappeared, this time on a green background.
-
-<!-- TODO insert diagram of task -->
-
-The shifting of required key presses and the changing background color were intended to aid the participant in remember where they were in the process, and to prevent accidental double-presses of any given button from having unintended side effects. It took some time for the participants to adapt to the somewhat complicated procedure, but most seem to have gotten the hang of it before the first real item was presented.
 
 # Materials
 
@@ -242,20 +195,63 @@ kable(
 ) %>% kable_styling(latex_options = "hold_position")
 ```
 
-Plausible timings had to meet the following criteria: 
+A plausible set of measurements had to meet the following criteria:
 
-1. An utterance length between 2s and 10s, where utterance timing is the longest contiguous span in the recording that VAD reports as phonation, with breaks in phonation of less than 1s not breaking contiguity.
+*Utterance length:* An utterance length between 2s and 10s, where utterance timing is the longest contiguous span in the recording that VAD reports as phonation, with breaks in phonation of less than 1s not breaking contiguity.  @goldman1961-pa found that a large majority (82.5 to 87%) of pauses in fluent speech are less than 1s. Stimuli range from 18-22 syllables in length. If we assume a speeach rate of 3 to 7 syllables per second [@jacewicz2010-sr] we would expect utterances between 2.5s and 7.3s. Conservative thresholds higher and lower than the expected were used, especially on the higher end to allow for any processing or fluency.
 
-2. A leading silence ("delay") length of more than 120ms and less than 95% of the entire recording's duration.
+*Minimum leading silence:* A leading silence ("delay") of more than 120ms. Even a very fast human reaction time should not permit a delay shorter than 120ms. 
 
-3. A trailing silence length of less than 95% of the entire recording's duration.
-
-Stimuli range from 18-22 syllables in length. If we assume a speeach rate of 3 to 7 syllables per second [@jacewicz2010-sr] we would expect utterances between 2.5s and 7.3s. Conservative thresholds higher and lower than the expected were used, especially on the higher end to allow for any processing or fluency. @goldman1961-pa found that a large majority (82.5 to 87%) of pauses in fluent speech are less than 1s. Even a very fast human reaction time should not permit a delay shorter than 120ms.
+*Maximum edge silence:* A maximum trailing and leading silence length of less than 95% of the file's length was also used, in order to filter out recordings that do not represent a valid trial. Very long delays less than this very conservative threshold are dealt with in the data clean up rather than via phonation detection.
 
 # Prosodic judgements
 
-A research assistant listened to recordings and reported the presence or absence of breaks in certain regions of the sentence. A second rater also provided these judgements for 10% of the data, and the original rater provided a blind second pass of 10% of the data. Good reliability (90%+) was found for the break after the object and the break after PP1.
+A trained linguist informant naive to the research being conducted listened to recordings and reported the presence or absence of breaks in certain regions of the sentence, as well as several other judgements. She was instructed to familiarize herself with a speaker's speech patterns before rating any recordings by listening to 6 filler item recordings from that speaker. She was given a diagram of the sentences as in table \ref{tab:reg}, as well as full plain-text lists of all items.
 
-<!-- TODO Description of Sita's work goes here -->
+```{r reg}
+Sentence = c("He", "had", "meant", "to stick ||$_V$", "the pencil case ||$_{OBJ}$", "in the cabinet ||$_{PP1}$", "into his book bag.")
+Syntax = c("NP$_{SUBJ}$", "AUX", "V$_1$", "V$_2$", "NP$_{OBJ}$", "PP$_1$", "PP$_2$")
+region = c("SUBJ", " ", "V", " ", "OBJ", "PP1", "PP2")
+tab = rbind(Sentence,Syntax)
+colnames(tab) <- region
+kable(tab, booktab=T, caption="Sentence region labels", escape=F,row.names = F) %>% 
+  kable_styling(latex_options = c("scale_down","hold_position"))
+
+```
+
+She was asked to report on whether or not she heard a prosodic boundary directly after the region labeled **V**, directly after the region labeled **OBJ**, and directly after the region labeled **PP1**. The following definition of prosodic break was provided:
+
+>Please work with the assumption that “prosodic boundary” in what follows is any subset of the following features, clustered in such a way as to trigger your intuition that a new prosodic element (of any size) is beginning: pitch change, volume change, segmental lengthening, or pause.
+
+The judgements requested also included whether or not the speaker struggled, where that struggle began, whether or not the speaker used question intonation, and which break(s) were stronger or more prominent than which other break(s). 
+
+Detailed instructions on the order in which items should be listened to, both within speaker and across speakers, were also provided. The result was that she never listened to both readings of a sentence in sequence; she never listened to two reading 1 versions of different sentences in sequence; and she never listened to the sentences in the same order for a given participant as she did for the previous one.
+
+Details on the instructions given and the judgements collected can be found in the apppendices (\ref{sec:RA}).
+
+## Reliability
+
+A second trained linguist repeated the task over 128 recordings selected from 8 participants (two from each group, one per ordering). Even number experimental items were used from 4 participants, and odd numbered from the other 4. There were 8 recordings missing from the 128 selected, so the reliability task resulted in judgements over 120 recordings. The first informat also blindly re-rated those 120, with the recording name obscured and instructions not to revisit her original ratings. Reliability scores are reported in table \ref{tab:validity}.
+
+```{r validity}
+library(irr)
+dr<-read_csv("../csvs/src/DR-V.csv") %>% arrange(UID)
+sp<-read_csv("../csvs/src/SP-V.csv") %>% arrange(UID)
+main<-read_csv("export/prosody_data.csv") %>% subset(UID %in% dr$UID) %>% arrange(UID)
+
+
+vals = c("V","OBJ","PP1","STRUG","STRONG","WEAK","STRUG_START","QI")
+logicals = c("V","OBJ","PP1","STRUG","QI")
+
+for (col in logicals){
+  main[[col]] <- ifelse(main[[col]] == TRUE, "YES", 
+                 ifelse(main[[col]] == FALSE, "NO", 
+                        main[[col]]
+                 ))
+}
+
+drsp<-merge(dr,sp,by="UID",suffixes=c("-dr","-sp"))
+all<-merge(drsp,main,by="UID")
+
+```
 
 # References {-}

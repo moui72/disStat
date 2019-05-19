@@ -15,7 +15,8 @@ output:
 fontsize: 12pt
 mainfont: Cambria
 header-includes:
-- \usepackage{float}
+  - \usepackage{float}
+  - \usepackage{setspace}\doublespacing
 ---
 <!-- Results -->
 <!-- This is the fourth content section -->

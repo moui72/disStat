@@ -1,0 +1,91 @@
+---
+title: "append"
+author: "Tyler Peckenpaugh"
+date: "5/19/2019"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+library(kableExtra)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Instructions to participants {instr}
+
+The instructions are presented below.
+
+>Thank you kindly for your participation. In this study, you are being asked to read complex sentences out loud, twice each. It is very important that you follow these guidelines for each of your readings.
+>
+>First reading: Begin reading immediately, without giving yourself a chance to look ahead. Imagine you are a television reporter reading an urgent update from a teleprompter. You must be as quick as possible, without taking any time to read ahead.  You want to sound natural if you can, but it is more important to not delay. These sentences are complicated and potentially confusing. It’s very important that you read the sentence out loud as soon as it appears. It’s OK if you make mistakes or don’t understand, that is an important part of what I want to know. Do the best you can, and remember you have another chance to read it. 
+>
+>Second reading: This time you have the luxury of pacing yourself as you please. Imagine you are providing a voice-over for a documentary. You want to sound conversational and clear, without being overly dramatic or formal. Study the sentence as long as you like, and be sure that you understand it before you begin reading. It is most important to sound natural, without worrying about how long it takes to prepare.
+>
+>The experiment will begin with brief instructions, recapping what you are reading now. There will then be a practice session to get you comfortable with the task and a chance for you to ask any questions you have. Finally, after your questions are answered, the study will begin in earnest.
+>
+>Each sentence will follow the same pattern. You will be presented with a screen which displays a series of plus signs. This indicates that the system is ready and that you should press the button labeled “START” when you are ready to read a sentence. As soon as you press the button, the sentence will appear and you should begin your first reading. After you have completed the reading, press the button labeled “NEXT.” You should allow a small amount of time after you finish and before you hit “NEXT,” to ensure that the recording is not cut off too early. 
+>
+>Once you have pressed “NEXT,” you will see a brief instructions slide to help you keep track of where you are. You should then press “START” and begin preparing to read the second time. The background color will change to confirm that the computer has registered your key press. Once you’re ready, read the sentence aloud for the second time and then press “DONE.” Once again, be sure not to cut yourself off. Wait a moment after you finish reading before pressing “DONE.”
+>
+>You are not being judged or measured in any way. Rather, we are interested in how these sentences are pronounced by native speakers of English. Any confusion you have or mistakes you make are interesting properties of the sentences, not failings of you, the speaker.
+>
+>The keys used during the experiment are clearly labeled, but the function of each key is listed below for your reference. There is no hurry for pressing the keys. The only timing of importance is that you begin reading as quickly as possible after pressing “START.” The task should take no longer than one hour
+
+The instruction also contained a table (table \@ref(tab:keytab)) which described the purpose and position of the relevant buttons on the keyboard. A separate page with just this table was also provided, and participants were allowed to keep the instructions with them during the entire procedure.
+
+```{r keytab, echo=F}
+Label <- c("Start", "Next", "Done")
+Position <- c("Left shift", "Right shift", "Thumb pad")
+Description <- c("Revewal a sentence and begin your reading.", "End your first reading.", "End your second reading and prepare for the next sentence.")
+keyTable <- data.frame(Label,Position,Description)
+# hux(keyTable) %>% add_colnames() %>%
+#   set_top_border(value=1,row=1,col=everything()) %>%
+#   set_bottom_border(value=0.5,row=1,col=everything()) %>%
+#   set_bottom_border(value=1,row=final(1),col=everything()) %>%
+#   set_caption("Table of relevant keys") %>%
+#   set_label("tab:keytab") %>%
+#   set_bold(TRUE,row=2:4,col=1) %>%
+#   set_bold(TRUE,row=1,col=everything()) %>%
+#   set_italic(TRUE,row=2:4,col=2)  %>%
+#   set_position("left") %>%
+  kable(keyTable,booktabs=T,caption="Table of keyboard mappings") %>%
+    kable_styling(latex_options = "hold_position")
+
+```
+
+
+# Instructions to RA {#RA}
+
+Before you begin describing the recordings for a given speaker, please familiarize yourself with that speaker. To do so, please listen to recordings numbered 46-48 and 24-27.
+
+Next, move on to describings the recordings numbered 1-16. Please listen to them in the following pattern: begin with either 1Y or 1X, and listen to the recordings sequentially (or reverse sequentially), and alternate between X and Y versions. Then, repeat the process for the inverse versions (X vs. Y). Please then listen to the next speaker, beginning with 16X or Y, and then listen in reverse sequence, alternating X vs. Y, and then again repeat for the other half. In this way, please alternate across speakers between listening to X or Y first as well as 1 or 16 first.
+
+For each recording, please respond in the spreadsheet using the following guidelines for the columns. Each recording should get its own row.
+
+* Speaker ID: This should be the name of the directory in which the recording exists.
+* Recording ID: This should be the filename of the recording being described
+* X or Y: This should be the last character of the filename, either X or Y.
+* First recording for speaker: This should indicate which recording you started with first, which will allow me to deduce the pattern you used to listened to the recordings, per above, e.g. 1X, 1Y, 16X or 16Y.
+
+For columns E-K, Consider a given sentence to be divided into regions, as in the following example:
+
+```{r reg}
+Sentence = c("He", "had", "meant", "to stick ||$_V$", "the pencil case ||$_{OBJ}$", "in the cabinet ||$_{PP1}$", "into his book bag.")
+Syntax = c("NP$_{SUBJ}$", "AUX", "V$_1$", "V$_2$", "NP$_{OBJ}$", "PP$_1$", "PP$_2$")
+region = c("SUBJ", " ", "V", " ", "OBJ", "PP1", "PP2")
+tab = rbind(Sentence,Syntax)
+colnames(tab) <- region
+kable(tab, booktab=T, caption="Sentence region labels", escape=F,row.names = F) %>% 
+  kable_styling(latex_options = c("scale_down","hold_position"))
+
+```
+
+Please work with the assumption that “prosodic boundary” in what follows is any subset of the following features, clustered in such a way as to trigger your intuition that a new prosodic element (of any size) is beginning: pitch change, volume change, segmental lengthening, or pause.
+
+* Break after V?: Please indicate whether or not you think there is a prosodic boundary after the verb cluster(at the right edge of the last/main verb).
+* Break after OBJ?: Please indicate whether or not you think there is a prosodic boundary after the first NP in the object region (at the right edge of the first NP in the object region).
+* Break after PP1?: Please indicate whether or not you think there is a prosodic boundary after the first NP in the PP1 region (at the right edge of the first NP in the PP region).
+* Strongest break? Please indicate which of the breaks (columns E-G where you indicated YES) you think is strongest. If two breaks are of equal strength and are stronger than a third, indicate NONE as strongest. If two breaks are of equal strength and are weaker than a third, indicate that third break as strongest. If all breaks are the same strength, indicate NONE as strongest.
+* Weakest break? Please indicate which of the breaks (columns E-G where you indicated YES) you think is weakest. If two breaks are of equal strength and are weaker than a third, indicate NONE as weakest. If two breaks are of equal strength and are stronger than a third, indicate that third break as weakest. If all breaks are the same strength, indicate NONE as weakest
+* Struggle?: Indicate whether or not the speaker appears to have had difficulty reading the sentence. This should be relative to their baseline reading fluency, so if a person is hesitant every time, hesitance should not be enough to indicate a struggle.
+* Start of struggle: indicate the region in which you first notice the speaker struggling.
+*Question?: indicate simply whether or not the recording sounds like a question, prosodically (e.g. final rise is present).
