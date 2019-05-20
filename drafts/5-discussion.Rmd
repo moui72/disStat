@@ -4,6 +4,7 @@ output:
   bookdown::html_document2: 
     toc: true
 ---
+# Discussion
 Hypothesis 1: difficult to be certain. Assumed to be true.
 Hypothesis 2: yes
 Hypothesis 3: yes

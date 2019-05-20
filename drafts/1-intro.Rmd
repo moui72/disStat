@@ -11,7 +11,7 @@ output:
 %Previous section: Front matter
 %Following section: Background
 -->
-
+# Introduction
 
 Before the details of the current research can be outlined, it&apos;s first necessary to explain some of the terms and mechanisms involved. Most critically, it&apos;s necessary to be clear on what a garden path is, and what causes the phenomena.
 

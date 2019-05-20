@@ -1,23 +1,4 @@
----
-title: "Results and analyses"
-author: "Tyler Peckenpaugh"
-date: "April 7, 2019"
-bibliography: refs.bib
-biblio-style: "apalike"
-tables: true
-output: 
-  bookdown::pdf_document2:
-    toc: true
-    latex_engine: xelatex
-    citation_package: natbib
-  bookdown::html_document2:  
-    toc: true
-fontsize: 12pt
-mainfont: Cambria
-header-includes:
-  - \usepackage{float}
-  - \usepackage{setspace}\doublespacing
----
+# Results
 <!-- Results -->
 <!-- This is the fourth content section -->
 <!-- Previous section: methodology -->
@@ -50,7 +31,7 @@ library(kableExtra)
 library(psych)
 library(lme4)
 
-# global plot themeing
+### global plot themeing
 theme_set(
   theme_tufte() + 
     theme(
@@ -63,13 +44,13 @@ theme_set(
 
 ```{r prosody-setup}
 mdata_raw <- read_csv("../csvs/got_prosody.csv")
-# remove items where STRONG == NA (these are the items Sita didn't respond to)
+### remove items where STRONG == NA (these are the items Sita didn't respond to)
 mdata <- mdata_raw[!is.na(mdata_raw$STRONG),]
 
-# code for pairs of SUBJ-ITEM
+### code for pairs of SUBJ-ITEM
 mdata$pair<-paste(mdata$SID,mdata$IID,sep="-")
 n1 <- nrow(mdata)
-# filter out rows missing its pair
+### filter out rows missing its pair
 mdata<-mdata %>% group_by(pair) %>% filter(n()>1)
 n2<- nrow(mdata)
 missingPairs <- n1-n2
@@ -127,7 +108,7 @@ itemsDf <- read_csv(
 )
 itemsDf$Item<-itemsDf$target
 itemsDf$target <- NULL
-# load files
+### load files
 use_old <- FALSE
 old<-"../csvs/irt-rvad-4_11.csv"
 new<-"../csvs/irt-merged.csv"
@@ -140,10 +121,10 @@ raw_file <- read_csv(ifelse(use_old,old,new),
 
 irt_data <- raw_file
 
-# P 8 is messed up
+### P 8 is messed up
 irt_data<-subset(irt_data,Participant != 8)
 
-# demographics
+### demographics
 pmeta <- read_csv("../csvs/p-meta.csv")
 pmeta$Participant <- pmeta$ID
 irt_data<-merge(pmeta,irt_data,by="Participant")
@@ -176,43 +157,43 @@ irt_data$GP <- ifelse(
   "-GP"
 )
 
-irt_data_all <- irt_data # data before trimming
+irt_data_all <- irt_data ### data before trimming
 
-# exclude 250 < IRTs > 25000
+### exclude 250 < IRTs > 25000
 irt_min <- 250
 irt_max <- 25000
 
-# note how many IRTs are excluded for implausibility
+### note how many IRTs are excluded for implausibility
 irt_lo <- subset(irt_data, irt < irt_min)
 irt_hi <- subset(irt_data, irt > irt_max)
 
-# subset to trimmed items
+### subset to trimmed items
 irt_data <- subset(
   irt_data, 
   irt > irt_min & irt < irt_max
 )
 
-# with fillers
+### with fillers
 irt_data_allitems <- irt_data
 irt_fillers <- subset(irt_data,isFiller)
 
-# experimental only
+### experimental only
 irt_data <- subset(irt_data,!isFiller)
 irt_data <- (merge(itemsDf, irt_data, by = 'Item'))
 
-# make Participant and Item factors with specified ref levels 
+### make Participant and Item factors with specified ref levels 
 irt_data$Participant<-relevel(as.factor(irt_data$Participant),ref=5)
 irt_data$Item<-relevel(as.factor(irt_data$Item),ref=1)
 
-# winsorize top/bottom 2.5% of data (for normal distrbution, this is +/- 2sd)
-# see: https://sciencing.com/relationship-between-standard-deviations-percentiles-8768703.html
+### winsorize top/bottom 2.5% of data (for normal distrbution, this is +/- 2sd)
+### see: https://sciencing.com/relationship-between-standard-deviations-percentiles-8768703.html
 win_trim=0.025
 irt_data <- irt_data %>% group_by(Participant) %>% mutate(win_irt = winsor(irt, trim=win_trim))
 
-# log 10 transform
+### log 10 transform
 irt_data$wirt.log10 <- log10(irt_data$win_irt)
 
-# meta 
+### meta 
 json <- read_file("../meta-4_11.json")
 meta<-fromJSON(json)
 handset <- read.csv("../csvs/_SITA_SET_VALUES.csv")
@@ -231,7 +212,7 @@ irt_data <- subset(irt_data, ID %in% mdata$ID)
 mdata <- subset(mdata,ID %in% irt_data$ID)
 ```
 ```{r describe}
-# counts
+### counts
 irt_data$Participant <- as.factor(irt_data$Participant)
 irt_data$Participant <- relevel(irt_data$Participant,ref=9)
 recs<-nrow(irt_data)
@@ -240,21 +221,21 @@ items<-length(levels(irt_data$Item))
 expectN <- subjs * items
 
 
-# utterance lengths
+### utterance lengths
 if(!use_old){
-  # only available in newer files
+  ### only available in newer files
   uls <- append(irt_data$`R1 UL`,irt_data$`R2 UL`)
   uls_desc <- describe(uls)
   uls_r1_desc <- describe(irt_data$`R1 UL`)
   uls_r2_desc <- describe(irt_data$`R2 UL`)
 }
 
-# note properties
+### note properties
 irt_props_all <- describe(irt_data$irt)
 irt_props <- describe(irt_data$irt)
 wirt_props <- describe(irt_data$win_irt)
 
-# sd by condition table
+### sd by condition table
 sdByConditionLong <- aggregate(
   irt_data$win_irt,
   by=list(
@@ -264,7 +245,7 @@ sdByConditionLong <- aggregate(
   FUN=sd
 )
 
-# means by condition table
+### means by condition table
 meansByConditionLong <- aggregate(
   irt_data$win_irt,
   by=list(
@@ -274,20 +255,20 @@ meansByConditionLong <- aggregate(
   FUN=mean
 )
 names(meansByConditionLong)[3] <- "mean"
-# concise means by condition table
+### concise means by condition table
 meansByCondition <- meansByConditionLong %>% spread(Q,mean) 
 names(meansByCondition)[1] <- "Condition"
-# add sd and se to meansByConditionLong
+### add sd and se to meansByConditionLong
 meansByConditionLong$sd<-sdByConditionLong$x
 meansByConditionLong$se<-sdByConditionLong$x/sqrt(irt_props$n)
 
 
-# difference in condition means
+### difference in condition means
 diffs<-list(Condition="Increase", `D`=diff(meansByCondition$`D`), `Q`= diff(meansByCondition$`Q`))
 meansByCondition<-rbind(meansByCondition, diffs)
 cdiff <- meansByCondition$`D`[3]-meansByCondition$`Q`[3]
 
-# participant means by condition
+### participant means by condition
 pmeansByCondition <- aggregate(
   irt_data$irt,
   by=list(
@@ -301,7 +282,7 @@ pmeansByCondition$pattern <- (
   pmeansByCondition$`D +GP` - pmeansByCondition$`D -GP`
 ) 
 
-# simple P means
+### simple P means
 spm <- aggregate(
   irt_data$irt,
   by=list(
@@ -318,7 +299,7 @@ write_csv(mdata,"export/prosody_data.csv")
 
 This section reports various analyses of the recordings obtained. There is a total of 32 participants included, 48 total items, 16 of which are experimental items, with each item read twice by each participant. There were 4 versions of the experiment. Some items are missing due to technical issues during data collection. Other data were excluded due to factors explained later. Ultimately, `r nrow(mdata)` recordings are analyzed (`r nrow(irt_data)` pairs).
 
-# Prosody {#results-prosody}
+### Prosody {#results-prosody}
 
 This subsection presents the results of the independent rater's judgements regarding prosodic boundaries. Data are excluded if either recording from a pair of recordings (reading 1 or reading 2) is missing (there were `r missingPairs` incomplete pairs excluded) because without the other member, it is difficult to determine the extent to which the participant followed instructions (i.e. did not study the sentence before reading 1, did study the sentence before reading 2). Recordings with no reported breaks are excluded from the prosodic analyses, since they are unlikely to represent the reader's intended prosodic structure (there were `r table(mdata$simple2lvl)["NEITHER"]` such recordings). The paired readings of these are not excluded, and IRTs extracted from them are included in the timing analyses, since delay information is available for both readings.
 
@@ -343,7 +324,7 @@ The sentences can be informally broken into regions as in \ref{@structure}.
 
 In what follows, I will discuss prosodic breaks at the points directly after the direct object (referred to as OBJ) and directly after PP1 (referred to as PP1).
 
-## Breaks after PP1 and direct object
+#### Breaks after PP1 and direct object
 
 The PP1 break is expected when PP2, attaches high; i.e., the garden path condition, and is not expected in the non-garden paths, when PP2 attaches low. The OBJ break does not correspond to any expected syntactic structure, and likely represents a breath group or some other not-syntactically-motivated break reason.
 
@@ -404,12 +385,12 @@ kable(
 
 Table \ref{tab:pp1gp} shows the presence of object and PP1 breaks by condition.
 
-## The two readings
+#### The two readings
 
 Because "natural prosody" is likely to be less often produced in reading 1 than in a reading 2, it's important to consider the prosodic patterns for the two readings independently. 
 
 ```{r byGPr2}
-# r2
+### r2
 r2data <- subset(mdata,Reading==2)
 
 pp1tab<-xtabs(PP1 ~ Condition_GP + Condition_Q, data=r2data)
@@ -454,7 +435,7 @@ objdisp <- obj %>%
 pp1obj <- cbind(pp1disp,objdisp[2:3])
 pp1obj[[1]] <- c("-GP","+GP")
 
-# r1
+### r1
 r1data <- subset(mdata,Reading==1)
 
 pp1tab<-xtabs(PP1 ~ Condition_GP + Condition_Q, data=r1data)
@@ -526,7 +507,7 @@ kable(
 
 The primary difference across readings is in the OBJ break distribution. For the analyses that follow, reading 1 will largely be ignored.
 
-## PP1 and object breaks combined
+#### PP1 and object breaks combined
 
 It is perhaps more interesting to look at the combined distribution of the breaks: i.e., a sentence can have one of four patterns: OBJ and PP1 breaks are present; only OBJ or only PP1 is present; or neither is present. As mentioned earlier, there were only 5 cases where neither are present, and those are excluded.
 
@@ -555,13 +536,13 @@ kable(ccombo,caption="Combined breaks by condition in reading 2 only") %>%
 
 Table \ref{tab:r2combobreaksBycond} shows that for +GP sentences, there are very few instances with the OBJ-only pattern (0.8% in declaratives, 2.5% in interrogatives); whereas that pattern is fairly robust for -GP sentences (31.1% in declaratives, 31.4% in interrogatives). The pattern with both breaks is somewhat more common for +GP sentences (72.1% in declaratives, 71.7% in interrogatives) than -GP (54.1% in declaratives, 43.0% in interrogatives). The PP1-only pattern occurs at about the same rate in +GP interrogatives (25.8%) as in -GP interrogatives (25.6%) and +GP declaratives (27%), but is noticeably less common for -GP declaratives (14.8%).
 
-## PP1 and object breaks and their relative prominence
+#### PP1 and object breaks and their relative prominence
 
 Table \ref{tab:pros2lvl} presents data similar to those in the previous section, but it incorporates the rater's judgement of the relative prominence of the breaks. The &gt; symbol indicates that the rater found the break on the left of that symbol to be stronger, or more prominent, than the break on the left. When no symbol is shown between the two breaks, the rather found them to be of equal prominence. Please be aware that inter-rater reliability for relative prominence was not good, as discussed in section \ref{raterRel}.
 
 ```{r pros2lvlPre}
 
-# TODO present this table across condition(s)
+### TODO present this table across condition(s)
 
 allpros<-table(mdata$two_level_prosody)%>%
   prop.table() %>% 
@@ -595,7 +576,7 @@ kable(allpros,caption="Prosodic pattern by reading")%>% kable_styling(latex_opti
 
 \clearpage
 
-## Prosody models
+#### Prosody models
 
 Models predicting the PP1 break and the object break are presented in table \ref{tab:lmPros}. No random slopes were included, as those models did not converge.
 
@@ -628,7 +609,7 @@ huxreg(
 
 \clearpage
 
-# Fluency
+### Fluency
 
 This section presents the counts of recordings where the reader struggled to maintain fluency. Table \ref{tab:strug} shows the overall pattern across reading.
 
@@ -638,7 +619,7 @@ colnames(all_strug)<-c("Cold reading", "Previewed reading")
 row.names(all_strug)<-c("Fluent", "Struggle")
 ```
 ```{r strug}
-# TODO combine this table and next
+### TODO combine this table and next
 kable(all_strug, caption="Difficulty in reading by reading type") %>%
   kable_styling(latex_options = "hold_position")
 ```
@@ -652,7 +633,7 @@ row.names(GP_strug)<-c("Fluent", "Struggle")
 kable(GP_strug, caption="Difficulty in reading by reading type for garden paths")%>% kable_styling(latex_options = "hold_position")
 ```
 
-## Fluency models
+#### Fluency models
 
 Table \ref{tab:strugMod} shows a number of logistic regression models. Models with complex random slope structures failed to converge, and models with random slopes for just *Previewed Reading* were worse than those without random slopes, so the models presented have no random slopes for any predictors. None of the models differ in statistically significant ways, except that the model with no random effects is significantly worse than the others (e.g. no random effects (AIC=575) compared to full model (AIC=547), &Chi;^2^(3)=3, p < 0.001).
 
@@ -697,12 +678,12 @@ Cold vs. previewed reading is a statistically significant predictor in every cas
 
 \clearpage
 
-# Inter-reading time (IRT) {#results-irt}
+### Inter-reading time (IRT) {#results-irt}
 
 
 This document examines the inter-reading time (IRT) from the study. IRT was measured over `r recs` recordings: 32 participants, 48 items = `r subjs * items` recording pairs (reading 1 and reading 2), with `r  subjs * items - recs` missing pairs. The missing data are a result of one or both recordings from a pair being unusable due to technical issues (e.g. a failure of recording equipment, or participant error).
 
-## Distribution of IRT
+#### Distribution of IRT
 
 The raw IRTs including fillers and before any outliers are trimmed are distributed as shown in Figure \ref{fig:rawIRThist}. Overall mean IRT of these data (n = `r irt_props_all$n`), is `r round(irt_props_all$mean/1000,1)`s. The longest is `r round(irt_props_all$max/1000,1)`s and the shortest `r round(irt_props_all$min,0)`ms. Median IRT is `r round(irt_props_all$median/1000,1)`s.
 
@@ -738,7 +719,7 @@ ggplot(irt_data, aes(wirt.log10)) +
 
 \clearpage
 
-## Means by condition
+#### Means by condition
 
 Table \ref{tab:mns} shows the mean wIRT by experimental condition. The top left cell represents the mean wIRT for the declaritive controls ("D -GP"). The bottom row shows the increase in IRT across the garden path condition. 
 
@@ -790,7 +771,7 @@ ggplot(
 
 \clearpage
 
-## Regression models of IRT
+#### Regression models of IRT
 
 The models with random slopes for participant and item did not converge, so the tables in this section show models with no random slopes. 
 
@@ -928,35 +909,35 @@ comp <- anova(irt.full,irt.noRand)
 row.names(comp) <- c("No random effects", "Full")
 
 kable(comp,caption="Full model vs. no random effects",col.names=cols,escape=F)
-# tab <- hux(comp[,c(1:2,4,6:8)],autoformat = T)
-# tab <- add_rows(
-#   tab, 
-#   hux("Df","AIC","logLik","&Chi;<sup>2</sup>","Df(&Chi;)","p value"),
-#   after=0
-# )
-# tab <- insert_column(
-#   tab, c("","No random effects", "Full")
-# )
-# 
-# tab %>% set_escape_contents(F,row=1,col=5:7) %>%
-#   set_number_format(value=2,col = c(3:5,7),row=2:3) %>%
-#   set_label("tab:modComp2") %>% 
-#   set_caption("No random effects vs. full model") %>%
-#   set_top_border(row=1,value=1,col=everywhere) %>%
-#   set_bottom_border(row=1,value=1,col=2:7) %>% 
-#   set_bottom_border(row=final(1),value=1,col=everywhere) 
+### tab <- hux(comp[,c(1:2,4,6:8)],autoformat = T)
+### tab <- add_rows(
+###   tab, 
+###   hux("Df","AIC","logLik","&Chi;<sup>2</sup>","Df(&Chi;)","p value"),
+###   after=0
+### )
+### tab <- insert_column(
+###   tab, c("","No random effects", "Full")
+### )
+### 
+### tab %>% set_escape_contents(F,row=1,col=5:7) %>%
+###   set_number_format(value=2,col = c(3:5,7),row=2:3) %>%
+###   set_label("tab:modComp2") %>% 
+###   set_caption("No random effects vs. full model") %>%
+###   set_top_border(row=1,value=1,col=everywhere) %>%
+###   set_bottom_border(row=1,value=1,col=2:7) %>% 
+###   set_bottom_border(row=final(1),value=1,col=everywhere) 
 ```
 
 Table \ref{tab:modCom2} shows that the random effects of participant and item improve the model in a stastically signifcant way.
 
 \clearpage
 
-## Effect of verb on IRT
+#### Effect of verb on IRT
 
 If we consider the mean wIRT by which of the 4 verbs occured in the target sentence (*cram*, *set*, *put*, or *stick*), we see that there was some difference in how the two experimental manipulations (&plusmn;GP = garden path status and &plusmn;Q = interrogative vs. declarative status) effected wIRT. The means (and standard deviation) across the conditions are reported for each verb in table \ref{tab:verbConMeans}.
 
 ```{r verbMeans}
-# means by condition table
+### means by condition table
 meansByVerb <- aggregate(
   irt_data$win_irt/1000,
   by=list(
@@ -965,7 +946,7 @@ meansByVerb <- aggregate(
   ),
   FUN=mean
 ) %>% spread(Condition,x)
-# sd by condition table
+### sd by condition table
 sdByVerb <- aggregate(
   irt_data$win_irt/1000,
   by=list(
@@ -1003,7 +984,7 @@ To isolate the effect of the garden path for interrogatives as compared to decla
 ```{r verbConDiffMeans}
 kable(meansByVerb[,c(1,6:8)],caption="Effect of GP on wIRT by verb", digits=1) %>% kable_styling(latex_options = "hold_position")
 ```
-## Individual variation in IRT
+#### Individual variation in IRT
 
 Individuals vary with regard to the effect of the garden path condition on IRT. For `r table(pmeansByCondition$pattern)["TRUE"]` of `r nrow(pmeansByCondition)`, the increase in IRT for garden paths is greater for interrogatives than it is for declaratives.
 
@@ -1017,7 +998,7 @@ kable(
 
 \clearpage
 
-## Interrogative processing cost is represented in IRT
+#### Interrogative processing cost is represented in IRT
 
 Interrogatives appear to have a computational processing cost when compared to interrogatives [cf. @lehiste1973phonetic]. The filler sentences in this study were designed so as to provide a diagnostic of the interrogative effect on IRT. 
 
@@ -1071,7 +1052,7 @@ A mixed effects regression model (no random slope structure, due to convergence 
 
 \clearpage
 
-# Delay comparison for cold vs. previewed readings
+### Delay comparison for cold vs. previewed readings
 
 A comparison of the delay for cold readings compared with that of previewed readings can lend insight into the extent to which subjects followed task instructions.
 
@@ -1101,7 +1082,7 @@ diffsByP.props <- describe(diffsByP$`Mean difference in delay (ms)`)
 
 For cold readings, n = `r table(raw_rs$Reading)["Cold"]` and for previewed, n = `r table(raw_rs$Reading)["Previewed"]`. 
 
-## Reading 1 delays by participant
+#### Reading 1 delays by participant
 
 ```{r}
 r1data <- subset(raw_rs, reading == 1)
@@ -1137,7 +1118,7 @@ summary(del.pp1Mod)
 summary(del.objMod)
 ```
 
-## Difference in delay across paired readings
+#### Difference in delay across paired readings
 
 Overall, each recording pair (n = `r diffDis$n`) has a mean difference in delay (DelDif = previewed delay - cold delay) of `r round(diffDis$mean/1000,1)`s (sd = `r round(diffDis$sd/1000,1)`s), with a minumum of `r round(diffDis$min/1000,1)`s and a max of `r round(diffDis$max/1000,1)`s. The median DelDif is `r round(diffDis$median/1000,1)`s. The distribution DelDif is shown in Figure \ref{fig:deddif}.
 
@@ -1169,7 +1150,7 @@ ggplot(diffsByP, aes(`Mean difference in delay (ms)`/1000)) +
 ```
 \pagebreak
 
-# Additional tables and figures {#etc}
+### Additional tables and figures {#etc}
 
 Addtional figures and tables appear here without discussion, for the curious reader.
 
@@ -1191,4 +1172,4 @@ ggplot(subset(irt_data_all,irt>22000), aes(irt/1000)) +
 \clearpage
 \pagebreak
 
-`r if (knitr::is_html_output()) '# References {-}'`
+`r if (knitr::is_html_output()) '### References {-}'`
