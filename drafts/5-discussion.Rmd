@@ -10,11 +10,11 @@ Hypothesis 2: yes
 Hypothesis 3: yes
 Hypothesis 4: maybe
 
-# Interpreting the results
+## Interpreting the results
 
 It seems likely that the intuition is born out by IRT, as the means align with the intuition. The lack of statistical significance is likely due to a lack of statistical power, i.e. not enough data.
 
-# Explaining the intuition
+## Explaining the intuition
 
 A possible explanation for the intuitive effect of ±Q on ±GP is provided in the work by Markus Bader (1998). Bader demonstrates that it is easier to recover a parse that “behave[s] alike prosodically” to a given failed parse, because the reanalysis does not require prosodic reconstruction and only the syntax needs to be repaired. In the case of the intuition this study is concerned with, this would mean that sentences should be more similar across the garden path vs. non-garden path condition in the interrogative than in the declarative. 
 

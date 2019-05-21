@@ -3,7 +3,7 @@
 <!-- This is the fourth content section -->
 <!-- Previous section: methodology -->
 <!-- Following section: discussion -->
-```{r setup,echo=F,warning=F,message=F}
+```{r results_setup,echo=F,warning=F,message=F}
 knitr::opts_chunk$set(
   echo=FALSE, 
   warning=FALSE, 
@@ -42,7 +42,7 @@ theme_set(
 
 ```
 
-```{r prosody-setup}
+```{r prosody_setup}
 mdata_raw <- read_csv("../csvs/got_prosody.csv")
 ### remove items where STRONG == NA (these are the items Sita didn't respond to)
 mdata <- mdata_raw[!is.na(mdata_raw$STRONG),]
@@ -95,7 +95,7 @@ mdata <- subset(mdata,!is.na(OBJ)|!is.na(PP1))
 
 ```
 
-```{r irt-setup, cache=T}
+```{r irt_setup, cache=T}
 itemsDf <- read_csv(
   "../csvs/src/items.csv", 
   col_types = cols(
@@ -299,7 +299,7 @@ write_csv(mdata,"export/prosody_data.csv")
 
 This section reports various analyses of the recordings obtained. There is a total of 32 participants included, 48 total items, 16 of which are experimental items, with each item read twice by each participant. There were 4 versions of the experiment. Some items are missing due to technical issues during data collection. Other data were excluded due to factors explained later. Ultimately, `r nrow(mdata)` recordings are analyzed (`r nrow(irt_data)` pairs).
 
-### Prosody {#results-prosody}
+## Prosody {#results-prosody}
 
 This subsection presents the results of the independent rater's judgements regarding prosodic boundaries. Data are excluded if either recording from a pair of recordings (reading 1 or reading 2) is missing (there were `r missingPairs` incomplete pairs excluded) because without the other member, it is difficult to determine the extent to which the participant followed instructions (i.e. did not study the sentence before reading 1, did study the sentence before reading 2). Recordings with no reported breaks are excluded from the prosodic analyses, since they are unlikely to represent the reader's intended prosodic structure (there were `r table(mdata$simple2lvl)["NEITHER"]` such recordings). The paired readings of these are not excluded, and IRTs extracted from them are included in the timing analyses, since delay information is available for both readings.
 
@@ -314,7 +314,7 @@ kable(
 ) %>% kable_styling(latex_options = c("hold_position"))
 ```
 
-Table \ref{tab:totByCond} shows the number of recordings included in analyses for each condition. If no items had been excluded, the expected number per bin would be `r 32*16/4*2`[^n].
+Table \ref{tab:totByCond} shows the number of recordings included in analyses for each condition. If every items for each of the 32 participants had been available and included, the expected number per bin would be `r 32*16/4*2`[^n].
 
 [^n]: There are 32 participants, 16 items, and 2 readings, divided across 4 bins.
 
@@ -512,7 +512,7 @@ The primary difference across readings is in the OBJ break distribution. For the
 It is perhaps more interesting to look at the combined distribution of the breaks: i.e., a sentence can have one of four patterns: OBJ and PP1 breaks are present; only OBJ or only PP1 is present; or neither is present. As mentioned earlier, there were only 5 cases where neither are present, and those are excluded.
 
 ```{r r2combobreaksBycondpre}
-r2pdata<-subset(pdata,Reading==2)
+r2pdata<-subset(mdata,Reading==2)
 qdata <- subset(r2pdata,Condition_GP)
 ddata <- subset(r2pdata,!Condition_GP)
 qpros<-table(qdata$simple2lvl,qdata$Condition_Q) %>%
@@ -576,7 +576,7 @@ kable(allpros,caption="Prosodic pattern by reading")%>% kable_styling(latex_opti
 
 \clearpage
 
-#### Prosody models
+### Regression models predicting break occurence
 
 Models predicting the PP1 break and the object break are presented in table \ref{tab:lmPros}. No random slopes were included, as those models did not converge.
 
@@ -592,9 +592,7 @@ huxreg(
     "GP"="Condition_GPTRUE",
     "Q"="Condition_QTRUE",
     "GP:Q Interaction"="Condition_QTRUE:Condition_GPTRUE",
-    "Preview" = "Reading2",
-    "Participant"="sd_(Intercept).SID",
-    "Item"="sd_(Intercept).IID"
+    "Preview" = "Reading2"
   ),
   statistics = c(
     N="nobs",
@@ -609,76 +607,7 @@ huxreg(
 
 \clearpage
 
-### Fluency
-
-This section presents the counts of recordings where the reader struggled to maintain fluency. Table \ref{tab:strug} shows the overall pattern across reading.
-
-```{r strugpre}
-all_strug <-table(mdata$STRUG,mdata$Reading)
-colnames(all_strug)<-c("Cold reading", "Previewed reading")
-row.names(all_strug)<-c("Fluent", "Struggle")
-```
-```{r strug}
-### TODO combine this table and next
-kable(all_strug, caption="Difficulty in reading by reading type") %>%
-  kable_styling(latex_options = "hold_position")
-```
-
-Table \ref{tab:gpstrug} shows the pattern across reading for just +GP items.
-
-```{r gpstrug}
-GP_strug <- with(subset(mdata,Condition_GP==TRUE),table(STRUG,Reading))
-colnames(GP_strug)<-c("Cold reading", "Previewed reading")
-row.names(GP_strug)<-c("Fluent", "Struggle")
-kable(GP_strug, caption="Difficulty in reading by reading type for garden paths")%>% kable_styling(latex_options = "hold_position")
-```
-
-#### Fluency models
-
-Table \ref{tab:strugMod} shows a number of logistic regression models. Models with complex random slope structures failed to converge, and models with random slopes for just *Previewed Reading* were worse than those without random slopes, so the models presented have no random slopes for any predictors. None of the models differ in statistically significant ways, except that the model with no random effects is significantly worse than the others (e.g. no random effects (AIC=575) compared to full model (AIC=547), &Chi;^2^(3)=3, p < 0.001).
-
-```{r strugModelPre,cache=T}
-models.strug <- glmer(STRUG~Condition_Q*Condition_GP+Reading+(1|IID)+(1|SID),data=mdata,family=binomial)
-models.strug.noRand <- glm(STRUG~Condition_Q+Condition_GP+Reading,data=mdata,family=binomial)
-models.strug.noInt <- glmer(STRUG~Condition_Q+Condition_GP+Reading+(1|IID)+(1|SID),data=mdata,family=binomial)
-models.strug.noCon <- glmer(STRUG~Reading+(1|IID)+(1|SID),data=mdata,family=binomial)
-```
-```{r strugMod}
-huxreg(
-  list(
-    "Full"=models.strug, 
-    "No interaction"=models.strug.noInt, 
-    "Reading only"=models.strug.noCon
-  ),
-  coefs = c(
-    "Intercept"="(Intercept)",
-    "+GP"="Condition_GPTRUE",
-    "Q"="Condition_QTRUE",
-    "+GP Q"="Condition_QTRUE:Condition_GPTRUE",
-    "Previewed reading" = "Reading2",
-    "Participant"="sd_(Intercept).SID",
-    "Item"="sd_(Intercept).IID"
-  ),
-  statistics = c(
-    N="nobs",
-    "logLik",
-    "AIC"
-  )
-) %>% 
-  set_caption("Logistic regression models of disfluency") %>% 
-  set_label("strugMod") %>%
-  set_latex_float("htbp") %>%
-  set_tabular_environment("tabular")
-
-
-compNoRand <- anova (models.strug,models.strug.noRand)
-```
-
-Cold vs. previewed reading is a statistically significant predictor in every case.
-
-\clearpage
-
-### Inter-reading time (IRT) {#results-irt}
+## Inter-reading time (IRT) {#results-irt}
 
 
 This document examines the inter-reading time (IRT) from the study. IRT was measured over `r recs` recordings: 32 participants, 48 items = `r subjs * items` recording pairs (reading 1 and reading 2), with `r  subjs * items - recs` missing pairs. The missing data are a result of one or both recordings from a pair being unusable due to technical issues (e.g. a failure of recording equipment, or participant error).
@@ -1052,7 +981,7 @@ A mixed effects regression model (no random slope structure, due to convergence 
 
 \clearpage
 
-### Delay comparison for cold vs. previewed readings
+## Delay comparison for cold vs. previewed readings
 
 A comparison of the delay for cold readings compared with that of previewed readings can lend insight into the extent to which subjects followed task instructions.
 
@@ -1150,7 +1079,7 @@ ggplot(diffsByP, aes(`Mean difference in delay (ms)`/1000)) +
 ```
 \pagebreak
 
-### Additional tables and figures {#etc}
+## Additional tables and figures {#etc}
 
 Addtional figures and tables appear here without discussion, for the curious reader.
 

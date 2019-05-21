@@ -1,9 +1,1 @@
----
-bibliography: refs.bib
-output: 
-  bookdown::html_document2: 
-    toc: true
----
-
-`r if (knitr::is_html_output()) '# References {-}'`
-
+## FRONTMATTER

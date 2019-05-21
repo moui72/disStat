@@ -1,13 +1,6 @@
 ---
 bibliography: refs.bib
 biblio-style: "apalike"
-output: 
-  bookdown::pdf_document2: 
-    toc: true
-    latex_engine: xelatex
-    citation_package: natbib
-  bookdown::html_document2: 
-    toc: true
 ---
 <!--
 %Dissertation introduction
@@ -19,7 +12,7 @@ output:
 
 Before the details of the current research can be outlined, it&apos;s first necessary to explain some of the terms and mechanisms involved. Most critically, it&apos;s necessary to be clear on what a garden path is, and what causes the phenomena.
 
-# What is a garden path?
+## What is a garden path?
 The occurrence of garden-path (GP) effects are generally attributed to a clash between structure-first parsing strategies, e.g. @Frazier1979-pb's *Minimal Attachment*, and the actual intended structure of the sentence in question.
 
 ```{definition,MinAtt,name="Minimal Attachment"}
@@ -37,7 +30,7 @@ If we assume that the parser builds structure by following these types of constr
 
 The attempted parse represented in structure (@hbf) crashes, as it isn"t possible to incorporate the final word fell in a grammatical way. In order to obtain the grammatical parse, (@hbf b) where the matrix subject is the horse raced past the barn, almost the entire structure of (@hbf a) must be discarded. The subject is not the horse, and the main verb is not raced. Rather, the subject is a noun phrase (NP) containing a reduced relative clause raced past the barn. Only after remediation can fell be properly incorporated as the matrix verb. This finally results in a grammatical sentence, with a structure comparable to, "The horse (that was) raced past the barn was hungry." Garden-path effects can result any time the assumptions made by the parser clash with the actual structure of a sentence. 
 
-# PP-attachment garden paths
+## PP-attachment garden paths
 
 The type of garden-path sentence that this study is concerned with centers around the temporarily ambiguous attachment sites for a prepositional phrase (PP). Consider:
 
@@ -60,7 +53,13 @@ According to the intuition of many native speakers of American English, the diff
 
   (@intr) Had he planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ into his briefcase]?
 
-That is, while both sentences contain a temporary ambiguity for the attachment of PPs occurring in string-linear sequence at the end of an utterance, it is more likely in (@intr) that a listener or reader will come away with a plausible interpretation. This study explores the factors involved in why that is, and seeks to uncover a behavioral correlate of this intuition.
+That is, while both sentences contain a temporary ambiguity for the attachment of PPs occurring in string-linear sequence at the end of an utterance, it is more likely in (@intr) that a listener or reader will come away with a plausible interpretation. This study explores the factors involved in why that is, and seeks to uncover a behavioral correlate of this intuition. If the existence and mechanics of this effect can be pinned down, it will lend insight into what information the parser has access to when making decisions, or when repairing broken parses. This initial observation reveals a robust program of research with many interwoven questions. 
 
-`r if (knitr::is_html_output()) '# References {-}'`
+One of the many questions is: can speaker behavior be shown to reflect the intuition? To say it another way, is there some behavior that is correlated with the reduction in difficulty of parsing PP-attachment garden paths that can be measured? Peckenpaugh (2016) represents one attempt to find such a correlate, and this paper continues that search.
+
+One might also ask what property or properties of polar questions might lead to an easier parsing of garden paths, or at least to the perception that they are easier to parse as polar questions than as declaratives. Because there are minimal differences between the polar question and declarative version of a given sentence, it is fairly easy to assume that the cause lies in one of two domains: the prosodic changes triggered by the use of question intonation, or the pragmatic and semantic properties that are not shared across the versions. 
+
+An obvious reflex of the former possibility is another question: how are the various versions of these sentences actually pronounced? This question is deceptively difficult to answer; the reported study seeks to answer it, but while the recordings collected provide some insight, more work is likely needed to satisfactorily provide an answer.
+
+Likewise, the latter possibility leads one to wonder: what are the semantic and pragmatic differences between a polar question and its declarative counterpart? This question can be approach in a more theoretical way, and has been to some degree in the literature. That said, it remains to be determined how those properties could lead to an easier parsing process, and whether or not a satisfactory explanation for the intuition at large can be pulled from these differences. 
 

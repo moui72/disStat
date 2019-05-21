@@ -1,0 +1,66 @@
+## Fluency
+
+This section presents the counts of recordings where the reader struggled to maintain fluency. Table \ref{tab:strug} shows the overall pattern across reading.
+
+```{r strugpre}
+all_strug <-table(mdata$STRUG,mdata$Reading)
+colnames(all_strug)<-c("Cold reading", "Previewed reading")
+row.names(all_strug)<-c("Fluent", "Struggle")
+```
+```{r strug}
+### TODO combine this table and next
+kable(all_strug, caption="Difficulty in reading by reading type") %>%
+  kable_styling(latex_options = "hold_position")
+```
+
+Table \ref{tab:gpstrug} shows the pattern across reading for just +GP items.
+
+```{r gpstrug}
+GP_strug <- with(subset(mdata,Condition_GP==TRUE),table(STRUG,Reading))
+colnames(GP_strug)<-c("Cold reading", "Previewed reading")
+row.names(GP_strug)<-c("Fluent", "Struggle")
+kable(GP_strug, caption="Difficulty in reading by reading type for garden paths")%>% kable_styling(latex_options = "hold_position")
+```
+
+#### Fluency models
+
+Table \ref{tab:strugMod} shows a number of logistic regression models. Models with complex random slope structures failed to converge, and models with random slopes for just *Previewed Reading* were worse than those without random slopes, so the models presented have no random slopes for any predictors. None of the models differ in statistically significant ways, except that the model with no random effects is significantly worse than the others (e.g. no random effects (AIC=575) compared to full model (AIC=547), &Chi;^2^(3)=3, p < 0.001).
+
+```{r strugModelPre,cache=T}
+models.strug <- glmer(STRUG~Condition_Q*Condition_GP+Reading+(1|IID)+(1|SID),data=mdata,family=binomial)
+models.strug.noRand <- glm(STRUG~Condition_Q+Condition_GP+Reading,data=mdata,family=binomial)
+models.strug.noInt <- glmer(STRUG~Condition_Q+Condition_GP+Reading+(1|IID)+(1|SID),data=mdata,family=binomial)
+models.strug.noCon <- glmer(STRUG~Reading+(1|IID)+(1|SID),data=mdata,family=binomial)
+```
+```{r strugMod}
+huxreg(
+  list(
+    "Full"=models.strug, 
+    "No interaction"=models.strug.noInt, 
+    "Reading only"=models.strug.noCon
+  ),
+  coefs = c(
+    "Intercept"="(Intercept)",
+    "+GP"="Condition_GPTRUE",
+    "Q"="Condition_QTRUE",
+    "+GP Q"="Condition_QTRUE:Condition_GPTRUE",
+    "Previewed reading" = "Reading2",
+    "Participant"="sd_(Intercept).SID",
+    "Item"="sd_(Intercept).IID"
+  ),
+  statistics = c(
+    N="nobs",
+    "logLik",
+    "AIC"
+  )
+) %>% 
+  set_caption("Logistic regression models of disfluency") %>% 
+  set_label("strugMod") %>%
+  set_latex_float("htbp") %>%
+  set_tabular_environment("tabular")
+
+
+compNoRand <- anova (models.strug,models.strug.noRand)
+```
+
+Cold vs. previewed reading is a statistically significant predictor in every case.
