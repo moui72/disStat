@@ -1,0 +1,23 @@
+--- 
+title: "PP-attachment ambiguities"
+author: "Tyler J. Peckenpaugh"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::pdf_book
+documentclass: book
+bibliography: [refs.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+fontsize: 12pt
+mainfont: Cambria
+header-includes:
+  - \usepackage{float}
+  - \usepackage{setspace}\doublespacing
+---
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```

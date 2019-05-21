@@ -1,4 +1,39 @@
 
+```{r combobreaksPre}
+pdata <- subset(mdata,OBJ|PP1)
+allpros <- table(pdata$simple2lvl) %>%
+  prop.table() %>% 
+  `*` (100) %>%
+  round(1) %>%
+  hux() %>%
+  setNames(c("Combined breaks", "Percent of all data"))
+
+r2pros<-table(
+  subset(pdata,Reading==2)$simple2lvl
+) %>%
+  prop.table() %>% 
+  `*` (100) %>%
+  round(1) %>%
+  hux() %>%
+  setNames(c("Pattern", "r2")) 
+
+r1pros<-table(
+  subset(pdata,Reading==1)$simple2lvl
+) %>%
+  prop.table() %>% 
+  `*` (100) %>%
+  round(1) %>%
+  hux() %>%
+  setNames(c("Pattern", "r1")) 
+
+allpros$`Cold readings` <- r1pros$r1
+allpros$`Previewed readings` <- r2pros$r2
+```
+
+```{r combobreaks}
+kable(allpros,caption="Combined breaks by reading") %>%
+  kable_styling(latex_options = "hold_position")
+```
 <!--
 ## Generalized Estimating Equation
 

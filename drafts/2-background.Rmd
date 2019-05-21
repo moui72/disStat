@@ -11,7 +11,7 @@ output:
 <!-- This is the second content section -->
 <!-- Previous section: introduction -->
 <!-- Following section: methodology -->
-
+# Background
 
 This section goes over evidence supporting the claim that prosody can impact parsing decisions, even in silent reading.
 
@@ -77,7 +77,7 @@ In pursuing the possibility that it is the intonation and prosody of polar inter
 [^uar]: @Hedberg2017-er use &uarr; to indicate an upstep, which is not standardly transcribed with ToBI.
 
   (@rise) Did Jed cram the newspapers under the sofa in the	[~L\*H-H%~ guestroom].
-							      	 	                                    
+
 The need to prepare for that rising tone might make a prosodic break before the PP more likely, and thus ease reanalysis or even encourage a different prosodic chunking which might encourage high attachment.
 
 A brief informal survey found that most speakers maintain low tones on prior stresses, although some had a H tone on the subject noun. It also varied between speakers and between sentences as to whether there is a prosodic boundary (marked by a low tone and/or pause) immediately before the rise (after PP1) or not. 

@@ -15,7 +15,7 @@ output:
 %Previous section: Front matter
 %Following section: Background
 -->
-
+# Introduction
 
 Before the details of the current research can be outlined, it&apos;s first necessary to explain some of the terms and mechanisms involved. Most critically, it&apos;s necessary to be clear on what a garden path is, and what causes the phenomena.
 
@@ -42,10 +42,9 @@ The attempted parse represented in structure (@hbf) crashes, as it isn"t possibl
 The type of garden-path sentence that this study is concerned with centers around the temporarily ambiguous attachment sites for a prepositional phrase (PP). Consider:
 
 (@cramGPy) He had planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ into his briefcase].
-								  
+
 (@cramGPn) He had planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ of his filing cabinet].
 
-						
 The sentences in (@cramGPy) and (@cramGPn) contain a temporary ambiguity with regard to the attachment site of in the drawer (PP1). It can either attach high, as an argument of the verb (i.e., the paperwork is being crammed in the drawer), or else low, as a modifier of the direct object (i.e. the paperwork in the drawer is being crammed into his briefcase). Sentence (@cramGPy) differs from (@cramGPn) in the ultimate resolution of that ambiguity, although in both cases disambiguation is triggered by the preposition heading the second PP, PP2 (into/of).
 In (@cramGPy), PP1 must ultimately attach high, as the locative argument of the verb, in order for a plausible parse to be obtained. This is likely to cause some difficulty for the reader or listener of the sentence, if structure-first parsing strategies like *Minimal Attachment* are obeyed. The parser will have attached PP1 as the verb"s locative argument, not knowing PP2 was to come. The resulting parse crashes, because with PP1 attached high, PP2 has nowhere to attach but as a modifier of the noun in PP1 (\*[~NP~ the drawer into his briefcase]), or else as a modifier of the verb/sentence (*[~VP~ he did so into his briefcase]). The preference for VP attachment of PP1 in these kinds of sentences is supported by experimental data in studies from @raynerEtAl1983, @cliftonEtAl1991 and Schutz and Gibson (1999). 
 

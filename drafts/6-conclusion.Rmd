@@ -4,6 +4,7 @@ output:
   bookdown::html_document2: 
     toc: true
 ---
+# Conclusion
 Discussion of what is still unknown, and suggestions of future research.
 
 # Issues with the reported study
