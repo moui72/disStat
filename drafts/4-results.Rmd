@@ -1061,6 +1061,7 @@ ggplot(diffsByP, aes(`Mean difference in delay (ms)`/1000)) +
 ```
 \pagebreak
 
+<!--
 # Additional tables and figures {#etc}
 
 Addtional figures and tables appear here without discussion, for the curious reader.
@@ -1079,7 +1080,7 @@ ggplot(subset(irt_data_all,irt>22000), aes(irt/1000)) +
   xlab("Raw IRT") + ylab("Frequency") + 
   ggtitle("Right tail of IRT distribution (s)", subtitle="IRT > 22s, bin size = 1s")
 ```
-
+-->
 \clearpage
 \pagebreak
 

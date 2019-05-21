@@ -2,6 +2,10 @@
 bibliography: refs.bib
 biblio-style: "apalike"
 output: 
+  bookdown::pdf_document2: 
+    toc: true
+    latex_engine: xelatex
+    citation_package: natbib
   bookdown::html_document2: 
     toc: true
 ---

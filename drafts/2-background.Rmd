@@ -107,26 +107,26 @@ This study is concerned with a number of issues. First: is attachment in any way
 
 I suggest that high attachment of PP2 will be marked by a prosodic boundary between PP1 and PP2 (for discussion of what constitutes a prosodic boundary, see Streeter, 1978 and Salverda et al., 2003). Low attachment of PP2, on the other hand, will lack any substantial boundary marking.
 
-  (@h1) *Hypothesis 1* \\
+  (@hypa) *Hypothesis 1* \hfill\linebreak
   High attachment of PP2 is prosodically marked by a boundary tone between PP1 and and PP2.
 
 
 The second issue: what factors impact immediate on-line parsing, and what factors only affect later, post-parse considerations? To address this, the study will employ the double reading paradigm of Fodor et al. (2018) (more on double reading in the methods section). For example, if first-pass parsing ignores semantic information, then implausible parses should be more frequent in cold readings (i.e. without preview) of a garden-path sentence than in a second reading of the same sentence.
 
-	(@h2) *Hypothesis 2* \\
+  (@hypb) *Hypothesis 2* \linebreak
   A cold reading (no preview) of a GP sentence will exhibit less natural prosody (more hesitation at and after the disambiguating region) than:
 A cold reading of a non-GP sentence.
 A previewed reading of a GP sentence.
 
 *Hypothesis 2* and *3* together make a third prediction: readers should struggle more on the cold reading of a GP sentence to obtain a plausible structure, and thus the appropriate prosody, than on a previewed reading.
 
-	(@h3) *Hypothesis 3* \\
+  (@hypd) *Hypothesis 3* \linebreak
   A cold reading of a garden-path sentence will more often be produced with prosodic structure that represents an implausible or ungrammatical parse of the string (low attachment of PP2), whereas a previewed reading sentence will more often be pronounced with the prosodic structure that represents the intended parse (high attachment of PP2).
 
 Note that hypothesis 3 can’t be applied in cases where the reader fails to successfully and fluently produce the sentence (which may sometimes happen, due to the GP effect).
 Finally, I investigate an intuition originally discovered by Janet Dean Fodor and Dianne Bradley: that these GP sentences are not as difficult to parse when encountered in interrogative, as opposed to declarative, context.
 
-  (@h4) *Hypothesis 4* \\
+  (@hype) *Hypothesis 4* \linebreak
   A cold reading (no preview) of a declarative GP sentence will exhibit less natural prosody (more hesitation at and after the disambiguating region) and be more likely to be produced with  prosodic structure that represents an implausible or ungrammatical parse of the string than a cold reading of an interrogative GP sentence.
 
 # References {-}
