@@ -1,8 +1,11 @@
 # Results
-<!-- Results -->
-<!-- This is the fourth content section -->
-<!-- Previous section: methodology -->
-<!-- Following section: discussion -->
+
+This section reports various analyses of the recordings obtained. The analyses include the effect of sentence type (declarative vs. interrogative, garden path vs. non-garden path) on the location of prosodic breaks, as well as "study" or inter-reading time (IRT). In order to evaluate the extent to which participants followed the instruction to read immediately for reading 1 and then study the sentence for reading 2, the amount of time that a sentence is displayed before a participant begins to read it (delay) is also discussed and compared across reading 1 vs. reading 2.
+
+## Participants in the reported analyses
+
+There is a total of 32 participants included, 48 total items, 16 of which are experimental items, with each item read twice by each participant. The 32 filler items are not included in analyses except where specified. The same recordings are used for all analyses.
+
 ```{r results_setup,echo=F,warning=F,message=F}
 knitr::opts_chunk$set(
   echo=FALSE, 
@@ -189,9 +192,11 @@ irt_data$Item<-relevel(as.factor(irt_data$Item),ref=1)
 ### see: https://sciencing.com/relationship-between-standard-deviations-percentiles-8768703.html
 win_trim=0.025
 irt_data <- irt_data %>% group_by(Participant) %>% mutate(win_irt = winsor(irt, trim=win_trim))
+irt_data$wirt<-irt_data$win_irt
 
 ### log 10 transform
 irt_data$wirt.log10 <- log10(irt_data$win_irt)
+
 
 ### meta 
 json <- read_file("../meta-4_11.json")
@@ -294,10 +299,41 @@ spm <- aggregate(
  
 prosDescrip <- describe(mdata)
 tot<-as.data.frame(xtabs( ~ Condition_GP + Condition_Q, data=mdata))
+
+orderMap <- read_csv(
+  "../csvs/src/order-p-map.csv",
+  col_types = cols(
+    ID = col_character(),
+    Order = col_character(),
+    LIST = col_character()
+  )
+)
+
+orderMap$Participant <- orderMap$ID
+orderMap$ID <- NULL
+
+mdata<-merge(mdata,orderMap,by="Participant")
 write_csv(mdata,"export/prosody_data.csv")
+
+versiontab <- mdata %>% 
+  filter(!duplicated(Participant)) %>%
+  with(table("Version"=LIST,Order)) %>%
+  addmargins() 
+
+rownames(versiontab)[1:4]<-paste("Version", rownames(versiontab))
+```
+```{r vtab}
+versiontab %>% kable(
+  caption="No. of participants per version-order combination",
+  col.names = c("Order 1", "Order 2", "Sum"),
+  align="c"
+) %>% kable_styling() %>% 
+  add_header_above(c(" "=1, "Order"=2, " "=1))
 ```
 
-This section reports various analyses of the recordings obtained. There is a total of 32 participants included, 48 total items, 16 of which are experimental items, with each item read twice by each participant. There were 4 versions of the experiment. Some items are missing due to technical issues during data collection. Other data were excluded due to factors explained later. Ultimately, `r nrow(mdata)` recordings are analyzed (`r nrow(irt_data)` pairs).
+There were 4 versions of the experiment, and two possible orderings, with approximately equal number of participants for each version-order combination. Ideally there would be 4 participants per version-order combination, but due to participant attrition and issues during data collection, the distribution is as in Table \ref{tab:vtab}.
+
+Some items are missing due to technical issues during data collection. Other data were excluded due to factors explained later. Ultimately, `r nrow(mdata)` recordings are analyzed (`r nrow(irt_data)` pairs).
 
 ## Prosody {#results-prosody}
 
@@ -617,35 +653,29 @@ This document examines the inter-reading time (IRT) from the study. IRT was meas
 The raw IRTs including fillers and before any outliers are trimmed are distributed as shown in Figure \ref{fig:rawIRThist}. Overall mean IRT of these data (n = `r irt_props_all$n`), is `r round(irt_props_all$mean/1000,1)`s. The longest is `r round(irt_props_all$max/1000,1)`s and the shortest `r round(irt_props_all$min,0)`ms. Median IRT is `r round(irt_props_all$median/1000,1)`s.
 
 ```{r rawIRThist,fig.cap="Distribution of raw IRT"}
-histSettings = geom_histogram(binwidth = 500,color="white",fill="#333333")
-ggplot(irt_data_all, aes(irt)) +
+histSettings = geom_histogram(binwidth = 0.5,color="white",fill="#333333")
+ggplot(irt_data_all, aes(irt/1000)) +
   histSettings +
-  xlab("Raw IRT") + 
-  ylab("Frequency")
+  xlab("Raw IRT (seconds)") + 
+  ylab("Frequency") +  
+  ggtitle(
+    "Distribution of raw IRT", 
+    subtitle="Bin size = 0.5s"
+  )
 ```
 
 IRTs below `r irt_min`ms (`r nrow(irt_lo)`) and above `r round(irt_max/1000,1)`s (`r nrow(irt_hi)`) are (assumed to be implausible) omitted. Experimental data were then Winsorized by participant to bring data in the `r win_trim*100`th and `r 100-(100*win_trim)`th percentile of data to the value at those tresholds. The resulting measure is referred to as wIRT and is distribued as shown in Figure \ref{fig:wIRT} (n = `r wirt_props$n`). Overall mean for wIRT is `r round(wirt_props$mean/1000,1)`s. The longest IRT is `r round(wirt_props$max/1000,1)`s and the shortest is `r round(wirt_props$min,0)`ms. Median wIRT is `r round(wirt_props$median/1000,1)`s.
 
 ```{r wIRT,fig.cap="Distribution of wIRT"}
-ggplot(irt_data, aes(win_irt)) +
+ggplot(irt_data, aes(win_irt/1000)) +
   histSettings + 
-  xlab("wIRT") + ylab("Frequency") + 
+  xlab("wIRT (seconds)") + 
+  ylab("Frequency") + 
   ggtitle(
-    "Distribution of wIRT (ms)", 
-    subtitle="Bin size = 500ms"
+    "Distribution of wIRT", 
+    subtitle="Bin size = 0.5s"
   )
 ```
-
-For the purposes of regression analysis, a common log transformation reduces the skew in the data. This distribution is seen in Figure \ref{fig:log10wins}.
-
-```{r log10wins,fig.cap="Common log of wIRT"}
-ggplot(irt_data, aes(wirt.log10)) +
-  geom_histogram(binwidth = 0.1, color="white",fill="#333333") + 
-  xlab("Common log of wIRT") + ylab("Frequency") + 
-  ggtitle("Distribution of Common Log of wIRT", subtitle="Bin size = 0.1")
-
-```
-
 \clearpage
 
 #### Means by condition
@@ -683,12 +713,12 @@ meansByConditionLong$GPn <- ifelse(
 
 ggplot(
   meansByConditionLong, 
-  aes(mean,x=GPn,y=mean,group=Qn,linetype=Qn)
+  aes(mean/1000,x=GPn,y=mean/1000,group=Qn,linetype=Qn)
 ) + 
   geom_line() +
   geom_point() +
-  ylim(6000,7200) +
-  geom_errorbar(aes(ymin=mean-se, ymax=mean+se), width=.125) +
+  ylim(6,7.2) +
+  geom_errorbar(aes(ymin=(mean-se)/1000, ymax=(mean+se)/1000), width=.125) +
   labs(
     x="", 
     y="Mean IRT (ms)",
@@ -707,7 +737,7 @@ The models with random slopes for participant and item did not converge, so the 
 ```{r lmeMods, cache=T}
 
 irt.full <- lme4::lmer(
-  wirt.log10 ~ Condition_Q * Condition_GP + 
+  wirt ~ Condition_Q * Condition_GP + 
     (1 | Participant) + 
     (1 | Item),
   data = irt_data,
@@ -715,7 +745,7 @@ irt.full <- lme4::lmer(
 )
 
 irt.noInteraction <- lme4::lmer(
-  wirt.log10 ~ Condition_Q + Condition_GP + 
+ wirt ~ Condition_Q + Condition_GP + 
     (1 | Participant) + 
     (1 | Item),
   data = irt_data,
@@ -723,53 +753,53 @@ irt.noInteraction <- lme4::lmer(
 )
 
 irt.noParticipant <- lme4::lmer(
-  wirt.log10 ~ Condition_Q * Condition_GP + 
+  wirt ~ Condition_Q * Condition_GP + 
     (1 | Item),
   data = irt_data,
   REML=F
 )
 
 irt.noItem <- lme4::lmer(
-  wirt.log10 ~ Condition_Q * Condition_GP + 
+ wirt~ Condition_Q * Condition_GP + 
     (1 | Participant),
   data = irt_data,
   REML=F
 )
 
 irt.noFxd <- lme4::lmer(
-  wirt.log10 ~
+ wirt ~
     (1 | Participant) + 
     (1 | Item),
   data = irt_data,
   REML=F
 )
 
-irt.noRand <- lm(wirt.log10 ~ Condition_Q * Condition_GP,
+irt.noRand <- lm(wirt ~ Condition_Q * Condition_GP,
                  data = irt_data)
 
-irt.dummy <- lm(wirt.log10 ~ Condition_Q * Condition_GP,
+irt.dummy <- lm(wirt ~ Condition_Q * Condition_GP,
                   data = irt_data
                 )
-irt.dummy.noInt <- lm(wirt.log10 ~  Condition_Q + Condition_GP + 
+irt.dummy.noInt <- lm(wirt ~  Condition_Q + Condition_GP + 
                   Participant + Item,
                   data = irt_data
                 )
 
 irt.demoModel.KS <- lmerTest::lmer(
-  wirt.log10 ~ Condition_Q * Condition_GP + Semester + wkd + Gender + ease + timeslot +
+  wirt ~ Condition_Q * Condition_GP + Semester + wkd + Gender + ease + timeslot +
     bookReading + lightReading + Monolingual + (1|Participant) + (1|Item), 
   data = irt_data,
   REML=F
 )
 irt.demoModel <- lmerTest::lmer(
-  wirt.log10 ~ Condition_Q * Condition_GP + Semester + wkd +
+  wirt~ Condition_Q * Condition_GP + Semester + wkd +
     Monolingual + (1|Participant) + (1|Item), 
   data = irt_data,
   REML=F
 )
 
 irt.summer <- lmerTest::lmer(
-  wirt.log10 ~ Condition_Q * Condition_GP +
+  wirt ~ Condition_Q * Condition_GP +
     Monolingual + (1|Participant) + (1|Item), 
   data = subset(irt_data, Semester!="Summer"),
   REML=F
@@ -989,15 +1019,16 @@ A comparison of the delay for cold readings compared with that of previewed read
 
 ```{r delayComparison, fig.cap="Delay comparison across reading"}
 raw_rs_file <- read_csv("../csvs/merged.csv")
-raw_rs_file <- subset(raw_rs_file,!Participant %in% c(8))
-raw_rs <- subset(raw_rs_file,!isFiller & Leading < 15000)
+raw_rs_file$UID <- as.factor(with(raw_rs_file, paste(Participant,Item,Reading,sep="-")))
+raw_rs_file <- subset(raw_rs_file,UID %in% mdata$UID)
+raw_rs <- subset(raw_rs_file,!isFiller)
 raw_rs$reading <- raw_rs$Reading
 raw_rs$Reading <- ifelse(raw_rs$reading == 1, "Cold", "Previewed")
-ggplot(raw_rs, aes(Leading, fill = Reading)) +
-  geom_histogram(binwidth = 400,position="dodge",color="black") +
+ggplot(raw_rs, aes(Leading/1000, fill = Reading)) +
+  geom_histogram(binwidth = 0.5,position="dodge",color="black") +
   scale_fill_manual(values=c("black","white")) +
   ggtitle("Distribution of delay by reading", 
-          subtitle = "Bin size = 400ms")
+          subtitle = "Bin size = 0.5s")
 
 diffs <- raw_rs[c("Reading","Leading","Participant","Item","isFiller",
                   "Condition_Q","Condition_GP")]  %>% spread(Reading,Leading)
@@ -1009,9 +1040,9 @@ colnames(diffsByP) <- c("Participant", "Mean difference in delay (ms)")
 diffsByP.props <- describe(diffsByP$`Mean difference in delay (ms)`)
 ```
 
-For cold readings, n = `r table(raw_rs$Reading)["Cold"]` and for previewed, n = `r table(raw_rs$Reading)["Previewed"]`. 
+For each reading, n = `r table(raw_rs$Reading)["Cold"]` (total n = `r nrow(raw_rs)`).
 
-#### Reading 1 delays by participant
+### Reading 1 delays by participant
 
 ```{r}
 r1data <- subset(raw_rs, reading == 1)
@@ -1031,7 +1062,7 @@ write_csv(irt_data,"export/exp_wins_irt.csv")
 ```
 ```{r}
 del.irt.full <- lmerTest::lmer(
-  wirt.log10 ~  Condition_GP + (1 | Participant) + 
+  wirt ~  Condition_GP + (1 | Participant) + 
     (1 | Item),
   data = irt_data,
   REML=F
@@ -1047,15 +1078,15 @@ summary(del.pp1Mod)
 summary(del.objMod)
 ```
 
-#### Difference in delay across paired readings
+### Difference in delay across paired readings
 
 Overall, each recording pair (n = `r diffDis$n`) has a mean difference in delay (DelDif = previewed delay - cold delay) of `r round(diffDis$mean/1000,1)`s (sd = `r round(diffDis$sd/1000,1)`s), with a minumum of `r round(diffDis$min/1000,1)`s and a max of `r round(diffDis$max/1000,1)`s. The median DelDif is `r round(diffDis$median/1000,1)`s. The distribution DelDif is shown in Figure \ref{fig:deddif}.
 
 ```{r deddif, fig.cap="Distribution of DelDif"}
 ggplot(na.omit(diffs), aes(diffs)) +
-  geom_histogram(binwidth = 500,color="white",fill="black") +
+  geom_histogram(binwidth = 250,color="white",fill="black") +
   labs(x="Difference in delay", y="Count",
-       title="Distribution of difference in delay", subtitle="Bin width = 500ms")
+       title="Distribution of difference in delay", subtitle="Bin width = 250ms")
 ```
 
 If we calculate the mean delay difference by participant, we find a mean participant DelDef of `r round(diffsByP.props$mean/1000,1)`s. Each participant's DelDif is &le; `r diffsByP.props$min`ms and &ge; `r round( diffsByP.props$max/1000,1)`s, with a median of `r round(diffsByP.props$median/1000,2)`s. Table \ref{tab:difsbyp} shows these values.
@@ -1074,31 +1105,7 @@ The distribution of the participants' DelDifs can be found in Figure \ref{fig:di
 
 ```{r difhistbyp, fig.cap="Mean difference in delay by participant"}
 ggplot(diffsByP, aes(`Mean difference in delay (ms)`/1000)) +
-  geom_histogram(binwidth = 1,color="white",fill="black") +
-  labs(x="Mean difference in delay", y="Count",title="Mean difference in delay by participant", subtitle="Bin size = 1s")
+  geom_histogram(binwidth = 0.5,color="white",fill="black") +
+  labs(x="Mean difference in delay", y="Count",title="Mean difference in delay by participant", subtitle="Bin size = 0.5s")
 ```
 \pagebreak
-
-## Additional tables and figures {#etc}
-
-Addtional figures and tables appear here without discussion, for the curious reader.
-
-```{r irtzoomLft, fig.cap="Left tail of raw IRT distribution"}
-ggplot(subset(irt_data_all,irt<1000), aes(irt)) +
-  geom_histogram(binwidth = 50,color="white",fill="#333333") + 
-  xlab("Raw IRT") + ylab("Frequency") + 
-  ggtitle("Left tail of IRT distribution (ms)",subtitle="IRT < 1s, bin size = 50ms")
-```
-
-
-```{r zoomRgt, fig.cap="Right tail of raw IRT distribution"}
-ggplot(subset(irt_data_all,irt>22000), aes(irt/1000)) +
-   geom_histogram(binwidth = 1, color="white", fill="#333333") +
-  xlab("Raw IRT") + ylab("Frequency") + 
-  ggtitle("Right tail of IRT distribution (s)", subtitle="IRT > 22s, bin size = 1s")
-```
-
-\clearpage
-\pagebreak
-
-`r if (knitr::is_html_output()) '### References {-}'`
