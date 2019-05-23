@@ -2,6 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
+.DS_Store
 *.html
 *.pdf
 recordings*
@@ -13,3 +14,4 @@ recordings*
 *.rdx
 *.RData
 **/*_*/
+_*.*
