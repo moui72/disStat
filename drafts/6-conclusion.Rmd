@@ -18,7 +18,7 @@ Improve IRT accuracy by anticipating the participant’s desire to study slide 1
 
 ## Fruitful avenues for further study
 
-ERP-based study: check for Closure Positive Shift (CPS) at PP attachment sites; check for P600/N400 at site of disambiguation. CPS should reveal the tree being parsed for each condition; higher frequency and severity of P600/N400 across the GP condition in declaratives vs. interrogatives would illustrate the intuitive observation.
+ERP-based study: check for Closure Positive Shift (CPS) at PP attachment sites; check for P600/N400 at site of disambiguation. CPS should reveal the tree being parsed for each condition; higher frequency and larger amplitude of P600/N400 across the GP condition in declaratives vs. interrogatives would illustrate the intuitive observation.
 
 Eye-tracking: more regressions and longer reading time across the GP condition in declaratives vs. interrogatives would illustrate the intuitive observation.
 

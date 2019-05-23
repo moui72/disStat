@@ -548,7 +548,7 @@ The primary difference across readings is in the OBJ break distribution. For the
 It is perhaps more interesting to look at the combined distribution of the breaks: i.e., a sentence can have one of four patterns: OBJ and PP1 breaks are present; only OBJ or only PP1 is present; or neither is present. As mentioned earlier, there were only 5 cases where neither are present, and those are excluded.
 
 ```{r r2combobreaksBycondpre}
-r2pdata<-subset(mdata,Reading==2)
+r2pdata<-droplevels(subset(mdata,Reading==2 & simple2lvl != "NEITHER"))
 qdata <- subset(r2pdata,Condition_GP)
 ddata <- subset(r2pdata,!Condition_GP)
 qpros<-table(qdata$simple2lvl,qdata$Condition_Q) %>%
@@ -560,11 +560,13 @@ dpros<-table(ddata$simple2lvl,ddata$Condition_Q) %>%
   prop.table(margin=2) %>% `*`(100) %>%
   round(1)
 colnames(dpros)<-c("D","Q")
+ccombo<-as.data.frame(cbind(dpros,qpros))
+rownames(ccombo)<-c("Both", "OBJ", "PP1")
 
-ccombo<-cbind(dpros,qpros)
+write_csv(ccombo,"export/ccombo.csv")
 ```
 ```{r r2combobreaksBycond}
-kable(ccombo,caption="Combined breaks by condition in reading 2 only") %>%
+kable(ccombo,caption="Combined breaks by condition in reading 2 only",align="c") %>%
   add_header_above(c(" "=1,"Non-garden path" = 2, "Garden path"=2)) %>%
   column_spec(1,bold=T)%>% kable_styling(latex_options = "hold_position")
 
@@ -644,7 +646,6 @@ huxreg(
 \clearpage
 
 ## Inter-reading time (IRT) {#results-irt}
-
 
 This document examines the inter-reading time (IRT) from the study. IRT was measured over `r recs` recordings: 32 participants, 48 items = `r subjs * items` recording pairs (reading 1 and reading 2), with `r  subjs * items - recs` missing pairs. The missing data are a result of one or both recordings from a pair being unusable due to technical issues (e.g. a failure of recording equipment, or participant error).
 
@@ -959,7 +960,7 @@ kable(
 
 #### Interrogative processing cost is represented in IRT
 
-Interrogatives appear to have a computational processing cost when compared to interrogatives [cf. @lehiste1973phonetic]. The filler sentences in this study were designed so as to provide a diagnostic of the interrogative effect on IRT. 
+Interrogatives appear to have a computational processing cost when compared to interrogatives [cf. @mehler1963some, @qp2]. The filler sentences in this study were designed so as to provide a diagnostic of the interrogative effect on IRT. 
 
 ```{r fillers, results="asis"}
 mean.irtByQ <- aggregate(
@@ -1005,9 +1006,9 @@ huxreg(
 ) 
 ```
 
-The mean IRT for interrogative fillers was `r round(mean.irtByQ[1,]$x/1000,1)`s; for declarative, `r round(mean.irtByQ[1,]$x/1000,1)`s. Interrogatives elicited a mean IRT of `r round(diff(mean.irtByQ$x),0)`ms longer than declaratives. Half of the fillers had a string of two PPs at the end. This did not impact IRT to the same degree (a difference of `r abs(round(diff(mean.irtByPP$x),0))`ms across &plusmn;PP).
+The mean IRT for interrogative fillers was `r round(mean.irtByQ[1,]$x/1000,1)`s; for declarative, `r round(mean.irtByQ[2,]$x/1000,1)`s. Interrogatives elicited a mean IRT of `r round(diff(mean.irtByQ$x)/1000,1)`s longer than declaratives. Half of the fillers had a string of two PPs at the end (+PP), and the other half had no trailing PPs (-PP). This did not impact IRT to the same degree (a difference of `r abs(round(diff(mean.irtByPP$x/100),2))`s across &plusmn;PP). When we look at -PP only, the impact of interrogativty on mean IRT is 0.3s, and for only +PP it's 0.4s.
 
-A mixed effects regression model (no random slope structure, due to convergence errors) found a significant main effect of &plusmn;Q (estimate = 379ms, t = 2.24, p < 0.05)
+A mixed effects regression model (no random slope structure, due to convergence errors) found a significant main effect of &plusmn;Q (estimate = 0.38s, t = 2.24, p < 0.05), but not for &plusmn;PP or the interaction of interrogativity with &plusmn;PP.
 
 \clearpage
 
@@ -1108,4 +1109,5 @@ ggplot(diffsByP, aes(`Mean difference in delay (ms)`/1000)) +
   geom_histogram(binwidth = 0.5,color="white",fill="black") +
   labs(x="Mean difference in delay", y="Count",title="Mean difference in delay by participant", subtitle="Bin size = 0.5s")
 ```
+
 \pagebreak

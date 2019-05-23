@@ -94,15 +94,6 @@ sentences <-cbind(
 )
 colnames(sentences) <- c("Version","Sentence")
 kable(sentences, booktabs=T, caption="Experimental item in four versions")
-## tab %>% add_colnames() %>%
-##   set_top_border(value=1,row=1,col=1:2) %>%
-##   set_bottom_border(value=0.5,row=1,col=1:2) %>%
-##   set_bottom_border(value=1,row=final(1),col=1:2) %>%
-##   set_caption("Experimental item exemplars") %>%
-##   set_label("tab:sentences") %>%
-##   set_italic(TRUE,row=2:5,col=1) %>%
-##   set_bold(T,row=1,col=everywhere) %>%
-##   set_position("left")
 ```
 
 ### Main verbs in experimental items
