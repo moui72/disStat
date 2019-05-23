@@ -10,7 +10,7 @@ This section will go through the motivating questions behind this study and disc
 
 ## Behavioral evidence for the intuition
 
-Ultimately the data here are unable to provide a clear answer to whether or not IRT represents a behavioral correlate of the intuition that PP-attachment garden paths are rendered easier to parse when presented as polar questions. While the mean IRT by condition shows a difference of 0.4s in the direction predicted by the intuition
+Ultimately the data here are unable to provide a clear answer to whether or not IRT represents a behavioral correlate of the intuition that PP-attachment garden paths are rendered easier to parse when presented as polar questions. While the mean IRT by condition shows a difference of 0.04s in the direction predicted by the intuition, this is a rather small difference when the grand mean is 
 
 ## Interpreting the results
 

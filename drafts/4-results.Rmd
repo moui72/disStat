@@ -707,7 +707,7 @@ The models with random slopes for participant and item did not converge, so the 
 ```{r lmeMods, cache=T}
 
 irt.full <- lme4::lmer(
-  wirt.log10 ~ Condition_Q * Condition_GP + 
+  wirt ~ Condition_Q * Condition_GP + 
     (1 | Participant) + 
     (1 | Item),
   data = irt_data,
@@ -715,7 +715,7 @@ irt.full <- lme4::lmer(
 )
 
 irt.noInteraction <- lme4::lmer(
-  wirt.log10 ~ Condition_Q + Condition_GP + 
+  wirt ~ Condition_Q + Condition_GP + 
     (1 | Participant) + 
     (1 | Item),
   data = irt_data,
@@ -723,53 +723,53 @@ irt.noInteraction <- lme4::lmer(
 )
 
 irt.noParticipant <- lme4::lmer(
-  wirt.log10 ~ Condition_Q * Condition_GP + 
+  wirt ~ Condition_Q * Condition_GP + 
     (1 | Item),
   data = irt_data,
   REML=F
 )
 
 irt.noItem <- lme4::lmer(
-  wirt.log10 ~ Condition_Q * Condition_GP + 
+  wirt ~ Condition_Q * Condition_GP + 
     (1 | Participant),
   data = irt_data,
   REML=F
 )
 
 irt.noFxd <- lme4::lmer(
-  wirt.log10 ~
+  wirt ~
     (1 | Participant) + 
     (1 | Item),
   data = irt_data,
   REML=F
 )
 
-irt.noRand <- lm(wirt.log10 ~ Condition_Q * Condition_GP,
+irt.noRand <- lm(wirt ~ Condition_Q * Condition_GP,
                  data = irt_data)
 
-irt.dummy <- lm(wirt.log10 ~ Condition_Q * Condition_GP,
+irt.dummy <- lm(wirt ~ Condition_Q * Condition_GP,
                   data = irt_data
                 )
-irt.dummy.noInt <- lm(wirt.log10 ~  Condition_Q + Condition_GP + 
+irt.dummy.noInt <- lm(wirt ~  Condition_Q + Condition_GP + 
                   Participant + Item,
                   data = irt_data
                 )
 
 irt.demoModel.KS <- lmerTest::lmer(
-  wirt.log10 ~ Condition_Q * Condition_GP + Semester + wkd + Gender + ease + timeslot +
+  wirt ~ Condition_Q * Condition_GP + Semester + wkd + Gender + ease + timeslot +
     bookReading + lightReading + Monolingual + (1|Participant) + (1|Item), 
   data = irt_data,
   REML=F
 )
 irt.demoModel <- lmerTest::lmer(
-  wirt.log10 ~ Condition_Q * Condition_GP + Semester + wkd +
+  wirt ~ Condition_Q * Condition_GP + Semester + wkd +
     Monolingual + (1|Participant) + (1|Item), 
   data = irt_data,
   REML=F
 )
 
 irt.summer <- lmerTest::lmer(
-  wirt.log10 ~ Condition_Q * Condition_GP +
+  wirt ~ Condition_Q * Condition_GP +
     Monolingual + (1|Participant) + (1|Item), 
   data = subset(irt_data, Semester!="Summer"),
   REML=F
@@ -1031,7 +1031,7 @@ write_csv(irt_data,"export/exp_wins_irt.csv")
 ```
 ```{r}
 del.irt.full <- lmerTest::lmer(
-  wirt.log10 ~  Condition_GP + (1 | Participant) + 
+  wirt ~  Condition_GP + (1 | Participant) + 
     (1 | Item),
   data = irt_data,
   REML=F
