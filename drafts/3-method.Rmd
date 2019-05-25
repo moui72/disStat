@@ -234,7 +234,13 @@ comps <- matrix(nrow=2,ncol=length(vals),dimnames = list(suffixes))
 colnames(comps)<-vals
 
 for(col in subset(vals, !vals %in% logicals)){
-  all[[col]] <- factor(all[[col]], levels=levels(as.factor(all$`STRUG_START-dr`)))
+  lvls<-union(
+    unique(all[[col]]),
+    unique(all[[paste0(col,suffixes[1])]]))
+  levels<-union(lvls,
+    unique(all[[paste0(col,suffixes[2])]])
+  )
+  all[[col]] <- factor(all[[col]], levels=lvls)
   for(suf in suffixes){
     all[[paste0(col,suf)]] <- factor(all[[col]], levels=c("OBJ", "PP1", "PP2", "START", "SUBJ", "V", NA))
   }
@@ -243,7 +249,7 @@ for(col in subset(vals, !vals %in% logicals)){
 for(val in vals) {
   for(suf in suffixes) {
     print(paste0(val,suf))
-    a <- Kappa.test(na.omit(all[[paste0(val)]]),all[[paste0(val,suf)]])
+    a <- Kappa.test(all[[paste0(val)]],all[[paste0(val,suf)]])
     comps[suf,val] <- sprintf(
       "%0.2f %s (%0.2f --- %0.2f)",
       a$Result$estimate,
