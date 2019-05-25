@@ -1,9 +1,3 @@
----
-bibliography: refs.bib
-output: 
-  bookdown::html_document2: 
-    toc: true
----
 ```{r disc,echo=F,warning=F,message=F}
 knitr::opts_chunk$set(
   echo=FALSE, 
@@ -55,7 +49,7 @@ There are a number of issues that might be preventing the observation of behavio
 
 ## Explaining the intuition
 
-A possible explanation for the intuitive effect of interogativity on parsing garden paths is provided in the work by Markus Bader (1998). Bader demonstrates that it is easier to recover a parse that “behave[s] alike prosodically” to a given failed parse, because the reanalysis does not require prosodic reconstruction and only the syntax needs to be repaired. In the case of the intuition this study is concerned with, this would mean that should sentences be more similar across the garden path vs. non-garden path condition in the interrogative than in the declarative, the intuitive reduction in difficulty of reanalysis would naturally follow.
+A possible explanation for the intuitive effect of interogativity on parsing garden paths is provided in the work by @Bader1998-ts. Bader demonstrates that it is easier to recover a parse that “behave[s] alike prosodically” to a given failed parse, because the reanalysis does not require prosodic reconstruction and only the syntax needs to be repaired. In the case of the intuition this study is concerned with, this would mean that should sentences be more similar across the garden path vs. non-garden path condition in the interrogative than in the declarative, the intuitive reduction in difficulty of reanalysis would naturally follow. 
 
 While the data presented above do not definitively show that the prosodic structure of questions is less different for questions than it is for declaratives, it also does not rule it out. Because there does not appear to be a one-to-one mapping of prosodic structure to syntactic structure in the recordings, one cannot make a clear-cut declaration of what a given sentence type looks like prosodically. Instead, we must observe the percentage of recordings for each version of the sentences that exhibit a given pattern. Recall table \ref{tab:r2combobreaksBycond}, repeated here as\ref{tab:combobr} for convenience.
 
@@ -65,12 +59,29 @@ kable(ccombo,caption="Combined breaks by condition in reading 2 only", col.names
   column_spec(1,bold=T) %>% kable_styling(latex_options = "hold_position")
 ```
 
-While there is a larger drop in the number of utterances with both breaks from +GP to -GP for questions than for decaratives, the opposite is true for the pattern with a PP1 break by itself. There is an argument to be made that the OBJ break, which does not correspond to a change in syntactic branching direction for any version of the sentences, is a hesitation rather than a break, due to a moment of confusion or perhaps simply a need to breathe. If the PP1 break is treated as the main indicator of the prosodic structure, then the larger difference across &plusmn;GP for declaratives (`r 27-14.8`%) than for interrogatives (`r 25.8-25.6`%) does indeed, however weakly, leave open the door for the Bader (1998) explanation of the intuition.
+While there is a larger drop in the number of utterances with both breaks from +GP to -GP for questions than for decaratives, the opposite is true for the pattern with a PP1 break by itself. There is an argument to be made that the OBJ break, which does not correspond to a change in syntactic branching direction for any version of the sentences, is a hesitation rather than a break, due to a moment of confusion or perhaps simply a need to breathe. 
+
+> QUESTION FOR DCB/JDF: Should I include trees here to show the branching direction change?
+
+To be more explicit, for this explanation to work, the prosodic structures in @dlo and @dhi would likely be the ones considered "correct" or most common for a the declarative versions. The symbol "||" is being used to represent a prominent prosodic break.
+
+  (@dlo) *D+GP*: He had crammed [~OBJ~ the newspapers] [~PP1~ under the sofa] || [~PP2~ into the trashcan].
+  (@dhi) *D-GP*: He had crammed [~OBJ~ the newspapers] under the sofa in the guestroom.
+
+ The prosodic structure of @dhi does not mandate any major break, because there is no change in syntactic branching directory and no other reason to mandate a break there. That is, the PP1 break differentiates the two syntactic structures and signals the attachment site of PP2. 
+ 
+ For the interrogatives, though, this contrast is obscured by the need to apply a rising prosodic contour over the final nuclear accent in the sentence: i.e. PP2, resulting in not a change in syntactic branching direction, but a tonal change, which might sound very similar to a prosodic break. The symbol "//" indicates the start of the rising contour.
+
+  (@qlo) *Q+GP*: Had he crammed [~OBJ~ the newspapers] [~PP1~ under the sofa] |||+// [~PP2~ into the trashcan]?
+  (@qhi) *Q-GP*: Had he crammed [~OBJ~ the newspapers] [~PP1~ under the sofa] // [~PP2~ into the trashcan]?
+
+The critical issue here is that in @qhi, the absence of a syntactically-motivated break is hidden by the juncture created by the start of the final-rising contour of a question. 
+
+If the PP1 break is treated as the main indicator of the prosodic structure, then the larger difference across &plusmn;GP for declaratives (`r 27-14.8`%) than for interrogatives (`r 25.8-25.6`%) does indeed, though perhaps weakly, leave open the door for the @Bader1998-ts explanation of the intuition.
 
 ## Confounds {#confound}
 
-Hesitation vs. breaks
+Some weaknesses in the data as they are leave need for future studies and  methodological improvements. A major issue is the difficulty in differentiating between "true" prosodic breaks and hesitations or breath pauses. As table \ref(tab:combobr) and other the reliability data reported earlier in this paper illustrates, a linguistically trained judge will not necessarily be able to distinguish between prosodic breaks and hesitations, and will not necessarily agree with another linguistically trained judge on the relative prominence of breaks and hesitations within a recording. 
+
 Over disambiguation (into, onto)
 Disregard of instructions (naivite of procedure)
-
-c

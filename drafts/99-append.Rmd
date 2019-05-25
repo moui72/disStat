@@ -1,16 +1,9 @@
----
-title: "append"
-author: "Tyler Peckenpaugh"
-date: "5/19/2019"
-output: pdf_document
----
-
 ```{r setup, include=FALSE}
 library(kableExtra)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Instructions to participants {instr}
+# Instructions to participants {#instr}
 
 The instructions are presented below.
 
