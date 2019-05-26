@@ -1,5 +1,10 @@
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE, fig.height = 3)
+knitr::opts_chunk$set(
+	echo = FALSE,
+	fig.height = 3,
+	message = FALSE,
+	warning = FALSE
+)
 library(huxtable)
 library(readr)
 library(jsonlite)
@@ -185,8 +190,24 @@ A plausible set of measurements had to meet the following criteria:
 A trained linguist informant naive to the research being conducted listened to recordings and reported the presence or absence of breaks in certain regions of the sentence, as well as several other judgements. She was instructed to familiarize herself with a speaker's speech patterns before rating any recordings by listening to 6 filler item recordings from that speaker. She was given a diagram of the sentences as in table \ref{tab:reg}, as well as full plain-text lists of all items.
 
 ```{r reg}
-Sentence = c("He", "had", "meant", "to stick ||$_V$", "the pencil case ||$_{OBJ}$", "in the cabinet ||$_{PP1}$", "into his book bag.")
-Syntax = c("NP$_{SUBJ}$", "AUX", "V$_1$", "V$_2$", "NP$_{OBJ}$", "PP$_1$", "PP$_2$")
+Sentence = c(
+  "He", 
+  "had", 
+  "meant", 
+  "to stick ||$_{V}$", 
+  "the pencil case ||$_{OBJ}$", 
+  "in the cabinet ||$_{PP1}$", 
+  "into his book bag."
+)
+Syntax = c(
+  "NP$_{SUBJ}$",
+  "AUX", "V$_1$",
+  "V$_2$", 
+  "NP$_{OBJ}$",
+  "PP$_1$", 
+  "PP$_2$"
+)
+
 region = c("SUBJ", " ", "V", " ", "OBJ", "PP1", "PP2")
 tab = rbind(Sentence,Syntax)
 colnames(tab) <- region
@@ -209,75 +230,69 @@ Details on the instructions given and the judgements collected can be found in t
 
 A second trained linguist repeated the task over 128 recordings selected from 8 participants (two from each group, one per ordering). Even number experimental items were used from 4 participants, and odd numbered from the other 4. There were 8 recordings missing from the 128 selected, so the reliability task resulted in judgements over 120 recordings. The first informat also blindly re-rated those 120, with the recording name obscured and instructions not to revisit her original ratings. Reliability scores (percent of recordings agreed upon) are reported in table \ref{tab:validity}.
 
-```{r validity}
-library(fmsb)
-dr<-read_csv("../csvs/src/DR-V.csv") %>% arrange(UID)
-sp<-read_csv("../csvs/src/SP-V.csv") %>% arrange(UID)
-main<-read_csv("export/prosody_data.csv") %>% subset(UID %in% dr$UID) %>% arrange(UID)
-
-
+```{r validitySetup}
+library(irr)
+library(readr)
+all <- read_csv2("export/prosody_validity.csv")
+# columns to iterate
 vals = c("V","OBJ","PP1","STRONG","WEAK","STRUG","STRUG_START","QI")
-logicals = c("V","OBJ","PP1","STRUG","QI")
+# raters to compare to main
 suffixes=c("-dr","-sp")
 
-
-for (col in logicals){
-  main[[col]] <- ifelse(main[[col]] == TRUE, "YES", 
-                 ifelse(main[[col]] == FALSE, "NO", 
-                        main[[col]]
-                 ))
-}
-
-drsp<-merge(dr,sp,by="UID",suffixes=suffixes)
-all<-merge(drsp,main,by="UID")
+# comps will hold string rep of Agr%, Kappa, (z) *pval*
 comps <- matrix(nrow=2,ncol=length(vals),dimnames = list(suffixes))
 colnames(comps)<-vals
 
-for(col in subset(vals, !vals %in% logicals)){
-  lvls<-union(
-    unique(all[[col]]),
-    unique(all[[paste0(col,suffixes[1])]]))
-  levels<-union(lvls,
-    unique(all[[paste0(col,suffixes[2])]])
-  )
-  all[[col]] <- factor(all[[col]], levels=lvls)
-  for(suf in suffixes){
-    all[[paste0(col,suf)]] <- factor(all[[col]], levels=c("OBJ", "PP1", "PP2", "START", "SUBJ", "V", NA))
+# aggs will hold just agree%
+aggs <- matrix(nrow=2,ncol=length(vals),dimnames = list(suffixes))
+colnames(aggs)<-vals
+
+# for each col...
+for(val in vals) {
+  # for each rater...
+  for(suf in suffixes) {
+    # d is 120 rows, 2 col, where col[1] = main, col[2] = suf rater
+    d <- cbind(all[[paste0(val)]],all[[paste0(val,suf)]])
+    a <-kappa2(d)
+    ag <- agree(d)
+    aggs[suf,val] <- paste0(ag$value,"%")
+    comps[suf,val] <- sprintf(
+      "%0.1f%s %0.2f%s <br> (z = %0.2f)",
+      ag$value,
+      "% <br> K = ",
+      a$value,
+      ifelse(a$p.value < 0.001,"***",
+             ifelse(a$p.value < 0.01,"**",
+                    ifelse(a$p.value < 0.05,"*",
+                      ifelse(a$p.value < 0.1," .",
+                             "")))),
+      a$statistic
+    )
   }
 }
 
-for(val in vals) {
-  for(suf in suffixes) {
-    print(paste0(val,suf))
-    a <- Kappa.test(all[[paste0(val)]],all[[paste0(val,suf)]])
-    comps[suf,val] <- sprintf(
-      "%0.2f %s (%0.2f --- %0.2f)",
-      a$Result$estimate,
-      ifelse(a$Result$p.value < 0.001,"***",
-             ifelse(a$Result$p.value < 0.01,"**",
-                    ifelse(a$Result$p.value < 0.05,"*",
-                      ifelse(a$Result$p.value < 0.1,".",
-                             "")))),
-      a$Result$conf.int[1],
-      a$Result$conf.int[2]
-    )
-    print(a)
-  }
-}
+comps <- comps %>% as.data.frame()
 row.names(comps) <- c("Interrater","Intrarater")
+if(knitr::is_latex_output()){
+  comps <- comps %>% mutate_all(linebreak)
+}
+```
+```{r validity}
 kable(
   comps,
-  escape=F,
-  caption="Inter and intrarater agreement, Cohen's Kappa (95% confidence interval)", 
+  caption="Inter and intrarater agreement, Agreement percentage and Cohen's Kappa", 
   booktab=T, 
   digits=2,
   align="c",
+  escape=knitr::is_latex_output(),
   col.names=c("V","OBJ","PP1","STRONGEST","WEAKEST","STRUGGLED","START REGION","FINAL RISE")
 ) %>%
   kable_styling(latex_options = c("hold_position","scale_down")) %>%
-  add_header_above(c(" " = 1, "Breaks" = 3, "Break strength" = 2, "Struggle" = 2, " " = 1))
+  add_header_above(c(" " = 1, "Breaks" = 3, "Break strength" = 2, "Struggle" = 2, " " = 1)) %>%
+  footnote("*** p < 0.001; ** p < 0.01; * p < 0.05, . p < 0.1")
 ```
 
-There was 
+The lower intrarater agreement for relative break strength was likely a result of a methodological issue: it was possible to report the same pattern, e.g. a pattern where a PP1 break is stronger than an OBJ break, by either giving the response "PP1" for strongest break, and "OBJ" for weakest break; or, "PP1" for strongest and "NONE" for weakest; or, "NONE" for strongest and "OBJ" for weakest. While the instructions to the rater requested full verbosity, it's likely that inconsistencies occurred for these cases.
 
-## References {-}
+The same inconsistencies would have hurt interrater agreement for strongest/weakest also. A further contributing issue for interrater agreement of those two judgements stems from the poor agreement on the presence of the verb break. When the raters don't agree about the presence of a break, that disagreement is magnified for the judgement of the relative strength of breaks.
+

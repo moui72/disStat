@@ -1043,16 +1043,21 @@ diffsByP.props <- describe(diffsByP$`Mean difference in delay (ms)`)
 
 For each reading, n = `r table(raw_rs$Reading)["Cold"]` (total n = `r nrow(raw_rs)`).
 
-### Reading 1 delays by participant
+### Cheaters and non-cheaters
 
-```{r}
+```{r delcat}
 r1data <- subset(raw_rs, reading == 1)
 r1delByP <- aggregate(r1data$Leading,by=list("Participant" = r1data$Participant), FUN=mean)
-hidel <- mean(r1delByP$x) + sd(r1delByP$x)/2
-lodel <- mean(r1delByP$x) - sd(r1delByP$x)/2
+hidel <- 1200
+lodel <- 900
 r1delByP$r1DelCat <- ifelse(r1delByP$x < lodel, "FAST", ifelse(
   r1delByP$x > hidel, "SLOW", "NORMAL"
 ))
+catdes <- sprintf("FAST < %0.1fs; SLOW > %0.1fs",lodel/1000,hidel/1000)
+table(r1delByP$r1DelCat) %>% 
+  kable(col.names=c("Delay category", "n"), caption="Reading 1 delay category") %>% 
+  kable_styling(latex_options = c("hold_position"),full_width = F) %>% 
+  footnote(catdes)
 
 colnames(r1delByP)[2] <- "r1delbyp"
 
@@ -1061,53 +1066,74 @@ mdata$Participant <- mdata$SID
 mdata<-merge(r1delByP,mdata,by="Participant")
 write_csv(irt_data,"export/exp_wins_irt.csv")
 ```
+
+```{r r1delByP}
+df <- r1delByP
+df$r1delbyp <- df$r1delbyp / 1000
+
+df %>%  
+  arrange(df$r1delbyp) %>% 
+  kable(
+    col.names = c("Participant", "Reading 1 delay category","Mean reading 1 delay"), 
+    caption="Mean reading 1 delay by participant (seconds)", 
+    digits = 2
+  ) %>% kable_styling(latex_options = c("hold_position", "repeat_header"))%>% 
+  footnote(catdes)
+```
+
 ```{r}
-del.irt.full <- lmerTest::lmer(
-  wirt ~  Condition_GP + (1 | Participant) + 
-    (1 | Item),
-  data = irt_data,
-  REML=F
+cheatdata <- subset(mdata,r1DelCat == "FAST")
+pp1tab<-xtabs(PP1 ~ Condition_GP + Condition_Q, data=cheatdata)
+objtab<-xtabs(OBJ ~ Condition_GP + Condition_Q, data=cheatdata)
+tot<-as.data.frame(xtabs( ~ Condition_GP + Condition_Q, data=cheatdata))
+
+
+pp1<-as.data.frame(pp1tab)
+pp1$tot<-tot$Freq
+pp1$pct <- pp1$Freq/pp1$tot
+pp1$pretty <- paste0(
+  pp1$Freq, 
+  " (", 
+  sprintf("%.1f",pp1$pct * 100), 
+  "%)"
 )
+pp1disp <- pp1 %>%
+  subset(select=c(
+    "Condition_GP",
+    "Condition_Q",
+    "pretty"
+  )) %>% 
+  spread(Condition_Q,pretty)
 
-mmdata <- subset(mdata,r1DelCat != "NORMAL" & Reading == 2)
-del.pp1Mod<- glmer(PP1~Condition_Q*Condition_GP*r1DelCat+
-                     (1|IID)+(1|SID),data=mmdata,family=binomial)
-del.objMod<- glmer(OBJ~Condition_Q*Condition_GP*r1DelCat+
-                     (1|IID)+(1|SID),data=mmdata,family=binomial)
-summary(del.irt.full)
-summary(del.pp1Mod)
-summary(del.objMod)
+obj<-as.data.frame(objtab)
+obj$tot<-tot$Freq
+obj$pct <- obj$Freq/obj$tot
+obj$pretty <- paste0(
+  obj$Freq, 
+  " (", 
+  sprintf("%.1f",obj$pct * 100), 
+  "%)"
+)
+objdisp <- obj %>%
+  subset(select=c(
+    "Condition_GP",
+    "Condition_Q",
+    "pretty"
+  )) %>% 
+  spread(Condition_Q,pretty)
+
+pp1obj <- cbind(pp1disp,objdisp[2:3])
+pp1obj[[1]] <- c("+GP","-GP")
 ```
+```{r cheaterBreaks}
 
-### Difference in delay across paired readings
-
-Overall, each recording pair (n = `r diffDis$n`) has a mean difference in delay (DelDif = previewed delay - cold delay) of `r round(diffDis$mean/1000,1)`s (sd = `r round(diffDis$sd/1000,1)`s), with a minumum of `r round(diffDis$min/1000,1)`s and a max of `r round(diffDis$max/1000,1)`s. The median DelDif is `r round(diffDis$median/1000,1)`s. The distribution DelDif is shown in Figure \ref{fig:deddif}.
-
-```{r deddif, fig.cap="Distribution of DelDif"}
-ggplot(na.omit(diffs), aes(diffs)) +
-  geom_histogram(binwidth = 250,color="white",fill="black") +
-  labs(x="Difference in delay", y="Count",
-       title="Distribution of difference in delay", subtitle="Bin width = 250ms")
-```
-
-If we calculate the mean delay difference by participant, we find a mean participant DelDef of `r round(diffsByP.props$mean/1000,1)`s. Each participant's DelDif is &le; `r diffsByP.props$min`ms and &ge; `r round( diffsByP.props$max/1000,1)`s, with a median of `r round(diffsByP.props$median/1000,2)`s. Table \ref{tab:difsbyp} shows these values.
-
-```{r difsbyp}
 kable(
-  diffsByP[order(diffsByP[,2]),],
-  row.names=F,
-  digits = 0,
-  caption="Delay differences by participant",
-  longtab=T
-)%>% kable_styling(latex_options = c("hold_position", "repeat_header"))
+  pp1obj,
+  caption="Percentage of recordings containing PP1/OBJ break by condition",
+  col.names = c("", "D", "Q","D", "Q")
+) %>% 
+  add_header_above(c(" "=1,"PP1 Break"=2,"OBJ Break"=2)) %>% kable_styling(latex_options = c("hold_position"))
 ```
 
-The distribution of the participants' DelDifs can be found in Figure \ref{fig:difhistbyp}.
-
-```{r difhistbyp, fig.cap="Mean difference in delay by participant"}
-ggplot(diffsByP, aes(`Mean difference in delay (ms)`/1000)) +
-  geom_histogram(binwidth = 0.5,color="white",fill="black") +
-  labs(x="Mean difference in delay", y="Count",title="Mean difference in delay by participant", subtitle="Bin size = 0.5s")
-```
 
 \pagebreak
