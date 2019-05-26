@@ -3,7 +3,9 @@ library(kableExtra)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Instructions to participants {#instr}
+# (APPENDIX) Appendices {-}
+
+## Instructions to participants {#instr}
 
 The instructions are presented below.
 
@@ -46,7 +48,7 @@ keyTable <- data.frame(Label,Position,Description)
 ```
 
 
-# Instructions to RA {#RA}
+## Instructions to RA {#RA}
 
 Before you begin describing the recordings for a given speaker, please familiarize yourself with that speaker. To do so, please listen to recordings numbered 46-48 and 24-27.
 
