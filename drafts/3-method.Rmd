@@ -111,10 +111,10 @@ The examples in (@weak) and (@strong) point out that while you really must cram 
 
 To minimize the morphology present on the PP-argument-selecting main verb (e.g. *cram*), each sentence contained a past-tense auxiliary verb and past participle verb before the infinitive version of the main verb. The use of an auxiliary makes the words present in the declarative exactly the same as in the interrogative by eliminating the need for "do-support" and adjusted morphology on the main verb (i.e. rather than "He crammed ..." vs. "Did he cram ...?" we have "He had crammed ..." vs. "Had he crammed ...?"). The auxiliary is always *had* and the past participle is always one of the following four: *decided*, *intended*, *wanted*, and *planned*. The presence of these preface verbs also help to aleviate the oddity of the yes/no questions, because it is understandable to question someone's intentions, even when a large amount of detail is already known; whereas, questioning the details themselves when they are already known leads to the "prosecutorial" issue mentioned earlier.
 
-  (@lessPros) Had he planned to set the appetizers on the platter from his cousin?
-  (@pros) Had he set the appetizers on the platter from his cousin?
+  (@lessPros) Had he intended to put the bicycle on the roof rack of the minivan?
+  (@pros) Had he put the bicycle on the roof rack of the minivan?
   
-It seems less odd to wonder whether *he had planned* to do something, as in (@lessPros) when we know so many details, rather than to wonder if he did as in (@pros). The preface verb also seems to attract the focus of the yes/no question, providing a somewhat controlled environment for what can be difficult to ascertain: in (@pros) the focus could be on any number of elements, with no easily assumed default. The default focus in (@lessPros) seems to me to be on *planned*.
+It seems less odd to wonder whether *he had intended* to do something, as in (@lessPros) when we know so many details, rather than to wonder if he did as in (@pros); that is, it is presupposed that he did the thing, but we are left to wonder about his intention. The preface verb also seems to attract the focus of the yes/no question, providing a somewhat controlled environment for what can be difficult to ascertain: in (@pros) the focus could be on any number of elements, with no easily assumed default. The default focus in (@lessPros) seems most likely to be on *planned*.
 
 
 ### Prepositions and disambiguation
@@ -240,7 +240,7 @@ vals = c("V","OBJ","PP1","STRONG","WEAK","STRUG","STRUG_START","QI")
 suffixes=c("-dr","-sp")
 
 # comps will hold string rep of Agr%, Kappa, (z) *pval*
-comps <- matrix(nrow=2,ncol=length(vals),dimnames = list(suffixes))
+comps <- matrix(nrow=6,ncol=length(vals))
 colnames(comps)<-vals
 
 # aggs will hold just agree%
@@ -250,46 +250,69 @@ colnames(aggs)<-vals
 # for each col...
 for(val in vals) {
   # for each rater...
+  sufn = 0
   for(suf in suffixes) {
+    row = 3 * sufn + 1
+    sufn = sufn + 1
     # d is 120 rows, 2 col, where col[1] = main, col[2] = suf rater
     d <- cbind(all[[paste0(val)]],all[[paste0(val,suf)]])
     a <-kappa2(d)
     ag <- agree(d)
     aggs[suf,val] <- paste0(ag$value,"%")
-    comps[suf,val] <- sprintf(
-      "%0.1f%s %0.2f%s <br> (z = %0.2f)",
-      ag$value,
-      "% <br> K = ",
+    
+    comps[row,val] <- sprintf(
+      "%0.1f%%",
+      ag$value
+    )
+    comps[row+1,val] <- sprintf(
+      "K = %0.2f%s",
       a$value,
       ifelse(a$p.value < 0.001,"***",
              ifelse(a$p.value < 0.01,"**",
                     ifelse(a$p.value < 0.05,"*",
                       ifelse(a$p.value < 0.1," .",
-                             "")))),
+                             "")))))
+    comps[row+2,val] <- sprintf(
+      "(z = %0.2f)",
       a$statistic
     )
+    
+    # comps[suf,val] <- sprintf(
+    #   "%0.1f%s %0.2f%s <br> (z = %0.2f)",
+    #   ag$value,
+    #   "% <br> K = ",
+    #   a$value,
+    #   ifelse(a$p.value < 0.001,"***",
+    #          ifelse(a$p.value < 0.01,"**",
+    #                 ifelse(a$p.value < 0.05,"*",
+    #                   ifelse(a$p.value < 0.1," .",
+    #                          "")))),
+    #   a$statistic
+    # )
   }
 }
 
 comps <- comps %>% as.data.frame()
-row.names(comps) <- c("Interrater","Intrarater")
-if(knitr::is_latex_output()){
-  comps <- comps %>% mutate_all(linebreak)
-}
+labels <- matrix(c(rep("Interrater",3),rep("Intrarater",3)))
+comps <- cbind(labels,comps)
 ```
+
 ```{r validity}
 kable(
   comps,
-  caption="Inter and intrarater agreement, Agreement percentage and Cohen's Kappa", 
+  caption="Inter and intrarater agreement with Cohen's Kappa", 
   booktab=T, 
   digits=2,
   align="c",
   escape=knitr::is_latex_output(),
-  col.names=c("V","OBJ","PP1","STRONGEST","WEAKEST","STRUGGLED","START REGION","FINAL RISE")
+  col.names=c(" ","V","OBJ","PP1","STRONGEST","WEAKEST","STRUGGLED","START REGION","FINAL RISE")
 ) %>%
   kable_styling(latex_options = c("hold_position","scale_down")) %>%
   add_header_above(c(" " = 1, "Breaks" = 3, "Break strength" = 2, "Struggle" = 2, " " = 1)) %>%
-  footnote("*** p < 0.001; ** p < 0.01; * p < 0.05, . p < 0.1")
+  column_spec(1, bold = T) %>%
+  row_spec(c(1:2,4:5), hline_after = F) %>%
+  collapse_rows(columns = 1, latex_hline = "major")  %>%
+  footnote("*** p < 0.001; ** p < 0.01; * p < 0.05, . p < 0.1") 
 ```
 
 The lower intrarater agreement for relative break strength was likely a result of a methodological issue: it was possible to report the same pattern, e.g. a pattern where a PP1 break is stronger than an OBJ break, by either giving the response "PP1" for strongest break, and "OBJ" for weakest break; or, "PP1" for strongest and "NONE" for weakest; or, "NONE" for strongest and "OBJ" for weakest. While the instructions to the rater requested full verbosity, it's likely that inconsistencies occurred for these cases.

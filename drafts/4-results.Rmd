@@ -299,6 +299,7 @@ spm <- aggregate(
  
 prosDescrip <- describe(mdata)
 tot<-as.data.frame(xtabs( ~ Condition_GP + Condition_Q, data=mdata))
+gtot <- tot
 
 orderMap <- read_csv(
   "../csvs/src/order-p-map.csv",
@@ -333,14 +334,10 @@ versiontab %>% kable(
 
 There were 4 versions of the experiment, and two possible orderings, with approximately equal number of participants for each version-order combination. Ideally there would be 4 participants per version-order combination, but due to participant attrition and issues during data collection, the distribution is as in Table \ref{tab:vtab}.
 
-Some items are missing due to technical issues during data collection. Other data were excluded due to factors explained later. Ultimately, `r nrow(mdata)` recordings are analyzed (`r nrow(irt_data)` pairs).
-
-## Prosody {#results-prosody}
-
-This subsection presents the results of the independent rater's judgements regarding prosodic boundaries. Data are excluded if either recording from a pair of recordings (reading 1 or reading 2) is missing (there were `r missingPairs` incomplete pairs excluded) because without the other member, it is difficult to determine the extent to which the participant followed instructions (i.e. did not study the sentence before reading 1, did study the sentence before reading 2). Recordings with no reported breaks are excluded from the prosodic analyses, since they are unlikely to represent the reader's intended prosodic structure (there were `r table(mdata$simple2lvl)["NEITHER"]` such recordings). The paired readings of these are not excluded, and IRTs extracted from them are included in the timing analyses, since delay information is available for both readings.
+Some items are missing due to technical issues during data collection. Data are also excluded if either recording from a pair of recordings (reading 1 or reading 2) is missing (there were `r missingPairs` incomplete pairs excluded) because without the other member, it is difficult to determine the extent to which the participant followed instructions (i.e. did not study the sentence before reading 1, did study the sentence before reading 2). Recordings with no reported breaks are excluded from the prosodic analyses, since they are unlikely to represent the reader's intended prosodic structure (there were `r table(mdata$simple2lvl)["NEITHER"]` such recordings). The paired readings of these are not excluded, and IRTs extracted from them are included in the timing analyses, since delay information is available for both readings. Ultimately, `r nrow(mdata)` experimental item recordings are analyzed (`r nrow(irt_data)` pairs). The distribution of these recordings across the experimental item versions is shown in table \ref{tab:totByCond}.
 
 ```{r totByCond}
-totDisp <- tot %>% as.data.frame() %>%
+totDisp <- gtot %>% as.data.frame() %>%
   spread(Condition_Q,Freq) 
 totDisp[[1]] <- c("-GP", "+GP")
 kable(
@@ -350,11 +347,15 @@ kable(
 ) %>% kable_styling(latex_options = c("hold_position"))
 ```
 
-Table \ref{tab:totByCond} shows the number of recordings included in analyses for each condition. If every items for each of the 32 participants had been available and included, the expected number per bin would be `r 32*16/4*2`[^n].
+If every items for each of the 32 participants had been available and included, the expected number per bin would be `r 32*16/4*2`[^n].
+
+## Prosody {#results-prosody}
+
+This subsection presents the results of the independent rater's judgements regarding prosodic boundaries.
 
 [^n]: There are 32 participants, 16 items, and 2 readings, divided across 4 bins.
 
-The sentences can be informally broken into regions as in \ref{@structure}.
+The sentences can be informally broken into regions as in (@structure).
 
   (@structure) [~SUBJ~ She] [~VERBS~ had intended to set] [~OBJ~ the clothes] ~OBJ~ [~PP1~ in the hamper] ~PP1~ [~PP2~ onto the dresser].
 
@@ -362,7 +363,7 @@ In what follows, I will discuss prosodic breaks at the points directly after the
 
 #### Breaks after PP1 and direct object
 
-The PP1 break is expected when PP2, attaches high; i.e., the garden path condition, and is not expected in the non-garden paths, when PP2 attaches low. The OBJ break does not correspond to any expected syntactic structure, and likely represents a breath group or some other not-syntactically-motivated break reason.
+Table \ref{tab:pp1gp} shows the presence of OBJ and PP1 breaks by condition for both readings of the experimental item recordings.
 
 ```{r byGPall}
 
@@ -419,11 +420,9 @@ kable(
   add_header_above(c(" "=1,"PP1 Break"=2,"OBJ Break"=2)) %>% kable_styling(latex_options = c("hold_position"))
 ```
 
-Table \ref{tab:pp1gp} shows the presence of object and PP1 breaks by condition.
-
 #### The two readings
 
-Because "natural prosody" is likely to be less often produced in reading 1 than in a reading 2, it's important to consider the prosodic patterns for the two readings independently. 
+Because "natural prosody" is likely to be less often produced in Reading 1 than in a Reading 2, it's important to consider the prosodic patterns for the two readings independently. 
 
 ```{r byGPr2}
 ### r2
@@ -517,7 +516,7 @@ pp1objr1 <- cbind(pp1disp,objdisp[2:3])
 pp1objr1[[1]] <- c("-GP","+GP")
 ```
 
-The prevalence of object breaks and PP1 breaks for each condition in reading 2 recordings is described in table \ref{tab:r2pp1obj}.
+The prevalence of object breaks and PP1 breaks for each condition in Reading 2 recordings is described in table \ref{tab:r2pp1obj}.
 
 ```{r r2pp1obj}
 kable(
@@ -529,7 +528,7 @@ kable(
   kable_styling(latex_options = c("hold_position"))
 ```
 
-For comparison, \ref{tab:r1pp1obj} is the same table for reading 1 recordings. 
+For comparison, \ref{tab:r1pp1obj} is the same table for Reading 1 recordings. 
 
 ```{r r1pp1obj}
 kable(
@@ -541,7 +540,7 @@ kable(
   kable_styling(latex_options = c("hold_position"))
 ```
 
-The primary difference across readings is in the OBJ break distribution. For the analyses that follow, reading 1 will largely be ignored.
+The primary difference across Readings is in the OBJ break distribution. For the analyses that follow, Reading 1 will largely be ignored.
 
 #### PP1 and object breaks combined
 
@@ -566,7 +565,7 @@ rownames(ccombo)<-c("Both", "OBJ only", "PP1 only")
 write_csv(ccombo,"export/ccombo.csv")
 ```
 ```{r r2combobreaksBycond}
-kable(ccombo,caption="Combined breaks by condition in reading 2 only",align="c") %>%
+kable(ccombo,caption="Combined breaks by condition in Reading 2 only",align="c") %>%
   add_header_above(c(" "=1,"Non-garden path" = 2, "Garden path"=2)) %>%
   column_spec(1,bold=T)%>% kable_styling(latex_options = "hold_position")
 
@@ -580,36 +579,10 @@ Table \ref{tab:pros2lvl} presents data similar to those in the previous section,
 
 ```{r pros2lvlPre}
 
-### TODO present this table across condition(s)
+p2lv<-prop.table(xtabs(~two_level_prosody+condition,data=subset(mdata,Reading==2)),margin = 2) * 100
+kable(p2lv, digits = 1, caption="Reading 1 % prosodic pattern type by condition") %>% kable_styling()
 
-allpros<-table(mdata$two_level_prosody)%>%
-  prop.table() %>% 
-  `*` (100) %>%
-  round(1) %>%
-  hux() %>%
-  setNames(c("Pattern", "Percent of all data"))
-r2pros<-table(
-  subset(mdata,Reading==2)$two_level_prosody
-) %>%
-  prop.table() %>% 
-  `*` (100) %>%
-  round(1) %>%
-  hux() %>%
-  setNames(c("Pattern", "r2")) 
-r1pros<-table(
-  subset(mdata,Reading==1)$two_level_prosody
-) %>%
-  prop.table() %>% 
-  `*` (100) %>%
-  round(1) %>%
-  hux() %>%
-  setNames(c("Pattern", "r1")) 
-
-allpros$`Cold readings` <- r1pros$r1
-allpros$`Previewed readings` <- r2pros$r2
-```
-```{r pros2lvl}
-kable(allpros,caption="Prosodic pattern by reading")%>% kable_styling(latex_options = "hold_position")
+# TODO pdom, odom tables
 ```
 
 \clearpage
