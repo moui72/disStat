@@ -622,7 +622,7 @@ huxreg(
 
 This document examines the inter-reading time (IRT) from the study. IRT was measured over `r recs` recordings: 32 participants, 48 items = `r subjs * items` recording pairs (reading 1 and reading 2), with `r  subjs * items - recs` missing pairs. The missing data are a result of one or both recordings from a pair being unusable due to technical issues (e.g. a failure of recording equipment, or participant error).
 
-#### Distribution of IRT
+#### Distribution of IRT and data clean-up {#irtDis}
 
 The raw IRTs including fillers and before any outliers are trimmed are distributed as shown in Figure \ref{fig:rawIRThist}. Overall mean IRT of these data (n = `r irt_props_all$n`), is `r round(irt_props_all$mean/1000,1)`s. The longest is `r round(irt_props_all$max/1000,1)`s and the shortest `r round(irt_props_all$min,0)`ms. Median IRT is `r round(irt_props_all$median/1000,1)`s.
 

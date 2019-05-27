@@ -128,7 +128,15 @@ This clear disambiguation should prevent any lingering processing issues due to 
 
 ### Fillers
 
-There were 32 filler items that ranged in complexity. Half (16) were designed to end in a sequence of two PPs, to mirror the experimental item. The other half contained no final PPs. All fillers were designed in two versions: declarative and interrogative. A full list of fillers is available in \@ref(appendix-fillers). Fillers were not limited to the four main verbs of the experimental item, but did always follow the same pattern of *had* followed by a past participle. The past participle was always one of the four used for experimental item, or one of these additional four: *forgotten*, *remembered*, *wanted*
+There were 32 filler items that ranged in complexity. Of these 32, 16 were designed to end in a sequence of two PPs, to mirror the experimental items (+PP). The other half contained no final PPs (-PP). All fillers were designed in two versions: declarative (D) and interrogative (Q). The +PP fillers were not related to the -PP fillers.
+
+  (@fillerdpp) He had forgotten to try the famous pastry in the restaurant of the fancy hotel.
+  (@fillerqpp) Had he forgotten to try the famous pastry in the restaurant of the fancy hotel?
+  
+  (@fillerd) She had forgotten to report that the clerk was ignoring her request.
+  (@fillerq) Had she forgotten to report that the clerk was ignoring her request?
+
+A full list of fillers is available in appendix \ref{sec:fillers}. Fillers were not limited to the four main verbs of the experimental item, but did always follow the same pattern of *had* followed by a past participle. The past participle was always one of the four used for experimental item (*intended*, *decided*, *planned*, and *wanted*), or one of these additional four: *forgotten*, *remembered*, *meant*, or *needed*, with each of the 8 past participles being used twice in the +PP fillers and twice in the -PP fillers, for a total of 4 times each.
 
 ### Length
 
@@ -154,15 +162,26 @@ meta<-fromJSON(json)
 handset <- read.csv("../csvs/_SITA_SET_VALUES.csv")
 meta[meta$file %in% handset$Filename,]$agg <- NA
 meta[meta$file %in% handset$Filename,]$hpf <- NA
+meta<-cbind("P"=read.table(text=meta$file, sep=".")[[1]],meta)
 hscount <- sum(handset$Filename %in% meta$file)
+meta<-subset(meta,P != 8)
 ```
-IRT was measured using a Python script and Google's WebRTC Voice Activity Detection (VAD) over 44.1kHz WAV files downsampled to 8kHz via SOX[^upsamp]. This VAD system uses Gaussian Mixture Models to make probabilistic decisions on whether a given audio frame is speech or noise (see [@gmm1] for a complete explanation). Google's implementation takes one paramater, which they call aggressiveness: a 4-tier setting for the level of confidence necessary to call a gvien frame speech. I call this "rejection rate", where a higher rejection rate means that the model requires a high level of confidence before assuming a frame is speech, i.e. it is more likely to label something noise than speech. The implementation codes this setting as 0-3, where 0 is the most lenient (most likely to label a frame as speech) and 3 is the most stringent (most likely to label a frame as noise).
+
+IRT was measured using a Python script and Google's WebRTC Voice Activity Detection (VAD) over 44.1kHz WAV files downsampled to 8kHz via SOX[^upsamp]. This VAD system uses Gaussian Mixture Models to make probabilistic decisions on whether a given audio frame is speech or noise (see @gmm1 for a complete explanation). Google's implementation takes one paramater, which they call aggressiveness: a 4-tier setting for the level of confidence necessary to call a given frame speech. I call this "rejection rate", where a higher rejection rate means that the model requires a high level of confidence before assuming a frame is speech, i.e. it is more likely to label something noise than speech. The implementation codes this setting as 0-3, where 0 is the most lenient (most likely to label a frame as speech) and 3 is the most stringent (most likely to label a frame as noise).
 
 [^upsamp]: Google's VAD API only accepts WAV files with sample rates that are a multiple of 8kHz. It ultimately downsamples all files to 8kHz, regardless of the input rate.
 
 The recordngs vary in the volume of the speaker's voice and the amount of background noise present. An algorothm was constructed to allow for the most stringent measurement of the least modified data that gave plausible measurements. Specifically, each file was measured using the highest possible rejection rate for the VAD algorithm and no modification of the file. If the timings detected were not plausible, the timings were re-measured with the same rejection rate, but after the recording had undergone a 200Hz high-pass filter[^alg] (HPF). If that still failed, a 400Hz HPF was used. After a further failure, the rejection rate for the VAD was lowered, and the whole thing was tried again (0, 200Hz, 400Hz); and that process was itself repeated until the lowest possible rejection rate was tried of the four possible settings. 
 
-Of the `r nrow(meta)` recordings subjected to this treatment, `r nrow(meta[meta$success & !is.na(meta$agg),])` resulted in plausible timings. For those that were successfull, the breakdown of HPF and rejection rate used is reported in Table \@ref(tab:metable). A further `r hscount` were set by hand, resulting in a total of `r nrow(meta[meta$success,])` recordings.
+A plausible set of measurements had to meet the following criteria:
+
+*Utterance length:* An utterance length between 2s and 10s, where utterance timing is the longest contiguous span in the recording that VAD reports as phonation, with breaks in phonation of less than 1s not breaking contiguity (@goldman1961-pa found that a large majority (82.5 to 87%) of pauses in fluent speech are less than 1s). Stimuli range from 18-22 syllables in length. If we assume a speach rate of 3 to 7 syllables per second [@jacewicz2010-sr] we would expect utterances between 2.5s and 7.3s. Conservative thresholds higher and lower than the expected were used, especially on the higher end to allow for any processing or fluency.
+
+*Minimum leading silence:* A leading silence ("delay") of more than 120ms. Even a very fast human reaction time should not permit a delay shorter than 120ms, so a shorter delay likely means something went wrong with the procedure and the participant is already speaking before the sentence is displayed.
+
+*Maximum edge silence:* A maximum trailing and leading silence length of less than 95% of the file's length was also used, in order to filter out recordings that do not represent a valid trial. Very long silences less than this very conservative threshold that impact the IRT are dealt with in the data clean up rather than via phonation detection, as described in the results section of this paper (section \ref{sec:irtDis}).
+
+With 32 participants reading 48 items (experimental and filler) twice each, there are an expected number of `r 32*48*2` recordings; due to technical issues at the time of data collection, `r 32*48*2 - nrow(meta)` recordings are missing. Of the `r nrow(meta)` recordings subjected to this treatment, `r nrow(meta[meta$success & !is.na(meta$agg),])` resulted in plausible timings. For those that were successfull, the breakdown of HPF and rejection rate used is reported in Table \@ref(tab:metable). A further `r hscount` were set by hand, resulting in a total of `r nrow(meta[meta$success,])` recordings.
 
 [^alg]: The exact algorithm is available on [github](https://gist.github.com/moui72/4ebc4eb8f69eb9fdb1cab160ce299675) (URL: [bit.ly/2uMrcrG](https://bit.ly/2uMrcrG))
 
@@ -172,18 +191,19 @@ row.names(metaTable)<-c("Lowest VAD rejection rate","...","...","Highest VAD rej
 kable(
   metaTable, 
   col.names = c("No HPF", "HPF at 200Hz", "HPF at 400Hz"),
-  caption="VAD rejection rate and HPF values",
+  caption="VAD rejection rate and high pass filter (HPF) values",
   booktabs=T
 ) %>% kable_styling(latex_options = "hold_position")
 ```
 
-A plausible set of measurements had to meet the following criteria:
+## Timing measurement reliability
+```
+NOTE TO DI:
 
-*Utterance length:* An utterance length between 2s and 10s, where utterance timing is the longest contiguous span in the recording that VAD reports as phonation, with breaks in phonation of less than 1s not breaking contiguity.  @goldman1961-pa found that a large majority (82.5 to 87%) of pauses in fluent speech are less than 1s. Stimuli range from 18-22 syllables in length. If we assume a speeach rate of 3 to 7 syllables per second [@jacewicz2010-sr] we would expect utterances between 2.5s and 7.3s. Conservative thresholds higher and lower than the expected were used, especially on the higher end to allow for any processing or fluency.
+Hand measurement is not yet completed.
+```
+Timings were collected by hand for `r 384*2` recordings (`r round(384*2 / nrow(meta) * 100,1)`%). Human measured timings were within 100ms of the VAD-measured timings in `??`% of cases.
 
-*Minimum leading silence:* A leading silence ("delay") of more than 120ms. Even a very fast human reaction time should not permit a delay shorter than 120ms. 
-
-*Maximum edge silence:* A maximum trailing and leading silence length of less than 95% of the file's length was also used, in order to filter out recordings that do not represent a valid trial. Very long delays less than this very conservative threshold are dealt with in the data clean up rather than via phonation detection.
 
 ## Prosodic judgements
 

@@ -5,6 +5,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # (APPENDIX) Appendices {-}
 
+# Experimental items {#items}
+
+# Filler items {#fillers}
+
 # Instructions to participants {#instr}
 
 The instructions are presented below.
