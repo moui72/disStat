@@ -1,13 +1,36 @@
 ```{r setup, include=FALSE}
 library(kableExtra)
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = F,warning = F)
 ```
 
 # (APPENDIX) Appendices {-}
 
 # Experimental items {#items}
 
+The D +GP and Q -GP versions of experimental items. The remaining versions can be extrapolated by applying or reversing subject-auxiliary inversion.
+
+```{r}
+library(readr)
+items <- read_csv("../csvs/src/exp-items.csv")
+items[c(1,2)] %>% kable(col.names=c("#", "Declarative garden paths (D +GP)"),booktab=T) %>% 
+  kable_styling(latex_options = c("hold_position"))
+items[c(1,5)] %>% kable(col.names=c("#", "Interrogative garden paths (Q -GP)"),booktab=T) %>% 
+  kable_styling(latex_options = c("hold_position"))
+```
+
 # Filler items {#fillers}
+
+The D +PP and Q -PP versions of filler items. The remaining versions can be extrapolated by applying or reversing subject-auxiliary inversion.
+
+```{r}
+library(readr)
+items <- read_csv("../csvs/src/filler-items+pp.csv")
+items[c(1,2)] %>% kable(col.names=c("#", "Declarative garden paths without trailing PPs (D -PP)"),booktab=T) %>% 
+  kable_styling(latex_options = c("hold_position"))
+items <- read_csv("../csvs/src/filler-items-pp.csv")
+items[c(1,3)] %>% kable(col.names=c("#", "Interrogative fillers with trailing PPs (Q +PP)"),booktab=T) %>% 
+  kable_styling(latex_options = c("hold_position"))
+```
 
 # Instructions to participants {#instr}
 

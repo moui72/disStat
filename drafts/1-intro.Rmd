@@ -62,4 +62,3 @@ One might also ask what property or properties of polar questions might lead to 
 An obvious reflex of the former possibility is another question: how are the various versions of these sentences actually pronounced? This question is deceptively difficult to answer; the reported study seeks to answer it, but while the recordings collected provide some insight, more work is likely needed to satisfactorily provide an answer.
 
 Likewise, the latter possibility leads one to wonder: what are the semantic and pragmatic differences between a polar question and its declarative counterpart? This question can be approach in a more theoretical way, and has been to some degree in the literature. That said, it remains to be determined how those properties could lead to an easier parsing process, and whether or not a satisfactory explanation for the intuition at large can be pulled from these differences. 
-

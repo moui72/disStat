@@ -575,12 +575,13 @@ Table \ref{tab:r2combobreaksBycond} shows that for +GP sentences, there are very
 
 #### PP1 and object breaks and their relative prominence
 
-Table \ref{tab:pros2lvl} presents data similar to those in the previous section, but it incorporates the rater's judgement of the relative prominence of the breaks. The &gt; symbol indicates that the rater found the break on the left of that symbol to be stronger, or more prominent, than the break on the left. When no symbol is shown between the two breaks, the rather found them to be of equal prominence. Please be aware that inter-rater reliability for relative prominence was not good, as discussed in section \ref{raterRel}.
+Table \ref{tab:pros2lvl} presents data similar to those in the previous section, but it incorporates the rater's judgement of the relative prominence of the breaks. The &gt; symbol indicates that the rater found the break on the left of that symbol to be stronger, or more prominent, than the break on the left. When no symbol is shown between the two breaks, the rather found them to be of equal prominence. Please be aware that inter-rater reliability for relative prominence was not good, as discussed in section \ref{sec:raterRel}.
 
 ```{r pros2lvlPre}
 
 p2lv<-prop.table(xtabs(~two_level_prosody+condition,data=subset(mdata,Reading==2)),margin = 2) * 100
-kable(p2lv, digits = 1, caption="Reading 1 % prosodic pattern type by condition") %>% kable_styling()
+
+kable(p2lv, digits = 1, caption="Reading 1 prosodic pattern type by condition") %>% kable_styling()
 
 # TODO pdom, odom tables
 ```
