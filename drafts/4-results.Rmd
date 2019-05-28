@@ -586,25 +586,63 @@ kable(p2lv, digits = 1, caption="Reading 1 prosodic pattern type by condition") 
 # TODO pdom, odom tables
 ```
 
+Another way of looking at these same data is to think of a recording as being PP1-dominant (i.e., PP1 is the only or the strongest break), OBJ-dominate, or neither. This categorization is useful because it creates binary outcomes that can be subjected to logistic regression analyses. The frequency of these patterns is reported in table \ref{tab:domtab}.
+
+```{r domsetup}
+pdom <- xtabs(~condition+pdom,data=mdata)%>% prop.table(margin=1)
+pdom.r1 <- xtabs(~condition+pdom,data=subset(mdata,Reading==1))%>% prop.table(margin=1)
+pdom.r2 <- xtabs(~condition+pdom,data=subset(mdata,Reading==2))%>% prop.table(margin=1)
+
+odom <- xtabs(~condition + odom ,data=mdata) %>% prop.table(margin=1)
+odom.r1 <- xtabs(~condition + odom,data=subset(mdata,Reading==1))%>% prop.table(margin=1)
+odom.r2 <- xtabs(~condition + odom,data=subset(mdata,Reading==2))%>% prop.table(margin=1)
+```
+
+```{r domtab}
+domtab<-cbind(odom.r2,pdom.r2)* 100
+kable(
+  domtab, 
+  caption="Break dominance by condition, Reading 2 only",
+  col.names=c(rep(c("Not dominant", "Dominant"), 2)),
+  align="c",
+  digits=1
+) %>%
+  add_header_above(c(" "=1, "OBJ" = 2, "PP1" = 2)) %>%
+  kable_styling(latex_options = c("hold_position"))
+```
+
 \clearpage
 
 ### Regression models predicting break occurence
 
-Models predicting the PP1 break and the object break are presented in table \ref{tab:lmPros}. No random slopes were included, as those models did not converge.
+Models predicting the PP1 break and the object break are presented in table \ref{tab:lmPros}. No random slopes were included, as models with random slopes did not converge.
 
 ```{r prosmodelsPre,cache=T}
-pp1Mod<- glmer(PP1~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=mdata,family=binomial)
-objMod<- glmer(OBJ~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=mdata,family=binomial)
+r2data<-subset(mdata,Reading==2)
+pp1Mod<- glmer(PP1~Condition_Q*Condition_GP+(1|IID)+(1|SID),data=r2data,family=binomial)
+objMod<- glmer(OBJ~Condition_Q*Condition_GP+(1|IID)+(1|SID),data=r2data,family=binomial)
+pdomMod<- glmer(pdom~Condition_Q*Condition_GP+(1|IID)+(1|SID),data=r2data,family=binomial)
+odomMod<- glmer(odom~Condition_Q*Condition_GP+(1|IID)+(1|SID),data=r2data,family=binomial)
 ```
-```{r prosmodels}
+
+```{r prosmodelsPre,cache=T}
+both.pp1Mod<- glmer(PP1~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=mdata,family=binomial)
+both.objMod<- glmer(OBJ~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=mdata,family=binomial)
+both.pdomMod<- glmer(pdom~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=mdata,family=binomial)
+both.odomMod<- glmer(odom~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=mdata,family=binomial)
+```
+
+
+
+```{r bothprosmodels}
 huxreg(  
-  list("PP1"=pp1Mod,"Object"=objMod),
+  list("PP1"=both.pp1Mod,"OBJ"=both.objMod,"PP1 Dominance"=both.pdomMod,"OBJ Dominance"=both.odomMod),
   coefs = c(
     "Intercept"="(Intercept)",
     "GP"="Condition_GPTRUE",
     "Q"="Condition_QTRUE",
     "GP:Q Interaction"="Condition_QTRUE:Condition_GPTRUE",
-    "Preview" = "Reading2"
+    "Reading" = "Reading2"
   ),
   statistics = c(
     N="nobs",
@@ -617,6 +655,34 @@ huxreg(
   set_tabular_environment("tabular")
 ```
 
+Reading is a statistically siginficant predictor for three of the four models shown in table \ref{tab:bothprosmodels}. Models which exclude Reading 1 are shown in \ref{tab:prosmodels}, as these data are more likely to represent true prosodic breaks, or the intended prosody of the reader, rather than mistakes or hesitations.
+
+```{r prosmodels}
+huxreg(  
+  list("OBJ"=objMod,"PP1 Dominance"=pdomMod,"OBJ Dominance"=odomMod),
+  coefs = c(
+    "Intercept"="(Intercept)",
+    "GP"="Condition_GPTRUE",
+    "Q"="Condition_QTRUE",
+    "GP:Q Interaction"="Condition_QTRUE:Condition_GPTRUE"
+  ),
+  statistics = c(
+    N="nobs",
+    "logLik",
+    "AIC"
+  )
+) %>%
+  set_caption("Logistic regression models of prosody, Reading 2 only") %>%
+  set_label("lmPros") %>%
+  set_tabular_environment("tabular")
+```
+
+Note that the model predicting the presence of the PP1 break failed to converg, and so is omitted from the Reading 2 only models.
+```
+TODO 
+
+Models that exclude the interaction term and that exclude Q vs D as predictor
+```
 \clearpage
 
 ## Inter-reading time (IRT) {#results-irt}
@@ -1017,7 +1083,9 @@ diffsByP.props <- describe(diffsByP$`Mean difference in delay (ms)`)
 
 For each reading, n = `r table(raw_rs$Reading)["Cold"]` (total n = `r nrow(raw_rs)`).
 
-### Cheaters and non-cheaters
+### Categories of reading 1 delay
+
+A brief analysis of the effect of Reading 1 delay on the prosodic patterns produced is presented.
 
 ```{r delcat}
 r1data <- subset(raw_rs, reading == 1)
@@ -1028,8 +1096,9 @@ r1delByP$r1DelCat <- ifelse(r1delByP$x < lodel, "FAST", ifelse(
   r1delByP$x > hidel, "SLOW", "NORMAL"
 ))
 catdes <- sprintf("FAST < %0.1fs; SLOW > %0.1fs",lodel/1000,hidel/1000)
+
 table(r1delByP$r1DelCat) %>% 
-  kable(col.names=c("Delay category", "n"), caption="Reading 1 delay category") %>% 
+  kable(col.names=c("Delay category", "n"), caption="Participants by Reading 1 delay category") %>% 
   kable_styling(latex_options = c("hold_position"),full_width = F) %>% 
   footnote(catdes)
 
@@ -1040,6 +1109,8 @@ mdata$Participant <- mdata$SID
 mdata<-merge(r1delByP,mdata,by="Participant")
 write_csv(irt_data,"export/exp_wins_irt.csv")
 ```
+
+First, participants were categorized based on their mean Reading 1 delay, with a fast mean Reading 1 delay being less than `r round(lodel/1000,2)`s, and a slow one being more than `r round(hidel/1000,2)`s. Everything else is categorized as "normal" and ignored. The distribution of participants across categories is shown in table \ref{tab:delcat}. Each participant's mean is shown in table \ref{tab:r1delByP}
 
 ```{r r1delByP}
 df <- r1delByP
@@ -1056,7 +1127,53 @@ df %>%
 ```
 
 ```{r}
-cheatdata <- subset(mdata,r1DelCat == "FAST")
+cheatdata <- subset(mdata,r1DelCat == "FAST" & Reading == 2)
+pp1tab<-xtabs(PP1 ~ Condition_GP + Condition_Q, data=cheatdata)
+objtab<-xtabs(OBJ ~ Condition_GP + Condition_Q, data=cheatdata)
+tot<-as.data.frame(xtabs( ~ Condition_GP + Condition_Q, data=cheatdata))
+
+
+pp1<-as.data.frame(pp1tab)
+pp1$tot<-tot$Freq
+pp1$pct <- pp1$Freq/pp1$tot
+pp1$pretty <- paste0(
+  pp1$Freq, 
+  " (", 
+  sprintf("%.1f",pp1$pct * 100), 
+  "%)"
+)
+pp1disp <- pp1 %>%
+  subset(select=c(
+    "Condition_GP",
+    "Condition_Q",
+    "pretty"
+  )) %>% 
+  spread(Condition_Q,pretty)
+
+obj<-as.data.frame(objtab)
+obj$tot<-tot$Freq
+obj$pct <- obj$Freq/obj$tot
+obj$pretty <- paste0(
+  obj$Freq, 
+  " (", 
+  sprintf("%.1f",obj$pct * 100), 
+  "%)"
+)
+objdisp <- obj %>%
+  subset(select=c(
+    "Condition_GP",
+    "Condition_Q",
+    "pretty"
+  )) %>% 
+  spread(Condition_Q,pretty)
+
+pp1obj <- cbind(pp1disp,objdisp[2:3])
+pp1obj[[1]] <- c("+GP","-GP")
+fast <- pp1obj
+```
+
+```{r}
+cheatdata <- subset(mdata,r1DelCat == "SLOW" & Reading == 2)
 pp1tab<-xtabs(PP1 ~ Condition_GP + Condition_Q, data=cheatdata)
 objtab<-xtabs(OBJ ~ Condition_GP + Condition_Q, data=cheatdata)
 tot<-as.data.frame(xtabs( ~ Condition_GP + Condition_Q, data=cheatdata))
@@ -1099,15 +1216,27 @@ objdisp <- obj %>%
 pp1obj <- cbind(pp1disp,objdisp[2:3])
 pp1obj[[1]] <- c("+GP","-GP")
 ```
-```{r cheaterBreaks}
 
+The break patterns for slow and fast participants are shown in table \ref{tab:cheaterBreaks}.
+
+```{r cheaterBreaks}
+cat <-cbind(fast, pp1obj[2:5])
 kable(
-  pp1obj,
-  caption="Percentage of recordings containing PP1/OBJ break by condition",
-  col.names = c("", "D", "Q","D", "Q")
+  cat,
+  caption="Percentage of reading 2 recordings containing PP1/OBJ break by condition, slow reading 1 delay only",
+  col.names = c("", "D", "Q","D", "Q","D", "Q","D", "Q")
 ) %>% 
-  add_header_above(c(" "=1,"PP1 Break"=2,"OBJ Break"=2)) %>% kable_styling(latex_options = c("hold_position"))
+  add_header_above(c(" "=1,"PP1 Break"=2,"OBJ Break"=2,"PP1 Break"=2,"OBJ Break"=2)) %>%
+  add_header_above(c(" "=1,"Fast R1 delay"=4,"Slow R1 delay"=4)) %>%
+  kable_styling(latex_options = c("hold_position"))
 ```
 
+```
+NOTE TO DI:
+
+I'm thinking I will do a this breakdown for the break patterns, rather than the individual breaks. I might also do a similar breakdown where I categorize R1 delay for every recording, rather than by subject means.
+
+Do you think there are other fruitful avenues to pursue?
+```
 
 \pagebreak
