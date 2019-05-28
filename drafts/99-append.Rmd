@@ -1,6 +1,6 @@
 ```{r setup, include=FALSE}
 library(kableExtra)
-knitr::opts_chunk$set(echo = F,warning = F)
+knitr::opts_chunk$set(echo = F,warning = F,message=F)
 ```
 
 # (APPENDIX) Appendices {-}
