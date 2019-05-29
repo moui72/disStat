@@ -5,22 +5,14 @@ output:
     toc: true
 ---
 # Conclusion
-Discussion of what is still unknown, and suggestions of future research.
 
-## Issues with the reported study
-Statistical significance for the behavioral correlate of the intuition: more participants
+```
+TODO
+Expand on the below
+```
 
-## Ways to improve for a similar future study
+Behavioral correlate of the intuition still might exist in IRT, but it remains to be fully supported (more data). Other possibilities exist (eye-tracking, ERP).
 
-Follow-up task to check understanding and interpretation of the sentence
+An explanation for the intuition still in the air, but the data seem to lean towards a non-prosodic account. Prosody-controlled embedded question work is the best next step.
 
-Improve IRT accuracy by anticipating the participant’s desire to study slide 1 and either forcing it to disappear or else assuming that to be their study time.
-
-## Fruitful avenues for further study
-
-ERP-based study: check for Closure Positive Shift (CPS) at PP attachment sites; check for P600/N400 at site of disambiguation. CPS should reveal the tree being parsed for each condition; higher frequency and larger amplitude of P600/N400 across the GP condition in declaratives vs. interrogatives would illustrate the intuitive observation.
-
-Eye-tracking: more regressions and longer reading time across the GP condition in declaratives vs. interrogatives would illustrate the intuitive observation.
-
-`r if (knitr::is_html_output()) '# References {-}'`
-
+Other interesting findings: interrogativity has a robust impact on IRT. Garden path condition has a robust impact on prosodic pattern.

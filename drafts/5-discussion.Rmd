@@ -43,6 +43,24 @@ This section will go through the motivating questions behind this study and disc
 
 ## The hypotheses {#discHyp}
 
+```
+TODO
+Go over each hypothesis and discuss its support or lack thereof from the data
+```
+  (@hypa) *Hypothesis 1* \hfill\linebreak
+  High attachment of PP2 is prosodically marked by a boundary tone between PP1 and and PP2.
+
+  (@hypb) *Hypothesis 2* \linebreak
+  A cold reading (no preview) of a GP sentence will exhibit less natural prosody (more hesitation at and after the disambiguating region) than:
+    * A cold reading of a non-GP sentence.
+    * A previewed reading of a GP sentence.
+
+  (@hypd) *Hypothesis 3* \linebreak
+  A cold reading of a garden-path sentence will more often be produced with prosodic structure that represents an implausible or ungrammatical parse of the string (low attachment of PP2), whereas a previewed reading sentence will more often be pronounced with the prosodic structure that represents the intended parse (high attachment of PP2).
+
+  (@hype) *Hypothesis 4* \linebreak
+  A cold reading (no preview) of a declarative GP sentence will exhibit less natural prosody (more hesitation at and after the disambiguating region) and be more likely to be produced with  prosodic structure that represents an implausible or ungrammatical parse of the string than a cold reading of an interrogative GP sentence.
+  
 ## Behavioral evidence for the intuition
 
 Ultimately the data here are unable to provide a clear answer to whether or not IRT represents a behavioral correlate of the intuition that PP-attachment garden paths are rendered easier to parse when presented as polar questions. While the mean IRT by condition shows a difference of 0.04s in the direction predicted by the intuition, this is a rather small difference when the grand mean is 6.6s. Mixed-effect regression analyses were not able to detect stastical significance of the interaction between interogativity and &plusmn;GP. That said, it was also not clear that a model without the interaction was a better fit than one with it (Full model AIC = 9103.5; Non-interaction model AIC = 9101.6; &Chi;^2^ = 0.0352; p > 0.8). Ultimately, it seems likely that the size of the effect, if any, is simply too small to be detected without a huge amount of data. This does not, of course, negate the intuition; it simply means that we have not yet found a behavior that can be said with any certainty to correspond to that intuition.
@@ -83,7 +101,33 @@ If the PP1 break is treated as the main indicator of the prosodic structure, the
 
 ## Confounds {#confound}
 
-Some weaknesses in the data as they are leave need for future studies and  methodological improvements. A major issue is the difficulty in differentiating between "true" prosodic breaks and hesitations or breath pauses. As table \ref(tab:combobr) and other the reliability data reported earlier in this paper illustrates, a linguistically trained judge will not necessarily be able to distinguish between prosodic breaks and hesitations, and will not necessarily agree with another linguistically trained judge on the relative prominence of breaks and hesitations within a recording. 
+Some weaknesses in the data as they are leave need for future studies and  methodological improvements. A major issue is the difficulty in differentiating between "true" prosodic breaks and hesitations or breath pauses. As table \ref(tab:combobr) and  the reliability data reported earlier in this paper illustrates, a linguistically trained judge will not necessarily be able to distinguish between prosodic breaks and hesitations, and will not necessarily agree with another linguistically trained judge on the relative prominence of breaks and hesitations within a recording. 
 
-Over disambiguation (into, onto)
-Disregard of instructions (naivite of procedure)
+```
+TODO
+
+Expand discussion of hesitation vs. true prosodic break
+
+Discuss further issues, e.g.
+
+  * Over disambiguation (into, onto)
+  * Disregard of instructions (naivety of procedure)
+  * Ways to improve for a similar future study
+    * Follow-up task to check understanding and interpretation of the sentence
+    * Improve IRT accuracy by anticipating the participant’s desire to study slide 1 and either forcing it to disappear or else assuming that to be their study time.
+```
+
+## Areas for further study
+
+ERP-based study: check for Closure Positive Shift (CPS) at PP attachment sites; check for P600/N400 at site of disambiguation. CPS should reveal the tree being parsed for each condition; higher frequency and larger amplitude of P600/N400 across the GP condition in declaratives vs. interrogatives would illustrate the intuitive observation.
+
+Eye-tracking: more regressions and longer reading time across the GP condition in declaratives vs. interrogatives would illustrate the intuitive observation.
+
+Look at the same phenomenon in *embedded* questions vs. embedded declarative clauses, where prosody would not be at play. For example:
+
+  (@embed_qgp) *Q +GP:* He asked her if she crammed the old newspapers under the couch in the wastebasket.
+  (@embed_qct) *Q -GP:* He asked her if she crammed the old newspapers under the couch in the guestroom.  (@embed) He asked her if she crammed the old newspapers under the couch in the wastebasket.
+  (@embed_dgp) *D +GP:* She told him that she crammed the old newspapers under the couch in the wastebasket.
+  (@embed_dct) *D -GP:* She told him that she crammed the old newspapers under the couch in the guestroom.
+
+These embedded stimuli could be used in a behavioral (e.g. IRT-based), ERP or eye-tracking based study.

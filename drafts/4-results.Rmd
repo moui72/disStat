@@ -617,7 +617,7 @@ kable(
 
 Models predicting the PP1 break and the object break are presented in table \ref{tab:lmPros}. No random slopes were included, as models with random slopes did not converge.
 
-```{r prosmodelsPre,cache=T}
+```{r r2prosmod,cache=T}
 r2data<-subset(mdata,Reading==2)
 pp1Mod<- glmer(PP1~Condition_Q*Condition_GP+(1|IID)+(1|SID),data=r2data,family=binomial)
 objMod<- glmer(OBJ~Condition_Q*Condition_GP+(1|IID)+(1|SID),data=r2data,family=binomial)
@@ -1239,4 +1239,18 @@ I'm thinking I will do a this breakdown for the break patterns, rather than the 
 Do you think there are other fruitful avenues to pursue?
 ```
 
-\pagebreak
+\clearpage
+
+## Demographic and self-reported reading habits' effect on the data
+
+Some basic demographic data and self reported reading habits are available by way of a questionairre admistered after data collection. The prosody data and the IRT data can be considered through this lens.
+
+``` 
+TODO
+
+Tables for the above. Maybe models if anything seems interesting.
+
+Question for Di: If nothing is interesting, omit this?
+
+```
+

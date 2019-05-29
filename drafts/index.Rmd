@@ -1,5 +1,5 @@
 ---
-title: "PP-attachment ambiguities"
+title: "DO NOT DISTRIBUTE: PP-attachment ambiguities"
 author: "Tyler J. Peckenpaugh"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
