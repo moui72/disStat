@@ -99,7 +99,9 @@ This study is concerned with a number of issues. First: is attachment in any way
 I suggest that high attachment of PP2 will be marked by a prosodic boundary between PP1 and PP2 (for discussion of what constitutes a prosodic boundary, see Streeter, 1978 and Salverda et al., 2003). Low attachment of PP2, on the other hand, will lack any substantial boundary marking.
 
 ```
-*Question for Di:* (@hypa - @hype) are the hypothesis I wrote before running the study, but they are not all really answered by the data I got. Is it dishonest to omit or revise them for this paper?
+*Question for Di:* (@hypa - @hype) are the hypothesis I wrote before running
+the study, but they are not all really answered by the data I got. 
+Is it dishonest to omit or revise them for this paper?
 ```
 
   (@hypa) *Hypothesis 1* \hfill\linebreak

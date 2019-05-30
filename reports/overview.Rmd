@@ -1,0 +1,104 @@
+---
+title: "Overview of PP-attachment ambiguities"
+author: "Tyler J. Peckenpaugh"
+date: "`r Sys.Date()`"
+output: 
+  pdf_document:
+    toc: yes
+    toc_depth: 1
+fontsize: 12pt
+mainfont: Georgia
+---
+
+# Introduction
+
+  * What a garden path is, and how (the garden-path/Construal theory of) parsing works.
+  * The PP-attachment ambiguity this paper is concerned with
+  * The intuitive observation that interrogative versions of these PP-attachment garden paths are less difficult to parse or recover from.
+
+# Background
+
+  * Prosody can effect parsing
+    * Kjelgaard and Speer (1999), 
+  * Prosody in silent reading
+    * Fodor’s (2002) Implicit Prosody Hypothesis
+  * The prosody of questions vs. declaratives
+    * Hedberg, Sosa, and Görgülü (2017)
+  * The details of how the parse of PP-attachment ambiguities leads to a garden path.
+
+## Predictions
+
+>*Question for Di:* these are the hypothesis I wrote before running the study, but they are not all really answered by the data I got. Is it dishonest to omit or revise them for this paper?
+
+*Hypothesis 1*
+High attachment of PP2 is prosodically marked by a prosodic break between PP1 and and PP2.
+
+*Hypothesis 2*
+A first reading of a GP sentence will exhibit less natural prosody (more hesitation at and after the disambiguating region) than:
+  
+  * A first reading of a non-GP sentence.
+  * A second reading of a GP sentence.
+
+*Hypothesis 3*
+A first reading of a garden-path sentence will more often be produced with prosodic structure that represents an implausible or ungrammatical parse of the string (low attachment of PP2), whereas a previewed reading sentence will more often be pronounced with the prosodic structure that represents the intended parse (high attachment of PP2).
+
+*Hypothesis 4*
+A first reading of a declarative GP sentence will exhibit less natural prosody (more hesitation at and after the disambiguating region) and be more likely to be produced with  prosodic structure that represents an implausible or ungrammatical parse of the string than a cold reading of an interrogative GP sentence.
+
+# Methodology
+
+  * Recruitment
+  * Location
+  * Equipment and software
+  * Procedure
+  * Materials
+  * Groups of participants and versions of experiment
+  * IRT measurement
+  * Prosodic judgements
+  
+# Results
+
+  * Data treatment
+  * Prosodic judgements
+  * IRT
+  * Delay comparison
+  * Demographic data and self-reported reading habits
+
+# Discussion
+
+  * Are the hypothesis supported?
+  * Behavioral correlate?
+  * Explaining the intuition
+  * Confounds
+  * Areas for further study
+
+# Conclusion
+  * Behavioral correlate of the intuition still might exist in IRT, but it remains to be fully supported (more
+data). Other possibilities exist (eye-tracking, ERP).
+  * An explanation for the intuition still in the air, but the data seem to lean towards a non-prosodic
+account. Prosody-controlled embedded question work is the best next step.
+  * Other interesting findings: 
+    * Interrogativity has a robust impact on IRT. 
+    * Garden path condition has a robust impact on prosodic pattern.
+
+# Appendices
+
+  A. Experimental Items
+  B. Filler items
+  C. Instructions to participants
+  D. Instructions to research assistant on providing prosodic judgements
+
+# References {-}
+Bader, M. (1998). Prosodic influences on reading syntactically ambiguous sentences. Reanalysis in sentence processing, 1-46.
+Bever, T. G. (1970). The cognitive basis for linguistic structures. In J. R. Hayes (Ed.), Cognition and the Development of Language, 279- 362. New York: Wiley.
+Boersma, Paul & Weenink, David (2018). Praat: doing phonetics by computer [Computer program]. Version 6.0.39, retrieved 3 March 2018 from http://www.praat.org/
+Fodor, Janet Dean (2002). "Psycholinguistics cannot escape prosody." Speech Prosody, International Conference.
+Fodor, J., Macaulay, B., Ronkos, D., Callahan, T., and Peckenpaugh, T. (2018). The Double Reading paradigm: Assessing prosodic competence. Manuscript in preparation.
+Goldman-Eisler, Frieda. (1961). “The Distribution of Pause Durations in Speech.” Language and Speech 4 (4): 232–37.
+Hedberg, N., Sosa, J. M., & Görgülü, E. (2014). The meaning of intonation in yes-no questions in American English: A corpus study. Corpus Linguistics and Linguistic Theory.
+Peckenpaugh, T. (2017). Prosody as an indicator of attachment site. Unpublished manuscript.
+Jacewicz, Ewa, Robert Allen Fox, and Lai Wei. (2010). “Between-Speaker and Within-Speaker Variation in Speech Tempo of American English.” The Journal of the Acoustical Society of America 128 (2): 839–50.
+Kjelgaard, M. M., & Speer, S. R. (1999). Prosodic facilitation and interference in the resolution of temporary syntactic closure ambiguity. Journal of Memory and Language, 40(2), 153-194.
+Lehiste, Ils. (1973). “Phonetic Disambiguation of Syntactic Ambiguity.” The Journal of the Acoustical Society of America 53 (1): 380–80.
+Salverda, A. P., Dahan, D., & McQueen, J. M. (2003). The role of prosodic boundaries in the resolution of lexical embedding in speech comprehension. Cognition, 90(1), 51-89.
+Streeter, L. A. (1978). Acoustic determinants of phrase boundary perception. The Journal of the Acoustical Society of America, 64(6), 1582-1592.

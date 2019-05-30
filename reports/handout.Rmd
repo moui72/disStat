@@ -1,13 +1,111 @@
 ---
-title: "DO NOT DISTRIBUTE: PP-attachment ambiguities"
+title: "Overview of PP-attachment ambiguities"
 author: "Tyler J. Peckenpaugh"
 date: "`r Sys.Date()`"
-bibliography: [refs.bib, packages.bib]
-biblio-style: "apalike"
-biblo-title: "References"
+output: 
+  pdf_document:
+    toc: yes
+    toc_depth: 2
+    latex_engine: xelatex
 fontsize: 12pt
 mainfont: Georgia
 ---
+# Outline of the dissertation so far
+
+What follows in this section is a brief overview of what is so far included in the dissertation.
+
+## Introduction
+
+  * What a garden path is, and how (the garden-path/Construal theory of) parsing works.[^q]
+  * The PP-attachment ambiguity this paper is concerned with
+  * The intuitive observation that interrogative versions of these PP-attachment garden paths are less difficult to parse or recover from.
+  
+[^q]: I think there's a fair chance this needs expanding. What do you see as being the necessary scope? Should I go through the whole development of the Frazier line of parsing theory?
+
+## Background
+
+  * Prosody can effect parsing
+    * Kjelgaard and Speer (1999), 
+  * Prosody in silent reading
+    * Fodor’s (2002) Implicit Prosody Hypothesis[^n]
+  * The prosody of questions vs. declaratives
+    * Hedberg, Sosa, and Görgülü (2017)
+  * The details of how the parse of PP-attachment ambiguities leads to a garden path.
+  * Predictions
+  
+[^n]: Is this necessary? I supposed it's not...
+
+## Methodology
+
+  * Recruitment
+  * Location
+  * Equipment and software
+  * Procedure
+  * Materials
+  * Groups of participants and versions of experiment
+  * IRT measurement
+  * Prosodic judgements
+  
+## Results
+
+  * Data treatment
+  * Prosodic judgements
+  * IRT
+  * Delay comparison
+  * Demographic data and self-reported reading habits
+
+## Discussion
+
+  * Are the hypothesis supported?
+  * Behavioral correlate?
+  * Explaining the intuition
+  * Confounds
+  * Areas for further study
+
+## Conclusion
+  * Behavioral correlate of the intuition still might exist in IRT, but it remains to be fully supported (more
+data). Other possibilities exist (eye-tracking, ERP).
+  * An explanation for the intuition still in the air, but the data seem to lean towards a non-prosodic
+account. Prosody-controlled embedded question work is the best next step.
+  * Other interesting findings: 
+    * Interrogativity has a robust impact on IRT. 
+    * Garden path condition has a robust impact on prosodic pattern.
+
+## Appendices
+
+  A. Experimental Items
+  
+  B. Filler items
+  
+  C. Instructions to participants
+  
+  D. Instructions to research assistant on providing prosodic judgements
+
+# Specific requests for feedback
+
+This section outlines some specific questions I have.
+
+## Predictions
+
+These are the hypothesis I wrote before running the study, but they are not all really answered by the data I got. Is it dishonest to omit or revise them for this paper?
+
+*Hypothesis 1*
+High attachment of PP2 is prosodically marked by a prosodic break between PP1 and and PP2.
+
+*Hypothesis 2*
+A first reading of a GP sentence will exhibit less natural prosody (more hesitation at and after the disambiguating region) than:
+  
+  * A first reading of a non-GP sentence.
+  * A second reading of a GP sentence.
+
+*Hypothesis 3*
+A first reading of a garden-path sentence will more often be produced with prosodic structure that represents an implausible or ungrammatical parse of the string (low attachment of PP2), whereas a previewed reading sentence will more often be pronounced with the prosodic structure that represents the intended parse (high attachment of PP2).
+
+*Hypothesis 4*
+A first reading of a declarative GP sentence will exhibit less natural prosody (more hesitation at and after the disambiguating region) and be more likely to be produced with  prosodic structure that represents an implausible or ungrammatical parse of the string than a cold reading of an interrogative GP sentence.
+
+## Reliability of prosodic judgements
+
 ```{r results_setup,echo=F,warning=F,message=F}
 knitr::opts_chunk$set(
   echo=FALSE, 
@@ -207,8 +305,6 @@ meta[meta$file %in% handset$Filename,]$agg <- NA
 meta[meta$file %in% handset$Filename,]$hpf <- NA
 hscount <- sum(handset$Filename %in% meta$file)
 
-
-write_csv(irt_data_allitems,"export/all_data.csv")
 ```
 ```{r normalize sets}
 irt_data$ID <- paste0(irt_data$Participant,"-",irt_data$Item)
@@ -314,7 +410,6 @@ orderMap$Participant <- orderMap$ID
 orderMap$ID <- NULL
 
 mdata<-merge(mdata,orderMap,by="Participant")
-write_csv(mdata,"export/prosody_data.csv")
 
 versiontab <- mdata %>% 
   filter(!duplicated(Participant)) %>%
@@ -324,14 +419,12 @@ versiontab <- mdata %>%
 rownames(versiontab)[1:4]<-paste("Version", rownames(versiontab))
 ```
 
-# Reliability of prosodic judgements
-
 A second trained linguist repeated the task over 128 recordings selected from 8 participants (two from each group, one per ordering). Even number experimental items were used from 4 participants, and odd numbered from the other 4. There were 8 recordings missing from the 128 selected, so the reliability task resulted in judgements over 120 recordings. The first informat also blindly re-rated those 120, with the recording name obscured and instructions not to revisit her original ratings. Reliability scores (percent of recordings agreed upon) are reported in table \ref{tab:validity}.
 
 ```{r validitySetup}
 library(irr)
 library(readr)
-all <- read_csv2("export/prosody_validity.csv")
+all <- read_csv2("../drafts/export/prosody_validity.csv")
 # columns to iterate
 vals = c("V","OBJ","PP1","STRONG","WEAK","STRUG","STRUG_START","QI")
 # raters to compare to main
@@ -399,7 +492,6 @@ comps <- cbind(labels,comps)
 kable(
   comps,
   caption="Inter and intrarater agreement with Cohen's Kappa", 
-  booktab=T, 
   digits=2,
   align="c",
   escape=knitr::is_latex_output(),
@@ -413,23 +505,49 @@ kable(
   footnote("*** p < 0.001; ** p < 0.01; * p < 0.05, . p < 0.1") 
 ```
 
-The lower intrarater agreement for relative break strength was likely a result of a methodological issue: it was possible to report the same pattern, e.g. a pattern where a PP1 break is stronger than an OBJ break, by either giving the response "PP1" for strongest break, and "OBJ" for weakest break; or, "PP1" for strongest and "NONE" for weakest; or, "NONE" for strongest and "OBJ" for weakest. While the instructions to the rater requested full verbosity, it's likely that inconsistencies occurred for these cases.
+The lower intrarater agreement for relative break strength was likely a result of a methodological issue: it was possible to report the same pattern, e.g. a pattern where a PP1 break is stronger than an OBJ break, by either giving the response "PP1" for strongest break, and "OBJ" for weakest break; or, "PP1" for strongest and "NONE" for weakest; or, "NONE" for strongest and "OBJ" for weakest. While the instructions to the rater requested a particular method (avoid using "NONE" in these instances across the board), it's likely that inconsistencies occurred for these cases.
 
 The same inconsistencies would have hurt interrater agreement for strongest/weakest also. A further contributing issue for interrater agreement of those two judgements stems from the poor agreement on the presence of the verb break. When the raters don't agree about the presence of a break, that disagreement is magnified for the judgement of the relative strength of breaks.
 
-# PP1 and object breaks and their relative prominence
+> So, what am I to do about this spotty reliability?
 
-Table \ref{tab:pros2lvl} presents data that incorporates the rater's judgement of the relative prominence of the breaks. The &gt; symbol indicates that the rater found the break on the left of that symbol to be stronger, or more prominent, than the break on the left. When no symbol is shown between the two breaks, the rather found them to be of equal prominence.
+Martin Chodorow on Cohen's &Kappa;:
+
+> Kappa measures the agreement over and above chance agreement. Consider a case where we have 2 raters, A and B, and two classification categories (Yes, No). 
+If each rater is saying "Yes" 90% of the time and "No" 10% of the time, then we would expect them to agree on any given judgment 82% of the time, even if
+their judgments were independent. The reason for this is that if each source is generating Yes with probability of .90, then the probability that the Yes judgments
+will coincide by chance is .90 x .90 = .81, and if they are generating No with probability of .10, then the probability that those No judgments will coincide is .10 x .10 = .01 
+(so, .81 +.01 = .82). Let's call the probability of this kind of chance agreement Pc and the actual observed proportion of agreement Pa. The kappa formula
+is K = (Pa - Pc)/(1 - Pc). If, for my hypothetical example, the observed agreement were .91, then K = (.91 - .82)/(1 - .82) = .09/.18 = .50. When one of the two 
+classification categories has a high occurrence rate for both raters, it is difficult to get a very high kappa value. The table below shows the interpretations of kappa
+that are commonly used by researchers.
+
+```
+Κ Interpretation
+      < 0 Poor agreement
+0.00-0.20 Slight agreement
+0.21-0.40 Fair agreement
+0.41-0.60 Moderate agreement
+0.61-0.80 Substantial agreement
+0.81-1.00 Almost perfect agreement
+```
+\clearpage
+
+## PP1 and object breaks and their relative prominence
+
+Table \ref{tab:pros2lvlPre} presents data that incorporates the rater's judgement of the relative prominence of the breaks. The &gt; symbol indicates that the rater found the break on the left of that symbol to be stronger, or more prominent, than the break on the left. When no symbol is shown between the two breaks, the rather found them to be of equal prominence.
 
 ```{r pros2lvlPre}
 
 p2lv<-prop.table(xtabs(~two_level_prosody+condition,data=subset(mdata,Reading==2)),margin = 2) * 100
 
-kable(p2lv, digits = 1, caption="Reading 1 prosodic pattern type by condition") %>% kable_styling()
+kable(p2lv, digits = 1, caption="Reading 1 prosodic pattern type by condition") %>% kable_styling(latex_options = c("hold_position"))
 
 ```
 
 Another way of looking at these same data is to think of a recording as being PP1-dominant (i.e., PP1 is the only or the strongest break), OBJ-dominate, or neither. This categorization is useful because it creates binary outcomes that can be subjected to logistic regression analyses. The frequency of these patterns is reported in table \ref{tab:domtab}.
+
+> Should "dominance" supplant or supplement the reporting of the simpler "PP1, OBJ, or both" reporting?
 
 ```{r domsetup}
 pdom <- xtabs(~condition+pdom,data=mdata)%>% prop.table(margin=1)
@@ -468,7 +586,7 @@ huxreg(
   coefs = c(
     "Intercept"="(Intercept)",
     "GP"="Condition_GPTRUE",
-    "Q"="Condition_QTRUE",
+    "Interrogativity"="Condition_QTRUE",
     "GP:Q Interaction"="Condition_QTRUE:Condition_GPTRUE"
   ),
   statistics = c(
@@ -482,4 +600,72 @@ huxreg(
   set_tabular_environment("tabular")
 ```
 
+> This is perhaps a question for Martin, but: what should be made of the significance of interrogativity and GP:Q interaction?
+
 \clearpage
+
+## Reading habits and demographics
+
+Some demographic information reported here is obtained from data in the QC recruitment system and other data are from a short hand-written survey adminstered after the experimental procedure. The survey questions were:
+  
+  1. How often do you read magazines or newspapers for fun (i.e. not for school)?
+  
+    At least once a day	
+    At least once a week	
+    At least once a month	
+    Less than once a month
+  
+  2. How often do you read fiction or non-fiction books for fun (i.e. not for school)?
+  
+    At least once a day	
+    At least once a week	
+    At least once a month	
+    Less than once a month
+  
+  3. Do you speak any languages other than English natively and/or regularly?
+  
+    Yes	
+    No			
+    If yes, what language(s)?
+  
+  4. When you read for fun, do you most often read in English?
+  
+    Yes, I typically read in English		
+    No, I typically read in another language	
+    Neither is true
+  
+  5. How hard was it to read the sentences the way you wanted to?
+  
+    Not at all hard	
+    Somewhat hard	
+    Very hard	
+    Impossible
+  
+  6. What do you think this study was about?
+  
+  7. Do you have any suggestions for how your experience might have been improved?
+  
+  8. Any other suggestions or comments?
+  
+
+For questions (1), (2), and (5), the responses were coded on a 1-4 scale during data entry, with the topmost answer being 4 and the bottom being 1. Question (3) was coded as 1 for "No" and 0 for any other answer. Table \ref{tab:dem} shows the responses that are appropriate for data analysis. 
+
+```{r demset}
+### demographics
+pmeta <- read_csv("../csvs/p-meta.csv")
+
+pmeta<-subset(pmeta,ID != 8)
+```
+```{r ddesc}
+field <- colnames(pmeta)
+description <- c("Participant", "Gender", "Survey question 1", "Survey question 2", "Survey question 3", "Survey question 5", "Semester the data were collected", "The day of the way data were collected", "The time of day the data were collected (24hr)", "The date the data were collected")
+ddesc<-cbind(field,description)
+ddesc %>% kable(caption="Survey response to data input map") %>%
+  kable_styling(latex_options=c("hold_position"))
+```
+```{r dem}
+pmeta %>% kable(caption="Survey responses") %>%
+  kable_styling(latex_options = c("hold_position","scale_down"))
+```
+
+What if any of this do you think would be interesting to analyze? My thought is to see if reading habit has an impact on IRT and/or break dominance. I looked briefly at some of this, and it's interesting to note that `semester` seemed to have an effect on IRT.
