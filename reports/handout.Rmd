@@ -1,0 +1,485 @@
+---
+title: "DO NOT DISTRIBUTE: PP-attachment ambiguities"
+author: "Tyler J. Peckenpaugh"
+date: "`r Sys.Date()`"
+bibliography: [refs.bib, packages.bib]
+biblio-style: "apalike"
+biblo-title: "References"
+fontsize: 12pt
+mainfont: Georgia
+---
+```{r results_setup,echo=F,warning=F,message=F}
+knitr::opts_chunk$set(
+  echo=FALSE, 
+  warning=FALSE, 
+  message=FALSE, 
+  fig.height = 3, 
+  fig.pos="H"
+)
+options(tinytex.verbose = TRUE)
+bgcolor <- "#ffffff"
+par(bg = bgcolor)
+
+kable <- function(data,...) {
+  knitr::kable(data, booktabs = TRUE,...)
+}
+
+library(readr)
+library(huxtable)
+library(dplyr)
+library(tidyr)
+library(knitr)
+library(ggplot2)
+library(ggthemes)
+library(jsonlite)
+library(kableExtra)
+library(psych)
+library(lme4)
+
+### global plot themeing
+theme_set(
+  theme_tufte() + 
+    theme(
+      plot.background = element_rect(fill = bgcolor,color=bgcolor),
+      panel.border = element_blank()
+    )
+)
+
+```
+```{r prosody_setup}
+mdata_raw <- read_csv("../csvs/got_prosody.csv")
+### remove items where STRONG == NA (these are the items Sita didn't respond to)
+mdata <- mdata_raw[!is.na(mdata_raw$STRONG),]
+
+### code for pairs of SUBJ-ITEM
+mdata$pair<-paste(mdata$SID,mdata$IID,sep="-")
+n1 <- nrow(mdata)
+### filter out rows missing its pair
+mdata<-mdata %>% group_by(pair) %>% filter(n()>1)
+n2<- nrow(mdata)
+missingPairs <- n1-n2
+
+mdata$V<-mdata$V == "YES"
+mdata$OBJ<-mdata$OBJ == "YES"
+mdata$PP1<-mdata$PP1 == "YES"
+mdata$STRUG<-mdata$STRUG == "YES"
+mdata$condition <- with(mdata,
+  paste(
+    ifelse(Condition_Q,"Q","D"),
+    ifelse(Condition_GP,"+GP","-GP")
+  )
+)
+mdata$STRONG <- as.factor(mdata$STRONG)
+mdata$WEAK <- as.factor(mdata$WEAK)
+mdata$Reading <- as.factor(mdata$Reading)
+mdata$prosody <- as.factor(mdata$prosody)
+mdata$two_level_prosody <- as.factor(mdata$two_level_prosody)
+mdata$IID <- as.factor(mdata$IID)
+mdata$UID <- as.factor(mdata$UID)
+mdata$SID <- as.factor(mdata$SID)
+mdata$Participant <- mdata$SID
+mdata$STRUG_START <- as.factor(mdata$STRUG_START)
+mdata$pdom <- mdata$two_level_prosody %in% c("PP1", "PP1 > OBJ")
+mdata$odom <- mdata$two_level_prosody %in% c("OBJ", "OBJ > PP1")
+mdata$simple2lvl <- ifelse(
+  mdata$OBJ & mdata$PP1, 
+  "BOTH", ifelse(
+    mdata$OBJ,
+    "OBJ",
+    ifelse(
+      mdata$PP1,
+      "PP1",
+      "NEITHER"
+    )
+  )
+)
+mdata$simple2lvl <- as.factor(mdata$simple2lvl)
+mdata<-subset(mdata,SID!=8)
+mdata <- droplevels(mdata)
+mdata <- subset(mdata,!is.na(OBJ)|!is.na(PP1))
+
+```
+```{r irt_setup, cache=T}
+itemsDf <- read_csv(
+  "../csvs/src/items.csv", 
+  col_types = cols(
+    OBJ = col_skip(), 
+    `P>NP1` = col_skip(), 
+    `P>NP2+GP` = col_skip(), 
+    `P>NP2-GP` = col_skip(), 
+    target = col_character()
+  )
+)
+itemsDf$Item<-itemsDf$target
+itemsDf$target <- NULL
+### load files
+use_old <- FALSE
+old<-"../csvs/irt-rvad-4_11.csv"
+new<-"../csvs/irt-merged.csv"
+raw_file <- read_csv(ifelse(use_old,old,new), 
+  col_types = cols(
+    Item = col_factor(levels = seq(1,48)), 
+    Participant = col_character()
+  )
+)
+
+irt_data <- raw_file
+
+### P 8 is messed up
+irt_data<-subset(irt_data,Participant != 8)
+
+### demographics
+pmeta <- read_csv("../csvs/p-meta.csv")
+pmeta$Participant <- pmeta$ID
+irt_data<-merge(pmeta,irt_data,by="Participant")
+irt_data$wkd <- ifelse(irt_data$DOTW == "MONDAY", 1,
+                ifelse(irt_data$DOTW == "TUESDAY", 2, 
+                ifelse(irt_data$DOTW == "WEDNESDAY", 3, 
+                ifelse(irt_data$DOTW == "THURSDAY", 4, 
+                5))))
+
+
+
+  
+irt_data$cond <- paste(
+  ifelse(irt_data$Condition_Q,"Q","D"),
+  ifelse(
+    irt_data$isFiller,
+    ifelse(irt_data$Condition_GP,"+PP","-PP"),
+    ifelse(irt_data$Condition_GP,"+GP","-GP")
+  )
+)
+
+irt_data$Q <- ifelse(
+  irt_data$Condition_Q,
+  "Q",
+  "D"
+)
+irt_data$GP <- ifelse(
+  irt_data$Condition_GP,
+  "+GP",
+  "-GP"
+)
+
+irt_data_all <- irt_data ### data before trimming
+
+### exclude 250 < IRTs > 25000
+irt_min <- 250
+irt_max <- 25000
+
+### note how many IRTs are excluded for implausibility
+irt_lo <- subset(irt_data, irt < irt_min)
+irt_hi <- subset(irt_data, irt > irt_max)
+
+### subset to trimmed items
+irt_data <- subset(
+  irt_data, 
+  irt > irt_min & irt < irt_max
+)
+
+### with fillers
+irt_data_allitems <- irt_data
+irt_fillers <- subset(irt_data,isFiller)
+
+### experimental only
+irt_data <- subset(irt_data,!isFiller)
+irt_data <- (merge(itemsDf, irt_data, by = 'Item'))
+
+### make Participant and Item factors with specified ref levels 
+irt_data$Participant<-relevel(as.factor(irt_data$Participant),ref=5)
+irt_data$Item<-relevel(as.factor(irt_data$Item),ref=1)
+
+### winsorize top/bottom 2.5% of data (for normal distrbution, this is +/- 2sd)
+### see: https://sciencing.com/relationship-between-standard-deviations-percentiles-8768703.html
+win_trim=0.025
+irt_data <- irt_data %>% group_by(Participant) %>% mutate(win_irt = winsor(irt, trim=win_trim))
+irt_data$wirt<-irt_data$win_irt
+
+### log 10 transform
+irt_data$wirt.log10 <- log10(irt_data$win_irt)
+
+
+### meta 
+json <- read_file("../meta-4_11.json")
+meta<-fromJSON(json)
+handset <- read.csv("../csvs/_SITA_SET_VALUES.csv")
+meta[meta$file %in% handset$Filename,]$agg <- NA
+meta[meta$file %in% handset$Filename,]$hpf <- NA
+hscount <- sum(handset$Filename %in% meta$file)
+
+
+write_csv(irt_data_allitems,"export/all_data.csv")
+```
+```{r normalize sets}
+irt_data$ID <- paste0(irt_data$Participant,"-",irt_data$Item)
+mdata$ID <- paste0(mdata$SID,"-",mdata$IID)
+
+irt_data <- subset(irt_data, ID %in% mdata$ID)
+mdata <- subset(mdata,ID %in% irt_data$ID)
+```
+```{r describe}
+### counts
+irt_data$Participant <- as.factor(irt_data$Participant)
+irt_data$Participant <- relevel(irt_data$Participant,ref=9)
+recs<-nrow(irt_data)
+subjs<-length(levels(irt_data$Participant))
+items<-length(levels(irt_data$Item))
+expectN <- subjs * items
+
+### utterance lengths
+if(!use_old){
+  ### only available in newer files
+  uls <- append(irt_data$`R1 UL`,irt_data$`R2 UL`)
+  uls_desc <- describe(uls)
+  uls_r1_desc <- describe(irt_data$`R1 UL`)
+  uls_r2_desc <- describe(irt_data$`R2 UL`)
+}
+
+### note properties
+irt_props_all <- describe(irt_data$irt)
+irt_props <- describe(irt_data$irt)
+wirt_props <- describe(irt_data$win_irt)
+
+### sd by condition table
+sdByConditionLong <- aggregate(
+  irt_data$win_irt,
+  by=list(
+    "Q"=irt_data$Q,
+    "GP"=irt_data$GP
+  ),
+  FUN=sd
+)
+
+### means by condition table
+meansByConditionLong <- aggregate(
+  irt_data$win_irt,
+  by=list(
+    "Q"=irt_data$Q,
+    "GP"=irt_data$GP
+  ),
+  FUN=mean
+)
+names(meansByConditionLong)[3] <- "mean"
+### concise means by condition table
+meansByCondition <- meansByConditionLong %>% spread(Q,mean) 
+names(meansByCondition)[1] <- "Condition"
+### add sd and se to meansByConditionLong
+meansByConditionLong$sd<-sdByConditionLong$x
+meansByConditionLong$se<-sdByConditionLong$x/sqrt(irt_props$n)
+
+
+### difference in condition means
+diffs<-list(Condition="Increase", `D`=diff(meansByCondition$`D`), `Q`= diff(meansByCondition$`Q`))
+meansByCondition<-rbind(meansByCondition, diffs)
+cdiff <- meansByCondition$`D`[3]-meansByCondition$`Q`[3]
+
+### participant means by condition
+pmeansByCondition <- aggregate(
+  irt_data$irt,
+  by=list(
+    "Condition"=irt_data$cond,
+    "Participant"=irt_data$Participant
+  ),
+  FUN=mean
+) %>% spread(Condition,x) 
+pmeansByCondition$pattern <- (
+  pmeansByCondition$`Q +GP` - pmeansByCondition$`Q -GP` <
+  pmeansByCondition$`D +GP` - pmeansByCondition$`D -GP`
+) 
+
+### simple P means
+spm <- aggregate(
+  irt_data$irt,
+  by=list(
+    "Participant"=irt_data$Participant
+  ),
+  FUN=mean
+) 
+
+ 
+prosDescrip <- describe(mdata)
+tot<-as.data.frame(xtabs( ~ Condition_GP + Condition_Q, data=mdata))
+gtot <- tot
+
+orderMap <- read_csv(
+  "../csvs/src/order-p-map.csv",
+  col_types = cols(
+    ID = col_character(),
+    Order = col_character(),
+    LIST = col_character()
+  )
+)
+
+orderMap$Participant <- orderMap$ID
+orderMap$ID <- NULL
+
+mdata<-merge(mdata,orderMap,by="Participant")
+write_csv(mdata,"export/prosody_data.csv")
+
+versiontab <- mdata %>% 
+  filter(!duplicated(Participant)) %>%
+  with(table("Version"=LIST,Order)) %>%
+  addmargins() 
+
+rownames(versiontab)[1:4]<-paste("Version", rownames(versiontab))
+```
+
+# Reliability of prosodic judgements
+
+A second trained linguist repeated the task over 128 recordings selected from 8 participants (two from each group, one per ordering). Even number experimental items were used from 4 participants, and odd numbered from the other 4. There were 8 recordings missing from the 128 selected, so the reliability task resulted in judgements over 120 recordings. The first informat also blindly re-rated those 120, with the recording name obscured and instructions not to revisit her original ratings. Reliability scores (percent of recordings agreed upon) are reported in table \ref{tab:validity}.
+
+```{r validitySetup}
+library(irr)
+library(readr)
+all <- read_csv2("export/prosody_validity.csv")
+# columns to iterate
+vals = c("V","OBJ","PP1","STRONG","WEAK","STRUG","STRUG_START","QI")
+# raters to compare to main
+suffixes=c("-dr","-sp")
+
+# comps will hold string rep of Agr%, Kappa, (z) *pval*
+comps <- matrix(nrow=6,ncol=length(vals))
+colnames(comps)<-vals
+
+# aggs will hold just agree%
+aggs <- matrix(nrow=2,ncol=length(vals),dimnames = list(suffixes))
+colnames(aggs)<-vals
+
+# for each col...
+for(val in vals) {
+  # for each rater...
+  sufn = 0
+  for(suf in suffixes) {
+    row = 3 * sufn + 1
+    sufn = sufn + 1
+    # d is 120 rows, 2 col, where col[1] = main, col[2] = suf rater
+    d <- cbind(all[[paste0(val)]],all[[paste0(val,suf)]])
+    a <-kappa2(d)
+    ag <- agree(d)
+    aggs[suf,val] <- paste0(ag$value,"%")
+    
+    comps[row,val] <- sprintf(
+      "%0.1f%%",
+      ag$value
+    )
+    comps[row+1,val] <- sprintf(
+      "K = %0.2f%s",
+      a$value,
+      ifelse(a$p.value < 0.001,"***",
+             ifelse(a$p.value < 0.01,"**",
+                    ifelse(a$p.value < 0.05,"*",
+                      ifelse(a$p.value < 0.1," .",
+                             "")))))
+    comps[row+2,val] <- sprintf(
+      "(z = %0.2f)",
+      a$statistic
+    )
+    
+    # comps[suf,val] <- sprintf(
+    #   "%0.1f%s %0.2f%s <br> (z = %0.2f)",
+    #   ag$value,
+    #   "% <br> K = ",
+    #   a$value,
+    #   ifelse(a$p.value < 0.001,"***",
+    #          ifelse(a$p.value < 0.01,"**",
+    #                 ifelse(a$p.value < 0.05,"*",
+    #                   ifelse(a$p.value < 0.1," .",
+    #                          "")))),
+    #   a$statistic
+    # )
+  }
+}
+
+comps <- comps %>% as.data.frame()
+labels <- matrix(c(rep("Interrater",3),rep("Intrarater",3)))
+comps <- cbind(labels,comps)
+```
+
+```{r validity}
+kable(
+  comps,
+  caption="Inter and intrarater agreement with Cohen's Kappa", 
+  booktab=T, 
+  digits=2,
+  align="c",
+  escape=knitr::is_latex_output(),
+  col.names=c(" ","V","OBJ","PP1","STRONGEST","WEAKEST","STRUGGLED","START REGION","FINAL RISE")
+) %>%
+  kable_styling(latex_options = c("hold_position","scale_down")) %>%
+  add_header_above(c(" " = 1, "Breaks" = 3, "Break strength" = 2, "Struggle" = 2, " " = 1)) %>%
+  column_spec(1, bold = T) %>%
+  row_spec(c(1:2,4:5), hline_after = F) %>%
+  collapse_rows(columns = 1, latex_hline = "major")  %>%
+  footnote("*** p < 0.001; ** p < 0.01; * p < 0.05, . p < 0.1") 
+```
+
+The lower intrarater agreement for relative break strength was likely a result of a methodological issue: it was possible to report the same pattern, e.g. a pattern where a PP1 break is stronger than an OBJ break, by either giving the response "PP1" for strongest break, and "OBJ" for weakest break; or, "PP1" for strongest and "NONE" for weakest; or, "NONE" for strongest and "OBJ" for weakest. While the instructions to the rater requested full verbosity, it's likely that inconsistencies occurred for these cases.
+
+The same inconsistencies would have hurt interrater agreement for strongest/weakest also. A further contributing issue for interrater agreement of those two judgements stems from the poor agreement on the presence of the verb break. When the raters don't agree about the presence of a break, that disagreement is magnified for the judgement of the relative strength of breaks.
+
+# PP1 and object breaks and their relative prominence
+
+Table \ref{tab:pros2lvl} presents data that incorporates the rater's judgement of the relative prominence of the breaks. The &gt; symbol indicates that the rater found the break on the left of that symbol to be stronger, or more prominent, than the break on the left. When no symbol is shown between the two breaks, the rather found them to be of equal prominence.
+
+```{r pros2lvlPre}
+
+p2lv<-prop.table(xtabs(~two_level_prosody+condition,data=subset(mdata,Reading==2)),margin = 2) * 100
+
+kable(p2lv, digits = 1, caption="Reading 1 prosodic pattern type by condition") %>% kable_styling()
+
+```
+
+Another way of looking at these same data is to think of a recording as being PP1-dominant (i.e., PP1 is the only or the strongest break), OBJ-dominate, or neither. This categorization is useful because it creates binary outcomes that can be subjected to logistic regression analyses. The frequency of these patterns is reported in table \ref{tab:domtab}.
+
+```{r domsetup}
+pdom <- xtabs(~condition+pdom,data=mdata)%>% prop.table(margin=1)
+pdom.r1 <- xtabs(~condition+pdom,data=subset(mdata,Reading==1))%>% prop.table(margin=1)
+pdom.r2 <- xtabs(~condition+pdom,data=subset(mdata,Reading==2))%>% prop.table(margin=1)
+
+odom <- xtabs(~condition + odom ,data=mdata) %>% prop.table(margin=1)
+odom.r1 <- xtabs(~condition + odom,data=subset(mdata,Reading==1))%>% prop.table(margin=1)
+odom.r2 <- xtabs(~condition + odom,data=subset(mdata,Reading==2))%>% prop.table(margin=1)
+```
+
+```{r domtab}
+domtab<-cbind(odom.r2,pdom.r2)* 100
+kable(
+  domtab, 
+  caption="Break dominance by condition, Reading 2 only",
+  col.names=c(rep(c("Not dominant", "Dominant"), 2)),
+  align="c",
+  digits=1
+) %>%
+  add_header_above(c(" "=1, "OBJ" = 2, "PP1" = 2)) %>%
+  kable_styling(latex_options = c("hold_position"))
+```
+
+```{r r2prosmod,cache=T}
+r2data<-subset(mdata,Reading==2)
+pp1Mod<- glmer(PP1~Condition_Q*Condition_GP+(1|IID)+(1|SID),data=r2data,family=binomial)
+objMod<- glmer(OBJ~Condition_Q*Condition_GP+(1|IID)+(1|SID),data=r2data,family=binomial)
+pdomMod<- glmer(pdom~Condition_Q*Condition_GP+(1|IID)+(1|SID),data=r2data,family=binomial)
+odomMod<- glmer(odom~Condition_Q*Condition_GP+(1|IID)+(1|SID),data=r2data,family=binomial)
+```
+
+```{r prosmodels}
+huxreg(  
+  list("OBJ"=objMod,"PP1 Dominance"=pdomMod,"OBJ Dominance"=odomMod),
+  coefs = c(
+    "Intercept"="(Intercept)",
+    "GP"="Condition_GPTRUE",
+    "Q"="Condition_QTRUE",
+    "GP:Q Interaction"="Condition_QTRUE:Condition_GPTRUE"
+  ),
+  statistics = c(
+    N="nobs",
+    "logLik",
+    "AIC"
+  )
+) %>%
+  set_caption("Logistic regression models of prosody, Reading 2 only") %>%
+  set_label("lmPros") %>%
+  set_tabular_environment("tabular")
+```
+
+\clearpage
