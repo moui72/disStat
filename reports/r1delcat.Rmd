@@ -65,12 +65,52 @@ colnames(r1delByP)[2] <- "r1delbyp"
 
 mdata$Participant <- mdata$SID
 mdata<-merge(r1delByP,mdata,by="Participant")
+mdata <- subset(mdata,simple2lvl != "NEITHER")
 
 ```
 
 First, participants were categorized based on their mean Reading 1 delay, with a fast mean Reading 1 delay being less than `r round(lodel/1000,2)`s, and a slow one being more than `r round(hidel/1000,2)`s. Everything else is categorized as "normal" and ignored. The distribution of participants across categories is shown in table \ref{tab:delcat}. Each participant's mean is shown in table \ref{tab:r1delByP}
 
+```{r}
+fast <- subset(mdata,r1DelCat == "FAST")
+slow <- subset(mdata,r1DelCat == "SLOW")
+fastTabN <- xtabs(~simple2lvl + condition, data=fast) %>% 
+  as.data.frame() %>% 
+  spread(condition, Freq)
+slowTabN <- xtabs(~simple2lvl + condition, data=slow) %>% 
+  as.data.frame() %>% 
+  spread(condition, Freq)
+fastTab <- xtabs(~simple2lvl + condition, data=fast) %>% 
+  prop.table(margin=2) %>% 
+  as.data.frame() %>% 
+  spread(condition, Freq)
+slowTab <- xtabs(~simple2lvl + condition, data=slow) %>% 
+  prop.table(margin=2) %>% 
+  as.data.frame() %>% 
+  spread(condition, Freq)
 
+tab<-cbind(fastTab,slowTab[2:5])
+ntab<-cbind(fastTabN,slowTabN[2:5])
+tab[2:9] <- tab[2:9] * 100
+tab$m  <- "%"
+ntab$m <- "n"
+tab <- rbind(tab,ntab)
+
+
+colnames(tab)[1] <- "Pattern"
+colnames(tab)[6:9] <- paste0(colnames(tab)[6:9],".slow")
+tab <- arrange(tab,Pattern)
+tab <- tab %>% select(Pattern,m,everything())
+
+
+tab %>% kable(
+  caption="Simple break pattern by condition and R1 delay category, both readings",
+  col.names=c(" ","m","D -GP", "D +GP", "Q -GP", "Q +GP", "D -GP", "D +GP", "Q -GP", "Q +GP"), 
+  digits=2
+) %>% kable_styling() %>%collapse_rows(columns = 1) %>%
+  add_header_above(c(" " = 2,"FAST"=4,"SLOW"=4)) 
+
+```
 ```{r}
 cheatdata <- subset(mdata,r1DelCat == "FAST" & Reading == 2)
 pp1tab<-xtabs(PP1 ~ Condition_GP + Condition_Q, data=cheatdata)
