@@ -8,7 +8,6 @@ output:
     latex_engine: xelatex
 fontsize: 12pt
 mainfont: Georgia
-geometry: "left=2cm,right=2cm,top=3cm,bottom=3cm"
 ---
 ```{r results_setup,echo=F,warning=F,message=F}
 knitr::opts_chunk$set(
@@ -31,15 +30,18 @@ library(dplyr)
 library(tidyr)
 library(knitr)
 library(kableExtra)
-
-mdata <- read_csv("../drafts/export/prosody_data.csv")
-
+library(ggplot2)
+hidel <- 1200
+lodel <- 900
 ```
-# Participant categories of reading 1 delay
 
-A brief analysis of the effect of Reading 1 delay on the prosodic patterns produced is presented.
+# Reading 1 delay category
+
+First, participants were categorized based on their mean Reading 1 delay, with a fast mean Reading 1 delay being less than `r round(lodel/1000,2)`s, and a slow one being more than `r round(hidel/1000,2)`s. Everything else is categorized as "normal" and ignored. The distribution of participants across categories is shown in table \ref{tab:delcat}. 
 
 ```{r delcat}
+
+mdata <- read_csv("../drafts/export/prosody_data.csv")
 raw_rs_file <- read_csv("../csvs/merged.csv")
 raw_rs_file$UID <- as.factor(with(raw_rs_file, paste(Participant,Item,Reading,sep="-")))
 raw_rs_file <- subset(raw_rs_file,UID %in% mdata$UID)
@@ -49,8 +51,7 @@ raw_rs$Reading <- ifelse(raw_rs$reading == 1, "Cold", "Previewed")
 
 r1data <- subset(raw_rs, reading == 1)
 r1delByP <- aggregate(r1data$Leading,by=list("Participant" = r1data$Participant), FUN=mean)
-hidel <- 1200
-lodel <- 900
+
 r1delByP$r1DelCat <- ifelse(r1delByP$x < lodel, "FAST", ifelse(
   r1delByP$x > hidel, "SLOW", "NORMAL"
 ))
@@ -58,7 +59,7 @@ catdes <- sprintf("FAST < %0.1fs; SLOW > %0.1fs",lodel/1000,hidel/1000)
 
 table(r1delByP$r1DelCat) %>% 
   kable(col.names=c("Delay category", "n"), caption="Participants by Reading 1 delay category") %>% 
-  kable_styling(full_width = F) %>% 
+  kable_styling(full_width = F,latex_options = c("hold_position")) %>% 
   footnote(catdes)
 
 colnames(r1delByP)[2] <- "r1delbyp"
@@ -66,12 +67,39 @@ colnames(r1delByP)[2] <- "r1delbyp"
 mdata$Participant <- mdata$SID
 mdata<-merge(r1delByP,mdata,by="Participant")
 mdata <- subset(mdata,simple2lvl != "NEITHER")
-
+mdata$condition <- factor(mdata$condition,levels(factor(mdata$condition))[c(1,3,2,4)])
 ```
 
-First, participants were categorized based on their mean Reading 1 delay, with a fast mean Reading 1 delay being less than `r round(lodel/1000,2)`s, and a slow one being more than `r round(hidel/1000,2)`s. Everything else is categorized as "normal" and ignored. The distribution of participants across categories is shown in table \ref{tab:delcat}. Each participant's mean is shown in table \ref{tab:r1delByP}
+```{r facet, fig.cap="Plot of pattern proportions per condition"}
+adata<-mdata
+library('ggthemes')
+if(!"reading" %in% names(adata)){
+  adata$reading <- adata$Reading
+}
+adata$Reading <- paste("Reading", adata$reading)
 
-```{r}
+pdata <- subset(adata, r1DelCat != "NORMAL")
+
+ggplot(pdata,    
+    aes(
+      x=condition,
+      y=..count..,
+      fill=reorder(
+        simple2lvl,
+        ifelse(simple2lvl=="PP1", 1, ifelse(simple2lvl=="OBJ",3,2))
+      )
+    )) +
+  geom_bar(position="fill",color="black",width=0.5) +
+  labs(fill="Pattern",x=" ",y=" ") +
+  facet_grid(rows = vars(Reading),cols=vars(r1DelCat)) +
+  scale_y_continuous(labels=scales::percent) + 
+  scale_fill_brewer(breaks=c("PP1", "BOTH", "OBJ"), palette="Greys") +
+  theme_minimal(base_size = 12)
+```
+
+```{r both}
+adata<-mdata
+
 fast <- subset(mdata,r1DelCat == "FAST")
 slow <- subset(mdata,r1DelCat == "SLOW")
 fastTabN <- xtabs(~simple2lvl + condition, data=fast) %>% 
@@ -96,7 +124,6 @@ tab$m  <- "%"
 ntab$m <- "n"
 tab <- rbind(tab,ntab)
 
-
 colnames(tab)[1] <- "Pattern"
 colnames(tab)[6:9] <- paste0(colnames(tab)[6:9],".slow")
 tab <- arrange(tab,Pattern)
@@ -106,169 +133,95 @@ tab <- tab %>% select(Pattern,m,everything())
 tab %>% kable(
   caption="Simple break pattern by condition and R1 delay category, both readings",
   col.names=c(" ","m","D -GP", "D +GP", "Q -GP", "Q +GP", "D -GP", "D +GP", "Q -GP", "Q +GP"), 
-  digits=2
+  digits=1
 ) %>% kable_styling() %>%collapse_rows(columns = 1) %>%
   add_header_above(c(" " = 2,"FAST"=4,"SLOW"=4)) 
 
 ```
-```{r}
-cheatdata <- subset(mdata,r1DelCat == "FAST" & Reading == 2)
-pp1tab<-xtabs(PP1 ~ Condition_GP + Condition_Q, data=cheatdata)
-objtab<-xtabs(OBJ ~ Condition_GP + Condition_Q, data=cheatdata)
-tot<-as.data.frame(xtabs( ~ Condition_GP + Condition_Q, data=cheatdata))
 
 
-pp1<-as.data.frame(pp1tab)
-pp1$tot<-tot$Freq
-pp1$pct <- pp1$Freq/pp1$tot
-pp1$pretty <- paste0(
-  pp1$Freq, 
-  " (", 
-  sprintf("%.1f",pp1$pct * 100), 
-  "%)"
-)
-pp1disp <- pp1 %>%
-  subset(select=c(
-    "Condition_GP",
-    "Condition_Q",
-    "pretty"
-  )) %>% 
-  spread(Condition_Q,pretty)
+```{r r1}
+mdata<-subset(adata,Reading==1)
+fast <- subset(mdata,r1DelCat == "FAST")
+slow <- subset(mdata,r1DelCat == "SLOW")
+fastTabN <- xtabs(~simple2lvl + condition, data=fast) %>% 
+  as.data.frame() %>% 
+  spread(condition, Freq)
+slowTabN <- xtabs(~simple2lvl + condition, data=slow) %>% 
+  as.data.frame() %>% 
+  spread(condition, Freq)
+fastTab <- xtabs(~simple2lvl + condition, data=fast) %>% 
+  prop.table(margin=2) %>% 
+  as.data.frame() %>% 
+  spread(condition, Freq)
+slowTab <- xtabs(~simple2lvl + condition, data=slow) %>% 
+  prop.table(margin=2) %>% 
+  as.data.frame() %>% 
+  spread(condition, Freq)
 
-obj<-as.data.frame(objtab)
-obj$tot<-tot$Freq
-obj$pct <- obj$Freq/obj$tot
-obj$pretty <- paste0(
-  obj$Freq, 
-  " (", 
-  sprintf("%.1f",obj$pct * 100), 
-  "%)"
-)
-objdisp <- obj %>%
-  subset(select=c(
-    "Condition_GP",
-    "Condition_Q",
-    "pretty"
-  )) %>% 
-  spread(Condition_Q,pretty)
+tab<-cbind(fastTab,slowTab[2:5])
+ntab<-cbind(fastTabN,slowTabN[2:5])
+tab[2:9] <- tab[2:9] * 100
+tab$m  <- "%"
+ntab$m <- "n"
+tab <- rbind(tab,ntab)
 
-pp1obj <- cbind(pp1disp,objdisp[2:3])
-pp1obj[[1]] <- c("+GP","-GP")
-fast <- pp1obj
+colnames(tab)[1] <- "Pattern"
+colnames(tab)[6:9] <- paste0(colnames(tab)[6:9],".slow")
+tab <- arrange(tab,Pattern)
+tab <- tab %>% select(Pattern,m,everything())
+
+
+tab %>% kable(
+  caption="Simple break pattern by condition and R1 delay category,  Reading 1",
+  col.names=c(" ","m","D -GP", "D +GP", "Q -GP", "Q +GP", "D -GP", "D +GP", "Q -GP", "Q +GP"), 
+  digits=1
+) %>% kable_styling() %>%collapse_rows(columns = 1) %>%
+  add_header_above(c(" " = 2,"FAST"=4,"SLOW"=4)) 
+
 ```
 
-```{r}
-cheatdata <- subset(mdata,r1DelCat == "SLOW" & Reading == 2)
-pp1tab<-xtabs(PP1 ~ Condition_GP + Condition_Q, data=cheatdata)
-objtab<-xtabs(OBJ ~ Condition_GP + Condition_Q, data=cheatdata)
-tot<-as.data.frame(xtabs( ~ Condition_GP + Condition_Q, data=cheatdata))
+
+```{r r2}
+mdata<-subset(adata,Reading==2)
+fast <- subset(mdata,r1DelCat == "FAST")
+slow <- subset(mdata,r1DelCat == "SLOW")
+fastTabN <- xtabs(~simple2lvl + condition, data=fast) %>% 
+  as.data.frame() %>% 
+  spread(condition, Freq)
+slowTabN <- xtabs(~simple2lvl + condition, data=slow) %>% 
+  as.data.frame() %>% 
+  spread(condition, Freq)
+fastTab <- xtabs(~simple2lvl + condition, data=fast) %>% 
+  prop.table(margin=2) %>% 
+  as.data.frame() %>% 
+  spread(condition, Freq)
+slowTab <- xtabs(~simple2lvl + condition, data=slow) %>% 
+  prop.table(margin=2) %>% 
+  as.data.frame() %>% 
+  spread(condition, Freq)
+
+tab<-cbind(fastTab,slowTab[2:5])
+ntab<-cbind(fastTabN,slowTabN[2:5])
+tab[2:9] <- tab[2:9] * 100
+tab$m  <- "%"
+ntab$m <- "n"
+tab <- rbind(tab,ntab)
+
+colnames(tab)[1] <- "Pattern"
+colnames(tab)[6:9] <- paste0(colnames(tab)[6:9],".slow")
+tab <- arrange(tab,Pattern)
+tab <- tab %>% select(Pattern,m,everything())
 
 
-pp1<-as.data.frame(pp1tab)
-pp1$tot<-tot$Freq
-pp1$pct <- pp1$Freq/pp1$tot
-pp1$pretty <- paste0(
-  pp1$Freq, 
-  " (", 
-  sprintf("%.1f",pp1$pct * 100), 
-  "%)"
-)
-pp1disp <- pp1 %>%
-  subset(select=c(
-    "Condition_GP",
-    "Condition_Q",
-    "pretty"
-  )) %>% 
-  spread(Condition_Q,pretty)
+tab %>% kable(
+  caption="Simple break pattern by condition and R1 delay category,  Reading 2",
+  col.names=c(" ","m","D -GP", "D +GP", "Q -GP", "Q +GP", "D -GP", "D +GP", "Q -GP", "Q +GP"), 
+  digits=1
+) %>% kable_styling() %>%collapse_rows(columns = 1) %>%
+  add_header_above(c(" " = 2,"FAST"=4,"SLOW"=4)) 
 
-obj<-as.data.frame(objtab)
-obj$tot<-tot$Freq
-obj$pct <- obj$Freq/obj$tot
-obj$pretty <- paste0(
-  obj$Freq, 
-  " (", 
-  sprintf("%.1f",obj$pct * 100), 
-  "%)"
-)
-objdisp <- obj %>%
-  subset(select=c(
-    "Condition_GP",
-    "Condition_Q",
-    "pretty"
-  )) %>% 
-  spread(Condition_Q,pretty)
-
-pp1obj <- cbind(pp1disp,objdisp[2:3])
-pp1obj[[1]] <- c("+GP","-GP")
 ```
 
-The break patterns for slow and fast participants are shown in table \ref{tab:cheaterBreaks}.
 
-```{r cheaterBreaks}
-cat <-cbind(fast, pp1obj[2:5])
-kable(
-  cat,
-  caption="Percentage of R2 recordings with PP1/OBJ break by condition and R1 delay category",
-  col.names = c("", "D", "Q","D", "Q","D", "Q","D", "Q")
-) %>% 
-  add_header_above(c(" "=1,"PP1 Break"=2,"OBJ Break"=2,"PP1 Break"=2,"OBJ Break"=2)) %>%
-  add_header_above(c(" "=1,"Fast R1 delay"=4,"Slow R1 delay"=4)) %>%
-  kable_styling(latex_options = c("hold_position","scale_down"))
-```
-
-```{r}
-cheatdata <- subset(mdata,r1DelCat == "FAST" & Reading == 2)
-twolv<-xtabs( ~ two_level_prosody + condition, data=cheatdata) %>%
-  prop.table(margin=2)
-
-twolvFAST <- twolv * 100
-
-cheatdata <- subset(mdata,r1DelCat == "SLOW" & Reading == 2)
-twolv<-xtabs( ~ two_level_prosody + condition, data=cheatdata) %>%
-  prop.table(margin=2)
-
-twolv <- cbind(twolvFAST, twolv * 100)
-
-twolv %>% 
-  kable(
-    caption="Prosodic pattern by condition, SLOW/FAST R1 delay category (Reading 2)",
-    digits = 2
-  ) %>%
-  add_header_above(c(" " = 1, "FAST" = 4, "SLOW" = 4)) %>%
-  kable_styling(latex_options = c("hold_position"))
-```
-```{r}
-cheatdata <- subset(mdata,r1DelCat == "FAST" & Reading == 1)
-twolv<-xtabs( ~ two_level_prosody + condition, data=cheatdata) %>%
-  prop.table(margin=2)
-
-twolvFAST <- twolv * 100
-
-cheatdata <- subset(mdata,r1DelCat == "SLOW" & Reading == 1)
-twolv<-xtabs( ~ two_level_prosody + condition, data=cheatdata) %>%
-  prop.table(margin=2)
-
-twolv <- cbind(twolvFAST, twolv * 100)
-
-twolv %>% 
-  kable(
-    caption="Prosodic pattern by condition, SLOW/FAST R1 delay category (Reading 1)",
-    digits = 2
-  ) %>%
-  add_header_above(c(" " = 1, "FAST" = 4, "SLOW" = 4)) %>%
-  kable_styling(latex_options = c("hold_position"))
-```
-
-```{r r1delByP}
-df <- r1delByP
-df$r1delbyp <- df$r1delbyp / 1000
-
-df %>%  
-  arrange(df$r1delbyp) %>% 
-  kable(
-    col.names = c("Participant", "Mean R1 delay","R1 delay category"), 
-    caption="Mean reading 1 delay (seconds) and R1 delay category by participant", 
-    digits = 2
-  ) %>% kable_styling(latex_options = c("repeat_header"))%>% 
-  footnote(catdes)
-```
+Table \ref{tab:both} shows the number of occurrences and percentage per condition for both readings. Table  \ref{tab:r1} shows the same for just reading 1, and table \ref{tab:r2} for just reading 2.
