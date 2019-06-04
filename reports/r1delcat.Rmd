@@ -102,12 +102,14 @@ adata<-mdata
 
 fast <- subset(mdata,r1DelCat == "FAST")
 slow <- subset(mdata,r1DelCat == "SLOW")
+
 fastTabN <- xtabs(~simple2lvl + condition, data=fast) %>% 
   as.data.frame() %>% 
-  spread(condition, Freq)
+  spread(condition, Freq)  
 slowTabN <- xtabs(~simple2lvl + condition, data=slow) %>% 
   as.data.frame() %>% 
   spread(condition, Freq)
+
 fastTab <- xtabs(~simple2lvl + condition, data=fast) %>% 
   prop.table(margin=2) %>% 
   as.data.frame() %>% 
@@ -132,7 +134,7 @@ tab <- tab %>% select(Pattern,m,everything())
 
 tab %>% kable(
   caption="Simple break pattern by condition and R1 delay category, both readings",
-  col.names=c(" ","m","D -GP", "D +GP", "Q -GP", "Q +GP", "D -GP", "D +GP", "Q -GP", "Q +GP"), 
+  col.names=c(" ","m", rep(c("D -GP","Q -GP", "D +GP", "Q +GP"),2)), 
   digits=1
 ) %>% kable_styling() %>%collapse_rows(columns = 1) %>%
   add_header_above(c(" " = 2,"FAST"=4,"SLOW"=4)) 
