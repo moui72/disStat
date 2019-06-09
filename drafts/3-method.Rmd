@@ -13,52 +13,69 @@ library(knitr)
 library(kableExtra)
 ```
 # Methodology 
-This section outlines the methodology employed for the reported study. The methodology outlined is referred to as the *Double Reading Procedure* and was first implemented by @fodor2019center. Participants are asked to read sentences twice, once without any previewed (cold reading or reading-1), and then again after unlimited preview (previewed reading or reading-2).
+This section outlines the methodology employed for the reported study. The methodology outlined is referred to as the *Double Reading Procedure* and was first implemented by @fodor2019center. Participants are asked to read sentences twice, once without any previewed (Reading 1), and then again after unlimited preview (Reading 2).
+
+## A note on the *Double Reading Procedure*
+
+An advantage that the *Double Reading Procedure* has is that it allows for certain assumptions to be made about Reading 2 that otherwise would be unclear: Reading 2 represents a considered reading of the sentence. Not only has the reader had ample time to examine the sentence, they have necessarily read it, and they have heard themsleves read it. We can say this with certainly, because they have necessarily already produce a recording of Reading 1. This means Reading 2 represents a considered prosodic structure, and it should not represent any processing issues, because a parse should have already been obtained during Reading 1.
+
+The nature of Reading 1 is less clear. Because there is variability in the delay between the display of the sentence and the onset of phonation, it's possible that Reading 1 is not entirely non-previewed. The properties of these Reading 1 delays are discussed at length in \ref{sec:r1del}, but for now it suffices to say that the amount of preview that is possible during a delay that typically falls in the 0.6s to 1.6s range is very limited. We can say, at the very least, that a full parse of the sentence is not possible, and so Reading 1 should represent any parsing difficult the reader has.
 
 ## Participants recruitment
 
-The participants in this study were all undergraduate students at Queens College, CUNY, enrolled in Psychology 101. These students were required by the university to participant in studies for course credit. Self reported age ranged from 18 to 25 years. Participants were recruited using the Queens College Sona system, which is software designed for univeristy participant pools. Students saw the blurb in (@rec) and were able to schedule their own appointment time within the hours offered (Monday - Thursday, 10am to 4pm).
+The participants in this study were all undergraduate students at Queens College, CUNY, enrolled in Psychology 101. These students were required by the university to participant in studies for course credit. Self reported age ranged from 18 to 25 years. Participants were recruited using the Queens College Sona system, which is software designed for univeristy participant pools. Students saw a notice on the Sona website (see Appendix \ref{sec:rec}) and were able to schedule their own appointment time within the hours offered (Monday - Thursday, 10am to 4pm).
 
-  (@rec)  **Recruitment**<br>
-          You will be asked about your reading habits and then asked to read complex sentences out loud while being audio recorded. Recordings of your voice will be analyzed, but will be kept strictly confidential. The process will take no more than 1 hour. Note that the study takes place in Queens Hall, which is about half a mile from the main Queens campus. See directions on the QC website, URL below, for how to get here. The room is 335D, on the third floor. Entrance to the building is in the back. 
-
-All participants were self identified native and primary speakers of American English. One participant was disqualified post-hoc, although still paid for time spent, after producing a Carribean English pronucnciation pattern. One other participant was excluded post-hoc due to an extremely disfluent reading cadence.
+All participants were self identified native and primary speakers of American English. One participant was disqualified post-hoc after producing a Carribean English pronucnciation pattern; one other participant was excluded post-hoc due to an extremely disfluent reading cadence. Both excluded participants were still awarded class credit for participating
 
 ## Location
 
-All data were collected in a private room of Queens Hall, Queens College with only the experimenter and participant present. While every effort was undertaken to ensure a quiet environment, intrusive noise from passersby or neighboring rooms were sometimes unavoidable. This resulted in some unusable or partially unusable recordings (discussed in section \@ref(results-irt) of the results chapter).
+All data were collected in a private room with only the experimenter and participant present. While every effort was undertaken to ensure a quiet environment, intrusive noise from passersby or neighboring rooms were sometimes unavoidable. This resulted in some unusable or partially unusable recordings (discussed in section \@ref(results-irt) of the results chapter).
 
 ## Equipment and software
 
 The experiemnt was presented on a laptop running Windows 10 with stickers on the keyboard labeling relevant keys. The left shift key was labeled *START*, right shift was labeled *NEXT*, and the touchpad was labeled *DONE*.
 
-The presentation of items and instruction[^instr] was done using the Open Sesame software [@os2012] which provides both a graphical user interface, scripting language, and interpretation of Python code, for precise control of experimental presentation.
+The presentation of items and instruction[^instr] was done using the Open Sesame software [@os2012] which provides a graphical user interface, scripting language, and interpretation of Python code, for precise control of experimental presentation.
 
-Recording was done using a Blue Yeti USB microphone position near the participant's left hand and angled to point at the space in front of the participant's mouth. The angle was adjusted for each participant's height. It recording 44.1kHz single-channel audio. Each recording was saved to the laptop's hard drive and also immediately uploaded to a Microsoft OneDrive account provided to the author by the Graduate Center, CUNY. No personally identifying information other than the quality of the participants' voices was embedded in the recordings. Only a handwritten ledger tied participants to the identifier used in the filename of the recordings.
+Recording was done using a Blue Yeti USB microphone position near the participant's left hand and angled to point at the space in front of the participant's mouth. The angle was adjusted for each participant's height. It recording 44.1kHz single-channel audio.
 
 [^instr]: Instructions were also provided verbally and via printout. Details on the instructions are available in the appendices \@ref(sec:instr).
 
 ## Procedure
+Participants were given a verbal overview of the experimental procedure and then asked to read a one page printout of the procedure before signing a consent form. After signing a consent form, participants sat at the computer and were once again walked through instructions before the first practice item was presented.
 
 Participants sat at a computer and used keyboard button presses to navigate the experimental presentation. They recieved thorough instructions and completed three practice items, the consulted with the experimenter, before beginning the main portion of the study. The study also contained 4 pseudo-practice items that were not included in any analyses, in order to allow some time for the participant to settle into the procedure before any results were recorded.
 
-Each experimental item was preceeded by a screen showing a line of ten Xs with its left edge aligned with the left edge of the to-be-revealed sentence. This was intended to fix the participant's attention on the start of the sentence, and hopefully avoid unintended lookahead. This screen remained visible indefintely, until the participant pressed *START*.
+Each experimental item was preceeded by a screen showing a line of ten Xs with its left edge aligned with the left edge of the to-be-revealed sentence. This was intended to fix the participant's attention on the start of the sentence, and hopefully avoid unintended lookahead. The issue of potential lookahead is discussed at greater length in section \ref{sec:lookahead}
 
-Immediately after *START* was pressed, recording of the first reading began and the sentence appeared on the screen on a blue background. The recording continued and the screened remained visible until the participant pressed *NEXT*.After pressing *NEXT*, a screen appeared with instructions telling the participant that they were between readings, and needed to press *START* to reveal the sentence again and prepare for their second reading. Immediately after *START* was pressed, the first recording ended and the second recording began, and the sentence reappeared, this time on a green background.
+This screen remained visible indefintely, until the participant pressed *START*.
+
+Immediately after *START* was pressed, recording of the first reading began and the sentence appeared on the screen on a blue background. The recording continued and the screened remained visible until the participant pressed *NEXT*. After pressing *NEXT*, a screen appeared with instructions telling the participant that they were between readings, and needed to press *START* to reveal the sentence again and prepare for their second reading. Immediately after *START* was pressed, the first recording ended and the second recording began, and the sentence reappeared, this time on a green background.
 
 ![Procedure diagram](dissertation-procedure.png)
 
-The shifting of required key presses and the changing background color were intended to aid the participant in remember where they were in the process, and to prevent accidental double-presses of any given button from having unintended side effects. It took some time for the participants to adapt to the somewhat complicated procedure, but most seem to have gotten the hang of it before the first real item was presented.
+The shifting of required key presses and the changing background color were intended to aid the participant in remember where they were in the process, and to prevent accidental double-presses of any given button from having unintended side effects. It took some time for the participants to adapt to the somewhat complicated procedure, but generally were well adjusted by the time the first item was presented.
 
-### Instructions to participants {##inst}
+### On lookahead {#lookahead}
 
-Participants were given a verbal overview of the experimental procedure and then asked to read a one page printout of the procedure before signing a consent form. After signing a consent form, participants sat at the computer and were once again walked through instructions before the first practice item was presented.
+As reported by @rayner2012psychology, the perceptual span during reading is about 31 characters, or 15 to either side, with an asymmetry favoring the direction in which reading occurs (i.e. wider to the right for English readers, wider to the left for Arabic readers). With a fixation aligned with the left edge of a stimuli, focal attention is likely centered on the third or fourth character. The resulting potential for look ahead can be diagrammed as follows, using a notation where a character whose identity can likely be extracted is reproduced, a character whose shape but not identity can be extracted is represented by an x, b, or g (depending on the shape of the original character), and otherwise an n. Spaces are inserted only as far out as they could be identified.
+
+  (@la1) XXXXXXXXXX
+         He had intendxb bx nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+         He had intended to cram the paperwork in the drawer of his filing cabinet.
+         
+Critically, the disambiguiation PP2 region (in @la1, *of his filing cabinet*) is not within the perceptual span until, at the earliest, one is in the object region (*the paperwork*). It is important to note as well, though, that when PP1, the phrase with ambiguous attachment site, is the fixation point, the existence of PP2 at least, is within the perceptual span. If we assume fixation on *the*, the available information should be something something like (@la2).
+
+  (@la2) nnnnnnnnnnnnnnnnnnnnnnn nnn nnnxxxxxb in the drawer xb bxnnnnnnnnnnnnnnnnn
+         He had intended to cram the paperwork in the drawer of his filing cabinet.
+
+There is, therefore, the potential that lookahead while reading PP1 could trigger the garden path effect of PP2 early, because it can be deduced that a short and then longer word are coming up on the periphery.          
 
 ## Materials
 
 A number of considerations went into creating the materials for this study. The experimental stimuli are based on earlier pilot study exploring this same phenomenon [@qp2], but with several issues with that study's experimental items corrected.
 
-One of these issues was that the verbs did not all strongly subcategorize for a PP-argument. This could affect the strength of the garden path effect, since the strength of that subcategorization might impact the amount of sway that the parsing strategy of *Minimal Attachment* or *Argument Preference* has on the parse. Theoretically, verbs with stronger subcategorization for a PP-argument would result in a stronger garden path effect, or more difficulty in understanding the sentence. 
+One of these issues was that the verbs did not all strongly subcategorize for a PP-argument. This could affect the strength of the garden path effect, since the strength of that subcategorization might impact the amount of influence that the parsing strategy of *Minimal Attachment* or *Argument Preference* has on the parse. Theoretically, verbs with stronger subcategorization for a PP-argument would result in a stronger garden path effect, or more difficulty in understanding the sentence. 
 
 Another issue had to do with the level of detail present in the sentences, especially when they were presented as yes/no-questions. When it’s clear that the speaker already knows so much about the situation, it becomes difficult to imagine a pragmatically plausible context where the question would be asked. Such sentences might be described as “prosecutorial[^dcb-prosec].” 
 
@@ -105,7 +122,7 @@ An earlier pilot study exploring this same phenomenon (Peckenpaugh, 2016) had se
   b. \* Justin had crammed the old newspapers.
 
 
-The examples in (@weak) and (@strong) point out that while you really must cram something somewhere, you don’t necessarily need to say where you hide something. That is, the verb *hide* seen in (@weak) does not strongly subcategorize for a locative argument (hence the acceptability of (@weak~\tiny ~b)), while cram (@strong) does, rendering (@strong~\tiny ~b) unacceptable. Because of the asymmetry in subcategorization strength, sentences like (@weak) might not trigger as strong a garden-path effect, because the parser might assume that no PP-argument is forthcoming, while for (@strong) the parser will jump at the opportunity to parse a PP as an argument.  In designing the items for this study, only verbs with strong PP-argument subcategorization will be used. The four verbs selected were: *cram*, *put*, *stick* and *set*.
+The examples in (@weak) and (@strong) point out that while you really must cram something somewhere, you don’t necessarily need to say where you hide something. That is, the verb *hide* seen in (@weak) does not strongly subcategorize for a locative argument (hence the acceptability of (@weak~\tiny ~b)), while cram (@strong) does, rendering (@strong~\tiny ~b) unacceptable. Because of the asymmetry in subcategorization strength, sentences like (@weak) might not trigger as strong a garden-path effect, because the parser might assume that no PP-argument is forthcoming, while for (@strong) the parser will jump at the opportunity to parse a PP as an argument.  In designing the items for this study, only verbs with strong PP-argument subcategorization were used. The four verbs selected were: *cram*, *put*, *stick* and *set*.
 
 ### Complex tense
 
@@ -175,7 +192,7 @@ The recordngs vary in the volume of the speaker's voice and the amount of backgr
 
 A plausible set of measurements had to meet the following criteria:
 
-*Utterance length:* An utterance length between 2s and 10s, where utterance timing is the longest contiguous span in the recording that VAD reports as phonation, with breaks in phonation of less than 1s not breaking contiguity (@goldman1961-pa found that a large majority (82.5 to 87%) of pauses in fluent speech are less than 1s). Stimuli range from 18-22 syllables in length. If we assume a speach rate of 3 to 7 syllables per second [@jacewicz2010-sr] we would expect utterances between 2.5s and 7.3s. Conservative thresholds higher and lower than the expected were used, especially on the higher end to allow for any processing or fluency.
+*Utterance length:* An utterance length between 2s and 10s, where utterance timing is the longest contiguous span in the recording that VAD reports as phonation, with breaks in phonation of less than 1s not breaking contiguity (@goldman1961-pa found that a large majority (82.5 to 87%) of pauses in fluent speech are less than 1s). Stimuli range from 18-22 syllables in length. If we assume a speach rate of 3 to 7 syllables per second [@jacewicz2010-sr] we would expect utterances between 2.5s and 7.3s. Conservative thresholds higher and lower than the expected were used, especially on the higher end, to allow for any difficulties processing or fluency that might have lead to longer reading times.
 
 *Minimum leading silence:* A leading silence ("delay") of more than 120ms. Even a very fast human reaction time should not permit a delay shorter than 120ms, so a shorter delay likely means something went wrong with the procedure and the participant is already speaking before the sentence is displayed.
 
