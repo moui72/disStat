@@ -17,15 +17,15 @@ This section outlines the methodology employed for the reported study. The metho
 
 ## A note on the *Double Reading Procedure*
 
-An advantage that the *Double Reading Procedure* has is that it allows for certain assumptions to be made about Reading 2 that otherwise would be unclear: Reading 2 represents a considered reading of the sentence. Not only has the reader had ample time to examine the sentence, they have necessarily read it, and they have heard themsleves read it. We can say this with certainly, because they have necessarily already produce a recording of Reading 1. This means Reading 2 represents a considered prosodic structure, and it should not represent any processing issues, because a parse should have already been obtained during Reading 1.
+An advantage that the *Double Reading Procedure* has is that it allows for certain assumptions to be made about Reading 2 that otherwise would be unclear: Reading 2 represents a considered reading of the sentence. Not only has the reader had ample time to examine the sentence, they have necessarily read it, and they have heard themselves read it. We can say this with certainly, because they have necessarily already produce a recording of Reading 1. This means Reading 2 represents a considered prosodic structure, and it should not represent any processing issues, because a parse should have already been obtained during Reading 1.
 
 The nature of Reading 1 is less clear. Because there is variability in the delay between the display of the sentence and the onset of phonation, it's possible that Reading 1 is not entirely non-previewed. The properties of these Reading 1 delays are discussed at length in \ref{sec:r1del}, but for now it suffices to say that the amount of preview that is possible during a delay that typically falls in the 0.6s to 1.6s range is very limited. We can say, at the very least, that a full parse of the sentence is not possible, and so Reading 1 should represent any parsing difficult the reader has.
 
 ## Participants recruitment
 
-The participants in this study were all undergraduate students at Queens College, CUNY, enrolled in Psychology 101. These students were required by the university to participant in studies for course credit. Self reported age ranged from 18 to 25 years. Participants were recruited using the Queens College Sona system, which is software designed for univeristy participant pools. Students saw a notice on the Sona website (see Appendix \ref{sec:rec}) and were able to schedule their own appointment time within the hours offered (Monday - Thursday, 10am to 4pm).
+The participants in this study were all undergraduate students at Queens College, CUNY, enrolled in Psychology 101. These students were required by the university to participant in studies for course credit. Self reported age ranged from 18 to 25 years. Participants were recruited using the Queens College Sona system, which is software designed for university participant pools. Students saw a notice on the Sona website (see Appendix \ref{sec:rec}) and were able to schedule their own appointment time within the hours offered (Monday - Thursday, 10am to 4pm).
 
-All participants were self identified native and primary speakers of American English. One participant was disqualified post-hoc after producing a Carribean English pronucnciation pattern; one other participant was excluded post-hoc due to an extremely disfluent reading cadence. Both excluded participants were still awarded class credit for participating
+All participants were self identified native and primary speakers of American English. One participant was disqualified post-hoc after producing a Caribbean English pronunciation pattern; one other participant was excluded post-hoc due to an extremely disfluent reading cadence. Both excluded participants were still awarded class credit for participating
 
 ## Location
 
@@ -33,7 +33,7 @@ All data were collected in a private room with only the experimenter and partici
 
 ## Equipment and software
 
-The experiemnt was presented on a laptop running Windows 10 with stickers on the keyboard labeling relevant keys. The left shift key was labeled *START*, right shift was labeled *NEXT*, and the touchpad was labeled *DONE*.
+The experiment was presented on a laptop running Windows 10 with stickers on the keyboard labeling relevant keys. The left shift key was labeled *START*, right shift was labeled *NEXT*, and the touch-pad was labeled *DONE*.
 
 The presentation of items and instruction[^instr] was done using the Open Sesame software [@os2012] which provides a graphical user interface, scripting language, and interpretation of Python code, for precise control of experimental presentation.
 
@@ -44,11 +44,11 @@ Recording was done using a Blue Yeti USB microphone position near the participan
 ## Procedure
 Participants were given a verbal overview of the experimental procedure and then asked to read a one page printout of the procedure before signing a consent form. After signing a consent form, participants sat at the computer and were once again walked through instructions before the first practice item was presented.
 
-Participants sat at a computer and used keyboard button presses to navigate the experimental presentation. They recieved thorough instructions and completed three practice items, the consulted with the experimenter, before beginning the main portion of the study. The study also contained 4 pseudo-practice items that were not included in any analyses, in order to allow some time for the participant to settle into the procedure before any results were recorded.
+Participants sat at a computer and used keyboard button presses to navigate the experimental presentation. They received thorough instructions and completed three practice items, the consulted with the experimenter, before beginning the main portion of the study. The study also contained 4 pseudo-practice items that were not included in any analyses, in order to allow some time for the participant to settle into the procedure before any results were recorded.
 
-Each experimental item was preceeded by a screen showing a line of ten Xs with its left edge aligned with the left edge of the to-be-revealed sentence. This was intended to fix the participant's attention on the start of the sentence, and hopefully avoid unintended lookahead. The issue of potential lookahead is discussed at greater length in section \ref{sec:lookahead}
+Each experimental item was preceded by a screen showing a line of ten Xes with its left edge aligned with the left edge of the to-be-revealed sentence. This was intended to fix the participant's attention on the start of the sentence, and hopefully avoid unintended look-ahead. The issue of potential look-ahead is discussed at greater length in section \ref{sec:look-ahead}
 
-This screen remained visible indefintely, until the participant pressed *START*.
+This screen remained visible indefinitely, until the participant pressed *START*.
 
 Immediately after *START* was pressed, recording of the first reading began and the sentence appeared on the screen on a blue background. The recording continued and the screened remained visible until the participant pressed *NEXT*. After pressing *NEXT*, a screen appeared with instructions telling the participant that they were between readings, and needed to press *START* to reveal the sentence again and prepare for their second reading. Immediately after *START* was pressed, the first recording ended and the second recording began, and the sentence reappeared, this time on a green background.
 
@@ -56,7 +56,7 @@ Immediately after *START* was pressed, recording of the first reading began and 
 
 The shifting of required key presses and the changing background color were intended to aid the participant in remember where they were in the process, and to prevent accidental double-presses of any given button from having unintended side effects. It took some time for the participants to adapt to the somewhat complicated procedure, but generally were well adjusted by the time the first item was presented.
 
-### On lookahead {#lookahead}
+### On look-ahead {#look-ahead}
 
 As reported by @rayner2012psychology, the perceptual span during reading is about 31 characters, or 15 to either side, with an asymmetry favoring the direction in which reading occurs (i.e. wider to the right for English readers, wider to the left for Arabic readers). With a fixation aligned with the left edge of a stimuli, focal attention is likely centered on the third or fourth character. The resulting potential for look ahead can be diagrammed as follows, using a notation where a character whose identity can likely be extracted is reproduced, a character whose shape but not identity can be extracted is represented by an x, b, or g (depending on the shape of the original character), and otherwise an n. Spaces are inserted only as far out as they could be identified.
 
@@ -64,24 +64,24 @@ As reported by @rayner2012psychology, the perceptual span during reading is abou
          He had intendxb bx nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
          He had intended to cram the paperwork in the drawer of his filing cabinet.
          
-Critically, the disambiguiation PP2 region (in @la1, *of his filing cabinet*) is not within the perceptual span until, at the earliest, one is in the object region (*the paperwork*). It is important to note as well, though, that when PP1, the phrase with ambiguous attachment site, is the fixation point, the existence of PP2 at least, is within the perceptual span. If we assume fixation on *the*, the available information should be something something like (@la2).
+Critically, the disambiguation PP2 region (in @la1, *of his filing cabinet*) is not within the perceptual span until, at the earliest, one is in the object region (*the paperwork*). It is important to note as well, though, that when PP1, the phrase with ambiguous attachment site, is the fixation point, the existence of PP2 at least, is within the perceptual span. If we assume fixation on *the*, the available information should be something something like (@la2).
 
   (@la2) nnnnnnnnnnnnnnnnnnnnnnn nnn nnnxxxxxb in the drawer xb bxnnnnnnnnnnnnnnnnn
          He had intended to cram the paperwork in the drawer of his filing cabinet.
 
-There is, therefore, the potential that lookahead while reading PP1 could trigger the garden path effect of PP2 early, because it can be deduced that a short and then longer word are coming up on the periphery.          
+There is, therefore, the potential that look-ahead while reading PP1 could trigger the garden path effect of PP2 early, because it can be deduced that a short and then longer word are coming up on the periphery. The reader is likely to be aware as early as this point that something may be wrong with the parse that attaches PP1 as an argument of the verb, as that parse has limited available real-estate for further phrases.
 
 ## Materials
 
 A number of considerations went into creating the materials for this study. The experimental stimuli are based on earlier pilot study exploring this same phenomenon [@qp2], but with several issues with that study's experimental items corrected.
 
-One of these issues was that the verbs did not all strongly subcategorize for a PP-argument. This could affect the strength of the garden path effect, since the strength of that subcategorization might impact the amount of influence that the parsing strategy of *Minimal Attachment* or *Argument Preference* has on the parse. Theoretically, verbs with stronger subcategorization for a PP-argument would result in a stronger garden path effect, or more difficulty in understanding the sentence. 
+One of these issues was that the verbs did not all strongly sub-categorize for a PP-argument. This could affect the strength of the garden path effect, since the strength of that sub-categorization might impact the amount of influence that the parsing strategy of *Minimal Attachment* or *Argument Preference* has on the parse. Theoretically, verbs with stronger sub-categorization for a PP-argument would result in a stronger garden path effect, or more difficulty in understanding the sentence. 
 
-Another issue had to do with the level of detail present in the sentences, especially when they were presented as yes/no-questions. When it’s clear that the speaker already knows so much about the situation, it becomes difficult to imagine a pragmatically plausible context where the question would be asked. Such sentences might be described as “prosecutorial[^dcb-prosec].” 
+Another issue had to do with the level of detail present in the sentences, especially when they were presented as yes/no-questions. When it’s clear that the speaker already knows so much about the situation, it becomes difficult to imagine a pragmatically plausible context where the question would be asked. Such sentences might be described as “prosecutorial[^dcbp].” 
 
 There was also an issue of whether the temporary ambiguity in some of the non-garden path items was ever fully disambiguated. This section will go over considerations taken in order to adjust the stimuli from the earlier study into more systematic and consistent format. The construction of these items is discussed in detail in the rest of this section.
 
-[^dcb-prosec]: Thank you to Dianne Bradley for making this observation, and for the very clever “prosecutorial” descriptor.
+[^dcbp]: Thank you to Dianne Bradley for making this observation, and for the very clever “prosecutorial” descriptor.
 
 ### Four versions of the experimental items
 
@@ -108,25 +108,25 @@ kable(sentences, booktabs=T, caption="Experimental item in four versions")
 
 ### Main verbs in experimental items
 
-An earlier pilot study exploring this same phenomenon (Peckenpaugh, 2016) had several issues with its materials. One of these issues was that the verbs did not all strongly subcategorize for a PP-argument. This could affect the strength of the garden path effect, since the strength of that subcategorization might impact the amount of sway that the parsing strategy of Minimal Attachment or Argument Preference has on the parse. Theoretically, verbs with stronger subcategorization for a PP-argument would result in a strong garden path effect.
+An earlier pilot study exploring this same phenomenon (Peckenpaugh, 2016) had several issues with its materials. One of these issues was that the verbs did not all strongly sub-categorize for a PP-argument. This could affect the strength of the garden path effect, since the strength of that sub-categorization might impact the amount of sway that the parsing strategy of Minimal Attachment or Argument Preference has on the parse. Theoretically, verbs with stronger sub-categorization for a PP-argument would result in a strong garden path effect.
 
 
-  (@weak) Weak PP-argument subcategorization (*hide*) 
+  (@weak) Weak PP-argument sub-categorization (*hide*) 
   
   a. The gangsters had hidden the shotguns in a U-Haul truck in an old outhouse. 
   b. \checkmark The gangsters had hidden the shotguns.
             
-  (@strong) Strong PP-argument subctategorization (*cram*) 
+  (@strong) Strong PP-argument sub-categorization (*cram*) 
   
   a. Justin had crammed the old newspapers under the couch in a small wastebasket.
   b. \* Justin had crammed the old newspapers.
 
 
-The examples in (@weak) and (@strong) point out that while you really must cram something somewhere, you don’t necessarily need to say where you hide something. That is, the verb *hide* seen in (@weak) does not strongly subcategorize for a locative argument (hence the acceptability of (@weak~\tiny ~b)), while cram (@strong) does, rendering (@strong~\tiny ~b) unacceptable. Because of the asymmetry in subcategorization strength, sentences like (@weak) might not trigger as strong a garden-path effect, because the parser might assume that no PP-argument is forthcoming, while for (@strong) the parser will jump at the opportunity to parse a PP as an argument.  In designing the items for this study, only verbs with strong PP-argument subcategorization were used. The four verbs selected were: *cram*, *put*, *stick* and *set*.
+The examples in (@weak) and (@strong) point out that while you really must cram something somewhere, you don’t necessarily need to say where you hide something. That is, the verb *hide* seen in (@weak) does not strongly sub-categorize for a locative argument (hence the acceptability of (@weak~\tiny ~b)), while cram (@strong) does, rendering (@strong~\tiny ~b) unacceptable. Because of the asymmetry in sub-categorization strength, sentences like (@weak) might not trigger as strong a garden-path effect, because the parser might assume that no PP-argument is forthcoming, while for (@strong) the parser will jump at the opportunity to parse a PP as an argument.  In designing the items for this study, only verbs with strong PP-argument sub-categorization were used. The four verbs selected were: *cram*, *put*, *stick* and *set*.
 
 ### Complex tense
 
-To minimize the morphology present on the PP-argument-selecting main verb (e.g. *cram*), each sentence contained a past-tense auxiliary verb and past participle verb before the infinitive version of the main verb. The use of an auxiliary makes the words present in the declarative exactly the same as in the interrogative by eliminating the need for "do-support" and adjusted morphology on the main verb (i.e. rather than "He crammed ..." vs. "Did he cram ...?" we have "He had crammed ..." vs. "Had he crammed ...?"). The auxiliary is always *had* and the past participle is always one of the following four: *decided*, *intended*, *wanted*, and *planned*. The presence of these preface verbs also help to aleviate the oddity of the yes/no questions, because it is understandable to question someone's intentions, even when a large amount of detail is already known; whereas, questioning the details themselves when they are already known leads to the "prosecutorial" issue mentioned earlier.
+To minimize the morphology present on the PP-argument-selecting main verb (e.g. *cram*), each sentence contained a past-tense auxiliary verb and past participle verb before the infinitive version of the main verb. The use of an auxiliary makes the words present in the declarative exactly the same as in the interrogative by eliminating the need for "do-support" and adjusted morphology on the main verb (i.e. rather than "He crammed ..." vs. "Did he cram ...?" we have "He had crammed ..." vs. "Had he crammed ...?"). The auxiliary is always *had* and the past participle is always one of the following four: *decided*, *intended*, *wanted*, and *planned*. The presence of these preface verbs also help to alleviate the oddity of the yes/no questions, because it is understandable to question someone's intentions, even when a large amount of detail is already known; whereas, questioning the details themselves when they are already known leads to the "prosecutorial" issue mentioned earlier.
 
   (@lessPros) Had he intended to put the bicycle on the roof rack of the minivan?
   (@pros) Had he put the bicycle on the roof rack of the minivan?
@@ -136,7 +136,7 @@ It seems less odd to wonder whether *he had intended* to do something, as in (@l
 
 ### Prepositions and disambiguation
 
-Every version of each experimental item should be fully disambiguated by the preposition heading the final PP. When PP2 attaches low, a preposition that is not compatable with being the resultative/locative argument of the verb but can be a modifier of the noun of the preceeding PP is used: *from* or *of*. When the final PP attaches high, a preposition that is not compatable with being a modifier of the noun in the preceeding PP but can be the resultative/locative argument of the verb is used: *into* or *onto*.
+Every version of each experimental item should be fully disambiguated by the preposition heading the final PP. When PP2 attaches low, a preposition that is not compatible with being the resultative/locative argument of the verb but can be a modifier of the noun of the preceding PP is used: *from* or *of*. When the final PP attaches high, a preposition that is not compatible with being a modifier of the noun in the preceding PP but can be the resultative/locative argument of the verb is used: *into* or *onto*.
 
   (@low)  Had he planned to set the appetizers on [~NP~ the platter [~PP2~ *from* his cousin]]?
   (@high) Had he planned to set the appetizers on [~NP~ the platter] [~PP2~ *onto* the buffet]?
@@ -163,7 +163,7 @@ Control over filler length was slightly less stringent. They ranged from 63 to 7
 
 ## Experimental groups and order of items
 
-No participant saw more than one version of each sentence, and each participant saw one version of every sentence. Each participant saw the same number of each type of sentence: 4 garden path declaratives, 4 garden path interrogatives, 4 non-garden path declaratives and 4 non-garden path interrogatives. The experimental item were presented in pseudo-random order, interspersed with 1 to 3 fillers and with two experimental items never occuring in the same version twice in a row (e.g. after declarative garden path, the next experimental item was never also a declarative garden path).
+No participant saw more than one version of each sentence, and each participant saw one version of every sentence. Each participant saw the same number of each type of sentence: 4 garden path declaratives, 4 garden path interrogatives, 4 non-garden path declaratives and 4 non-garden path interrogatives. The experimental item were presented in pseudo-random order, interspersed with 1 to 3 fillers and with two experimental items never occurring in the same version twice in a row (e.g. after declarative garden path, the next experimental item was never also a declarative garden path).
 
 The four versions of the experimental sentences resulted in four groups. A split-half ordering (where the first 24 of the items presented to one group was the second 24 presented to the other) resulted in 2 versions for each group, and so there were 8 groups in total.
 
@@ -184,21 +184,21 @@ hscount <- sum(handset$Filename %in% meta$file)
 meta<-subset(meta,P != 8)
 ```
 
-IRT was measured using a Python script and Google's WebRTC Voice Activity Detection (VAD) over 44.1kHz WAV files downsampled to 8kHz via SOX[^upsamp]. This VAD system uses Gaussian Mixture Models to make probabilistic decisions on whether a given audio frame is speech or noise (see @gmm1 for a complete explanation). Google's implementation takes one paramater, which they call aggressiveness: a 4-tier setting for the level of confidence necessary to call a given frame speech. I call this "rejection rate", where a higher rejection rate means that the model requires a high level of confidence before assuming a frame is speech, i.e. it is more likely to label something noise than speech. The implementation codes this setting as 0-3, where 0 is the most lenient (most likely to label a frame as speech) and 3 is the most stringent (most likely to label a frame as noise).
+IRT was measured using a Python script and Google's WebRTC Voice Activity Detection (VAD) over 44.1kHz WAV files down-sampled to 8kHz via SOX[^upsamp]. This VAD system uses Gaussian Mixture Models to make probabilistic decisions on whether a given audio frame is speech or noise (see @gmm1 for a complete explanation). Google's implementation takes one parameter, which they call aggressiveness: a 4-tier setting for the level of confidence necessary to call a given frame speech. I call this "rejection rate", where a higher rejection rate means that the model requires a high level of confidence before assuming a frame is speech, i.e. it is more likely to label something noise than speech. The implementation codes this setting as 0-3, where 0 is the most lenient (most likely to label a frame as speech) and 3 is the most stringent (most likely to label a frame as noise).
 
-[^upsamp]: Google's VAD API only accepts WAV files with sample rates that are a multiple of 8kHz. It ultimately downsamples all files to 8kHz, regardless of the input rate.
+[^upsamp]: Google's VAD API only accepts WAV files with sample rates that are a multiple of 8kHz. It ultimately down-samples all files to 8kHz, regardless of the input rate.
 
-The recordngs vary in the volume of the speaker's voice and the amount of background noise present. An algorothm was constructed to allow for the most stringent measurement of the least modified data that gave plausible measurements. Specifically, each file was measured using the highest possible rejection rate for the VAD algorithm and no modification of the file. If the timings detected were not plausible, the timings were re-measured with the same rejection rate, but after the recording had undergone a 200Hz high-pass filter[^alg] (HPF). If that still failed, a 400Hz HPF was used. After a further failure, the rejection rate for the VAD was lowered, and the whole thing was tried again (0, 200Hz, 400Hz); and that process was itself repeated until the lowest possible rejection rate was tried of the four possible settings. 
+The recordings vary in the volume of the speaker's voice and the amount of background noise present. An algorithm was constructed to allow for the most stringent measurement of the least modified data that gave plausible measurements. Specifically, each file was measured using the highest possible rejection rate for the VAD algorithm and no modification of the file. If the timings detected were not plausible, the timings were re-measured with the same rejection rate, but after the recording had undergone a 200Hz high-pass filter[^alg] (HPF). If that still failed, a 400Hz HPF was used. After a further failure, the rejection rate for the VAD was lowered, and the whole thing was tried again (0, 200Hz, 400Hz); and that process was itself repeated until the lowest possible rejection rate was tried of the four possible settings. 
 
 A plausible set of measurements had to meet the following criteria:
 
-*Utterance length:* An utterance length between 2s and 10s, where utterance timing is the longest contiguous span in the recording that VAD reports as phonation, with breaks in phonation of less than 1s not breaking contiguity (@goldman1961-pa found that a large majority (82.5 to 87%) of pauses in fluent speech are less than 1s). Stimuli range from 18-22 syllables in length. If we assume a speach rate of 3 to 7 syllables per second [@jacewicz2010-sr] we would expect utterances between 2.5s and 7.3s. Conservative thresholds higher and lower than the expected were used, especially on the higher end, to allow for any difficulties processing or fluency that might have lead to longer reading times.
+*Utterance length:* An utterance length between 2s and 10s, where utterance timing is the longest contiguous span in the recording that VAD reports as phonation, with breaks in phonation of less than 1s not breaking contiguity (@goldman1961-pa found that a large majority (82.5 to 87%) of pauses in fluent speech are less than 1s). Stimuli range from 18-22 syllables in length. If we assume a speech rate of 3 to 7 syllables per second [@jacewicz2010-sr] we would expect utterances between 2.5s and 7.3s. Conservative thresholds higher and lower than the expected were used, especially on the higher end, to allow for any difficulties processing or fluency that might have lead to longer reading times.
 
 *Minimum leading silence:* A leading silence ("delay") of more than 120ms. Even a very fast human reaction time should not permit a delay shorter than 120ms, so a shorter delay likely means something went wrong with the procedure and the participant is already speaking before the sentence is displayed.
 
 *Maximum edge silence:* A maximum trailing and leading silence length of less than 95% of the file's length was also used, in order to filter out recordings that do not represent a valid trial. Very long silences less than this very conservative threshold that impact the IRT are dealt with in the data clean up rather than via phonation detection, as described in the results section of this paper (section \ref{sec:irtDis}).
 
-With 32 participants reading 48 items (experimental and filler) twice each, there are an expected number of `r 32*48*2` recordings; due to technical issues at the time of data collection, `r 32*48*2 - nrow(meta)` recordings are missing. Of the `r nrow(meta)` recordings subjected to this treatment, `r nrow(meta[meta$success & !is.na(meta$agg),])` resulted in plausible timings. For those that were successfull, the breakdown of HPF and rejection rate used is reported in Table \@ref(tab:metable). A further `r hscount` were set by hand, resulting in a total of `r nrow(meta[meta$success,])` recordings.
+With 32 participants reading 48 items (experimental and filler) twice each, there are an expected number of `r 32*48*2` recordings; due to technical issues at the time of data collection, `r 32*48*2 - nrow(meta)` recordings are missing. Of the `r nrow(meta)` recordings subjected to this treatment, `r nrow(meta[meta$success & !is.na(meta$agg),])` resulted in plausible timings. For those that were successful, the breakdown of HPF and rejection rate used is reported in Table \@ref(tab:metable). A further `r hscount` were set by hand, resulting in a total of `r nrow(meta[meta$success,])` recordings.
 
 [^alg]: The exact algorithm is available on [github](https://gist.github.com/moui72/4ebc4eb8f69eb9fdb1cab160ce299675) (URL: [bit.ly/2uMrcrG](https://bit.ly/2uMrcrG))
 
@@ -222,9 +222,9 @@ Hand measurement is not yet completed.
 Timings were collected by hand for `r 384*2` recordings (`r round(384*2 / nrow(meta) * 100,1)`%). Human measured timings were within 100ms of the VAD-measured timings in `??`% of cases.
 
 
-## Prosodic judgements
+## Prosodic judgments
 
-A trained linguist informant naive to the research being conducted listened to recordings and reported the presence or absence of breaks in certain regions of the sentence, as well as several other judgements. She was instructed to familiarize herself with a speaker's speech patterns before rating any recordings by listening to 6 filler item recordings from that speaker. She was given a diagram of the sentences as in table \ref{tab:reg}, as well as full plain-text lists of all items.
+A trained linguist informant naive to the research being conducted listened to recordings and reported the presence or absence of breaks in certain regions of the sentence, as well as several other judgments. She was instructed to familiarize herself with a speaker's speech patterns before rating any recordings by listening to 6 filler item recordings from that speaker. She was given a diagram of the sentences as in table \ref{tab:reg}, as well as full plain-text lists of all items.
 
 ```{r reg}
 Sentence = c(
@@ -257,15 +257,15 @@ She was asked to report on whether or not she heard a prosodic boundary directly
 
 >Please work with the assumption that “prosodic boundary” in what follows is any subset of the following features, clustered in such a way as to trigger your intuition that a new prosodic element (of any size) is beginning: pitch change, volume change, segmental lengthening, or pause.
 
-The judgements requested also included whether or not the speaker struggled, where that struggle began, whether or not the speaker used question intonation, and which break(s) were stronger or more prominent than which other break(s). 
+The judgments requested also included whether or not the speaker struggled, where that struggle began, whether or not the speaker used question intonation, and which break(s) were stronger or more prominent than which other break(s). 
 
 Detailed instructions on the order in which items should be listened to, both within speaker and across speakers, were also provided. The result was that she never listened to both readings of a sentence in sequence; she never listened to two reading 1 versions of different sentences in sequence; and she never listened to the sentences in the same order for a given participant as she did for the previous one.
 
-Details on the instructions given and the judgements collected can be found in the appendices (\ref{sec:RA}).
+Details on the instructions given and the judgments collected can be found in the appendices (\ref{sec:RA}).
 
 ### Reliability
 
-A second trained linguist repeated the task over 128 recordings selected from 8 participants (two from each group, one per ordering). Even number experimental items were used from 4 participants, and odd numbered from the other 4. There were 8 recordings missing from the 128 selected, so the reliability task resulted in judgements over 120 recordings. The first informat also blindly re-rated those 120, with the recording name obscured and instructions not to revisit her original ratings. Reliability scores (percent of recordings agreed upon) are reported in table \ref{tab:validity}.
+A second trained linguist repeated the task over 128 recordings selected from 8 participants (two from each group, one per ordering). Even number experimental items were used from 4 participants, and odd numbered from the other 4. There were 8 recordings missing from the 128 selected, so the reliability task resulted in judgments over 120 recordings. The first informant also blindly re-rated those 120, with the recording name obscured and instructions not to revisit her original ratings. Reliability scores (percent of recordings agreed upon) are reported in table \ref{tab:validity}.
 
 ```{r validitySetup}
 library(irr)
@@ -330,14 +330,14 @@ for(val in vals) {
 }
 
 comps <- comps %>% as.data.frame()
-labels <- matrix(c(rep("Interrater",3),rep("Intrarater",3)))
+labels <- matrix(c(rep("Inter-rater",3),rep("Intra-rater",3)))
 comps <- cbind(labels,comps)
 ```
 
 ```{r validity}
 kable(
   comps,
-  caption="Inter and intrarater agreement with Cohen's Kappa", 
+  caption="Inter and intra-rater agreement with Cohen's Kappa", 
   booktab=T, 
   digits=2,
   align="c",
@@ -352,7 +352,7 @@ kable(
   footnote("*** p < 0.001; ** p < 0.01; * p < 0.05, . p < 0.1") 
 ```
 
-The lower intrarater agreement for relative break strength was likely a result of a methodological issue: it was possible to report the same pattern, e.g. a pattern where a PP1 break is stronger than an OBJ break, by either giving the response "PP1" for strongest break, and "OBJ" for weakest break; or, "PP1" for strongest and "NONE" for weakest; or, "NONE" for strongest and "OBJ" for weakest. While the instructions to the rater requested full verbosity, it's likely that inconsistencies occurred for these cases.
+The lower intra-rater agreement for relative break strength was likely a result of a methodological issue: it was possible to report the same pattern, e.g. a pattern where a PP1 break is stronger than an OBJ break, by either giving the response "PP1" for strongest break, and "OBJ" for weakest break; or, "PP1" for strongest and "NONE" for weakest; or, "NONE" for strongest and "OBJ" for weakest. While the instructions to the rater requested full verbosity, it's likely that inconsistencies occurred for these cases.
 
-The same inconsistencies would have hurt interrater agreement for strongest/weakest also. A further contributing issue for interrater agreement of those two judgements stems from the poor agreement on the presence of the verb break. When the raters don't agree about the presence of a break, that disagreement is magnified for the judgement of the relative strength of breaks.
+The same inconsistencies would have hurt inter-rater agreement for strongest/weakest also. A further contributing issue for inter-rater agreement of those two judgments stems from the poor agreement on the presence of the verb break. When the raters don't agree about the presence of a break, that disagreement is magnified for the judgement of the relative strength of breaks.
 
