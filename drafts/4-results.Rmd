@@ -42,181 +42,12 @@ theme_set(
       panel.border = element_blank()
     )
 )
-
+irt_data <- read_csv("export/irt_data.csv")
+irt_data_allitems <- read_csv("export/all_data.csv")
+mdata <- read_csv("export/prosody_data.csv")
 ```
 
-```{r prosody_setup}
-mdata_raw <- read_csv("../csvs/got_prosody.csv")
-### remove items where STRONG == NA (these are the items Sita didn't respond to)
-mdata <- mdata_raw[!is.na(mdata_raw$STRONG),]
 
-### code for pairs of SUBJ-ITEM
-mdata$pair<-paste(mdata$SID,mdata$IID,sep="-")
-n1 <- nrow(mdata)
-### filter out rows missing its pair
-mdata<-mdata %>% group_by(pair) %>% filter(n()>1)
-n2<- nrow(mdata)
-missingPairs <- n1-n2
-
-mdata$V<-mdata$V == "YES"
-mdata$OBJ<-mdata$OBJ == "YES"
-mdata$PP1<-mdata$PP1 == "YES"
-mdata$STRUG<-mdata$STRUG == "YES"
-mdata$condition <- with(mdata,
-  paste(
-    ifelse(Condition_Q,"Q","D"),
-    ifelse(Condition_GP,"+GP","-GP")
-  )
-)
-mdata$STRONG <- as.factor(mdata$STRONG)
-mdata$WEAK <- as.factor(mdata$WEAK)
-mdata$Reading <- as.factor(mdata$Reading)
-mdata$prosody <- as.factor(mdata$prosody)
-mdata$two_level_prosody <- as.factor(mdata$two_level_prosody)
-mdata$IID <- as.factor(mdata$IID)
-mdata$UID <- as.factor(mdata$UID)
-mdata$SID <- as.factor(mdata$SID)
-mdata$Participant <- mdata$SID
-mdata$STRUG_START <- as.factor(mdata$STRUG_START)
-mdata$pdom <- mdata$two_level_prosody %in% c("PP1", "PP1 > OBJ")
-mdata$odom <- mdata$two_level_prosody %in% c("OBJ", "OBJ > PP1")
-mdata$simple2lvl <- ifelse(
-  mdata$OBJ & mdata$PP1, 
-  "BOTH", ifelse(
-    mdata$OBJ,
-    "OBJ",
-    ifelse(
-      mdata$PP1,
-      "PP1",
-      "NEITHER"
-    )
-  )
-)
-mdata$simple2lvl <- as.factor(mdata$simple2lvl)
-mdata<-subset(mdata,SID!=8)
-mdata <- droplevels(mdata)
-mdata <- subset(mdata,!is.na(OBJ)|!is.na(PP1))
-
-```
-
-```{r irt_setup, cache=T}
-itemsDf <- read_csv(
-  "../csvs/src/items.csv", 
-  col_types = cols(
-    OBJ = col_skip(), 
-    `P>NP1` = col_skip(), 
-    `P>NP2+GP` = col_skip(), 
-    `P>NP2-GP` = col_skip(), 
-    target = col_character()
-  )
-)
-itemsDf$Item<-itemsDf$target
-itemsDf$target <- NULL
-### load files
-use_old <- FALSE
-old<-"../csvs/irt-rvad-4_11.csv"
-new<-"../csvs/irt-merged.csv"
-raw_file <- read_csv(ifelse(use_old,old,new), 
-  col_types = cols(
-    Item = col_factor(levels = seq(1,48)), 
-    Participant = col_character()
-  )
-)
-
-irt_data <- raw_file
-
-### P 8 is messed up
-irt_data<-subset(irt_data,Participant != 8)
-
-### demographics
-pmeta <- read_csv("../csvs/p-meta.csv")
-pmeta$Participant <- pmeta$ID
-irt_data<-merge(pmeta,irt_data,by="Participant")
-irt_data$wkd <- ifelse(irt_data$DOTW == "MONDAY", 1,
-                ifelse(irt_data$DOTW == "TUESDAY", 2, 
-                ifelse(irt_data$DOTW == "WEDNESDAY", 3, 
-                ifelse(irt_data$DOTW == "THURSDAY", 4, 
-                5))))
-
-
-
-  
-irt_data$cond <- paste(
-  ifelse(irt_data$Condition_Q,"Q","D"),
-  ifelse(
-    irt_data$isFiller,
-    ifelse(irt_data$Condition_GP,"+PP","-PP"),
-    ifelse(irt_data$Condition_GP,"+GP","-GP")
-  )
-)
-
-irt_data$Q <- ifelse(
-  irt_data$Condition_Q,
-  "Q",
-  "D"
-)
-irt_data$GP <- ifelse(
-  irt_data$Condition_GP,
-  "+GP",
-  "-GP"
-)
-
-irt_data_all <- irt_data ### data before trimming
-
-### exclude 250 < IRTs > 25000
-irt_min <- 250
-irt_max <- 25000
-
-### note how many IRTs are excluded for implausibility
-irt_lo <- subset(irt_data, irt < irt_min)
-irt_hi <- subset(irt_data, irt > irt_max)
-
-### subset to trimmed items
-irt_data <- subset(
-  irt_data, 
-  irt > irt_min & irt < irt_max
-)
-
-### with fillers
-irt_data_allitems <- irt_data
-irt_fillers <- subset(irt_data,isFiller)
-
-### experimental only
-irt_data <- subset(irt_data,!isFiller)
-irt_data <- (merge(itemsDf, irt_data, by = 'Item'))
-
-### make Participant and Item factors with specified ref levels 
-irt_data$Participant<-relevel(as.factor(irt_data$Participant),ref=5)
-irt_data$Item<-relevel(as.factor(irt_data$Item),ref=1)
-
-### winsorize top/bottom 2.5% of data (for normal distrbution, this is +/- 2sd)
-### see: https://sciencing.com/relationship-between-standard-deviations-percentiles-8768703.html
-win_trim=0.025
-irt_data <- irt_data %>% group_by(Participant) %>% mutate(win_irt = winsor(irt, trim=win_trim))
-irt_data$wirt<-irt_data$win_irt
-
-### log 10 transform
-irt_data$wirt.log10 <- log10(irt_data$win_irt)
-
-
-### meta 
-json <- read_file("../meta-4_11.json")
-meta<-fromJSON(json)
-handset <- read.csv("../csvs/_SITA_SET_VALUES.csv")
-meta[meta$file %in% handset$Filename,]$agg <- NA
-meta[meta$file %in% handset$Filename,]$hpf <- NA
-hscount <- sum(handset$Filename %in% meta$file)
-
-
-write_csv(irt_data_allitems,"export/all_data.csv")
-```
-```{r normalize sets}
-irt_data$ID <- paste0(irt_data$Participant,"-",irt_data$Item)
-mdata$ID <- paste0(mdata$SID,"-",mdata$IID)
-
-irt_data <- subset(irt_data, ID %in% mdata$ID)
-mdata <- subset(mdata,ID %in% irt_data$ID)
-```
 ```{r describe}
 ### counts
 irt_data$Participant <- as.factor(irt_data$Participant)
@@ -226,17 +57,14 @@ subjs<-length(levels(irt_data$Participant))
 items<-length(levels(irt_data$Item))
 expectN <- subjs * items
 
-### utterance lengths
-if(!use_old){
-  ### only available in newer files
-  uls <- append(irt_data$`R1 UL`,irt_data$`R2 UL`)
-  uls_desc <- describe(uls)
-  uls_r1_desc <- describe(irt_data$`R1 UL`)
-  uls_r2_desc <- describe(irt_data$`R2 UL`)
-}
+# utterance lengths
+uls <- append(irt_data$`R1 UL`,irt_data$`R2 UL`)
+uls_desc <- describe(uls)
+uls_r1_desc <- describe(irt_data$`R1 UL`)
+uls_r2_desc <- describe(irt_data$`R2 UL`)
 
-### note properties
-irt_props_all <- describe(irt_data$irt)
+### irt properties
+irt_props_all <- describe(irt_data_allitems$irt)
 irt_props <- describe(irt_data$irt)
 wirt_props <- describe(irt_data$win_irt)
 
@@ -326,7 +154,7 @@ rownames(versiontab)[1:4]<-paste("Version", rownames(versiontab))
 ```{r vtab}
 versiontab %>% kable(
   caption="No. of participants per version-order combination",
-  col.names = c("Order 1", "Order 2", "Sum"),
+  col.names = c("1", "2", "Sum"),
   align="c"
 ) %>% kable_styling() %>% 
   add_header_above(c(" "=1, "Order"=2, " "=1))
@@ -410,6 +238,9 @@ objdisp <- obj %>%
 
 pp1obj <- cbind(pp1disp,objdisp[2:3])
 pp1obj[[1]] <- c("-GP","+GP")
+r2pp1<-pp1disp
+r2obj<-objdisp
+
 
 ### r1
 r1data <- subset(mdata,Reading==1)
@@ -455,33 +286,40 @@ objdisp <- obj %>%
 
 pp1objr1 <- cbind(pp1disp,objdisp[2:3])
 pp1objr1[[1]] <- c("-GP","+GP")
+r1pp1<-pp1disp
+r1obj<-objdisp
+
+pp1<-cbind(r1pp1,r2pp1[2:3])
+pp1[[1]] <- c("-GP","+GP")
+
+obj<-cbind(r1obj,r2obj[2:3])
+obj[[1]] <- c("-GP","+GP")
 ```
 
-The prevalence of object breaks and PP1 breaks for each condition in Reading 2 recordings is described in table \ref{tab:r2pp1obj}.
+The prevalence of PP1 breaks for each condition in Reading 1 and Reading 2 recordings is described in table \ref{tab:pp1}.
 
-```{r r2pp1obj}
+```{r pp1}
 kable(
-  pp1obj,
-  caption="Reading 2 recordings containing PP1/OBJ break by condition",
+  pp1,
+  caption="PP1 break by condition and reading",
   col.names = c("", "D", "Q","D", "Q")
 ) %>% 
-  add_header_above(c(" "=1,"PP1 Break"=2,"OBJ Break"=2)) %>% 
+  add_header_above(c(" "=1,"Reading 1"=2,"Reading 2"=2)) %>% 
   kable_styling(latex_options = c("hold_position"))
 ```
 
-For comparison, \ref{tab:r1pp1obj} is the same table for Reading 1 recordings. 
 
-```{r r1pp1obj}
+```{r obj}
 kable(
-  pp1objr1,
-  caption="Reading 1 recordings containing PP1/OBJ break by condition",
+  obj,
+  caption="OBJ break by condition and reading",
   col.names = c("", "D", "Q","D", "Q")
 ) %>% 
-  add_header_above(c(" "=1,"PP1 Break"=2,"OBJ Break"=2)) %>% 
+  add_header_above(c(" "=1,"Reading 1"=2,"Reading 2"=2)) %>% 
   kable_styling(latex_options = c("hold_position"))
 ```
 
-The primary difference across Readings is in the OBJ break distribution. For the analyses that follow, Reading 1 will largely be ignored.
+The primary difference across Readings is in the OBJ break distribution. 
 
 #### PP1 and object breaks combined
 
@@ -503,22 +341,34 @@ colnames(dpros)<-c("D","Q")
 ccombo<-as.data.frame(cbind(dpros,qpros))
 rownames(ccombo)<-c("Both", "OBJ only", "PP1 only")
 
-write_csv(ccombo,"export/ccombo.csv")
+r1pdata<-droplevels(subset(mdata,Reading==2 & simple2lvl != "NEITHER"))
+qdata <- subset(r1pdata,Condition_GP)
+ddata <- subset(r1pdata,!Condition_GP)
+qpros<-table(qdata$simple2lvl,qdata$Condition_Q) %>%
+  prop.table(margin=2) %>% `*`(100) %>%
+  round(1)
+colnames(qpros)<-c("D","Q")
+
+dpros<-table(ddata$simple2lvl,ddata$Condition_Q) %>%
+  prop.table(margin=2) %>% `*`(100) %>%
+  round(1)
+colnames(dpros)<-c("D","Q")
+cccombo<-as.data.frame(cbind(dpros,qpros))
+rownames(cccombo)<-c("Both", "OBJ only", "PP1 only")
+
+bothrbothb <- cbind(ccombo,cccombo)
+
 ```
-```{r r2combobreaksBycond}
-kable(ccombo,caption="Combined breaks by condition in Reading 2 only",align="c") %>%
-  add_header_above(c(" "=1,"Non-garden path" = 2, "Garden path"=2)) %>%
+
+```{r combobreaksBycond}
+kable(bothrbothb,caption="Breaks (%) by condition",align="c") %>%
+  add_header_above(c(" "=1,rep(c("Non-garden path" = 2, "Garden path"=2),2))) %>%
+  add_header_above(c(" "=1, "Reading 1" = 4, "Reading 2" = 4)) %>%
   column_spec(1,bold=T)%>% kable_styling(latex_options = "hold_position")
 
 ```
-<!-- 
 
-todo 
-
-  * split tables into OBJ tables and PP1 table, both readings in 1 table
-
--->
-Table \ref{tab:r2combobreaksBycond} shows that for +GP sentences, there are very few instances with the OBJ-only pattern (0.8% in declaratives, 2.5% in interrogatives); whereas that pattern is fairly robust for -GP sentences (31.1% in declaratives, 31.4% in interrogatives). The pattern with both breaks is somewhat more common for +GP sentences (72.1% in declaratives, 71.7% in interrogatives) than -GP (54.1% in declaratives, 43.0% in interrogatives). The PP1-only pattern occurs at about the same rate in +GP interrogatives (25.8%) as in -GP interrogatives (25.6%) and +GP declaratives (27%), but is noticeably less common for -GP declaratives (14.8%).
+Table \ref{tab:combobreaksBycond} shows that for +GP sentences, there are very few instances with the OBJ-only pattern (0.8% in declaratives, 2.5% in interrogatives); whereas that pattern is fairly robust for -GP sentences (31.1% in declaratives, 31.4% in interrogatives). The pattern with both breaks is somewhat more common for +GP sentences (72.1% in declaratives, 71.7% in interrogatives) than -GP (54.1% in declaratives, 43.0% in interrogatives). The PP1-only pattern occurs at about the same rate in +GP interrogatives (25.8%) as in -GP interrogatives (25.6%) and +GP declaratives (27%), but is noticeably less common for -GP declaratives (14.8%).
 
 <!--
 todo
@@ -537,9 +387,26 @@ Table \ref{tab:pros2lvl} presents data similar to those in the previous section,
 
 ```{r pros2lvlPre}
 
-p2lv<-prop.table(xtabs(~two_level_prosody+condition,data=subset(mdata,Reading==2)),margin = 2) * 100
+r2p2lv<-prop.table(xtabs(~two_level_prosody+condition,data=subset(mdata,Reading==2)),margin = 2) * 100
+r1p2lv<-prop.table(xtabs(~two_level_prosody+condition,data=subset(mdata,Reading==2)),margin = 2) * 100
 
-kable(p2lv, digits = 1, caption="Reading 1 prosodic pattern type by condition") %>% kable_styling()
+p2lv <- cbind(r1p2lv,s=r2p2lv)
+p2lv <- as.data.frame(cbind(p2lv,ord=c(1,2,3,5,4)))
+colnames(p2lv) <- paste0(colnames(p2lv),c(rep("",4),rep("-r2",4)))
+p2lv <- cbind("Pattern"=rownames(r2p2lv),p2lv)
+p2lv <- p2lv %>% arrange(ord)
+
+
+kable(
+  p2lv[1:9], 
+  digits = 1, 
+  align="c",
+  caption="Prosodic pattern type by condition and reading",
+  col.names=c("Pattern",rep(colnames(r2p2lv),2))
+) %>% 
+  add_header_above(c(" "=1, "Reading 1" = 4, "Reading 2" = 4)) %>%
+  column_spec(5,border_right = T) %>%
+  kable_styling(latex_options = c("hold_position"))
 
 
 ```
@@ -565,15 +432,19 @@ odom.r2 <- xtabs(~condition + odom,data=subset(mdata,Reading==2))%>% prop.table(
 ```
 
 ```{r domtab}
-domtab<-cbind(odom.r2,pdom.r2)* 100
+
+# todo -- both readings, 1 break per table, just dom
+pp1domn <- cbind(pdom.r1,pdom.r2)* 100
+objdomn <- cbind(odom.r1,odom.r2)* 100
+domtab<-cbind(pp1domn,objdomn)* 100
 kable(
-  domtab, 
+  pp1domn, 
   caption="Break dominance by condition, Reading 2 only",
-  col.names=c(rep(c("Not dominant", "Dominant"), 2)),
+  col.names=c(rep(c("Not dominant", "Dominant"), 4)),
   align="c",
   digits=1
 ) %>%
-  add_header_above(c(" "=1, "OBJ" = 2, "PP1" = 2)) %>%
+  add_header_above(c(" "=1, rep(c("Reading 1" = 2, "Reading 2" = 2),2))) %>%
   kable_styling(latex_options = c("hold_position"))
 ```
 
