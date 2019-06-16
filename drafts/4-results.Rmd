@@ -45,10 +45,22 @@ theme_set(
 irt_data <- read_csv("export/irt_data.csv")
 irt_data_allitems <- read_csv("export/all_data.csv")
 mdata <- read_csv("export/prosody_data.csv")
+irt_fillers <- subset(irt_data_allitems,isFiller)
+# absolute cutoffs: exclude 250 < IRTs > 25000
+irt_min <- 250
+irt_max <- 25000
+# cutoff ns:
+irt_lo <- 2
+irt_hi <- 5
+# winsor cutoff: +/- %2.5
+win_trim=0.025
+
+missingPairs <- 9
 ```
 
 
 ```{r describe}
+
 ### counts
 irt_data$Participant <- as.factor(irt_data$Participant)
 irt_data$Participant <- relevel(irt_data$Participant,ref=9)
@@ -142,7 +154,6 @@ orderMap$Participant <- orderMap$ID
 orderMap$ID <- NULL
 
 mdata<-merge(mdata,orderMap,by="Participant")
-write_csv(mdata,"export/prosody_data.csv")
 
 versiontab <- mdata %>% 
   filter(!duplicated(Participant)) %>%
@@ -171,7 +182,7 @@ totDisp[[1]] <- c("-GP", "+GP")
 kable(
   totDisp,
   col.names=c(" ", "D", "Q"),
-  caption="N by condition"
+  caption="Number of recordings by condition"
 ) %>% kable_styling(latex_options = c("hold_position"))
 ```
 
@@ -376,13 +387,7 @@ consider moving R1 delay analysis here
 -->
 
 #### PP1 and object breaks and their relative prominence
-<!-- 
 
-todo 
-
-  * split tables into OBJ tables and PP1 table, both readings in 1 table
-
--->
 Table \ref{tab:pros2lvl} presents data similar to those in the previous section, but it incorporates the rater's judgement of the relative prominence of the breaks. The &gt; symbol indicates that the rater found the break on the left of that symbol to be stronger, or more prominent, than the break on the left. When no symbol is shown between the two breaks, the rather found them to be of equal prominence. Please be aware that inter-rater reliability for relative prominence was not good, as discussed in section \ref{sec:raterRel}.
 
 ```{r pros2lvlPre}
@@ -417,7 +422,7 @@ Another way of looking at these same data is to think of a recording as being PP
 
 todo 
 
-  * split dom tables into OBJ tables and PP1 table, both readings in 1 table
+  * split dom tables into OBJ tables and PP1 table?
 
 -->
 
@@ -436,15 +441,17 @@ odom.r2 <- xtabs(~condition + odom,data=subset(mdata,Reading==2))%>% prop.table(
 # todo -- both readings, 1 break per table, just dom
 pp1domn <- cbind(pdom.r1,pdom.r2)* 100
 objdomn <- cbind(odom.r1,odom.r2)* 100
-domtab<-cbind(pp1domn,objdomn)* 100
+domtab<-cbind(pp1domn,objdomn)
 kable(
-  pp1domn, 
-  caption="Break dominance by condition, Reading 2 only",
+  domtab, 
+  caption="Break dominance (%) by condition",
   col.names=c(rep(c("Not dominant", "Dominant"), 4)),
   align="c",
   digits=1
 ) %>%
-  add_header_above(c(" "=1, rep(c("Reading 1" = 2, "Reading 2" = 2),2))) %>%
+  add_header_above(c(" "=1,rep(c("Reading 1" = 2, "Reading 2" = 2),2))) %>%
+  add_header_above(c(" "=1,c("PP1" = 4, "OBJ" = 4))) %>%
+  column_spec(5,border_right = 1) %>%
   kable_styling(latex_options = c("hold_position"))
 ```
 
@@ -452,11 +459,12 @@ kable(
 
 ### Regression models predicting break occurence
 
-Models predicting the PP1 break and the object break are presented in table \ref{tab:lmPros}. No random slopes were included, as models with random slopes did not converge.
+Models predicting the PP1 break and the object break are presented in table \ref{tab:lmPros}. No random slopes were included, as models with random slopes did not converge. For all models in this section, the intercept represents the declarative, non-garden path case. Where Reading is included as a factor, the intercept represents Reading 1.
 
 ```{r r2prosmod,cache=T}
 r2data<-subset(mdata,Reading==2)
-pp1Mod<- glmer(PP1~Condition_Q*Condition_GP+(1|IID)+(1|SID),data=r2data,family=binomial)
+# fails to converge
+# pp1Mod<- glmer(PP1~Condition_Q*Condition_GP+(1|IID)+(1|SID),data=r2data,family=binomial)
 objMod<- glmer(OBJ~Condition_Q*Condition_GP+(1|IID)+(1|SID),data=r2data,family=binomial)
 pdomMod<- glmer(pdom~Condition_Q*Condition_GP+(1|IID)+(1|SID),data=r2data,family=binomial)
 odomMod<- glmer(odom~Condition_Q*Condition_GP+(1|IID)+(1|SID),data=r2data,family=binomial)
@@ -472,14 +480,15 @@ both.odomMod<- glmer(odom~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=
 
 
 ```{r bothprosmodels}
+#fails to converge
 huxreg(  
-  list("PP1"=both.pp1Mod,"OBJ"=both.objMod,"PP1 Dominance"=both.pdomMod,"OBJ Dominance"=both.odomMod),
+  list("PP1"=both.pp1Mod, "OBJ"=both.objMod,"PP1 Dominance"=both.pdomMod,"OBJ Dominance"=both.odomMod),
   coefs = c(
     "Intercept"="(Intercept)",
     "GP"="Condition_GPTRUE",
     "Q"="Condition_QTRUE",
     "GP:Q Interaction"="Condition_QTRUE:Condition_GPTRUE",
-    "Reading" = "Reading2"
+    "Reading" = "Reading"
   ),
   statistics = c(
     N="nobs",
@@ -492,7 +501,7 @@ huxreg(
   set_tabular_environment("tabular")
 ```
 
-Reading is a statistically siginficant predictor for three of the four models shown in table \ref{tab:bothprosmodels}. Models which exclude Reading 1 are shown in \ref{tab:prosmodels}, as these data are more likely to represent true prosodic breaks, or the intended prosody of the reader, rather than mistakes or hesitations.
+Reading is a statistically siginficant predictor for three of the four models shown in table \ref{tab:bothprosmodels}. Models which exclude Reading 1 are shown in \ref{tab:prosmodels}, as these data are more likely to represent true prosodic breaks, or the intended prosody of the reader, rather than mistakes or hesitations. For the models over only Reading 2, the one predicting the presence of a PP1 break failed to converge.
 
 ```{r prosmodels}
 huxreg(  
@@ -542,7 +551,7 @@ ggplot(irt_data, aes(irt/1000)) +
   )
 ```
 
-IRTs below `r irt_min`ms (`r nrow(irt_lo)`) and above `r round(irt_max/1000,1)`s (`r nrow(irt_hi)`) are assumed to be implausible and omitted. Experimental data were then Winsorized by participant to bring data in the `r win_trim*100`th and `r 100-(100*win_trim)`th percentile of data to the value at those tresholds. The resulting measure is referred to as wIRT and is distribued as shown in Figure \ref{fig:wIRT} (n = `r wirt_props$n`). Overall mean for wIRT is `r round(wirt_props$mean/1000,1)`s. The longest wIRT is `r round(wirt_props$max/1000,1)`s and the shortest is `r round(wirt_props$min,0)`ms. Median wIRT is `r round(wirt_props$median/1000,1)`s.
+IRTs below `r irt_min`ms (`r irt_lo`) and above `r round(irt_max/1000,1)`s (`r irt_hi`) are assumed to be implausible and omitted. Experimental data were then Winsorized by participant to bring data in the `r win_trim*100`th and `r 100-(100*win_trim)`th percentile of data to the value at those tresholds. The resulting measure is referred to as wIRT and is distribued as shown in Figure \ref{fig:wIRT} (n = `r wirt_props$n`). Overall mean for wIRT is `r round(wirt_props$mean/1000,1)`s. The longest wIRT is `r round(wirt_props$max/1000,1)`s and the shortest is `r round(wirt_props$min,0)`ms. Median wIRT is `r round(wirt_props$median/1000,1)`s.
 
 ```{r wIRT,fig.cap="Distribution of wIRT"}
 ggplot(irt_data, aes(win_irt/1000)) +
@@ -970,7 +979,7 @@ r1delByP$r1DelCat <- ifelse(r1delByP$x < lodel, "FAST", ifelse(
   r1delByP$x > hidel, "SLOW", "NORMAL"
 ))
 catdes <- sprintf("FAST median R1 delay $\\\\leq$ %0.2fs. SLOW median R1 delay $>$ %0.2fs",lodel/1000,hidel/1000)
-r1deldes <- describe(r1delByP$r1delbyp)
+r1deldes <- describe(r1delByP$x)
 ```
 
 

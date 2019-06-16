@@ -11,6 +11,13 @@ library(jsonlite)
 library(dplyr)
 library(knitr)
 library(kableExtra)
+br <- function() {
+  if(knitr::is_html_output()){
+    return("<br/>")
+  } else {
+    return("/linebreak")
+  }
+}
 ```
 # Methodology 
 This section outlines the methodology employed for the reported study. The methodology outlined is referred to as the *Double Reading Procedure* and was first implemented by @fodor2019center. Participants are asked to read sentences twice, once without any previewed (Reading 1), and then again after unlimited preview (Reading 2).
@@ -19,7 +26,9 @@ This section outlines the methodology employed for the reported study. The metho
 
 An advantage that the *Double Reading Procedure* has is that it allows for certain assumptions to be made about Reading 2 that otherwise would be unclear: Reading 2 represents a considered reading of the sentence. Not only has the reader had ample time to examine the sentence, they have necessarily read it, and they have heard themselves read it. We can say this with certainly, because they have necessarily already produce a recording of Reading 1. This means Reading 2 represents a considered prosodic structure, and it should not represent any processing issues, because a parse should have already been obtained during Reading 1.
 
-The nature of Reading 1 is less clear. Because there is variability in the delay between the display of the sentence and the onset of phonation, it's possible that Reading 1 is not entirely non-previewed. The properties of these Reading 1 delays are discussed at length in \ref{sec:r1del}, but for now it suffices to say that the amount of preview that is possible during a delay that typically falls in the 0.6s to 1.6s range is very limited. We can say, at the very least, that a full parse of the sentence is not possible, and so Reading 1 should represent any parsing difficult the reader has.
+The nature of Reading 1 is less clear. Because there is variability in the delay between the display of the sentence and the onset of phonation, it's possible that Reading 1 is not entirely non-previewed. The properties of these Reading 1 delays are discussed at length in \ref{sec:r1del}, but for now it suffices to say that the amount of preview that is possible during a delay that typically falls in the 0.6s to 1.6s range is very limited. As an example of common reading rates, @ashby2012eye reported faster readers as averaging 328 words per minute (wpm), and slower readers 228wpm in silent reading with 3 word windows allowing for parafoveal processing. That study found that reading time is slower for reading aloud, and that the availability of parafoveal information (i.e. the difference between 1 word and 3 word windows) is less impactful for that reading mode. For reading aloud, faster readers were slowed to an average of 213wpm, and slower readers to an average of 183wpm with 3 word windows.
+
+We can say about Reading 1, at the very least, that a full parse of the sentence is not possible during the time before phonation begins, even delays in the 1.6s range. The utterance of Reading 1 should contain within it any behavioral reflex of whatever parsing difficult the reader has.
 
 ## Participants recruitment
 
@@ -58,18 +67,22 @@ The shifting of required key presses and the changing background color were inte
 
 ### On look-ahead {#look-ahead}
 
-As reported by @rayner2012psychology, the perceptual span during reading is about 31 characters, or 15 to either side, with an asymmetry favoring the direction in which reading occurs (i.e. wider to the right for English readers, wider to the left for Arabic readers). With a fixation aligned with the left edge of a stimuli, focal attention is likely centered on the third or fourth character. The resulting potential for look ahead can be diagrammed as follows, using a notation where a character whose identity can likely be extracted is reproduced, a character whose shape but not identity can be extracted is represented by an x, b, or g (depending on the shape of the original character), and otherwise an n. Spaces are inserted only as far out as they could be identified.
+As reported by @rayner2012psychology, the perceptual span during reading is about 31 characters, or about 15 characters to either side, with an asymmetry favoring the direction in which reading occurs (i.e. wider to the right for English readers, wider to the left for Arabic readers) and a lack of importance of parafoveal information beyond the start of the fixated word in the direction of what has already been read (i.e. to the left in English). Rayner et al. show that at the extreme edges of this perceptual span, it appears to be only the presence and absence spaces that is shown to be available. Character shape (but not identity; e.g. whether a letter has ascenders or descenders) is available 10 characters to either side,
 
-  (@la1) XXXXXXXXXX
-         He had intendxb bx nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+With a fixation aligned with the left edge of a stimuli, focal attention is likely centered on the third or fourth character. The resulting potential for look ahead can be diagrammed as follows, assuming initial fixation on *had*,  using a notation where a character whose identity can likely be extracted is reproduced, a character whose shape but not identity can be extracted is represented by an x, b, or j (depending on the shape of the original character, i.e. if the original character has an ascender, I've represented it with a b, if it has a descender I have represented it with a j, and if it has neither I've represented it with an x). Characters entirely outside of the perceptual span are represented with an x. Spaces are inserted only as far out as they could be identified, and otherwise filled with an x.
+
+  (@la1) XXXXXXXXXX *(fixation slide)* `r br()`
+         He had intendxb bx nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn `r br()`
          He had intended to cram the paperwork in the drawer of his filing cabinet.
          
 Critically, the disambiguation PP2 region (in @la1, *of his filing cabinet*) is not within the perceptual span until, at the earliest, one is in the object region (*the paperwork*). It is important to note as well, though, that when PP1, the phrase with ambiguous attachment site, is the fixation point, the existence of PP2 at least, is within the perceptual span. If we assume fixation on *the*, the available information should be something something like (@la2).
 
-  (@la2) nnnnnnnnnnnnnnnnnnnnnnn nnn nnnxxxxxb in the drawer xb bxnnnnnnnnnnnnnnnnn
+  (@la2) nnnnnnnnnnnnnnnnnnnnnnn nnn nnjxxxxxb in the drawer xb bxnnnnnnnnnnnnnnnnn `r br()`
          He had intended to cram the paperwork in the drawer of his filing cabinet.
 
-There is, therefore, the potential that look-ahead while reading PP1 could trigger the garden path effect of PP2 early, because it can be deduced that a short and then longer word are coming up on the periphery. The reader is likely to be aware as early as this point that something may be wrong with the parse that attaches PP1 as an argument of the verb, as that parse has limited available real-estate for further phrases.
+There is, therefore, the potential that look-ahead while reading PP1 could trigger the garden path effect of PP2 early, because it can be deduced that a short and then longer word are coming up on the periphery. The reader is likely to be aware as early as this point that something may be wrong with the parse that attaches PP1 as an argument of the verb, as that parse has limited available real-estate for further phrases. 
+
+Another wrinkly involves the so-called eye-voice span (EVS). According to @evs, when reading aloud, the voice is typically behind the eyes by 10-20 characters, varying with various properties of the text and different parts of the reading cycle. Thus, it's difficult to know exactly where in the recording a reflex of the garden path would occur, but it is likely to be before the actually phonation of the disambiguating region. Most likely seems to be a hesitation in or around the previous phrase, i.e. PP1. This to some degree confounds the analysis of a pause after that phrase: it could be an intentional prosodic break, or it could be added processing time as a result of the reader discovering the garden path. This issue is revisited during discussion of the results.
 
 ## Materials
 
