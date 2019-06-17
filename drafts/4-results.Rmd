@@ -42,182 +42,25 @@ theme_set(
       panel.border = element_blank()
     )
 )
-
-```
-
-```{r prosody_setup}
-mdata_raw <- read_csv("../csvs/got_prosody.csv")
-### remove items where STRONG == NA (these are the items Sita didn't respond to)
-mdata <- mdata_raw[!is.na(mdata_raw$STRONG),]
-
-### code for pairs of SUBJ-ITEM
-mdata$pair<-paste(mdata$SID,mdata$IID,sep="-")
-n1 <- nrow(mdata)
-### filter out rows missing its pair
-mdata<-mdata %>% group_by(pair) %>% filter(n()>1)
-n2<- nrow(mdata)
-missingPairs <- n1-n2
-
-mdata$V<-mdata$V == "YES"
-mdata$OBJ<-mdata$OBJ == "YES"
-mdata$PP1<-mdata$PP1 == "YES"
-mdata$STRUG<-mdata$STRUG == "YES"
-mdata$condition <- with(mdata,
-  paste(
-    ifelse(Condition_Q,"Q","D"),
-    ifelse(Condition_GP,"+GP","-GP")
-  )
-)
-mdata$STRONG <- as.factor(mdata$STRONG)
-mdata$WEAK <- as.factor(mdata$WEAK)
-mdata$Reading <- as.factor(mdata$Reading)
-mdata$prosody <- as.factor(mdata$prosody)
-mdata$two_level_prosody <- as.factor(mdata$two_level_prosody)
-mdata$IID <- as.factor(mdata$IID)
-mdata$UID <- as.factor(mdata$UID)
-mdata$SID <- as.factor(mdata$SID)
-mdata$Participant <- mdata$SID
-mdata$STRUG_START <- as.factor(mdata$STRUG_START)
-mdata$pdom <- mdata$two_level_prosody %in% c("PP1", "PP1 > OBJ")
-mdata$odom <- mdata$two_level_prosody %in% c("OBJ", "OBJ > PP1")
-mdata$simple2lvl <- ifelse(
-  mdata$OBJ & mdata$PP1, 
-  "BOTH", ifelse(
-    mdata$OBJ,
-    "OBJ",
-    ifelse(
-      mdata$PP1,
-      "PP1",
-      "NEITHER"
-    )
-  )
-)
-mdata$simple2lvl <- as.factor(mdata$simple2lvl)
-mdata<-subset(mdata,SID!=8)
-mdata <- droplevels(mdata)
-mdata <- subset(mdata,!is.na(OBJ)|!is.na(PP1))
-
-```
-
-```{r irt_setup, cache=T}
-itemsDf <- read_csv(
-  "../csvs/src/items.csv", 
-  col_types = cols(
-    OBJ = col_skip(), 
-    `P>NP1` = col_skip(), 
-    `P>NP2+GP` = col_skip(), 
-    `P>NP2-GP` = col_skip(), 
-    target = col_character()
-  )
-)
-itemsDf$Item<-itemsDf$target
-itemsDf$target <- NULL
-### load files
-use_old <- FALSE
-old<-"../csvs/irt-rvad-4_11.csv"
-new<-"../csvs/irt-merged.csv"
-raw_file <- read_csv(ifelse(use_old,old,new), 
-  col_types = cols(
-    Item = col_factor(levels = seq(1,48)), 
-    Participant = col_character()
-  )
-)
-
-irt_data <- raw_file
-
-### P 8 is messed up
-irt_data<-subset(irt_data,Participant != 8)
-
-### demographics
-pmeta <- read_csv("../csvs/p-meta.csv")
-pmeta$Participant <- pmeta$ID
-irt_data<-merge(pmeta,irt_data,by="Participant")
-irt_data$wkd <- ifelse(irt_data$DOTW == "MONDAY", 1,
-                ifelse(irt_data$DOTW == "TUESDAY", 2, 
-                ifelse(irt_data$DOTW == "WEDNESDAY", 3, 
-                ifelse(irt_data$DOTW == "THURSDAY", 4, 
-                5))))
-
-
-
-  
-irt_data$cond <- paste(
-  ifelse(irt_data$Condition_Q,"Q","D"),
-  ifelse(
-    irt_data$isFiller,
-    ifelse(irt_data$Condition_GP,"+PP","-PP"),
-    ifelse(irt_data$Condition_GP,"+GP","-GP")
-  )
-)
-
-irt_data$Q <- ifelse(
-  irt_data$Condition_Q,
-  "Q",
-  "D"
-)
-irt_data$GP <- ifelse(
-  irt_data$Condition_GP,
-  "+GP",
-  "-GP"
-)
-
-irt_data_all <- irt_data ### data before trimming
-
-### exclude 250 < IRTs > 25000
+irt_data <- read_csv("export/irt_data.csv")
+irt_data_allitems <- read_csv("export/all_data.csv")
+mdata <- read_csv("export/prosody_data.csv")
+irt_fillers <- subset(irt_data_allitems,isFiller)
+# absolute cutoffs: exclude 250 < IRTs > 25000
 irt_min <- 250
 irt_max <- 25000
-
-### note how many IRTs are excluded for implausibility
-irt_lo <- subset(irt_data, irt < irt_min)
-irt_hi <- subset(irt_data, irt > irt_max)
-
-### subset to trimmed items
-irt_data <- subset(
-  irt_data, 
-  irt > irt_min & irt < irt_max
-)
-
-### with fillers
-irt_data_allitems <- irt_data
-irt_fillers <- subset(irt_data,isFiller)
-
-### experimental only
-irt_data <- subset(irt_data,!isFiller)
-irt_data <- (merge(itemsDf, irt_data, by = 'Item'))
-
-### make Participant and Item factors with specified ref levels 
-irt_data$Participant<-relevel(as.factor(irt_data$Participant),ref=5)
-irt_data$Item<-relevel(as.factor(irt_data$Item),ref=1)
-
-### winsorize top/bottom 2.5% of data (for normal distrbution, this is +/- 2sd)
-### see: https://sciencing.com/relationship-between-standard-deviations-percentiles-8768703.html
+# cutoff ns:
+irt_lo <- 2
+irt_hi <- 5
+# winsor cutoff: +/- %2.5
 win_trim=0.025
-irt_data <- irt_data %>% group_by(Participant) %>% mutate(win_irt = winsor(irt, trim=win_trim))
-irt_data$wirt<-irt_data$win_irt
 
-### log 10 transform
-irt_data$wirt.log10 <- log10(irt_data$win_irt)
-
-
-### meta 
-json <- read_file("../meta-4_11.json")
-meta<-fromJSON(json)
-handset <- read.csv("../csvs/_SITA_SET_VALUES.csv")
-meta[meta$file %in% handset$Filename,]$agg <- NA
-meta[meta$file %in% handset$Filename,]$hpf <- NA
-hscount <- sum(handset$Filename %in% meta$file)
-
-
-write_csv(irt_data_allitems,"export/all_data.csv")
+missingPairs <- 9
 ```
-```{r normalize sets}
-irt_data$ID <- paste0(irt_data$Participant,"-",irt_data$Item)
-mdata$ID <- paste0(mdata$SID,"-",mdata$IID)
 
-irt_data <- subset(irt_data, ID %in% mdata$ID)
-mdata <- subset(mdata,ID %in% irt_data$ID)
-```
+
 ```{r describe}
+
 ### counts
 irt_data$Participant <- as.factor(irt_data$Participant)
 irt_data$Participant <- relevel(irt_data$Participant,ref=9)
@@ -226,17 +69,14 @@ subjs<-length(levels(irt_data$Participant))
 items<-length(levels(irt_data$Item))
 expectN <- subjs * items
 
-### utterance lengths
-if(!use_old){
-  ### only available in newer files
-  uls <- append(irt_data$`R1 UL`,irt_data$`R2 UL`)
-  uls_desc <- describe(uls)
-  uls_r1_desc <- describe(irt_data$`R1 UL`)
-  uls_r2_desc <- describe(irt_data$`R2 UL`)
-}
+# utterance lengths
+uls <- append(irt_data$`R1 UL`,irt_data$`R2 UL`)
+uls_desc <- describe(uls)
+uls_r1_desc <- describe(irt_data$`R1 UL`)
+uls_r2_desc <- describe(irt_data$`R2 UL`)
 
-### note properties
-irt_props_all <- describe(irt_data$irt)
+### irt properties
+irt_props_all <- describe(irt_data_allitems$irt)
 irt_props <- describe(irt_data$irt)
 wirt_props <- describe(irt_data$win_irt)
 
@@ -314,7 +154,6 @@ orderMap$Participant <- orderMap$ID
 orderMap$ID <- NULL
 
 mdata<-merge(mdata,orderMap,by="Participant")
-write_csv(mdata,"export/prosody_data.csv")
 
 versiontab <- mdata %>% 
   filter(!duplicated(Participant)) %>%
@@ -326,7 +165,7 @@ rownames(versiontab)[1:4]<-paste("Version", rownames(versiontab))
 ```{r vtab}
 versiontab %>% kable(
   caption="No. of participants per version-order combination",
-  col.names = c("Order 1", "Order 2", "Sum"),
+  col.names = c("1", "2", "Sum"),
   align="c"
 ) %>% kable_styling() %>% 
   add_header_above(c(" "=1, "Order"=2, " "=1))
@@ -343,7 +182,7 @@ totDisp[[1]] <- c("-GP", "+GP")
 kable(
   totDisp,
   col.names=c(" ", "D", "Q"),
-  caption="N by condition"
+  caption="Number of recordings by condition"
 ) %>% kable_styling(latex_options = c("hold_position"))
 ```
 
@@ -362,65 +201,6 @@ The sentences can be informally broken into regions as in (@structure).
 In what follows, I will discuss prosodic breaks at the points directly after the direct object (referred to as OBJ) and directly after PP1 (referred to as PP1).
 
 #### Breaks after PP1 and direct object
-
-Table \ref{tab:pp1gp} shows the presence of OBJ and PP1 breaks by condition for both readings of the experimental item recordings.
-
-```{r byGPall}
-
-
-pp1tab<-xtabs(PP1 ~ Condition_GP + Condition_Q, data=mdata)
-objtab<-xtabs(OBJ ~ Condition_GP + Condition_Q, data=mdata)
-tot<-as.data.frame(xtabs( ~ Condition_GP + Condition_Q, data=mdata))
-
-
-pp1<-as.data.frame(pp1tab)
-pp1$tot<-tot$Freq
-pp1$pct <- pp1$Freq/pp1$tot
-pp1$pretty <- paste0(
-  pp1$Freq, 
-  " (", 
-  sprintf("%.1f",pp1$pct * 100), 
-  "%)"
-)
-pp1disp <- pp1 %>%
-  subset(select=c(
-    "Condition_GP",
-    "Condition_Q",
-    "pretty"
-  )) %>% 
-  spread(Condition_Q,pretty)
-
-obj<-as.data.frame(objtab)
-obj$tot<-tot$Freq
-obj$pct <- obj$Freq/obj$tot
-obj$pretty <- paste0(
-  obj$Freq, 
-  " (", 
-  sprintf("%.1f",obj$pct * 100), 
-  "%)"
-)
-objdisp <- obj %>%
-  subset(select=c(
-    "Condition_GP",
-    "Condition_Q",
-    "pretty"
-  )) %>% 
-  spread(Condition_Q,pretty)
-
-pp1obj <- cbind(pp1disp,objdisp[2:3])
-pp1obj[[1]] <- c("+GP","-GP")
-```
-```{r pp1gp}
-
-kable(
-  pp1obj,
-  caption="Percentage of recordings containing PP1/OBJ break by condition",
-  col.names = c("", "D", "Q","D", "Q")
-) %>% 
-  add_header_above(c(" "=1,"PP1 Break"=2,"OBJ Break"=2)) %>% kable_styling(latex_options = c("hold_position"))
-```
-
-#### The two readings
 
 Because "natural prosody" is likely to be less often produced in Reading 1 than in a Reading 2, it's important to consider the prosodic patterns for the two readings independently. 
 
@@ -469,6 +249,9 @@ objdisp <- obj %>%
 
 pp1obj <- cbind(pp1disp,objdisp[2:3])
 pp1obj[[1]] <- c("-GP","+GP")
+r2pp1<-pp1disp
+r2obj<-objdisp
+
 
 ### r1
 r1data <- subset(mdata,Reading==1)
@@ -514,33 +297,40 @@ objdisp <- obj %>%
 
 pp1objr1 <- cbind(pp1disp,objdisp[2:3])
 pp1objr1[[1]] <- c("-GP","+GP")
+r1pp1<-pp1disp
+r1obj<-objdisp
+
+pp1<-cbind(r1pp1,r2pp1[2:3])
+pp1[[1]] <- c("-GP","+GP")
+
+obj<-cbind(r1obj,r2obj[2:3])
+obj[[1]] <- c("-GP","+GP")
 ```
 
-The prevalence of object breaks and PP1 breaks for each condition in Reading 2 recordings is described in table \ref{tab:r2pp1obj}.
+The prevalence of PP1 breaks for each condition in Reading 1 and Reading 2 recordings is described in table \ref{tab:pp1}.
 
-```{r r2pp1obj}
+```{r pp1}
 kable(
-  pp1obj,
-  caption="Reading 2 recordings containing PP1/OBJ break by condition",
+  pp1,
+  caption="PP1 break by condition and reading",
   col.names = c("", "D", "Q","D", "Q")
 ) %>% 
-  add_header_above(c(" "=1,"PP1 Break"=2,"OBJ Break"=2)) %>% 
+  add_header_above(c(" "=1,"Reading 1"=2,"Reading 2"=2)) %>% 
   kable_styling(latex_options = c("hold_position"))
 ```
 
-For comparison, \ref{tab:r1pp1obj} is the same table for Reading 1 recordings. 
 
-```{r r1pp1obj}
+```{r obj}
 kable(
-  pp1objr1,
-  caption="Reading 1 recordings containing PP1/OBJ break by condition",
+  obj,
+  caption="OBJ break by condition and reading",
   col.names = c("", "D", "Q","D", "Q")
 ) %>% 
-  add_header_above(c(" "=1,"PP1 Break"=2,"OBJ Break"=2)) %>% 
+  add_header_above(c(" "=1,"Reading 1"=2,"Reading 2"=2)) %>% 
   kable_styling(latex_options = c("hold_position"))
 ```
 
-The primary difference across Readings is in the OBJ break distribution. For the analyses that follow, Reading 1 will largely be ignored.
+The primary difference across Readings is in the OBJ break distribution. 
 
 #### PP1 and object breaks combined
 
@@ -562,16 +352,39 @@ colnames(dpros)<-c("D","Q")
 ccombo<-as.data.frame(cbind(dpros,qpros))
 rownames(ccombo)<-c("Both", "OBJ only", "PP1 only")
 
-write_csv(ccombo,"export/ccombo.csv")
+r1pdata<-droplevels(subset(mdata,Reading==2 & simple2lvl != "NEITHER"))
+qdata <- subset(r1pdata,Condition_GP)
+ddata <- subset(r1pdata,!Condition_GP)
+qpros<-table(qdata$simple2lvl,qdata$Condition_Q) %>%
+  prop.table(margin=2) %>% `*`(100) %>%
+  round(1)
+colnames(qpros)<-c("D","Q")
+
+dpros<-table(ddata$simple2lvl,ddata$Condition_Q) %>%
+  prop.table(margin=2) %>% `*`(100) %>%
+  round(1)
+colnames(dpros)<-c("D","Q")
+cccombo<-as.data.frame(cbind(dpros,qpros))
+rownames(cccombo)<-c("Both", "OBJ only", "PP1 only")
+
+bothrbothb <- cbind(ccombo,cccombo)
+
 ```
-```{r r2combobreaksBycond}
-kable(ccombo,caption="Combined breaks by condition in Reading 2 only",align="c") %>%
-  add_header_above(c(" "=1,"Non-garden path" = 2, "Garden path"=2)) %>%
+
+```{r combobreaksBycond}
+kable(bothrbothb,caption="Breaks (%) by condition",align="c") %>%
+  add_header_above(c(" "=1,rep(c("Non-garden path" = 2, "Garden path"=2),2))) %>%
+  add_header_above(c(" "=1, "Reading 1" = 4, "Reading 2" = 4)) %>%
   column_spec(1,bold=T)%>% kable_styling(latex_options = "hold_position")
 
 ```
 
-Table \ref{tab:r2combobreaksBycond} shows that for +GP sentences, there are very few instances with the OBJ-only pattern (0.8% in declaratives, 2.5% in interrogatives); whereas that pattern is fairly robust for -GP sentences (31.1% in declaratives, 31.4% in interrogatives). The pattern with both breaks is somewhat more common for +GP sentences (72.1% in declaratives, 71.7% in interrogatives) than -GP (54.1% in declaratives, 43.0% in interrogatives). The PP1-only pattern occurs at about the same rate in +GP interrogatives (25.8%) as in -GP interrogatives (25.6%) and +GP declaratives (27%), but is noticeably less common for -GP declaratives (14.8%).
+Table \ref{tab:combobreaksBycond} shows that for +GP sentences, there are very few instances with the OBJ-only pattern (0.8% in declaratives, 2.5% in interrogatives); whereas that pattern is fairly robust for -GP sentences (31.1% in declaratives, 31.4% in interrogatives). The pattern with both breaks is somewhat more common for +GP sentences (72.1% in declaratives, 71.7% in interrogatives) than -GP (54.1% in declaratives, 43.0% in interrogatives). The PP1-only pattern occurs at about the same rate in +GP interrogatives (25.8%) as in -GP interrogatives (25.6%) and +GP declaratives (27%), but is noticeably less common for -GP declaratives (14.8%).
+
+<!--
+todo
+consider moving R1 delay analysis here
+-->
 
 #### PP1 and object breaks and their relative prominence
 
@@ -579,14 +392,39 @@ Table \ref{tab:pros2lvl} presents data similar to those in the previous section,
 
 ```{r pros2lvlPre}
 
-p2lv<-prop.table(xtabs(~two_level_prosody+condition,data=subset(mdata,Reading==2)),margin = 2) * 100
+r2p2lv<-prop.table(xtabs(~two_level_prosody+condition,data=subset(mdata,Reading==2)),margin = 2) * 100
+r1p2lv<-prop.table(xtabs(~two_level_prosody+condition,data=subset(mdata,Reading==2)),margin = 2) * 100
 
-kable(p2lv, digits = 1, caption="Reading 1 prosodic pattern type by condition") %>% kable_styling()
+p2lv <- cbind(r1p2lv,s=r2p2lv)
+p2lv <- as.data.frame(cbind(p2lv,ord=c(1,2,3,5,4)))
+colnames(p2lv) <- paste0(colnames(p2lv),c(rep("",4),rep("-r2",4)))
+p2lv <- cbind("Pattern"=rownames(r2p2lv),p2lv)
+p2lv <- p2lv %>% arrange(ord)
 
-# TODO pdom, odom tables
+
+kable(
+  p2lv[1:9], 
+  digits = 1, 
+  align="c",
+  caption="Prosodic pattern type by condition and reading",
+  col.names=c("Pattern",rep(colnames(r2p2lv),2))
+) %>% 
+  add_header_above(c(" "=1, "Reading 1" = 4, "Reading 2" = 4)) %>%
+  column_spec(5,border_right = T) %>%
+  kable_styling(latex_options = c("hold_position"))
+
+
 ```
 
 Another way of looking at these same data is to think of a recording as being PP1-dominant (i.e., PP1 is the only or the strongest break), OBJ-dominate, or neither. This categorization is useful because it creates binary outcomes that can be subjected to logistic regression analyses. The frequency of these patterns is reported in table \ref{tab:domtab}.
+
+<!-- 
+
+todo 
+
+  * split dom tables into OBJ tables and PP1 table?
+
+-->
 
 ```{r domsetup}
 pdom <- xtabs(~condition+pdom,data=mdata)%>% prop.table(margin=1)
@@ -599,15 +437,21 @@ odom.r2 <- xtabs(~condition + odom,data=subset(mdata,Reading==2))%>% prop.table(
 ```
 
 ```{r domtab}
-domtab<-cbind(odom.r2,pdom.r2)* 100
+
+# todo -- both readings, 1 break per table, just dom
+pp1domn <- cbind(pdom.r1,pdom.r2)* 100
+objdomn <- cbind(odom.r1,odom.r2)* 100
+domtab<-cbind(pp1domn,objdomn)
 kable(
   domtab, 
-  caption="Break dominance by condition, Reading 2 only",
-  col.names=c(rep(c("Not dominant", "Dominant"), 2)),
+  caption="Break dominance (%) by condition",
+  col.names=c(rep(c("Not dominant", "Dominant"), 4)),
   align="c",
   digits=1
 ) %>%
-  add_header_above(c(" "=1, "OBJ" = 2, "PP1" = 2)) %>%
+  add_header_above(c(" "=1,rep(c("Reading 1" = 2, "Reading 2" = 2),2))) %>%
+  add_header_above(c(" "=1,c("PP1" = 4, "OBJ" = 4))) %>%
+  column_spec(5,border_right = 1) %>%
   kable_styling(latex_options = c("hold_position"))
 ```
 
@@ -615,11 +459,12 @@ kable(
 
 ### Regression models predicting break occurence
 
-Models predicting the PP1 break and the object break are presented in table \ref{tab:lmPros}. No random slopes were included, as models with random slopes did not converge.
+Models predicting the PP1 break and the object break are presented in table \ref{tab:lmPros}. No random slopes were included, as models with random slopes did not converge. For all models in this section, the intercept represents the declarative, non-garden path case. Where Reading is included as a factor, the intercept represents Reading 1.
 
 ```{r r2prosmod,cache=T}
 r2data<-subset(mdata,Reading==2)
-pp1Mod<- glmer(PP1~Condition_Q*Condition_GP+(1|IID)+(1|SID),data=r2data,family=binomial)
+# fails to converge
+# pp1Mod<- glmer(PP1~Condition_Q*Condition_GP+(1|IID)+(1|SID),data=r2data,family=binomial)
 objMod<- glmer(OBJ~Condition_Q*Condition_GP+(1|IID)+(1|SID),data=r2data,family=binomial)
 pdomMod<- glmer(pdom~Condition_Q*Condition_GP+(1|IID)+(1|SID),data=r2data,family=binomial)
 odomMod<- glmer(odom~Condition_Q*Condition_GP+(1|IID)+(1|SID),data=r2data,family=binomial)
@@ -635,14 +480,15 @@ both.odomMod<- glmer(odom~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=
 
 
 ```{r bothprosmodels}
+#fails to converge
 huxreg(  
-  list("PP1"=both.pp1Mod,"OBJ"=both.objMod,"PP1 Dominance"=both.pdomMod,"OBJ Dominance"=both.odomMod),
+  list("PP1"=both.pp1Mod, "OBJ"=both.objMod,"PP1 Dominance"=both.pdomMod,"OBJ Dominance"=both.odomMod),
   coefs = c(
     "Intercept"="(Intercept)",
     "GP"="Condition_GPTRUE",
     "Q"="Condition_QTRUE",
     "GP:Q Interaction"="Condition_QTRUE:Condition_GPTRUE",
-    "Reading" = "Reading2"
+    "Reading" = "Reading"
   ),
   statistics = c(
     N="nobs",
@@ -655,7 +501,7 @@ huxreg(
   set_tabular_environment("tabular")
 ```
 
-Reading is a statistically siginficant predictor for three of the four models shown in table \ref{tab:bothprosmodels}. Models which exclude Reading 1 are shown in \ref{tab:prosmodels}, as these data are more likely to represent true prosodic breaks, or the intended prosody of the reader, rather than mistakes or hesitations.
+Reading is a statistically siginficant predictor for three of the four models shown in table \ref{tab:bothprosmodels}. Models which exclude Reading 1 are shown in \ref{tab:prosmodels}, as these data are more likely to represent true prosodic breaks, or the intended prosody of the reader, rather than mistakes or hesitations. For the models over only Reading 2, the one predicting the presence of a PP1 break failed to converge.
 
 ```{r prosmodels}
 huxreg(  
@@ -691,11 +537,11 @@ This document examines the inter-reading time (IRT) from the study. IRT was meas
 
 #### Distribution of IRT and data clean-up {#irtDis}
 
-The raw IRTs including fillers and before any outliers are trimmed are distributed as shown in Figure \ref{fig:rawIRThist}. Overall mean IRT of these data (n = `r irt_props_all$n`), is `r round(irt_props_all$mean/1000,1)`s. The longest is `r round(irt_props_all$max/1000,1)`s and the shortest `r round(irt_props_all$min,0)`ms. Median IRT is `r round(irt_props_all$median/1000,1)`s.
+The raw IRTs for experimental items, before any outliers are trimmed, are distributed as in figure \ref{fig:rawIRThist}. Overall mean IRT of these data (n = `r irt_props_all$n`), is `r round(irt_props_all$mean/1000,1)`s. The longest is `r round(irt_props_all$max/1000,1)`s and the shortest `r round(irt_props_all$min,0)`ms. Median IRT is `r round(irt_props_all$median/1000,1)`s.
 
 ```{r rawIRThist,fig.cap="Distribution of raw IRT"}
 histSettings = geom_histogram(binwidth = 0.5,color="white",fill="#333333")
-ggplot(irt_data_all, aes(irt/1000)) +
+ggplot(irt_data, aes(irt/1000)) +
   histSettings +
   xlab("Raw IRT (seconds)") + 
   ylab("Frequency") +  
@@ -705,7 +551,7 @@ ggplot(irt_data_all, aes(irt/1000)) +
   )
 ```
 
-IRTs below `r irt_min`ms (`r nrow(irt_lo)`) and above `r round(irt_max/1000,1)`s (`r nrow(irt_hi)`) are (assumed to be implausible) omitted. Experimental data were then Winsorized by participant to bring data in the `r win_trim*100`th and `r 100-(100*win_trim)`th percentile of data to the value at those tresholds. The resulting measure is referred to as wIRT and is distribued as shown in Figure \ref{fig:wIRT} (n = `r wirt_props$n`). Overall mean for wIRT is `r round(wirt_props$mean/1000,1)`s. The longest IRT is `r round(wirt_props$max/1000,1)`s and the shortest is `r round(wirt_props$min,0)`ms. Median wIRT is `r round(wirt_props$median/1000,1)`s.
+IRTs below `r irt_min`ms (`r irt_lo`) and above `r round(irt_max/1000,1)`s (`r irt_hi`) are assumed to be implausible and omitted. Experimental data were then Winsorized by participant to bring data in the `r win_trim*100`th and `r 100-(100*win_trim)`th percentile of data to the value at those tresholds. The resulting measure is referred to as wIRT and is distribued as shown in Figure \ref{fig:wIRT} (n = `r wirt_props$n`). Overall mean for wIRT is `r round(wirt_props$mean/1000,1)`s. The longest wIRT is `r round(wirt_props$max/1000,1)`s and the shortest is `r round(wirt_props$min,0)`ms. Median wIRT is `r round(wirt_props$median/1000,1)`s.
 
 ```{r wIRT,fig.cap="Distribution of wIRT"}
 ggplot(irt_data, aes(win_irt/1000)) +
@@ -1083,174 +929,212 @@ diffsByP.props <- describe(diffsByP$`Mean difference in delay (ms)`)
 
 For each reading, n = `r table(raw_rs$Reading)["Cold"]` (total n = `r nrow(raw_rs)`).
 
-### Categories of reading 1 delay
+# Reading 1 delay category
 
-A brief analysis of the effect of Reading 1 delay on the prosodic patterns produced is presented.
+```{r r1delcatset,echo=F,warning=F,message=F}
+knitr::opts_chunk$set(
+  echo=FALSE, 
+  warning=FALSE, 
+  message=FALSE, 
+  fig.height = 3, 
+  fig.pos="H"
+)
+options(tinytex.verbose = TRUE)
+bgcolor <- "#ffffff"
+par(bg = bgcolor)
 
-```{r delcat}
+kable <- function(data,...) {
+  knitr::kable(data, booktabs = TRUE,...)
+}
+
+ms2s<-function(x,d=2) {
+  return (format(x/1000,nsmall=d,digits=d))
+}
+
+library(extrafont)
+library(readr)
+library(dplyr)
+library(tidyr)
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+library(psych)
+library(ggthemes)
+
+hidel <- 1050
+lodel <- 901
+
+mdata <- read_csv("../drafts/export/prosody_data.csv")
+raw_rs_file <- read_csv("../csvs/merged.csv")
+raw_rs_file$UID <- as.factor(with(raw_rs_file, paste(Participant,Item,Reading,sep="-")))
+raw_rs_file <- subset(raw_rs_file,UID %in% mdata$UID)
+raw_rs <- subset(raw_rs_file,!isFiller)
+raw_rs$reading <- raw_rs$Reading
+
+
 r1data <- subset(raw_rs, reading == 1)
-r1delByP <- aggregate(r1data$Leading,by=list("Participant" = r1data$Participant), FUN=mean)
-hidel <- 1200
-lodel <- 900
+r1delByP <- aggregate(r1data$Leading,by=list("Participant" = r1data$Participant), FUN=median)
+
 r1delByP$r1DelCat <- ifelse(r1delByP$x < lodel, "FAST", ifelse(
   r1delByP$x > hidel, "SLOW", "NORMAL"
 ))
-catdes <- sprintf("FAST < %0.1fs; SLOW > %0.1fs",lodel/1000,hidel/1000)
+catdes <- sprintf("FAST median R1 delay $\\\\leq$ %0.2fs. SLOW median R1 delay $>$ %0.2fs",lodel/1000,hidel/1000)
+r1deldes <- describe(r1delByP$x)
+```
 
-table(r1delByP$r1DelCat) %>% 
+
+Reading 1 (R1) delay is the amount of time between the initial display of a sentence and the start of phonation. Participants' median R1 delay ranged from `r ms2s(r1deldes$min)`s to `r ms2s(r1deldes$max)`s with a standard deviation of `r ms2s(r1deldes$sd)`s. As a way of analyzing the protocol, and the extent to which participants performed as expected, participants were categorized based on their median R1 delay. In what follows, a fast median R1 delay is shorter than or equal to `r ms2s(lodel,2)`s, and a slow one is longer than `r ms2s(hidel,2)`s, resulting in 12 participants per category. Ten other participants categorized as "normal" and ignored. The distribution of participants across categories is shown in table \ref{tab:delcat}. These calculations were done over Reading 1 of experimental items (n = `r nrow(r1data)`, with `r 16*32 - nrow(r1data)` missing items).
+
+```{r delcat}
+tab <- table(r1delByP$r1DelCat)
+tab[c(1,3)] %>% 
   kable(col.names=c("Delay category", "n"), caption="Participants by Reading 1 delay category") %>% 
-  kable_styling(latex_options = c("hold_position"),full_width = F) %>% 
-  footnote(catdes)
+  kable_styling(full_width = F,latex_options = c("hold_position")) %>% 
+  footnote(catdes,escape = F)
 
 colnames(r1delByP)[2] <- "r1delbyp"
-
-irt_data<-merge(r1delByP,irt_data,by="Participant")
 mdata$Participant <- mdata$SID
 mdata<-merge(r1delByP,mdata,by="Participant")
-write_csv(irt_data,"export/exp_wins_irt.csv")
+mdata <- subset(mdata,simple2lvl != "NEITHER")
+mdata$condition <- factor(mdata$condition,levels(factor(mdata$condition))[c(1,3,2,4)])
+adata<-mdata
 ```
 
-First, participants were categorized based on their mean Reading 1 delay, with a fast mean Reading 1 delay being less than `r round(lodel/1000,2)`s, and a slow one being more than `r round(hidel/1000,2)`s. Everything else is categorized as "normal" and ignored. The distribution of participants across categories is shown in table \ref{tab:delcat}. Each participant's mean is shown in table \ref{tab:r1delByP}
+The prosodic patterns produced by participants categorized as having fast or slow R1 delays were then considered separately from each other, in order to discern whether the preferred break patterns differed across that distinction. Figure \ref{fig:facet} shows the relative distribution of break patterns by condition for participants with fast and slow R1 delays.
 
-```{r r1delByP}
-df <- r1delByP
-df$r1delbyp <- df$r1delbyp / 1000
+```{r facet, fig.cap="Plot of pattern proportions per condition",fig.height=4,fig.pos="H"}
 
-df %>%  
-  arrange(df$r1delbyp) %>% 
-  kable(
-    col.names = c("Participant", "Reading 1 delay category","Mean reading 1 delay"), 
-    caption="Mean reading 1 delay by participant (seconds)", 
-    digits = 2
-  ) %>% kable_styling(latex_options = c("hold_position", "repeat_header"))%>% 
-  footnote(catdes)
+if(!"reading" %in% names(adata)){
+  adata$reading <- adata$Reading
+}
+loadfonts(device="win")
+adata$Reading <- paste("Reading", adata$reading)
+
+pdata <- subset(adata, r1DelCat != "NORMAL")
+
+ggplot(pdata,    
+    aes(
+      x=condition,
+      y=..count..,
+      fill=reorder(
+        simple2lvl,
+        ifelse(simple2lvl=="PP1", 1, ifelse(simple2lvl=="OBJ",3,2))
+      )
+    )) +
+  geom_bar(position="fill",color="black",width=0.5) +
+  labs(fill="Pattern",x=" ",y=" ",caption="FAST n=12, SLOW n = 12") +
+  facet_grid(rows = vars(Reading),cols=vars(r1DelCat)) +
+  scale_y_continuous(labels=scales::percent) + 
+  scale_fill_brewer(breaks=c("PP1", "BOTH", "OBJ"), palette="Greys") +
+  theme_minimal(base_size = 12, base_family="Georgia")
 ```
 
-```{r}
-cheatdata <- subset(mdata,r1DelCat == "FAST" & Reading == 2)
-pp1tab<-xtabs(PP1 ~ Condition_GP + Condition_Q, data=cheatdata)
-objtab<-xtabs(OBJ ~ Condition_GP + Condition_Q, data=cheatdata)
-tot<-as.data.frame(xtabs( ~ Condition_GP + Condition_Q, data=cheatdata))
+The same data are shown numerically in table \ref{tab:rsplit}.
+
+```{r rsplit}
+mdata<-subset(adata,reading==1)
+
+fast <- subset(mdata,r1DelCat == "FAST")
+slow <- subset(mdata,r1DelCat == "SLOW")
+
+fastTabN <- xtabs(~simple2lvl + condition, data=fast) %>% 
+  as.data.frame() %>% 
+  spread(condition, Freq)  
+slowTabN <- xtabs(~simple2lvl + condition, data=slow) %>% 
+  as.data.frame() %>% 
+  spread(condition, Freq)
 
 
-pp1<-as.data.frame(pp1tab)
-pp1$tot<-tot$Freq
-pp1$pct <- pp1$Freq/pp1$tot
-pp1$pretty <- paste0(
-  pp1$Freq, 
-  " (", 
-  sprintf("%.1f",pp1$pct * 100), 
-  "%)"
-)
-pp1disp <- pp1 %>%
-  subset(select=c(
-    "Condition_GP",
-    "Condition_Q",
-    "pretty"
-  )) %>% 
-  spread(Condition_Q,pretty)
+fastTab <- xtabs(~simple2lvl + condition, data=fast) %>% 
+  prop.table(margin=2) %>% 
+  as.data.frame() %>% 
+  spread(condition, Freq)
+slowTab <- xtabs(~simple2lvl + condition, data=slow) %>% 
+  prop.table(margin=2) %>% 
+  as.data.frame() %>% 
+  spread(condition, Freq)
 
-obj<-as.data.frame(objtab)
-obj$tot<-tot$Freq
-obj$pct <- obj$Freq/obj$tot
-obj$pretty <- paste0(
-  obj$Freq, 
-  " (", 
-  sprintf("%.1f",obj$pct * 100), 
-  "%)"
-)
-objdisp <- obj %>%
-  subset(select=c(
-    "Condition_GP",
-    "Condition_Q",
-    "pretty"
-  )) %>% 
-  spread(Condition_Q,pretty)
 
-pp1obj <- cbind(pp1disp,objdisp[2:3])
-pp1obj[[1]] <- c("+GP","-GP")
-fast <- pp1obj
+tab<-cbind(fastTab,slowTab[2:5])
+ntab<-cbind(fastTabN,slowTabN[2:5])
+tab[2:9]  <- format(tab[2:9] * 100,nsmall=1,digits=1)
+ntab[2:9] <- format(ntab[2:9],digits=0)
+
+
+tab$m  <- "%"
+ntab$m <- "n"
+tab <- rbind(tab,ntab)
+
+colnames(tab)[1] <- "Pattern"
+colnames(tab)[6:9] <- paste0(colnames(tab)[6:9],".slow")
+tab <- arrange(tab,Pattern)
+tab <- tab %>% select(Pattern,m,everything())
+
+r1tab<-tab
+
+
+mdata<-subset(adata,reading==2)
+
+fast <- subset(mdata,r1DelCat == "FAST")
+slow <- subset(mdata,r1DelCat == "SLOW")
+
+fastTabN <- xtabs(~simple2lvl + condition, data=fast) %>% 
+  as.data.frame() %>% 
+  spread(condition, Freq)  
+slowTabN <- xtabs(~simple2lvl + condition, data=slow) %>% 
+  as.data.frame() %>% 
+  spread(condition, Freq)
+
+fastTab <- xtabs(~simple2lvl + condition, data=fast) %>% 
+  prop.table(margin=2) %>% 
+  as.data.frame() %>% 
+  spread(condition, Freq)
+slowTab <- xtabs(~simple2lvl + condition, data=slow) %>% 
+  prop.table(margin=2) %>% 
+  as.data.frame() %>% 
+  spread(condition, Freq)
+
+
+tab<-cbind(fastTab,slowTab[2:5])
+ntab<-cbind(fastTabN,slowTabN[2:5])
+tab[2:9]  <- format(tab[2:9] * 100,nsmall=1,digits=1)
+ntab[2:9] <- format(ntab[2:9],digits=0)
+
+
+tab$m  <- "%"
+ntab$m <- "n"
+tab <- rbind(tab,ntab)
+
+colnames(tab)[1] <- "Pattern"
+colnames(tab)[6:9] <- paste0(colnames(tab)[6:9],".slow")
+tab <- arrange(tab,Pattern)
+tab <- tab %>% select(Pattern,m,everything())
+
+
+tab <- rbind(r1tab,tab)
+
+tab %>% kable(
+  align="c",
+  caption="Simple break pattern by condition and R1 delay category",
+  col.names=c(" "," ", rep(c("D -GP","Q -GP", "D +GP", "Q +GP"),2)), 
+  digits=1
+) %>% kable_styling() %>%
+  column_spec(6,border_right = T) %>%
+  collapse_rows(columns = 1) %>%
+  add_header_above(c(" " = 2,"FAST (n=12)"=4,"SLOW (n=12)"=4)) %>%
+  pack_rows(index = c("Reading 1" = 6, "Reading 2" = 6))%>% 
+  footnote(catdes,escape = F)
+
+
 ```
 
-```{r}
-cheatdata <- subset(mdata,r1DelCat == "SLOW" & Reading == 2)
-pp1tab<-xtabs(PP1 ~ Condition_GP + Condition_Q, data=cheatdata)
-objtab<-xtabs(OBJ ~ Condition_GP + Condition_Q, data=cheatdata)
-tot<-as.data.frame(xtabs( ~ Condition_GP + Condition_Q, data=cheatdata))
+There appears to be a clear difference between the participants categorized as having fast or slow R1 delays in the extent to which they used both breaks, with the slow cateogry of participants preferring more breaks than the fast category of participants. There also seems to be a larger increase in usage of both breaks from Reading 1 to Reading 2 for the fast category than for the slow.
 
+<!-- todo break the above down more -->
 
-pp1<-as.data.frame(pp1tab)
-pp1$tot<-tot$Freq
-pp1$pct <- pp1$Freq/pp1$tot
-pp1$pretty <- paste0(
-  pp1$Freq, 
-  " (", 
-  sprintf("%.1f",pp1$pct * 100), 
-  "%)"
-)
-pp1disp <- pp1 %>%
-  subset(select=c(
-    "Condition_GP",
-    "Condition_Q",
-    "pretty"
-  )) %>% 
-  spread(Condition_Q,pretty)
-
-obj<-as.data.frame(objtab)
-obj$tot<-tot$Freq
-obj$pct <- obj$Freq/obj$tot
-obj$pretty <- paste0(
-  obj$Freq, 
-  " (", 
-  sprintf("%.1f",obj$pct * 100), 
-  "%)"
-)
-objdisp <- obj %>%
-  subset(select=c(
-    "Condition_GP",
-    "Condition_Q",
-    "pretty"
-  )) %>% 
-  spread(Condition_Q,pretty)
-
-pp1obj <- cbind(pp1disp,objdisp[2:3])
-pp1obj[[1]] <- c("+GP","-GP")
-```
-
-The break patterns for slow and fast participants are shown in table \ref{tab:cheaterBreaks}.
-
-```{r cheaterBreaks}
-cat <-cbind(fast, pp1obj[2:5])
-kable(
-  cat,
-  caption="Percentage of reading 2 recordings containing PP1/OBJ break by condition, slow reading 1 delay only",
-  col.names = c("", "D", "Q","D", "Q","D", "Q","D", "Q")
-) %>% 
-  add_header_above(c(" "=1,"PP1 Break"=2,"OBJ Break"=2,"PP1 Break"=2,"OBJ Break"=2)) %>%
-  add_header_above(c(" "=1,"Fast R1 delay"=4,"Slow R1 delay"=4)) %>%
-  kable_styling(latex_options = c("hold_position"))
-```
-
-```
-NOTE TO DI:
-
-I'm thinking I will do a this breakdown for the break patterns, rather than the individual breaks. I might also do a similar breakdown where I categorize R1 delay for every recording, rather than by subject means.
-
-Do you think there are other fruitful avenues to pursue?
-```
+Each participants' median R1 delay can be seen in Appendix \ref{sec:r1dbyp}.
 
 \clearpage
-
-## Demographic and self-reported reading habits' effect on the data
-
-Some basic demographic data and self reported reading habits are available by way of a questionairre admistered after data collection. The prosody data and the IRT data can be considered through this lens.
-
-``` 
-TODO
-
-Tables for the above. Maybe models if anything seems interesting.
-
-Question for Di: If nothing is interesting, omit this?
-
-```
-
+<!--
+      TODO examine demo data
+-->

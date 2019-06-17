@@ -5,6 +5,10 @@ knitr::opts_chunk$set(echo = F,warning = F,message=F)
 
 # (APPENDIX) Appendices {-}
 
+# Recruitment notice {#rec}
+
+You will be asked about your reading habits and then asked to read complex sentences out loud while being audio recorded. Recordings of your voice will be analyzed, but will be kept strictly confidential. The process will take no more than 1 hour. Note that the study takes place in Queens Hall, which is about half a mile from the main Queens campus. See directions on the QC website, URL below, for how to get here. The room is 335D, on the third floor. Entrance to the building is in the back. 
+
 # Experimental items {#items}
 
 The D +GP and Q -GP versions of experimental items. The remaining versions can be extrapolated by applying or reversing subject-auxiliary inversion.
@@ -34,23 +38,21 @@ items[c(1,3)] %>% kable(col.names=c("#", "Interrogative fillers with trailing PP
 
 # Instructions to participants {#instr}
 
-The instructions are presented below.
+Thank you kindly for your participation. In this study, you are being asked to read complex sentences out loud, twice each. It is very important that you follow these guidelines for each of your readings.
 
->Thank you kindly for your participation. In this study, you are being asked to read complex sentences out loud, twice each. It is very important that you follow these guidelines for each of your readings.
->
->First reading: Begin reading immediately, without giving yourself a chance to look ahead. Imagine you are a television reporter reading an urgent update from a teleprompter. You must be as quick as possible, without taking any time to read ahead.  You want to sound natural if you can, but it is more important to not delay. These sentences are complicated and potentially confusing. It’s very important that you read the sentence out loud as soon as it appears. It’s OK if you make mistakes or don’t understand, that is an important part of what I want to know. Do the best you can, and remember you have another chance to read it. 
->
->Second reading: This time you have the luxury of pacing yourself as you please. Imagine you are providing a voice-over for a documentary. You want to sound conversational and clear, without being overly dramatic or formal. Study the sentence as long as you like, and be sure that you understand it before you begin reading. It is most important to sound natural, without worrying about how long it takes to prepare.
->
->The experiment will begin with brief instructions, recapping what you are reading now. There will then be a practice session to get you comfortable with the task and a chance for you to ask any questions you have. Finally, after your questions are answered, the study will begin in earnest.
->
->Each sentence will follow the same pattern. You will be presented with a screen which displays a series of plus signs. This indicates that the system is ready and that you should press the button labeled “START” when you are ready to read a sentence. As soon as you press the button, the sentence will appear and you should begin your first reading. After you have completed the reading, press the button labeled “NEXT.” You should allow a small amount of time after you finish and before you hit “NEXT,” to ensure that the recording is not cut off too early. 
->
->Once you have pressed “NEXT,” you will see a brief instructions slide to help you keep track of where you are. You should then press “START” and begin preparing to read the second time. The background color will change to confirm that the computer has registered your key press. Once you’re ready, read the sentence aloud for the second time and then press “DONE.” Once again, be sure not to cut yourself off. Wait a moment after you finish reading before pressing “DONE.”
->
->You are not being judged or measured in any way. Rather, we are interested in how these sentences are pronounced by native speakers of English. Any confusion you have or mistakes you make are interesting properties of the sentences, not failings of you, the speaker.
->
->The keys used during the experiment are clearly labeled, but the function of each key is listed below for your reference. There is no hurry for pressing the keys. The only timing of importance is that you begin reading as quickly as possible after pressing “START.” The task should take no longer than one hour
+First reading: Begin reading immediately, without giving yourself a chance to look ahead. Imagine you are a television reporter reading an urgent update from a teleprompter. You must be as quick as possible, without taking any time to read ahead.  You want to sound natural if you can, but it is more important to not delay. These sentences are complicated and potentially confusing. It’s very important that you read the sentence out loud as soon as it appears. It’s OK if you make mistakes or don’t understand, that is an important part of what I want to know. Do the best you can, and remember you have another chance to read it. 
+
+Second reading: This time you have the luxury of pacing yourself as you please. Imagine you are providing a voice-over for a documentary. You want to sound conversational and clear, without being overly dramatic or formal. Study the sentence as long as you like, and be sure that you understand it before you begin reading. It is most important to sound natural, without worrying about how long it takes to prepare.
+
+The experiment will begin with brief instructions, recapping what you are reading now. There will then be a practice session to get you comfortable with the task and a chance for you to ask any questions you have. Finally, after your questions are answered, the study will begin in earnest.
+
+Each sentence will follow the same pattern. You will be presented with a screen which displays a series of plus signs. This indicates that the system is ready and that you should press the button labeled “START” when you are ready to read a sentence. As soon as you press the button, the sentence will appear and you should begin your first reading. After you have completed the reading, press the button labeled “NEXT.” You should allow a small amount of time after you finish and before you hit “NEXT,” to ensure that the recording is not cut off too early. 
+
+Once you have pressed “NEXT,” you will see a brief instructions slide to help you keep track of where you are. You should then press “START” and begin preparing to read the second time. The background color will change to confirm that the computer has registered your key press. Once you’re ready, read the sentence aloud for the second time and then press “DONE.” Once again, be sure not to cut yourself off. Wait a moment after you finish reading before pressing “DONE.”
+
+You are not being judged or measured in any way. Rather, we are interested in how these sentences are pronounced by native speakers of English. Any confusion you have or mistakes you make are interesting properties of the sentences, not failings of you, the speaker.
+
+The keys used during the experiment are clearly labeled, but the function of each key is listed below for your reference. There is no hurry for pressing the keys. The only timing of importance is that you begin reading as quickly as possible after pressing “START.” The task should take no longer than one hour
 
 The instruction also contained a table (table \@ref(tab:keytab)) which described the purpose and position of the relevant buttons on the keyboard. A separate page with just this table was also provided, and participants were allowed to keep the instructions with them during the entire procedure.
 
@@ -111,3 +113,66 @@ Please work with the assumption that “prosodic boundary” in what follows is 
 * Struggle?: Indicate whether or not the speaker appears to have had difficulty reading the sentence. This should be relative to their baseline reading fluency, so if a person is hesitant every time, hesitance should not be enough to indicate a struggle.
 * Start of struggle: indicate the region in which you first notice the speaker struggling.
 *Question?: indicate simply whether or not the recording sounds like a question, prosodically (e.g. final rise is present).
+
+# Median R1 delay by participant {#r1dbyp}
+
+```{r results_setup,echo=F,warning=F,message=F}
+
+kable <- function(data,...) {
+  knitr::kable(data, booktabs = TRUE,...)
+}
+
+
+
+library(extrafont)
+library(readr)
+library(dplyr)
+library(tidyr)
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+library(psych)
+
+hidel <- 1050
+lodel <- 901
+
+mdata <- read_csv("../drafts/export/prosody_data.csv")
+raw_rs_file <- read_csv("../csvs/merged.csv")
+raw_rs_file$UID <- as.factor(with(raw_rs_file, paste(Participant,Item,Reading,sep="-")))
+raw_rs_file <- subset(raw_rs_file,UID %in% mdata$UID)
+raw_rs <- subset(raw_rs_file,!isFiller)
+raw_rs$reading <- raw_rs$Reading
+
+
+r1data <- subset(raw_rs, reading == 1)
+r1delByP <- aggregate(r1data$Leading,by=list("Participant" = r1data$Participant), FUN=median)
+
+r1delByP$r1DelCat <- ifelse(r1delByP$x < lodel, "FAST", ifelse(
+  r1delByP$x > hidel, "SLOW", "NORMAL"
+))
+catdes <- sprintf("FAST median R1 delay $\\\\leq$ %0.2fs. SLOW median R1 delay $>$ %0.2fs",lodel/1000,hidel/1000)
+
+tab <- table(r1delByP$r1DelCat)
+
+colnames(r1delByP)[2] <- "r1delbyp"
+
+mdata$Participant <- mdata$SID
+mdata<-merge(r1delByP,mdata,by="Participant")
+mdata <- subset(mdata,simple2lvl != "NEITHER")
+mdata$condition <- factor(mdata$condition,levels(factor(mdata$condition))[c(1,3,2,4)])
+r1deldes <- describe(r1delByP$r1delbyp)
+```
+
+Table \ref{tab:pmedians} shows each participants' median R1 delay.
+
+```{r pmedians}
+r1delByP <- arrange(r1delByP,r1delbyp)
+r1d<-cbind("P"=c(1:32),r1delByP[2:3]) 
+r1d  %>% 
+  kable(
+    caption="Median R1 delay by participant", 
+    col.names=c('#','Median R1 delay','R1 delay category'),
+    align="c"
+  ) %>% 
+  kable_styling(latex_options = c("hold_position","repeat_headers"))
+```
