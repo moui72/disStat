@@ -611,7 +611,7 @@ ggplot(
     y="Mean IRT (ms)",
     linetype="",
     title="Mean IRT by condition", 
-    subtitle = "Confidence intervals represent one standard error"
+    subtitle = "Error bars represent one standard error"
   )
 ```
 
@@ -696,6 +696,9 @@ irt.summer <- lmerTest::lmer(
 For the first model, fixed effects of &plusmn;GP and &plusmn;Q as well is the interaction between them were included, along with random effects of participant and item. The second model removes the interaction, but keeps both main effects.
 
 ```{r modTabLME}
+
+#todo redo the table display
+
 huxreg(
   list(
     "Full"=irt.full, 
@@ -738,7 +741,7 @@ row.names(comp) <- c("No fixed effects", "Full")
 kable(comp,caption="Full model vs. no fixed effects",col.names=cols,escape=F)
 ```
 
-There are clearly main effects of both &plusmn;GP and &plusmn;Q: table \ref{tab:modCom3} shows that the full model is significantly better than the one with no fixed effects. 
+Table \ref{tab:modCom3} shows that the improvement of the full model over the one with with no fixed effects approaches significance (p < 0.1). 
 
 ```{r modCom}
 

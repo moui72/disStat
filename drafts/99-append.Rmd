@@ -15,11 +15,27 @@ The D +GP and Q -GP versions of experimental items. The remaining versions can b
 
 ```{r}
 library(readr)
-items <- read_csv("../csvs/src/exp-items.csv")
-items[c(1,2)] %>% kable(col.names=c("#", "Declarative garden paths (D +GP)"),booktab=T) %>% 
-  kable_styling(latex_options = c("hold_position"))
-items[c(1,5)] %>% kable(col.names=c("#", "Interrogative garden paths (Q -GP)"),booktab=T) %>% 
-  kable_styling(latex_options = c("hold_position"))
+library(tidyr)
+items <- read_csv("../csvs/src/exp-items.csv") 
+items$asp <- ifelse(
+  grepl("intended",items$EDY,fixed = T),
+  "intended",
+  ifelse(
+    grepl("wanted",items$EDY,fixed = T),
+    "wanted",
+    ifelse(
+      grepl("decided",items$EDY,fixed = T),
+      "decided",
+      "planned")
+    )
+  )
+names(items) <- c("no","D+GP","Q+GP","D-GP","Q-GP","asp")
+
+fitems <- items %>% gather(key="version",value="text",-no,-asp) %>% arrange(asp,no,version,text) 
+fitems[c(1,3:4)] %>% 
+  kable(col.names=c("#", "Version", " "),booktab=T) %>% 
+  collapse_rows(1) %>%
+  kable_styling(latex_options = c("hold_position","repeat_headers"))
 ```
 
 # Filler items {#fillers}
