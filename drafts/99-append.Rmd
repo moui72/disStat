@@ -16,6 +16,7 @@ The D +GP and Q -GP versions of experimental items. The remaining versions can b
 ```{r}
 library(readr)
 library(tidyr)
+library(dplyr)
 items <- read_csv("../csvs/src/exp-items.csv") 
 items$asp <- ifelse(
   grepl("intended",items$EDY,fixed = T),
