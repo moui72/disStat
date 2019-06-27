@@ -101,12 +101,30 @@ In total there were 16 experimental items in 4 versions each, and 32 fillers in 
 
 The goal in creating the experimental items was to have four versions of each item: a declarative garden path (D+GP), a declarative non-garden path (D-GP), an interrogative garden path (Q+GP) and an interrogative non-garden path (Q-GP). The experimental stimuli are based on earlier pilot study exploring this same phenomenon [@qp2], but with several issues with that study's experimental items corrected.  The structure of the items are, schematically, something like (@schema).
 
-  (@schema) Schematic description of experimental items
-<pre>
-            She       had planned to put                  the jelly beans in the window onto a fancy dish.
-            [Subject] [Verb-cluster: AUX + Matrix + Main] [Object]        [PP1]         [PP2]
-</pre>
+  (@schema) [Subject] [Verb-cluster: AUX + Matrix + Main] [Object] [PP1] [PP2]
   
+PP1 is always interpretable as either a modifier of the object NP or as the goal argument of the main verb; i.e. it is temporarily ambiguous. As a reminder, the running assumption is that the parser will initially assume PP1 to be the goal argument and attach it high (as an argument of the verb). For the +GP cases, PP2 will be incompatible with that structure and force reanalysis, so that PP1 attaches low as a modifier of the object and PP2 attaches high as the verbal argument. For the -GP cases, conversely, PP2 will be compatible with high attachment of PP1, i.e. will attach low as a modifier of PP1's embedded NP. An example item in its four versions is provided in table \@ref(tab:sentences).
+
+```{r sentences}
+sentences <-cbind( 
+  c(
+    "D-GP",
+    "Q-GP" ,
+    "D+GP",
+    "Q+GP"
+  ), 
+  c(
+    "He had intended to cram the paperwork in the drawer of his filing cabinet.",
+    "Had he intended to cram the paperwork in the drawer of his filing cabinet?",
+    "He had intended to cram the paperwork in the drawer into his boss's desk.",
+    "Had he intended to cram the paperwork in the drawer into his boss's desk?"
+  )
+)
+colnames(sentences) <- c("Version","Sentence")
+kable(sentences, booktabs=T, caption="Experimental item in four versions")
+```
+In what follows, a detailed description of the considerations involved in creating this items is provided.
+
 The reason for using a complex verb cluster rather than a single verb has two parts. The auxiliary is there in order to eliminate differences across items: an interrogative version, +GP or -GP, is always identical to its declarative counterpart in every way, except for inversion of the order of the subject and auxiliary verb, and the replacement of a final period with a final question mark. If an auxiliary verb were not present, then the interrogatives would have an extra word, so-called *do*-support, that does not appear in the declarative (e.g. *she put ...* vs. *did she put ...?*). The auxiliary is always *had* and the past participle is always one of the following four: *decided*, *intended*, *wanted*, and *planned*. The purpose of the past participle matrix verbs is to partially alleviate the oddity of the yes/no questions. It seems quite odd to ask, "did she put the jelly beans in the window onto a fancy dish?" because, when it’s clear that the speaker already knows so much about the situation, it becomes difficult to imagine a pragmatically plausible context where the question would be asked. Such sentences might be described as “prosecutorial[^dcbp].” Arguably, this is somewhat mitigated by the addition of a verb like *decided*: rather than asking about facts that we already seem to know, we are instead asking about the actor's intention with regard to something that may or may not have taken place. Even if we know the facts of the situation, we do not necessarily know for instance whether it was the result of a decision, some third party's action, or merely happenstance.
 
 [^dcbp]: Thank you to Dianne Bradley for making this observation, and for the very clever “prosecutorial” descriptor.
@@ -127,33 +145,18 @@ Importantly, the main verb needs to be one which obligatorily takes a PP goal ar
 
 A verb like *hide*, as in (@weak), can take a goal, but is also able to do without one. A verb like *cram*, on the other hand, as in (@strong), really must have a goal. In designing the items for this study, only verbs that require a goal argument were used in order to maximize the likelihood of a robust garden path effect in the +GP versions, when PP2 triggers reanalysis. The four verbs used in this study were: *cram*, *put*, *stick* and *set*. 
 
-
-
-```{r sentences}
-sentences <-cbind( 
-  c(
-    "D-GP",
-    "Q-GP" ,
-    "D+GP",
-    "Q+GP"
-  ), 
-  c(
-    "He had intended to cram the paperwork in the drawer of his filing cabinet.",
-    "Had he intended to cram the paperwork in the drawer of his filing cabinet?",
-    "He had intended to cram the paperwork in the drawer into his boss's desk.",
-    "Had he intended to cram the paperwork in the drawer into his boss's desk?"
-  )
-)
-colnames(sentences) <- c("Version","Sentence")
-kable(sentences, booktabs=T, caption="Experimental item in four versions")
-```
-
 Another important consideration was ensuring that the +GP versions had a PP2 which fully disambiguated the attachment site of PP1 such that reanalysis is forced. In (@ambig), PP2 is implausible as a modifier of *rocking horse*, but strictly impossible, and the sentence is certainly grammatical with low attachment of PP2. On the other hand, the use of *onto* in (@disam) completely disallows the low attachment of PP2 at the syntactic level: a PP headed by *onto* simply cannot modify the preceding NP.
 
   (@ambig) She had decided to put the child [~PP1~ on the rocking horse] [~PP2~ **on** the see-saw].
   (@disam) She had decided to put the child [~PP1~ on the rocking horse] [~PP2~ **onto** the see-saw].
   
 Where [@qp2] relied on plausibility to force reanalysis, this study uses syntactic disambiguation, such that the +GP versions always have a PP2 headed by *into* or *onto* This avoids any discrepency between individuals' belief of what is plausible from impacting the parse obtained.
+
+For the -GP items, the head preposition of PP2 was always either *from* or *of* (half and half, 8 each), which are compatible with a parse where PP1 is the goal argument and PP2 is modifying the NP within PP1. While *from* can be read as a goal argument, the assumptions made about how parsing works lead this to be an unlikely analysis, and *of*-headed PPs certainly cannot be a goal argument.
+
+It's worth noting that some linguists believe *of* is not a preposition in the same sense as *from*, *on*, or *in*, etc. It's also importantly only 2 characters, whereas *into*, *onto*, and *from* (the other possible heads of PP2) are all 4 characters. This is revisted and its impact is explored in the results section.
+
+The preposition that headed PP1 was always one which was compatable with a goal argument: *in* (8), *on* (7), and in one case, *under*.
 
 ### Fillers
 
