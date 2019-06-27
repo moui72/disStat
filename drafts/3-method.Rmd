@@ -86,27 +86,45 @@ Another wrinkly involves the so-called eye-voice span (EVS). According to @evs, 
 
 ## Materials
 
-A number of considerations went into creating the materials for this study. The experimental stimuli are based on earlier pilot study exploring this same phenomenon [@qp2], but with several issues with that study's experimental items corrected.
+<!--
+  NOTE TO SELF 
+  Ensure that BACKGROUND covers: 
+    + "garden path" model of parsing
+    + "expected parse" and "reanalysis"
+    + "goal argument" -> **define argument vs. modifier**
+    +  *Minimal Attachment* & *Argument Preference*
+    + that arguments *must* be attached immediately (cf. construal)
 
-One of these issues was that the verbs did not all strongly sub-categorize for a PP-argument. This could affect the strength of the garden path effect, since the strength of that sub-categorization might impact the amount of influence that the parsing strategy of *Minimal Attachment* or *Argument Preference* has on the parse. Theoretically, verbs with stronger sub-categorization for a PP-argument would result in a stronger garden path effect, or more difficulty in understanding the sentence. 
+-->
 
-Another issue had to do with the level of detail present in the sentences, especially when they were presented as yes/no-questions. When it’s clear that the speaker already knows so much about the situation, it becomes difficult to imagine a pragmatically plausible context where the question would be asked. Such sentences might be described as “prosecutorial[^dcbp].” 
+The goal in creating the items was to have four versions of each item: a declarative garden path (D+GP), a declarative non-garden path (D-GP), an interrogative garden path (Q+GP) and an interrogative non-garden path (Q-GP). The experimental stimuli are based on earlier pilot study exploring this same phenomenon [@qp2], but with several issues with that study's experimental items corrected.  The structure of the items are, schematically, something like (@schema).
 
-There was also an issue of whether the temporary ambiguity in some of the non-garden path items was ever fully disambiguated. This section will go over considerations taken in order to adjust the stimuli from the earlier study into more systematic and consistent format. The construction of these items is discussed in detail in the rest of this section.
+  (@schema) She       had planned to put                  the jelly beans in the window onto a fancy dish.
+            [Subject] [Verb-cluster: AUX + Matrix + Main] [Object]        [PP1]         [PP2]
+  
+Importantly, the main verb needs to be one which obligatorily takes a PP goal argument. One of these issues with the items from [@qp2] was that the some of the verbs used only optionally took a goal[^goalmod]. Verbs that only optionally take a goal are likely to result in a parse where PP1 is not immediately incorporated as the goal argument, but rather be incorporated as a modifier of the object, which would mean that PP2 would not force reanalysis. Consider the contrasting sub-categorization of the verbs in (@weak-@strong):
 
-[^dcbp]: Thank you to Dianne Bradley for making this observation, and for the very clever “prosecutorial” descriptor.
+[^goalmod]: Because "optional argument" is arguably a contradictory term, I refrain from referring to goals that are not obligatory as "arguments"; I will instead call them goal modifiers of the verb, or just goals.
 
-### Four versions of the experimental items
+  (@weak) Weak PP-argument sub-categorization (*hide*) 
+  
+  a. The gangsters had hidden the shotguns in a U-Haul truck in an old outhouse. 
+  b. \checkmark The gangsters had hidden the shotguns.
+            
+  (@strong) Strong PP-argument sub-categorization (*cram*) 
+  
+  a. Justin had crammed the old newspapers under the couch in a small wastebasket.
+  b. \* Justin had crammed the old newspapers.
 
-The experimental items for this study consisted of 16 sentences in 4 versions: declarative and yes/no interrogative versions of both a PP-attachment garden path of the type discussion earlier, and a non-garden path control which is identical to the garden path up until the final PP, when that PP disambiguates the sentence such that the parse is plausible with a PP2 that modifies the head noun of PP1. The interrogative is always identical to the declarative in every way except for inversion of the order of the subject and auxiliary verb, and the replacement of a final period with a final question mark. An example item in all four versions is shown in \@ref(tab:sentences).
+A verb like *hide*, as in (@weak), can take a goal, but is also able to do without one. A verb like *cram*, on the other hand, as in (@strong), really must have a goal. In designing the items for this study, only verbs that require a goal argument were used in order to maximize the likelihood of a robust garden path effect in the +GP versions, when PP2 triggers reanalysis. The four verbs used in this study were: *cram*, *put*, *stick* and *set*.
 
 ```{r sentences}
 sentences <-cbind( 
   c(
-    "Declarative non-garden path",
-    "Interrogative non-garden path" ,
-    "Declarative garden path",
-    "Interrogative garden path"
+    "D-GP",
+    "Q-GP" ,
+    "D+GP",
+    "Q+GP"
   ), 
   c(
     "He had intended to cram the paperwork in the drawer of his filing cabinet.",
@@ -119,42 +137,34 @@ colnames(sentences) <- c("Version","Sentence")
 kable(sentences, booktabs=T, caption="Experimental item in four versions")
 ```
 
-### Main verbs in experimental items
+Another important consideration was ensuring that the +GP versions had a PP2 which fully disambiguated the attachment site of PP1 such that reanalysis is forced. In (@ambig), PP2 is implausible as a modifier of *rocking horse*, but strictly impossible, and the sentence is certainly grammatical with low attachment of PP2. On the other hand, the use of *onto* in (@disam) completely disallows the low attachment of PP2 at the syntactic level: a PP headed by *onto* simply cannot modify the preceding NP.
 
-An earlier pilot study exploring this same phenomenon (Peckenpaugh, 2016) had several issues with its materials. One of these issues was that the verbs did not all strongly sub-categorize for a PP-argument. This could affect the strength of the garden path effect, since the strength of that sub-categorization might impact the amount of sway that the parsing strategy of Minimal Attachment or Argument Preference has on the parse. Theoretically, verbs with stronger sub-categorization for a PP-argument would result in a strong garden path effect.
-
-
-  (@weak) Weak PP-argument sub-categorization (*hide*) 
+  (@ambig) She had decided to put the child [~PP1~ on the rocking horse] [~PP2~ **on** the see-saw].
+  (@disam) She had decided to put the child [~PP1~ on the rocking horse] [~PP2~ **onto** the see-saw].
   
-  a. The gangsters had hidden the shotguns in a U-Haul truck in an old outhouse. 
-  b. \checkmark The gangsters had hidden the shotguns.
-            
-  (@strong) Strong PP-argument sub-categorization (*cram*) 
-  
-  a. Justin had crammed the old newspapers under the couch in a small wastebasket.
-  b. \* Justin had crammed the old newspapers.
+Where [@qp2] relied on plausibility to force reanalysis, this study uses syntactic disambiguation, such that the +GP versions always have a PP2 headed by *into* or *onto* This avoids any particularly creative individuals from simply accepting an implausible parse.
 
+### Avoiding too much detail
 
-The examples in (@weak) and (@strong) point out that while you really must cram something somewhere, you don’t necessarily need to say where you hide something. That is, the verb *hide* seen in (@weak) does not strongly sub-categorize for a locative argument (hence the acceptability of (@weak~\tiny ~b)), while cram (@strong) does, rendering (@strong~\tiny ~b) unacceptable. Because of the asymmetry in sub-categorization strength, sentences like (@weak) might not trigger as strong a garden-path effect, because the parser might assume that no PP-argument is forthcoming, while for (@strong) the parser will jump at the opportunity to parse a PP as an argument.  In designing the items for this study, only verbs with strong PP-argument sub-categorization were used. The four verbs selected were: *cram*, *put*, *stick* and *set*.
+Another issue had to do with the level of detail present in the sentences, especially when they were presented as yes/no-questions. When it’s clear that the speaker already knows so much about the situation, it becomes difficult to imagine a pragmatically plausible context where the question would be asked. Such sentences might be described as “prosecutorial[^dcbp].” 
+
+There was also an issue of whether the temporary ambiguity in some of the non-garden path items was ever fully disambiguated. This section will go over considerations taken in order to adjust the stimuli from the earlier study into more systematic and consistent format. The construction of these items is discussed in detail in the rest of this section.
+
+[^dcbp]: Thank you to Dianne Bradley for making this observation, and for the very clever “prosecutorial” descriptor.
+
+### Four versions of the experimental items
+
+The experimental items for this study consisted of 16 sentences in 4 versions: declarative and yes/no interrogative versions of both a PP-attachment garden path of the type discussion earlier, and a non-garden path control which is identical to the garden path up until the final PP, when that PP disambiguates the sentence such that the parse is plausible with a PP2 that modifies the head noun of PP1. The interrogative is always identical to the declarative in every way except for inversion of the order of the subject and auxiliary verb, and the replacement of a final period with a final question mark. An example item in all four versions is shown in \@ref(tab:sentences).
 
 ### Complex tense
-
+<!-- rewrite -->
 To minimize the morphology present on the PP-argument-selecting main verb (e.g. *cram*), each sentence contained a past-tense auxiliary verb and past participle verb before the infinitive version of the main verb. The use of an auxiliary makes the words present in the declarative exactly the same as in the interrogative by eliminating the need for "do-support" and adjusted morphology on the main verb (i.e. rather than "He crammed ..." vs. "Did he cram ...?" we have "He had crammed ..." vs. "Had he crammed ...?"). The auxiliary is always *had* and the past participle is always one of the following four: *decided*, *intended*, *wanted*, and *planned*. The presence of these preface verbs also help to alleviate the oddity of the yes/no questions, because it is understandable to question someone's intentions, even when a large amount of detail is already known; whereas, questioning the details themselves when they are already known leads to the "prosecutorial" issue mentioned earlier.
 
   (@lessPros) Had he intended to put the bicycle on the roof rack of the minivan?
   (@pros) Had he put the bicycle on the roof rack of the minivan?
   
 It seems less odd to wonder whether *he had intended* to do something, as in (@lessPros) when we know so many details, rather than to wonder if he did as in (@pros); that is, it is presupposed that he did the thing, but we are left to wonder about his intention. The preface verb also seems to attract the focus of the yes/no question, providing a somewhat controlled environment for what can be difficult to ascertain: in (@pros) the focus could be on any number of elements, with no easily assumed default. The default focus in (@lessPros) seems most likely to be on *planned*.
-
-
-### Prepositions and disambiguation
-
-Every version of each experimental item should be fully disambiguated by the preposition heading the final PP. When PP2 attaches low, a preposition that is not compatible with being the resultative/locative argument of the verb but can be a modifier of the noun of the preceding PP is used: *from* or *of*. When the final PP attaches high, a preposition that is not compatible with being a modifier of the noun in the preceding PP but can be the resultative/locative argument of the verb is used: *into* or *onto*.
-
-  (@low)  Had he planned to set the appetizers on [~NP~ the platter [~PP2~ *from* his cousin]]?
-  (@high) Had he planned to set the appetizers on [~NP~ the platter] [~PP2~ *onto* the buffet]?
-  
-This clear disambiguation should prevent any lingering processing issues due to ambiguity in the non-garden path versions of the sentences.
+<!--^^^^ -->
 
 ### Fillers
 
