@@ -24,7 +24,7 @@
 <meta name="author" content="Tyler J. Peckenpaugh" />
 
 
-<meta name="date" content="2019-06-27" />
+<meta name="date" content="2019-06-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,13 +33,13 @@
   
 <link rel="prev" href="methodology.html">
 <link rel="next" href="reading-1-delay-category.html">
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<script src="assets/jquery-2.2.3/jquery.min.js"></script>
+<link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 
 
 
@@ -47,7 +47,7 @@
 
 
 
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="assets/kePrint-0.0.1/kePrint.js"></script>
 
 
 
@@ -1030,189 +1030,8 @@ Q +GP
 <div id="regression-models-predicting-break-occurence" class="section level3">
 <h3><span class="header-section-number">4.2.1</span> Regression models predicting break occurence</h3>
 <p>Models predicting the PP1 break and the object break are presented in table . No random slopes were included, as models with random slopes did not converge. For all models in this section, the intercept represents the declarative, non-garden path case. Where Reading is included as a factor, the intercept represents Reading 1.</p>
-<table class="huxtable" style="border-collapse: collapse; margin-bottom: 2em; margin-top: 2em; width: 50%; margin-left: auto; margin-right: auto;  " id="lmPros">
-<caption style="caption-side: top; text-align: center;"><span id="tab:lmPros">Table 4.8: </span> Logistic regression models of prosody</caption><col><col><col><col><col><tr>
-<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">PP1</td>
-<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">OBJ</td>
-<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">PP1 Dominance</td>
-<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">OBJ Dominance</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">Intercept</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">1.102 *&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.934 *&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-0.098&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-0.111&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.448)&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.384)&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.336)&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.333)&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">GP</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">4.528 ***</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-1.004 ***</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">2.035 ***</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-2.104 ***</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.737)&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.232)&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.222)&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.229)&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">Q</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-0.044&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-0.384&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.138&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-0.091&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.216)&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.238)&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.202)&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.198)&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">GP:Q Interaction</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-0.687&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.417&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.391&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-0.358&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.898)&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.321)&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.316)&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.327)&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">Reading</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-0.081&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.559 ***</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-0.399 **&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.374 *&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">(0.208)&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">(0.160)&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">(0.155)&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">(0.157)&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">N</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">978&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">978&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">978&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">978&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">logLik</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-310.339&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-511.709&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-534.478&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-520.813&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt; padding: 4pt 4pt 4pt 4pt;">AIC</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt; padding: 4pt 4pt 4pt 4pt;">634.678&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt; padding: 4pt 4pt 4pt 4pt;">1037.418&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt; padding: 4pt 4pt 4pt 4pt;">1082.956&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt; padding: 4pt 4pt 4pt 4pt;">1055.627&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td colspan="5" style="vertical-align: top; text-align: left; white-space: normal; padding: 4pt 4pt 4pt 4pt;"> *** p &lt; 0.001;  ** p &lt; 0.01;  * p &lt; 0.05.</td>
-</tr>
-</table>
-
-<p>Reading is a statistically siginficant predictor for three of the four models shown in table . Models which exclude Reading 1 are shown in , as these data are more likely to represent true prosodic breaks, or the intended prosody of the reader, rather than mistakes or hesitations. For the models over only Reading 2, the one predicting the presence of a PP1 break failed to converge.</p>
-<table class="huxtable" style="border-collapse: collapse; margin-bottom: 2em; margin-top: 2em; width: 50%; margin-left: auto; margin-right: auto;  " id="lmPros">
-<caption style="caption-side: top; text-align: center;"><span id="tab:lmPros">Table 4.8: </span> Logistic regression models of prosody, Reading 2 only</caption><col><col><col><col><tr>
-<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">OBJ</td>
-<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">PP1 Dominance</td>
-<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">OBJ Dominance</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">Intercept</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">2.196 ***</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-0.947 **&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.595 *&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.413)&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.288)&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.258)&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">GP</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-0.885 *&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">2.113 ***</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-1.922 ***</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.355)&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.317)&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.311)&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">Q</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-0.877 *&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.313&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-0.174&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.352)&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.292)&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.279)&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">GP:Q Interaction</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.965 *&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.087&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-0.324&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">(0.481)&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">(0.435)&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">(0.440)&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">N</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">489&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">489&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">489&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">logLik</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-240.448&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-279.219&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-278.314&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt; padding: 4pt 4pt 4pt 4pt;">AIC</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt; padding: 4pt 4pt 4pt 4pt;">492.896&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt; padding: 4pt 4pt 4pt 4pt;">570.438&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt; padding: 4pt 4pt 4pt 4pt;">568.628&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td colspan="4" style="vertical-align: top; text-align: left; white-space: normal; padding: 4pt 4pt 4pt 4pt;"> *** p &lt; 0.001;  ** p &lt; 0.01;  * p &lt; 0.05.</td>
-</tr>
-</table>
-
+<p>Reading is a statistically siginficant predictor for three of the four models shown in table . Models which exclude Reading 1 are shown in , as these data are more likely to represent true prosodic breaks, or the intended prosody of the reader, rather than mistakes or hesitations. For the models over only Reading 2, the one predicting the presence of a PP1 break failed to converge.
+tabular_environment(“tabular”)</p>
 <p>Note that the model predicting the presence of the PP1 break failed to converg, and so is omitted from the Reading 2 only models.</p>
 <pre><code>TODO 
 
@@ -1246,7 +1065,7 @@ Figure 4.2: Distribution of wIRT
 <p>Table  shows the mean wIRT by experimental condition. The top left cell represents the mean wIRT for the declaritive controls (“D -GP”). The bottom row shows the increase in IRT across the garden path condition.</p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:mns">Table 4.9: </span>Means (s) by condition
+<span id="tab:mns">Table 4.8: </span>Means (s) by condition
 </caption>
 <thead>
 <tr>
@@ -1310,85 +1129,12 @@ Figure 4.3: Mean IRT by condition
 <h4><span class="header-section-number">4.3.0.3</span> Regression models of IRT</h4>
 <p>The models with random slopes for participant and item did not converge, so the tables in this section show models with no random slopes.</p>
 <p>For the first model, fixed effects of ±GP and ±Q as well is the interaction between them were included, along with random effects of participant and item. The second model removes the interaction, but keeps both main effects.</p>
-<table class="huxtable" style="border-collapse: collapse; margin-bottom: 2em; margin-top: 2em; width: 50%; margin-left: auto; margin-right: auto;  " id="tab:models">
-<caption style="caption-side: top; text-align: center;"><span id="tab:models">Table 4.10: </span> Models</caption><col><col><col><col><col><tr>
-<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">Full</td>
-<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">No interaction</td>
-<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">No random effects</td>
-<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">No fixed effects</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">+GP</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">416.401&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">456.133&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">411.636&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(299.877)</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(212.357)</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(487.484)</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">Q</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">288.168&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">327.554&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">272.462&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(298.528)</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(212.313)</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(485.506)</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">+GP Q</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">79.786&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-36.931&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">(425.161)</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">(690.156)</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">N</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">489&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">489&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">489&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">489&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">logLik</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-4544.769&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-4544.787&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-4724.504&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-4548.229</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt; padding: 4pt 4pt 4pt 4pt;">AIC</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt; padding: 4pt 4pt 4pt 4pt;">9103.538&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt; padding: 4pt 4pt 4pt 4pt;">9101.573&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt; padding: 4pt 4pt 4pt 4pt;">9459.008&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt; padding: 4pt 4pt 4pt 4pt;">9104.458</td>
-</tr>
-</table>
-
 <p>A model with no fixed effects and one with no random effects were also run. The estimates from these models can be seen in table .</p>
 
 <p>Several model comparisons were made, seen in tables , , and .</p>
 <table>
 <caption>
-<span id="tab:modCom3">Table 4.11: </span>Full model vs. no fixed effects
+<span id="tab:modCom3">Table 4.9: </span>Full model vs. no fixed effects
 </caption>
 <thead>
 <tr>
@@ -1484,7 +1230,7 @@ Full
 <p>Table  shows that the improvement of the full model over the one with with no fixed effects approaches significance (p &lt; 0.1).</p>
 <table>
 <caption>
-<span id="tab:modCom">Table 4.12: </span>Full model vs. no interaction
+<span id="tab:modCom">Table 4.10: </span>Full model vs. no interaction
 </caption>
 <thead>
 <tr>
@@ -1580,7 +1326,7 @@ Full
 <p>The interaction between main effects, though, is not able to be confirmed (in fact, table  shows the non-interaction to be better, but not to a stastically significance degree).</p>
 <table>
 <caption>
-<span id="tab:modCom2">Table 4.13: </span>Full model vs. no random effects
+<span id="tab:modCom2">Table 4.11: </span>Full model vs. no random effects
 </caption>
 <thead>
 <tr>
@@ -1681,7 +1427,7 @@ Full
 <p>If we consider the mean wIRT by which of the 4 verbs occured in the target sentence (<em>cram</em>, <em>set</em>, <em>put</em>, or <em>stick</em>), we see that there was some difference in how the two experimental manipulations (±GP = garden path status and ±Q = interrogative vs. declarative status) effected wIRT. The means (and standard deviation) across the conditions are reported for each verb in table .</p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:verbConMeans">Table 4.14: </span>Mean (sd) wIRT by condition and verb in seconds
+<span id="tab:verbConMeans">Table 4.12: </span>Mean (sd) wIRT by condition and verb in seconds
 </caption>
 <thead>
 <tr>
@@ -1776,7 +1522,7 @@ stick
 <p>To isolate the effect of the garden path for interrogatives as compared to declartives, we can subtract the mean for declarative non-garden paths from the mean for declarative garden paths, and then do the same for interrogatives. These measures are referred to as the “declarative GP effect” and “interrogative GP effect” in . The difference between the declarative GP effect from the interrogative GP effect is labeled the “difference in effect.” We can see that for 2 of the 4 verbs (<em>set</em> and <em>stick</em>), there was a positive difference in effect, while for the other two we find a negative one.</p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:verbConDiffMeans">Table 4.15: </span>Effect of GP on wIRT by verb
+<span id="tab:verbConDiffMeans">Table 4.13: </span>Effect of GP on wIRT by verb
 </caption>
 <thead>
 <tr>
@@ -1859,7 +1605,7 @@ stick
 <p>Individuals vary with regard to the effect of the garden path condition on IRT. For 17 of 32, the increase in IRT for garden paths is greater for interrogatives than it is for declaratives.</p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:pPattern">Table 4.16: </span>Mean wIRT (ms) by condition and participant
+<span id="tab:pPattern">Table 4.14: </span>Mean wIRT (ms) by condition and participant
 </caption>
 <thead>
 <tr>
@@ -2432,84 +2178,6 @@ NA
 <div id="interrogative-processing-cost-is-represented-in-irt" class="section level3">
 <h3><span class="header-section-number">4.3.1</span> Interrogative processing cost is represented in IRT</h3>
 <p>Interrogatives appear to have a computational processing cost when compared to interrogatives <span class="citation">(cf. Mehler 1963, @qp2)</span>. The filler sentences in this study were designed so as to provide a diagnostic of the interrogative effect on IRT.</p>
-<table class="huxtable" style="border-collapse: collapse; margin-bottom: 2em; margin-top: 2em; width: 50%; margin-left: auto; margin-right: auto;  ">
-<col><col><col><col><tr>
-<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">Only Interogitivity</td>
-<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">Full</td>
-<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">No interaction</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(Intercept)</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">6236.06&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">6261.55&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">6226.62&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(554.38)</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(573.11)</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(565.57)</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">Q</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">379.21&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">311.62&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">379.40&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(155.31)</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(236.77)</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(155.32)</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">+GP</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-49.00&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">18.69&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(284.55)</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(221.71)</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">Q * +GP</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">135.53&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">(357.36)</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">N</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">998&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">998&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">998&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">logLik</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-9278.27&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-9278.20&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-9278.27&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt; padding: 4pt 4pt 4pt 4pt;">AIC</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt; padding: 4pt 4pt 4pt 4pt;">18566.54&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt; padding: 4pt 4pt 4pt 4pt;">18570.39&nbsp;</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt; padding: 4pt 4pt 4pt 4pt;">18568.54&nbsp;</td>
-</tr>
-<tr>
-<td colspan="4" style="vertical-align: top; text-align: left; white-space: normal; padding: 4pt 4pt 4pt 4pt;"> *** p &lt; 0.001;  ** p &lt; 0.01;  * p &lt; 0.05.</td>
-</tr>
-</table>
-
 <p>The mean IRT for interrogative fillers was 6.2s; for declarative, 6.6s. Interrogatives elicited a mean IRT of 0.4s longer than declaratives. Half of the fillers had a string of two PPs at the end (+PP), and the other half had no trailing PPs (-PP). This did not impact IRT to the same degree (a difference of 0.02s across ±PP). When we look at -PP only, the impact of interrogativty on mean IRT is 0.3s, and for only +PP it’s 0.4s.</p>
 <p>A mixed effects regression model (no random slope structure, due to convergence errors) found a significant main effect of ±Q (estimate = 0.38s, t = 2.24, p &lt; 0.05), but not for ±PP or the interaction of interrogativity with ±PP.</p>
 
@@ -2543,13 +2211,13 @@ Figure 4.4: Delay comparison across reading
 <a href="reading-1-delay-category.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="assets/gitbook-2.6.7/js/lunr.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -2577,7 +2245,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["_main.pdf"],
 "toc": {
 "collapse": "subsection"
 }

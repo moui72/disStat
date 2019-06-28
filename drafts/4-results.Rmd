@@ -23,7 +23,6 @@ kable <- function(data,...) {
 }
 
 library(readr)
-library(huxtable)
 library(dplyr)
 library(tidyr)
 library(knitr)
@@ -479,49 +478,10 @@ both.odomMod<- glmer(odom~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=
 
 
 
-```{r bothprosmodels}
-#fails to converge
-huxreg(  
-  list("PP1"=both.pp1Mod, "OBJ"=both.objMod,"PP1 Dominance"=both.pdomMod,"OBJ Dominance"=both.odomMod),
-  coefs = c(
-    "Intercept"="(Intercept)",
-    "GP"="Condition_GPTRUE",
-    "Q"="Condition_QTRUE",
-    "GP:Q Interaction"="Condition_QTRUE:Condition_GPTRUE",
-    "Reading" = "Reading"
-  ),
-  statistics = c(
-    N="nobs",
-    "logLik",
-    "AIC"
-  )
-) %>%
-  set_caption("Logistic regression models of prosody") %>%
-  set_label("lmPros") %>%
-  set_tabular_environment("tabular")
-```
+
 
 Reading is a statistically siginficant predictor for three of the four models shown in table \ref{tab:bothprosmodels}. Models which exclude Reading 1 are shown in \ref{tab:prosmodels}, as these data are more likely to represent true prosodic breaks, or the intended prosody of the reader, rather than mistakes or hesitations. For the models over only Reading 2, the one predicting the presence of a PP1 break failed to converge.
-
-```{r prosmodels}
-huxreg(  
-  list("OBJ"=objMod,"PP1 Dominance"=pdomMod,"OBJ Dominance"=odomMod),
-  coefs = c(
-    "Intercept"="(Intercept)",
-    "GP"="Condition_GPTRUE",
-    "Q"="Condition_QTRUE",
-    "GP:Q Interaction"="Condition_QTRUE:Condition_GPTRUE"
-  ),
-  statistics = c(
-    N="nobs",
-    "logLik",
-    "AIC"
-  )
-) %>%
-  set_caption("Logistic regression models of prosody, Reading 2 only") %>%
-  set_label("lmPros") %>%
-  set_tabular_environment("tabular")
-```
+tabular_environment("tabular")
 
 Note that the model predicting the presence of the PP1 break failed to converg, and so is omitted from the Reading 2 only models.
 ```
@@ -695,29 +655,7 @@ irt.summer <- lmerTest::lmer(
 
 For the first model, fixed effects of &plusmn;GP and &plusmn;Q as well is the interaction between them were included, along with random effects of participant and item. The second model removes the interaction, but keeps both main effects.
 
-```{r modTabLME}
 
-#todo redo the table display
-
-huxreg(
-  list(
-    "Full"=irt.full, 
-    "No interaction"=irt.noInteraction,
-    "No random effects"=irt.noRand,
-    "No fixed effects"=irt.noFxd
-  ),
-  coefs = c(
-    "+GP"="Condition_GPTRUE",
-    "Q"="Condition_QTRUE",
-    "+GP Q"="Condition_QTRUE:Condition_GPTRUE"
-  ),
-  note=NULL,
-  statistics = c(N="nobs","logLik","AIC")
-) %>% 
-  set_caption("Models") %>% 
-  set_label("tab:models") %>%
-  set_tabular_environment("tabular")
-```
 
 A model with no fixed effects and one with no random effects were also run. The estimates from these models can be seen in table \ref{tab:models}. 
 
@@ -758,23 +696,7 @@ comp <- anova(irt.full,irt.noRand)
 row.names(comp) <- c("No random effects", "Full")
 
 kable(comp,caption="Full model vs. no random effects",col.names=cols,escape=F)
-### tab <- hux(comp[,c(1:2,4,6:8)],autoformat = T)
-### tab <- add_rows(
-###   tab, 
-###   hux("Df","AIC","logLik","&Chi;<sup>2</sup>","Df(&Chi;)","p value"),
-###   after=0
-### )
-### tab <- insert_column(
-###   tab, c("","No random effects", "Full")
-### )
-### 
-### tab %>% set_escape_contents(F,row=1,col=5:7) %>%
-###   set_number_format(value=2,col = c(3:5,7),row=2:3) %>%
-###   set_label("tab:modComp2") %>% 
-###   set_caption("No random effects vs. full model") %>%
-###   set_top_border(row=1,value=1,col=everywhere) %>%
-###   set_bottom_border(row=1,value=1,col=2:7) %>% 
-###   set_bottom_border(row=final(1),value=1,col=everywhere) 
+
 ```
 
 Table \ref{tab:modCom2} shows that the random effects of participant and item improve the model in a stastically signifcant way.
@@ -883,16 +805,7 @@ fillerModel.ppNoInt <- lme4::lmer(
   REML=F
 )
 
-huxreg(
-  list("Only Interogitivity"=fillerModel,"Full"=fillerModel.pp,"No interaction"=fillerModel.ppNoInt),
-  number_format = 2, 
-  coefs=c(
-    "(Intercept)"="(Intercept)",
-    "Q" = "Condition_QTRUE",
-    "+GP" ="Condition_GPTRUE",
-    "Q * +GP" = "Condition_QTRUE:Condition_GPTRUE" 
-  )
-) 
+
 ```
 
 The mean IRT for interrogative fillers was `r round(mean.irtByQ[1,]$x/1000,1)`s; for declarative, `r round(mean.irtByQ[2,]$x/1000,1)`s. Interrogatives elicited a mean IRT of `r round(diff(mean.irtByQ$x)/1000,1)`s longer than declaratives. Half of the fillers had a string of two PPs at the end (+PP), and the other half had no trailing PPs (-PP). This did not impact IRT to the same degree (a difference of `r abs(round(diff(mean.irtByPP$x/100),2))`s across &plusmn;PP). When we look at -PP only, the impact of interrogativty on mean IRT is 0.3s, and for only +PP it's 0.4s.
