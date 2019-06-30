@@ -39,35 +39,23 @@ rownames(ccombo)<-c("Both", "OBJ", "PP1")
 ```
 # Discussion
 
-This section will go through the motivating questions behind this study and discuss the extent to which those questions are answered, or not. It will discuss the issues that may have lead to some results that were disatisfying and how to correc them for futuer work. It will then go on to present further questions and propose further studies to explore those new questions and the ones left unanswered here.
+This section will go through the motivating questions behind this study and discuss the extent to which those questions are answered, or not. It will discuss the issues that may have lead to the disatisfying. It will then go on to present further questions and propose further studies to explore those new questions and the ones left unanswered here.
 
-## The hypotheses {#discHyp}
+## The intuition
 
-```
-TODO
-Go over each hypothesis and discuss its support or lack thereof from the data
-```
-  (@hypa) *Hypothesis 1* \hfill\linebreak
-  High attachment of PP2 is prosodically marked by a boundary tone between PP1 and and PP2.
-
-  (@hypb) *Hypothesis 2* \linebreak
-  A cold reading (no preview) of a GP sentence will exhibit less natural prosody (more hesitation at and after the disambiguating region) than:
-    * A cold reading of a non-GP sentence.
-    * A previewed reading of a GP sentence.
-
-  (@hypd) *Hypothesis 3* \linebreak
-  A cold reading of a garden-path sentence will more often be produced with prosodic structure that represents an implausible or ungrammatical parse of the string (low attachment of PP2), whereas a previewed reading sentence will more often be pronounced with the prosodic structure that represents the intended parse (high attachment of PP2).
-
-  (@hype) *Hypothesis 4* \linebreak
-  A cold reading (no preview) of a declarative GP sentence will exhibit less natural prosody (more hesitation at and after the disambiguating region) and be more likely to be produced with  prosodic structure that represents an implausible or ungrammatical parse of the string than a cold reading of an interrogative GP sentence.
+Recall that the primary motivator for this study was the observation that PP-attachment garden paths appear easier to understand for many speakers of American English when presented in the interrogative, as opposed to the declarative. One goal of this study was to find a behavioral correlate of this intuition. Another was to seek an explanation for the intuition itself. 
   
-## Behavioral evidence for the intuition
+### Behavioral correlate for the intuition
 
-Ultimately the data here are unable to provide a clear answer to whether or not IRT represents a behavioral correlate of the intuition that PP-attachment garden paths are rendered easier to parse when presented as polar questions. While the mean IRT by condition shows a difference of 0.04s in the direction predicted by the intuition, this is a rather small difference when the grand mean is 6.6s. Mixed-effect regression analyses were not able to detect stastical significance of the interaction between interogativity and &plusmn;GP. That said, it was also not clear that a model without the interaction was a better fit than one with it (Full model AIC = 9103.5; Non-interaction model AIC = 9101.6; &Chi;^2^ = 0.0352; p > 0.8). Ultimately, it seems likely that the size of the effect, if any, is simply too small to be detected without a huge amount of data. This does not, of course, negate the intuition; it simply means that we have not yet found a behavior that can be said with any certainty to correspond to that intuition.
+Ultimately the data here are unable to provide a clear answer to whether or not IRT represents a behavioral correlate of the intuition that PP-attachment garden paths are rendered easier to parse when presented as polar questions. While the difference in mean IRT for Q+GP compared to Q-GP was 0.04s less than for D+GP compared to D-GP, showing a smaller increase in processing time for interrogatives than for declaratives, this is a rather small difference when the grand mean is 6.6s. As such, mixed-effect regression analyses were not able to detect stastical significance for the interaction between interogativity and &plusmn;GP. That said, it was also not clear that a model without the interaction was a better fit than one with it (Full model AIC = 9103.5; Non-interaction model AIC = 9101.6; &Chi;^2^ = 0.035; p > 0.8). This does not, of course, negate the intuition; it simply means that we have not yet found a behavior that can be said with certainty to correspond to that intuition.
 
-There are a number of issues that might be preventing the observation of behavior that confirms the intuition, and there are also possible explanations for why the intuition might exist without a behavior correlate. These issues are discussed in subsection \ref{sec:confound}.
+There are a number of issues that might be preventing the observation of behavior that confirms the intuition, and there are also possible explanations for why the intuition might exist without a behavior correlate. The possibilty most generous to the reported study is that the sample size here is simply inadequate. It's possible that with more data, this very procedure would have provided a stastically significant behavioral correlate of the intuition. 
 
-## Explaining the intuition
+It is also possible that the experimental paradigm used here is too lenient to capture the behavior it is looking for: it relies on participants to begin Reading 1 without any lookahead simply by their own recognizance rather than any experimenter-enforced mechanism. Perhaps some participants were able to, perhaps unintentionally, get enough information a priori to negate the effect of the interaction on their IRT.
+
+It could also be that IRT is simply the wrong measure for detecting a behavioral correlate of the intuition. The reanalysis triggered by +GP Reading 1 could very well be all that was needed to make the understanding of +GP Reading 2 trivial; this seems unlikely, though, because a significant effect of +GP on IRT was found.
+
+### Explaining the intuition
 
 A possible explanation for the intuitive effect of interogativity on parsing garden paths is provided in the work by @Bader1998-ts. Bader demonstrates that it is easier to recover a parse that “behave[s] alike prosodically” to a given failed parse, because the reanalysis does not require prosodic reconstruction and only the syntax needs to be repaired. In the case of the intuition this study is concerned with, this would mean that should sentences be more similar across the garden path vs. non-garden path condition in the interrogative than in the declarative, the intuitive reduction in difficulty of reanalysis would naturally follow. 
 
@@ -81,14 +69,12 @@ kable(ccombo,caption="Combined breaks % per condition in reading 2 only", col.na
 
 While there is a larger drop in the number of utterances with both breaks from +GP to -GP for questions than for decaratives, the opposite is true for the pattern with a PP1 break by itself. There is an argument to be made that the OBJ break, which does not correspond to a change in syntactic branching direction for any version of the sentences, is a hesitation rather than a break, due to a moment of confusion or perhaps simply a need to breathe. 
 
-> QUESTION FOR DCB/JDF: Should I include trees here to show the branching direction change?
-
 To be more explicit, for this explanation to work, the prosodic structures in @dlo and @dhi would likely be the ones considered "correct" or most common for a the declarative versions. The symbol "||" is being used to represent a prominent prosodic break.
 
   (@dlo) *D+GP*: He had crammed [~OBJ~ the newspapers] [~PP1~ under the sofa] || [~PP2~ into the trashcan].
   (@dhi) *D-GP*: He had crammed [~OBJ~ the newspapers] under the sofa in the guestroom.
 
- The prosodic structure of @dhi does not mandate any major break, because there is no change in syntactic branching directory and no other reason to mandate a break there. That is, the PP1 break differentiates the two syntactic structures and signals the attachment site of PP2. 
+The prosodic structure of @dhi does not mandate any major break, because there is no change in syntactic branching directory and no other reason to mandate a break there. That is, the PP1 break differentiates the two syntactic structures and signals the attachment site of PP2. 
  
 For the interrogatives, though, this contrast is obscured by the need to apply a rising prosodic contour over the final nuclear accent in the sentence: i.e. PP2, resulting in not a change in syntactic branching direction, but a tonal change, which might sound very similar to a prosodic break. The symbol "//" indicates the start of the rising contour.
 
@@ -99,38 +85,42 @@ The critical issue here is that in (@qhi), the absence of a syntactically-motiva
 
 If the PP1 break is treated as the main indicator of the prosodic structure, then the larger difference across &plusmn;GP for declaratives (`r 27-14.8`%) than for interrogatives (`r 25.8-25.6`%) does indeed, though perhaps weakly, leave open the door for the @Bader1998-ts style explanation of the intuition.
 
-## Confounds {#confound}
+## On future work {#confound}
 
-A major roadblock to the success of the methodology here reported is that the region of the sentence where the critical prosodic difference between +GP and -GP sentences lies is the same region where disambiguation occurs for the +GP sentences. 
-Some weaknesses in the data as they are leave need for future studies and  methodological improvements. A major issue is the difficulty in differentiating between "true" prosodic breaks and hesitations or breathing pauses. As table \ref(tab:combobr) and  the reliability data reported earlier in this paper illustrates, a linguistically trained judge will not necessarily be able to distinguish between prosodic breaks and hesitations, and will not necessarily agree with another linguistically trained judge on the relative prominence of breaks and hesitations within a recording. 
+In this section, I will discuss some of the issues with the current study, and what I see as fruitful avenues for future study.
 
-```
-TODO
+### Hesitations vs. prosodic breaks
 
-Expand discussion of hesitation vs. true prosodic break
+A major roadblock to the success of the methodology here reported is that the region of the sentence where the critical prosodic difference between +GP and -GP sentences lies is the same region where disambiguation occurs for the +GP sentences. Some weaknesses in the data as they are leave need for future studies and  methodological improvements. 
 
-Discuss further issues, e.g.
+A major issue is the difficulty in differentiating between syntactically-motivated prosodic breaks and hesitations. As table \ref(tab:combobr) and the reliability data reported earlier in this paper illustrates, a linguistically trained judge will not necessarily be able to distinguish between prosodic breaks and hesitations, and will not necessarily agree with another linguistically trained judge on the relative prominence of breaks and hesitations within a recording. It is famously difficult to instrumentally describe a prosodic break, and there is no guarentee that examining the wave forms would fare any better in making this distinction than the intuition of the judges. That said, it may be possible to distinguish the two sorts of breaks: it may be that boundary tones or segmental lengthening are typically not part of a hesitation break, but are a part of hesitation break. No immediately apparent pattern is available, but it would be inordinately beneficial if one could be found.
 
-  * Over disambiguation (into, onto)
-  * Disregard of instructions (naivety of procedure)
-  * Ways to improve for a similar future study
-    * Follow-up task to check understanding and interpretation of the sentence
-    * Improve IRT accuracy by anticipating the participant’s desire to study slide 1 and either forcing it to disappear or else assuming that to be their study time.
-```
+In \@ref(sec:erp) I propose that an event-related potential paradigm might hold the key for distinguishing between the two.
 
-## Areas for further study
+### Embedded questions
 
-The study just reported has not provided adequately convincing evidence that the inuition can or can not be explained entirely by the prosodic differences between questions and declaratives. Look at the same phenomenon in *embedded* questions vs. embedded declarative clauses, where prosody would not be at play. For example:
+The explanation for the intuition that PP-attachment garden paths are less difficult to parse in interrogatives than in declaratives must either be prosodic, or else semantic/pragmatic. It seems impossible that the  very minor syntactic difference across the two sentence types (subject-auxiliary inversion) could be the reason for a difference in percieved ease of understanding. It is either the difference in the intonational contour between the two sentences types, or else it is something about the meaning or metalinguistic difference between interrogatives and declaratives. The study just reported has not provided adequately convincing evidence that the inuition can or can not be explained entirely by the prosodic differences between questions and declaratives. It seems that the next step in explaining the aforementioned intuition would be to look at the same phenomenon in *embedded* questions vs. embedded declarative clauses, where prosody would not be at play. For example:
 
-  (@embed_qgp) *Q +GP:* He asked her if she crammed the old newspapers under the couch in the wastebasket.
-  (@embed_qct) *Q -GP:* He asked her if she crammed the old newspapers under the couch in the guestroom.  
+  (@embed_qgp) *EmQ +GP:* He asked her if she had decided to cram the old newspapers under the couch in the wastebasket.
+  (@embed_qct) *EmQ -GP:* He asked her if she had decided to cram the old newspapers under the couch in the guestroom.  
   
-  (@embed_dgp) *D +GP:* She told him that she crammed the old newspapers under the couch in the wastebasket.
-  (@embed_dct) *D -GP:* She told him that she crammed the old newspapers under the couch in the guestroom.
+  (@embed_dgp) *EmD +GP:* She told him that she had decided to cram the old newspapers under the couch in the wastebasket.
+  (@embed_dct) *EmD -GP:* She told him that she had decided to cram the old newspapers under the couch in the guestroom.
 
-These stimuli could be used in a behavioral (e.g. IRT-based), ERP or eye-tracking based study.
+The prosody of an embedded question, as in (@embed_qgp), does not differ from that of a sentence like (@embed_dgp); but, the semantic properties and some of the pragmatic properties of the embedded clause in (@embed_qgp) are the same as in one of the Q+GP sentences from the study reported here.
 
-ERP-based study: check for Closure Positive Shift (CPS) at PP attachment sites; check for P600/N400 at site of disambiguation. CPS should reveal the tree being parsed for each condition; higher frequency and larger amplitude of P600/N400 across the GP condition in declaratives vs. interrogatives would illustrate the intuitive observation.
+  (@qgp_re) Had she decided to crammed the old newspapers under the couch in the wastebasket?
 
-Eye-tracking: more regressions and longer reading time across the GP condition in declaratives vs. interrogatives would illustrate the intuitive observation.
+These stimuli could be used in another reading aloud study, like the one just reported, or could be used with ERP or eye-tracking methodology. If a behavioral correlate of the intuition is found with embedded question stimuli, that would be strong evidence that the explanation is semantic or pragmatic rather than prosodic.
+
+### Event-related potential (ERP)
+
+An event-related potential study of the phenomenon could provide a number of useful insights. It has been shown that the so-called closure-positive shift (CPS), an ERP component that is elicited by the presence of a prosodic break or a comma, is present even in silent reading. This has a number of important implications for research on the phenomena at hand. 
+
+For one, it provides a way to distinguish between a hesitation after PP1 and a true prosodic break; which is to say, a way to distingiush between an unencumbered reading with a prosodic break after PP1 and a garden-path effect that, in the study reported here, resulted in a hesitation at that point. An ERP measure time-locked to that position should show a CPS component when the reader succesfully incoprorates PP1 as a modifier of the object and then changes branching direction to incorporate PP2 as the goal argument; conversely, a reader who is experiencing a garden-path effect at that point should instead or additionally show a P600 component (@p600addscps found that the two components can be additive). If the participant were concurrently recorded reading the sentence aloud, definitive data could be created which could then be used to either train a linguist or perhaps a neural network to distinguish between hesitations (P600s) and prosodic breaks (CPSes). The trained model or linguist could then return to the recordings collect for this study and make definitive judgements regarding the nature of the breaks reported here, and clarify the results of this study.
+
+It would also be useful to see if repeated readings of the same garden-path sentence reduces the P600; if so, is the rate of decay faster for interrogatives than declaratives? Such a phenomenon could be a correlate of the reported intuition[^qerp].
+
+[^qerp]: QUESTION: Do P600 components reflect the strength of a garden path? Also, do I need to go into any detail here about how ERP works or what the properties of P600 and CPS are?
+
 
