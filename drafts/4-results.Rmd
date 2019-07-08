@@ -385,13 +385,18 @@ library('ggthemes')
 if(!"reading" %in% names(adata)){
   adata$reading <- adata$Reading
 }
+
+c2o <- function(x) {
+  ifelse(x == "D Arg", 1, ifelse(x == "Q Arg", 2, ifelse(x == "D Mod", 3, 4)))
+}
+
 loadfonts(device="pdf")
 adata$Reading <- paste("Reading", adata$reading)
-
+adata$condition2 <- reorder(adata$condition2, c2o(adata$condition2))
 
 ggplot(adata,    
     aes(
-      x=condition,
+      x=condition2,
       y=..count..,
       fill=reorder(
         simple2lvl,
