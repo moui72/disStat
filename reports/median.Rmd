@@ -85,7 +85,7 @@ library('ggthemes')
 if(!"reading" %in% names(adata)){
   adata$reading <- adata$Reading
 }
-loadfonts(device="win")
+loadfonts(device="pdf")
 adata$Reading <- paste("Reading", adata$reading)
 
 pdata <- subset(adata, r1DelCat != "NORMAL")

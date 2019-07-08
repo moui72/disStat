@@ -379,7 +379,32 @@ kable(bothrbothb,caption="Breaks (%) by condition",align="c") %>%
 ```
 
 Table \ref{tab:combobreaksBycond} shows that for +GP sentences, there are very few instances with the OBJ-only pattern (0.8% in declaratives, 2.5% in interrogatives); whereas that pattern is fairly robust for -GP sentences (31.1% in declaratives, 31.4% in interrogatives). The pattern with both breaks is somewhat more common for +GP sentences (72.1% in declaratives, 71.7% in interrogatives) than -GP (54.1% in declaratives, 43.0% in interrogatives). The PP1-only pattern occurs at about the same rate in +GP interrogatives (25.8%) as in -GP interrogatives (25.6%) and +GP declaratives (27%), but is noticeably less common for -GP declaratives (14.8%).
+```{r facet, fig.cap="Plot of pattern proportions per condition",fig.height=4,fig.pos="H"}
+adata<-droplevels(subset(mdata,simple2lvl != "NEITHER"))
+library('ggthemes')
+if(!"reading" %in% names(adata)){
+  adata$reading <- adata$Reading
+}
+loadfonts(device="pdf")
+adata$Reading <- paste("Reading", adata$reading)
 
+
+ggplot(adata,    
+    aes(
+      x=condition,
+      y=..count..,
+      fill=reorder(
+        simple2lvl,
+        ifelse(simple2lvl=="PP1", 1, ifelse(simple2lvl=="OBJ",3,2))
+      )
+    )) +
+  geom_bar(position="fill",color="black",width=0.5) +
+  labs(fill="Pattern",x=" ",y=" ") +
+  facet_grid(cols=vars(Reading)) +
+  scale_y_continuous(labels=scales::percent) + 
+  scale_fill_brewer(breaks=c("PP1", "BOTH", "OBJ"), palette="Greys") +
+  theme_tufte(base_size = 12, base_family="Georgia")
+```
 <!--
 todo
 consider moving R1 delay analysis here
@@ -527,7 +552,7 @@ ggplot(irt_data, aes(win_irt/1000)) +
 
 #### Means by condition
 
-Table \ref{tab:mns} shows the mean wIRT by experimental condition. The top left cell represents the mean wIRT for the declaritive controls ("D -GP"). The bottom row shows the increase in IRT across the garden path condition. 
+Table \ref{tab:mns} shows the mean wIRT by experimental condition. The top left cell represents the mean wIRT for the declaritive controls ("D Mod"). The bottom row shows the increase in IRT across the garden path condition. 
 
 ```{r mnspre}
 meansByConditionS <- meansByCondition
@@ -542,7 +567,7 @@ kable(
 )%>% kable_styling(latex_options = "hold_position")
 ```
 
-The difference in the effect of &plusmn;GP across &plusmn;Q is `r round(cdiff/1000,2)`s. That is, the mean amount that IRT increased for a garden path declarative compared to a non-garden path declarative is `r round(cdiff/1000,2)`s `r ifelse(cdiff > 0, paste("more"),paste("less"))` than the amount that IRT increased for a garden path interrogative compared to a non-garden path interrogative.
+The difference in the effect of Arg vs. Mod across &plusmn;Q is `r round(cdiff/1000,2)`s. That is, the mean amount that IRT increased for a garden path declarative compared to a non-garden path declarative is `r round(cdiff/1000,2)`s `r ifelse(cdiff > 0, paste("more"),paste("less"))` than the amount that IRT increased for a garden path interrogative compared to a non-garden path interrogative.
 
 ```{r interactinplot,fig.cap="Mean IRT by condition",fig.height=4}
 
@@ -554,8 +579,8 @@ meansByConditionLong$Qn <- ifelse(
 
 meansByConditionLong$GPn <- ifelse(
   meansByConditionLong$GP == "+GP", 
-  "Garden path", 
-  "Non-garden path"
+  "Arg", 
+  "Mod"
 )
 
 ggplot(
@@ -653,8 +678,7 @@ irt.summer <- lmerTest::lmer(
 )
 ```
 
-For the first model, fixed effects of &plusmn;GP and &plusmn;Q as well is the interaction between them were included, along with random effects of participant and item. The second model removes the interaction, but keeps both main effects.
-
+For the first model, fixed effects of Arg vs. Mod and D vs. Q as well is the interaction between them were included, along with random effects of participant and item. The second model removes the interaction, but keeps both main effects.
 
 
 A model with no fixed effects and one with no random effects were also run. The estimates from these models can be seen in table \ref{tab:models}. 
@@ -887,6 +911,7 @@ raw_rs_file <- subset(raw_rs_file,UID %in% mdata$UID)
 raw_rs <- subset(raw_rs_file,!isFiller)
 raw_rs$reading <- raw_rs$Reading
 
+mdata$condition2 <- paste(ifelse(mdata$Condition_Q,"Q","D"),ifelse(mdata$Condition_GP,"Arg","Mod"))
 
 r1data <- subset(raw_rs, reading == 1)
 r1delByP <- aggregate(r1data$Leading,by=list("Participant" = r1data$Participant), FUN=median)
