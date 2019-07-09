@@ -7,6 +7,9 @@ This section reports various analyses of the recordings obtained. The analyses i
 There is a total of 32 participants included, 48 total items, 16 of which are experimental items, with each item read twice by each participant. The 32 filler items are not included in analyses except where specified. The same recordings are used for all analyses.
 
 ```{r results_setup,echo=F,warning=F,message=F}
+c2o <- function(x) {
+  ifelse(x == "D Arg", 1, ifelse(x == "Q Arg", 2, ifelse(x == "D Mod", 3, 4)))
+}
 knitr::opts_chunk$set(
   echo=FALSE, 
   warning=FALSE, 
@@ -386,9 +389,7 @@ if(!"reading" %in% names(adata)){
   adata$reading <- adata$Reading
 }
 
-c2o <- function(x) {
-  ifelse(x == "D Arg", 1, ifelse(x == "Q Arg", 2, ifelse(x == "D Mod", 3, 4)))
-}
+
 
 loadfonts(device="pdf")
 adata$Reading <- paste("Reading", adata$reading)
@@ -455,34 +456,16 @@ todo
 
 -->
 
-```{r domsetup}
-pdom <- xtabs(~condition+pdom,data=mdata)%>% prop.table(margin=1)
-pdom.r1 <- xtabs(~condition+pdom,data=subset(mdata,Reading==1))%>% prop.table(margin=1)
-pdom.r2 <- xtabs(~condition+pdom,data=subset(mdata,Reading==2))%>% prop.table(margin=1)
-
-odom <- xtabs(~condition + odom ,data=mdata) %>% prop.table(margin=1)
-odom.r1 <- xtabs(~condition + odom,data=subset(mdata,Reading==1))%>% prop.table(margin=1)
-odom.r2 <- xtabs(~condition + odom,data=subset(mdata,Reading==2))%>% prop.table(margin=1)
+```{r newdomtab}
+domdata <- mdata
+domdata$condition2 <- paste(ifelse(domdata$Condition_Q,"Q","D"),ifelse(domdata$Condition_GP,"Arg","Mod"))
+domdata$condition2 <- reorder(domdata$condition2, c2o(domdata$condition2))
+domdata$dom <- ifelse(domdata$pdom, "PP1", ifelse(domdata$odom, "OBJ", "None"))
+domtab.r1 <- with(subset(domdata,Reading==1), table(dom,condition2) %>% prop.table(margin=2) * 100)
+domtab.r2 <- with(subset(domdata,Reading==2), table(dom,condition2) %>% prop.table(margin=2) * 100)
+domtab <- 
 ```
 
-```{r domtab}
-
-# todo -- both readings, 1 break per table, just dom
-pp1domn <- cbind(pdom.r1,pdom.r2)* 100
-objdomn <- cbind(odom.r1,odom.r2)* 100
-domtab<-cbind(pp1domn,objdomn)
-kable(
-  domtab, 
-  caption="Break dominance (%) by condition",
-  col.names=c(rep(c("Not dominant", "Dominant"), 4)),
-  align="c",
-  digits=1
-) %>%
-  add_header_above(c(" "=1,rep(c("Reading 1" = 2, "Reading 2" = 2),2))) %>%
-  add_header_above(c(" "=1,c("PP1" = 4, "OBJ" = 4))) %>%
-  column_spec(5,border_right = 1) %>%
-  kable_styling(latex_options = c("hold_position"))
-```
 
 \clearpage
 
