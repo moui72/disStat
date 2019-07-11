@@ -385,14 +385,14 @@ Table \ref{tab:combobreaksBycond} shows that for +GP sentences, there are very f
 ```{r facet, fig.cap="Plot of pattern proportions per condition",fig.height=4,fig.pos="H"}
 adata<-droplevels(subset(mdata,simple2lvl != "NEITHER"))
 library('ggthemes')
-if(!"reading" %in% names(adata)){
-  adata$reading <- adata$Reading
-}
+library('extrafont')
 
-
-
+adata$reading <- paste("Reading", adata$Reading)
+adata$condition2 <- paste(ifelse(adata$Condition_Q,"Q","D"),ifelse(adata$Condition_GP,"Arg","Mod"))
 loadfonts(device="pdf")
-adata$Reading <- paste("Reading", adata$reading)
+loadfonts(device="win")
+
+mdata$condition2 <- paste(ifelse(mdata$Condition_Q,"Q","D"),ifelse(mdata$Condition_GP,"Arg","Mod"))
 adata$condition2 <- reorder(adata$condition2, c2o(adata$condition2))
 
 ggplot(adata,    
@@ -406,7 +406,7 @@ ggplot(adata,
     )) +
   geom_bar(position="fill",color="black",width=0.5) +
   labs(fill="Pattern",x=" ",y=" ") +
-  facet_grid(cols=vars(Reading)) +
+  facet_grid(cols=vars(reading)) +
   scale_y_continuous(labels=scales::percent) + 
   scale_fill_brewer(breaks=c("PP1", "BOTH", "OBJ"), palette="Greys") +
   theme_tufte(base_size = 12, base_family="Georgia")
@@ -457,13 +457,37 @@ todo
 -->
 
 ```{r newdomtab}
-domdata <- mdata
+domdata <- droplevels(subset(mdata,simple2lvl != "NEITHER"))
+
 domdata$condition2 <- paste(ifelse(domdata$Condition_Q,"Q","D"),ifelse(domdata$Condition_GP,"Arg","Mod"))
 domdata$condition2 <- reorder(domdata$condition2, c2o(domdata$condition2))
-domdata$dom <- ifelse(domdata$pdom, "PP1", ifelse(domdata$odom, "OBJ", "None"))
+
+domdata$dom <- ifelse(domdata$pdom, "PP1 dominant", ifelse(domdata$odom, "OBJ dominant", "Equal strength"))
+domdata$dom <- reorder(domdata$dom,ifelse(domdata$dom == "OBJ dominant", 1, ifelse(domdata$dom=="PP1 dominant", 3, 2)))
+
+domdata$Rd <- paste("Reading", domdata$Reading)
+
 domtab.r1 <- with(subset(domdata,Reading==1), table(dom,condition2) %>% prop.table(margin=2) * 100)
 domtab.r2 <- with(subset(domdata,Reading==2), table(dom,condition2) %>% prop.table(margin=2) * 100)
-domtab <- 
+domtab <- cbind(domtab.r1,domtab.r2)
+
+domtab %>% kable(digits=1, caption="Proportion of break dominance by condition and reading") %>%
+  add_header_above(c(" " = 1, "Reading 1" = 4, "Reading 2" = 4)) %>%
+  kable_styling(latex_options = c("hold_position"))
+```
+```{r domplot}
+ggplot(domdata,    
+    aes(
+      x=condition2,
+      y=..count..,
+      fill=dom
+    )) +
+  geom_bar(position="fill",color="black",width=0.5) +
+  labs(fill="Break dominance",x=" ",y=" ") +
+  facet_grid(cols=vars(Rd)) +
+  scale_y_continuous(labels=scales::percent) + 
+  scale_fill_brewer(breaks=c("PP1 dominant", "Equal strength", "OBJ dominant"), palette="Greys") +
+  theme_tufte(base_size = 12, base_family="Georgia")
 ```
 
 
@@ -476,17 +500,32 @@ Models predicting the PP1 break and the object break are presented in table \ref
 ```{r r2prosmod,cache=T}
 r2data<-subset(mdata,Reading==2)
 # fails to converge
-# pp1Mod<- glmer(PP1~Condition_Q*Condition_GP+(1|IID)+(1|SID),data=r2data,family=binomial)
+pp1Mod<- glmer(PP1~Condition_Q*Condition_GP+(1|IID)+(1|SID),data=r2data,family=binomial)
 objMod<- glmer(OBJ~Condition_Q*Condition_GP+(1|IID)+(1|SID),data=r2data,family=binomial)
 pdomMod<- glmer(pdom~Condition_Q*Condition_GP+(1|IID)+(1|SID),data=r2data,family=binomial)
 odomMod<- glmer(odom~Condition_Q*Condition_GP+(1|IID)+(1|SID),data=r2data,family=binomial)
 ```
 
 ```{r prosmodelsPre,cache=T}
-both.pp1Mod<- glmer(PP1~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=mdata,family=binomial)
-both.objMod<- glmer(OBJ~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=mdata,family=binomial)
+# both.pp1Mod<- glmer(PP1~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=mdata,family=binomial)
+# both.objMod<- glmer(OBJ~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=mdata,family=binomial)
 both.pdomMod<- glmer(pdom~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=mdata,family=binomial)
 both.odomMod<- glmer(odom~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=mdata,family=binomial)
+
+both.pdomMod<- glmer(pdom~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=mdata,family=binomial)
+both.odomMod<- glmer(odom~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=mdata,family=binomial)
+
+
+# pp1mod.max <- glmer(PP1~Reading*(Condition_Q+Condition_GP)+(1|IID)+(1|SID),data=mdata,family=binomial)
+# ---- best mods ---- 
+# pp1mod.noint <- glmer(PP1~Reading+Condition_Q+Condition_GP+(1|IID)+(1|SID),data=mdata,family=binomial)
+pp1mod.best <- glmer(PP1~Condition_GP+(1|IID)+(1|SID),data=mdata,family=binomial)
+# objmod.rint <- glmer(OBJ~Reading*(Condition_Q+Condition_GP)+(1|IID)+(1|SID),data=mdata,family=binomial)
+objmod.best  <- glmer(OBJ~Reading*Condition_GP+(1|IID)+(1|SID),data=mdata,family=binomial)
+# ------------------
+# objmod.max <- glmer(OBJ~Reading*(Condition_Q*Condition_GP)+(1|IID)+(1|SID),data=mdata,family=binomial)
+objmod.rint <- glmer(OBJ~Reading*(Condition_Q+Condition_GP)+(1|IID)+(1|SID),data=mdata,family=binomial)
+# objmod.noint <- glmer(OBJ~Reading+Condition_Q+Condition_GP+(1|IID)+(1|SID),data=mdata,family=binomial)
 ```
 
 
@@ -941,20 +980,22 @@ adata$Reading <- paste("Reading", adata$reading)
 
 pdata <- subset(adata, r1DelCat != "NORMAL")
 
+pdata$dom <- ifelse(pdata$pdom,"PP1",ifelse(pdata$odom, "OBJ", "Neither"))
+
 ggplot(pdata,    
     aes(
-      x=condition,
+      x=condition2,
       y=..count..,
       fill=reorder(
-        simple2lvl,
-        ifelse(simple2lvl=="PP1", 1, ifelse(simple2lvl=="OBJ",3,2))
+        dom,
+        ifelse(simple2lvl=="PP1", 3, ifelse(simple2lvl=="OBJ",1,2))
       )
     )) +
   geom_bar(position="fill",color="black",width=0.5) +
   labs(fill="Pattern",x=" ",y=" ",caption="FAST n=12, SLOW n = 12") +
   facet_grid(rows = vars(Reading),cols=vars(r1DelCat)) +
   scale_y_continuous(labels=scales::percent) + 
-  scale_fill_brewer(breaks=c("PP1", "BOTH", "OBJ"), palette="Greys") +
+  scale_fill_brewer(breaks=c("PP1", "Neither", "OBJ"), palette="Greys") +
   theme_minimal(base_size = 12, base_family="Georgia")
 ```
 
@@ -966,22 +1007,22 @@ mdata<-subset(adata,reading==1)
 fast <- subset(mdata,r1DelCat == "FAST")
 slow <- subset(mdata,r1DelCat == "SLOW")
 
-fastTabN <- xtabs(~simple2lvl + condition, data=fast) %>% 
+fastTabN <- xtabs(~simple2lvl + condition2, data=fast) %>% 
   as.data.frame() %>% 
-  spread(condition, Freq)  
-slowTabN <- xtabs(~simple2lvl + condition, data=slow) %>% 
+  spread(condition2, Freq)  
+slowTabN <- xtabs(~simple2lvl + condition2, data=slow) %>% 
   as.data.frame() %>% 
-  spread(condition, Freq)
+  spread(condition2, Freq)
 
 
-fastTab <- xtabs(~simple2lvl + condition, data=fast) %>% 
+fastTab <- xtabs(~simple2lvl + condition2, data=fast) %>% 
   prop.table(margin=2) %>% 
   as.data.frame() %>% 
-  spread(condition, Freq)
-slowTab <- xtabs(~simple2lvl + condition, data=slow) %>% 
+  spread(condition2, Freq)
+slowTab <- xtabs(~simple2lvl + condition2, data=slow) %>% 
   prop.table(margin=2) %>% 
   as.data.frame() %>% 
-  spread(condition, Freq)
+  spread(condition2, Freq)
 
 
 tab<-cbind(fastTab,slowTab[2:5])
@@ -1007,21 +1048,21 @@ mdata<-subset(adata,reading==2)
 fast <- subset(mdata,r1DelCat == "FAST")
 slow <- subset(mdata,r1DelCat == "SLOW")
 
-fastTabN <- xtabs(~simple2lvl + condition, data=fast) %>% 
+fastTabN <- xtabs(~simple2lvl + condition2, data=fast) %>% 
   as.data.frame() %>% 
-  spread(condition, Freq)  
-slowTabN <- xtabs(~simple2lvl + condition, data=slow) %>% 
+  spread(condition2, Freq)  
+slowTabN <- xtabs(~simple2lvl + condition2, data=slow) %>% 
   as.data.frame() %>% 
-  spread(condition, Freq)
+  spread(condition2, Freq)
 
-fastTab <- xtabs(~simple2lvl + condition, data=fast) %>% 
+fastTab <- xtabs(~simple2lvl + condition2, data=fast) %>% 
   prop.table(margin=2) %>% 
   as.data.frame() %>% 
-  spread(condition, Freq)
-slowTab <- xtabs(~simple2lvl + condition, data=slow) %>% 
+  spread(condition2, Freq)
+slowTab <- xtabs(~simple2lvl + condition2, data=slow) %>% 
   prop.table(margin=2) %>% 
   as.data.frame() %>% 
-  spread(condition, Freq)
+  spread(condition2, Freq)
 
 
 tab<-cbind(fastTab,slowTab[2:5])
@@ -1045,7 +1086,7 @@ tab <- rbind(r1tab,tab)
 tab %>% kable(
   align="c",
   caption="Simple break pattern by condition and R1 delay category",
-  col.names=c(" "," ", rep(c("D -GP","Q -GP", "D +GP", "Q +GP"),2)), 
+  col.names=c(" "," ", rep(c("D Mod","Q Mod", "D Arg", "Q Arg"),2)), 
   digits=1
 ) %>% kable_styling() %>%
   column_spec(6,border_right = T) %>%
