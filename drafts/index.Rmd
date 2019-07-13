@@ -22,4 +22,11 @@ knitr::write_bib(c(
 # Abstract {-}
 
 TODO Write abstract here
+
+MORE TODO
+  * Isolated effect of interrogativity for fillers
+  * More on the significance of IRT to the study at hand
+  * Hand measurement for IRT relaibility
+  * Update items desc
+  
 \pagebreak

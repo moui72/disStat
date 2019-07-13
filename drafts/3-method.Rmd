@@ -19,26 +19,20 @@ br <- function() {
   }
 }
 ```
+
 # Methodology 
-This section outlines the methodology employed for the reported study. The methodology outlined is referred to as the *Double Reading Procedure* and was first implemented by @fodor2019center. Participants are asked to read sentences twice, once without any previewed (Reading 1), and then again after unlimited preview (Reading 2).
 
-## A note on the *Double Reading Procedure*
-
-An advantage that the *Double Reading Procedure* has is that it allows for certain assumptions to be made about Reading 2 that otherwise would be unclear: Reading 2 represents a considered reading of the sentence. Not only has the reader had ample time to examine the sentence, they have necessarily read it, and they have heard themselves read it. We can say this with certainly, because they have necessarily already produce a recording of Reading 1. This means Reading 2 represents a considered prosodic structure, and it should not represent any processing issues, because a parse should have already been obtained during Reading 1.
-
-The nature of Reading 1 is less clear. Because there is variability in the delay between the display of the sentence and the onset of phonation, it's possible that Reading 1 is not entirely non-previewed. The properties of these Reading 1 delays are discussed at length in \ref{sec:r1del}, but for now it suffices to say that the amount of preview that is possible during a delay that typically falls in the 0.6s to 1.6s range is very limited. As an example of common reading rates, @ashby2012eye reported faster readers as averaging 328 words per minute (wpm), and slower readers 228wpm in silent reading with 3 word windows allowing for parafoveal processing. That study found that reading time is slower for reading aloud, and that the availability of parafoveal information (i.e. the difference between 1 word and 3 word windows) is less impactful for that reading mode. For reading aloud, faster readers were slowed to an average of 213wpm, and slower readers to an average of 183wpm with 3 word windows.
-
-We can say about Reading 1, at the very least, that a full parse of the sentence is not possible during the time before phonation begins, even delays in the 1.6s range. The utterance of Reading 1 should contain within it any behavioral reflex of whatever parsing difficult the reader has.
+This section outlines the methodology employed for the reported study. The methodology outlined is referred to as the *Double Reading Procedure* and was first implemented by @fodor2019center. In this procedure, participants are asked to read sentences twice, once without taking any time to preview it(Reading 1), and then again after unlimited preview (Reading 2). @fodor2019center wanted to investigate the extent to which preview impacted the prosodic phrasing of center embedded sentences, as well as whether or not readers would find the doubly center-embedded sentences more comprehensible after preview (or, comprehensible at all, as the doubly center embedded sentences often were not on first attempt). In the prosody literature up to this point, preview has largely been ignored as a factor in reading aloud tasks. The @fodor2019center study found that preview did indeed impact both prosodic grouping that readers used and comprehensibility. While the questions being asked here are different, we are still concerned with the prosody that is produced, and the difficulty the reader experiences in parsing a sentence read aloud. This experimental paradigm eliminates the possible noise of not knowing whether a given pronunciation represents a considered or naive attempt to read a sentence aloud.
 
 ## Participants recruitment
 
-The participants in this study were all undergraduate students at Queens College, CUNY, enrolled in Psychology 101. These students were required by the university to participant in studies for course credit. Self reported age ranged from 18 to 25 years. Participants were recruited using the Queens College Sona system, which is software designed for university participant pools. Students saw a notice on the Sona website (see Appendix \ref{sec:rec}) and were able to schedule their own appointment time within the hours offered (Monday - Thursday, 10am to 4pm).
+The participants in this study were all undergraduate students enrolled in Psychology 101. These students were required by thire university to participant in studies for course credit. Self reported age ranged from 18 to 25 years. Participants were recruited using the Queens College Sona system, which is software designed for university participant pools. Students saw a notice on the Sona website (see Appendix \ref{sec:rec}) and were able to schedule their own appointment time within the hours offered.
 
-All participants were self identified native and primary speakers of American English. One participant was disqualified post-hoc after producing a Caribbean English pronunciation pattern; one other participant was excluded post-hoc due to an extremely disfluent reading cadence. Both excluded participants were still awarded class credit for participating
+All participants were self identified native and primary speakers of American English. One participant was disqualified post-hoc after producing a Caribbean English pronunciation pattern; one other participant was excluded post-hoc due to an extremely disfluent reading cadence. Both excluded participants were still awarded class credit for participating.
 
 ## Location
 
-All data were collected in a private room with only the experimenter and participant present. While every effort was undertaken to ensure a quiet environment, intrusive noise from passersby or neighboring rooms were sometimes unavoidable. This resulted in some unusable or partially unusable recordings (discussed in section \@ref(results-irt) of the results chapter).
+All data were collected in a private room with only the experimenter and participant present. While every effort was undertaken to ensure a quiet environment, intrusive noise from passersby or neighboring rooms were sometimes unavoidable. This resulted in some unusable or partially unusable recordings (discussed in section \@ref(sec:irtRes) of the results chapter).
 
 ## Equipment and software
 
@@ -48,55 +42,11 @@ The presentation of items and instruction[^instr] was done using the Open Sesame
 
 Recording was done using a Blue Yeti USB microphone position near the participant's left hand and angled to point at the space in front of the participant's mouth. The angle was adjusted for each participant's height. It recording 44.1kHz single-channel audio.
 
-[^instr]: Instructions were also provided verbally and via printout. Details on the instructions are available in the appendices \@ref(sec:instr).
-
-## Procedure
-Participants were given a verbal overview of the experimental procedure and then asked to read a one page printout of the procedure before signing a consent form. After signing a consent form, participants sat at the computer and were once again walked through instructions before the first practice item was presented.
-
-Participants sat at a computer and used keyboard button presses to navigate the experimental presentation. They received thorough instructions and completed three practice items, the consulted with the experimenter, before beginning the main portion of the study. The study also contained 4 pseudo-practice items that were not included in any analyses, in order to allow some time for the participant to settle into the procedure before any results were recorded.
-
-Each experimental item was preceded by a screen showing a line of ten Xes with its left edge aligned with the left edge of the to-be-revealed sentence. This was intended to fix the participant's attention on the start of the sentence, and hopefully avoid unintended look-ahead. The issue of potential look-ahead is discussed at greater length in section \ref{sec:look-ahead}
-
-This screen remained visible indefinitely, until the participant pressed *START*.
-
-Immediately after *START* was pressed, recording of the first reading began and the sentence appeared on the screen on a blue background. The recording continued and the screened remained visible until the participant pressed *NEXT*. After pressing *NEXT*, a screen appeared with instructions telling the participant that they were between readings, and needed to press *START* to reveal the sentence again and prepare for their second reading. Immediately after *START* was pressed, the first recording ended and the second recording began, and the sentence reappeared, this time on a green background.
-
-![Procedure diagram](dissertation-procedure.png)
-
-The shifting of required key presses and the changing background color were intended to aid the participant in remember where they were in the process, and to prevent accidental double-presses of any given button from having unintended side effects. It took some time for the participants to adapt to the somewhat complicated procedure, but generally were well adjusted by the time the first item was presented.
-
-### On look-ahead {#look-ahead}
-
-As reported by @rayner2012psychology, the perceptual span during reading is about 31 characters, or about 15 characters to either side, with an asymmetry favoring the direction in which reading occurs (i.e. wider to the right for English readers, wider to the left for Arabic readers) and a lack of importance of parafoveal information beyond the start of the fixated word in the direction of what has already been read (i.e. to the left in English). Rayner et al. show that at the extreme edges of this perceptual span, it appears to be only the presence and absence spaces that is shown to be available. Character shape (but not identity; e.g. whether a letter has ascenders or descenders) is available 10 characters to either side,
-
-With a fixation aligned with the left edge of a stimuli, focal attention is likely centered on the third or fourth character. The resulting potential for look ahead can be diagrammed as follows, assuming initial fixation on *had*,  using a notation where a character whose identity can likely be extracted is reproduced, a character whose shape but not identity can be extracted is represented by an x, b, or j (depending on the shape of the original character, i.e. if the original character has an ascender, I've represented it with a b, if it has a descender I have represented it with a j, and if it has neither I've represented it with an x). Characters entirely outside of the perceptual span are represented with an x. Spaces are inserted only as far out as they could be identified, and otherwise filled with an x.
-
-  (@la1) XXXXXXXXXX *(fixation slide)* `r br()`
-         He had intendxb bx nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn `r br()`
-         He had intended to cram the paperwork in the drawer of his filing cabinet.
-         
-Critically, the disambiguation PP2 region (in @la1, *of his filing cabinet*) is not within the perceptual span until, at the earliest, one is in the object region (*the paperwork*). It is important to note as well, though, that when PP1, the phrase with ambiguous attachment site, is the fixation point, the existence of PP2 at least, is within the perceptual span. If we assume fixation on *the*, the available information should be something something like (@la2).
-
-  (@la2) nnnnnnnnnnnnnnnnnnnnnnn nnn nnjxxxxxb in the drawer xb bxnnnnnnnnnnnnnnnnn `r br()`
-         He had intended to cram the paperwork in the drawer of his filing cabinet.
-
-There is, therefore, the potential that look-ahead while reading PP1 could trigger the garden path effect of PP2 early, because it can be deduced that a short and then longer word are coming up on the periphery. The reader is likely to be aware as early as this point that something may be wrong with the parse that attaches PP1 as an argument of the verb, as that parse has limited available real-estate for further phrases. 
-
-Another wrinkly involves the so-called eye-voice span (EVS). According to @evs, when reading aloud, the voice is typically behind the eyes by 10-20 characters, varying with various properties of the text and different parts of the reading cycle. Thus, it's difficult to know exactly where in the recording a reflex of the garden path would occur, but it is likely to be before the actually phonation of the disambiguating region. Most likely seems to be a hesitation in or around the previous phrase, i.e. PP1. This to some degree confounds the analysis of a pause after that phrase: it could be an intentional prosodic break, or it could be added processing time as a result of the reader discovering the garden path. This issue is revisited during discussion of the results.
+[^instr]: Instructions were also provided verbally and via printout. Details on the instructions are available in the appendices.
 
 ## Materials
 
 In total there were 16 experimental items in 4 versions each, and 32 fillers in two versions each. The design decisions are discussed in detail in this section.
-<!--
-  NOTE TO SELF 
-  Ensure that BACKGROUND covers: 
-    + "garden path" model of parsing
-    + "expected parse" and "reanalysis"
-    + "goal argument" -> **define argument vs. modifier**
-    +  *Minimal Attachment* & *Argument Preference*
-    + that arguments *must* be attached immediately (cf. construal)
-
--->
 
 ### Experimental items
 
@@ -183,7 +133,85 @@ No participant saw more than one version of each sentence, and each participant 
 
 The four versions of the experimental sentences resulted in four groups. A split-half ordering (where the first 24 of the items presented to one group was the second 24 presented to the other) resulted in 2 versions for each group, and so there were 8 groups in total.
 
-## Inter-reading time (IRT) measurement
+
+## Procedure
+
+Participants were given a verbal overview of the experimental procedure and then asked to read a one page printout of the procedure before signing a consent form. After signing a consent form, participants sat at the computer and were once again walked through instructions before the first practice item was presented.
+
+Participants sat at a computer and used keyboard button presses to navigate the experimental presentation. They received thorough instructions and completed three practice items, the consulted with the experimenter, before beginning the main portion of the study. The study also contained 4 pseudo-practice items that were not included in any analyses, in order to allow some time for the participant to settle into the procedure before any results were recorded.
+
+Each experimental item was preceded by a screen showing a line of ten Xes with its left edge aligned with the left edge of the to-be-revealed sentence. This was intended to fix the participant's attention on the start of the sentence, and hopefully avoid unintended look-ahead. The issue of potential look-ahead is discussed at greater length in section \ref{sec:look-ahead}
+
+This screen remained visible indefinitely, until the participant pressed *START*.
+
+Immediately after *START* was pressed, recording of the first reading began and the sentence appeared on the screen on a blue background. The recording continued and the screened remained visible until the participant pressed *NEXT*. After pressing *NEXT*, a screen appeared with instructions telling the participant that they were between readings, and needed to press *START* to reveal the sentence again and prepare for their second reading. Immediately after *START* was pressed, the first recording ended and the second recording began, and the sentence reappeared, this time on a green background.
+
+![Procedure diagram](dissertation-procedure.png)
+
+The shifting of required key presses and the changing background color were intended to aid the participant in remember where they were in the process, and to prevent accidental double-presses of any given button from having unintended side effects. It took some time for the participants to adapt to the somewhat complicated procedure, but generally were well adjusted by the time the first item was presented.
+
+### On look-ahead {#look-ahead}
+
+An advantage that the Double Reading Procedure has is that it allows for certain assumptions to be made about Reading 2 that otherwise would be unclear: Reading 2 certainly represents a considered reading of the sentence. Not only has the reader had ample time to examine the sentence, they have necessarily read it, and they have heard themselves read by way of producing Reading 1. This means Reading 2 can plausibly be thought to represent a considered prosodic structure, at least more so than an entirely naive reading, and it should not represent any processing issues, because a parse should have already been obtained during Reading 1, or during subsequent study of the sentence prior to Reading 2.
+
+The nature of Reading 1 is less clear. Because there is variability in the delay between the display of the sentence and the onset of phonation, it’s possible that Reading 1 is not entirely without preview. The properties of these Reading 1 delays are discussed at length in a later section, but for now it suffices to say that the amount of preview that is possible during a delay that typically falls in the 0.2 to 2.7s range (median = 1s, SD = 0.4) is limited. As an example of common reading rates, Ashby et al. (2012) reported faster readers as averaging 328 words per minute (wpm), and slower readers 228wpm in silent reading. That study found that reading time is slower for reading aloud, and that the availability of parafoveal information (i.e. the difference between 1 word and 3 word windows) is less impactful for that reading mode. Given that the experimental items range from 13 to 15 words, most of the R1 delays would not allow even a fast reader to read the entire sentence: the median 1s R1 delay would allow a fast reader time to read only between 5 and 6 words. The utterance of Reading 1 should, for most recordings, contain within it any behavioral reflex of whatever parsing difficult the reader has.
+
+In order to clearly understand the results of this double reading study, it’s important to understand the mechanics of reading. Specifically, we would want to know at what point during their reading of the sentence the participant will become aware of the existence of the disambiguating PP2, since this is when they will realize that their parse is going to crash. The work of several decades on this subject is thoroughly summarized in @rayner2012psychology. They describe reading as consisting of a series of fixations, where the eyes attend to a specific point, and saccades, where the eyes move ahead ballistically (i.e. on a planned trajectory that cannot be interrupted). A consequence of the ballistics property of saccade movement and the additional finding that the landing sites (fixations) are not random, we can infer that at least some lookahead is available, i.e. the reader must know something about what is coming in order to choose a suitable landing site. The primary predictor of fixation point seems to be the character length of a word, meaning that the presence of characters and word boundary information (represented orthographically by spaces) at least are necessary at the periphery of attention, i.e. within the perceptual span. Some details on the perceptual span, or the information that can be accessed by the eyes at any given time, is discussed in brief, with special attention to its relevance for the study at hand.
+
+@rayner2012psychology discuss a number of studies that explore the size and properties of this span, the most fruitful of which is the gaze-contingent moving-window technique. In this technique, text is presented on a video monitor while the reader is also hooked up to eye-tracking equipment. A computer samples the position of the reader’s eyes every millisecond and updates the display. Using this elaborate system, and the mutilation of text outside a window of clear text, they can create a so-called moving window around the reader’s point of fixation. By manipulating the size of this window, they were able to determine that reading speed is maximized when about 15 characters to either side of the fixation site. Later, they discovered that this is actually asymmetric, and the window need only go as far as the start of currently fixated word in the direction of what has already been read (to the left, for English readers). In order to determine how much information was available at the periphery of the perceptual span, they manipulated how much information was destroyed outside the window of clear text, and used a window size known to be smaller than the ideal (21 characters, 10 to either side). They used a condition where all characters and spaces were replaced with xs, essentially destroying all information outside the window. They compared reading speeds with this system to one where character spaces were maintained, but all other information was obscured, as well as to one where characters were replaced with characters that had similar shape (i.e., the same pattern of ascenders and descenders) as the character they replaced, with and without spaces. Finally, they also looked at a mask where characters were replaced with dissimilar substitutes, with and without spaces. 
+
+Using these techniques and again manipulating the size of the window, they were able to determine that it is only word boundary information that is available at the extreme edge of the perceptual span; character shape (ascenders and descenders) is available about 10 characters out from the fixation point, and character identity is available more or less only for the fixated word.
+
+The relevant question for the study at hand is, how much of the sentence will the reader have seen and processed when they are pronouncing a given word? A typical item is displayed in (@dtc), with the words expected to be fixated underlined, numbered by presumed fixation sequence, and labeled. The number of characters intervening before the start of the disambiguating region (the left edge of PP2) is displayed below each label. These counts are from the initial character of the fixated word to the initial character of the disambiguating region; the actual fixation site is likely to be closer to the center of the word, meaning the distance would be shortened by a few (1-4) characters, depending on the length of the fixated word.
+
+  (@dtc) ![](distance-to-cr.png)
+  
+Table \@ref(tab:dtcs) describes these distances across items all experimental items. Note that these values do not vary across condition, because counting starts after both the subject and auxiliary verb, and ends before PP2, and the only changes across versions are subject-auxiliary inversion and the content of PP2. 
+
+```{r dtcs}
+csv <- '
+MEDIAN,46,34.5,25.5,7.5
+MAX,50,38,27,9
+MIN,45,32,21,5
+'
+
+tab <- read_csv(csv, col_names = F)
+
+tab %>% kable(
+  col.names = c(" ","1-INITIAL","2-CONSTRUCTION VERB","3-OBJ","4-PP1"),
+  align="rccc", 
+  caption="Distance in characters from fixation to disambiguation in experimental items"
+) %>% 
+  kable_styling(latex_options = "hold_position")
+```
+
+From the initial fixation point, the distance to disambiguation ranges from 45 to 50 characters, with a median of 46 characters.  If we recall that word boundary information is available 15 to 18 characters to the right of fixation, we can be certain that the disambiguating region is far out of view until several fixations in.
+
+So, when does the reader become aware of the existence of PP12? When fixated on the direct object head noun, the range of distance is 21 to 27 characters, with a median of 25.5: still outside of view, even in the case of the smallest distance, and adjusting it to be a few characters smaller to account for the fact that fixation is likely to occur closer to the center of the word rather than on its first character. At most, the presence of the first few characters of PP2’s preposition may be available, but certainly not the character space after it. The distance from the PP1 fixation point (the head noun within that PP) ranges from 5 to 9 characters, with a median between 7 and 8 characters. Thus, we can say with some certainty that the reader of a sentence such as (1) will be aware that another phrase, one which starts with a 4 character word, remains to be incorporated into their parse sometime after they have processed the direct object, and before they have finished processing PP1.
+
+There is yet another piece to consider: the so-called eye-voice span (EVS), and the fact that the readers in this study are reading aloud rather than silently. According to @evs, when reading aloud the voice is typically behind the eyes by about 10-20 characters (M = 16.2 characters, SD = 5.2 characters). If we adjust table 1 by subtracting 16 from each cell, we can approximate the position of the voice when the disambiguating region comes within the perceptual span. These values are shown in table \@ref(tab:evsdtcr).
+
+
+```{r evsdtcr}
+csv <- '
+MEDIAN,30,18.5,9.5,-8.5
+MAX,34,22,11,-7
+MIN,29,16,5,-11
+'
+
+tab <- read_csv(csv, col_names = F)
+
+tab %>% kable(
+  col.names = c(" ","1-INITIAL","2-CONSTRUCTION VERB","3-OBJ","4-PP1"),
+  align="rccc", 
+  caption="EVS-adjusted character distance to disambiguation in experimental items"
+) %>% 
+  kable_styling(latex_options = "hold_position")
+```
+
+It is likely, then, that the voice would actually still be on the object when the eyes discover the existence of PP2, and will still be pronouncing PP1 when the eyes are first fixated on PP2. This raises a question about any prosodic breaks produced after the object, because it is difficult to distinguish between an intentional prosodic break at that point, versus the reader using a natural break for hesitation related to the garden path effect of discovering the disambiguating PP2.
+
+## Inter-reading time (IRT) measurement {#irt}
 
 Subjects were asked to read each sentence twice, once with no preview at all (reading 1, a cold reading), and then again after unlimited preview (reading 2, a previewed reading). Inter-reading time (IRT) is a measure of the amount of time between when a subject stops speaking after a cold reading and when they begin speaking for a previewed reading.
 
