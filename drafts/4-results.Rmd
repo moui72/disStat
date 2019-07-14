@@ -1,8 +1,10 @@
-```{r results}
+```{r results, echo=F}
 library(ggplot2)
 library(ggthemes)
 library(extrafont)
 library(psych)
+
+loadfonts("pdf")
 knitr::opts_chunk$set(
   echo=FALSE, 
   warning=FALSE, 
@@ -256,8 +258,9 @@ bothrbothb <- cbind(ccombo,cccombo)
 
 ```
 
+
 ```{r bothbreaks}
-kable(bothrbothb,caption="Breaks (%) by condition",align="c") %>%
+kable(bothrbothb,caption="Breaks by condition",align="c") %>%
   add_header_above(c(" "=1,rep(c("Mod" = 2, "Arg"=2),2))) %>%
   add_header_above(c(" "=1, "Reading 1" = 4, "Reading 2" = 4)) %>%
   column_spec(1,bold=T)%>% kable_styling(latex_options = "hold_position")
@@ -317,7 +320,7 @@ Figure \@ref(fig:bdom) clearly shows a robust effect of PP2 status on break domi
 
 A number of mixed effects logistic regression models support the general observations above. Models predicting PP1 break, OBJ break, PP1 break dominance and OBJ break dominance are reported. All models include crossed random effect intercepts (participant and item), but due to convergence errors, no random slopes are included. The intercept always represents the D Mod (“control”) condition. In each case, models were selected from a set of models by selecting the one with the lowest reported AIC. Model comparisons did not always find significant differences between the more complex models. In each case, the selected model was compared to a minimal model where the fixed effects structure was simply a dummy value of 1, and all reported models represent improvement over the minimal model to a statistically significant degree. That comparison is reported for each model. All regression models were run using @R-lme4, with p-values calculated via @R-lmerTest.
 
-Table \@ref(tab:objMod) shows a model predicting the occurrence of an OBJ break with estimates for the coefficients of the fixed effects of Reading 2, PP2 and the interaction between Reading and PP2 status. A comparison between the reported model and a minimal one with a dummy value of 1 as the only fixed effect found that the reported model was better with a high level of confidence (AIC~MIN~=1068.0, AIC~BEST~=1031.6, 𝜒2(2)=30.5, p < 0.001).
+Table \@ref(tab:objMod) shows a model predicting the occurrence of an OBJ break with estimates for the coefficients of the fixed effects of Reading 2, PP2 and the interaction between Reading and PP2 status. A comparison between the reported model and a minimal one with a dummy value of 1 as the only fixed effect found that the reported model was better with a high level of confidence (AIC~MIN~=1068.0, AIC~BEST~=1031.6, $\chi^2$(2)=30.5, p < 0.001).
 
 ```{r objMod}
 csv <- 'Outcome: OBJ break,Estimate,Std. Error,p
@@ -340,7 +343,7 @@ The log odds[^logodds] of an OBJ break for D Mod recordings is 1.39 (std. error 
 
 [^logodds]:  Log odds is the (in this case, natural) log of the odds ratio, so the log odds of A is log~e~(P(A)/P(¬A)). A log odds of 1.39 translates to an odds ratio of 2.4:1 (1.39^e^=2.4) and a probability of 71% (2.4/(1+2.4)=0.71).
 
-The best model for predicting the occurrence for the PP1 break was one where only PP2 status was included as a predictor. The chosen model was again better than the minimal model to a significant degree (AICMIN=855.6, AICBEST=629.6, 𝜒2(1)=228.0, p < 0.001).
+The best model for predicting the occurrence for the PP1 break was one where only PP2 status was included as a predictor. The chosen model was again better than the minimal model to a significant degree (AICMIN=855.6, AICBEST=629.6, $\chi^2$(1)=228.0, p < 0.001).
 
 ```{r pp1Mod}
 csv <- '
@@ -400,7 +403,7 @@ tab %>% kable(
   row_spec(0,align="c") %>%
   kable_styling(latex_options = "hold_position")
 ```
-This model was better than a minimal model  (AIC~MIN~=1290.4, AIC~BEST~=1078.8, &chi;^2^2(3)=217.59, p < 0.001). PP1 break dominance was much more likely for sentence with argument PP2s than sentences with modifier PP2s, with interrogatives having slightly increased log odds of PP1 break dominance. Log odds of PP1 break dominance were slightly less in Reading 2 than Reading 1.
+This model was better than a minimal model  (AIC~MIN~=1290.4, AIC~BEST~=1078.8, $\chi^2$(3)=217.59, p < 0.001). PP1 break dominance was much more likely for sentence with argument PP2s than sentences with modifier PP2s, with interrogatives having slightly increased log odds of PP1 break dominance. Log odds of PP1 break dominance were slightly less in Reading 2 than Reading 1.
 
 Because reading was a significant predictor for 3 of the 4 models reported, and there are theoretical reasons to believe that Reading 2 is more representative of the natural or intended prosody of the reader, models were also run predicting PP1 dominance and OBJ dominance for Reading 2 data only. In both cases, the best model had the same structure: fixed effects of speech act and PP2 status, with no interaction term.
 
@@ -600,7 +603,7 @@ Speech act is a significant predictor of PP1 break dominance (β=0.31, std. erro
 
 ## Inter-reading time {#irt}
 
-Inter-reading time is the amount of time after the completion of Reading 1 and before the beginning of phonation of Reading 2. The details of how this was measured and defined can be found in section \@ref(sethodir-t).
+Inter-reading time is the amount of time after the completion of Reading 1 and before the beginning of phonation of Reading 2. The details of how this was measured and defined can be found in section \@ref(method-irt).
 
 >>> TODO Explain what I see as the importance of IRT
 
@@ -758,7 +761,7 @@ tab %>% kable(
   kable_styling(latex_options = "hold_position")
 ```
 
-The difference between the reduced and full model was not statistically significant (AIC~FULL~=9103.5, AIC~REDUCED~=9101.6, 𝜒2(1)=0.04, p > 0.8).
+The difference between the reduced and full model was not statistically significant (AIC~FULL~=9103.5, AIC~REDUCED~=9101.6, $\chi^2$(1)=0.04, p > 0.8).
 
 ### On PP2 heads {#pp2h}
 

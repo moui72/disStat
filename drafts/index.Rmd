@@ -3,17 +3,21 @@ title: "DO NOT DISTRIBUTE: PP-attachment ambiguities"
 author: "Tyler J. Peckenpaugh"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
-documentclass: article
+documentclass: book
+classoption: oneside
 bibliography: [refs.bib, packages.bib]
+csl: apa.csl
 biblio-style: "apalike"
 biblo-title: "References"
 fontsize: 12pt
 mainfont: Georgia
 header-includes:
   - \usepackage{float}
+  - \usepackage{longtable}
+  - \usepackage{booktabs}
   - \usepackage{setspace}\doublespacing
 ---
-```{r include=FALSE}
+```{r echo=FALSE}
 # automatically create a bib database for R packages
 knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown', "lme4", "lmerTest"

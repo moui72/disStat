@@ -1,8 +1,3 @@
----
-output:
-  word_document: default
-  html_document: default
----
 ```{r disc,echo=F,warning=F,message=F}
 knitr::opts_chunk$set(
   echo=FALSE, 
@@ -67,7 +62,7 @@ A possible explanation for the intuitive effect of interogativity on parsing gar
 While the data presented above do not definitively show that the prosodic structure of questions is less different for questions than it is for declaratives, it also does not rule it out. Because there does not appear to be a one-to-one mapping of prosodic structure to syntactic structure in the recordings, one cannot make a clear-cut declaration of what a given sentence type looks like prosodically. Instead, we must observe the percentage of recordings for each version of the sentences that exhibit a given pattern. The relevant table is repeated here as \@ref(tab:combobr) for convenience.
 
 ```{r combobr}
-kable(ccombo,caption="Combined breaks % per condition in reading 2 only", col.names=c("D","Q","D","Q"),align="c") %>%
+kable(ccombo,caption="Combined breaks per condition in reading 2 only", col.names=c("D","Q","D","Q"),align="c") %>%
   add_header_above(c(" "=1,"Non-garden path" = 2, "Garden path"=2)) %>%
   column_spec(1,bold=T) %>% kable_styling(latex_options = "hold_position")
 ```

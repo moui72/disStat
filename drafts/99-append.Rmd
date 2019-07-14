@@ -1,13 +1,17 @@
-```{r setup}
+```{r setup, echo=F}
 library(kableExtra)
 knitr::opts_chunk$set(echo = F,warning = F,message=F)
 ```
+
+\newpage
 
 # (APPENDIX) Appendices {-}
 
 # Recruitment notice {#rec}
 
 You will be asked about your reading habits and then asked to read complex sentences out loud while being audio recorded. Recordings of your voice will be analyzed, but will be kept strictly confidential. The process will take no more than 1 hour. Note that the study takes place in Queens Hall, which is about half a mile from the main Queens campus. See directions on the QC website, URL below, for how to get here. The room is 335D, on the third floor. Entrance to the building is in the back. 
+
+\newpage 
 
 # Experimental items {#appExp}
 
@@ -27,12 +31,10 @@ names(items) <- c("no","D Arg","Q Arg","D Mod","Q Mod","asp","v")
 fitems <- items %>% gather(key="version",value="text",-no,-asp,-v) %>% arrange(asp,v,version,text) 
 
 fitems[c(4:5)] %>% 
-  kable(col.names=c("Version", "Text"),booktab=T,linesep = c("", "", "", "\\hline")) %>% 
-  collapse_rows(1) %>%
-  row_spec(c(1:64), hline_after = F, extra_css = "border:0") %>%
-  row_spec(seq(5,64,by=4), hline_after = T, extra_css = "border-bottom: 1px solid #999") %>%
+  kable(col.names=c("Version", "Text"), booktab=T, linesep = "", longtable=T) %>% 
   kable_styling(latex_options = c("hold_position","repeat_headers"))
 ```
+\newpage 
 
 # Filler items {#appFill}
 
@@ -57,12 +59,10 @@ names(items) <- c("no","+PP D","+PP Q","-PP D","-PP Q","asp")
 fitems <- items %>% gather(key="version",value="text",-asp,-no) %>% arrange(asp,no,version) 
 
 fitems[c(3:4)] %>% 
-  kable(col.names=c("Version", "Text"),booktab=T,linesep = c("", "", "", "\\hline")) %>% 
-  row_spec(c(1:64), hline_after = F, extra_css = "border:0") %>%
-  row_spec(seq(3,64,by=2), hline_after = T, extra_css = "border-bottom: 1px solid #999") %>%
-  kable_styling(latex_options = c("hold_position","repeat_headers"),bootstrap_options = c("hover"))
-
+  kable(col.names=c("Version", "Text"),booktab=T,linesep = "",longtable=T) %>% 
+  kable_styling(latex_options = c("hold_position","repeat_headers"))
 ```
+\newpage 
 
 # Instructions to participants {#instr}
 
@@ -104,6 +104,7 @@ keyTable <- data.frame(Label,Position,Description)
 
 ```
 
+\newpage 
 
 # Instructions to RA {#RA}
 
@@ -113,10 +114,10 @@ Next, move on to describings the recordings numbered 1-16. Please listen to them
 
 For each recording, please respond in the spreadsheet using the following guidelines for the columns. Each recording should get its own row.
 
-* Speaker ID: This should be the name of the directory in which the recording exists.
-* Recording ID: This should be the filename of the recording being described
-* X or Y: This should be the last character of the filename, either X or Y.
-* First recording for speaker: This should indicate which recording you started with first, which will allow me to deduce the pattern you used to listened to the recordings, per above, e.g. 1X, 1Y, 16X or 16Y.
+  * Speaker ID: This should be the name of the directory in which the recording exists.
+  * Recording ID: This should be the filename of the recording being described
+  * X or Y: This should be the last character of the filename, either X or Y.
+  * First recording for speaker: This should indicate which recording you started with first, which will allow me to deduce the pattern you used to listened to the recordings, per above, e.g. 1X, 1Y, 16X or 16Y.
 
 For columns E-K, Consider a given sentence to be divided into regions, as in the following example:
 
@@ -133,74 +134,16 @@ kable(tab, booktab=T, caption="Sentence region labels", escape=F,row.names = F) 
 
 Please work with the assumption that “prosodic boundary” in what follows is any subset of the following features, clustered in such a way as to trigger your intuition that a new prosodic element (of any size) is beginning: pitch change, volume change, segmental lengthening, or pause.
 
-* Break after V?: Please indicate whether or not you think there is a prosodic boundary after the verb cluster(at the right edge of the last/main verb).
-* Break after OBJ?: Please indicate whether or not you think there is a prosodic boundary after the first NP in the object region (at the right edge of the first NP in the object region).
-* Break after PP1?: Please indicate whether or not you think there is a prosodic boundary after the first NP in the PP1 region (at the right edge of the first NP in the PP region).
-* Strongest break? Please indicate which of the breaks (columns E-G where you indicated YES) you think is strongest. If two breaks are of equal strength and are stronger than a third, indicate NONE as strongest. If two breaks are of equal strength and are weaker than a third, indicate that third break as strongest. If all breaks are the same strength, indicate NONE as strongest.
-* Weakest break? Please indicate which of the breaks (columns E-G where you indicated YES) you think is weakest. If two breaks are of equal strength and are weaker than a third, indicate NONE as weakest. If two breaks are of equal strength and are stronger than a third, indicate that third break as weakest. If all breaks are the same strength, indicate NONE as weakest
-* Struggle?: Indicate whether or not the speaker appears to have had difficulty reading the sentence. This should be relative to their baseline reading fluency, so if a person is hesitant every time, hesitance should not be enough to indicate a struggle.
-* Start of struggle: indicate the region in which you first notice the speaker struggling.
-*Question?: indicate simply whether or not the recording sounds like a question, prosodically (e.g. final rise is present).
-
-# Median R1 delay by participant {#r1dbyp}
-
-```{r results_setup,echo=F,warning=F,message=F}
-
-kable <- function(data,...) {
-  knitr::kable(data, booktabs = TRUE,...)
-}
+  * Break after V?: Please indicate whether or not you think there is a prosodic boundary after the verb cluster(at the right edge of the last/main verb).
+  * Break after OBJ?: Please indicate whether or not you think there is a prosodic boundary after the first NP in the object region (at the right edge of the first NP in the object region).
+  * Break after PP1?: Please indicate whether or not you think there is a prosodic boundary after the first NP in the PP1 region (at the right edge of the first NP in the PP region).
+  * Strongest break? Please indicate which of the breaks (columns E-G where you indicated YES) you think is strongest. If two breaks are of equal strength and are stronger than a third, indicate NONE as strongest. If two breaks are of equal strength and are weaker than a third, indicate that third break as strongest. If all breaks are the same strength, indicate NONE as strongest.
+  * Weakest break? Please indicate which of the breaks (columns E-G where you indicated YES) you think is weakest. If two breaks are of equal strength and are weaker than a third, indicate NONE as weakest. If two breaks are of equal strength and are stronger than a third, indicate that third break as weakest. If all breaks are the same strength, indicate NONE as weakest
+  * Struggle?: Indicate whether or not the speaker appears to have had difficulty reading the sentence. This should be relative to their baseline reading fluency, so if a person is hesitant every time, hesitance should not be enough to indicate a struggle.
+  * Start of struggle: indicate the region in which you first notice the speaker struggling.
+  *Question?: indicate simply whether or not the recording sounds like a question, prosodically (e.g. final rise is present).
 
 
-
-library(extrafont)
-library(readr)
-library(dplyr)
-library(tidyr)
-library(knitr)
-library(kableExtra)
-library(ggplot2)
-library(psych)
-
-hidel <- 1050
-lodel <- 901
-
-mdata <- read_csv("../drafts/export/prosody_data.csv")
-raw_rs_file <- read_csv("../csvs/merged.csv")
-raw_rs_file$UID <- as.factor(with(raw_rs_file, paste(Participant,Item,Reading,sep="-")))
-raw_rs_file <- subset(raw_rs_file,UID %in% mdata$UID)
-raw_rs <- subset(raw_rs_file,!isFiller)
-raw_rs$reading <- raw_rs$Reading
+\clearpage
 
 
-r1data <- subset(raw_rs, reading == 1)
-r1delByP <- aggregate(r1data$Leading,by=list("Participant" = r1data$Participant), FUN=median)
-
-r1delByP$r1DelCat <- ifelse(r1delByP$x < lodel, "FAST", ifelse(
-  r1delByP$x > hidel, "SLOW", "NORMAL"
-))
-catdes <- sprintf("FAST median R1 delay $\\\\leq$ %0.2fs. SLOW median R1 delay $>$ %0.2fs",lodel/1000,hidel/1000)
-
-tab <- table(r1delByP$r1DelCat)
-
-colnames(r1delByP)[2] <- "r1delbyp"
-
-mdata$Participant <- mdata$SID
-mdata<-merge(r1delByP,mdata,by="Participant")
-mdata <- subset(mdata,simple2lvl != "NEITHER")
-mdata$condition <- factor(mdata$condition,levels(factor(mdata$condition))[c(1,3,2,4)])
-r1deldes <- describe(r1delByP$r1delbyp)
-```
-
-Table \ref{tab:pmedians} shows each participants' median R1 delay.
-
-```{r pmedians}
-r1delByP <- arrange(r1delByP,r1delbyp)
-r1d<-cbind("P"=c(1:32),r1delByP[2:3]) 
-r1d  %>% 
-  kable(
-    caption="Median R1 delay by participant", 
-    col.names=c('#','Median R1 delay','R1 delay category'),
-    align="c"
-  ) %>% 
-  kable_styling(latex_options = c("hold_position","repeat_headers"))
-```
