@@ -50,7 +50,7 @@ In total there were 16 experimental items in 4 versions each, and 32 fillers in 
 
 ### Experimental items
 
-The goal in creating the experimental items was to have four versions of each item: a declarative garden path (D+GP), a declarative non-garden path (D-GP), an interrogative garden path (Q+GP) and an interrogative non-garden path (Q-GP). The experimental stimuli are based on earlier pilot study exploring this same phenomenon [@qp2], but with several issues with that study's experimental items corrected.  The structure of the items are, schematically, something like (@schema).
+The basic experimental items were created in a 2 x 2 design with one factor being speech act (interrogative/Q vs. declarative/D) and the other being PP2 status, i.e. PP2 was either a PP1 which must be an argument of the verb (Arg) or else one which can be a modifier (Mod) of the preceding phrase (PP1). 
 
   (@schema) [Subject] [Verb-cluster: AUX + Matrix + Main] [Object] [PP1] [PP2]
   
@@ -59,10 +59,10 @@ PP1 is always interpretable as either a modifier of the object NP or as the goal
 ```{r sentences}
 sentences <-cbind( 
   c(
-    "D-GP",
-    "Q-GP" ,
-    "D+GP",
-    "Q+GP"
+    "D Mod",
+    "Q Mod" ,
+    "D Arg",
+    "Q Arg"
   ), 
   c(
     "He had intended to cram the paperwork in the drawer of his filing cabinet.",
@@ -74,7 +74,14 @@ sentences <-cbind(
 colnames(sentences) <- c("Version","Sentence")
 kable(sentences, booktabs=T, caption="Experimental item in four versions")
 ```
-The reason for using a complex verb cluster (auxiliary + matrix + main) rather than a single verb has two parts. The purpose of the auxiliary is to eliminate differences across items: an interrogative version, +GP or -GP, is always identical to its declarative counterpart in every way, except for inversion of the order of the subject and auxiliary verb, and the replacement of a final period with a final question mark. If an auxiliary verb were not present, then the interrogatives would have an extra word, so-called *do*-support, that does not appear in the declarative (e.g. *she put ...* vs. *did she put ...?*). The auxiliary is always *had* and the past participle is always one of the following four: *decided*, *intended*, *wanted*, and *planned*. The purpose of the past participle matrix verbs is to partially alleviate the oddity of the yes/no questions. It seems quite odd to ask, "did she put the jelly beans in the window onto a fancy dish?" because, when it’s clear that the speaker already knows so much about the situation, it becomes difficult to imagine a pragmatically plausible context where the question would be asked. Such sentences might be described as “prosecutorial[^dcbp].” Arguably, this is somewhat mitigated by the addition of a verb like *decided*: rather than asking about facts that we already seem to know, we are instead asking about the actor's intention with regard to something that may or may not have taken place. Even if we know the facts of the situation, we do not necessarily know for instance whether it was the result of a decision, some third party's action, or merely happenstance. Another concession to this concern is to limit the amount of detail in the sentence (e.g. fewer adjectives and adverbs compared to the items in @qp2) and to limit the subject to always being a first person nominative pronoun (he or she).
+
+The experimental stimuli were based on earlier pilot study exploring this same phenomenon @qp2, but with several issues with that study’s items corrected. The sequence of parts for each of the basic items was always the same, shown in (@itemdiag).
+
+  (@itemdiag) ![](itemdiag.png)
+
+All versions of a quadruple had exactly the same introductory material, with the only difference with the introductory material being the necessary inversion of the auxiliary and the subject across the speech act factor. Across quadruples, the subject alternated between *she* and *he*, with half (8) using one and half using the other. The auxiliary was always *had*, between all quadruples and within each quadruple. The matrix verb did not vary within a quadruple, but did vary between quadruples; for any given quadruple, the matrix verb was one of four verbs of mental state (*decided*, *intended*, *wanted*, or *planned*). 
+
+The verb within the construction did not vary within a quadruple, but a given quadruple could have one of four verbs: *cram*, *put*, *stick* or *set.* The construction verb was always infinitival. Each construction verb was used in four quadruples, and paired once with each matrix verb, so that there were 16 unique pairings of matrix verb to construction verb forming the foundation of the 16 basic items, i.e. four basic items for each matrix verb, each one paired with a unique construction verb (e.g. *decided to cram*, *decided to stick*, *decided to put*, and *decided to set*); and four basic items for each construction verb, each one paired with a unique matrix verb (e.g. *decided to cram*, *intended to cram*, *wanted to cram*, and *planned to cram*). The content and word order of the construction was the same across all versions of a quadruple, with the exception of the content of PP2 which varied across the PP2-status factor but was fixed across the speech act factor. The Arg versions (Q and D) of a quadruple had a PP2 which was headed by *into* or *onto*, while the Mod versions of a quadruple had a PP2 which was headed by *of* or *from.* 
 
 [^dcbp]: Thank you to Dianne Bradley for making this observation, and for the very clever “prosecutorial” descriptor.
 
