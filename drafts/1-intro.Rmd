@@ -49,7 +49,7 @@ These attachment ambiguities which are difficult to parse in the declarative, ap
 
   (@dec) He had planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ into his  briefcase].
 
-The mechanics of this garden path are discussed in section \ref{sec:mech}. The point to consider here is that, according to the intuition of many native speakers of American English, the difficulty of (@dec) is at least somewhat lessened in (@intr):
+The mechanics of this garden path are discussed in section \@ref(mech). The point to consider here is that, according to the intuition of many native speakers of American English, the difficulty of (@dec) is at least somewhat lessened in (@intr):
 
   (@intr) Had he planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ into his briefcase]?
 

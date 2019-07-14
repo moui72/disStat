@@ -31,7 +31,7 @@ theme_set(
 
 This section reports various descriptions and analyses of the recordings obtained. The reported results include the effect of speech act (declarative/D vs. interrogative/Q) and PP2 status (argument/Arg vs. modifier/Mod) on the location of prosodic breaks, as well as on time spent studying a sentence between readings, which I call inter-reading time (IRT). In order to evaluate the extent to which participants completed the protocol as intended, i.e. began to read immediately for Reading 1 as opposed to producing a studied reading in Reading 2, the delay for which a sentence is displayed before a participant begins to read it is compared for Reading 1  (R1 delay) vs. Reading 2 (R2 delay[^r2d]). The prosodic patterns for participants with especially fast and especially slow R1 delays are presented as a way of investigating the extent to which individual differences might impact those patterns, and as a further exploration of the success of the protocol instructions in producing the intended behavior. An interesting auxiliary finding regarding the effect of speech act in inflating IRT in general (regardless of PP2 status; indeed, even for filler items) is also reported.
 
-[^r2d]: Note that R2 delay is subsumed by but not synonymous with IRT; IRT includes lag time after R1 is completed but before the recording for R2 begins. This distinction is laid out in more detail in the section \@rec(sec:irtRes).
+[^r2d]: Note that R2 delay is subsumed by but not synonymous with IRT; IRT includes lag time after R1 is completed but before the recording for R2 begins. This distinction is laid out in more detail in the section \@ref(irtRes).
 
 ## Missing data
 
@@ -80,7 +80,7 @@ kable(
 
 Ultimately, 978 experimental item recordings were analyzed for prosody, which equates to 489 Reading 1/Reading 2 pairs (pairs were analyzed for IRT). The distribution of these recordings across the experimental item versions is shown in table \@ref(tab:rvtab).
 
-## Prosodic break patterns
+## Prosodic break patterns {#results-prosody}
 
 The two positions where the presence or absence of prosodic breaks in the recordings were considered: directly after the direct object of the construction verb (the OBJ break), and directly after PP1 (the PP1 break). The break locations are indicated with a % symbol in (@breakpos).
 
@@ -564,8 +564,9 @@ Throughout the analysis of break patterns, PP2 status was the most robust predic
 Essentially, the expected patterns can be described as in (@breakpat1) and (@breakpat2), where % represents a robust prosodic break, and @ represents a weaker break or no break.
 
   (@breakpat1) ![... stick the letter @ in the mailbox % onto the proper stack](breakpat1.png)
-  
-  (@breakpat2)![  ... stick the letter % in the mailbox @ of the vice president](breakpat2.png)
+
+
+  (@breakpat2) ![... stick the letter % in the mailbox @ of the vice president](breakpat2.png)
 
 This is supportive of hypothesis 1 presented in the introduction; and, in fact, of a broader formulation of it.
 
@@ -597,9 +598,9 @@ That a prosodic break also frequently occurs between phrases when there is no ch
 
 Speech act is a significant predictor of PP1 break dominance (β=0.31, std. error = 0.15, p < 0.05)., but not of any of the other outcomes. It’s plausible that the PP1 break is more likely to be dominant in questions than in declaratives because of the need to begin the sentence final rise of question intonation. That there is never an interaction between speech act and PP2 status is discouraging for the hypothesis that it’s the prosody of questions that make the Arg cases seem easier in the interrogative cases compared to the declarative.
 
-## Inter-reading time
+## Inter-reading time {#irt}
 
-Inter-reading time is the amount of time after the completion of Reading 1 and before the beginning of phonation of Reading 2. The details of how this was measured and defined can be found in section \@ref(sec:irt).
+Inter-reading time is the amount of time after the completion of Reading 1 and before the beginning of phonation of Reading 2. The details of how this was measured and defined can be found in section \@ref(sethodir-t).
 
 >>> TODO Explain what I see as the importance of IRT
 

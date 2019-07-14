@@ -3,7 +3,7 @@ title: "DO NOT DISTRIBUTE: PP-attachment ambiguities"
 author: "Tyler J. Peckenpaugh"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
-documentclass: book
+documentclass: article
 bibliography: [refs.bib, packages.bib]
 biblio-style: "apalike"
 biblo-title: "References"

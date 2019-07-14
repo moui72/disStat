@@ -64,7 +64,7 @@ It could also be that IRT is simply the wrong measure for detecting a behavioral
 
 A possible explanation for the intuitive effect of interogativity on parsing garden paths is provided in the work by @Bader1998-ts. Bader demonstrates that it is easier to recover a parse that “behave[s] alike prosodically” to a given failed parse, because the reanalysis does not require prosodic reconstruction and only the syntax needs to be repaired. In the case of the intuition this study is concerned with, this would mean that should sentences be more similar across the garden path vs. non-garden path condition in the interrogative than in the declarative, the intuitive reduction in difficulty of reanalysis would naturally follow. 
 
-While the data presented above do not definitively show that the prosodic structure of questions is less different for questions than it is for declaratives, it also does not rule it out. Because there does not appear to be a one-to-one mapping of prosodic structure to syntactic structure in the recordings, one cannot make a clear-cut declaration of what a given sentence type looks like prosodically. Instead, we must observe the percentage of recordings for each version of the sentences that exhibit a given pattern. Recall table \ref{tab:r2combobreaksBycond}, repeated here as\ref{tab:combobr} for convenience.
+While the data presented above do not definitively show that the prosodic structure of questions is less different for questions than it is for declaratives, it also does not rule it out. Because there does not appear to be a one-to-one mapping of prosodic structure to syntactic structure in the recordings, one cannot make a clear-cut declaration of what a given sentence type looks like prosodically. Instead, we must observe the percentage of recordings for each version of the sentences that exhibit a given pattern. The relevant table is repeated here as \@ref(tab:combobr) for convenience.
 
 ```{r combobr}
 kable(ccombo,caption="Combined breaks % per condition in reading 2 only", col.names=c("D","Q","D","Q"),align="c") %>%
@@ -100,7 +100,7 @@ A major roadblock to the success of the methodology here reported is that the re
 
 A major issue is the difficulty in differentiating between syntactically-motivated prosodic breaks and hesitations. As table \ref(tab:combobr) and the reliability data reported earlier in this paper illustrates, a linguistically trained judge will not necessarily be able to distinguish between prosodic breaks and hesitations, and will not necessarily agree with another linguistically trained judge on the relative prominence of breaks and hesitations within a recording. It is famously difficult to instrumentally describe a prosodic break, and there is no guarentee that examining the wave forms would fare any better in making this distinction than the intuition of the judges. That said, it may be possible to distinguish the two sorts of breaks: it may be that boundary tones or segmental lengthening are typically not part of a hesitation break, but are a part of hesitation break. No immediately apparent pattern is available, but it would be inordinately beneficial if one could be found.
 
-In \@ref(sec:erp) I propose that an event-related potential paradigm might hold the key for distinguishing between the two.
+In \@ref(erp) I propose that an event-related potential paradigm might hold the key for distinguishing between the two.
 
 ### Embedded questions
 
@@ -118,7 +118,7 @@ The prosody of an embedded question, as in (@embed_qgp), does not differ from th
 
 These stimuli could be used in another reading aloud study, like the one just reported, or could be used with ERP or eye-tracking methodology. If a behavioral correlate of the intuition is found with embedded question stimuli, that would be strong evidence that the explanation is semantic or pragmatic rather than prosodic.
 
-### Event-related potential (ERP)
+### Event-related potential (ERP) {#erp}
 
 An event-related potential study of the phenomenon could provide a number of useful insights. It has been shown that the so-called closure-positive shift (CPS), an ERP component that is elicited by the presence of a prosodic break or a comma, is present even in silent reading. This has a number of important implications for research on the phenomena at hand. 
 
