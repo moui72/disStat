@@ -182,19 +182,16 @@ If we assume, in Optimality Theoretic (Prince & Smolensky, 1993) terms, that a c
 
 ## Predictions for the current study
 
-
-## Predictions for the current study
-
-This study is concerned with a number of issues. First: is attachment in any way encoded in the speech signal? I hypothesize, following e.g. Schafer et al. (2000), that we can use prosody to diagnose attachment site. Assume the following basic configuration:
+This study is concerned with a number of issues. First: is attachment in any way encoded in the speech signal? I hypothesize, following e.g. @schafer2000intonational, that we can use prosody to diagnose attachment site. Assume the following basic configuration:
 
   (@cfg) SUBJ V OBJ PP1 PP2
 
-I suggest that high attachment of PP2 will be marked by a prosodic boundary between PP1 and PP2 (for discussion of what constitutes a prosodic boundary, see Streeter, 1978 and Salverda et al., 2003). Low attachment of PP2, on the other hand, will lack any substantial boundary marking.
+I suggest that high attachment of PP2 will be marked by a prosodic boundary between PP1 and PP2 (for discussion of what constitutes a prosodic boundary, see e.g. @streeter1978acoustic and @salverda2003role). Low attachment of PP2, on the other hand, will lack any substantial boundary marking.
 
   (@hypa) *Hypothesis 1* \hfill\linebreak
   High attachment of PP2 is marked by a prosodic break between PP1 and PP2.
 
-The second issue: what factors impact immediate on-line parsing, and what factors only affect later, post-parse considerations? To address this, the study will employ the double reading paradigm of Fodor et al. (2018) (more on double reading in the methods section). For example, if first-pass parsing ignores semantic information, then implausible parses should be more frequent in cold readings (i.e. without preview) of a garden-path sentence than in a second reading of the same sentence.
+The second issue: what factors impact immediate on-line parsing, and what factors only affect later, post-parse considerations? To address this, the study will employ the double reading paradigm of @fodor2019center (more on double reading in the methods section). For example, if first-pass parsing ignores semantic information, then implausible parses should be more frequent in cold readings (i.e. without preview) of a garden-path sentence than in a second reading of the same sentence.
 
   (@hypb) *Hypothesis 2* \linebreak
   A first reading (no preview) of a GP sentence will exhibit less natural prosody (more hesitation at and after the disambiguating region) than:
