@@ -32,7 +32,7 @@ All participants were self identified native and primary speakers of American En
 
 ## Location
 
-All data were collected in a private room with only the experimenter and participant present. While every effort was undertaken to ensure a quiet environment, intrusive noise from passersby or neighboring rooms were sometimes unavoidable. This resulted in some unusable or partially unusable recordings (discussed in section \@ref(sec:irtRes) of the results chapter).
+All data were collected in a private room with only the experimenter and participant present. While every effort was undertaken to ensure a quiet environment, intrusive noise from passersby or neighboring rooms were sometimes unavoidable. This resulted in some unusable or partially unusable recordings (detailed in section \@ref(sec:irtDis) of the results chapter).
 
 ## Equipment and software
 
@@ -77,69 +77,67 @@ kable(sentences, booktabs=T, caption="Experimental item in four versions")
 
 The experimental stimuli were based on earlier pilot study exploring this same phenomenon @qp2, but with several issues with that study’s items corrected. The sequence of parts for each of the basic items was always the same, shown in (@itemdiag).
 
-  (@itemdiag) ![](itemdiag.png)
+  (@itemdiag) ![](item_diagram.png)
 
 All versions of a quadruple had exactly the same introductory material, with the only difference with the introductory material being the necessary inversion of the auxiliary and the subject across the speech act factor. Across quadruples, the subject alternated between *she* and *he*, with half (8) using one and half using the other. The auxiliary was always *had*, between all quadruples and within each quadruple. The matrix verb did not vary within a quadruple, but did vary between quadruples; for any given quadruple, the matrix verb was one of four verbs of mental state (*decided*, *intended*, *wanted*, or *planned*). 
 
 The verb within the construction did not vary within a quadruple, but a given quadruple could have one of four verbs: *cram*, *put*, *stick* or *set.* The construction verb was always infinitival. Each construction verb was used in four quadruples, and paired once with each matrix verb, so that there were 16 unique pairings of matrix verb to construction verb forming the foundation of the 16 basic items, i.e. four basic items for each matrix verb, each one paired with a unique construction verb (e.g. *decided to cram*, *decided to stick*, *decided to put*, and *decided to set*); and four basic items for each construction verb, each one paired with a unique matrix verb (e.g. *decided to cram*, *intended to cram*, *wanted to cram*, and *planned to cram*). The content and word order of the construction was the same across all versions of a quadruple, with the exception of the content of PP2 which varied across the PP2-status factor but was fixed across the speech act factor. The Arg versions (Q and D) of a quadruple had a PP2 which was headed by *into* or *onto*, while the Mod versions of a quadruple had a PP2 which was headed by *of* or *from.* 
 
-[^dcbp]: Thank you to Dianne Bradley for making this observation, and for the very clever “prosecutorial” descriptor.
+PP1 was the same across versions of a given quadruple. That is, PP1 was ambiguous in every version of a given quadruple, being interpretable as either a modifier of the object NP or as the goal argument of the construction verb; however, in Arg versions of a quadruple, the argument interpretation of PP1 becomes impossible once PP2 is encountered. In those cases PP2 must fill the goal argument slot and PP1 must be a modifier. The working assumptions about parsing discussed earlier, i.e. that the parser will initially assume PP1 to be the goal argument due to the primary status of arguments, assumes that Arg versions of a quadruple require reanalysis.  Between quadruples, the preposition that headed PP1 varied, but was always one which was compatible with it being a goal argument or a modifier of the object: *in* (8), *on* (7), and in one case, *under.* 
 
-Importantly, the main verb needs to be one which obligatorily takes a PP goal argument. One of these issues with the items from [@qp2] was that the some of the verbs used only optionally took a goal[^goalmod]. Verbs that only optionally take a goal are likely to result in a parse where PP1 is not immediately incorporated as the goal argument, but rather be incorporated as a modifier of the object, which would mean that PP2 would not force reanalysis. Consider the contrasting sub-categorization of the verbs in (@weak-@strong):
+One benefit of using a complex verb cluster (auxiliary + matrix + infinitive) rather than a single verb was that it isolated the differences across the versions of a quadruple triggered by the speech act factor to the left extremity of the introductory material of the sentence: only the position of the subject and the auxiliary were affected, meaning that the construction itself was completely untouched by this manipulation. Additionally, the use of an auxiliary eliminated length differences across D vs. Q versions of a quadruple that would have resulted without one: if an auxiliary verb were not present, the interrogative versions of a quadruple would have an extra word, the result of so-called *do*-support, that would not appear in the declaratives (e.g. *she put* … vs. *did she put* …?) As previously stated, the auxiliary was *had* for every member of every quadruple. 
 
-[^goalmod]: Because "optional argument" is arguably a contradictory term, I refrain from referring to goals that are not obligatory as "arguments"; I will instead call them goal modifiers of the verb, or just goals.
+The purpose of including the past participle matrix verbs was to reduce the oddity of the polar questions (the two interrogative versions of each quadruple). It seems odd to ask, “did Mary put the jelly beans in the window onto a fancy dish?” because, when it is clear that the speaker already knows so much about the situation, it becomes difficult to imagine a pragmatically plausible context where the question would be asked. Such sentences might be described as “prosecutorial[^dcbp].” Arguably, this is somewhat mitigated by the addition of a verb like *decided*: rather than asking about facts that we already seem to know, we are instead asking about the actor’s mental state with regard to those facts. Even if we know the facts of the situation, we do not necessarily know, for instance, whether it was the result of a decision, some third party’s action, or mere happenstance. 
 
-  (@weak) Weak PP-argument sub-categorization (*hide*) 
+Another concession to this concern was to limit the amount of detail in the sentence (e.g., fewer adjectives and adverbs compared to the items in @qp2) and to limit the subjects to first person nominative pronouns (*he* or *she*, 8 each).
+
+Importantly, the construction verb was always one which required a PP goal argument. One of the issues with the items from @qp2 was that some of the verbs used in the items for that study only optionally took a goal. Verbs that only optionally take a goal might result in a parse where PP1 is not immediately incorporated as the goal argument, which would mean that PP2 would not necessarily force reanalysis. Consider the contrasting sub-categorization of the verbs in (@optg-@oblg):
+
+  (@optg) __Optional goal__ (*hide*)
+  The gangsters had hidden the shotguns in a U-Haul truck.
+  ✓ The gangsters had hidden the shotguns.
   
-  a. The gangsters had hidden the shotguns in a U-Haul truck in an old outhouse. 
-  b. \checkmark The gangsters had hidden the shotguns.
-            
-  (@strong) Strong PP-argument sub-categorization (*cram*) 
-  
-  a. Justin had crammed the old newspapers under the couch in a small wastebasket.
-  b. \* Justin had crammed the old newspapers.
+  (@oblg) __Obligatory goal__ (*put*)
+  The gangsters had put the shotguns in a U-Haul truck.
+  * The gangsters had put the shotguns.
 
-A verb like *hide*, as in (@weak), can take a goal, but is also able to do without one. A verb like *cram*, on the other hand, as in (@strong), really must have a goal. In designing the items for this study, only verbs that require a goal argument were used in order to maximize the likelihood of a robust garden path effect in the +GP versions, when PP2 triggers reanalysis. The four verbs used in this study were: *cram*, *put*, *stick* and *set*. 
+A verb like hide, as in (@optg), can take a goal, but can also be used without one. A verb like put, on the other hand, as in (@oblg), really must have a goal. In designing the items for this study, only verbs that require a goal argument were used in order to maximize the likelihood of a robust garden path effect in the Arg versions, when PP2 triggers reanalysis. The four main verbs used in this study were: cram, put, stick and set.
 
-Another important consideration was ensuring that the +GP versions had a PP2 which fully disambiguated the attachment site of PP1 such that reanalysis is forced. In (@ambig), PP2 is implausible as a modifier of *rocking horse*, but not strictly impossible, and the sentence is certainly grammatical with low attachment of PP2. On the other hand, the use of *onto* in (@disam) completely disallows the low attachment of PP2 at the syntactic level: a PP headed by *onto* simply cannot modify the preceding NP.
+Another important consideration was ensuring that the Arg versions had a PP2 which fully disambiguated the attachment site of PP1 such that reanalysis is forced. In (@on), PP2 is implausible as a modifier of rocking horse, but not strictly impossible, and the sentence is certainly grammatical with low attachment of PP2. On the other hand, the use of onto in (@onto) completely disallows the low attachment of PP2 at the syntactic level: a PP headed by onto cannot grammatically modify the preceding NP.
 
-  (@ambig) She had decided to put the child [~PP1~ on the rocking horse] [~PP2~ **on** the see-saw].
-  (@disam) She had decided to put the child [~PP1~ on the rocking horse] [~PP2~ **onto** the see-saw].
-  
-Where [@qp2] relied on plausibility to force reanalysis, this study uses syntactic disambiguation, such that the +GP versions always have a PP2 headed by *into* or *onto* This avoids any discrepency between individuals' belief of what is plausible from impacting the parse obtained.
+  (@on) She had decided to put the child [PP1 on the rocking horse] [PP2 on the see-saw].
+  (@onto) She had decided to put the child [PP1 on the rocking horse] [PP2 onto the see-saw].
 
-For the -GP items, the head preposition of PP2 was always either *from* or *of* (half and half, 8 each), which are compatible with a parse where PP1 is the goal argument and PP2 is modifying the NP within PP1. While *from* can be read as a goal argument, the assumptions made about how parsing works lead this to be an unlikely analysis, and *of*-headed PPs certainly cannot be a goal argument.
+Where @qp2 relied on plausibility to force reanalysis, the current study uses syntactic disambiguation, such that the Arg versions always have a PP2 headed by into or onto which cannot head a PP2 that modifies the NP of PP1. This avoids any noise that might result from discrepancies between individuals’ real world knowledge or beliefs. For the Mod items, the head preposition of PP2 was always either *from* or *of* (half and half, 8 each), which are compatible with a parse where PP1 is the goal argument and PP2 is modifying the NP within PP1. While from can be read as a goal argument, the assumptions made about how parsing works lead this to be an unlikely analysis, and of-headed PPs certainly cannot be a goal argument.
 
-It's worth noting that some linguists believe *of* is not a preposition in the same sense as *from*, *on*, or *in*, etc. It's also importantly only 2 characters, whereas *into*, *onto*, and *from* (the other possible heads of PP2) are all 4 characters. This is revisted and its impact is explored in the results section.
+It is worth noting that some linguists believe of is not a preposition in the same sense as from, on, or in, etc., in that it appears to be serving a strictly grammatical or functional purpose, without any lexical content. Importantly, it is also only 2 characters, whereas into, onto, and from (the other possible heads of PP2) are all 4 characters. This is revisited and its possible impact is explored in the results section (section \@ref(sec:pp2h).
 
-The preposition that headed PP1 was always one which was compatable with a goal argument: *in* (8), *on* (7), and in one case, *under*. PP1 is the same across versions of a given item.
+To sum up, the experimental items were designed to have limited detail, with either *he* or *she* as the subject. A complex verb cluster, e.g. *had decided to cram* was used to facilitate subject-auxiliary inversion without *do*-support in the interrogatives and limit the difference between items, as well as provide a verb of mental state (*decided*, *intended*, *wanted*, or *planned*) to support more pragmatically plausible questions. PP1 was always interpretable as either the goal argument or a modifier of the object. PP2 differed across the PP2 status factor, but not across the speech act factor. In the two Arg versions of a quadruple, it was headed by *into* or *onto* and was intended to force reanalysis, under the assumption that PP1 had been incorporated into the parse as an argument, since a PP headed by *into* or *onto* must be interpreted as the goal argument, the position that PP1 would have presumably been occupying in the ongoing parse. For the two Mod versions of a quadruple, PP2 was headed by *from* or *of* and therefore was not expected to require reanalysis, as *from*- and *of*-headed PPs can attach as modifiers of a preceding NP (in this case, the NP within PP1), allowing PP1 to stay in the goal argument slot.
 
-To sum up, the experimental items were designed to have limited detail, with either he or she as the subject. A complex verb cluster, e.g. had decided to cram was used to facilitate subject-auxiliary inversion in the interrogatives and limit the difference between items, as well as provide a verb of intent (decided, intended, or wanted) to support pragmatically plausible questions. PP1 is always compatible with attaching as either the goal argument or a modifier of the object. PP2 differs across the garden path condition: in +GP versions, it will be headed by into or onto and thereby trigger reanalysis, as such PPs must be parsed as the goal argument, the position that PP1 had presumably previously occupied in the ongoing parse. For -GP versions PP2 will be headed by from or of and therefore not require reanalysis, as from- and of-headed PPs can attach as modifiers of the preceding NP and so allow PP1 to stay in the goal argument slot.
+[^dcbp]: Thank you to Dr. Dianne Bradley for making this observation, and for the very clever “prosecutorial” descriptor.
 
 ### Fillers
 
-There were 32 filler items that ranged in complexity. Of these 32, 16 were designed to end in a sequence of two PPs, to mirror the experimental items (+PP). The other half contained no final PPs (-PP). All fillers were designed in two versions: declarative (D) and interrogative (Q). The +PP fillers were not related to the -PP fillers.
+There were 32 filler items that ranged in complexity. Of these 32, 16 were designed to end in a sequence of two PPs, to mirror the experimental items (+PP). The other half contained no final PPs (-PP). All fillers were designed in two versions: declarative (D) and interrogative (Q). 
 
-  (@fillerdpp) He had forgotten to try the famous pastry in the restaurant of the fancy hotel.
-  (@fillerqpp) Had he forgotten to try the famous pastry in the restaurant of the fancy hotel?
+  (@fillerdpp) *D+PP:* He had forgotten to try the famous pastry in the restaurant of the fancy hotel.
+  (@fillerqpp) *Q+PP:* Had he forgotten to try the famous pastry in the restaurant of the fancy hotel?
   
-  (@fillerd) She had forgotten to report that the clerk was ignoring her request.
-  (@fillerq) Had she forgotten to report that the clerk was ignoring her request?
+  (@fillerd) *D-PP:* She had forgotten to report that the clerk was ignoring her request.
+  (@fillerq) *Q-PP:* Had she forgotten to report that the clerk was ignoring her request?
 
-A full list of fillers is available in appendix \ref{sec:fillers}. Fillers were not limited to the four main verbs of the experimental item, but did always follow the same pattern of *had* followed by a past participle. The past participle was always one of the four used for experimental item (*intended*, *decided*, *planned*, and *wanted*), or one of these additional four: *forgotten*, *remembered*, *meant*, or *needed*, with each of the 8 past participles being used twice in the +PP fillers and twice in the -PP fillers, for a total of 4 times each.
+The +PP fillers were not related to the -PP fillers. All filler items had the same sort of introductory material as the experimental item (*he/she* + *had* + past participle verb of mental state). The past participle was always one of the four mental state used for the experimental items (*intended*, *decided*, *planned*, and *wanted*), or one of these additional four verbs of mental state: *forgotten*, *remembered*, *meant*, or *needed*, with each of the 8 past participles being used twice in the +PP fillers and twice in the -PP fillers, for a total of 4 times each. This means that a participant would see 6 instances each of *intended*, *decided*, *planned*, and *wanted* but only 4 instances of *forgotten*, *remembered*, *meant*, and *needed.* Fillers used both mental state verbs from the experimental items as well as others was to prevent the experimental items as being identifiable by which mental state verb was used, and to avoid extreme amounts of repetition for any given lexical item.
+
+A full list of fillers is available in the appendices.
 
 ### Length
 
-Length was tightly controlled across items. For experimental items, all sentences were between 66 and 75 characters long, and between 13 and 15 words long. The length never varied across the &plusmn;Q condition. Across the &plusmn;GP condition there was a maximum length difference of one character. Two items varied in word length across &plusmn;GP by one word. For all length variations (word and character), an equal number were longer in the +GP condition as in the -GP condition. They ranged from 18 to 22 syllables.
+Length was tightly controlled across items. For experimental quadruples, all sentences were between 66 and 75 characters long, and between 13 and 15 words long. The length within a quadruple never varied across the D vs. Q factor. Across the PP2-status factor, given that the content of PP2 differed within a given quadruple, there was a maximum length difference of one character. Two quadruples varied in word length across  PP2-status by one word. ACross all quadruples an equal number were longer (word- and character-wise) in the Arg condition as in the Mod condition. The experimental items ranged from 18 to 22 syllables.
+Control over filler pair length was slightly less stringent. They ranged from 63 to 79 characters and 12 to 14 words. Length was never different within a filler pair.
 
-Control over filler length was slightly less stringent. They ranged from 63 to 79 characters and 12 to 14 words. 
+## Versions of the experiment
 
-## Experimental groups and order of items
-
-No participant saw more than one version of each sentence, and each participant saw one version of every sentence. Each participant saw the same number of each type of sentence: 4 garden path declaratives, 4 garden path interrogatives, 4 non-garden path declaratives and 4 non-garden path interrogatives. The experimental item were presented in pseudo-random order, interspersed with 1 to 3 fillers and with two experimental items never occurring in the same version twice in a row (e.g. after declarative garden path, the next experimental item was never also a declarative garden path).
-
-The four versions of the experimental sentences resulted in four groups. A split-half ordering (where the first 24 of the items presented to one group was the second 24 presented to the other) resulted in 2 versions for each group, and so there were 8 groups in total.
-
+The experiment was presented in 4 basic versions, with split-half ordering  (where the first 24 of the items presented to one group was the second 24 presented to the other) for a total of 8 groups. Each version contained 8 practice items, 4 of which were overt practice and 4 of which were covert practice, as well as one version of each of the 16 experimental and 32 filler items. No version contained more than one version of a given experimental quadruple, or a given filler pair, and each version contained one member of every experimental quadruple and filler pair. Each participant saw the same number of each type of experimental quadruple: 4 D Arg, 4 Q Arg, 4 D Mod and 4 Q Mod. The experimental items were presented in pseudo-random order, interspersed with 1 to 3 fillers. Ignoring fillers, the same version of a different quadruple never occured in sequence (e.g. after encountering a D Arg, the next experimental item was never another D Arg).
 
 ## Procedure
 

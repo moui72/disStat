@@ -16,17 +16,19 @@ header-includes:
 ```{r include=FALSE}
 # automatically create a bib database for R packages
 knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
-), 'packages.bib')
+  .packages(), 'bookdown', 'knitr', 'rmarkdown', "lme4", "lmerTest"
+), '~/GitHub/disStat/drafts/packages.bib')
 ```
 # Abstract {-}
 
-TODO Write abstract here
+Write abstract here
 
-MORE TODO
+## TODO
+  
+  * Abstract
+  * Acknowledgements
   * Isolated effect of interrogativity for fillers
   * More on the significance of IRT to the study at hand
-  * Hand measurement for IRT relaibility
-  * Update items desc
-  
+  * Hand measurement for IRT reliability
+
 \pagebreak

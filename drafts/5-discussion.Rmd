@@ -42,7 +42,7 @@ theme_set(
 ccombo <- read_csv("export/ccombo.csv")
 rownames(ccombo)<-c("Both", "OBJ", "PP1")
 ```
-# Discussion
+# Discussion and conclusion
 
 This section will go through the motivating questions behind this study and discuss the extent to which those questions are answered, or not. It will discuss the issues that may have lead to the disatisfying. It will then go on to present further questions and propose further studies to explore those new questions and the ones left unanswered here.
 

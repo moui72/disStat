@@ -29,7 +29,9 @@ theme_set(
 ```
 # Results and discussion
 
-This section reports various descriptions and analyses of the recordings obtained. The reported results include the effect of speech act (declarative/D vs. interrogative/Q) and PP2 status (argument/Arg vs. modifier/Mod) on the location of prosodic breaks, as well as on time spent studying a sentence between readings, which I call inter-reading time (IRT). In order to evaluate the extent to which participants completed the protocol as intended, i.e. began to read immediately for Reading 1 as opposed to producing a studied reading in Reading 2, the delay for which a sentence is displayed before a participant begins to read it is compared for Reading 1  (R1 delay) vs. Reading 2 (R2 delay). The prosodic patterns for participants with especially fast and especially slow R1 delays are presented as a way of investigating the extent to which individual differences might impact those patterns, and as a further exploration of the success of the protocol instructions in producing the intended behavior. An interesting auxiliary finding regarding the effect of speech act in inflating IRT in general (regardless of PP2 status; indeed, even for filler items) is also reported.
+This section reports various descriptions and analyses of the recordings obtained. The reported results include the effect of speech act (declarative/D vs. interrogative/Q) and PP2 status (argument/Arg vs. modifier/Mod) on the location of prosodic breaks, as well as on time spent studying a sentence between readings, which I call inter-reading time (IRT). In order to evaluate the extent to which participants completed the protocol as intended, i.e. began to read immediately for Reading 1 as opposed to producing a studied reading in Reading 2, the delay for which a sentence is displayed before a participant begins to read it is compared for Reading 1  (R1 delay) vs. Reading 2 (R2 delay[^r2d]). The prosodic patterns for participants with especially fast and especially slow R1 delays are presented as a way of investigating the extent to which individual differences might impact those patterns, and as a further exploration of the success of the protocol instructions in producing the intended behavior. An interesting auxiliary finding regarding the effect of speech act in inflating IRT in general (regardless of PP2 status; indeed, even for filler items) is also reported.
+
+[^r2d]: Note that R2 delay is subsumed by but not synonymous with IRT; IRT includes lag time after R1 is completed but before the recording for R2 begins. This distinction is laid out in more detail in the section \@rec(sec:irtRes).
 
 ## Missing data
 
@@ -313,7 +315,9 @@ Figure \@ref(fig:bdom) clearly shows a robust effect of PP2 status on break domi
 
 ### Regression models of prosodic break patterns
 
-A number of mixed effects logistic regression models support the general observations above. Models predicting PP1 break, OBJ break, PP1 break dominance and OBJ break dominance are reported. All models include crossed random effect intercepts (participant and item), but due to convergence errors, no random slopes are included. The intercept always represents the D Mod (“control”) condition. In each case, models were selected from a set of models by selecting the one with the lowest reported AIC. Model comparisons did not always find significant differences between the more complex models. In each case, the selected model was compared to a minimal model where the fixed effects structure was simply a dummy value of 1, and all reported models represent improvement over the minimal model to a statistically significant degree. That comparison is reported for each model.
+A number of mixed effects logistic regression models support the general observations above. Models predicting PP1 break, OBJ break, PP1 break dominance and OBJ break dominance are reported. All models include crossed random effect intercepts (participant and item), but due to convergence errors, no random slopes are included. The intercept always represents the D Mod (“control”) condition. In each case, models were selected from a set of models by selecting the one with the lowest reported AIC. Model comparisons did not always find significant differences between the more complex models. In each case, the selected model was compared to a minimal model where the fixed effects structure was simply a dummy value of 1, and all reported models represent improvement over the minimal model to a statistically significant degree. That comparison is reported for each model. All regression models were run using @R-lme4, with p-values calculated via @R-lmerTest.
+
+Table \@ref(tab:objMod) shows a model predicting the occurrence of an OBJ break with estimates for the coefficients of the fixed effects of Reading 2, PP2 and the interaction between Reading and PP2 status. A comparison between the reported model and a minimal one with a dummy value of 1 as the only fixed effect found that the reported model was better with a high level of confidence (AIC~MIN~=1068.0, AIC~BEST~=1031.6, 𝜒2(2)=30.5, p < 0.001).
 
 ```{r objMod}
 csv <- 'Outcome: OBJ break,Estimate,Std. Error,p
@@ -332,7 +336,11 @@ tab %>% kable(
   kable_styling(latex_options = "hold_position")
 ```
 
-Table \@ref(tab:objMod) shows a model predicting the occurrence of an OBJ break with estimates for the coefficients of the fixed effects of Reading 2, PP2 and the interaction between Reading and PP2 status. A comparison between the reported model and a minimal one with a dummy value of 1 as the only fixed effect found that the reported model was better with a high level of confidence (AIC~MIN~=1068.0, AIC~BEST~=1031.6, 𝜒2(2)=30.5, p < 0.001).
+The log odds[^logodds] of an OBJ break for D Mod recordings is 1.39 (std. error = 0.45, p < 0.01). The log odds of that break increased in Reading 2 (β=0.11, std. error = 0.16) but the increase was not statistically significant. PP2 arguments reduced the log odds of an OBJ break compared to PP2 modifiers by a robust amount (β=-1.98, std. error = 0.5, p < 0.001), but less so in Reading 2 than in Reading 1 (β=-0.81, std. error = 0.32, p < 0.05).
+
+[^logodds]:  Log odds is the (in this case, natural) log of the odds ratio, so the log odds of A is log~e~(P(A)/P(¬A)). A log odds of 1.39 translates to an odds ratio of 2.4:1 (1.39^e^=2.4) and a probability of 71% (2.4/(1+2.4)=0.71).
+
+The best model for predicting the occurrence for the PP1 break was one where only PP2 status was included as a predictor. The chosen model was again better than the minimal model to a significant degree (AICMIN=855.6, AICBEST=629.6, 𝜒2(1)=228.0, p < 0.001).
 
 ```{r pp1Mod}
 csv <- '
@@ -555,16 +563,11 @@ Throughout the analysis of break patterns, PP2 status was the most robust predic
 
 Essentially, the expected patterns can be described as in (@breakpat1) and (@breakpat2), where % represents a robust prosodic break, and @ represents a weaker break or no break.
 
-(@breakpat1)![... stick the letter @ in the mailbox % onto the proper stack](breakpat1.png)
+  (@breakpat1) ![... stick the letter @ in the mailbox % onto the proper stack](breakpat1.png)
+  
+  (@breakpat2)![  ... stick the letter % in the mailbox @ of the vice president](breakpat2.png)
 
-(@breakpat2)![... stick the letter % in the mailbox @ of the vice president](breakpat2.png)
-
-This is supportive of hypothesis 1 presented in the introduction; and, in fact, of a broader formulation of it. 
-Hypothesis 1
-High attachment of PP2 is prosodically marked by a prosodic break between PP1 and PP2.
-	Broadened hypothesis 1
-	A change in branching direction is marked by a prosodic break.
-A change in branching direction is taken to mean the closure of the preceding phrase and attachment into its parent node; in this case, the closure of PP1 and attachment into the VP. 
+This is supportive of hypothesis 1 presented in the introduction; and, in fact, of a broader formulation of it.
 
   *Hypothesis 1* \hfill\linebreak
   High attachment of PP2 is marked by a prosodic break between PP1 and PP2.
@@ -755,6 +758,8 @@ tab %>% kable(
 ```
 
 The difference between the reduced and full model was not statistically significant (AIC~FULL~=9103.5, AIC~REDUCED~=9101.6, 𝜒2(1)=0.04, p > 0.8).
+
+### On PP2 heads {#pp2h}
 
 As mentioned in the items description (section 3.4), half of the items used of for the head of PP2 in the Mod condition, while half used from. In the Arg condition, half used into and half used onto to head PP2. An analysis that looks at the identity of the PP2 head found that while into and onto do not behave differently, of and from do. Starting from a very complex model that included the lexical identity of the matrix verb, the construction verb, the head of PP1, and the head of PP2, as well as speech act and PP2 status, the model that best predicted wIRT was one that is essentially the same as the reduced model just reported, except it substitutes the lexical identity of the PP2 head for the Arg vs. Mod categorization, with into and onto collapsed into one level of the PP2 factor and used as the reference level. 
 

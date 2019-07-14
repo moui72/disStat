@@ -1,4 +1,4 @@
-```{r setup, include=FALSE}
+```{r setup}
 library(kableExtra)
 knitr::opts_chunk$set(echo = F,warning = F,message=F)
 ```
@@ -9,48 +9,59 @@ knitr::opts_chunk$set(echo = F,warning = F,message=F)
 
 You will be asked about your reading habits and then asked to read complex sentences out loud while being audio recorded. Recordings of your voice will be analyzed, but will be kept strictly confidential. The process will take no more than 1 hour. Note that the study takes place in Queens Hall, which is about half a mile from the main Queens campus. See directions on the QC website, URL below, for how to get here. The room is 335D, on the third floor. Entrance to the building is in the back. 
 
-# Experimental items {#items}
-
-The D +GP and Q -GP versions of experimental items. The remaining versions can be extrapolated by applying or reversing subject-auxiliary inversion.
+# Experimental items {#appExp}
 
 ```{r}
 library(readr)
 library(tidyr)
 library(dplyr)
+library(stringr)
 items <- read_csv("../csvs/src/exp-items.csv") 
-items$asp <- ifelse(
-  grepl("intended",items$EDY,fixed = T),
-  "intended",
-  ifelse(
-    grepl("wanted",items$EDY,fixed = T),
-    "wanted",
-    ifelse(
-      grepl("decided",items$EDY,fixed = T),
-      "decided",
-      "planned")
-    )
-  )
-names(items) <- c("no","D+GP","Q+GP","D-GP","Q-GP","asp")
 
-fitems <- items %>% gather(key="version",value="text",-no,-asp) %>% arrange(asp,no,version,text) 
-fitems[c(1,3:4)] %>% 
-  kable(col.names=c("#", "Version", " "),booktab=T) %>% 
+items$asp <- word(items$EDY,3)
+
+items$v <- word(items$EDY,5)
+
+names(items) <- c("no","D Arg","Q Arg","D Mod","Q Mod","asp","v")
+
+fitems <- items %>% gather(key="version",value="text",-no,-asp,-v) %>% arrange(asp,v,version,text) 
+
+fitems[c(4:5)] %>% 
+  kable(col.names=c("Version", "Text"),booktab=T,linesep = c("", "", "", "\\hline")) %>% 
   collapse_rows(1) %>%
+  row_spec(c(1:64), hline_after = F, extra_css = "border:0") %>%
+  row_spec(seq(5,64,by=4), hline_after = T, extra_css = "border-bottom: 1px solid #999") %>%
   kable_styling(latex_options = c("hold_position","repeat_headers"))
 ```
 
-# Filler items {#fillers}
-
-The D +PP and Q -PP versions of filler items. The remaining versions can be extrapolated by applying or reversing subject-auxiliary inversion.
+# Filler items {#appFill}
 
 ```{r}
 library(readr)
-items <- read_csv("../csvs/src/filler-items+pp.csv")
-items[c(1,2)] %>% kable(col.names=c("#", "Declarative garden paths without trailing PPs (D -PP)"),booktab=T) %>% 
-  kable_styling(latex_options = c("hold_position"))
-items <- read_csv("../csvs/src/filler-items-pp.csv")
-items[c(1,3)] %>% kable(col.names=c("#", "Interrogative fillers with trailing PPs (Q +PP)"),booktab=T) %>% 
-  kable_styling(latex_options = c("hold_position"))
+library(stringr)
+
+fpp <- read_csv("../csvs/src/filler-items+pp.csv")
+
+fnp <- read_csv("../csvs/src/filler-items-pp.csv")
+
+fpp$asp <- word(fpp$FDY,3)
+fnp$asp <- word(fnp$FDN,3)
+
+fpp <- fpp %>% arrange(asp) 
+fnp <- fnp %>% arrange(asp) 
+
+items <- cbind(fpp[1:3],fnp[2:4])
+
+names(items) <- c("no","+PP D","+PP Q","-PP D","-PP Q","asp")
+
+fitems <- items %>% gather(key="version",value="text",-asp,-no) %>% arrange(asp,no,version) 
+
+fitems[c(3:4)] %>% 
+  kable(col.names=c("Version", "Text"),booktab=T,linesep = c("", "", "", "\\hline")) %>% 
+  row_spec(c(1:64), hline_after = F, extra_css = "border:0") %>%
+  row_spec(seq(3,64,by=2), hline_after = T, extra_css = "border-bottom: 1px solid #999") %>%
+  kable_styling(latex_options = c("hold_position","repeat_headers"),bootstrap_options = c("hover"))
+
 ```
 
 # Instructions to participants {#instr}

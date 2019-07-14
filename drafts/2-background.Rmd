@@ -79,7 +79,7 @@ The RC in (@rc) can modify either NP1, the daughter, or NP2 the colonel. A struc
 
 The crucial issue that distinguishes cases where structural association vs. structural parsing is appropriate is the idea of primary vs. non-primary relations. Frazier and Clifton formalize this distinction as (8).
 
-```{definition,LateClo,name="Primary phrases and relations"}
+```{definition,prim,name="Primary phrases and relations"}
 Primary phrases and relations include (Frazier and Clifton 1996, p. 41)
   a) The subject and main predicate of any (+ or -) finite clause
   a) Complements and obligatory constituents of primary phrases
