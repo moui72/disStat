@@ -9,6 +9,15 @@ output:
 fontsize: 12pt
 mainfont: Georgia
 ---
+
+|  **** | **Reading 1** |  |  |  | **Reading 2** |  |  |  |
+| :--- | :---: | --- | --- | --- | :---: | --- | --- | --- |
+|  **** | **Mod** |  | **Arg** |  | **Mod** |  | **Arg** |  |
+|  **** | **D** | **Q** | **D** | **Q** | **D** | **Q** | **D** | **Q** |
+|  Both | 54.1 | 43.0 | 72.1 | 71.7 | 54.1 | 43.0 | 72.1 | 71.7 |
+|  OBJ only | 31.1 | 31.4 | 0.8 | 2.5 | 31.1 | 31.4 | 0.8 | 2.5 |
+|  PP1 only | 14.8 | 25.6 | 27.0 | 25.8 | 14.8 | 25.6 | 27.0 | 25.8 |
+
 ```{r results_setup,echo=F,warning=F,message=F}
 knitr::opts_chunk$set(
   echo=FALSE, 
@@ -158,10 +167,10 @@ tab %>% kable(
 
 
 ```{r rsplit}
-mdata<-subset(adata,reading==1)
+sdata<-subset(mdata,Reading==1)
 
-fast <- subset(mdata,r1DelCat == "FAST")
-slow <- subset(mdata,r1DelCat == "SLOW")
+fast <- subset(sdata,r1DelCat == "FAST")
+slow <- subset(sdata,r1DelCat == "SLOW")
 
 fastTabN <- xtabs(~simple2lvl + condition, data=fast) %>% 
   as.data.frame() %>% 
@@ -199,10 +208,10 @@ tab <- tab %>% select(Pattern,m,everything())
 r1tab<-tab
 
 
-mdata<-subset(adata,reading==2)
+sdata<-subset(mdata,Reading==2)
 
-fast <- subset(mdata,r1DelCat == "FAST")
-slow <- subset(mdata,r1DelCat == "SLOW")
+fast <- subset(sdata,r1DelCat == "FAST")
+slow <- subset(sdata,r1DelCat == "SLOW")
 
 fastTabN <- xtabs(~simple2lvl + condition, data=fast) %>% 
   as.data.frame() %>% 
