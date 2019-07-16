@@ -23,6 +23,7 @@ knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown', "lme4", "lmerTest"
 ), '~/GitHub/disStat/drafts/packages.bib')
 ```
+\raggedright
 # Abstract {-}
 
 Write abstract here

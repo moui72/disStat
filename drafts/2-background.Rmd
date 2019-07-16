@@ -17,15 +17,11 @@ knitr::opts_chunk$set(
 
 As briefly mentioned earlier, “garden path effects” occur when a temporarily ambiguous sentence resolves in such a way that the structure initially preferred by the parser is incompatible with how the sentence actually continues. These parsing errors have traditionally been attributed to structurally-focused parsing preferences [@kimball1973seven; @frazier1978sausage @Frazier1979-pb] that ignore semantic content on the first pass. @Frazier1979-pb formulates several of these, including the following two which are widely accepted in one form or another:
 
-```{definition,MinAtt,name="Minimal Attachment"}
-Attach incoming material into the phrase-marker being constructed using the fewest nodes consistent with the well-formedness rules of the language under analysis [@Frazier1979-pb p.24]
-
-```
-
-```{definition,LateClo,name="Late Closure"}
-When possible, attach incoming material into the clause currently being parse [@Frazier1979-pb p.20]
-
-```
+  (@MinAtt) *Minimal attachment*
+  Attach incoming material into the phrase-marker being constructed using the fewest nodes consistent with the well-formedness rules of the language under analysis [@Frazier1979-pb p.24]
+  
+  (@LateClo) *Late closure*
+  When possible, attach incoming material into the clause currently being parse [@Frazier1979-pb p.20]
 
 Because these strategies ignore semantic and pragmatic plausibility and the parser typically does not know what material might be further on in the string, mis-parses at temporarily ambiguous regions can occur, resulting in garden paths. Minimal Attachment is important to this study and will be revisited later on.
 
@@ -87,13 +83,12 @@ The RC in (@rc) can modify either NP1, the daughter, or NP2 the colonel. A struc
 
 @frazier1996construal report that (@rcrel a-b) type configurations favor NP1 RC attachment, (@rcrel e) type configurations favor NP2 RC attachment, while (@rcrel c-d) are intermediate. They argue that this gradient cannot be readily explained by structural parsing, and instead make use of a mechanism they call structural association. RCs are, rather than being immediately slotted into a tree in a specific way, are associated with a thematic domain, i.e. the maximal projection of whatever lexical item last assigned theta-roles, together with associated functional projections; in the case of the examples in (@rcrel), the last theta assigner is NP2, and its domain extends up to the DP that contains NP1. This is a looser parsing decision that allows the syntactic structure to be decided on later, after semantic information becomes available: the RC can ultimately modify whichever member of the thematic domain is appropriate. 
 
-The crucial issue that distinguishes cases where structural association vs. structural parsing is appropriate is the idea of primary vs. non-primary relations. Frazier and Clifton formalize this distinction as (8).
+The crucial issue that distinguishes cases where structural association vs. structural parsing is appropriate is the idea of primary vs. non-primary relations. Frazier and Clifton formalize this distinction as (@primrel).
 
-```{definition,prim,name="Primary phrases and relations"}
-Primary phrases and relations include (Frazier and Clifton 1996, p. 41)
-  a) The subject and main predicate of any (+ or -) finite clause
-  a) Complements and obligatory constituents of primary phrases
-```
+  (@primrel) Primary phrases and relations include (Frazier and Clifton 1996, p. 41)
+    a) The subject and main predicate of any (+ or -) finite clause
+    a) Complements and obligatory constituents of primary phrases
+
 
 RC attachment undergoes association because the relationship between a modifier and whatever is modified is a non-primary relation, and a relative clause is by definition a modifier and not an argument. Circling back to the PP-attachment that this study is concerned with, the argument vs. modifier distinction is precisely what distinguishes the two possible statuses of PP2 shown in (@pp2t) and repeated here as (@pp2tr).
 
