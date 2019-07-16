@@ -800,7 +800,7 @@ She had decided to cram the cookies in the basket from her brother-in-law.
 
 This lingering ambiguity could have increased wIRT somewhat because the reader, given unlimited time, spent some of that time noticing and then eliminating that possible reading. The difference here can be explained by once again making an appeal to structural parsing vs. structural association: if we imagine that a from PP is associated rather than parsed, the reader is free to consider other possible interpretations. Because of can be seen as less a preposition and more a functional head, it stands to reason that it would be treated different, as something that must be parsed immediately, i.e. that it instantiates a primary relation. 
 
-It could also be a simpler explanation: the fact that of is only two characters, whereas from and into/onto are all four characters, participants may have recognized a pattern, wherein they could be sure that a two character PP2 head meant the sentence did have the difficult properties of some of the ones with four character PP2 heads (most notably those pesky into/onto ones), and eliminated some of the needed study time. 
+It could also be a simpler explanation: the fact that of is only two characters, whereas from and into/onto are all four characters, participants may have recognized a pattern, wherein they could be sure that a two character PP2 head meant the sentence did have the difficult properties of some of the ones with four character PP2 heads (most notably those pesky into/onto ones), and eliminated some of the needed study time.
 
 A study where the modifier PP2s are more tightly controlled with regard to the head preposition, both in terms of the length and the properties of the head, might produce clearer results.
 
@@ -808,13 +808,9 @@ A study where the modifier PP2s are more tightly controlled with regard to the h
 
 ```{r}
 library(scales)
-```
+library(readr)
 
-It is worth taking note of the fact that the wIRT for interrogative versions of the sentences in the reported study (6.7s) were longer than for the declaratives (6.4s). Similarly, @qp2 found that reading times for interrogatives were longer than for declaratives. This is perhaps representative of the processing cost of interrogativity reported by @mehler1963some who found that a so-called kernel sentence, i.e. a simple declarative, was easier to recall verbatim than was a number of sentences that he considered to be syntactic transformations of that kernel sentence (K): negative (N), polar question (Q), passive (P), and combinations thereof: NQ, NP, QP and NPQ. Mehler found that accurate recall was more frequent for K sentences (300/460, `r percent(300/460)`) than for the other sentences types, with interrogatives (210/460, `r percent(210/460)`) being recalled accurately at a lower rate than the two other individual transformations (234/460, `r percent(234/460)` for N; 243/460, `r percent(243/460)` for P).
-
-The filler sentences in this study were designed in two versions, interrogative (Q) and declarative (D), so as to provide a diagnostic of the interrogative effect on IRT independent of the experimental question. A linear mixed effects regression model predicting wIRT for filler items by interrogativity found that wIRT is increased by 0.4s for interrogatives (std. error = 0.2; p < 0.05). Half of the fillers had a sequence of two PPs at the end to mirror the experimental items: a model predicting wIRT by the presence of those PPs found minimal effect on wIRT ($\beta)  Table \@ref(tab:qonf)
-
-```{r}
+irt_fillers <- subset(read_csv("export/all_data.csv"), isFiller)
 mean.irtByQ <- aggregate(
   irt_fillers$irt, 
   by=list("Q"=irt_fillers$Condition_Q),
@@ -830,30 +826,12 @@ mean.irtByQnPP <- aggregate(
   by=list("Q"=irt_fillers$Condition_Q,"+PP"=irt_fillers$Condition_GP),
   FUN=mean
 )
-fillerModel.q <- lmer(
-  irt ~ Condition_Q + (1 |Participant) + (1 |Item), 
-  data=irt_fillers, 
-  REML=F
-)
-fillerModel.pp <- lmer(
-  irt ~ Condition_GP + (1 |Participant) + (1 |Item), 
-  data=irt_fillers, 
-  REML=F
-)
-fillerModel <- lmer(
-  irt ~ Condition_Q * Condition_GP + (1|Participant) + (1 |Item), 
-  data=irt_fillers,
-  REML=F
-)
-fillerModel.ppNoInt <- lmer(
-  irt ~ Condition_Q + Condition_GP + (1|Participant) + (1 |Item), 
-  data=irt_fillers,
-  REML=F
-)
 ```
+It is worth taking note of the fact that the mean wIRT for interrogative versions (6.7s) of the sentences in the reported study was longer than for the declaratives (6.4s). Similarly, @qp2 found that reading times for interrogatives were longer than for declaratives. This is perhaps representative of the processing cost of interrogativity reported by @mehler1963some who found that a so-called kernel sentence, i.e. a simple declarative, was easier to recall verbatim than was a number of sentences that he considered to be syntactic transformations of that kernel sentence (K): negative (N), polar question (Q), passive (P), and combinations thereof: NQ, NP, QP and NPQ. Mehler found that accurate recall was more frequent for K sentences (300/460, `r percent(300/460)`) than for the other sentences types, with interrogatives (210/460, `r percent(210/460)`) being recalled accurately at a lower rate than the two other individual transformations (234/460, `r percent(234/460)` for N; 243/460, `r percent(243/460)` for P).
 
-The mean IRT for interrogative fillers was `r round(mean.irtByQ[1,]$x/1000,1)`s; for declarative, `r round(mean.irtByQ[2,]$x/1000,1)`s. Interrogatives elicited a mean IRT of `r round(diff(mean.irtByQ$x)/1000,1)`s longer than declaratives. Half of the fillers had a string of two PPs at the end (+PP), and the other half had no trailing PPs (-PP). This did not impact IRT to the same degree (a difference of `r abs(round(diff(mean.irtByPP$x/100),2))`s across &plusmn;PP). When we look at -PP only, the impact of interrogativty on mean IRT is 0.3s, and for only +PP it's 0.4s.
+The filler sentences in this study were designed in two versions, interrogative (Q) and declarative (D), so as to provide a diagnostic of the interrogative effect on IRT independent of the experimental question. A linear mixed effects regression model predicting wIRT for filler items by interrogativity with crossed random intercepts (participant and item) found that wIRT is increased by 0.4s for interrogatives (std. error = 0.2; p < 0.05). Half of the fillers had a sequence of two PPs at the end to mirror the experimental items: a model predicting wIRT by the presence of those PPs found minimal effect on wIRT (β=0.01, std. error = 0.22, p = 0.96).
 
-A mixed effects regression model (no random slope structure, due to convergence errors) found a significant main effect of &plusmn;Q (estimate = 0.38s, t = 2.24, p < 0.05), but not for &plusmn;PP or the interaction of interrogativity with &plusmn;PP.
+Interrogative status itself appears to increase the time needed for participants to feel they’ve satisfactorily studied a sentence in order to read it aloud correctly. This is consistent with the @mehler1963some and @qp2 findings that interrogatives are in some way more complicated or difficult than declaratives.
+
 
 \clearpage

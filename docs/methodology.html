@@ -91,7 +91,7 @@
 <li class="chapter" data-level="3.6" data-path="methodology.html"><a href="methodology.html#procedure"><i class="fa fa-check"></i><b>3.6</b> Procedure</a><ul>
 <li class="chapter" data-level="3.6.1" data-path="methodology.html"><a href="methodology.html#look-ahead"><i class="fa fa-check"></i><b>3.6.1</b> On look-ahead</a></li>
 </ul></li>
-<li class="chapter" data-level="3.7" data-path="methodology.html"><a href="methodology.html#methodirt"><i class="fa fa-check"></i><b>3.7</b> Inter-reading time (IRT) measurement</a><ul>
+<li class="chapter" data-level="3.7" data-path="methodology.html"><a href="methodology.html#method-irt"><i class="fa fa-check"></i><b>3.7</b> Inter-reading time (IRT) measurement</a><ul>
 <li class="chapter" data-level="3.7.1" data-path="methodology.html"><a href="methodology.html#timing-measurement-reliability"><i class="fa fa-check"></i><b>3.7.1</b> Timing measurement reliability</a></li>
 </ul></li>
 <li class="chapter" data-level="3.8" data-path="methodology.html"><a href="methodology.html#prosodic-judgments"><i class="fa fa-check"></i><b>3.8</b> Prosodic judgments</a><ul>
@@ -110,6 +110,7 @@
 <li class="chapter" data-level="4.3.3" data-path="results-and-discussion.html"><a href="results-and-discussion.html#pp2h"><i class="fa fa-check"></i><b>4.3.3</b> On PP2 heads</a></li>
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="results-and-discussion.html"><a href="results-and-discussion.html#discussion-of-irt-results"><i class="fa fa-check"></i><b>4.4</b> Discussion of IRT results</a></li>
+<li class="chapter" data-level="4.5" data-path="results-and-discussion.html"><a href="results-and-discussion.html#the-processing-cost-of-interrogativity"><i class="fa fa-check"></i><b>4.5</b> The processing cost of interrogativity</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="discussion-and-conclusion.html"><a href="discussion-and-conclusion.html"><i class="fa fa-check"></i><b>5</b> Discussion and conclusion</a><ul>
 <li class="chapter" data-level="5.1" data-path="discussion-and-conclusion.html"><a href="discussion-and-conclusion.html#the-intuition"><i class="fa fa-check"></i><b>5.1</b> The intuition</a><ul>
@@ -458,7 +459,7 @@ MIN
 <p>It is likely, then, that the voice would actually still be on the object when the eyes discover the existence of PP2, and will still be pronouncing PP1 when the eyes are first fixated on PP2. This raises a question about any prosodic breaks produced after the object, because it is difficult to distinguish between an intentional prosodic break at that point, versus the reader using a natural break for hesitation related to the garden path effect of discovering the disambiguating PP2.</p>
 </div>
 </div>
-<div id="methodirt" class="section level2">
+<div id="method-irt" class="section level2">
 <h2><span class="header-section-number">3.7</span> Inter-reading time (IRT) measurement</h2>
 <p>Subjects were asked to read each sentence twice, once with no preview at all (reading 1, a cold reading), and then again after unlimited preview (reading 2, a previewed reading). Inter-reading time (IRT) is a measure of the amount of time between when a subject stops speaking after a cold reading and when they begin speaking for a previewed reading.</p>
 <p>IRT was measured using a Python script and Google’s WebRTC Voice Activity Detection (VAD) over 44.1kHz WAV files down-sampled to 8kHz via SOX<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>. This VAD system uses Gaussian Mixture Models to make probabilistic decisions on whether a given audio frame is speech or noise (see <span class="citation">Falk &amp; Chan (2006)</span> for a complete explanation). Google’s implementation takes one parameter, which they call aggressiveness: a 4-tier setting for the level of confidence necessary to call a given frame speech. I call this “rejection rate”, where a higher rejection rate means that the model requires a high level of confidence before assuming a frame is speech, i.e. it is more likely to label something noise than speech. The implementation codes this setting as 0-3, where 0 is the most lenient (most likely to label a frame as speech) and 3 is the most stringent (most likely to label a frame as noise).</p>

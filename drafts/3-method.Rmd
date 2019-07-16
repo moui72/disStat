@@ -216,7 +216,7 @@ tab %>% kable(
 
 It is likely, then, that the voice would actually still be on the object when the eyes discover the existence of PP2, and will still be pronouncing PP1 when the eyes are first fixated on PP2. This raises a question about any prosodic breaks produced after the object, because it is difficult to distinguish between an intentional prosodic break at that point, versus the reader using a natural break for hesitation related to the garden path effect of discovering the disambiguating PP2.
 
-## Inter-reading time (IRT) measurement {#methodirt}
+## Inter-reading time (IRT) measurement {#method-irt}
 
 Subjects were asked to read each sentence twice, once with no preview at all (reading 1, a cold reading), and then again after unlimited preview (reading 2, a previewed reading). Inter-reading time (IRT) is a measure of the amount of time between when a subject stops speaking after a cold reading and when they begin speaking for a previewed reading.
 
