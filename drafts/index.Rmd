@@ -31,7 +31,6 @@ Write abstract here
   
   * Abstract
   * Acknowledgements
-  * Isolated effect of interrogativity for fillers
   * More on the significance of IRT to the study at hand
   * Hand measurement for IRT reliability
 
