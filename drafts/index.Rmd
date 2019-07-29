@@ -34,5 +34,6 @@ Write abstract here
   * Acknowledgements
   * More on the significance of IRT to the study at hand
   * Hand measurement for IRT reliability
+  * First citation *per chapter* should include all authors (rather than et al)
 
 \pagebreak
