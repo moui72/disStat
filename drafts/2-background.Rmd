@@ -39,13 +39,12 @@ There is an ongoing debate in the literature about what parsing model best fits 
 
 This study is focused on the impact of speech act, i.e. where a sentence is interrogative (Q) or declarative (D), in a particular sort of garden path. Specifically, it is concerned with garden path sentences containing a temporary ambiguity that centers on the attachment of two prepositional phrases (PPs) occurring in string-linear sequence at the end of an sentence, e.g., “When we saw her, the nanny had seated the cranky little boy [~PP1~ on the swing] [~PP2~ in his stroller].” 
 
-  (@aa) Jed crammed the newspapers under the sofa in the trashcan.
-    a) \# … [~VP~ crammed [~NP~ the newspapers] 
-    [~PP1~ under [~NP~ the sofa [~PP2~ in the wastebasket]]] 
-    b) &check; … [~VP~ crammed [~NP~ the newspapers [~PP1~ under [~NP~ the sofa ]]
-    [~PP2~ in the trashcan]]
-    
-    *"#" indicates a structure with an implausible reading*
+  (@aa) Jed crammed the newspapers under the sofa in the trashcan. \linebreak
+    a) $\#$ … [~VP~ crammed [~NP~ the newspapers]  \linebreak
+    [~PP1~ under [~NP~ the sofa [~PP2~ in the wastebasket]]]  \linebreak
+    b) $\checkmark$ … [~VP~ crammed [~NP~ the newspapers [~PP1~ under [~NP~ the sofa ]] \linebreak
+    [~PP2~ in the trashcan]] \linebreak
+    *"$\#$" indicates a structure with an implausible reading*
 
 In parsing (@aa a), there is a fairly strong bias (due to *Minimal Attachment*, or some variation thereof), which favors a structure where the first PP attaches into the verb phrase (VP) as an argument of the verb, i.e. [~VP~ V NP PP1], which leaves nowhere for the second PP to attach but as a modifier of the noun phrase (NP) inside PP1 ([~PP1~ under [~NP~ the sofa [~PP2~ in the trashcan]]]). This initial parse (@aa a) is pragmatically implausible, as one does not generally find sofas inside wastebaskets. Reanalysis is required to bring about the correct parse (@aa b), where PP1 attaches as an NP modifier of the direct object and so allows PP2 to attach as a VP argument, resulting in a structure such as [~VP~ V [~NP~ N PP1] PP2], i.e. where it is *the newspapers under the sofa* that are being *crammed in the trashcan*. 
 
@@ -69,7 +68,7 @@ The impetus behind adding this additional machinery to the theory of parsing is 
 
 The RC in (@rc) can modify either NP1, the daughter, or NP2 the colonel. A structure-first parsing system, together with the widely agreed upon structural parsing strategy Late Closure, would be expected to manifest as a consistent preference for the local attachment of the RC in (@rc), i.e. the structure where the RC modifies NP2. Instead, what Frazier and Clifton describe, based on a number of studies [e.g. @clifton1988restrictions; @Cuetos1988-tm] is a pattern where the preferred structure depends on the relationship between NP1 and NP2. They describe five categories of relationship, and a gradient of preferred RC attachment, from NP1 preference to NP2 preference.
 
-  (@rcrel) __RC Attachment by NP1-NP2 relation__ (Frazier and Clifton 1996)
+  (@rcrel) __RC Attachment by NP1-NP2 relation__ [@frazier1996construal]
       a) *Material* \linebreak
       The table of wood [~RC~ that was from Galicia]
       a) *Quantity* \linebreak
@@ -85,7 +84,7 @@ The RC in (@rc) can modify either NP1, the daughter, or NP2 the colonel. A struc
 
 The crucial issue that distinguishes cases where structural association vs. structural parsing is appropriate is the idea of primary vs. non-primary relations. Frazier and Clifton formalize this distinction as (@primrel).
 
-  (@primrel) Primary phrases and relations include (Frazier and Clifton 1996, p. 41)
+  (@primrel) Primary phrases and relations include [@frazier1996construal, p. 41]
     a) The subject and main predicate of any (+ or -) finite clause
     a) Complements and obligatory constituents of primary phrases
 
@@ -98,7 +97,7 @@ RC attachment undergoes association because the relationship between a modifier 
     (b) *PP2 Modifier* (Mod)
     He had planned to cram the paperwork [~PP1~ in the drawer [~PP2~ of his filing cabinet]].
 
-Without locking down the exact syntactic structures that (9) represents, we can nonetheless say that the parser would seek to immediately incorporate PP1 into the tree in both cases. The infinitival (-finite) clause headed by *cram* is a primary phrase, and so its obligatory constituents hold primary relationships with *cram*. *Cram* takes an obligatory goal argument, so the parser cannot wait for semantic information to inform its association, it must make its best guess based on the principles of structural parsing, and attach it as an argument, as that property is what is forcing the immediate decision to be made. When PP2 is encountered, reanalysis will be required, in the case of (@pp2tr a), or it will not be, in the case of (@pp2tr b).
+Without locking down the exact syntactic structures that (@pp2tr) represents, we can nonetheless say that the parser would seek to immediately incorporate PP1 into the tree in both cases. The infinitival (-finite) clause headed by *cram* is a primary phrase, and so its obligatory constituents hold primary relationships with *cram*. *Cram* takes an obligatory goal argument, so the parser cannot wait for semantic information to inform its association, it must make its best guess based on the principles of structural parsing, and attach it as an argument, as that property is what is forcing the immediate decision to be made. When PP2 is encountered, reanalysis will be required, in the case of (@pp2tr a), or it will not be, in the case of (@pp2tr b).
 
 ## Interrogativity
 
@@ -140,7 +139,7 @@ The need to prepare for that rising tone might make a prosodic break before the 
 
 A brief informal survey found that most speakers maintain low tones on prior stresses, although some had a H tone on the subject noun. It also varied between speakers and between sentences as to whether there is a prosodic boundary (marked by a low tone and/or pause) immediately before the rise (after PP1) or not. 
 
-The prosodic structures found in the data collected for the current study are discussed in \@ref(results-prosody).
+The prosodic structures found in the data collected for the current study are discussed in \@ref(sec:results-prosody).
 
 ## Can prosody affect parsing?
 
@@ -157,19 +156,16 @@ Consider @Fodor2002-io analysis of relative clause attachment preference. This c
 
 The relative clause (RC) who was on the balcony can attach either locally (low, modifying N2), making it *the actress* who was *on the balcony*, or higher up (non-locally, modifying N1), so that we understand *the servant* to be the one who was *on the balcony*. In these sorts of sentences, @Cuetos1988-tm found a 60% preference for low attachment in English speakers, but only a 40% preference for low attachment in Spanish speakers. In apparent violation of the general preference for local attachment, some languages, like French and Spanish (and Russian, but not Romanian or Brazilian Portuguese, so this is not a general feature of Romance languages), prefer to attach relative clauses higher, while others more often obey Late Closure (e.g., Swedish, Egyptian Arabic, and English). This non-local preference is weakened in cases where the ambiguous RC is short (one prosodic word). @Fodor2002-io asserts that these tendencies exist in both listening to spoken words (under conditions where a particular parse is not favored by the explicit prosody) and in silent reading.
 
-Fodor notes that other researchers have shown the presence and absence of prosodic breaks to influence parsing decisions, and specifically that the presence of a prosodic break before the RC in sentences like (5) encourages high attachment. Fodor leverages this in order to explain the difference in RC attachment site tendency between languages. She argues that the phenomenon can be neatly account for by linking attachment site preference to the likelihood of a prosodic break before the RC. This difference in prosodic tendency, in turn, can be explained using a constraints-based approach. Consider Selkirk&apos;s [-@Selkirk1986-hc] alignment constraints:
+Fodor notes that other researchers have shown the presence and absence of prosodic breaks to influence parsing decisions, and specifically that the presence of a prosodic break before the RC in sentences like (@servant) encourages high attachment. Fodor leverages this in order to explain the difference in RC attachment site tendency between languages. She argues that the phenomenon can be neatly account for by linking attachment site preference to the likelihood of a prosodic break before the RC. This difference in prosodic tendency, in turn, can be explained using a constraints-based approach. Consider Selkirk&apos;s [-@Selkirk1986-hc] alignment constraints:
 
-```{definition,galign,name="Generalised Alignment"}
-
-Align($\alpha$Cat, E; $\beta$Cat, E)
-
-  a. Align (GCat, E; PCat, E)
-  b. Align (PCat, E; GCat, E) 
-  c. Align (PCat, E; PCat, E)
+  (@align) Align($\alpha$Cat, E; $\beta$Cat, E)
   
-*GCat ranges over morphological and syntactic categories; PCat ranges over prosodic categories; E = Right or Left [@Selkirk1986-hc, p. 6]*
+    a. Align (GCat, E; PCat, E)
+    b. Align (PCat, E; GCat, E) 
+    c. Align (PCat, E; PCat, E)
+    
+  *GCat ranges over morphological and syntactic categories; PCat ranges over prosodic categories; E = Right or Left [@Selkirk1986-hc, p. 6]*
 
-```
 
 @Truckenbrodt1999-vd provides a prose-based formalization of the same idea. He describes what I will call *Align~R~* which can be easily generalized to described what I will call *Align~L~*, the same constraint except that it calls for aligning phrases at their left edges rather than their right edges.
 
@@ -183,7 +179,7 @@ The same sort of argument can explain the difference in tendency between long an
   (@binmin)	**BinMin($\phi$)** <br>
   A $\phi$ (phonological phrase) must consist of at least two $\omega$ (phonological words).  
   
-If we assume, in Optimality Theoretic (Prince & Smolensky, 1993) terms, that a constraint like *BinMin* is ranked above *Align~L~*, then it seems quite reasonable to assume that  a prosodic break before a short RC (which would encourage high attachment) is much less likely than before a long RC. That is, when the RC is short, its left edge is prevented from aligning with the beginning of a prosodic phrase (it violates *Align~L~*) by the higher ranked BinMin. Longer RCs can have their left edge align with the start of a prosodic phrase, and thus can have the high-attachment encouraging prosodic break.
+If we assume, in Optimality Theoretic [@Prince1993-ic] terms, that a constraint like *BinMin* is ranked above *Align~L~*, then it seems quite reasonable to assume that  a prosodic break before a short RC (which would encourage high attachment) is much less likely than before a long RC. That is, when the RC is short, its left edge is prevented from aligning with the beginning of a prosodic phrase (it violates *Align~L~*) by the higher ranked BinMin. Longer RCs can have their left edge align with the start of a prosodic phrase, and thus can have the high-attachment encouraging prosodic break.
 
 ## Predictions for the current study
 

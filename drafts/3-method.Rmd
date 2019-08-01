@@ -104,11 +104,11 @@ Importantly, the construction verb was always one which demanded a goal argument
 
   (@optg) __Optional goal__ (*hide*) \linebreak
   The gangsters had hidden the shotguns in a U-Haul truck. \linebreak
-  \check The gangsters had hidden the shotguns. \linebreak
+  $\checkmark$ The gangsters had hidden the shotguns. \linebreak
   
   (@oblg) __Obligatory goal__ (*put*) \linebreak
   The gangsters had put the shotguns in a U-Haul truck. \linebreak
-  * The gangsters had put the shotguns. \linebreak
+  $*$ The gangsters had put the shotguns. \linebreak
 
 A verb like *hide*, as in (@optg), can take a goal, but can also be used without one. A verb like *put*, on the other hand, as in (@oblg), really must have a goal. The use of verbs that require a goal argument in the current study maximized the likelihood of a robust garden path effect in the Arg versions, when PP2 triggered reanalysis. The four construction verbs used in this study were: *cram*, *put*, *stick* and *set*.
 
@@ -292,11 +292,9 @@ kable(
 ) %>% kable_styling(latex_options = "hold_position")
 ```
 
-### Timing measurement reliability
+To verify the accuracy of the computer measurement, timings were collected by hand for `r 120*2` recording. There was a significant positive correlation between hand-measured and computer-measured timings (r(118)=0.87, p < 0.001), with a median difference of 0.4s[^error] (SD = 1.5).
 
-Timings were collected by hand for `r 384*2` recordings (`r round(384*2 / nrow(meta) * 100,1)`% of all data). Human measured timings were within 100ms of the VAD-measured timings in `??`%[^hh] of cases.
-
-[^hh]: NOTE: Hand measurement is not yet completed.
+[^error]: Hand measurement was done to the nearest half second, so a fair amount of error is to be expected.
 
 ## Prosodic judgments
 
@@ -341,7 +339,7 @@ Details on the instructions given and the judgments collected can be found in Ap
 
 ### Reliability
 
-A second trained linguist repeated the task over 128 recordings selected from 8 participants (two from each group, one per ordering). Even number experimental items were used from 4 participants, and odd numbered from the other 4. There were 8 recordings missing from the 128 selected, so the reliability task resulted in judgments over 120 recordings. The first informant also blindly re-rated those 120, with the recording name obscured and instructions not to revisit her original ratings. Reliability scores (percent of recordings agreed upon) are reported in Table \@ref(tab:validity).
+A second trained linguist repeated the task over 120 recordings selected from 8 participants (two from each group, one per ordering). Even number experimental items were used from 4 participants, and odd numbered from the other 4. There were 8 recordings missing from the 128 selected, so the reliability task resulted in judgments over 120 recordings. The first informant also blindly re-rated those 120, with the recording name obscured and instructions not to revisit her original ratings. Reliability scores (percent of recordings agreed upon) are reported in Table \@ref(tab:validity).
 
 ```{r validitySetup}
 library(irr)
