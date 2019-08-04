@@ -17,7 +17,7 @@ bgcolor <- "#ffffff"
 par(bg = bgcolor)
 
 kable <- function(...) {
-  knitr::kable(booktabs = TRUE,...)
+  knitr::kable(booktab = TRUE,...)
 }
 
 ### global plot themeing
@@ -31,13 +31,15 @@ theme_set(
 ```
 # Results and discussion
 
-This section reports various descriptions and analyses of the recordings obtained. The reported results include the effect of speech act (declarative/D vs. interrogative/Q) and PP2 status (argument/Arg vs. modifier/Mod) on the location of prosodic breaks, as well as on time spent studying a sentence between readings, which I call inter-reading time (IRT). In order to evaluate the extent to which participants completed the protocol as intended, i.e. began to read immediately for Reading 1 as opposed to producing a studied reading in Reading 2, the delay for which a sentence is displayed before a participant begins to read it is compared for Reading 1  (R1 delay) vs. Reading 2 (R2 delay[^r2d]). The prosodic patterns for participants with especially fast and especially slow R1 delays are presented as a way of investigating the extent to which individual differences might impact those patterns, and as a further exploration of the success of the protocol instructions in producing the intended behavior. An interesting auxiliary finding regarding the effect of speech act in inflating IRT in general (regardless of PP2 status; indeed, even for filler items) is also reported.
+This section reports various descriptions and analyses of the recordings obtained. The reported results include the effect of Speech Act (declarative/D vs. interrogative/Q) and PP2 Status (argument/Arg vs. modifier/Mod) on the location of prosodic breaks, as well as on time spent reflecting upon a sentence between readings, which I call inter-reading time (IRT). In order to evaluate the extent to which participants adhered to the protocol as intended, i.e., began to read immediately for Reading 1 as opposed to producing a considered reading in Reading 2, the delay for which a sentence is displayed before a participant begins to read it is compared for Reading 1  (R1 delay) vs. Reading 2 (R2 delay[^r2d]). The prosodic patterns for participants with especially fast and especially slow R1 delays are presented as a way of investigating the extent to which individual differences might impact those patterns, and as a further exploration of the success of the protocol instructions in producing the intended behavior.
 
-[^r2d]: Note that R2 delay is subsumed by but not synonymous with IRT; IRT includes lag time after R1 is completed but before the recording for R2 begins. This distinction is laid out in more detail in the section \@ref(irtRes).
+[^r2d]: Note that R2 delay is subsumed by but not synonymous with IRT; IRT includes lag time after R1 is completed but before the recording for R2 begins. This distinction is laid out in more detail in Section \@ref(irtRes).
 
-## Missing data
+## Data for analysis
 
-There were 32 total participants whose data were analyzed. There were 4 versions of the experiment, and two possible orderings. Ideally there would be 4 participants per version-order combination, but due to participant attrition and issues during data collection, the distribution is as in table \@ref(tab:vtab).
+Data for 32 total participants were analyzed. Given 4 versions of the experiment and 2 possible orderings there would ideally be 4 participants per version-order combination. Ultimately, 3 participants had to be excluded for different reasons, resulting in the distribution is as shown in Table \@ref(tab:vtab)[^xtra]. Participants were removed for the following reasons: one for use of a non-standard dialect, one for extremely disfluent oral reading, and one who was missing more than half of the expected recordings because of a system crash during the procedure.
+
+[^xtra]: The two 5-count cells include 2 additional participants whose data were collected in pursuit of another full set (i.e., towards an expansion to 40 participants) that was not completed due to a lack of participant sign-ups.
 
 ```{r vtab, echo=F}
 library(kableExtra)
@@ -58,47 +60,41 @@ versiontab %>% kable(
   col.names = c("1", "2", "Sum"),
   align="c"
 ) %>% kable_styling() %>% 
-  add_header_above(c(" "=1, "Order"=2, " "=1))
+  add_header_above(c(" "=1, "Order"=2, " "=1)) %>%
+  kable_styling(latex_options = c("hold_position"))
 ```
 
-Some of the expected 3072 (32 participants x 48 items (16 experimental and 32 filler) x 2 readings each) recordings were missing due to technical issues during data collection, including some of the recordings of experimental items. Data were also excluded if either recording from a pair of recordings (Reading 1 and Reading 2) was missing (there were 9 incomplete pairs excluded) because without the other member, it is difficult to determine the extent to which the protocol was executed as intended (i.e. the extent of preview for Reading 1 vs. Reading 2). 
+Some of the expected 3072 recordings (32 participants x 48 items (16 experimental and 32 filler) x 2 readings) were not used due to intrusive noise duringthe recording session. Additionally, data were also excluded from analysis if any (Reading 1/Reading 2 pair) was missing; there were 9 such incomplete pairs excluded. Without analyzable data from both members of a pair, it is difficult to determine the extent to which the elicitation protocol was executed as intended (i.e., the extent of preview for Reading 1 vs. Reading 2). 
+
+For experimental items, 978 recordings were subjected to prosodic analysis, constituting 95.6% of the utterances elicited. Because IRT data considered utterances in pairs (Reading 1/Reading 2) rather than separately, the database for response timing took in 489 datapoints.
 
 ```{r rvtab, echo=F}
 library(tidyr)
-tot<-as.data.frame(xtabs( ~ Condition_GP + Condition_Q, data=mdata))
+tot<-as.data.frame(xtabs( ~ PP2Status + SpeechAct, data=mdata))
 gtot <- tot
 
 totDisp <- gtot %>% as.data.frame() %>%
-  spread(Condition_Q,Freq) 
-totDisp[[1]] <- c("Mod", "Arg")
+  spread(SpeechAct,Freq) 
+
 
 kable(
   totDisp,
-  col.names=c(" ", "D", "Q"),
-  caption="Number of recordings by condition",
-  align="c"
+  caption="Number of recordings analyzed, as a function of Speech Act and PP2 Status",
+  align="c",
+  col.names=c(" ","D","Q")
 ) %>% kable_styling(latex_options = c("hold_position"))
 ```
 
-Ultimately, 978 experimental item recordings were analyzed for prosody, which equates to 489 Reading 1/Reading 2 pairs (pairs were analyzed for IRT). The distribution of these recordings across the experimental item versions is shown in table \@ref(tab:rvtab).
-
 ## Prosodic break patterns {#results-prosody}
 
-The two positions where the presence or absence of prosodic breaks in the recordings were considered: directly after the direct object of the construction verb (the OBJ break), and directly after PP1 (the PP1 break). The break locations are indicated with a % symbol in (@breakpos).
-
-  (@breakpos) !["... stick the letter % in the mailbox % into the proper stack."](breakpos.png)
-
-The results reported are based on the intuitive judgement of a trained linguist who was naive to the research paradigm being undertaken.
-
-The presence of the OBJ break was more sensitive to both speech act and reading, with Reading 2 showing a different distribution across the D vs. Q distinction than the Reading 1 recordings. 
-
 ```{r byGPr2}
+library(scales)
 ### r2
 r2data <- subset(mdata,Reading==2)
 
-pp1tab<-xtabs(PP1 ~ Condition_GP + Condition_Q, data=r2data)
-objtab<-xtabs(OBJ ~ Condition_GP + Condition_Q, data=r2data)
-tot<-as.data.frame(xtabs( ~ Condition_GP + Condition_Q, data=r2data))
+pp1tab<-xtabs(PP1 ~ PP2Status + SpeechAct, data=r2data)
+objtab<-xtabs(OBJ ~  PP2Status + SpeechAct, data=r2data)
+tot<-as.data.frame(xtabs( ~  PP2Status + SpeechAct, data=r2data))
 
 
 pp1<-as.data.frame(pp1tab)
@@ -112,31 +108,26 @@ pp1$pretty <- paste0(
 )
 pp1disp <- pp1 %>%
   subset(select=c(
-    "Condition_GP",
-    "Condition_Q",
+    "PP2Status",
+    "SpeechAct",
     "pretty"
   )) %>% 
-  spread(Condition_Q,pretty)
+  spread(SpeechAct,pretty)
 
 obj<-as.data.frame(objtab)
 obj$tot<-tot$Freq
 obj$pct <- obj$Freq/obj$tot
-obj$pretty <- paste0(
-  obj$Freq, 
-  " (", 
-  sprintf("%.1f",obj$pct * 100), 
-  "%)"
-)
+obj$pretty <- sprintf("%s (%d)",percent(obj$pct),obj$Freq)
 objdisp <- obj %>%
   subset(select=c(
-    "Condition_GP",
-    "Condition_Q",
+    "PP2Status",
+    "SpeechAct",
     "pretty"
   )) %>% 
-  spread(Condition_Q,pretty)
+  spread(SpeechAct,pretty)
 
 pp1obj <- cbind(pp1disp,objdisp[2:3])
-pp1obj[[1]] <- c("-GP","+GP")
+
 r2pp1<-pp1disp
 r2obj<-objdisp
 
@@ -144,9 +135,10 @@ r2obj<-objdisp
 ### r1
 r1data <- subset(mdata,Reading==1)
 
-pp1tab<-xtabs(PP1 ~ Condition_GP + Condition_Q, data=r1data)
-objtab<-xtabs(OBJ ~ Condition_GP + Condition_Q, data=r1data)
-tot<-as.data.frame(xtabs( ~ Condition_GP + Condition_Q, data=r1data))
+pp1tab<-xtabs(PP1 ~ PP2Status + SpeechAct, data=r1data)
+objtab<-xtabs(OBJ ~  PP2Status + SpeechAct, data=r1data)
+tot<-as.data.frame(xtabs( ~  PP2Status + SpeechAct, data=r1data))
+
 
 
 pp1<-as.data.frame(pp1tab)
@@ -160,42 +152,56 @@ pp1$pretty <- paste0(
 )
 pp1disp <- pp1 %>%
   subset(select=c(
-    "Condition_GP",
-    "Condition_Q",
+    "PP2Status",
+    "SpeechAct",
     "pretty"
   )) %>% 
-  spread(Condition_Q,pretty)
+  spread(SpeechAct,pretty)
 
 obj<-as.data.frame(objtab)
 obj$tot<-tot$Freq
 obj$pct <- obj$Freq/obj$tot
-obj$pretty <- paste0(
-  obj$Freq, 
-  " (", 
-  sprintf("%.1f",obj$pct * 100), 
-  "%)"
-)
+obj$pretty <- sprintf("%s (%d)",percent(obj$pct),obj$Freq)
 objdisp <- obj %>%
   subset(select=c(
-    "Condition_GP",
-    "Condition_Q",
+    "PP2Status",
+    "SpeechAct",
     "pretty"
   )) %>% 
-  spread(Condition_Q,pretty)
+  spread(SpeechAct,pretty)
 
 pp1objr1 <- cbind(pp1disp,objdisp[2:3])
-pp1objr1[[1]] <- c("-GP","+GP")
+
 r1pp1<-pp1disp
 r1obj<-objdisp
 
 pp1<-cbind(r1pp1,r2pp1[2:3])
-pp1[[1]] <- c("-GP","+GP")
+
 
 obj<-cbind(r1obj,r2obj[2:3])
-obj[[1]] <- c("-GP","+GP")
+
 ```
 
-The PP1 break was almost always present for cases where PP2 was an argument; and it was present substantially less often, but still there a majority of the time, for cases where PP2 could be interpreted as a modifier. 
+In what follows, the distrbution of OBJ breaks and PP1 breaks are reported as a function of the four sentence types created by the materials design (D/Q x Arg/Mod), for each of Reading 1 and Reading 2. Then, the patterns of breaks over the two positions are considered, before moving to statistical analysis. Note that while breaks after the construction verb were reported, these breaks were exceptionally rare and occured in only 8% of recordings, so they have been set aside. The break locations are indicated with a % symbol in (@breakpos).
+
+  (@breakpos) !["... stick the letter % in the mailbox % into the proper stack."](breakpos.png)
+
+As noted in section \@ref(sec:sita), the results reported are based on the subjective judgements of a trained linguist who was naive to the purposes and hypotheses underlying the research.
+
+### Individual break patterns
+
+```{r obj}
+kable(
+  obj,
+  caption="Percent occurance of OBJ break (frequency of occurence in parenthesis) as a function of sentence type and Reading",
+  col.names = c("", "D", "Q","D", "Q"),
+  align="c"
+) %>% 
+  add_header_above(c(" "=1,"Reading 1"=2,"Reading 2"=2)) %>% 
+  kable_styling(latex_options = c("hold_position"))
+```
+
+The presence of the OBJ break was sensitive to both Speech Act and reading, with Reading 2 showing a different distribution across the D vs. Q distinction than the Reading 1 recordings. 
 
 ```{r pp1}
 kable(
@@ -208,59 +214,54 @@ kable(
   kable_styling(latex_options = c("hold_position"))
 ```
 
-Speech act and reading did not appear to impact the overall distribution of the PP1 break.
+The PP1 break was almost always present for cases where PP2 was an argument; and it was present substantially less often, but still there a majority of the time, for cases where PP2 could be interpreted as a modifier. Speech act and reading did not appear to impact the overall distribution of the PP1 break.
 
-```{r obj}
-kable(
-  obj,
-  caption="OBJ break by condition and reading",
-  col.names = c("", "D", "Q","D", "Q"),
-  align="c"
-) %>% 
-  add_header_above(c(" "=1,"Reading 1"=2,"Reading 2"=2)) %>% 
-  kable_styling(latex_options = c("hold_position"))
-```
+### Combined break patterns{#bbr}
 
-When looking at both breaks together, a sentence could have one of four patterns: OBJ and PP1 break present; only OBJ or only PP1 present; or neither. As mentioned earlier, there were only 5 cases where neither are present, and those omitted in the tables of prosodic patterns.
+When looking at both breaks together, a sentence could have one of four patterns: both the OBJ and PP1 break present; only OBJ present; only PP1 present; or neither break present. There were only 5 cases where neither was present, and those were omitted in the tables of prosodic patterns.
 
 ```{r r2combobreaksBycondpre}
 r2pdata<-droplevels(subset(mdata,Reading==2 & simple2lvl != "NEITHER"))
-qdata <- subset(r2pdata,Condition_GP)
-ddata <- subset(r2pdata,!Condition_GP)
-qpros<-table(qdata$simple2lvl,qdata$Condition_Q) %>%
-  prop.table(margin=2) %>% `*`(100) %>%
-  round(1)
-colnames(qpros)<-c("D","Q")
+qdata <- subset(r2pdata,PP2Status=="Arg")
+ddata <- subset(r2pdata,PP2Status=="Mod")
+qpros<-table(qdata$simple2lvl,qdata$SpeechAct) %>%
+  prop.table(margin=2) %>% apply(2,percent)
 
-dpros<-table(ddata$simple2lvl,ddata$Condition_Q) %>%
-  prop.table(margin=2) %>% `*`(100) %>%
-  round(1)
-colnames(dpros)<-c("D","Q")
+dpros<-table(ddata$simple2lvl,ddata$SpeechAct) %>%
+  prop.table(margin=2) %>% apply(2,percent)
+
 ccombo<-as.data.frame(cbind(dpros,qpros))
-rownames(ccombo)<-c("Both", "OBJ only", "PP1 only")
 
-r1pdata<-droplevels(subset(mdata,Reading==2 & simple2lvl != "NEITHER"))
-qdata <- subset(r1pdata,Condition_GP)
-ddata <- subset(r1pdata,!Condition_GP)
-qpros<-table(qdata$simple2lvl,qdata$Condition_Q) %>%
-  prop.table(margin=2) %>% `*`(100) %>%
-  round(1)
-colnames(qpros)<-c("D","Q")
 
-dpros<-table(ddata$simple2lvl,ddata$Condition_Q) %>%
-  prop.table(margin=2) %>% `*`(100) %>%
-  round(1)
-colnames(dpros)<-c("D","Q")
+r1pdata<-droplevels(subset(mdata,Reading==1 & simple2lvl != "NEITHER"))
+qdata <- subset(r1pdata,PP2Status=="Arg")
+ddata <- subset(r1pdata,PP2Status=="Mod")
+qpros<-table(qdata$simple2lvl,qdata$SpeechAct) %>%
+  prop.table(margin=2) %>% apply(2,percent)
+
+
+dpros<-table(ddata$simple2lvl,ddata$SpeechAct) %>%
+  prop.table(margin=2) %>% apply(2,percent)
+
 cccombo<-as.data.frame(cbind(dpros,qpros))
-rownames(cccombo)<-c("Both", "OBJ only", "PP1 only")
+
 
 bothrbothb <- cbind(ccombo,cccombo)
+bothrbothb <- bothrbothb %>% as_tibble(.name_repair = "unique")
+row.names(bothrbothb) <- c("2Both","1OBJ","3PP1")
+bothrbothb<-arrange(bothrbothb,row.names(bothrbothb))
+row.names(bothrbothb) <- c("OBJ only","Both","PP1 only")
 
 ```
 
 
 ```{r bothbreaks}
-kable(bothrbothb,caption="Breaks by condition",align="c") %>%
+kable(
+  bothrbothb,
+  caption="Percent occurence of both breaks as a function of sentence type and Reading",
+  align="c",
+  col.names=rep(c("D","Q"),4)
+) %>%
   add_header_above(c(" "=1,rep(c("Mod" = 2, "Arg"=2),2))) %>%
   add_header_above(c(" "=1, "Reading 1" = 4, "Reading 2" = 4)) %>%
   column_spec(1,bold=T)%>% kable_styling(latex_options = "hold_position")
@@ -269,65 +270,85 @@ kable(bothrbothb,caption="Breaks by condition",align="c") %>%
 
 Table \@ref(tab:bothbreaks) shows that for Arg sentences, there are very few instances with the OBJ-only pattern (0.8% in declaratives, 2.5% in interrogatives); whereas that pattern is fairly frequent for Mod sentences (31.1% in declaratives, 31.4% in interrogatives). The pattern with both breaks is somewhat more common for Arg sentences (72.1% in declaratives, 71.7% in interrogatives) than Mod (54.1% in declaratives, 43.0% in interrogatives). The PP1-only pattern occurs at about the same rate in Arg interrogatives (25.8%) as in Mod interrogatives (25.6%) and Arg declaratives (27%), but is noticeably less common for Mod declaratives (14.8%). These proportions are visually represented in figure \@ref(fig:bothbreaks2).
 
-```{r bothbreaks2, fig.cap="Plot of pattern proportions per condition",fig.height=4,fig.pos="H"}
-adata <- mdata
+```{r bothbreaks2, fig.cap="Break pattern as a function of sentence type and Reading",fig.pos="!H", fig.height=3.5}
+mdata$SentenceType <- paste(mdata$SpeechAct,mdata$PP2Status)
+adata <- subset(mdata,simple2lvl!="NEITHER")
 adata$reading <- paste("Reading", adata$Reading)
 
 ggplot(adata,    
     aes(
-      x=condition,
+      x=reorder(SentenceType,
+                ifelse(SentenceType=="D Arg",1,
+                       ifelse(SentenceType=="Q Arg",2,
+                              ifelse(SentenceType=="Q Arg",3,4)))
+      ),
       y=..count..,
       fill=reorder(
         simple2lvl,
-        ifelse(simple2lvl=="PP1", 1, ifelse(simple2lvl=="OBJ",3,2))
+        ifelse(simple2lvl=="PP1", 3, ifelse(simple2lvl=="OBJ",1,2))
       )
     )) +
   geom_bar(position="fill",color="black",width=0.5) +
   labs(fill="Pattern",x=" ",y=" ") +
   facet_grid(cols = vars(reading)) +
   scale_y_continuous(labels=scales::percent) + 
-  scale_fill_brewer(breaks=c("PP1", "BOTH", "OBJ"), palette="Greys")
+  scale_fill_brewer(breaks=c("OBJ", "BOTH", "PP1"), palette="Greys")
 ```
 
-Another relevant judgement was also collected: the relative strength of the PP1 and OBJ breaks. Figure 2 incorporates this information, where “PP1 dominance” means that the PP1 break was reported to be stronger than the OBJ break; “OBJ” dominance means the opposite; and “Equal strength” means that neither break was reported to be stronger than the other. The 5 instances with no breaks were again omitted.
+### Break Dominance
 
-```{r bdom, fig.cap="Plot of break dominance by condition",fig.height=4,fig.pos="H"}
+The relative strength of the PP1 and OBJ breaks was also collected. Figure \@ref(fig:bdom) incorporates this information, where “PP1 dominance” means that the PP1 break was reported to be stronger than the OBJ break; “OBJ” dominance means the opposite; and “Equal strength” means that neither break was reported to be stronger than the other (the 5 instances with no breaks were again omitted).
+
+When looking at the combined break patterns, one can think of there being three bins: the PP1 bin, the OBJ bin, and a neutral bin between them. In Section \@ref(sec:bbr), the neutral bin containing instances of both breaks occuring is robust. This break dominance analysis distributes most of those cases that have both breaks into either the OBJ or PP1 bin, depending on which break is more prominent. When the breaks are of equal strength, they remain in the middle bin, but there are much fewer such cases when looking at dominance instead of simple occurence. 
+
+```{r bdom, fig.cap="Percent break dominance occurence as a function of sentence type and Reading",fig.pos="H", fig.height=3.5}
 library(ggplot2)
 library(ggthemes)
 library(extrafont)
-adata <- mdata
+adata <- subset(mdata,simple2lvl!="NEITHER")
 adata$reading <- paste("Reading", adata$Reading)
+adata$dom <- ifelse(adata$pdom,"PP1",ifelse(adata$odom,"OBJ","Equal strength"))
 
 ggplot(adata,    
     aes(
-      x=condition,
+      x=reorder(SentenceType,
+                ifelse(SentenceType=="D Arg",1,
+                       ifelse(SentenceType=="Q Arg",2,
+                              ifelse(SentenceType=="Q Arg",3,4)))
+      ),
       y=..count..,
       fill=reorder(
         dom,
-        ifelse(simple2lvl=="PP1 dominant", 1, ifelse(simple2lvl=="OBJ dominant",3,2))
+        ifelse(simple2lvl=="OBJ", 1, ifelse(simple2lvl=="PP1",3,2))
       )
     )) +
   geom_bar(position="fill",color="black",width=0.5) +
-  labs(fill="Pattern",x=" ",y=" ") +
+  labs(fill="Dominant break",x="Sentence Type",y="Percent where dominant") +
   facet_grid(cols = vars(reading)) +
   scale_y_continuous(labels=scales::percent) + 
-  scale_fill_brewer(breaks=c("PP1 dominant", "Equal strength", "OBJ dominant"), palette="Greys") 
+  scale_fill_brewer(breaks=c("PP1", "Equal strength", "OBJ"), palette="Greys") 
 ```
 
 Figure \@ref(fig:bdom) clearly shows a robust effect of PP2 status on break dominance, and little to no impact of reading or speech act.
 
 ### Regression models of prosodic break patterns
 
-A number of mixed effects logistic regression models support the general observations above. Models predicting PP1 break, OBJ break, PP1 break dominance and OBJ break dominance are reported. All models include crossed random effect intercepts (participant and item), but due to convergence errors, no random slopes are included. The intercept always represents the D Mod (“control”) condition. In each case, models were selected from a set of models by selecting the one with the lowest reported AIC. Model comparisons did not always find significant differences between the more complex models. In each case, the selected model was compared to a minimal model where the fixed effects structure was simply a dummy value of 1, and all reported models represent improvement over the minimal model to a statistically significant degree. That comparison is reported for each model. All regression models were run using @R-lme4, with p-values calculated via @R-lmerTest.
+A number of mixed effects logistic regression models support the general observations above. Models predicting PP1 break, OBJ break, PP1 break dominance and OBJ break dominance are reported. All models include crossed random effect intercepts (participant and item), but due to convergence errors, no random slopes are included. 
 
-Table \@ref(tab:objMod) shows a model predicting the occurrence of an OBJ break with estimates for the coefficients of the fixed effects of Reading 2, PP2 and the interaction between Reading and PP2 status. A comparison between the reported model and a minimal one with a dummy value of 1 as the only fixed effect found that the reported model was better with a high level of confidence (AIC~MIN~=1068.0, AIC~BEST~=1031.6, $\chi^2$(2)=30.5, p < 0.001).
+The intercept always represents the Mod sentence type, which is not expected to present any particular difficulty to the reader, since the Mod PP2 Status is compatible with what is assumed to be the running parse when it is encountered (i.e., PP1 has been interpreted as the goal argument of the verb, and PP2 does not disrupt that interpretation). When Speech Act is included in the model, the intercept represents the declarative sentence type. In this way, the more complex sentence types are compared to the simplest available in the model.
+
+In each case, the model with the lowest reported AIC was selected from a set of models. Model comparisons did not always find significant differences between the more complex models. In each case, the selected model was compared to a minimal model where  where fixed effect variables were removed, leaving only an intercept, and all reported models represent improvement over the minimal model to a statistically significant degree. That comparison is reported for each model. All regression models were run using the lme4 R package (@R-lme4), with p-values calculated via the lmerTest R package (@R-lmerTest).
+
+#### Break occurence
+
+Table \@ref(tab:objMod) shows a model predicting the occurrence of an OBJ break with estimates for the coefficients of the fixed effects of Reading 2, PP2 and the interaction between Reading and PP2 status. A comparison between the reported model and a minimal one found that the reported model was better with a high level of confidence (AIC~MIN~=1068.0, AIC~BEST~=1031.6, $\chi^2$(2)=30.5, p < 0.001).
 
 ```{r objMod}
 csv <- 'Outcome: OBJ break,Estimate,Std. Error,p
 "D Mod, Reading 1 (Intercept)",1.39,0.45,< 0.01
 Reading 2,0.11,0.23,0.62
 Arg,-1.98,0.5,< 0.001
-Reading 2 : Arg,0.81,0.32,< 0.05'
+Reading 2 x Arg,0.81,0.32,< 0.05'
 
 tab <- read_csv(csv)
 
@@ -339,16 +360,16 @@ tab %>% kable(
   kable_styling(latex_options = "hold_position")
 ```
 
-The log odds[^logodds] of an OBJ break for D Mod recordings is 1.39 (std. error = 0.45, p < 0.01). The log odds of that break increased in Reading 2 (β=0.11, std. error = 0.16) but the increase was not statistically significant. PP2 arguments reduced the log odds of an OBJ break compared to PP2 modifiers by a robust amount (β=-1.98, std. error = 0.5, p < 0.001), but less so in Reading 2 than in Reading 1 (β=-0.81, std. error = 0.32, p < 0.05).
+The log odds[^logodds] of an OBJ break for Mod Reading 1 is 1.39 (std. error = 0.45, p < 0.01). The log odds of that break increased in Reading 2 but the increase was not statistically significant. PP2 arguments reduced the log odds of an OBJ break compared to PP2 modifiers by a robust amount, but less so in Reading 2 than in Reading 1.
 
-[^logodds]:  Log odds is the (in this case, natural) log of the odds ratio, so the log odds of A is log~e~(P(A)/P(¬A)). A log odds of 1.39 translates to an odds ratio of 2.4:1 (1.39^e^=2.4) and a probability of 71% (2.4/(1+2.4)=0.71).
+[^logodds]:  Log odds is, in this case, the natural log of the odds ratio, so the log odds of A is log~e~(P(A)/P(¬A)). A log odds of 1.39 translates to an odds ratio of 2.4:1 (1.39^e^=2.4) and a probability of 71% (2.4/(1+2.4)=0.71).
 
-The best model for predicting the occurrence for the PP1 break was one where only PP2 status was included as a predictor. The chosen model was again better than the minimal model to a significant degree (AICMIN=855.6, AICBEST=629.6, $\chi^2$(1)=228.0, p < 0.001).
+The best model for predicting the occurrence for the PP1 break was one where only PP2 status was included as a predictor. The chosen model was again significantly better than the minimal model (AIC~MIN~=855.6, AIC~BEST~=629.6, $\chi^2$(1)=228.0, p < 0.001).
 
 ```{r pp1Mod}
 csv <- '
 Outcome: PP1 break,Estimate,Std. Error,p
-"D Mod, Reading 1 (Intercept)",0.96,0.3,< 0.01
+"Mod (Intercept)",0.96,0.3,< 0.01
 Arg,4.12,0.44,< 0.001
 '
 
@@ -362,13 +383,16 @@ tab %>% kable(
   kable_styling(latex_options = "hold_position")
 ```
 
-Sentences with argument PP2s had greatly increased log odds of a PP1 break compared to ones with modifier PP2s (β=4.12, std. error = 0.44, p < 0.001).
-	Models were also run for predicting break dominance. Table \@ref(tab:odom) reports the best model for predicting OBJ break dominance. The best model was one with fixed effects for reading and PP2 status. There was no statistically significant effect of speech act on OBJ break dominance.
+Sentences with argument PP2s had greatly increased log odds of a PP1 break compared to ones with modifier PP2s.
+
+#### Break dominance
+
+Models were also run for predicting break dominance. Table \@ref(tab:odom) reports the best model for predicting OBJ break dominance. The best model was one with fixed effects for reading and PP2 status. There was no statistically significant effect of Speech Act on OBJ break dominance.
 
 ```{r odom}
 csv <- '
 Outcome: OBJ dominance,Estimate,Std. Error,p
-"D Mod, Reading 1 (Intercept)",-0.16,0.32,0.62
+"Mod, Reading 1 (Intercept)",-0.16,0.32,0.62
 Reading 2,0.4,0.16,< 0.05
 Arg,-2.32,0.18,< 0.001
 '
@@ -383,7 +407,7 @@ tab %>% kable(
   kable_styling(latex_options = "hold_position")
 ```
 
-Table \@ref(tab:pdom) reports the best model for predicting PP1 break dominance. Unlike the model for predicting OBJ break dominance, the best model for predicting PP1 break dominance includes speech act as a predictor. The best model is one with fixed effects for reading, speech act, and PP2 status.
+Table \@ref(tab:pdom) reports the best model for predicting PP1 break dominance. Unlike the model for predicting OBJ break dominance, the best model for predicting PP1 break dominance includes speech act as a predictor. The best model is one with fixed effects for reading, Speech Act, and PP2 Status.
 
 ```{r pdom}
 csv <- '
@@ -403,10 +427,10 @@ tab %>% kable(
   row_spec(0,align="c") %>%
   kable_styling(latex_options = "hold_position")
 ```
+
 This model was better than a minimal model  (AIC~MIN~=1290.4, AIC~BEST~=1078.8, $\chi^2$(3)=217.59, p < 0.001). PP1 break dominance was much more likely for sentence with argument PP2s than sentences with modifier PP2s, with interrogatives having slightly increased log odds of PP1 break dominance. Log odds of PP1 break dominance were slightly less in Reading 2 than Reading 1.
 
 Because reading was a significant predictor for 3 of the 4 models reported, and there are theoretical reasons to believe that Reading 2 is more representative of the natural or intended prosody of the reader, models were also run predicting PP1 dominance and OBJ dominance for Reading 2 data only. In both cases, the best model had the same structure: fixed effects of speech act and PP2 status, with no interaction term.
-
 
 ```{r r2dom}
 csv <- '
@@ -429,7 +453,7 @@ tab %>% kable(
 
 For both OBJ dominance and PP2 dominance, the main effect of speech act is non-significant at the p < 0.05 level, but its inclusion marginally improves the fit of each model.
 
-### On reading 1 delay
+### On Reading 1 delay
 
 Reading 1 (R1) delay is the amount of time between the initial display of a sentence and the start of phonation. Participants' median R1 delay ranged from 0.6s to 1.6s with a standard deviation of 0.25s. As a way of analyzing the protocol, and the extent to which participants performed as expected, participants were categorized based on their median R1 delay. In what follows, a fast median R1 delay was shorter than or equal to 0.9s, and a slow one was longer than 1.05s, resulting in 12 participants per category. Ten participants had R1 delays between those values, categorized as "normal," and ignored. These calculations were done over Reading 1 of experimental items (n = 489).
 
@@ -462,10 +486,11 @@ ggplot(pdata,
 ```
 
 ```{r rsplit}
-mdata<-subset(adata,Reading==1)
 
-fast <- subset(mdata,r1DelCat == "FAST")
-slow <- subset(mdata,r1DelCat == "SLOW")
+r1data<-subset(adata,Reading==1)
+
+fast <- subset(r1data,r1DelCat == "FAST")
+slow <- subset(r1data,r1DelCat == "SLOW")
 
 fastTabN <- xtabs(~simple2lvl + condition, data=fast) %>% 
   as.data.frame() %>% 
@@ -501,12 +526,12 @@ tab <- arrange(tab,Pattern)
 tab <- tab %>% select(Pattern,m,everything())
 
 r1tab<-tab
+```
+```{r r2split}
+r2data<-subset(adata,Reading==2)
 
-
-mdata<-subset(adata,Reading==2)
-
-fast <- subset(mdata,r1DelCat == "FAST")
-slow <- subset(mdata,r1DelCat == "SLOW")
+fast <- subset(r2data,r1DelCat == "FAST")
+slow <- subset(r2data,r1DelCat == "SLOW")
 
 fastTabN <- xtabs(~simple2lvl + condition, data=fast) %>% 
   as.data.frame() %>% 
@@ -554,7 +579,13 @@ tab %>% kable(
   add_header_above(c(" " = 2,"FAST (n=12)"=4,"SLOW (n=12)"=4)) %>%
   pack_rows(index = c("Reading 1" = 6, "Reading 2" = 6))
 
+xdata <- subset(adata,r1DelCat != "NORMAL")
+r1df <- ftable(xtabs(~Participant + simple2lvl + r1DelCat, subset(xdata,Reading==1))) %>% as.data.frame
+r2df <- ftable(xtabs(~Participant + simple2lvl + r1DelCat, subset(xdata,Reading==2))) %>% as.data.frame
 
+dfs <- subset(r1df %>% spread(simple2lvl,Freq), BOTH + OBJ + PP1 > 0)
+dfs <- cbind("r1"=dfs,"r2"=subset(r2df %>% spread(simple2lvl,Freq), BOTH + OBJ + PP1 > 0))
+# just delete rows in df where all 3 freqs are 0
 ```
 
 There appears to be a clear difference between the participants categorized as having fast or slow R1 delays in the extent to which they used both breaks, with the slow category of participants preferring more breaks than the fast category of participants. There also seems to be a larger increase in usage of both breaks from Reading 1 to Reading 2 for the fast category than for the slow.
@@ -609,7 +640,7 @@ Inter-reading time is the amount of time after the completion of Reading 1 and b
 
 ### Data cleanup {#irtDis}
 
-IRTs below 0.25s (2) and above 25.0s (5) were assumed to be implausible and omitted. Experimental data were then Winsorized by participant to bring data below the 2.5% and above the 95% threshold to the value at those thresholds. The resulting measure is referred to as wIRT and is distributed as shown in figure \@ref(fig:wIRT) (n = 489).
+IRTs below 0.25s (2) and above 25.0s (5) were assumed to be implausible and omitted. Experimental data were then Winsorized by participant to bring data below the 2.5% and above the 97.5% threshold to the value at those thresholds. The resulting measure is referred to as wIRT and is distributed as shown in figure \@ref(fig:wIRT) (n = 489).
 
 ```{r wIRT,fig.cap="Distribution of wIRT"}
 irt_data <- read_csv("export/irt_data.csv")

@@ -296,7 +296,7 @@ To verify the accuracy of the computer measurement, timings were collected by ha
 
 [^error]: Hand measurement was done to the nearest half second, so a fair amount of error is to be expected.
 
-## Prosodic judgments
+## Prosodic judgments {#sita}
 
 A trained linguist informant naive to the research being conducted listened to recordings and reported the presence or absence of breaks in certain regions of the sentence, as well as several other judgments. She was instructed to familiarize herself with a speaker's speech patterns before rating any recordings by listening to 6 filler item recordings from that speaker. She was given a diagram of the sentences as in Table \@ref(tab:reg), as well as full plain-text lists of all items.
 
