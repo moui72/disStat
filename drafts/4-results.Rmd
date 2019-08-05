@@ -348,18 +348,46 @@ Figure \@ref(fig:bdom) clearly shows a robust effect of PP2 status on break domi
 
 ### Regression models of prosodic break patterns
 
-A number of mixed effects logistic regression models support the general observations above. Models predicting PP1 break, OBJ break, PP1 break dominance and OBJ break dominance are reported. All models include crossed random effect intercepts (participant and item), but due to convergence errors, no random slopes are included. 
+A number of mixed effects logistic regression models support the general observations above. Models predicting PP1 break, OBJ break, PP1 break dominance and OBJ break dominance are reported. All models include crossed random effect intercepts (participant and item), but due to convergence errors, no random slopes for any predictors are included. 
 
-The intercept always represents the Mod sentence type, which is not expected to present any particular difficulty to the reader, since the Mod PP2 Status is compatible with what is assumed to be the running parse when it is encountered (i.e., PP1 has been interpreted as the goal argument of the verb, and PP2 does not disrupt that interpretation). When Speech Act is included in the model, the intercept represents the declarative sentence type. In this way, the more complex sentence types are compared to the simplest available in the model.
+The intercept always represents the Mod sentence type, which is not expected to present any particular difficulty to the reader, since the Mod PP2 Status is compatible with what is assumed to be the running parse when it is encountered (i.e., PP1 has been interpreted as the goal argument of the verb, and PP2 does not disrupt that interpretation). For those models where Speech Act is included in the model, the intercept represents the declarative sentence type. In this way, the more complex sentence types are compared to the simplest available in the model. If Reading is included in a model, the intercept represents Reading 1.
 
-In each case, the model with the lowest reported AIC was selected from a set of models. Model comparisons did not always find significant differences between the more complex models. In each case, the selected model was compared to a minimal model where  where fixed effect variables were removed, leaving only an intercept, and all reported models represent improvement over the minimal model to a statistically significant degree. That comparison is reported for each model. All regression models were run using the lme4 R package (@R-lme4), with p-values calculated via the lmerTest R package (@R-lmerTest).
+For each analysis, a reduced model and the full model (i.e., the model containing all predictors of interest) is reported. In each case, the reported reduced model is the one with the lowest reported Akaike Information Criterion[^aic] (AIC) from the set of models that include any subset of the following predictors: Speech Act, PP2 Status, Reading, and the interactions between Speech Act, PP2 Status and Reading. This method of model selection is consistent with the proposal of @wax1985detection. 
+
+Model comparisons did not always find significant differences between the more complex models, but in each case, the selected model was compared to a minimal model where  where fixed effect variables were removed, leaving only an intercept, and all reported models represent improvement over the minimal model to a statistically significant degree. That comparison is reported for each model. All regression models were run using the lme4 R package (@R-lme4), with p-values calculated via the lmerTest R package (@R-lmerTest).
+
+[^aic]: AIC is a representation of the amount of information lost by using a regression model to estimate data points. It is a measure that balances both the goodness of fit of a model and the smiplicity of a model, guarding against overfitting and underfitting the data involved.
 
 #### Break occurence
 
-Table \@ref(tab:objMod) shows a model predicting the occurrence of an OBJ break with estimates for the coefficients of the fixed effects of Reading 2, PP2 and the interaction between Reading and PP2 status. A comparison between the reported model and a minimal one found that the reported model was better with a high level of confidence (AIC~MIN~=1068.0, AIC~BEST~=1031.6, $\chi^2$(2)=30.5, p < 0.001).
+In the full model predicting OBJ break occurrence, shown in Table \@ref(tab:fullobjmod), only the estimate for D Mod Reading 1 (the intercept) and the effect of PP2 Status show statistical significance.
+
+```{r fullobjmod}
+csv <- '
+Outcome: OBJ break (FULL),Estimate,Std. Error,p
+"D Mod, Reading 1 (Intercept)",0.70,0.09,< 0.001
+Q,0.11,0.11,0.34
+Arg,-0.28,0.11,< 0.05
+Reading 2,0.07,0.05,0.15
+Q:Arg,-0.14,0.16,0.39
+Q:Reading2,-0.11,0.07,0.12
+Arg:Reading2,0.08,0.07,0.27
+Q:Arg:Reading2,0.13,0.10,0.19
+'
+tab <- read_csv(csv,na=character())
+tab %>% kable(
+  align="rccc", 
+  caption="Mixed effects logistic regression model predicting OBJ break occurrence (FULL)"
+) %>% 
+  row_spec(0,align="c") %>%
+  kable_styling(latex_options = "hold_position")
+
+```
+
+Table \@ref(tab:objMod) shows a reduced model, predicting the occurrence of an OBJ break with estimates for the coefficients of the fixed effects of Reading 2, PP2 and the interaction between Reading and PP2 status. The removal of other predictors allowed the Reading x PP2 Status to become a significant predictor. A comparison between the reported model and a minimal one found that the reported model was better with a high level of confidence (AIC~MIN~=1068.0, AIC~BEST~=1031.6, $\chi^2$(2)=30.5, p < 0.001).
 
 ```{r objMod}
-csv <- 'Outcome: OBJ break,Estimate,Std. Error,p
+csv <- 'Outcome: OBJ break (REDUCED),Estimate,Std. Error,p
 "D Mod, Reading 1 (Intercept)",1.39,0.45,< 0.01
 Reading 2,0.11,0.23,0.62
 Arg,-1.98,0.5,< 0.001
@@ -369,7 +397,7 @@ tab <- read_csv(csv)
 
 tab %>% kable(
   align="rccc", 
-  caption="Mixed effects logistic regression model predicting OBJ break occurrence"
+  caption="Mixed effects logistic regression model predicting OBJ break occurrence (REDUCED)"
 ) %>% 
   row_spec(0,align="c") %>%
   kable_styling(latex_options = "hold_position")
@@ -378,13 +406,37 @@ tab %>% kable(
 
 The log odds[^logodds] of an OBJ break for Mod Reading 1 is 1.39 (std. error = 0.45, p < 0.01). The log odds of that break increased in Reading 2 but the increase was not statistically significant. PP2 arguments reduced the log odds of an OBJ break compared to PP2 modifiers by a robust amount, but less so in Reading 2 than in Reading 1.
 
-[^logodds]:  Log odds is, in this case, the natural log of the odds ratio, so the log odds of A is log~e~(P(A)/P(¬A)). A log odds of 1.39 translates to an odds ratio of 2.4:1 (1.39^e^=2.4) and a probability of 71% (2.4/(1+2.4)=0.71).
+[^logodds]:  Log odds is, in this case, the natural log of the odds ratio, so the log odds of A is log~e~(P(A)/P(¬A)). A log odds of 1.39 translates to an odds ratio of 4.01:1 (1.39^e^=4.01) and a probability of 80% (4.01/(1+4.01)=0.80).
 
+The full model for predicting PP1 also showed significance only for the intercept and the effect of PP2 Status.
+
+```{r fullpp1Mod}
+csv <- '
+Outcome: PP1 break (FULL),Estimate,Std. Error,p
+"D Mod, Reading 1 (Intercept)",0.68,0.07,< 0.001
+Q,0.01,0.09,0.89
+Arg,0.31,0.09,< 0.001
+Reading 2,0.00,0.04,1.00
+Q:Arg,0.00,0.13,0.97
+Q:Reading2,-0.01,0.06,0.82
+Arg:Reading2,0.00,0.06,1.00
+Q:Arg:Reading2,0.00,0.08,0.97
+'
+
+tab <- read_csv(csv,na=character())
+
+tab %>% kable(
+  align="rrrl",
+  caption="Mixed effects logistic regression model predicting PP1 break occurrence (FULL)"
+) %>% 
+  row_spec(0,align="c") %>%
+  kable_styling(latex_options = "hold_position")
+```
 The best model for predicting the occurrence for the PP1 break was one where only PP2 status was included as a predictor. The chosen model was again significantly better than the minimal model (AIC~MIN~=855.6, AIC~BEST~=629.6, $\chi^2$(1)=228.0, p < 0.001).
 
 ```{r pp1Mod}
 csv <- '
-Outcome: PP1 break,Estimate,Std. Error,p
+Outcome: PP1 break (REDUCED),Estimate,Std. Error,p
 "Mod (Intercept)",0.96,0.3,< 0.01
 Arg,4.12,0.44,< 0.001
 '
@@ -393,7 +445,7 @@ tab <- read_csv(csv)
 
 tab %>% kable(
   align="rccc",
-  caption="Mixed effects logistic regression model predicting PP1 break occurrence"
+  caption="Mixed effects logistic regression model predicting PP1 break occurrence (REDUCED)"
 ) %>% 
   row_spec(0,align="c") %>%
   kable_styling(latex_options = "hold_position")
@@ -403,11 +455,36 @@ Sentences with argument PP2s had greatly increased log odds of a PP1 break compa
 
 #### Break dominance
 
-Models were also run for predicting break dominance. Table \@ref(tab:odom) reports the best model for predicting OBJ break dominance. The best model was one with fixed effects for reading and PP2 status. There was no statistically significant effect of Speech Act on OBJ break dominance.
+Models were also run for predicting break dominance. The full model predicting OBJ break dominance is shown in Table \@ref(tab:odom).
 
 ```{r odom}
 csv <- '
-Outcome: OBJ dominance,Estimate,Std. Error,p
+Outcome: OBJ dominance (FULL),Estimate,Std. Error,p
+"D Mod, Reading 1 (Intercept)",0.50,0.09,< 0.001
+Q,0.03,0.12,0.82
+Arg,-0.45,0.12,< 0.001
+Reading 2,0.07,0.05,0.22
+Q:Arg,-0.03,0.17,0.86
+Q:Reading2,-0.03,0.07,0.68
+Arg:Reading2,0.03,0.07,0.71
+Q:Arg:Reading2,0.00,0.11,0.97
+'
+
+tab <- read_csv(csv,na=character())
+
+tab %>% kable(
+  align="rccc",
+  caption="Mixed effects logistic regression model predicting OBJ break dominance (FULL)"
+) %>% 
+  row_spec(0,align="c") %>%
+  kable_styling(latex_options = "hold_position")
+```
+
+Table \@ref(tab:odom) reports the best model for predicting OBJ break dominance. The best model was one with fixed effects for reading and PP2 status. There was no statistically significant effect of Speech Act on OBJ break dominance.
+
+```{r odom}
+csv <- '
+Outcome: OBJ dominance (REDUCED),Estimate,Std. Error,p
 "Mod, Reading 1 (Intercept)",-0.16,0.32,0.62
 Reading 2,0.4,0.16,< 0.05
 Arg,-2.32,0.18,< 0.001
@@ -417,11 +494,12 @@ tab <- read_csv(csv)
 
 tab %>% kable(
   align="rccc",
-  caption="Mixed effects logistic regression model predicting OBJ break dominance"
+  caption="Mixed effects logistic regression model predicting OBJ break dominance (REDUCED)"
 ) %>% 
   row_spec(0,align="c") %>%
   kable_styling(latex_options = "hold_position")
 ```
+PP1 break dominance and OBJ break dominance are not entirely complementary, because it is possible for both breaks to have equal prominance. As such, models predicting PP1 were also explored. The full model predicting PP1 break dominance failed to converge, so only the reduced model is reported.
 
 Table \@ref(tab:pdom) reports the best model for predicting PP1 break dominance. Unlike the model for predicting OBJ break dominance, the best model for predicting PP1 break dominance includes speech act as a predictor. The best model is one with fixed effects for reading, Speech Act, and PP2 Status.
 
@@ -444,7 +522,7 @@ tab %>% kable(
   kable_styling(latex_options = "hold_position")
 ```
 
-This model was better than a minimal model  (AIC~MIN~=1290.4, AIC~BEST~=1078.8, $\chi^2$(3)=217.59, p < 0.001). PP1 break dominance was much more likely for sentence with argument PP2s than sentences with modifier PP2s, with interrogatives having slightly increased log odds of PP1 break dominance. Log odds of PP1 break dominance were slightly less in Reading 2 than Reading 1.
+This model was better than a minimal model  (AIC~MIN~=1290.4, AIC~BEST~=1078.8, $\chi^2$(3)=217.59, p < 0.001). PP1 break dominance was much more likely for sentence with argument PP2s than sentences with modifier PP2s, with interrogatives having slightly increased log odds of PP1 break dominance. Log odds of PP1 break dominance were slightly less in Reading 2 than Reading 1. There were no significant interaction terms.
 
 Because reading was a significant predictor for 3 of the 4 models reported, and there are theoretical reasons to believe that Reading 2 is more representative of the natural or intended prosody of the reader, models were also run predicting PP1 dominance and OBJ dominance for Reading 2 data only. In both cases, the best model had the same structure: fixed effects of speech act and PP2 status, with no interaction term.
 
@@ -502,7 +580,7 @@ ggplot(pdata,
 ggsave("facet.pdf",device=cairo_pdf())
 
 ```
-
+
 ```{r rsplit}
 
 r1data<-subset(adata,Reading==1)
@@ -596,21 +674,29 @@ tab %>% kable(
   collapse_rows(columns = 1) %>%
   add_header_above(c(" " = 2,"FAST (n=12)"=4,"SLOW (n=12)"=4)) %>%
   pack_rows(index = c("Reading 1" = 6, "Reading 2" = 6))
-
+```
+```{r r1catTesting}
 xdata <- subset(adata,r1DelCat != "NORMAL")
 r1df <- ftable(xtabs(~Participant + simple2lvl + r1DelCat, subset(xdata,Reading==1))) %>% as.data.frame
 r2df <- ftable(xtabs(~Participant + simple2lvl + r1DelCat, subset(xdata,Reading==2))) %>% as.data.frame
-
 dfs <- subset(r1df %>% spread(simple2lvl,Freq), BOTH + OBJ + PP1 > 0)
 dfs <- cbind("r1"=dfs,"r2"=subset(r2df %>% spread(simple2lvl,Freq), BOTH + OBJ + PP1 > 0))
-# just delete rows in df where all 3 freqs are 0
+dfs$deltaBOTH <- dfs$r1.BOTH - dfs$r2.BOTH
+dfs$deltaBothCat <- ifelse(dfs$deltaBOTH > 0, "Decrease",ifelse(dfs$deltaBOTH < 0,"Increase","No change"))
 ```
 
 There appears to be a clear difference between the participants categorized as having fast or slow R1 delays in the extent to which they used both breaks, with the slow category of participants preferring more breaks than the fast category of participants. There also seems to be a larger increase in usage of both breaks from Reading 1 to Reading 2 for the fast category than for the slow.
 
+```{r nDeltaBoth}
+table(dfs$r1.r1DelCat,dfs$deltaBothCat) %>% 
+  kable(caption="Number of participants who produced both breaks more often in R2 than R1 as a function of R1 delay category") %>% 
+  kable_styling(latex_options = c("hold_position"))
+```
+
 >>> TODO add hypothesis testing and more detail for the above statements
 
-Discussion of prosodic break patterns
+## Discussion of prosodic break patterns
+
 Throughout the analysis of break patterns, PP2 status was the most robust predictor of OBJ and PP1 break occurrence and their relative strengths. The OBJ break was more frequent and more frequently dominant for sentences with a PP2 that was an argument than those with a PP2 that could be a modifier; inversely, the PP1 break was more frequent and more frequently dominant for sentences with a PP2 that was interpretable as a modifier than those with a PP2 that was an argument.
 
 Essentially, the expected patterns can be described as in (@breakpat1) and (@breakpat2), where % represents a robust prosodic break, and @ represents a weaker break or no break.
