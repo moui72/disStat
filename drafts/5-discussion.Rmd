@@ -1,3 +1,6 @@
+---
+always_allow_html: yes
+---
 ```{r disc,echo=F,warning=F,message=F}
 knitr::opts_chunk$set(
   echo=FALSE, 
@@ -69,16 +72,16 @@ kable(ccombo,caption="Combined breaks per condition in reading 2 only", col.name
 
 While there is a larger drop in the number of utterances with both breaks from +GP to -GP for questions than for decaratives, the opposite is true for the pattern with a PP1 break by itself. There is an argument to be made that the OBJ break, which does not correspond to a change in syntactic branching direction for any version of the sentences, is a hesitation rather than a break, due to a moment of confusion or perhaps simply a need to breathe. 
 
-To be more explicit, for this explanation to work, the prosodic structures in @dlo and @dhi would likely be the ones considered "correct" or most common for a the declarative versions. The symbol "||" is being used to represent a prominent prosodic break.
+To be more explicit, for this explanation to work, the prosodic structures in @dlo and @dhi would likely be the ones considered "correct" or most common for a the declarative versions. The symbol "%" is being used to represent a prominent prosodic break.
 
-  (@dlo) *D+GP*: He had crammed [~OBJ~ the newspapers] [~PP1~ under the sofa] || [~PP2~ into the trashcan].
+  (@dlo) *D+GP*: He had crammed [~OBJ~ the newspapers] [~PP1~ under the sofa] % [~PP2~ into the trashcan].
   (@dhi) *D-GP*: He had crammed [~OBJ~ the newspapers] under the sofa in the guestroom.
 
 The prosodic structure of @dhi does not mandate any major break, because there is no change in syntactic branching directory and no other reason to mandate a break there. That is, the PP1 break differentiates the two syntactic structures and signals the attachment site of PP2. 
  
 For the interrogatives, though, this contrast is obscured by the need to apply a rising prosodic contour over the final nuclear accent in the sentence: i.e. PP2, resulting in not a change in syntactic branching direction, but a tonal change, which might sound very similar to a prosodic break. The symbol "//" indicates the start of the rising contour.
 
-  (@qlo) *Q+GP*: Had he crammed [~OBJ~ the newspapers] [~PP1~ under the sofa] ||+// [~PP2~ into the trashcan]?
+  (@qlo) *Q+GP*: Had he crammed [~OBJ~ the newspapers] [~PP1~ under the sofa] %+// [~PP2~ into the trashcan]?
   (@qhi) *Q-GP*: Had he crammed [~OBJ~ the newspapers] [~PP1~ under the sofa]    // [~PP2~ in the guestroom]?
 
 The critical issue here is that in (@qhi), the absence of a syntactically-motivated break is hidden by the juncture created by the start of the final-rising contour of a question. 
@@ -93,7 +96,7 @@ In this section, I will discuss some of the issues with the current study, and w
 
 A major roadblock to the success of the methodology here reported is that the region of the sentence where the critical prosodic difference between +GP and -GP sentences lies is the same region where disambiguation occurs for the +GP sentences. Some weaknesses in the data as they are leave need for future studies and  methodological improvements. 
 
-A major issue is the difficulty in differentiating between syntactically-motivated prosodic breaks and hesitations. As table \ref(tab:combobr) and the reliability data reported earlier in this paper illustrates, a linguistically trained judge will not necessarily be able to distinguish between prosodic breaks and hesitations, and will not necessarily agree with another linguistically trained judge on the relative prominence of breaks and hesitations within a recording. It is famously difficult to instrumentally describe a prosodic break, and there is no guarentee that examining the wave forms would fare any better in making this distinction than the intuition of the judges. That said, it may be possible to distinguish the two sorts of breaks: it may be that boundary tones or segmental lengthening are typically not part of a hesitation break, but are a part of hesitation break. No immediately apparent pattern is available, but it would be inordinately beneficial if one could be found.
+A major issue is the difficulty in differentiating between syntactically-motivated prosodic breaks and hesitations. As table \@ref(tab:combobr) and the reliability data reported earlier in this paper illustrates, a linguistically trained judge will not necessarily be able to distinguish between prosodic breaks and hesitations, and will not necessarily agree with another linguistically trained judge on the relative prominence of breaks and hesitations within a recording. It is famously difficult to instrumentally describe a prosodic break, and there is no guarentee that examining the wave forms would fare any better in making this distinction than the intuition of the judges. That said, it may be possible to distinguish the two sorts of breaks: it may be that boundary tones or segmental lengthening are typically not part of a hesitation break, but are a part of hesitation break. No immediately apparent pattern is available, but it would be inordinately beneficial if one could be found.
 
 In \@ref(erp) I propose that an event-related potential paradigm might hold the key for distinguishing between the two.
 

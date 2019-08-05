@@ -1,13 +1,3 @@
-```{r echo=F}
-knitr::opts_chunk$set(
-  echo=FALSE, 
-  warning=FALSE, 
-  message=FALSE, 
-  fig.height = 3, 
-  fig.pos="H"
-)
-
-```
 <!-- Background on prosody and parsing -->
 <!-- This is the second content section -->
 <!-- Previous section: introduction -->
@@ -15,7 +5,7 @@ knitr::opts_chunk$set(
 
 # Background
 
-As briefly mentioned earlier, “garden path effects” occur when a temporarily ambiguous sentence resolves in such a way that the structure initially preferred by the parser is incompatible with how the sentence actually continues. These parsing errors have traditionally been attributed to structurally-focused parsing preferences [@kimball1973seven; @frazier1978sausage @Frazier1979-pb] that ignore semantic content on the first pass. @Frazier1979-pb formulates several of these, including the following two which are widely accepted in one form or another:
+As briefly mentioned earlier, “garden path effects” occur when a temporarily ambiguous sentence resolves in such a way that the structure initially preferred by the parser is incompatible with how the sentence actually continues. These parsing errors have traditionally been attributed to structurally-focused parsing preferences [@kimball1973seven; @frazier1978sausage; @Frazier1979-pb] that ignore semantic content on the first pass. @Frazier1979-pb formulates several of these, including the following two which are widely accepted in one form or another:
 
   (@MinAtt) *Minimal attachment*
   Attach incoming material into the phrase-marker being constructed using the fewest nodes consistent with the well-formedness rules of the language under analysis [@Frazier1979-pb p.24]
@@ -23,7 +13,7 @@ As briefly mentioned earlier, “garden path effects” occur when a temporarily
   (@LateClo) *Late closure*
   When possible, attach incoming material into the clause currently being parse [@Frazier1979-pb p.20]
 
-Because these strategies ignore semantic and pragmatic plausibility and the parser typically does not know what material might be further on in the string, mis-parses at temporarily ambiguous regions can occur, resulting in garden paths. Minimal Attachment is important to this study and will be revisited later on.
+Because these strategies ignore semantic and pragmatic plausibility and the parser typically does not know what material might be further on in the string, mis-parses at temporarily ambiguous regions can occur, resulting in garden paths. *Minimal Attachment* is important to this study and will be revisited later on.
 
 An example is the commonly studied garden path sentence, “The horse raced past the barn fell” [@bever1970]. Here, the initial parse incorrectly assumes that the matrix subject is the unmodified NP the horse, per Minimal Attachment, and takes the matrix verb to be raced, as in the sentence, “The horse raced past the finish line.” 
 
@@ -40,10 +30,10 @@ There is an ongoing debate in the literature about what parsing model best fits 
 This study is focused on the impact of speech act, i.e. where a sentence is interrogative (Q) or declarative (D), in a particular sort of garden path. Specifically, it is concerned with garden path sentences containing a temporary ambiguity that centers on the attachment of two prepositional phrases (PPs) occurring in string-linear sequence at the end of an sentence, e.g., “When we saw her, the nanny had seated the cranky little boy [~PP1~ on the swing] [~PP2~ in his stroller].” 
 
   (@aa) Jed crammed the newspapers under the sofa in the trashcan. \linebreak
-    a) $\#$ … [~VP~ crammed [~NP~ the newspapers]  \linebreak
-    [~PP1~ under [~NP~ the sofa [~PP2~ in the wastebasket]]]  \linebreak
-    b) $\checkmark$ … [~VP~ crammed [~NP~ the newspapers [~PP1~ under [~NP~ the sofa ]] \linebreak
-    [~PP2~ in the trashcan]] \linebreak
+  a) $\#$ … [~VP~ crammed [~NP~ the newspapers]  \linebreak
+      [~PP1~ under [~NP~ the sofa [~PP2~ in the wastebasket]]]  \linebreak
+  b) $\checkmark$ … [~VP~ crammed [~NP~ the newspapers [~PP1~ under [~NP~ the sofa ]] \linebreak
+      [~PP2~ in the trashcan]] \linebreak
     *"$\#$" indicates a structure with an implausible reading*
 
 In parsing (@aa a), there is a fairly strong bias (due to *Minimal Attachment*, or some variation thereof), which favors a structure where the first PP attaches into the verb phrase (VP) as an argument of the verb, i.e. [~VP~ V NP PP1], which leaves nowhere for the second PP to attach but as a modifier of the noun phrase (NP) inside PP1 ([~PP1~ under [~NP~ the sofa [~PP2~ in the trashcan]]]). This initial parse (@aa a) is pragmatically implausible, as one does not generally find sofas inside wastebaskets. Reanalysis is required to bring about the correct parse (@aa b), where PP1 attaches as an NP modifier of the direct object and so allows PP2 to attach as a VP argument, resulting in a structure such as [~VP~ V [~NP~ N PP1] PP2], i.e. where it is *the newspapers under the sofa* that are being *crammed in the trashcan*. 
@@ -139,7 +129,7 @@ The need to prepare for that rising tone might make a prosodic break before the 
 
 A brief informal survey found that most speakers maintain low tones on prior stresses, although some had a H tone on the subject noun. It also varied between speakers and between sentences as to whether there is a prosodic boundary (marked by a low tone and/or pause) immediately before the rise (after PP1) or not. 
 
-The prosodic structures found in the data collected for the current study are discussed in \@ref(sec:results-prosody).
+The prosodic structures found in the data collected for the current study are discussed in \@ref(results-prosody).
 
 ## Can prosody affect parsing?
 

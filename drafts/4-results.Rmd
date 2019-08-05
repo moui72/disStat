@@ -1,14 +1,20 @@
-```{r results, echo=F}
+---
+always_allow_html: yes
+---
+
+```{r results, echo=F, warning=F,message=F}
 library(ggplot2)
 library(ggthemes)
 library(extrafont)
 library(psych)
+library(Cairo)
 
 loadfonts("pdf")
 knitr::opts_chunk$set(
   echo=FALSE, 
   warning=FALSE, 
   message=FALSE, 
+  error = F,
   fig.height = 3, 
   fig.pos="H"
 )
@@ -22,7 +28,7 @@ kable <- function(...) {
 
 ### global plot themeing
 theme_set(
-  theme_tufte(base_size = 12, base_family="Georgia") + 
+  theme_tufte(base_size = 12) + 
     theme(
       plot.background = element_rect(fill = bgcolor,color=bgcolor),
       panel.border = element_blank()
@@ -186,7 +192,7 @@ In what follows, the distrbution of OBJ breaks and PP1 breaks are reported as a 
 
   (@breakpos) !["... stick the letter % in the mailbox % into the proper stack."](breakpos.png)
 
-As noted in section \@ref(sec:sita), the results reported are based on the subjective judgements of a trained linguist who was naive to the purposes and hypotheses underlying the research.
+As noted in section \@ref(sita), the results reported are based on the subjective judgements of a trained linguist who was naive to the purposes and hypotheses underlying the research.
 
 ### Individual break patterns
 
@@ -270,7 +276,10 @@ kable(
 
 Table \@ref(tab:bothbreaks) shows that for Arg sentences, there are very few instances with the OBJ-only pattern (0.8% in declaratives, 2.5% in interrogatives); whereas that pattern is fairly frequent for Mod sentences (31.1% in declaratives, 31.4% in interrogatives). The pattern with both breaks is somewhat more common for Arg sentences (72.1% in declaratives, 71.7% in interrogatives) than Mod (54.1% in declaratives, 43.0% in interrogatives). The PP1-only pattern occurs at about the same rate in Arg interrogatives (25.8%) as in Mod interrogatives (25.6%) and Arg declaratives (27%), but is noticeably less common for Mod declaratives (14.8%). These proportions are visually represented in figure \@ref(fig:bothbreaks2).
 
+
+
 ```{r bothbreaks2, fig.cap="Break pattern as a function of sentence type and Reading",fig.pos="!H", fig.height=3.5}
+
 mdata$SentenceType <- paste(mdata$SpeechAct,mdata$PP2Status)
 adata <- subset(mdata,simple2lvl!="NEITHER")
 adata$reading <- paste("Reading", adata$Reading)
@@ -293,15 +302,18 @@ ggplot(adata,
   facet_grid(cols = vars(reading)) +
   scale_y_continuous(labels=scales::percent) + 
   scale_fill_brewer(breaks=c("OBJ", "BOTH", "PP1"), palette="Greys")
+
+ggsave("bothbreaks2.pdf",height=3.75,device=cairo_pdf)
+
 ```
 
 ### Break Dominance
 
 The relative strength of the PP1 and OBJ breaks was also collected. Figure \@ref(fig:bdom) incorporates this information, where “PP1 dominance” means that the PP1 break was reported to be stronger than the OBJ break; “OBJ” dominance means the opposite; and “Equal strength” means that neither break was reported to be stronger than the other (the 5 instances with no breaks were again omitted).
 
-When looking at the combined break patterns, one can think of there being three bins: the PP1 bin, the OBJ bin, and a neutral bin between them. In Section \@ref(sec:bbr), the neutral bin containing instances of both breaks occuring is robust. This break dominance analysis distributes most of those cases that have both breaks into either the OBJ or PP1 bin, depending on which break is more prominent. When the breaks are of equal strength, they remain in the middle bin, but there are much fewer such cases when looking at dominance instead of simple occurence. 
+When looking at the combined break patterns, one can think of there being three bins: the PP1 bin, the OBJ bin, and a neutral bin between them. In Section \@ref(bbr), the neutral bin containing instances of both breaks occuring is robust. This break dominance analysis distributes most of those cases that have both breaks into either the OBJ or PP1 bin, depending on which break is more prominent. When the breaks are of equal strength, they remain in the middle bin, but there are much fewer such cases when looking at dominance instead of simple occurence. 
 
-```{r bdom, fig.cap="Percent break dominance occurence as a function of sentence type and Reading",fig.pos="H", fig.height=3.5}
+```{r bdom, fig.cap="Percent break dominance occurence as a function of sentence type and Reading",fig.pos="H", fig.height=3.75}
 library(ggplot2)
 library(ggthemes)
 library(extrafont)
@@ -327,6 +339,9 @@ ggplot(adata,
   facet_grid(cols = vars(reading)) +
   scale_y_continuous(labels=scales::percent) + 
   scale_fill_brewer(breaks=c("PP1", "Equal strength", "OBJ"), palette="Greys") 
+
+ggsave("bdom.pdf",device=cairo_pdf)
+
 ```
 
 Figure \@ref(fig:bdom) clearly shows a robust effect of PP2 status on break dominance, and little to no impact of reading or speech act.
@@ -358,6 +373,7 @@ tab %>% kable(
 ) %>% 
   row_spec(0,align="c") %>%
   kable_styling(latex_options = "hold_position")
+
 ```
 
 The log odds[^logodds] of an OBJ break for Mod Reading 1 is 1.39 (std. error = 0.45, p < 0.01). The log odds of that break increased in Reading 2 but the increase was not statistically significant. PP2 arguments reduced the log odds of an OBJ break compared to PP2 modifiers by a robust amount, but less so in Reading 2 than in Reading 1.
@@ -481,8 +497,10 @@ ggplot(pdata,
   labs(fill="Pattern",x=" ",y=" ",caption="FAST n=12, SLOW n = 12") +
   facet_grid(rows = vars(reading),cols=vars(r1DelCat)) +
   scale_y_continuous(labels=scales::percent) + 
-  scale_fill_brewer(breaks=c("PP1", "BOTH", "OBJ"), palette="Greys") +
-  theme_tufte(base_size = 12, base_family="Georgia")
+  scale_fill_brewer(breaks=c("PP1", "BOTH", "OBJ"), palette="Greys")
+
+ggsave("facet.pdf",device=cairo_pdf())
+
 ```
 
 ```{r rsplit}
@@ -597,10 +615,10 @@ Throughout the analysis of break patterns, PP2 status was the most robust predic
 
 Essentially, the expected patterns can be described as in (@breakpat1) and (@breakpat2), where % represents a robust prosodic break, and @ represents a weaker break or no break.
 
-  (@breakpat1) ![... stick the letter @ in the mailbox % onto the proper stack](breakpat1.png)
+  (@breakpat1) ![](breakpat1.png)
 
 
-  (@breakpat2) ![... stick the letter % in the mailbox @ of the vice president](breakpat2.png)
+  (@breakpat2) ![](breakpat2.png)
 
 This is supportive of hypothesis 1 presented in the introduction; and, in fact, of a broader formulation of it.
 
@@ -612,7 +630,7 @@ This is supportive of hypothesis 1 presented in the introduction; and, in fact, 
   
 A change in branching direction is taken to mean the closure of the preceding phrase and attachment into its parent node; in this case, either the closure of PP1 and the attachment off PP2 into the VP or the closure of the object NP and attachment of PP1 into the VP. 
 
-That Reading 2 is a significant predictor in 3 of the 4 analyses where it’s inclusion is possible supports, at least provisionally, hypothesis 2 and 3. 
+That Reading 2 is a significant predictor in 3 of the 4 analyses where its inclusion is possible supports, at least provisionally, hypothesis 2 and 3. 
   
 
   *Hypothesis 2* \linebreak
@@ -626,17 +644,17 @@ That Reading 2 is a significant predictor in 3 of the 4 analyses where it’s in
 
 It is difficult to know whether a given reading represents more or less natural prosody, but given that there’s a difference, it seems most likely that Reading 2 is the more natural of the two.
 
-It is surprising that the effect of PP2 status is generally lessened in Reading 2 when compared to Reading 1, but this can likely be explained as an epiphenomenon. There is no way to distinguish between prosodic breaks that are intentional and syntactically motivated as compared to those that represent hesitation, a need for a breath, or other factors. It’s likely that some of the effect of PP2 status is actually an increase in hesitation after PP1, and therefore more or longer pauses at that position, which is mitigated in Reading 2. If some readers are, in general, simply producing a break after every phrase, but happen to produce what’s perceived as a dominant break after PP1 in the PP2 argument condition, when they’re confused, that effect of PP2 status will go away in Reading 2 once they’ve had time to figure the sentence out. This might mean that the noise caused by readers that are simply breaking phrase-by-phrase is actually amplified in Reading 2.
+It is surprising that the effect of PP2 status is generally lessened in Reading 2 when compared to Reading 1, but this can likely be explained as an epiphenomenon. There is no way to distinguish between prosodic breaks that are intentional and syntactically motivated as compared to those that represent hesitation, a need for a breath, or other factors. It is likely that some of the effect of PP2 status is actually an increase in hesitation after PP1, and therefore more or longer pauses at that position, which is mitigated in Reading 2. If some readers are, in general, simply producing a break after every phrase, but happen to produce what is perceived as a dominant break after PP1 in the PP2 argument condition, when they’re confused, that effect of PP2 status will go away in Reading 2 once they’ve had time to figure the sentence out. This might mean that the noise caused by readers that are simply breaking phrase-by-phrase is actually amplified in Reading 2.
 
-That a prosodic break also frequently occurs between phrases when there is no change in branching direction is mitigated somewhat by the fact that such breaks are usually weaker than the ones that do represent such a change. It’s likely that these breaks are actually there for non-syntactic reasons; the end of a phrase represents a reasonable time for the speaker to take a breath or pause briefly for processing reasons. It’s also likely that some readers are simply producing a break after each phrase.
+That a prosodic break also frequently occurs between phrases when there is no change in branching direction is mitigated somewhat by the fact that such breaks are usually weaker than the ones that do represent such a change. It is likely that these breaks are actually there for non-syntactic reasons; the end of a phrase represents a reasonable time for the speaker to take a breath or pause briefly for processing reasons. It is also likely that some readers are simply producing a break after each phrase.
 
 Speech act is a significant predictor of PP1 break dominance (β=0.31, std. error = 0.15, p < 0.05)., but not of any of the other outcomes. It’s plausible that the PP1 break is more likely to be dominant in questions than in declaratives because of the need to begin the sentence final rise of question intonation. That there is never an interaction between speech act and PP2 status is discouraging for the hypothesis that it’s the prosody of questions that make the Arg cases seem easier in the interrogative cases compared to the declarative.
 
 ## Inter-reading time {#irt}
 
-Inter-reading time is the amount of time after the completion of Reading 1 and before the beginning of phonation of Reading 2. The details of how this was measured and defined can be found in section \@ref(method-irt).
+Inter-reading time is the amount of time after the completion of Reading 1 and before the beginning of phonation of Reading 2. The details of how this was measured and defined can be found in section \@ref(method-irt). IRT is meant to be a measure to some extent of how much difficulty the reader has in processing a given sentence. If a reader spends more time studying a sentence prior to reading it aloud a second time, the IRT will be longer, and I take that has an indicator of processing load.
 
->>> TODO Explain what I see as the importance of IRT
+Importantly, IRT is a measure across pairs of recordings (Reading 1/Reading 2), so the number of data analyzed in this section are half as many as those in the prosody analyses.
 
 ### Data cleanup {#irtDis}
 
@@ -652,13 +670,13 @@ ggplot(irt_data, aes(wirt/1000)) +
     "Distribution of wIRT", 
     subtitle="Bin size = 0.5s"
   )
+ggsave("wIRT.pdf",device=cairo_pdf)
+
 ```
 
 Overall mean for wIRT was 6.5s (sd = 3.8). The longest wIRT was 22.2s and the shortest was 0.7s. Median wIRT was 6.1s.
 
-### IRT results {#irtRes}
-
-Table \@ref(tab:mns) shows the mean wIRT for each experimental condition. While mean wIRT increases from modifier PP2 to argument PP2 more for declaratives than for interrogatives, the difference in that increase is very small (0.04s).
+### Analysis of IRT data {#irtRes}
 
 ```{r}
 irt_props <- describe(irt_data$irt)
@@ -703,18 +721,10 @@ meansByConditionS$`Q` <- meansByConditionS$`Q`/1000
 meansByConditionS$Condition <- c("Mod", "Arg", "Mod - Arg")
 meansByConditionS$`Q - D` <- meansByConditionS$Q - meansByConditionS$D
 ```
-```{r mns}
-kable(
-  escape=F,
-  meansByConditionS, 
-  caption = "Means (s) by condition",
-  digits = 2
-)%>% kable_styling(latex_options = "hold_position")
-```
 
-The same numbers are represented visually in figure \@ref(fig:interactionplot)
+Figure \@ref(fig:interactionplot) shows the mean IRT as a function of sentence type.
 
-```{r interactionplot,fig.cap="Mean IRT by condition",fig.height=4}
+```{r interactionplot,fig.cap="Mean IRT by condition",fig.height=3.5,fig.pos="H"}
 
 meansByConditionLong$Qn <- ifelse(
   meansByConditionLong$Q == "Q", 
@@ -743,9 +753,20 @@ ggplot(
     title="Mean IRT by condition", 
     subtitle = "Error bars represent one standard error"
   )
+ggsave("interact.pdf",device=cairo_pdf())
+
 ```
 
-The two slopes are only very slightly divergent. Notably, both speech act and PP2 status appear to have main effects on wIRT, with interrogatives having longer IRTs than declaratives, and sentences with argument PP2s having substantially longer IRTs than those with modifier PP2s.
+
+```{r mns, include=F}
+kable(
+  escape=F,
+  meansByConditionS, 
+  caption = "Means (s) by condition",
+  digits = 2
+)%>% kable_styling(latex_options = "hold_position")
+```
+The two slopes are only very slightly divergent. Notably, both speech act and PP2 status appear to have main effects on wIRT, with interrogatives attracting longer (6.7s) IRTs than declaratives (6.4s), and sentences with argument PP2s having substantially longer IRTs (6.7s) than those with modifier PP2s (6.3s).
 
 Regression models support the observations above. All models discussed include random intercepts for participant and item. Models with random slopes for fixed effects all resulted in singular fits and so random slopes were not included.
 	
@@ -822,16 +843,22 @@ Sentences where PP2 was headed by from typically had wIRTs that were 0.84s faste
 
 ## Discussion of IRT results
 
-It’s clear from the above that argument PP2s (ones headed by into/onto) result in longer wIRT measures. It also appears that interrogativity increases wIRT to a lesser extent, regardless of the PP2 status. Because the interaction between the two factors is not a significant predictor of wIRT, we are left to assume that either wIRT does not represent a behavioral reflex of the intuition that interrogativity makes difficult to process PP2-attachment ambiguities easier, or else the current study does not have enough power to detect it.
+It is clear from the above that argument PP2s (ones headed by into/onto) result in longer wIRT measures. It also appears that interrogativity increases wIRT to a lesser extent, regardless of the PP2 status. Because the interaction between the two factors is not a significant predictor of wIRT, we are left to assume that either wIRT does not represent a behavioral reflex of the intuition that interrogativity makes difficult to process PP2-attachment ambiguities easier, or else the current study does not have enough power to detect it.
 
-The difference between from and of PP2s is also potentially a source of noise. The from sentences are less clearly disambiguated than the of sentences. Where (3) has only one reading, (4) has another possible reading, albeit somewhat implausible: i.e., we could imagine that in (3) from her brother-in-law modifies the cookies, while in (4) of the minivan cannot modify the bicycle.
+The difference between *from* and *of* PP2s is also potentially a source of noise. The *from* sentences are less clearly disambiguated than the *of* sentences. Where (@mini) has only one reading, (@bro) has another possible reading, albeit somewhat implausible: i.e., we could imagine that in (@mini) *from her brother-in-law* modifies *the cookies*, while in (4) *of the minivan* cannot modify *the bicycle*.
 
-She had intended to put the bicycle on the roof rack of the minivan.
-She had decided to cram the cookies in the basket from her brother-in-law.
+  (@mini) She had intended to put the bicycle on the roof rack of the minivan.
+  (@bro) She had decided to cram the cookies in the basket from her brother-in-law.
 
-This lingering ambiguity could have increased wIRT somewhat because the reader, given unlimited time, spent some of that time noticing and then eliminating that possible reading. The difference here can be explained by once again making an appeal to structural parsing vs. structural association: if we imagine that a from PP is associated rather than parsed, the reader is free to consider other possible interpretations. Because of can be seen as less a preposition and more a functional head, it stands to reason that it would be treated different, as something that must be parsed immediately, i.e. that it instantiates a primary relation. 
+This lingering ambiguity could have increased wIRT somewhat because the reader, given unlimited time, spent some of that time noticing and then eliminating that possible reading. The difference here can be explained by once again making an appeal to structural parsing vs. structural association: if we imagine that a *from* PP is associated rather than parsed, the reader is free to consider other possible interpretations. Because *of* can be seen as less a preposition and more a functional head, it stands to reason that it would be treated different, as something that must be parsed immediately, i.e., that *from her brother-in-law* is modifying, where *of the minivan* is in some sense more argument-like. This is similar to an established observation about what constituents pro-forms can stand in for:  (@of) is ungrammatical, but (@from) is fine; the same holds for (@to) where *to Fred* is an argument, compared to (@for) where *for Fred* is a modifier.
 
-It could also be a simpler explanation: the fact that of is only two characters, whereas from and into/onto are all four characters, participants may have recognized a pattern, wherein they could be sure that a two character PP2 head meant the sentence did have the difficult properties of some of the ones with four character PP2 heads (most notably those pesky into/onto ones), and eliminated some of the needed study time.
+  (@of) $*$ I saw the student of physics and the one of chemistry arguing with each other.
+  (@from) $\checkmark$ I saw the student from Texas and the one from Maine arguing with each other.
+  
+  (@to) $*$ Mary gave a book to Fred and did so to John, too.
+  (@for) $\checkmark$ Mary signed a book for Fred and did so for John, too.
+
+It could also be a simpler explanation: the fact that *of* is only two characters, whereas *from* and *into*/*onto* are all four characters, participants may have recognized a pattern, wherein they could be sure that a two-character PP2 head meant the sentence did not have the difficult properties of some of the ones with four-character PP2 heads (most notably the *into*/*onto* cases), and eliminated some of the needed study time.
 
 A study where the modifier PP2s are more tightly controlled with regard to the head preposition, both in terms of the length and the properties of the head, might produce clearer results.
 
@@ -858,11 +885,11 @@ mean.irtByQnPP <- aggregate(
   FUN=mean
 )
 ```
-It is worth taking note of the fact that the mean wIRT for interrogative versions (6.7s) of the sentences in the reported study was longer than for the declaratives (6.4s). Similarly, @qp2 found that reading times for interrogatives were longer than for declaratives. This is perhaps representative of the processing cost of interrogativity reported by @mehler1963some who found that a so-called kernel sentence, i.e. a simple declarative, was easier to recall verbatim than was a number of sentences that he considered to be syntactic transformations of that kernel sentence (K): negative (N), polar question (Q), passive (P), and combinations thereof: NQ, NP, QP and NPQ. Mehler found that accurate recall was more frequent for K sentences (300/460, `r percent(300/460)`) than for the other sentences types, with interrogatives (210/460, `r percent(210/460)`) being recalled accurately at a lower rate than the two other individual transformations (234/460, `r percent(234/460)` for N; 243/460, `r percent(243/460)` for P).
+It is worth taking note of the fact that the mean wIRT for interrogative versions (6.7s) of the experimental sentences in the reported study was longer than for the declaratives (6.4s). While this finding was not statistically significant, @qp2 found that whole-sentence silent reading times for interrogatives were longer than for declaratives; and @mehler1963some provided a very early report of the processing cost of interrogativity: a so-called kernel sentence, i.e., a simple declarative, was easier to recall verbatim than was a number of sentences that he considered to be syntactic transformations of that kernel sentence (K): negative (N), polar question (Q), passive (P), and combinations thereof: NQ, NP, QP and NPQ. Mehler found that accurate recall was more frequent for K sentences (300/460, `r percent(300/460)`) than for the other sentences types, with interrogatives (210/460, `r percent(210/460)`) being recalled accurately at a lower rate than the two other individual transformations (234/460, `r percent(234/460)` for N; 243/460, `r percent(243/460)` for P).
 
-The filler sentences in this study were designed in two versions, interrogative (Q) and declarative (D), so as to provide a diagnostic of the interrogative effect on IRT independent of the experimental question. A linear mixed effects regression model predicting wIRT for filler items by interrogativity with crossed random intercepts (participant and item) found that wIRT is increased by 0.4s for interrogatives (std. error = 0.2; p < 0.05). Half of the fillers had a sequence of two PPs at the end to mirror the experimental items: a model predicting wIRT by the presence of those PPs found minimal effect on wIRT (β=0.01, std. error = 0.22, p = 0.96).
+The filler sentences in this study were designed in two versions, interrogative (Q) and declarative (D), so as to provide a diagnostic of the interrogative effect on IRT independent of the experimental question. A linear mixed effects regression model predicting wIRT for filler items by interrogativity with crossed random intercepts (participant and item) found that wIRT is increased by 0.4s for interrogatives (std. error = 0.2; p < 0.05); declaratives had a mean wIRT of 6.2s, while interrogatives had a mean wIRT of 6.6s. Half of the fillers had a sequence of two PPs at the end to mirror the experimental items: a model predicting wIRT by the presence of those PPs found minimal effect on wIRT (β=0.01, std. error = 0.22, p = 0.96).
 
-Interrogative status itself appears to increase the time needed for participants to feel they’ve satisfactorily studied a sentence in order to read it aloud correctly. This is consistent with the @mehler1963some and @qp2 findings that interrogatives are in some way more complicated or difficult than declaratives.
+Interrogative status itself appears to increase the time needed for participants to feel they have satisfactorily studied a sentence in order to read it aloud correctly. This is consistent with the @mehler1963some and @qp2 findings that interrogatives are in some way more complicated or difficult than declaratives.
 
 
 \clearpage

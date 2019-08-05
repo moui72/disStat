@@ -8,6 +8,7 @@ classoption: oneside
 bibliography: [refs.bib, packages.bib]
 csl: apa.csl
 biblio-style: "apalike"
+always_allow_html: yes
 biblo-title: "References"
 fontsize: 12pt
 mainfont: Georgia
@@ -32,8 +33,9 @@ Write abstract here
   
   * Abstract
   * Acknowledgements
-  * More on the significance of IRT to the study at hand
-  * Hand measurement for IRT reliability
   * First citation *per chapter* should include all authors (rather than et al)
+  * ChiSq for FAST/SLOW patterns
+  * Fix diagrams:
+    * Region labels
 
 \pagebreak

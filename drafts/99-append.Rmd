@@ -1,3 +1,9 @@
+---
+always_allow_html: yes
+---
+
+\singlespacing
+
 ```{r setup, echo=F}
 library(kableExtra)
 knitr::opts_chunk$set(echo = F,warning = F,message=F)
@@ -6,43 +12,6 @@ knitr::opts_chunk$set(echo = F,warning = F,message=F)
 \newpage
 
 # (APPENDIX) Appendices {-}
-
-# Recruitment notice {#rec}
-
-You will be asked about your reading habits and then asked to read complex sentences out loud while being audio recorded. Recordings of your voice will be analyzed, but will be kept strictly confidential. The process will take no more than 1 hour. Note that the study takes place in Queens Hall, which is about half a mile from the main Queens campus. See directions on the QC website, URL below, for how to get here. The room is 335D, on the third floor. Entrance to the building is in the back. 
-
-\newpage 
-
-
-# Instructions to participants {#instr}
-
-    Thank you kindly for your participation. In this study, you are being asked to read complex sentences out loud, twice each. It is very important that you follow these guidelines for each of your readings.
-    
-    *First reading:* Begin reading immediately, without giving yourself a chance to look ahead. Imagine you are a television reporter reading an urgent update from a teleprompter. You must be as quick as possible, without taking any time to read ahead.  You want to sound natural if you can, but it is more important to not delay. These sentences are complicated and potentially confusing. It’s very important that you read the sentence out loud as soon as it appears. It’s OK if you make mistakes or don’t understand, that is an important part of what I want to know. Do the best you can, and remember you have another chance to read it. 
-    
-    *Second reading:* This time you have the luxury of pacing yourself as you please. Imagine you are providing a voice-over for a documentary. You want to sound conversational and clear, without being overly dramatic or formal. Study the sentence as long as you like, and be sure that you understand it before you begin reading. It is most important to sound natural, without worrying about how long it takes to prepare.
-    
-    The experiment will begin with brief instructions, recapping what you are reading now. There will then be a practice session to get you comfortable with the task and a chance for you to ask any questions you have. Finally, after your questions are answered, the study will begin in earnest.
-    
-    Each sentence will follow the same pattern. You will be presented with a screen which displays a series of plus signs. This indicates that the system is ready and that you should press the button labeled “START” when you are ready to read a sentence. As soon as you press the button, the sentence will appear and you should begin your first reading. After you have completed the reading, press the button labeled “NEXT.” You should allow a small amount of time after you finish and before you hit “NEXT,” to ensure that the recording is not cut off too early. 
-    
-    Once you have pressed “NEXT,” you will see a brief instructions slide to help you keep track of where you are. You should then press “START” and begin preparing to read the second time. The background color will change to confirm that the computer has registered your key press. Once you’re ready, read the sentence aloud for the second time and then press “DONE.” Once again, be sure not to cut yourself off. Wait a moment after you finish reading before pressing “DONE.”
-    
-    You are not being judged or measured in any way. Rather, we are interested in how these sentences are pronounced by native speakers of English. Any confusion you have or mistakes you make are interesting properties of the sentences, not failings of you, the speaker.
-    
-    The keys used during the experiment are clearly labeled, but the function of each key is listed below for your reference. There is no hurry for pressing the keys. The only timing of importance is that you begin reading as quickly as possible after pressing “START.” The task should take no longer than one hour
-
-```{r keytab, echo=F}
-Label <- c("Start", "Next", "Done")
-Position <- c("Left shift", "Right shift", "Thumb pad")
-Description <- c("Revewal a sentence and begin your reading.", "End your first reading.", "End your second reading and prepare for the next sentence.")
-keyTable <- data.frame(Label,Position,Description)
-kable(keyTable,booktabs=T,caption="Table of keyboard mappings") %>%
-  kable_styling(latex_options = "hold_position")
-
-```
-
-\newpage 
 
 # Experimental items {#appExp}
 
@@ -59,12 +28,18 @@ items$v <- word(items$EDY,5)
 
 names(items) <- c("no","D Arg","Q Arg","D Mod","Q Mod","asp","v")
 
-fitems <- items %>% gather(key="version",value="text",-no,-asp,-v) %>% arrange(asp,v,version,text) 
+fitems <- items %>% gather(key="version",value="text",-no,-asp,-v)
+
+fitems$PP2Status <- word(fitems$version,2)
+
+fitems <-  fitems %>% arrange(asp,v,PP2Status,text)
 
 fitems[c(4:5)] %>% 
-  kable(col.names=c("Version", "Text"), booktab=T, linesep = "", longtable=T) %>% 
-  kable_styling(latex_options = c("hold_position","repeat_headers"))
+  kable(col.names=c("Version", "Text"), booktab=T, linesep = c("","","","\\addlinespace"), longtable=T,
+        caption="Experimental items in four versions") %>% 
+  kable_styling(latex_options = c("hold_position","repeat_header"))
 ```
+
 \newpage 
 
 # Filler items {#appFill}
@@ -87,15 +62,67 @@ items <- cbind(fpp[1:3],fnp[2:4])
 
 names(items) <- c("no","+PP D","+PP Q","-PP D","-PP Q","asp")
 
-fitems <- items %>% gather(key="version",value="text",-asp,-no) %>% arrange(asp,no,version) 
+fitems <- items %>% gather(key="version",value="text",-asp,-no) %>% arrange(version,asp,no)
 
-fitems[c(3:4)] %>% 
-  kable(col.names=c("Version", "Text"),booktab=T,linesep = "",longtable=T) %>% 
-  kable_styling(latex_options = c("hold_position","repeat_headers"))
+ppy<-subset(fitems,grepl("+PP",version))
+
+ppy[c(3:4)] %>% 
+  kable(col.names=c("Version", "Text"),booktab=T,linesep = c("","\\addlinespace"),longtable=T,
+        caption="Filler items with trailing PPs") %>% 
+  kable_styling(latex_options = c("hold_position","repeat_header"))
 ```
+
+\newpage
+
+```{r}
+ppn<-subset(fitems,grepl("-PP",version)) 
+
+ppn[c(3:4)]%>% 
+  kable(col.names=c("Version", "Text"),booktab=T,linesep = c("","\\addlinespace"),longtable=T, 
+        caption="Filler items with no trailing PPs") %>% 
+  kable_styling(latex_options = c("hold_position","repeat_header"))
+```
+
 \newpage 
 
-# Instructions to RA {#RA}
+# Recruitment notice {#rec}
+
+You will be asked about your reading habits and then asked to read complex sentences out loud while being audio recorded. Recordings of your voice will be analyzed, but will be kept strictly confidential. The process will take no more than 1 hour. Note that the study takes place in Queens Hall, which is about half a mile from the main Queens campus. See directions on the QC website, URL below, for how to get here. The room is 335D, on the third floor. Entrance to the building is in the back. 
+
+\newpage 
+
+
+# Instructions to participants {#instr}
+
+  Thank you kindly for your participation. In this study, you are being asked to read complex sentences out loud, twice each. It is very important that you follow these guidelines for each of your readings.
+  
+  *First reading:* Begin reading immediately, without giving yourself a chance to look ahead. Imagine you are a television reporter reading an urgent update from a teleprompter. You must be as quick as possible, without taking any time to read ahead.  You want to sound natural if you can, but it is more important to not delay. These sentences are complicated and potentially confusing. It’s very important that you read the sentence out loud as soon as it appears. It’s OK if you make mistakes or don’t understand, that is an important part of what I want to know. Do the best you can, and remember you have another chance to read it. 
+  
+  *Second reading:* This time you have the luxury of pacing yourself as you please. Imagine you are providing a voice-over for a documentary. You want to sound conversational and clear, without being overly dramatic or formal. Study the sentence as long as you like, and be sure that you understand it before you begin reading. It is most important to sound natural, without worrying about how long it takes to prepare.
+  
+  The experiment will begin with brief instructions, recapping what you are reading now. There will then be a practice session to get you comfortable with the task and a chance for you to ask any questions you have. Finally, after your questions are answered, the study will begin in earnest.
+  
+  Each sentence will follow the same pattern. You will be presented with a screen which displays a series of plus signs. This indicates that the system is ready and that you should press the button labeled “START” when you are ready to read a sentence. As soon as you press the button, the sentence will appear and you should begin your first reading. After you have completed the reading, press the button labeled “NEXT.” You should allow a small amount of time after you finish and before you hit “NEXT,” to ensure that the recording is not cut off too early. 
+  
+  Once you have pressed “NEXT,” you will see a brief instructions slide to help you keep track of where you are. You should then press “START” and begin preparing to read the second time. The background color will change to confirm that the computer has registered your key press. Once you’re ready, read the sentence aloud for the second time and then press “DONE.” Once again, be sure not to cut yourself off. Wait a moment after you finish reading before pressing “DONE.”
+  
+  You are not being judged or measured in any way. Rather, we are interested in how these sentences are pronounced by native speakers of English. Any confusion you have or mistakes you make are interesting properties of the sentences, not failings of you, the speaker.
+  
+  The keys used during the experiment are clearly labeled, but the function of each key is listed below for your reference. There is no hurry for pressing the keys. The only timing of importance is that you begin reading as quickly as possible after pressing “START.” The task should take no longer than one hour
+
+```{r keytab, echo=F}
+Label <- c("Start", "Next", "Done")
+Position <- c("Left shift", "Right shift", "Thumb pad")
+Description <- c("Revewal a sentence and begin your reading.", "End your first reading.", "End your second reading and prepare for the next sentence.")
+keyTable <- data.frame(Label,Position,Description)
+kable(keyTable,booktabs=T,caption="Table of keyboard mappings") %>%
+  kable_styling(latex_options = "hold_position")
+
+```
+
+\newpage 
+
+# Instructions for prosodic coding {#RA}
 
 Before you begin describing the recordings for a given speaker, please familiarize yourself with that speaker. To do so, please listen to recordings numbered 46-48 and 24-27.
 
@@ -110,7 +137,7 @@ For each recording, please respond in the spreadsheet using the following guidel
 
 For columns E-K, Consider a given sentence to be divided into regions, as in the following example:
 
-```{r reg}
+```{r reg2}
 Sentence = c("He", "had", "meant", "to stick ||$_V$", "the pencil case ||$_{OBJ}$", "in the cabinet ||$_{PP1}$", "into his book bag.")
 Syntax = c("NP$_{SUBJ}$", "AUX", "V$_1$", "V$_2$", "NP$_{OBJ}$", "PP$_1$", "PP$_2$")
 region = c("SUBJ", " ", "V", " ", "OBJ", "PP1", "PP2")
