@@ -623,7 +623,7 @@ Essentially, the expected patterns can be described as in (@breakpat1) and (@bre
 This is supportive of hypothesis 1 presented in the introduction; and, in fact, of a broader formulation of it.
 
   *Hypothesis 1* \hfill\linebreak
-  High attachment of PP2 is marked by a prosodic break between PP1 and PP2.
+  Argument attachment of PP2 is marked by a prosodic break between PP1 and PP2.
   
   *Broadened hypothesis 1* \hfill\linebreak
 	A change in branching direction is marked by a prosodic break.
@@ -634,13 +634,13 @@ That Reading 2 is a significant predictor in 3 of the 4 analyses where its inclu
   
 
   *Hypothesis 2* \linebreak
-  A first reading (no preview) of a GP sentence will exhibit less natural prosody (more hesitation at and after the disambiguating region) than:
-    * A first reading of a non-GP sentence.
-    * A second reading of a GP sentence.
+  A first reading (no preview) of an Arg sentence will exhibit less natural prosody (more hesitation at and after the disambiguating region) than:
+    * A first reading of a Mod sentence.
+    * A second reading of an Arg GP sentence.
 
 
   *Hypothesis 3* \linebreak
-  A first reading of a garden-path sentence will more often be produced with prosodic structure that represents an implausible or ungrammatical parse of the string (low attachment of PP2), whereas a second reading sentence will more often be pronounced with the prosodic structure that represents the intended parse (high attachment of PP2).
+  A first reading of a garden-path sentence will more often be produced with prosodic structure that represents an implausible or ungrammatical parse of the string (low attachment of PP2), whereas a second reading sentence will more often be pronounced with the prosodic structure that represents the intended parse (Arg PP2).
 
 It is difficult to know whether a given reading represents more or less natural prosody, but given that there’s a difference, it seems most likely that Reading 2 is the more natural of the two.
 

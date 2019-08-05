@@ -50,13 +50,15 @@ Recall that the primary motivator for this study was the observation that PP-att
   
 ### Behavioral correlate for the intuition
 
-Ultimately the data here are unable to provide a clear answer to whether or not IRT represents a behavioral correlate of the intuition that PP-attachment garden paths are rendered easier to parse when presented as polar questions. While the difference in mean IRT for Q+GP compared to Q-GP was 0.04s less than for D+GP compared to D-GP, showing a smaller increase in processing time for interrogatives than for declaratives, this is a rather small difference when the grand mean is 6.6s. As such, mixed-effect regression analyses were not able to detect stastical significance for the interaction between interogativity and &plusmn;GP. That said, it was also not clear that a model without the interaction was a better fit than one with it (Full model AIC = 9103.5; Non-interaction model AIC = 9101.6; &Chi;^2^ = 0.035; p > 0.8). This does not, of course, negate the intuition; it simply means that we have not yet found a behavior that can be said with certainty to correspond to that intuition.
+Ultimately the data here are unable to provide a clear answer to whether or not IRT represents a behavioral correlate of the intuition that PP-attachment garden paths are rendered easier to parse when presented as polar questions. Mixed-effect regression analyses were not able to detect stastical significance for the interaction between Speech Act and PP2 Status. This does not, of course, negate the intuition; it simply means that we have not yet found a behavior that can be said with certainty to correspond to that intuition.
 
-There are a number of issues that might be preventing the observation of behavior that confirms the intuition, and there are also possible explanations for why the intuition might exist without a behavior correlate. The possibilty most generous to the reported study is that the sample size here is simply inadequate. It's possible that with more data, this very procedure would have provided a stastically significant behavioral correlate of the intuition. 
+There are a number of issues that might be preventing the observation of behavior that confirms the intuition, and there are also possible explanations for why the intuition might exist without a behavioral correlate available at all. 
 
-It is also possible that the experimental paradigm used here is too lenient to capture the behavior it is looking for: it relies on participants to begin Reading 1 without any lookahead simply by their own recognizance rather than any experimenter-enforced mechanism. Perhaps some participants were able to, perhaps unintentionally, get enough information a priori to negate the effect of the interaction on their IRT.
+The experimental paradigm used here may have been too lenient to capture the behavior it is looking for: it relies on participants to begin Reading 1 without any lookahead simply by their own recognizance rather than any experimenter-enforced mechanism. Perhaps some participants were able to, perhaps unintentionally, get enough information a priori to negate the effect of the interaction on their IRT.
 
-It could also be that IRT is simply the wrong measure for detecting a behavioral correlate of the intuition. The reanalysis triggered by +GP Reading 1 could very well be all that was needed to make the understanding of +GP Reading 2 trivial; this seems unlikely, though, because a significant effect of +GP on IRT was found.
+IRT may be the wrong measure for detecting a behavioral correlate of the intuition: Reading 1 may give tip Reading 2's hand, in a sense. If Reading 1 is preparing the reader to the extent that a processing struggle is not a part of what IRT represents, then the behavioral correlate of the intuition would need to be measured on Reading 1 somehow. This would require an alternative explanation for the significant effect of PP2 status on Reading 2, though.
+
+It's also possible that the added complexity of interrogativity is not actually making the reanalysis of Arg sentences easier at all, but creating the illusion of such, by distracting the reader with a different sort of difficulty. If you try to solve a puzzle in a dark room, you might not realize how difficult the puzzle is, because you're so distracted by the lack of light. Perhaps we are being distracted by the processing cost of interrogativty, and thereby being less sensitive to the cost of reanalysis.
 
 ### Explaining the intuition
 
@@ -79,12 +81,12 @@ To be more explicit, for this explanation to work, the prosodic structures in @d
 
 The prosodic structure of @dhi does not mandate any major break, because there is no change in syntactic branching directory and no other reason to mandate a break there. That is, the PP1 break differentiates the two syntactic structures and signals the attachment site of PP2. 
  
-For the interrogatives, though, this contrast is obscured by the need to apply a rising prosodic contour over the final nuclear accent in the sentence: i.e. PP2, resulting in not a change in syntactic branching direction, but a tonal change, which might sound very similar to a prosodic break. The symbol "//" indicates the start of the rising contour.
+For the interrogatives, though, this contrast is obscured by the need to apply a rising prosodic contour over the final nuclear accent in the sentence: i.e. PP2, resulting in not a change in syntactic branching direction, but the anticipation of a tonal change, which might sound very similar to a prosodic break. The symbol "//" indicates the start of the rising contour.
 
-  (@qlo) *Q+GP*: Had he crammed [~OBJ~ the newspapers] [~PP1~ under the sofa] %+// [~PP2~ into the trashcan]?
-  (@qhi) *Q-GP*: Had he crammed [~OBJ~ the newspapers] [~PP1~ under the sofa]    // [~PP2~ in the guestroom]?
+  (@qlo) *Q+GP*: Had he crammed [~OBJ~ the newspapers] [~PP1~ under the sofa] % [~PP2~ into the // trashcan]?
+  (@qhi) *Q-GP*: Had he crammed [~OBJ~ the newspapers] [~PP1~ under the sofa] [~PP2~ in the // guestroom]?
 
-The critical issue here is that in (@qhi), the absence of a syntactically-motivated break is hidden by the juncture created by the start of the final-rising contour of a question. 
+The critical issue here is that in (@qhi), the absence of a syntactically-motivated break is hidden by the juncture created by the start of the final-rising contour of a question two words after the position of the break. It's not impossible that the need to make the mechanical preparation necessary to execute a rising contour could result in a hesitation or pause at the preceding syntactic juncture most welcoming to it, the PP1 break position. 
 
 If the PP1 break is treated as the main indicator of the prosodic structure, then the larger difference across &plusmn;GP for declaratives (`r 27-14.8`%) than for interrogatives (`r 25.8-25.6`%) does indeed, though perhaps weakly, leave open the door for the @Bader1998-ts style explanation of the intuition.
 

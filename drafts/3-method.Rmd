@@ -314,41 +314,14 @@ To verify the accuracy of the computer measurement, timings were collected by ha
 
 ## Prosodic judgments {#sita}
 
-A trained linguist informant naive to the research being conducted listened to recordings and reported the presence or absence of breaks in certain regions of the sentence, as well as several other judgments. She was instructed to familiarize herself with a speaker's speech patterns before rating any recordings by listening to 6 filler item recordings from that speaker. She was given a diagram of the sentences as in Table \@ref(tab:reg), as well as full plain-text lists of all items.
+A trained linguist informant naive to the research being conducted listened to recordings and reported the presence or absence of breaks in certain regions[^vb] of the sentence, as well as several other judgments. She was instructed to familiarize herself with a speaker's speech patterns before rating any recordings by listening to 6 filler item recordings from that speaker. She was given a diagram of the sentences as in (@bpos), as well as full plain-text lists of all items.
 
-```{r reg}
-Sentence = c(
-  "He", 
-  "had", 
-  "meant", 
-  "to stick ||$_{V}$", 
-  "the pencil case ||$_{OBJ}$", 
-  "in the cabinet ||$_{PP1}$", 
-  "into his book bag."
-)
-Syntax = c(
-  "NP$_{SUBJ}$",
-  "AUX", "V$_1$",
-  "V$_2$", 
-  "NP$_{OBJ}$",
-  "PP$_1$", 
-  "PP$_2$"
-)
+[^vb]: She also reported on a break after the construction verb, but that break was so rare that it is ignored throughout this report.
 
-region = c("SUBJ", " ", "V", " ", "OBJ", "PP1", "PP2")
-tab = rbind(Sentence,Syntax)
-colnames(tab) <- region
-t<-kable(tab, booktab=T, caption="Sentence region labels", escape=F,row.names = F) 
-if(is_html_output() || is_latex_output()){
-  t %>% 
-    kable_styling(latex_options = c("scale_down","hold_position"))
-}else{
-  t
-}
+  (@bpos)
+  ![](breakpos.png)
 
-```
-
-She was asked to report on whether or not she heard a prosodic boundary directly after the region labeled **V**, directly after the region labeled **OBJ**, and directly after the region labeled **PP1**. The following definition of prosodic break was provided:
+She was asked to report on whether or not she heard a prosodic boundary directly following the region labeled **OBJ**, and directly after the following labeled **PP1**. The following definition of prosodic break was provided:
 
 >Please work with the assumption that “prosodic boundary” in what follows is any subset of the following features, clustered in such a way as to trigger your intuition that a new prosodic element (of any size) is beginning: pitch change, volume change, segmental lengthening, or pause.
 
