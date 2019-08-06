@@ -34,6 +34,29 @@ theme_set(
       panel.border = element_blank()
     )
 )
+
+# sentence type order
+sto <- function (SentenceType) {
+  ifelse(SentenceType %in% c("D Arg", "Q Arg", "D Mod", "Q Mod"),
+    return(
+      ifelse(
+        SentenceType=="Q Arg",
+        length(SentenceType),
+        ifelse(
+          SentenceType=="D Arg",
+          length(SentenceType)-1,
+          ifelse(
+            SentenceType=="Q Mod",
+            length(SentenceType)-2,
+            length(SentenceType)-3
+          )
+        )
+      )
+    ),
+    return(1)
+  )
+}
+
 ```
 # Results and discussion
 
@@ -212,7 +235,7 @@ The presence of the OBJ break was sensitive to both Speech Act and reading, with
 ```{r pp1}
 kable(
   pp1,
-  caption="PP1 break by condition and reading",
+  caption="PP1 break by sentence type and reading",
   col.names = c("", "D", "Q","D", "Q"),
   align="c"
 ) %>% 
@@ -286,11 +309,7 @@ adata$reading <- paste("Reading", adata$Reading)
 
 ggplot(adata,    
     aes(
-      x=reorder(SentenceType,
-                ifelse(SentenceType=="D Arg",1,
-                       ifelse(SentenceType=="Q Arg",2,
-                              ifelse(SentenceType=="Q Arg",3,4)))
-      ),
+      x=reorder(SentenceType, sto(SentenceType)),
       y=..count..,
       fill=reorder(
         simple2lvl,
@@ -323,11 +342,7 @@ adata$dom <- ifelse(adata$pdom,"PP1",ifelse(adata$odom,"OBJ","Equal strength"))
 
 ggplot(adata,    
     aes(
-      x=reorder(SentenceType,
-                ifelse(SentenceType=="D Arg",1,
-                       ifelse(SentenceType=="Q Arg",2,
-                              ifelse(SentenceType=="Q Arg",3,4)))
-      ),
+      x=reorder(SentenceType, sto(SentenceType)),
       y=..count..,
       fill=reorder(
         dom,
@@ -455,9 +470,9 @@ Sentences with argument PP2s had greatly increased log odds of a PP1 break compa
 
 #### Break dominance
 
-Models were also run for predicting break dominance. The full model predicting OBJ break dominance is shown in Table \@ref(tab:odom).
+Models were also run for predicting break dominance. The full model predicting OBJ break dominance is shown in Table \@ref(tab:fodom).
 
-```{r odom}
+```{r fodom}
 csv <- '
 Outcome: OBJ dominance (FULL),Estimate,Std. Error,p
 "D Mod, Reading 1 (Intercept)",0.50,0.09,< 0.001
@@ -549,9 +564,9 @@ For both OBJ dominance and PP2 dominance, the main effect of speech act is non-s
 
 ### On Reading 1 delay
 
-Reading 1 (R1) delay is the amount of time between the initial display of a sentence and the start of phonation. Participants' median R1 delay ranged from 0.6s to 1.6s with a standard deviation of 0.25s. As a way of analyzing the protocol, and the extent to which participants performed as expected, participants were categorized based on their median R1 delay. In what follows, a fast median R1 delay was shorter than or equal to 0.9s, and a slow one was longer than 1.05s, resulting in 12 participants per category. Ten participants had R1 delays between those values, categorized as "normal," and ignored. These calculations were done over Reading 1 of experimental items (n = 489).
+Reading 1 (R1) delay is the amount of time between the initial display of a sentence and the start of phonation. Participants' median R1 delay ranged from 0.6s to 1.6s with a standard deviation of 0.25s. As a way of analyzing the protocol, and the extent to which participants performed as expected, participants were categorized based on their median R1 delay. In what follows, a fast median R1 delay was shorter than or equal to 0.9s, and a slow one was longer than 1.05s, resulting in 12 participants per category. Ten participants had R1 delays between those values, categorized as "normal," and set aside. The calculations for categorizing participants were done over Reading 1 of experimental items (n = 489). Note that while R1 delay category (i.e., fast or slow) is a property of R1 delay, data for both readings is nonetheless explored within these categories.
 
-```{r facet, fig.cap="Plot of pattern proportions per condition",fig.height=4,fig.pos="H"}
+```{r facet, fig.cap="Plot of pattern proportions as a function of sentence type",fig.height=4,fig.pos="H"}
 
 hidel <- 1051
 lodel <- 901
@@ -559,12 +574,13 @@ lodel <- 901
 catdes <- sprintf("FAST median R1 delay < %0.2fs. SLOW median R1 delay > %0.2fs",lodel/1000,hidel/1000)
 
 adata <- read_csv("../drafts/export/prosody_with_r1delcat.csv")
+adata$SentenceType <- paste(ifelse(adata$Condition_Q,"Q","D"),ifelse(adata$Condition_GP,"Arg","Mod"))
 adata$reading <- paste("Reading", adata$Reading)
 pdata <- subset(adata, r1DelCat != "NORMAL")
 
 ggplot(pdata,    
     aes(
-      x=condition,
+      x=reorder(SentenceType,sto(SentenceType)),
       y=..count..,
       fill=reorder(
         simple2lvl,
@@ -582,97 +598,98 @@ ggsave("facet.pdf",device=cairo_pdf())
 ```
 
 ```{r rsplit}
+adata$both <- adata$simple2lvl=="BOTH"
 
 r1data<-subset(adata,Reading==1)
 
 fast <- subset(r1data,r1DelCat == "FAST")
 slow <- subset(r1data,r1DelCat == "SLOW")
 
-fastTabN <- xtabs(~simple2lvl + condition, data=fast) %>% 
+fastTabN <- xtabs(~simple2lvl + SentenceType, data=fast) %>% 
   as.data.frame() %>% 
-  spread(condition, Freq)  
-slowTabN <- xtabs(~simple2lvl + condition, data=slow) %>% 
+  spread(SentenceType, Freq)  
+slowTabN <- xtabs(~simple2lvl + SentenceType, data=slow) %>% 
   as.data.frame() %>% 
-  spread(condition, Freq)
+  spread(SentenceType, Freq)
 
-
-fastTab <- xtabs(~simple2lvl + condition, data=fast) %>% 
+fastTab <- xtabs(~simple2lvl + SentenceType, data=fast) %>% 
   prop.table(margin=2) %>% 
   as.data.frame() %>% 
-  spread(condition, Freq)
-slowTab <- xtabs(~simple2lvl + condition, data=slow) %>% 
+  spread(SentenceType, Freq)
+slowTab <- xtabs(~simple2lvl + SentenceType, data=slow) %>% 
   prop.table(margin=2) %>% 
   as.data.frame() %>% 
-  spread(condition, Freq)
+  spread(SentenceType, Freq)
 
-
+fastTabN<-fastTabN[c(1,sto(names(fastTabN)[2:5])+1)]
+slowTabN<-slowTabN[c(1,sto(names(slowTabN)[2:5])+1)]
+fastTab<-fastTab[c(1,sto(names(fastTab)[2:5])+1)]
+slowTab<-slowTab[c(1,sto(names(slowTab)[2:5])+1)]
+  
 tab<-cbind(fastTab,slowTab[2:5])
 ntab<-cbind(fastTabN,slowTabN[2:5])
-tab[2:9]  <- format(tab[2:9] * 100,nsmall=1,digits=1)
+tab[2:9]  <- mapply(percent,tab[,2:9])
 ntab[2:9] <- format(ntab[2:9],digits=0)
 
-
-tab$m  <- "%"
-ntab$m <- "n"
 tab <- rbind(tab,ntab)
 
 colnames(tab)[1] <- "Pattern"
 colnames(tab)[6:9] <- paste0(colnames(tab)[6:9],".slow")
 tab <- arrange(tab,Pattern)
-tab <- tab %>% select(Pattern,m,everything())
+tab <- tab %>% select(Pattern,everything())
 
 r1tab<-tab
-```
-```{r r2split}
 r2data<-subset(adata,Reading==2)
 
 fast <- subset(r2data,r1DelCat == "FAST")
 slow <- subset(r2data,r1DelCat == "SLOW")
 
-fastTabN <- xtabs(~simple2lvl + condition, data=fast) %>% 
+fastTabN <- xtabs(~simple2lvl + SentenceType, data=fast) %>% 
   as.data.frame() %>% 
-  spread(condition, Freq)  
-slowTabN <- xtabs(~simple2lvl + condition, data=slow) %>% 
+  spread(SentenceType, Freq)  
+slowTabN <- xtabs(~simple2lvl + SentenceType, data=slow) %>% 
   as.data.frame() %>% 
-  spread(condition, Freq)
+  spread(SentenceType, Freq)
 
-fastTab <- xtabs(~simple2lvl + condition, data=fast) %>% 
+fastTabN<-fastTabN[c(1,sto(names(fastTabN)[2:5])+1)]
+slowTabN<-slowTabN[c(1,sto(names(slowTabN)[2:5])+1)]
+
+fastTab <- xtabs(~simple2lvl + SentenceType, data=fast) %>% 
   prop.table(margin=2) %>% 
   as.data.frame() %>% 
-  spread(condition, Freq)
-slowTab <- xtabs(~simple2lvl + condition, data=slow) %>% 
+  spread(SentenceType, Freq)
+slowTab <- xtabs(~simple2lvl + SentenceType, data=slow) %>% 
   prop.table(margin=2) %>% 
   as.data.frame() %>% 
-  spread(condition, Freq)
+  spread(SentenceType, Freq)
 
-
+fastTab<-fastTab[c(1,sto(names(fastTab)[2:5])+1)]
+slowTab<-slowTab[c(1,sto(names(slowTab)[2:5])+1)]
+  
 tab<-cbind(fastTab,slowTab[2:5])
 ntab<-cbind(fastTabN,slowTabN[2:5])
-tab[2:9]  <- format(tab[2:9] * 100,nsmall=1,digits=1)
+tab[2:9]  <- mapply(percent,tab[,2:9])
 ntab[2:9] <- format(ntab[2:9],digits=0)
 
-
-tab$m  <- "%"
-ntab$m <- "n"
 tab <- rbind(tab,ntab)
 
 colnames(tab)[1] <- "Pattern"
 colnames(tab)[6:9] <- paste0(colnames(tab)[6:9],".slow")
 tab <- arrange(tab,Pattern)
-tab <- tab %>% select(Pattern,m,everything())
+tab <- tab %>% select(Pattern,everything())
 
 
 tab <- rbind(r1tab,tab)
-
+```
+```{r r2split}
 tab %>% kable(
   align="c",
-  caption="Simple break pattern by condition and R1 delay category",
-  col.names=c(" "," ", rep(c("D -GP","Q -GP", "D +GP", "Q +GP"),2)), 
-  digits=1
+  caption="Break pattern by sentence type and R1 delay category",
+  col.names=c(" ", rep(c("D Arg","D Mod", "Q Arg", "Q Mod"),2))
 ) %>% kable_styling() %>%
-  column_spec(6,border_right = T) %>%
+  column_spec(5,border_right = T) %>%
   collapse_rows(columns = 1) %>%
-  add_header_above(c(" " = 2,"FAST (n=12)"=4,"SLOW (n=12)"=4)) %>%
+  add_header_above(c(" " = 1,"FAST (n=12)"=4,"SLOW (n=12)"=4)) %>%
   pack_rows(index = c("Reading 1" = 6, "Reading 2" = 6))
 ```
 ```{r r1catTesting}
@@ -685,15 +702,18 @@ dfs$deltaBOTH <- dfs$r1.BOTH - dfs$r2.BOTH
 dfs$deltaBothCat <- ifelse(dfs$deltaBOTH > 0, "Decrease",ifelse(dfs$deltaBOTH < 0,"Increase","No change"))
 ```
 
-There appears to be a clear difference between the participants categorized as having fast or slow R1 delays in the extent to which they used both breaks, with the slow category of participants preferring more breaks than the fast category of participants. There also seems to be a larger increase in usage of both breaks from Reading 1 to Reading 2 for the fast category than for the slow.
+There is a stastically significant difference between the number of cases where both breaks were produced across the fast (44) vs. slow (65) category for Reading 1 ($\chi$^2^(1) = 4.05, p < 0.05), but not for Reading 2 ($\chi$^2^(1) = 1.86, p = 0.17). There was also a stastically significant difference in the occurence of both breaks across PP2 Status for Reading 2 in the slow R1 delay category ($\chi$^2^(1) = 3.97, p < 0.05), but comparisons across other factors represent in Table \@ref(tab:arg) did not yield significant results. The maximum count per cell in the table is 96 (12 participants per category, 8 items per PP2 Status), ignoring missing items.
 
-```{r nDeltaBoth}
-table(dfs$r1.r1DelCat,dfs$deltaBothCat) %>% 
-  kable(caption="Number of participants who produced both breaks more often in R2 than R1 as a function of R1 delay category") %>% 
-  kable_styling(latex_options = c("hold_position"))
+```{r arg}
+sdata<-subset(adata,r1DelCat != "NORMAL")
+arg<-xtabs(both~r1DelCat+Reading,subset(sdata,Condition_GP))
+mod<-xtabs(both~r1DelCat+Reading,subset(sdata,!Condition_GP))
+both<-rbind(mod,arg)
+kable(both,col.names=paste("Reading",colnames(both)),caption="Occurence of both breaks as a function of Reading, PP2 Status, and R1 Delay Category") %>% 
+  kable_styling(latex_options = c("hold_position")) %>%
+  pack_rows(index = c("Mod" = 2, "Arg" = 2))
 ```
-
->>> TODO add hypothesis testing and more detail for the above statements
+In cases where R1 delay was small, readers were more likely to produce only one break than if R1 delay was fast. A possible explanation is that the slow starters were more prone to hesitation in general, or perhaps were using both the delay time and their extra break time to look ahead. The significant effect of PP2 Status for slow starters in Reading 2 could be due to the slow starters not fully understanding the Arg sentences prior to Reading 2, thus increasing their likelihood of hesitation.
 
 ## Discussion of prosodic break patterns
 
@@ -730,7 +750,7 @@ That Reading 2 is a significant predictor in 3 of the 4 analyses where its inclu
 
 It is difficult to know whether a given reading represents more or less natural prosody, but given that there’s a difference, it seems most likely that Reading 2 is the more natural of the two.
 
-It is surprising that the effect of PP2 status is generally lessened in Reading 2 when compared to Reading 1, but this can likely be explained as an epiphenomenon. There is no way to distinguish between prosodic breaks that are intentional and syntactically motivated as compared to those that represent hesitation, a need for a breath, or other factors. It is likely that some of the effect of PP2 status is actually an increase in hesitation after PP1, and therefore more or longer pauses at that position, which is mitigated in Reading 2. If some readers are, in general, simply producing a break after every phrase, but happen to produce what is perceived as a dominant break after PP1 in the PP2 argument condition, when they’re confused, that effect of PP2 status will go away in Reading 2 once they’ve had time to figure the sentence out. This might mean that the noise caused by readers that are simply breaking phrase-by-phrase is actually amplified in Reading 2.
+It is surprising that the effect of PP2 status is generally lessened in Reading 2 when compared to Reading 1, but this can likely be explained as an epiphenomenon. There is no way to distinguish between prosodic breaks that are intentional and syntactically motivated as compared to those that represent hesitation, a need for a breath, or other factors. It is likely that some of the effect of PP2 status is actually an increase in hesitation after PP1, and therefore more or longer pauses at that position, which is mitigated in Reading 2. If some readers are, in general, simply producing a break after every phrase, but happen to produce what is perceived as a dominant break after PP1 for the Arg sentences when they’re confused, that effect of PP2 status will go away in Reading 2 once they’ve had time to figure the sentence out. This might mean that the noise caused by readers that are simply breaking phrase-by-phrase is actually amplified in Reading 2.
 
 That a prosodic break also frequently occurs between phrases when there is no change in branching direction is mitigated somewhat by the fact that such breaks are usually weaker than the ones that do represent such a change. It is likely that these breaks are actually there for non-syntactic reasons; the end of a phrase represents a reasonable time for the speaker to take a breath or pause briefly for processing reasons. It is also likely that some readers are simply producing a break after each phrase.
 
@@ -810,7 +830,7 @@ meansByConditionS$`Q - D` <- meansByConditionS$Q - meansByConditionS$D
 
 Figure \@ref(fig:interactionplot) shows the mean IRT as a function of sentence type.
 
-```{r interactionplot,fig.cap="Mean IRT by condition",fig.height=3.5,fig.pos="H"}
+```{r interactionplot,fig.cap="Mean IRT by sentence type",fig.height=3.5,fig.pos="H"}
 
 meansByConditionLong$Qn <- ifelse(
   meansByConditionLong$Q == "Q", 
@@ -848,7 +868,7 @@ ggsave("interact.pdf",device=cairo_pdf())
 kable(
   escape=F,
   meansByConditionS, 
-  caption = "Means (s) by condition",
+  caption = "Means (s) by sentence type",
   digits = 2
 )%>% kable_styling(latex_options = "hold_position")
 ```
@@ -873,7 +893,7 @@ tab <- read_csv(csv)
 tab %>% kable(
   align="rccc",  
   caption=
-    "Linear mixed effects regression model predicting wIRT by condition with interaction term"
+    "Linear mixed effects regression model predicting wIRT by sentence type with interaction term"
 ) %>% 
   kable_styling(latex_options = "hold_position")
 ```
@@ -894,7 +914,7 @@ tab <- read_csv(csv)
 tab %>% kable(
   align="rccc",  
   caption=
-    "Linear mixed effects regression model predicting wIRT by condition"
+    "Linear mixed effects regression model predicting wIRT by sentence type"
 ) %>% 
   kable_styling(latex_options = "hold_position")
 ```
@@ -903,7 +923,7 @@ The difference between the reduced and full model was not statistically signific
 
 ### On PP2 heads {#pp2h}
 
-As mentioned in the items description (section 3.4), half of the items used of for the head of PP2 in the Mod condition, while half used from. In the Arg condition, half used into and half used onto to head PP2. An analysis that looks at the identity of the PP2 head found that while into and onto do not behave differently, of and from do. Starting from a very complex model that included the lexical identity of the matrix verb, the construction verb, the head of PP1, and the head of PP2, as well as speech act and PP2 status, the model that best predicted wIRT was one that is essentially the same as the reduced model just reported, except it substitutes the lexical identity of the PP2 head for the Arg vs. Mod categorization, with into and onto collapsed into one level of the PP2 factor and used as the reference level. 
+As mentioned in the items description (section 3.4), half of the items used *of* for the head of PP2 in the Mod cases, while half used *from.* In the Arg condition, half used *into* and half used *onto* to head PP2. An analysis that looks at the identity of the PP2 head found that while *into* and *onto* do not behave differently, *of* and *from* do. Starting from a maximally complex model that included the lexical identity of the matrix verb, the construction verb, the head of PP1, and the head of PP2, as well as Speech Act and PP2 status, the model that best predicted wIRT was one that is essentially the same as the reduced model just reported (i.e., with Speech Act and PP2 Status as predictors), except it substitutes the lexical identity of the PP2 head for PP2 Status, with *into* and *onto* collapsed into one level used as the reference level (intercept). 
 
 
 ```{r pp2hd}
@@ -925,7 +945,7 @@ tab %>% kable(
   kable_styling(latex_options = "hold_position")
 ```
 
-Sentences where PP2 was headed by from typically had wIRTs that were 0.84s faster than sentences where PP2 was headed by into/onto; when the PP2 head was from wIRT was only 0.08s faster than for into/onto. 
+Sentences where PP2 was headed by *from* typically had wIRTs that were 0.84s faster than sentences where PP2 was headed by *into*/*onto*; when the PP2 head was *from* wIRT was only 0.08s faster than for *into*/*onto*, a difference that is not statistically significant (p > 0.7).
 
 ## Discussion of IRT results
 
