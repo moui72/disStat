@@ -40,9 +40,9 @@ theme_set(
 ccombo <- read_csv("export/ccombo.csv")
 rownames(ccombo)<-c("Both", "OBJ", "PP1")
 ```
-# Discussion and conclusion
+# General discussion
 
-This section will go through the motivating questions behind this study and discuss the extent to which those questions are answered, or not. It will discuss the issues that may have lead to the disatisfying. It will then go on to present further questions and propose further studies to explore those new questions and the ones left unanswered here.
+This section will review the questions motivating this study and discuss the extent to which those questions are answered, or not. It will then go on to develop further questions, and propose further studies to explore those new questions and the ones left unanswered here. Finally, it will summraize the findings and the current standing of this area of research.
 
 ## The intuition
 
@@ -90,7 +90,7 @@ The critical issue here is that in (@qhi), the absence of a syntactically-motiva
 
 If the PP1 break is treated as the main indicator of the prosodic structure, then the larger difference across &plusmn;GP for declaratives (`r 27-14.8`%) than for interrogatives (`r 25.8-25.6`%) does indeed, though perhaps weakly, leave open the door for the @Bader1998-ts style explanation of the intuition.
 
-## On future work {#confound}
+## Conclusions {#confound}
 
 In this section, I will discuss some of the issues with the current study, and what I see as fruitful avenues for future study.
 
