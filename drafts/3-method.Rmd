@@ -114,7 +114,7 @@ To sum up, the experimental items were designed to have limited detail, with eit
 
 ### Fillers
 
-There were 32 filler items that ranged in complexity: [[TODO some were ordinary sentences, some contained center embedding, and others included attachment ambiguities]]. Of these 32, 16 were designed to end in a sequence of two PPs, to mirror the experimental items (+PP), while the other half contained no final PPs (-PP). The +PP fillers were unrelated to the -PP fillers. All fillers were designed in two versions: declarative (D) and interrogative (Q). A full list of fillers is available in Appendix \@ref(appFill).
+There were 32 filler items that ranged in complexity, e.g., some contained embedded finite or non-finite clauses, some contained reduced relative clauses or full relative clauses, and some were simple matrix clauses. Of these 32, 16 were designed to end in a sequence of two PPs, to mirror the experimental items (+PP), while the other half contained no final PPs (-PP). The +PP fillers were unrelated to the -PP fillers. All fillers were designed in two versions: declarative (D) and interrogative (Q). For the +PP fillers, PP1 was an argument in 5 of 16 cases, a modifier of the object in 6 cases, and a modifier of the verb phrase in 5 cases. The distribution of attachment sites for PP2 was the same, except there were 6 that modified the NP embedded in PP1 instead of 6 that modified the object. A full list of fillers is available in Appendix \@ref(appFill).
 
 ```{r fsentences}
 sentences <-cbind( 

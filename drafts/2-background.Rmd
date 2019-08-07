@@ -2,7 +2,15 @@
 <!-- This is the second content section -->
 <!-- Previous section: introduction -->
 <!-- Following section: methodology -->
-
+```{r bgsetup, echo=F, warning=F, message=F}
+knitr::opts_chunk$set(
+	echo = FALSE,
+	fig.height = 3,
+	message = FALSE,
+	warning = FALSE
+)
+library(knitr)
+```
 # Background
 
 As briefly mentioned earlier, “garden path effects” occur when a temporarily ambiguous sentence resolves in such a way that the structure initially preferred by the parser is incompatible with how the sentence actually continues. These parsing errors have traditionally been attributed to structurally-focused parsing preferences [@kimball1973seven; @frazier1978sausage; @Frazier1979-pb] that ignore semantic content on the first pass. @Frazier1979-pb formulates several of these, including the following two which are widely accepted in one form or another:
@@ -48,9 +56,84 @@ This study is focused on the impact of speech act (interrogative vs. declarative
     (b) *PP2 Modifier* (Mod) \linebreak
     He had planned to cram the paperwork [~PP1~ in the drawer [~PP2~ of his filing cabinet]].
     
-Note that PP1, *in the drawer*, is the same in both (@pp2t a) and (@pp2t b), and is ambiguous on first encounter, as it could modify the paperwork or it could be the goal of cram. In (@pp2t a), however, PP2 must ultimately be interpreted as the goal of the verb cram because into his briefcase cannot modify the drawer. Because cram only accepts one goal, this means that PP1 in (@pp2t a) has to end up as a modifier of the paperwork.  In (@pp2t b), on the other hand, PP2 of his filing cabinet can (in this case, must) modify the drawer, and so in the drawer can and does end up as the goal of cram. The difference in PP2 status between (@pp2t a) and (@pp2t b) results in different structures, which I argue are reached by different parsing mechanisms. Namely, (@pp2t a) should, by hypothesis, result in a parse which initially incorporates PP1 as the goal argument of cram but then fails and triggers reanalysis when PP2 is encountered. Conversely, (@pp2t b) should by hypothesis allow a straightforward parse where PP1 is initially and ultimately slotted in as the goal of cram, since PP2 poses no issue when interpreted as a modifier of the drawer. This means (@pp2t b) should not trigger reanalysis. Where (@pp2t a) is a so-called garden path sentence, (@pp2t b) is not.
+Note that PP1, *in the drawer*, is the same in both (@pp2t a) and (@pp2t b), and is ambiguous on first encounter, as it could modify the paperwork or it could be the goal of cram. In (@pp2t a), however, PP2 must ultimately be interpreted as the goal of the verb *cram* because *into his briefcase* cannot modify *the drawer*. Because *cram* only accepts one goal, this means that PP1 in (@pp2t a) has to end up as a modifier of *the paperwork*.  In (@pp2t b), on the other hand, PP2 *of his filing cabinet* can (in this case, must) modify *the drawer*, and so in the drawer can and does end up as the goal of cram. The difference in PP2 status between (@pp2t a) and (@pp2t b) results in different structures, which I argue are reached by different parsing mechanisms. Namely, (@pp2t a) should, by hypothesis, result in a parse which initially incorporates PP1 as the goal argument of *cram* but then fails and triggers reanalysis when PP2 is encountered. Conversely, (@pp2t b) should by hypothesis allow a straightforward parse where PP1 is initially and ultimately slotted in as the goal of *cram*, since PP2 poses no issue when interpreted as a modifier of *the drawer*. This means (@pp2t b) should not trigger reanalysis. Where (@pp2t a) is a so-called garden path sentence, (@pp2t b) is not. In what follows, I will use the term "argument attachment of PP2" to mean the garden path case, i.e. a sentence that is presumed to require reanalysis, and "modifier attachment of PP2" to mean the straightfowardly parsed case where PP1 is the goal argument.
 
-In order for the differing parsing process for (@pp2t a) and (@pp2t b) to be explained by a strictly structurally based model of parsing, certain assumptions would have to be made about the syntax. A simple way to get the explanation to work is to assume that all arguments of a verb are syntactic sisters to the verb, resulting in a three-way branching VP for ditransitive verbs. In this case, in order to avoid postulating extra nodes that would be required for PP1 to be a modifier, *Minimal Attachment* dictates that PP1 should be assumed to fill the argument slot. This is not how modern syntactic theory assumes the structure looks, as three-way branching is proscribed. This paper is not interested in the particularities of syntactic theory, and it also is not necessary to rely on *Minimal Attachment* to make the necessary distinction, though it very likely does play a role. Instead, we can focus on distinction added to parsing theory in Construal [@frazier1996construal]: that of primary vs. non-primary relations. 
+<!--
+\begin{forest}
+  [TP 
+    [^DP He] 
+    [T' 
+      [T had] 
+      [VP 
+        [V' 
+          [V wanted] 
+          [TP 
+            [T' 
+              [T to] 
+              [VP 
+                [V' 
+                  [V' 
+                    [V cram] 
+                    [DP 
+                      [D' 
+                        [D the] 
+                        [NP 
+                          [N' 
+                            [N newspapers]
+                          ] 
+                          [PP1 
+                            [P'
+                              [P under] 
+                              [DP 
+                                [D' 
+                                  [D the] 
+                                  [NP [N' [N sofa]]]
+                                ]
+                              ]
+                            ]
+                          ]
+                        ]
+                      ]
+                    ]
+                    [PP2 
+                      [P' 
+                        [P into] 
+                        [DP 
+                          [D'
+                            [D the] 
+                            [NP
+                              [N'
+                                [N wastebasket]
+                              ]
+                            ]
+                          ]
+                        ]
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ]
+\end{forest}
+-->
+In order for the differing parsing process for (@pp2t a) and (@pp2t b) to be explained by a strictly structurally based model of parsing, certain assumptions would have to be made about the syntax. A simple way to get the explanation to work is to assume that all arguments of a verb are syntactic sisters to the verb, resulting in a three-way branching VP for ditransitive verbs. In this case, in order to avoid postulating extra nodes that would be required for PP1 to be a modifier, *Minimal Attachment* dictates that PP1 should be assumed to fill the argument slot. This is not how modern syntactic theory assumes the structure looks, as three-way branching is proscribed. Figures \@ref(fig:modTree) and \@ref(fig:argTree) show the presumed modern structure of these sentence, graphically.
+
+```{r modTree, fig.cap="Syntactic tree of an example sentence with a PP2 Modifier", fig.height=3.5}
+include_graphics("mod-tree.png")
+```
+
+```{r argTree, fig.cap="Syntactic tree of an example sentence with a PP2 Arugument",fig.height=3.5}
+include_graphics("arg-tree.png")
+```
+
+Note that the most pronounced structural difference between the two structures is that in the sentence with a PP2 Modifier the major disjuncture, i.e., change in branching direction, comes much earlier, just after the object NP *the newspapers*. For the Arg sentence, the branch direction change is much later, just after PP1 *under the sofa*.
+
+This paper is not interested in the particularities of syntactic theory, and it also is not necessary to rely on *Minimal Attachment* to make the necessary distinction, though it very likely does play a role. Instead, we can focus on distinction added to parsing theory in Construal [@frazier1996construal]: that of primary vs. non-primary relations. 
 
 The impetus behind adding this additional machinery to the theory of parsing is independently motivated: while structure-first decision making seems to hold for the parsing of many structures, there are some that seem to flout them. Construal illustrates this by way of relative clause (RC) attachment in constructions like (@rc).
 
@@ -125,7 +208,7 @@ In pursuing the possibility that it is the intonation and prosody of polar inter
 
   (@rise) Did Jed cram the newspapers under the sofa in the	[~L\*H-H%~ guestroom].
 
-The need to prepare for that rising tone might make a prosodic break before the PP more likely, and thus ease reanalysis or even encourage a different prosodic chunking which might encourage high attachment.
+The need to prepare for that rising tone might make a prosodic break before the PP more likely, and thus ease reanalysis or even encourage a different prosodic chunking which might encourage argument attachment.
 
 A brief informal survey found that most speakers maintain low tones on prior stresses, although some had a H tone on the subject noun. It also varied between speakers and between sentences as to whether there is a prosodic boundary (marked by a low tone and/or pause) immediately before the rise (after PP1) or not. 
 
@@ -177,29 +260,28 @@ This study is concerned with a number of issues. First: is attachment in any way
 
   (@cfg) SUBJ V OBJ PP1 PP2
 
-I suggest that high attachment of PP2 will be marked by a prosodic boundary between PP1 and PP2 (for discussion of what constitutes a prosodic boundary, see e.g. @streeter1978acoustic and @salverda2003role). Low attachment of PP2, on the other hand, will lack any substantial boundary marking.
+I suggest that argument attachment of PP2 will be marked by a prosodic boundary between PP1 and PP2 (for discussion of what constitutes a prosodic boundary, see e.g. @streeter1978acoustic and @salverda2003role). Modifier attachment of PP2, on the other hand, will lack any substantial boundary marking in that position; instead, a break after the object is expected.
 
   (@hypa) *Hypothesis 1* \hfill\linebreak
-  High attachment of PP2 is marked by a prosodic break between PP1 and PP2.
+  Argument attachment of PP2 is marked by a prosodic break between PP1 and PP2.
 
-The second issue: what factors impact immediate on-line parsing, and what factors only affect later, post-parse considerations? To address this, the study will employ the double reading paradigm of @fodor2019center (more on double reading in the methods section). For example, if first-pass parsing ignores semantic information, then implausible parses should be more frequent in Reading 1 of a garden-path sentence than in a second reading of the same sentence.
+The second issue: what factors impact immediate on-line parsing, and what factors only affect later, post-parse considerations? To address this, the study will employ the double reading paradigm of @fodor2019center (more on double reading in the methods section). For example, if first-pass parsing ignores semantic information, then implausible parses should be more frequent in Reading 1 of a sentence with argument-PP2 than in a second reading of the same sentence.
 
   (@hypb) *Hypothesis 2* \linebreak
-  A first reading (no preview) of a GP sentence will exhibit less natural prosody (more hesitation at and after the disambiguating region) than:
-    * A first reading of a non-GP sentence.
-    * A second reading of a GP sentence.
+  A first reading of a sentence where PP2 is a goal argument will exhibit less natural prosody (more hesitation at and after the disambiguating region) than:
+    * A first reading of a sentence where PP2 is a modifier
+    * A second reading of a sentence where PP2 is a goal argument 
 
 *Hypothesis 2* and *3* together make a third prediction: readers should struggle more on the cold reading of a GP sentence to obtain a plausible structure, and thus the appropriate prosody, than on a previewed reading.
 
   (@hypd) *Hypothesis 3* \linebreak
-  A first reading of a garden-path sentence will more often be produced with prosodic structure that represents an implausible or ungrammatical parse of the string (low attachment of PP2), whereas a second reading sentence will more often be pronounced with the prosodic structure that represents the intended parse (high attachment of PP2).
+  A first reading of a sentence with an argument-PP2 will more often be produced with prosodic structure that represents an implausible or ungrammatical parse of the string (PP2 incorrectly attached as a modifier), whereas a second reading sentence will more often be pronounced with the prosodic structure that represents the intended parse (argument attachment of PP2).
 
-Note that hypothesis 3 can’t be applied in cases where the reader fails to successfully and fluently produce the sentence (which may sometimes happen, due to the garden-path effect in the Arg condition).
+Note that *hypothesis 3* can’t be applied in cases where the reader fails to successfully and fluently produce the sentence.
 
-Finally, I investigate an intuition originally discovered by Dr. Janet Fodor and Dr. Dianne Bradley: that these GP sentences are not as difficult to parse when encountered in interrogative, as opposed to declarative, context.
+Finally, I investigate the intuition described in Section \@ref(obs) originally discovered by Dr. Janet Dean Fodor and Dr. Dianne Bradley: that these sentences are not as difficult to parse when encountered in interrogative, as opposed to declarative, context.
 
   (@hype) *Hypothesis 4* \linebreak
-  Reading 1 of a declarative GP sentence will exhibit less natural prosody (more hesitation at and after the disambiguating region) and be more likely to be produced with prosodic structure that represents an implausible or ungrammatical parse of the string than a Readubg 1 of an interrogative Arg sentence.
-  
-I revisit these hypotheses in the results chapter and the discussion and conclusion chapter.
+  Reading 1 of a declarative sentence with an argument-PP2 will exhibit less natural prosody (more hesitation at and after the disambiguating region) and be more likely to be produced with prosodic structure that represents an implausible or ungrammatical parse of the string than a Reading 1 of an interrogative sentence with an argument-PP2.
 
+The findings presented in this study do not succesfully answer all of the questions asked here, but do help guide future work in directions that will.
