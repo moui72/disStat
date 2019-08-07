@@ -55,8 +55,14 @@ fnp <- read_csv("../csvs/src/filler-items-pp.csv")
 fpp$asp <- word(fpp$FDY,3)
 fnp$asp <- word(fnp$FDN,3)
 
-fpp <- fpp %>% arrange(asp) 
-fnp <- fnp %>% arrange(asp) 
+fpp$aspGroup <-fpp$asp %in% c("wanted","planned","intended","wanted")
+fnp$aspGroup <-fnp$asp %in% c("wanted","planned","intended","wanted")
+
+fpp <- fpp %>% arrange(aspGroup,asp) 
+fnp <- fnp %>% arrange(aspGroup,asp) 
+
+fpp$aspGroup <- NULL
+fnp$aspGroup <- NULL
 
 items <- cbind(fpp[1:3],fnp[2:4])
 
