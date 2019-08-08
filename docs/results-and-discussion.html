@@ -24,7 +24,7 @@
 <meta name="author" content="Tyler J. Peckenpaugh" />
 
 
-<meta name="date" content="2019-08-04" />
+<meta name="date" content="2019-08-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -105,13 +105,14 @@
 <li class="chapter" data-level="4.2.4" data-path="results-and-discussion.html"><a href="results-and-discussion.html#regression-models-of-prosodic-break-patterns"><i class="fa fa-check"></i><b>4.2.4</b> Regression models of prosodic break patterns</a></li>
 <li class="chapter" data-level="4.2.5" data-path="results-and-discussion.html"><a href="results-and-discussion.html#on-reading-1-delay"><i class="fa fa-check"></i><b>4.2.5</b> On Reading 1 delay</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="results-and-discussion.html"><a href="results-and-discussion.html#irt"><i class="fa fa-check"></i><b>4.3</b> Inter-reading time</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="results-and-discussion.html"><a href="results-and-discussion.html#irtDis"><i class="fa fa-check"></i><b>4.3.1</b> Data cleanup</a></li>
-<li class="chapter" data-level="4.3.2" data-path="results-and-discussion.html"><a href="results-and-discussion.html#irtRes"><i class="fa fa-check"></i><b>4.3.2</b> Analysis of IRT data</a></li>
-<li class="chapter" data-level="4.3.3" data-path="results-and-discussion.html"><a href="results-and-discussion.html#pp2h"><i class="fa fa-check"></i><b>4.3.3</b> On PP2 heads</a></li>
+<li class="chapter" data-level="4.3" data-path="results-and-discussion.html"><a href="results-and-discussion.html#discussion-of-prosodic-break-patterns"><i class="fa fa-check"></i><b>4.3</b> Discussion of prosodic break patterns</a></li>
+<li class="chapter" data-level="4.4" data-path="results-and-discussion.html"><a href="results-and-discussion.html#irt"><i class="fa fa-check"></i><b>4.4</b> Inter-reading time</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="results-and-discussion.html"><a href="results-and-discussion.html#irtDis"><i class="fa fa-check"></i><b>4.4.1</b> Data cleanup</a></li>
+<li class="chapter" data-level="4.4.2" data-path="results-and-discussion.html"><a href="results-and-discussion.html#irtRes"><i class="fa fa-check"></i><b>4.4.2</b> Analysis of IRT data</a></li>
+<li class="chapter" data-level="4.4.3" data-path="results-and-discussion.html"><a href="results-and-discussion.html#pp2h"><i class="fa fa-check"></i><b>4.4.3</b> On PP2 heads</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="results-and-discussion.html"><a href="results-and-discussion.html#discussion-of-irt-results"><i class="fa fa-check"></i><b>4.4</b> Discussion of IRT results</a></li>
-<li class="chapter" data-level="4.5" data-path="results-and-discussion.html"><a href="results-and-discussion.html#the-processing-cost-of-interrogativity"><i class="fa fa-check"></i><b>4.5</b> The processing cost of interrogativity</a></li>
+<li class="chapter" data-level="4.5" data-path="results-and-discussion.html"><a href="results-and-discussion.html#discussion-of-irt-results"><i class="fa fa-check"></i><b>4.5</b> Discussion of IRT results</a></li>
+<li class="chapter" data-level="4.6" data-path="results-and-discussion.html"><a href="results-and-discussion.html#the-processing-cost-of-interrogativity"><i class="fa fa-check"></i><b>4.6</b> The processing cost of interrogativity</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="discussion-and-conclusion.html"><a href="discussion-and-conclusion.html"><i class="fa fa-check"></i><b>5</b> Discussion and conclusion</a><ul>
 <li class="chapter" data-level="5.1" data-path="discussion-and-conclusion.html"><a href="discussion-and-conclusion.html#the-intuition"><i class="fa fa-check"></i><b>5.1</b> The intuition</a><ul>
@@ -386,7 +387,7 @@ Mod
 <p>The presence of the OBJ break was sensitive to both Speech Act and reading, with Reading 2 showing a different distribution across the D vs. Q distinction than the Reading 1 recordings.</p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:pp1">Table 4.4: </span>PP1 break by condition and reading
+<span id="tab:pp1">Table 4.4: </span>PP1 break by sentence type and reading
 </caption>
 <thead>
 <tr>
@@ -646,20 +647,157 @@ Figure 4.2: Percent break dominance occurence as a function of sentence type and
 </div>
 <div id="regression-models-of-prosodic-break-patterns" class="section level3">
 <h3><span class="header-section-number">4.2.4</span> Regression models of prosodic break patterns</h3>
-<p>A number of mixed effects logistic regression models support the general observations above. Models predicting PP1 break, OBJ break, PP1 break dominance and OBJ break dominance are reported. All models include crossed random effect intercepts (participant and item), but due to convergence errors, no random slopes are included.</p>
-<p>The intercept always represents the Mod sentence type, which is not expected to present any particular difficulty to the reader, since the Mod PP2 Status is compatible with what is assumed to be the running parse when it is encountered (i.e., PP1 has been interpreted as the goal argument of the verb, and PP2 does not disrupt that interpretation). When Speech Act is included in the model, the intercept represents the declarative sentence type. In this way, the more complex sentence types are compared to the simplest available in the model.</p>
-<p>In each case, the model with the lowest reported AIC was selected from a set of models. Model comparisons did not always find significant differences between the more complex models. In each case, the selected model was compared to a minimal model where where fixed effect variables were removed, leaving only an intercept, and all reported models represent improvement over the minimal model to a statistically significant degree. That comparison is reported for each model. All regression models were run using the lme4 R package (<span class="citation">Bates, Maechler, Bolker, &amp; Walker (2019)</span>), with p-values calculated via the lmerTest R package (<span class="citation">Kuznetsova, Bruun Brockhoff, &amp; Haubo Bojesen Christensen (2019)</span>).</p>
+<p>A number of mixed effects logistic regression models support the general observations above. Models predicting PP1 break, OBJ break, PP1 break dominance and OBJ break dominance are reported. All models include crossed random effect intercepts (participant and item), but due to convergence errors, no random slopes for any predictors are included.</p>
+<p>The intercept always represents the Mod sentence type, which is not expected to present any particular difficulty to the reader, since the Mod PP2 Status is compatible with what is assumed to be the running parse when it is encountered (i.e., PP1 has been interpreted as the goal argument of the verb, and PP2 does not disrupt that interpretation). For those models where Speech Act is included in the model, the intercept represents the declarative sentence type. In this way, the more complex sentence types are compared to the simplest available in the model. If Reading is included in a model, the intercept represents Reading 1.</p>
+<p>For each analysis, a reduced model and the full model (i.e., the model containing all predictors of interest) is reported. In each case, the reported reduced model is the one with the lowest reported Akaike Information Criterion<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a> (AIC) from the set of models that include any subset of the following predictors: Speech Act, PP2 Status, Reading, and the interactions between Speech Act, PP2 Status and Reading. This method of model selection is consistent with the proposal of <span class="citation">Wax &amp; Kailath (1985)</span>.</p>
+<p>Model comparisons did not always find significant differences between the more complex models, but in each case, the selected model was compared to a minimal model where where fixed effect variables were removed, leaving only an intercept, and all reported models represent improvement over the minimal model to a statistically significant degree. That comparison is reported for each model. All regression models were run using the lme4 R package (<span class="citation">Bates, Maechler, Bolker, &amp; Walker (2019)</span>), with p-values calculated via the lmerTest R package (<span class="citation">Kuznetsova, Bruun Brockhoff, &amp; Haubo Bojesen Christensen (2019)</span>).</p>
 <div id="break-occurence" class="section level4">
 <h4><span class="header-section-number">4.2.4.1</span> Break occurence</h4>
-<p>Table <a href="results-and-discussion.html#tab:objMod">4.6</a> shows a model predicting the occurrence of an OBJ break with estimates for the coefficients of the fixed effects of Reading 2, PP2 and the interaction between Reading and PP2 status. A comparison between the reported model and a minimal one found that the reported model was better with a high level of confidence (AIC<sub>MIN</sub>=1068.0, AIC<sub>BEST</sub>=1031.6, <span class="math inline">\(\chi^2\)</span>(2)=30.5, p &lt; 0.001).</p>
+<p>In the full model predicting OBJ break occurrence, shown in Table <a href="results-and-discussion.html#tab:fullobjmod">4.6</a>, only the estimate for D Mod Reading 1 (the intercept) and the effect of PP2 Status show statistical significance.</p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:objMod">Table 4.6: </span>Mixed effects logistic regression model predicting OBJ break occurrence
+<span id="tab:fullobjmod">Table 4.6: </span>Mixed effects logistic regression model predicting OBJ break occurrence (FULL)
 </caption>
 <thead>
 <tr>
 <th style="text-align:right;text-align: center;">
-Outcome: OBJ break
+Outcome: OBJ break (FULL)
+</th>
+<th style="text-align:center;text-align: center;">
+Estimate
+</th>
+<th style="text-align:center;text-align: center;">
+Std. Error
+</th>
+<th style="text-align:center;text-align: center;">
+p
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+D Mod, Reading 1 (Intercept)
+</td>
+<td style="text-align:center;">
+0.70
+</td>
+<td style="text-align:center;">
+0.09
+</td>
+<td style="text-align:center;">
+&lt; 0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Q
+</td>
+<td style="text-align:center;">
+0.11
+</td>
+<td style="text-align:center;">
+0.11
+</td>
+<td style="text-align:center;">
+0.34
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Arg
+</td>
+<td style="text-align:center;">
+-0.28
+</td>
+<td style="text-align:center;">
+0.11
+</td>
+<td style="text-align:center;">
+&lt; 0.05
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Reading 2
+</td>
+<td style="text-align:center;">
+0.07
+</td>
+<td style="text-align:center;">
+0.05
+</td>
+<td style="text-align:center;">
+0.15
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Q:Arg
+</td>
+<td style="text-align:center;">
+-0.14
+</td>
+<td style="text-align:center;">
+0.16
+</td>
+<td style="text-align:center;">
+0.39
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Q:Reading2
+</td>
+<td style="text-align:center;">
+-0.11
+</td>
+<td style="text-align:center;">
+0.07
+</td>
+<td style="text-align:center;">
+0.12
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Arg:Reading2
+</td>
+<td style="text-align:center;">
+0.08
+</td>
+<td style="text-align:center;">
+0.07
+</td>
+<td style="text-align:center;">
+0.27
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Q:Arg:Reading2
+</td>
+<td style="text-align:center;">
+0.13
+</td>
+<td style="text-align:center;">
+0.10
+</td>
+<td style="text-align:center;">
+0.19
+</td>
+</tr>
+</tbody>
+</table>
+<p>Table <a href="results-and-discussion.html#tab:objMod">4.7</a> shows a reduced model, predicting the occurrence of an OBJ break with estimates for the coefficients of the fixed effects of Reading 2, PP2 and the interaction between Reading and PP2 status. The removal of other predictors allowed the Reading x PP2 Status to become a significant predictor. A comparison between the reported model and a minimal one found that the reported model was better with a high level of confidence (AIC<sub>MIN</sub>=1068.0, AIC<sub>BEST</sub>=1031.6, <span class="math inline">\(\chi^2\)</span>(2)=30.5, p &lt; 0.001).</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:objMod">Table 4.7: </span>Mixed effects logistic regression model predicting OBJ break occurrence (REDUCED)
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;text-align: center;">
+Outcome: OBJ break (REDUCED)
 </th>
 <th style="text-align:center;text-align: center;">
 Estimate
@@ -731,16 +869,152 @@ Reading 2 x Arg
 </tr>
 </tbody>
 </table>
-<p>The log odds<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a> of an OBJ break for Mod Reading 1 is 1.39 (std. error = 0.45, p &lt; 0.01). The log odds of that break increased in Reading 2 but the increase was not statistically significant. PP2 arguments reduced the log odds of an OBJ break compared to PP2 modifiers by a robust amount, but less so in Reading 2 than in Reading 1.</p>
-<p>The best model for predicting the occurrence for the PP1 break was one where only PP2 status was included as a predictor. The chosen model was again significantly better than the minimal model (AIC<sub>MIN</sub>=855.6, AIC<sub>BEST</sub>=629.6, <span class="math inline">\(\chi^2\)</span>(1)=228.0, p &lt; 0.001).</p>
+<p>The log odds<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a> of an OBJ break for Mod Reading 1 is 1.39 (std. error = 0.45, p &lt; 0.01). The log odds of that break increased in Reading 2 but the increase was not statistically significant. PP2 arguments reduced the log odds of an OBJ break compared to PP2 modifiers by a robust amount, but less so in Reading 2 than in Reading 1.</p>
+<p>The full model for predicting PP1 also showed significance only for the intercept and the effect of PP2 Status.</p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:pp1Mod">Table 4.7: </span>Mixed effects logistic regression model predicting PP1 break occurrence
+<span id="tab:fullpp1Mod">Table 4.8: </span>Mixed effects logistic regression model predicting PP1 break occurrence (FULL)
 </caption>
 <thead>
 <tr>
 <th style="text-align:right;text-align: center;">
-Outcome: PP1 break
+Outcome: PP1 break (FULL)
+</th>
+<th style="text-align:right;text-align: center;">
+Estimate
+</th>
+<th style="text-align:right;text-align: center;">
+Std. Error
+</th>
+<th style="text-align:left;text-align: center;">
+p
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+D Mod, Reading 1 (Intercept)
+</td>
+<td style="text-align:right;">
+0.68
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:left;">
+&lt; 0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Q
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:left;">
+0.89
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Arg
+</td>
+<td style="text-align:right;">
+0.31
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:left;">
+&lt; 0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Reading 2
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:left;">
+1.00
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Q:Arg
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.13
+</td>
+<td style="text-align:left;">
+0.97
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Q:Reading2
+</td>
+<td style="text-align:right;">
+-0.01
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:left;">
+0.82
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Arg:Reading2
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:left;">
+1.00
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Q:Arg:Reading2
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:left;">
+0.97
+</td>
+</tr>
+</tbody>
+</table>
+<p>The best model for predicting the occurrence for the PP1 break was one where only PP2 status was included as a predictor. The chosen model was again significantly better than the minimal model (AIC<sub>MIN</sub>=855.6, AIC<sub>BEST</sub>=629.6, <span class="math inline">\(\chi^2\)</span>(1)=228.0, p &lt; 0.001).</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:pp1Mod">Table 4.9: </span>Mixed effects logistic regression model predicting PP1 break occurrence (REDUCED)
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;text-align: center;">
+Outcome: PP1 break (REDUCED)
 </th>
 <th style="text-align:center;text-align: center;">
 Estimate
@@ -788,15 +1062,151 @@ Arg
 </div>
 <div id="break-dominance-1" class="section level4">
 <h4><span class="header-section-number">4.2.4.2</span> Break dominance</h4>
-<p>Models were also run for predicting break dominance. Table <a href="results-and-discussion.html#tab:odom">4.8</a> reports the best model for predicting OBJ break dominance. The best model was one with fixed effects for reading and PP2 status. There was no statistically significant effect of Speech Act on OBJ break dominance.</p>
+<p>Models were also run for predicting break dominance. The full model predicting OBJ break dominance is shown in Table <a href="results-and-discussion.html#tab:fodom">4.10</a>.</p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:odom">Table 4.8: </span>Mixed effects logistic regression model predicting OBJ break dominance
+<span id="tab:fodom">Table 4.10: </span>Mixed effects logistic regression model predicting OBJ break dominance (FULL)
 </caption>
 <thead>
 <tr>
 <th style="text-align:right;text-align: center;">
-Outcome: OBJ dominance
+Outcome: OBJ dominance (FULL)
+</th>
+<th style="text-align:center;text-align: center;">
+Estimate
+</th>
+<th style="text-align:center;text-align: center;">
+Std. Error
+</th>
+<th style="text-align:center;text-align: center;">
+p
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+D Mod, Reading 1 (Intercept)
+</td>
+<td style="text-align:center;">
+0.50
+</td>
+<td style="text-align:center;">
+0.09
+</td>
+<td style="text-align:center;">
+&lt; 0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Q
+</td>
+<td style="text-align:center;">
+0.03
+</td>
+<td style="text-align:center;">
+0.12
+</td>
+<td style="text-align:center;">
+0.82
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Arg
+</td>
+<td style="text-align:center;">
+-0.45
+</td>
+<td style="text-align:center;">
+0.12
+</td>
+<td style="text-align:center;">
+&lt; 0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Reading 2
+</td>
+<td style="text-align:center;">
+0.07
+</td>
+<td style="text-align:center;">
+0.05
+</td>
+<td style="text-align:center;">
+0.22
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Q:Arg
+</td>
+<td style="text-align:center;">
+-0.03
+</td>
+<td style="text-align:center;">
+0.17
+</td>
+<td style="text-align:center;">
+0.86
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Q:Reading2
+</td>
+<td style="text-align:center;">
+-0.03
+</td>
+<td style="text-align:center;">
+0.07
+</td>
+<td style="text-align:center;">
+0.68
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Arg:Reading2
+</td>
+<td style="text-align:center;">
+0.03
+</td>
+<td style="text-align:center;">
+0.07
+</td>
+<td style="text-align:center;">
+0.71
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Q:Arg:Reading2
+</td>
+<td style="text-align:center;">
+0.00
+</td>
+<td style="text-align:center;">
+0.11
+</td>
+<td style="text-align:center;">
+0.97
+</td>
+</tr>
+</tbody>
+</table>
+<p>Table <a href="results-and-discussion.html#tab:odom">4.11</a> reports the best model for predicting OBJ break dominance. The best model was one with fixed effects for reading and PP2 status. There was no statistically significant effect of Speech Act on OBJ break dominance.</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:odom">Table 4.11: </span>Mixed effects logistic regression model predicting OBJ break dominance (REDUCED)
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;text-align: center;">
+Outcome: OBJ dominance (REDUCED)
 </th>
 <th style="text-align:center;text-align: center;">
 Estimate
@@ -854,10 +1264,11 @@ Arg
 </tr>
 </tbody>
 </table>
-<p>Table <a href="results-and-discussion.html#tab:pdom">4.9</a> reports the best model for predicting PP1 break dominance. Unlike the model for predicting OBJ break dominance, the best model for predicting PP1 break dominance includes speech act as a predictor. The best model is one with fixed effects for reading, Speech Act, and PP2 Status.</p>
+<p>PP1 break dominance and OBJ break dominance are not entirely complementary, because it is possible for both breaks to have equal prominance. As such, models predicting PP1 were also explored. The full model predicting PP1 break dominance failed to converge, so only the reduced model is reported.</p>
+<p>Table <a href="results-and-discussion.html#tab:pdom">4.12</a> reports the best model for predicting PP1 break dominance. Unlike the model for predicting OBJ break dominance, the best model for predicting PP1 break dominance includes speech act as a predictor. The best model is one with fixed effects for reading, Speech Act, and PP2 Status.</p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:pdom">Table 4.9: </span>Mixed effects logistic regression model predicting PP1 break dominance
+<span id="tab:pdom">Table 4.12: </span>Mixed effects logistic regression model predicting PP1 break dominance
 </caption>
 <thead>
 <tr>
@@ -934,11 +1345,11 @@ Arg
 </tr>
 </tbody>
 </table>
-<p>This model was better than a minimal model (AIC<sub>MIN</sub>=1290.4, AIC<sub>BEST</sub>=1078.8, <span class="math inline">\(\chi^2\)</span>(3)=217.59, p &lt; 0.001). PP1 break dominance was much more likely for sentence with argument PP2s than sentences with modifier PP2s, with interrogatives having slightly increased log odds of PP1 break dominance. Log odds of PP1 break dominance were slightly less in Reading 2 than Reading 1.</p>
+<p>This model was better than a minimal model (AIC<sub>MIN</sub>=1290.4, AIC<sub>BEST</sub>=1078.8, <span class="math inline">\(\chi^2\)</span>(3)=217.59, p &lt; 0.001). PP1 break dominance was much more likely for sentence with argument PP2s than sentences with modifier PP2s, with interrogatives having slightly increased log odds of PP1 break dominance. Log odds of PP1 break dominance were slightly less in Reading 2 than Reading 1. There were no significant interaction terms.</p>
 <p>Because reading was a significant predictor for 3 of the 4 models reported, and there are theoretical reasons to believe that Reading 2 is more representative of the natural or intended prosody of the reader, models were also run predicting PP1 dominance and OBJ dominance for Reading 2 data only. In both cases, the best model had the same structure: fixed effects of speech act and PP2 status, with no interaction term.</p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:r2dom">Table 4.10: </span>Mixed effects logistic regression models predicting break dominance in Reading 2
+<span id="tab:r2dom">Table 4.13: </span>Mixed effects logistic regression models predicting break dominance in Reading 2
 </caption>
 <thead>
 <tr>
@@ -1056,21 +1467,20 @@ Arg
 </div>
 <div id="on-reading-1-delay" class="section level3">
 <h3><span class="header-section-number">4.2.5</span> On Reading 1 delay</h3>
-<p>Reading 1 (R1) delay is the amount of time between the initial display of a sentence and the start of phonation. Participants’ median R1 delay ranged from 0.6s to 1.6s with a standard deviation of 0.25s. As a way of analyzing the protocol, and the extent to which participants performed as expected, participants were categorized based on their median R1 delay. In what follows, a fast median R1 delay was shorter than or equal to 0.9s, and a slow one was longer than 1.05s, resulting in 12 participants per category. Ten participants had R1 delays between those values, categorized as “normal,” and ignored. These calculations were done over Reading 1 of experimental items (n = 489).</p>
+<p>Reading 1 (R1) delay is the amount of time between the initial display of a sentence and the start of phonation. Participants’ median R1 delay ranged from 0.6s to 1.6s with a standard deviation of 0.25s. As a way of analyzing the protocol, and the extent to which participants performed as expected, participants were categorized based on their median R1 delay. In what follows, a fast median R1 delay was shorter than or equal to 0.9s, and a slow one was longer than 1.05s, resulting in 12 participants per category. Ten participants had R1 delays between those values, categorized as “normal,” and set aside. The calculations for categorizing participants were done over Reading 1 of experimental items (n = 489). Note that while R1 delay category (i.e., fast or slow) is a property of R1 delay, data for both readings is nonetheless explored within these categories.</p>
 <div class="figure"><span id="fig:facet"></span>
-<img src="4-results_files/figure-html/facet-1.png" alt="Plot of pattern proportions per condition" width="672" />
+<img src="4-results_files/figure-html/facet-1.png" alt="Plot of pattern proportions as a function of sentence type" width="672" />
 <p class="caption">
-Figure 4.3: Plot of pattern proportions per condition
+Figure 4.3: Plot of pattern proportions as a function of sentence type
 </p>
 </div>
-<p></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:r2split">Table 4.11: </span>Simple break pattern by condition and R1 delay category
+<span id="tab:r2split">Table 4.14: </span>Break pattern by sentence type and R1 delay category
 </caption>
 <thead>
 <tr>
-<th style="border-bottom:hidden" colspan="2">
+<th style="border-bottom:hidden" colspan="1">
 </th>
 <th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
 <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
@@ -1087,36 +1497,34 @@ SLOW (n=12)
 <th style="text-align:center;">
 </th>
 <th style="text-align:center;">
+D Arg
 </th>
 <th style="text-align:center;">
-D -GP
+D Mod
 </th>
 <th style="text-align:center;">
-Q -GP
+Q Arg
 </th>
 <th style="text-align:center;">
-D +GP
+Q Mod
 </th>
 <th style="text-align:center;">
-Q +GP
+D Arg
 </th>
 <th style="text-align:center;">
-D -GP
+D Mod
 </th>
 <th style="text-align:center;">
-Q -GP
+Q Arg
 </th>
 <th style="text-align:center;">
-D +GP
-</th>
-<th style="text-align:center;">
-Q +GP
+Q Mod
 </th>
 </tr>
 </thead>
 <tbody>
 <tr grouplength="6">
-<td colspan="10" style="border-bottom: 1px solid;">
+<td colspan="9" style="border-bottom: 1px solid;">
 <strong>Reading 1</strong>
 </td>
 </tr>
@@ -1125,39 +1533,33 @@ Q +GP
 BOTH
 </td>
 <td style="text-align:center;">
-%
+46.5%
 </td>
 <td style="text-align:center;">
-40.4
+50.0%
 </td>
 <td style="text-align:center;">
-50.0
-</td>
-<td style="text-align:center;">
-43.5
+43.5%
 </td>
 <td style="text-align:center;border-right:1px solid;">
-46.5
+40.4%
 </td>
 <td style="text-align:center;">
-52.1
+72.9%
 </td>
 <td style="text-align:center;">
-63.8
+63.8%
 </td>
 <td style="text-align:center;">
-56.2
+56.2%
 </td>
 <td style="text-align:center;">
-72.9
+52.1%
 </td>
 </tr>
 <tr>
 <td style="text-align:center; padding-left: 2em;" indentlevel="1">
-n
-</td>
-<td style="text-align:center;">
-19
+20
 </td>
 <td style="text-align:center;">
 24
@@ -1166,10 +1568,10 @@ n
 20
 </td>
 <td style="text-align:center;border-right:1px solid;">
-20
+19
 </td>
 <td style="text-align:center;">
-25
+35
 </td>
 <td style="text-align:center;">
 30
@@ -1178,7 +1580,7 @@ n
 27
 </td>
 <td style="text-align:center;">
-35
+25
 </td>
 </tr>
 <tr>
@@ -1186,39 +1588,33 @@ n
 OBJ
 </td>
 <td style="text-align:center;">
-%
+0.0%
 </td>
 <td style="text-align:center;">
-36.2
+0.0%
 </td>
 <td style="text-align:center;">
-0.0
-</td>
-<td style="text-align:center;">
-37.0
+37.0%
 </td>
 <td style="text-align:center;border-right:1px solid;">
-0.0
+36.2%
 </td>
 <td style="text-align:center;">
-27.1
+0.0%
 </td>
 <td style="text-align:center;">
-0.0
+0.0%
 </td>
 <td style="text-align:center;">
-25.0
+25.0%
 </td>
 <td style="text-align:center;">
-0.0
+27.1%
 </td>
 </tr>
 <tr>
 <td style="text-align:center; padding-left: 2em;" indentlevel="1">
-n
-</td>
-<td style="text-align:center;">
-17
+0
 </td>
 <td style="text-align:center;">
 0
@@ -1227,10 +1623,10 @@ n
 17
 </td>
 <td style="text-align:center;border-right:1px solid;">
-0
+17
 </td>
 <td style="text-align:center;">
-13
+0
 </td>
 <td style="text-align:center;">
 0
@@ -1239,7 +1635,7 @@ n
 12
 </td>
 <td style="text-align:center;">
-0
+13
 </td>
 </tr>
 <tr>
@@ -1247,39 +1643,33 @@ n
 PP1
 </td>
 <td style="text-align:center;">
-%
+53.5%
 </td>
 <td style="text-align:center;">
-23.4
+50.0%
 </td>
 <td style="text-align:center;">
-50.0
-</td>
-<td style="text-align:center;">
-19.6
+19.6%
 </td>
 <td style="text-align:center;border-right:1px solid;">
-53.5
+23.4%
 </td>
 <td style="text-align:center;">
-20.8
+27.1%
 </td>
 <td style="text-align:center;">
-36.2
+36.2%
 </td>
 <td style="text-align:center;">
-18.8
+18.8%
 </td>
 <td style="text-align:center;">
-27.1
+20.8%
 </td>
 </tr>
 <tr>
 <td style="text-align:center; padding-left: 2em;" indentlevel="1">
-n
-</td>
-<td style="text-align:center;">
-11
+23
 </td>
 <td style="text-align:center;">
 24
@@ -1288,10 +1678,10 @@ n
 9
 </td>
 <td style="text-align:center;border-right:1px solid;">
-23
+11
 </td>
 <td style="text-align:center;">
-10
+13
 </td>
 <td style="text-align:center;">
 17
@@ -1300,11 +1690,11 @@ n
 9
 </td>
 <td style="text-align:center;">
-13
+10
 </td>
 </tr>
 <tr grouplength="6">
-<td colspan="10" style="border-bottom: 1px solid;">
+<td colspan="9" style="border-bottom: 1px solid;">
 <strong>Reading 2</strong>
 </td>
 </tr>
@@ -1313,39 +1703,33 @@ n
 BOTH
 </td>
 <td style="text-align:center;">
-%
+69.8%
 </td>
 <td style="text-align:center;">
-45.7
+61.7%
 </td>
 <td style="text-align:center;">
-61.7
-</td>
-<td style="text-align:center;">
-56.5
+56.5%
 </td>
 <td style="text-align:center;border-right:1px solid;">
-69.8
+45.7%
 </td>
 <td style="text-align:center;">
-64.6
+75.0%
 </td>
 <td style="text-align:center;">
-76.6
+76.6%
 </td>
 <td style="text-align:center;">
-40.4
+40.4%
 </td>
 <td style="text-align:center;">
-75.0
+64.6%
 </td>
 </tr>
 <tr>
 <td style="text-align:center; padding-left: 2em;" indentlevel="1">
-n
-</td>
-<td style="text-align:center;">
-21
+30
 </td>
 <td style="text-align:center;">
 29
@@ -1354,10 +1738,10 @@ n
 26
 </td>
 <td style="text-align:center;border-right:1px solid;">
-30
+21
 </td>
 <td style="text-align:center;">
-31
+36
 </td>
 <td style="text-align:center;">
 36
@@ -1366,7 +1750,7 @@ n
 19
 </td>
 <td style="text-align:center;">
-36
+31
 </td>
 </tr>
 <tr>
@@ -1374,39 +1758,33 @@ n
 OBJ
 </td>
 <td style="text-align:center;">
-%
+2.3%
 </td>
 <td style="text-align:center;">
-32.6
+2.1%
 </td>
 <td style="text-align:center;">
-2.1
-</td>
-<td style="text-align:center;">
-17.4
+17.4%
 </td>
 <td style="text-align:center;border-right:1px solid;">
-2.3
+32.6%
 </td>
 <td style="text-align:center;">
-22.9
+2.1%
 </td>
 <td style="text-align:center;">
-0.0
+0.0%
 </td>
 <td style="text-align:center;">
-38.3
+38.3%
 </td>
 <td style="text-align:center;">
-2.1
+22.9%
 </td>
 </tr>
 <tr>
 <td style="text-align:center; padding-left: 2em;" indentlevel="1">
-n
-</td>
-<td style="text-align:center;">
-15
+1
 </td>
 <td style="text-align:center;">
 1
@@ -1415,10 +1793,10 @@ n
 8
 </td>
 <td style="text-align:center;border-right:1px solid;">
-1
+15
 </td>
 <td style="text-align:center;">
-11
+1
 </td>
 <td style="text-align:center;">
 0
@@ -1427,7 +1805,7 @@ n
 18
 </td>
 <td style="text-align:center;">
-1
+11
 </td>
 </tr>
 <tr>
@@ -1435,39 +1813,33 @@ n
 PP1
 </td>
 <td style="text-align:center;">
-%
+27.9%
 </td>
 <td style="text-align:center;">
-21.7
+36.2%
 </td>
 <td style="text-align:center;">
-36.2
-</td>
-<td style="text-align:center;">
-26.1
+26.1%
 </td>
 <td style="text-align:center;border-right:1px solid;">
-27.9
+21.7%
 </td>
 <td style="text-align:center;">
-12.5
+22.9%
 </td>
 <td style="text-align:center;">
-23.4
+23.4%
 </td>
 <td style="text-align:center;">
-21.3
+21.3%
 </td>
 <td style="text-align:center;">
-22.9
+12.5%
 </td>
 </tr>
 <tr>
 <td style="text-align:center; padding-left: 2em;" indentlevel="1">
-n
-</td>
-<td style="text-align:center;">
-10
+12
 </td>
 <td style="text-align:center;">
 17
@@ -1476,10 +1848,10 @@ n
 12
 </td>
 <td style="text-align:center;border-right:1px solid;">
-12
+10
 </td>
 <td style="text-align:center;">
-6
+11
 </td>
 <td style="text-align:center;">
 11
@@ -1488,21 +1860,91 @@ n
 10
 </td>
 <td style="text-align:center;">
-11
+6
 </td>
 </tr>
 </tbody>
 </table>
-<p>There appears to be a clear difference between the participants categorized as having fast or slow R1 delays in the extent to which they used both breaks, with the slow category of participants preferring more breaks than the fast category of participants. There also seems to be a larger increase in usage of both breaks from Reading 1 to Reading 2 for the fast category than for the slow.</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>TODO add hypothesis testing and more detail for the above statements</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<p>Discussion of prosodic break patterns
-Throughout the analysis of break patterns, PP2 status was the most robust predictor of OBJ and PP1 break occurrence and their relative strengths. The OBJ break was more frequent and more frequently dominant for sentences with a PP2 that was an argument than those with a PP2 that could be a modifier; inversely, the PP1 break was more frequent and more frequently dominant for sentences with a PP2 that was interpretable as a modifier than those with a PP2 that was an argument.</p>
+<p>There is a stastically significant difference between the number of cases where both breaks were produced across the fast (44) vs. slow (65) category for Reading 1 (<span class="math inline">\(\chi\)</span><sup>2</sup>(1) = 4.05, p &lt; 0.05), but not for Reading 2 (<span class="math inline">\(\chi\)</span><sup>2</sup>(1) = 1.86, p = 0.17). There was also a stastically significant difference in the occurence of both breaks across PP2 Status for Reading 2 in the slow R1 delay category (<span class="math inline">\(\chi\)</span><sup>2</sup>(1) = 3.97, p &lt; 0.05), but comparisons across other factors represent in Table <a href="results-and-discussion.html#tab:arg">4.15</a> did not yield significant results. The maximum count per cell in the table is 96 (12 participants per category, 8 items per PP2 Status), ignoring missing items.</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:arg">Table 4.15: </span>Occurence of both breaks as a function of Reading, PP2 Status, and R1 Delay Category
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Reading 1
+</th>
+<th style="text-align:right;">
+Reading 2
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="2">
+<td colspan="3" style="border-bottom: 1px solid;">
+<strong>Mod</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+FAST
+</td>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:right;">
+47
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+SLOW
+</td>
+<td style="text-align:right;">
+52
+</td>
+<td style="text-align:right;">
+50
+</td>
+</tr>
+<tr grouplength="2">
+<td colspan="3" style="border-bottom: 1px solid;">
+<strong>Arg</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+FAST
+</td>
+<td style="text-align:right;">
+44
+</td>
+<td style="text-align:right;">
+59
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+SLOW
+</td>
+<td style="text-align:right;">
+65
+</td>
+<td style="text-align:right;">
+72
+</td>
+</tr>
+</tbody>
+</table>
+<p>In cases where R1 delay was small, readers were more likely to produce only one break than if R1 delay was fast. A possible explanation is that the slow starters were more prone to hesitation in general, or perhaps were using both the delay time and their extra break time to look ahead. The significant effect of PP2 Status for slow starters in Reading 2 could be due to the slow starters not fully understanding the Arg sentences prior to Reading 2, thus increasing their likelihood of hesitation.</p>
+</div>
+</div>
+<div id="discussion-of-prosodic-break-patterns" class="section level2">
+<h2><span class="header-section-number">4.3</span> Discussion of prosodic break patterns</h2>
+<p>Throughout the analysis of break patterns, PP2 status was the most robust predictor of OBJ and PP1 break occurrence and their relative strengths. The OBJ break was more frequent and more frequently dominant for sentences with a PP2 that was an argument than those with a PP2 that could be a modifier; inversely, the PP1 break was more frequent and more frequently dominant for sentences with a PP2 that was interpretable as a modifier than those with a PP2 that was an argument.</p>
 <p>Essentially, the expected patterns can be described as in (45) and (46), where % represents a robust prosodic break, and @ represents a weaker break or no break.</p>
 <ol start="45" class="example" style="list-style-type: decimal">
 <li><p><img src="breakpat1.png" /></p></li>
@@ -1522,17 +1964,16 @@ A first reading (no preview) of an Arg sentence will exhibit less natural prosod
 <p><em>Hypothesis 3</em> 
 A first reading of a garden-path sentence will more often be produced with prosodic structure that represents an implausible or ungrammatical parse of the string (low attachment of PP2), whereas a second reading sentence will more often be pronounced with the prosodic structure that represents the intended parse (Arg PP2).</p>
 <p>It is difficult to know whether a given reading represents more or less natural prosody, but given that there’s a difference, it seems most likely that Reading 2 is the more natural of the two.</p>
-<p>It is surprising that the effect of PP2 status is generally lessened in Reading 2 when compared to Reading 1, but this can likely be explained as an epiphenomenon. There is no way to distinguish between prosodic breaks that are intentional and syntactically motivated as compared to those that represent hesitation, a need for a breath, or other factors. It is likely that some of the effect of PP2 status is actually an increase in hesitation after PP1, and therefore more or longer pauses at that position, which is mitigated in Reading 2. If some readers are, in general, simply producing a break after every phrase, but happen to produce what is perceived as a dominant break after PP1 in the PP2 argument condition, when they’re confused, that effect of PP2 status will go away in Reading 2 once they’ve had time to figure the sentence out. This might mean that the noise caused by readers that are simply breaking phrase-by-phrase is actually amplified in Reading 2.</p>
+<p>It is surprising that the effect of PP2 status is generally lessened in Reading 2 when compared to Reading 1, but this can likely be explained as an epiphenomenon. There is no way to distinguish between prosodic breaks that are intentional and syntactically motivated as compared to those that represent hesitation, a need for a breath, or other factors. It is likely that some of the effect of PP2 status is actually an increase in hesitation after PP1, and therefore more or longer pauses at that position, which is mitigated in Reading 2. If some readers are, in general, simply producing a break after every phrase, but happen to produce what is perceived as a dominant break after PP1 for the Arg sentences when they’re confused, that effect of PP2 status will go away in Reading 2 once they’ve had time to figure the sentence out. This might mean that the noise caused by readers that are simply breaking phrase-by-phrase is actually amplified in Reading 2.</p>
 <p>That a prosodic break also frequently occurs between phrases when there is no change in branching direction is mitigated somewhat by the fact that such breaks are usually weaker than the ones that do represent such a change. It is likely that these breaks are actually there for non-syntactic reasons; the end of a phrase represents a reasonable time for the speaker to take a breath or pause briefly for processing reasons. It is also likely that some readers are simply producing a break after each phrase.</p>
 <p>Speech act is a significant predictor of PP1 break dominance (β=0.31, std. error = 0.15, p &lt; 0.05)., but not of any of the other outcomes. It’s plausible that the PP1 break is more likely to be dominant in questions than in declaratives because of the need to begin the sentence final rise of question intonation. That there is never an interaction between speech act and PP2 status is discouraging for the hypothesis that it’s the prosody of questions that make the Arg cases seem easier in the interrogative cases compared to the declarative.</p>
 </div>
-</div>
 <div id="irt" class="section level2">
-<h2><span class="header-section-number">4.3</span> Inter-reading time</h2>
+<h2><span class="header-section-number">4.4</span> Inter-reading time</h2>
 <p>Inter-reading time is the amount of time after the completion of Reading 1 and before the beginning of phonation of Reading 2. The details of how this was measured and defined can be found in section <a href="methodology.html#method-irt">3.7</a>. IRT is meant to be a measure to some extent of how much difficulty the reader has in processing a given sentence. If a reader spends more time studying a sentence prior to reading it aloud a second time, the IRT will be longer, and I take that has an indicator of processing load.</p>
 <p>Importantly, IRT is a measure across pairs of recordings (Reading 1/Reading 2), so the number of data analyzed in this section are half as many as those in the prosody analyses.</p>
 <div id="irtDis" class="section level3">
-<h3><span class="header-section-number">4.3.1</span> Data cleanup</h3>
+<h3><span class="header-section-number">4.4.1</span> Data cleanup</h3>
 <p>IRTs below 0.25s (2) and above 25.0s (5) were assumed to be implausible and omitted. Experimental data were then Winsorized by participant to bring data below the 2.5% and above the 97.5% threshold to the value at those thresholds. The resulting measure is referred to as wIRT and is distributed as shown in figure <a href="results-and-discussion.html#fig:wIRT">4.4</a> (n = 489).</p>
 <div class="figure"><span id="fig:wIRT"></span>
 <img src="4-results_files/figure-html/wIRT-1.png" alt="Distribution of wIRT" width="672" />
@@ -1543,20 +1984,20 @@ Figure 4.4: Distribution of wIRT
 <p>Overall mean for wIRT was 6.5s (sd = 3.8). The longest wIRT was 22.2s and the shortest was 0.7s. Median wIRT was 6.1s.</p>
 </div>
 <div id="irtRes" class="section level3">
-<h3><span class="header-section-number">4.3.2</span> Analysis of IRT data</h3>
+<h3><span class="header-section-number">4.4.2</span> Analysis of IRT data</h3>
 <p>Figure <a href="results-and-discussion.html#fig:interactionplot">4.5</a> shows the mean IRT as a function of sentence type.</p>
 <div class="figure"><span id="fig:interactionplot"></span>
-<img src="4-results_files/figure-html/interactionplot-1.png" alt="Mean IRT by condition" width="672" />
+<img src="4-results_files/figure-html/interactionplot-1.png" alt="Mean IRT by sentence type" width="672" />
 <p class="caption">
-Figure 4.5: Mean IRT by condition
+Figure 4.5: Mean IRT by sentence type
 </p>
 </div>
 <p>The two slopes are only very slightly divergent. Notably, both speech act and PP2 status appear to have main effects on wIRT, with interrogatives attracting longer (6.7s) IRTs than declaratives (6.4s), and sentences with argument PP2s having substantially longer IRTs (6.7s) than those with modifier PP2s (6.3s).</p>
 <p>Regression models support the observations above. All models discussed include random intercepts for participant and item. Models with random slopes for fixed effects all resulted in singular fits and so random slopes were not included.</p>
-<p>By hypothesis, the best model for predicting IRT should be one with fixed effects of speech act and PP2 stats and the interaction between them. This model is shown in table <a href="results-and-discussion.html#tab:hyp">4.12</a>.</p>
+<p>By hypothesis, the best model for predicting IRT should be one with fixed effects of speech act and PP2 stats and the interaction between them. This model is shown in table <a href="results-and-discussion.html#tab:hyp">4.16</a>.</p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:hyp">Table 4.12: </span>Linear mixed effects regression model predicting wIRT by condition with interaction term
+<span id="tab:hyp">Table 4.16: </span>Linear mixed effects regression model predicting wIRT by sentence type with interaction term
 </caption>
 <thead>
 <tr>
@@ -1636,7 +2077,7 @@ Q x Arg
 <p>Of the models with subset(s) of these predictors, the best (the model with the lowest AIC) was the one without the interaction term, shown in table 4.14.</p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:redirt">Table 4.13: </span>Linear mixed effects regression model predicting wIRT by condition
+<span id="tab:redirt">Table 4.17: </span>Linear mixed effects regression model predicting wIRT by sentence type
 </caption>
 <thead>
 <tr>
@@ -1702,11 +2143,11 @@ Arg
 <p>The difference between the reduced and full model was not statistically significant (AIC<sub>FULL</sub>=9103.5, AIC<sub>REDUCED</sub>=9101.6, <span class="math inline">\(\chi^2\)</span>(1)=0.04, p &gt; 0.8).</p>
 </div>
 <div id="pp2h" class="section level3">
-<h3><span class="header-section-number">4.3.3</span> On PP2 heads</h3>
-<p>As mentioned in the items description (section 3.4), half of the items used of for the head of PP2 in the Mod condition, while half used from. In the Arg condition, half used into and half used onto to head PP2. An analysis that looks at the identity of the PP2 head found that while into and onto do not behave differently, of and from do. Starting from a very complex model that included the lexical identity of the matrix verb, the construction verb, the head of PP1, and the head of PP2, as well as speech act and PP2 status, the model that best predicted wIRT was one that is essentially the same as the reduced model just reported, except it substitutes the lexical identity of the PP2 head for the Arg vs. Mod categorization, with into and onto collapsed into one level of the PP2 factor and used as the reference level.</p>
+<h3><span class="header-section-number">4.4.3</span> On PP2 heads</h3>
+<p>As mentioned in the items description (section 3.4), half of the items used <em>of</em> for the head of PP2 in the Mod cases, while half used <em>from.</em> In the Arg condition, half used <em>into</em> and half used <em>onto</em> to head PP2. An analysis that looks at the identity of the PP2 head found that while <em>into</em> and <em>onto</em> do not behave differently, <em>of</em> and <em>from</em> do. Starting from a maximally complex model that included the lexical identity of the matrix verb, the construction verb, the head of PP1, and the head of PP2, as well as Speech Act and PP2 status, the model that best predicted wIRT was one that is essentially the same as the reduced model just reported (i.e., with Speech Act and PP2 Status as predictors), except it substitutes the lexical identity of the PP2 head for PP2 Status, with <em>into</em> and <em>onto</em> collapsed into one level used as the reference level (intercept).</p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:pp2hd">Table 4.14: </span>Linear mixed effects regression model predicting wIRT by speech act and PP2 head
+<span id="tab:pp2hd">Table 4.18: </span>Linear mixed effects regression model predicting wIRT by speech act and PP2 head
 </caption>
 <thead>
 <tr>
@@ -1783,11 +2224,11 @@ of
 </tr>
 </tbody>
 </table>
-<p>Sentences where PP2 was headed by from typically had wIRTs that were 0.84s faster than sentences where PP2 was headed by into/onto; when the PP2 head was from wIRT was only 0.08s faster than for into/onto.</p>
+<p>Sentences where PP2 was headed by <em>from</em> typically had wIRTs that were 0.84s faster than sentences where PP2 was headed by <em>into</em>/<em>onto</em>; when the PP2 head was <em>from</em> wIRT was only 0.08s faster than for <em>into</em>/<em>onto</em>, a difference that is not statistically significant (p &gt; 0.7).</p>
 </div>
 </div>
 <div id="discussion-of-irt-results" class="section level2">
-<h2><span class="header-section-number">4.4</span> Discussion of IRT results</h2>
+<h2><span class="header-section-number">4.5</span> Discussion of IRT results</h2>
 <p>It is clear from the above that argument PP2s (ones headed by into/onto) result in longer wIRT measures. It also appears that interrogativity increases wIRT to a lesser extent, regardless of the PP2 status. Because the interaction between the two factors is not a significant predictor of wIRT, we are left to assume that either wIRT does not represent a behavioral reflex of the intuition that interrogativity makes difficult to process PP2-attachment ambiguities easier, or else the current study does not have enough power to detect it.</p>
 <p>The difference between <em>from</em> and <em>of</em> PP2s is also potentially a source of noise. The <em>from</em> sentences are less clearly disambiguated than the <em>of</em> sentences. Where (47) has only one reading, (48) has another possible reading, albeit somewhat implausible: i.e., we could imagine that in (47) <em>from her brother-in-law</em> modifies <em>the cookies</em>, while in (4) <em>of the minivan</em> cannot modify <em>the bicycle</em>.</p>
 <ol start="47" class="example" style="list-style-type: decimal">
@@ -1805,7 +2246,7 @@ of
 <p>A study where the modifier PP2s are more tightly controlled with regard to the head preposition, both in terms of the length and the properties of the head, might produce clearer results.</p>
 </div>
 <div id="the-processing-cost-of-interrogativity" class="section level2">
-<h2><span class="header-section-number">4.5</span> The processing cost of interrogativity</h2>
+<h2><span class="header-section-number">4.6</span> The processing cost of interrogativity</h2>
 <p>It is worth taking note of the fact that the mean wIRT for interrogative versions (6.7s) of the experimental sentences in the reported study was longer than for the declaratives (6.4s). While this finding was not statistically significant, <span class="citation">Peckenpaugh (2016)</span> found that whole-sentence silent reading times for interrogatives were longer than for declaratives; and <span class="citation">Mehler (1963)</span> provided a very early report of the processing cost of interrogativity: a so-called kernel sentence, i.e., a simple declarative, was easier to recall verbatim than was a number of sentences that he considered to be syntactic transformations of that kernel sentence (K): negative (N), polar question (Q), passive (P), and combinations thereof: NQ, NP, QP and NPQ. Mehler found that accurate recall was more frequent for K sentences (300/460, 65.2%) than for the other sentences types, with interrogatives (210/460, 45.7%) being recalled accurately at a lower rate than the two other individual transformations (234/460, 50.9% for N; 243/460, 52.8% for P).</p>
 <p>The filler sentences in this study were designed in two versions, interrogative (Q) and declarative (D), so as to provide a diagnostic of the interrogative effect on IRT independent of the experimental question. A linear mixed effects regression model predicting wIRT for filler items by interrogativity with crossed random intercepts (participant and item) found that wIRT is increased by 0.4s for interrogatives (std. error = 0.2; p &lt; 0.05); declaratives had a mean wIRT of 6.2s, while interrogatives had a mean wIRT of 6.6s. Half of the fillers had a sequence of two PPs at the end to mirror the experimental items: a model predicting wIRT by the presence of those PPs found minimal effect on wIRT (β=0.01, std. error = 0.22, p = 0.96).</p>
 <p>Interrogative status itself appears to increase the time needed for participants to feel they have satisfactorily studied a sentence in order to read it aloud correctly. This is consistent with the <span class="citation">Mehler (1963)</span> and <span class="citation">Peckenpaugh (2016)</span> findings that interrogatives are in some way more complicated or difficult than declaratives.</p>
@@ -1816,9 +2257,10 @@ of
 <div class="footnotes">
 <hr />
 <ol start="10">
-<li id="fn10"><p>Note that R2 delay is subsumed by but not synonymous with IRT; IRT includes lag time after R1 is completed but before the recording for R2 begins. This distinction is laid out in more detail in Section <a href="results-and-discussion.html#irtRes">4.3.2</a>.<a href="results-and-discussion.html#fnref10" class="footnote-back">↩</a></p></li>
+<li id="fn10"><p>Note that R2 delay is subsumed by but not synonymous with IRT; IRT includes lag time after R1 is completed but before the recording for R2 begins. This distinction is laid out in more detail in Section <a href="results-and-discussion.html#irtRes">4.4.2</a>.<a href="results-and-discussion.html#fnref10" class="footnote-back">↩</a></p></li>
 <li id="fn11"><p>The two 5-count cells include 2 additional participants whose data were collected in pursuit of another full set (i.e., towards an expansion to 40 participants) that was not completed due to a lack of participant sign-ups.<a href="results-and-discussion.html#fnref11" class="footnote-back">↩</a></p></li>
-<li id="fn12"><p>Log odds is, in this case, the natural log of the odds ratio, so the log odds of A is log<sub>e</sub>(P(A)/P(¬A)). A log odds of 1.39 translates to an odds ratio of 2.4:1 (1.39<sup>e</sup>=2.4) and a probability of 71% (2.4/(1+2.4)=0.71).<a href="results-and-discussion.html#fnref12" class="footnote-back">↩</a></p></li>
+<li id="fn12"><p>AIC is a representation of the amount of information lost by using a regression model to estimate data points. It is a measure that balances both the goodness of fit of a model and the smiplicity of a model, guarding against overfitting and underfitting the data involved.<a href="results-and-discussion.html#fnref12" class="footnote-back">↩</a></p></li>
+<li id="fn13"><p>Log odds is, in this case, the natural log of the odds ratio, so the log odds of A is log<sub>e</sub>(P(A)/P(¬A)). A log odds of 1.39 translates to an odds ratio of 4.01:1 (1.39<sup>e</sup>=4.01) and a probability of 80% (4.01/(1+4.01)=0.80).<a href="results-and-discussion.html#fnref13" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -1864,7 +2306,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["_main.pdf"],
+"download": null,
 "toc": {
 "collapse": "subsection"
 }
