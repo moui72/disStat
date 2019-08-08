@@ -20,6 +20,9 @@ library(readr)
 library(tidyr)
 library(dplyr)
 library(stringr)
+library(knitr)
+library(kableExtra)
+
 items <- read_csv("../csvs/src/exp-items.csv") 
 
 items$asp <- word(items$EDY,3)
@@ -47,6 +50,7 @@ fitems[c(4:5)] %>%
 ```{r}
 library(readr)
 library(stringr)
+library(tidyr)
 
 fpp <- read_csv("../csvs/src/filler-items+pp.csv")
 
@@ -55,20 +59,30 @@ fnp <- read_csv("../csvs/src/filler-items-pp.csv")
 fpp$asp <- word(fpp$FDY,3)
 fnp$asp <- word(fnp$FDN,3)
 
-fpp <- fpp %>% arrange(asp) 
-fnp <- fnp %>% arrange(asp) 
+fpp$aspGroup <-fpp$asp %in% c("wanted","planned","intended","wanted")
+fnp$aspGroup <-fnp$asp %in% c("wanted","planned","intended","wanted")
 
-items <- cbind(fpp[1:3],fnp[2:4])
+fpp <- fpp %>% arrange(-aspGroup,asp) 
+fnp <- fnp %>% arrange(-aspGroup,asp) 
 
-names(items) <- c("no","+PP D","+PP Q","-PP D","-PP Q","asp")
+items <- cbind(fpp[1:3],fnp[2:5])
 
-fitems <- items %>% gather(key="version",value="text",-asp,-no) %>% arrange(version,asp,no)
+names(items) <- c("no","+PP D","+PP Q","-PP D","-PP Q","asp","aspGroup")
+
+fitems <- items %>% 
+  gather(key="version",value="text",-asp,-no,-aspGroup) %>%
+  arrange(-aspGroup,asp,no)
 
 ppy<-subset(fitems,grepl("+PP",version))
 
-ppy[c(3:4)] %>% 
-  kable(col.names=c("Version", "Text"),booktab=T,linesep = c("","\\addlinespace"),longtable=T,
-        caption="Filler items with trailing PPs") %>% 
+ppy[c("version","text")] %>% 
+  kable(
+    col.names=c("Version", "Text"),
+    booktab=T,
+    linesep = c("","\\addlinespace"),
+    longtable=T,
+    caption="Filler items with trailing PPs"
+  ) %>% 
   kable_styling(latex_options = c("hold_position","repeat_header"))
 ```
 

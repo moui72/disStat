@@ -60,9 +60,7 @@ sto <- function (SentenceType) {
 ```
 # Results and discussion
 
-This section reports various descriptions and analyses of the recordings obtained. The reported results include the effect of Speech Act (declarative/D vs. interrogative/Q) and PP2 Status (argument/Arg vs. modifier/Mod) on the location of prosodic breaks, as well as on time spent reflecting upon a sentence between readings, which I call inter-reading time (IRT). In order to evaluate the extent to which participants adhered to the protocol as intended, i.e., began to read immediately for Reading 1 as opposed to producing a considered reading in Reading 2, the delay for which a sentence is displayed before a participant begins to read it is compared for Reading 1  (R1 delay) vs. Reading 2 (R2 delay[^r2d]). The prosodic patterns for participants with especially fast and especially slow R1 delays are presented as a way of investigating the extent to which individual differences might impact those patterns, and as a further exploration of the success of the protocol instructions in producing the intended behavior.
-
-[^r2d]: Note that R2 delay is subsumed by but not synonymous with IRT; IRT includes lag time after R1 is completed but before the recording for R2 begins. This distinction is laid out in more detail in Section \@ref(irtRes).
+This section reports various descriptions and analyses of the recordings obtained, and the relevance of those findings to the research questions motivating this study. The reported results include the effect of Speech Act (declarative/D vs. interrogative/Q) and PP2 Status (argument/Arg vs. modifier/Mod) on the location of prosodic breaks, as well as on time spent reflecting upon a sentence between readings, which I call inter-reading time (IRT). In order to evaluate the extent to which participants adhered to the protocol as intended, i.e., began to read immediately for Reading 1 as opposed to producing a considered reading in Reading 2, the delay for which a sentence is displayed before a participant begins to read it is compared for Reading 1  (R1 delay) vs. Reading 2 (R2 delay). The prosodic patterns for participants with especially fast and especially slow R1 delays are presented as a way of investigating the extent to which individual differences might impact those patterns, and as a further exploration of the success of the protocol instructions in producing the intended behavior. A finding on the apparent processing cost of interrogative context when compared to declarative context among the filler sentences is also reported.
 
 ## Data for analysis
 
@@ -115,6 +113,8 @@ kable(
 ```
 
 ## Prosodic break patterns {#results-prosody}
+
+The section will report the prosodic phrasings found in the recordings collected, and the extent to which those patterns are or are not influenced by the design parameters of the study (Speach Act and PP2 Status), as well as which reading (Reading 1 or Reading 2) the recording represents. This reported first descriptively (i.e., in terms of frequency), and then using regression models to calculate the statistical significance of whatever effects are found. Finally, a summary of findings and their implications for the hypothesis motivating this study is provided.
 
 ```{r byGPr2}
 library(scales)
@@ -737,7 +737,6 @@ This is supportive of hypothesis 1 presented in the introduction; and, in fact, 
 A change in branching direction is taken to mean the closure of the preceding phrase and attachment into its parent node; in this case, either the closure of PP1 and the attachment off PP2 into the VP or the closure of the object NP and attachment of PP1 into the VP. 
 
 That Reading 2 is a significant predictor in 3 of the 4 analyses where its inclusion is possible supports, at least provisionally, hypothesis 2 and 3. 
-  
 
   *Hypothesis 2* \linebreak
   A first reading (no preview) of an Arg sentence will exhibit less natural prosody (more hesitation at and after the disambiguating region) than:
@@ -748,7 +747,7 @@ That Reading 2 is a significant predictor in 3 of the 4 analyses where its inclu
   *Hypothesis 3* \linebreak
   A first reading of a garden-path sentence will more often be produced with prosodic structure that represents an implausible or ungrammatical parse of the string (low attachment of PP2), whereas a second reading sentence will more often be pronounced with the prosodic structure that represents the intended parse (Arg PP2).
 
-It is difficult to know whether a given reading represents more or less natural prosody, but given that there’s a difference, it seems most likely that Reading 2 is the more natural of the two.
+It is difficult to know whether a given reading represents more or less natural prosody, but given that there is a difference between readings, it seems most likely that Reading 2 is the more natural of the two since it represents a considered reading, rather than a hurried one.
 
 It is surprising that the effect of PP2 status is generally lessened in Reading 2 when compared to Reading 1, but this can likely be explained as an epiphenomenon. There is no way to distinguish between prosodic breaks that are intentional and syntactically motivated as compared to those that represent hesitation, a need for a breath, or other factors. It is likely that some of the effect of PP2 status is actually an increase in hesitation after PP1, and therefore more or longer pauses at that position, which is mitigated in Reading 2. If some readers are, in general, simply producing a break after every phrase, but happen to produce what is perceived as a dominant break after PP1 for the Arg sentences when they’re confused, that effect of PP2 status will go away in Reading 2 once they’ve had time to figure the sentence out. This might mean that the noise caused by readers that are simply breaking phrase-by-phrase is actually amplified in Reading 2.
 
@@ -949,9 +948,9 @@ Sentences where PP2 was headed by *from* typically had wIRTs that were 0.84s fas
 
 ## Discussion of IRT results
 
-It is clear from the above that argument PP2s (ones headed by into/onto) result in longer wIRT measures. It also appears that interrogativity increases wIRT to a lesser extent, regardless of the PP2 status. Because the interaction between the two factors is not a significant predictor of wIRT, we are left to assume that either wIRT does not represent a behavioral reflex of the intuition that interrogativity makes difficult to process PP2-attachment ambiguities easier, or else the current study does not have enough power to detect it.
+It is clear from the above that argument PP2s (ones headed by *into*/*onto*) result in longer wIRT measures. It also appears that interrogativity increases wIRT to a lesser extent, regardless of the PP2 status. Because the interaction between the two factors is not a significant predictor of wIRT, we are left to assume that wIRT does not represent a behavioral reflex of the intuition that interrogativity makes difficult to process PP2-attachment ambiguities easier.
 
-The difference between *from* and *of* PP2s is also potentially a source of noise. The *from* sentences are less clearly disambiguated than the *of* sentences. Where (@mini) has only one reading, (@bro) has another possible reading, albeit somewhat implausible: i.e., we could imagine that in (@mini) *from her brother-in-law* modifies *the cookies*, while in (4) *of the minivan* cannot modify *the bicycle*.
+The difference between *from* and *of* PP2s is potentially a source of noise. The *from* sentences are less clearly disambiguated than the *of* sentences. Where (@mini) has only one reading, (@bro) has another possible reading, albeit somewhat implausible: i.e., we could imagine that in (@mini) *from her brother-in-law* modifies *the cookies*, while in (4) *of the minivan* cannot modify *the bicycle*.
 
   (@mini) She had intended to put the bicycle on the roof rack of the minivan.
   (@bro) She had decided to cram the cookies in the basket from her brother-in-law.
@@ -966,9 +965,7 @@ This lingering ambiguity could have increased wIRT somewhat because the reader, 
 
 It could also be a simpler explanation: the fact that *of* is only two characters, whereas *from* and *into*/*onto* are all four characters, participants may have recognized a pattern, wherein they could be sure that a two-character PP2 head meant the sentence did not have the difficult properties of some of the ones with four-character PP2 heads (most notably the *into*/*onto* cases), and eliminated some of the needed study time.
 
-A study where the modifier PP2s are more tightly controlled with regard to the head preposition, both in terms of the length and the properties of the head, might produce clearer results.
-
-## The processing cost of interrogativity
+### The processing cost of interrogativity
 
 ```{r}
 library(scales)
