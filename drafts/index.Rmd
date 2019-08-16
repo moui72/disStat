@@ -12,12 +12,17 @@ always_allow_html: yes
 biblo-title: "References"
 fontsize: 12pt
 mainfont: Georgia
+lot: true
+lof: true
+geometry:
+  - margin=1in
 header-includes:
   - \usepackage{float}
-  - \usepackage{forest}
+  - \usepackage[linguistics]{forest}
   - \usepackage{longtable}
   - \usepackage{booktabs}
   - \usepackage{setspace}\doublespacing
+
 ---
 ```{r echo=FALSE}
 knitr::opts_chunk$set(
@@ -31,9 +36,7 @@ knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown', "lme4", "lmerTest"
 ), 'packages.bib')
 ```
-\raggedright
-# Abstract {-}
-*Abstract is a work in progress.* This paper reports a study on the effect of interrogativity on the oral reading of temporarily ambiguous prepositional phrases (PPs). Specifically, it looks at sentences ending in a of two PPs, where the first is interpretable as the goal argument of the preceding verb, and the status of the second (PP2 Status) is manipulated to either necessarily be the goal argument of that verb (Arg), forcing reanalysis, or not (Mod), allowing the original parse to stand. No evidence is found that interrogativity impacts the difficulty of understanding the Arg-type sentences, despite an intuitive decrease in difficulty when those sentences are presented in an interrogative context. A double-reading protocol is employed, where participants are asked to read a sentence first without preview (Reading 1), and then after unlimited preview (Reading 2).A robust effect of PP2 Status is found for the prosodic phrasing of the target sentences, and an effect of interrogativity on the study time between Readings, Inter-Reading Time (IRT), is reported.
+
 
 <!--
 ## TODO
