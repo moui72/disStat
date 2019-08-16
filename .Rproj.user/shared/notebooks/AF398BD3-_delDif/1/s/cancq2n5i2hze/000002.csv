@@ -1,0 +1,7 @@
+"0","kable("
+"0","  diffsByP[order(diffsByP[,2]),],"
+"0","  row.names=F,"
+"0","  digits = 0,"
+"0","  caption=""Delay differences by participant"","
+"0","  longtab=T"
+"0",")%>% kable_styling(latex_options = c(""hold_position"", ""repeat_header""))"

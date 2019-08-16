@@ -1,0 +1,75 @@
+```{r echo=F}
+knitr::opts_chunk$set(
+  echo=FALSE, 
+  warning=FALSE, 
+  message=FALSE, 
+  fig.height = 3, 
+  fig.pos="H"
+)
+```
+<!--
+%Dissertation introduction
+%This is the first content section
+%Previous section: Front matter
+%Following section: Background
+-->
+# Introduction
+
+This paper presents a study on human sentence processing, or parsing, and on the parsing of a particular sort of ambiguity. Parsing is assumed to be the projection of structure by a reader or listener over a string (which obviously lacks inherent structure). Following the sort of model of parsing put forward by, e.g., @kimball1973seven, @frazier1978sausage, and @frazier1996construal, this study assumes that parsing is done online and that most material must be incorporated into the structure being built as soon as it is encountered. This can lead to mis-parses, where the parser has guessed wrong about how to incorporate a given phrase with a temporarily ambiguous structure, and then encounters material that cannot be incorporated into the current structure. When this happens, the parser must discard part or all of its pending structure and try again to incorporate the material encountered so far. This sort of parser crash is often called a garden path.
+
+The study being reported is concerned with certain sentences that contain such a temporarily ambiguous prepositional phrase (PP1), followed by another PP (PP2) which interferes with what is assumed to be the default interpretation of PP1: as an argument of the verb. The reasons for that assumption are discussed in Section \@ref(mech), but for now it suffices to understand that (@cramiGPy) represents a difficult to comprehend sentence (a garden path), while (@cramiGPn) presents no such difficulty.
+
+(@cramiGPy) He had planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ into his briefcase].
+
+(@cramiGPn) He had planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ of his filing cabinet].
+
+Before the details of the current research can be outlined, it is first necessary to explain some of the terms and mechanisms involved. This chapter is concerned with doing so.
+
+## What is a garden path?
+The occurrence of garden-path (GP) effects are generally attributed to a clash between structure-first parsing strategies, e.g., @Frazier1979-pb's *Minimal Attachment*, and the actual intended structure of the sentence in question.
+
+(@ma) **Minimal Attachment**: Attach incoming material into the phrase-marker being constructed using the fewest nodes consistent with the well-formedness rules of the language under analysis [@Frazier1979-pb].
+
+If we assume that the parser builds structure by following these types of constraints or rules in a programmatic way, without concern for meaning, it is easy to see how one might end up with a parse that denotes an implausible situation, or even an ungrammatical sentence. An example is the commonly studied garden path sentence, &ldquo;The horse raced past the barn fell,&rdquo; [@bever1970]. Here, the initial parse incorrectly assumes that the matrix subject is the unmodified NP the horse, per *Minimal Attachment*, and takes the matrix verb to be raced, as in the sentence, &ldquo;The horse raced past the finish line.&rdquo;
+
+
+(@hbf) The horse raced past the barn fell [@bever1970]
+    a) [~S~ [~NP~ The horse] [~VP~ raced past the barn]] &emsp; ??? &emsp; [~VP~ fell]
+    b) [~S~ [~NP~ The horse raced past the barn] [~VP~  fell]]
+
+
+The attempted parse represented in structure (@hbf) crashes, as it is not possible to incorporate the final word fell in a grammatical way. In order to obtain the grammatical parse, (@hbf b) where the matrix subject is the horse raced past the barn, almost the entire structure of (@hbf a) must be discarded. The subject is not the horse, and the main verb is not raced. Rather, the subject is a noun phrase (NP) containing a reduced relative clause raced past the barn. Only after remediation can fell be properly incorporated as the matrix verb. This finally results in a grammatical sentence, with a structure comparable to, "The horse (that was) raced past the barn was hungry." Garden-path effects can result any time the assumptions made by the parser clash with the actual structure of a sentence. 
+
+## PP-attachment garden paths
+
+The type of garden-path sentence that this study is concerned with centers around the temporarily ambiguous attachment sites for a prepositional phrase (PP). Consider:
+
+(@cramGPy) He had planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ into his briefcase].
+
+(@cramGPn) He had planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ of his filing cabinet].
+
+The sentences in (@cramGPy) and (@cramGPn) contain a temporary ambiguity with regard to the attachment site of *in the drawer* (PP1). It can either attach as an argument of the verb (i.e., *the paperwork* is being crammed *in the drawer*), or else as a modifier of the direct object (i.e., *the paperwork in the drawer* is being crammed *into his briefcase*). Sentence (@cramGPy) differs from (@cramGPn) in the ultimate resolution of that ambiguity, although in both cases PP1 is ambiguous until the preposition heading PP2 (*into* or *of*) is encountered.
+
+In (@cramGPy), PP1 must ultimately attach as the goal argument of the verb, in order for a plausible parse to be obtained. This is likely to cause some difficulty for the reader or listener of the sentence, if structure-first parsing strategies like *Minimal Attachment* are obeyed. The parser will have attached PP1 as the verb's goal argument, not knowing PP2 was to come. The resulting parse crashes, because with PP1 filling the goal argument slot, PP2 has nowhere to attach but as a modifier of the noun in PP1 (\*[~NP~ *the drawer into his briefcase*]), or else as a modifier of the verb/sentence (\*[~VP~ *he did so into his briefcase*]), neither of which is grammatical. The preference for VP attachment of PP1 in these kinds of sentences is supported by experimental data in studies like, e.g., @raynerEtAl1983 and @cliftonEtAl1991
+
+The other sentence, (@cramGPn), should not represent any difficulty. In that case, PP1 can, and in fact must, attach as the goal argument, since the subsequent PP *of her filing cabinet* cannot plausibly attach as a sentential modifier, nor a verbal argument or modifier, and the sentence is incomplete without a goal argument of *cram*. By examining these sentences, the study proposed aims to expand understanding of human sentence processing in general, and specifically the relationship between syntactic structure and prosodic structure. Further, this will explore any contrast there might be in the impact of declarative and interrogative contexts on parsing, which has been under studied.
+
+## An observation {#obs}
+
+These attachment ambiguities which are difficult to parse in the declarative, appear to be less difficult to parse when presented in polar interrogative context. Consider again the somewhat difficult to process sentence in (@cramGPy), repeated below as (@dec) for convenience.
+
+  (@dec) He had planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ into his  briefcase].
+
+The mechanics of this garden path are discussed in section \@ref(mech). The point to consider here is that, according to the intuition of many native speakers of American English, the difficulty of (@dec) is at least somewhat lessened in (@intr):
+
+  (@intr) Had he planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ into his briefcase]?
+
+That is, while both sentences contain a temporary ambiguity for the attachment of PPs occurring in string-linear sequence at the end of an utterance, it is more likely in (@intr) that a listener or reader will come away with a plausible interpretation on the first try. This study explores the factors involved in why that is, and seeks to uncover a behavioral correlate of this intuition. If the existence and mechanics of this effect can be pinned down, it will lend insight into what information the parser has access to when making decisions, or when repairing broken parses. This initial observation reveals a robust program of research with many interwoven questions. 
+
+One of the many questions is: does there exist some behavior that is correlated with the intuitive reduction in difficulty of parsing sentences like (@intr) as opposed to (@dec) that can be measured? @qp2 represents one attempt to find such a correlate, and this paper continues that search.
+
+One might also ask what property or properties of polar questions might lead to an easier parsing of garden paths, or at least to the perception that they are easier to parse as polar questions than as declaratives. Because there are minimal differences between the polar question and declarative version of a given sentence, it is fairly easy to assume that the cause lies in one of two domains: the prosodic changes triggered by the use of question intonation, or the pragmatic and semantic properties that are not shared across the versions. 
+
+An obvious reflex of the former possibility is another question: how are the various versions of these sentences actually pronounced? This question is deceptively difficult to answer; the reported study seeks to answer it, but while the recordings collected provide some insight, more work is likely needed to satisfactorily provide an answer.
+
+Likewise, the latter possibility leads one to wonder: what are the semantic and pragmatic differences between a polar question and its declarative counterpart? This question can be approach in a more theoretical way, and has been to some degree in the literature. That said, it remains to be determined how those properties could lead to an easier parsing process, and whether or not a satisfactory explanation for the intuition at large can be pulled from these differences. 

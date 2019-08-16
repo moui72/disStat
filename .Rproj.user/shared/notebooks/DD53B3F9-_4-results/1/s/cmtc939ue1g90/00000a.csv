@@ -1,0 +1,6 @@
+"0","versiontab %>% kable("
+"0","  caption=""No. of participants per version-order combination"","
+"0","  col.names = c(""1"", ""2"", ""Sum""),"
+"0","  align=""c"""
+"0",") %>% kable_styling() %>% "
+"0","  add_header_above(c("" ""=1, ""Order""=2, "" ""=1))"

@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1565279169690.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "A9912654",
+    "lastKnownWriteTime" : 1565295135,
+    "last_content_update" : 1565295135175,
+    "path" : "~/GitHub/disStat/drafts/0-frontmatter.Rmd",
+    "project_path" : "drafts/0-frontmatter.Rmd",
+    "properties" : {
+        "cursorPosition" : "12,65",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

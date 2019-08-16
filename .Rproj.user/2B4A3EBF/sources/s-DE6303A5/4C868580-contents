@@ -1,0 +1,431 @@
+@article{kimball1973seven,
+  title={Seven principles of surface structure parsing in natural language},
+  author={Kimball, John},
+  journal={Cognition},
+  volume={2},
+  number={1},
+  pages={15--47},
+  year={1973},
+  publisher={Elsevier}
+}
+
+@book{den2006relators,
+  title={Relators and linkers: The syntax of predication, predicate inversion, and copulas},
+  author={Den Dikken, Marcel},
+  volume={47},
+  year={2006},
+  publisher={MIT press}
+}
+
+@article{schafer2000intonational,
+  title={Intonational disambiguation in sentence production and comprehension},
+  author={Schafer, Amy J and Speer, Shari R and Warren, Paul and White, S David},
+  journal={Journal of psycholinguistic research},
+  volume={29},
+  number={2},
+  pages={169--182},
+  year={2000},
+  publisher={Springer}
+}
+@article{wax1985detection,
+  title={Detection of signals by information theoretic criteria},
+  author={Wax, Mati and Kailath, Thomas},
+  journal={IEEE Transactions on Acoustics, Speech, and Signal Processing},
+  volume={33},
+  number={2},
+  pages={387--392},
+  year={1985},
+  publisher={IEEE}
+}
+@article{salverda2003role,
+  title={The role of prosodic boundaries in the resolution of lexical embedding in speech comprehension},
+  author={Salverda, Anne Pier and Dahan, Delphine and McQueen, James M},
+  journal={Cognition},
+  volume={90},
+  number={1},
+  pages={51--89},
+  year={2003},
+  publisher={Elsevier}
+}
+
+@article{streeter1978acoustic,
+  title={Acoustic determinants of phrase boundary perception},
+  author={Streeter, Lynn A},
+  journal={The Journal of the Acoustical Society of America},
+  volume={64},
+  number={6},
+  pages={1582--1592},
+  year={1978},
+  publisher={ASA}
+}
+
+@book{chomsky2014minimalist,
+  title={The minimalist program},
+  author={Chomsky, Noam},
+  year={2014},
+  publisher={MIT press}
+}
+
+@inproceedings{clifton1988restrictions,
+  title={Restrictions on late closure: Appearance and reality},
+  author={Clifton, Jr., Charles},
+  booktitle={6th Australian Language and Speech conference},
+  pages={19--21},
+  year={1988}
+}
+
+@article{kimball1973seven,
+  title={Seven principles of surface structure parsing in natural language},
+  author={Kimball, John},
+  journal={Cognition},
+  volume={2},
+  number={1},
+  pages={15--47},
+  year={1973},
+  publisher={Elsevier}
+}
+@article{frazier1978sausage,
+  title={The sausage machine: A new two-stage parsing model},
+  author={Frazier, Lyn and Fodor, Janet Dean},
+  journal={Cognition},
+  volume={6},
+  number={4},
+  pages={291--325},
+  year={1978},
+  publisher={Elsevier}
+}
+@book{frazier1996construal,
+  title={Construal},
+  author={Frazier, Lyn and Clifton, Jr., Charles},
+  year={1996},
+  publisher={MIT Press}
+}
+
+@article{p600addscps,
+  title={Electrophysiological correlates of prosody and punctuation},
+  author={Steinhauer, Karsten},
+  journal={Brain and language},
+  volume={86},
+  number={1},
+  pages={142--164},
+  year={2003},
+  publisher={Elsevier}
+}
+
+@article{cps,
+  title={Punctuation and implicit prosody in silent reading: an ERP study investigating english garden-path sentences},
+  author={Drury, John E and Baum, Shari R and Valeriote, Hope and Steinhauer, Karsten},
+  journal={Frontiers in psychology},
+  volume={7},
+  pages={1375},
+  year={2016},
+  publisher={Frontiers}
+}
+
+@ARTICLE{evs,
+    
+  AUTHOR={Laubrock, Jochen and Kliegl, Reinhold},   
+  	 
+  TITLE={The eye-voice span during reading aloud},      
+  	
+  JOURNAL={Frontiers in Psychology},      
+  	
+  VOLUME={6},      
+  
+  NUMBER={1432},     
+  	
+  YEAR={2015},      
+  	  
+  URL={https://www.frontiersin.org/article/10.3389/fpsyg.2015.01432},       
+  	
+  DOI={10.3389/fpsyg.2015.01432},      
+  	
+  ISSN={1664-1078},   
+
+}
+
+@article{ashby2012eye,
+  title={Eye movements and the perceptual span in silent and oral reading},
+  author={Ashby, Jane and Yang, Jinmian and Evans, Kris HC and Rayner, Keith},
+  journal={Attention, Perception, and Psychophysics},
+  volume={74},
+  number={4},
+  pages={634--640},
+  year={2012},
+  publisher={Springer}
+}
+
+@book{rayner2012psychology,
+  title={Psychology of reading},
+  author={Rayner, Keith and Pollatsek, Alexander and Ashby, Jane and Clifton, Jr., Charles},
+  year={2012},
+  publisher={Psychology Press}
+}
+
+@inproceedings{speer2003intonation,
+  title={Intonation and sentence processing},
+  author={Speer, Shari~R and Warren, Paul and Schafer, Amy},
+  booktitle={Proceedings of the 15th international congress of phonetic sciences},
+  pages={95--105},
+  year={2003},
+  address = {Barcelona, Spain},
+}
+
+@article{mehler1963some,
+  title={Some effects of grammatical transformations on the recall of English sentences},
+  author={Mehler, Jacques},
+  journal={Journal of verbal Learning and verbal Behavior},
+  volume={2},
+  number={4},
+  pages={346--351},
+  year={1963},
+  publisher={Elsevier}
+}
+
+@Article{os2012,
+  author="Math{\^o}t, Sebastiaan and Schreij, Daniel and Theeuwes, Jan",
+  title="OpenSesame: An open-source, graphical experiment builder for the social sciences",
+  journal="Behavior Research Methods",
+  year="2012",
+  month="Jun",
+  day="01",
+  volume="44",
+  number="2",
+  pages="314--324",
+  abstract="In the present article, we introduce OpenSesame, a graphical experiment builder for the social sciences. OpenSesame is free, open-source, and cross-platform. It features a comprehensive and intuitive graphical user interface and supports Python scripting for complex tasks. Additional functionality, such as support for eyetrackers, input devices, and video playback, is available through plug-ins. OpenSesame can be used in combination with existing software for creating experiments.",
+  issn="1554-3528",
+  doi="10.3758/s13428-011-0168-7",
+  url="https://doi.org/10.3758/s13428-011-0168-7"
+}
+
+
+@incollection{fodor2019center,
+  title={Center-Embedded Sentences: An Online Problem or Deeper?},
+  author={Fodor, Janet~Dean and Macaulay, Benjamin and Ronkos, Danielle and Callahan, Tally and Peckenpaugh, Tyler},
+  booktitle={Grammatical Approaches to Language Processing},
+  pages={11--28},
+  year={2019},
+  publisher={Springer}
+}
+@unpublished{qp2,
+  author = "Tyler Peckenpaugh",
+  title = "Interrogative context and {PP}-attachment ambiguities",
+  note = "Second qualifying paper, The Graduate Center, CUNY",
+  year = "2016"
+}
+@article{goldman1961-pa,
+  title={The distribution of pause durations in speech},
+  author={Frieda Goldman{-}Eisler},
+  journal={Language and Speech},
+  volume={4},
+  number={4},
+  pages={232--237},
+  year={1961},
+  publisher={SAGE Publications Sage UK: London, England}
+}
+@article{jacewicz2010-sr,
+  title={Between-speaker and within-speaker variation in speech tempo of American English},
+  author={Jacewicz, Ewa and Fox, Robert Allen and Wei, Lai},
+  journal={The Journal of the Acoustical Society of America},
+  volume={128},
+  number={2},
+  pages={839--850},
+  year={2010},
+  publisher={ASA}
+}
+
+
+@article{lehiste1973phonetic,
+  title={Phonetic disambiguation of syntactic ambiguity},
+  author={Lehiste, Ilse},
+  journal={The Journal of the Acoustical Society of America},
+  volume={53},
+  number={1},
+  pages={380--380},
+  year={1973},
+  publisher={ASA}
+}
+
+@incollection{selkirk2011-hp,
+  title={The syntax-phonology interface},
+  author={Selkirk, Elisabeth~O.},
+  journal={The handbook of phonological theory},
+  volume={2},
+  pages={435--483},
+  year={2011},
+  publisher={Oxford: Blackwell Publishing},
+  editor      = "John Goldsmith and Jason Riggle and Alan Yu",
+  booktitle   = "The Handbook of Phonological Theory",
+}
+@article{bever1970,
+  title={The cognitive basis for linguistic structures},
+  author={Bever, Thomas~G.},
+  journal={Cognition and the development of language},
+  volume={279},
+  number={362},
+  pages={1--61},
+  year={1970}
+}
+
+@article{cliftonEtAl1991,
+  title={Parsing arguments: Phrase structure and argument structure as determinants of initial parsing decisions},
+  author={Clifton, Jr., Charles and Speer, Shari and Abney, Steven~P.},
+  journal={Journal of Memory and Language},
+  volume={30},
+  number={2},
+  pages={251--271},
+  year={1991},
+  publisher={Elsevier}
+}
+
+@article{raynerEtAl1983,
+  title={The interaction of syntax and semantics during sentence processing: Eye movements in the analysis of semantically biased sentences},
+  author={Rayner, Keith and Carlson, Marcia and Frazier, Lyn},
+  journal={Journal of verbal learning and verbal behavior},
+  volume={22},
+  number={3},
+  pages={358--374},
+  year={1983},
+  publisher={Elsevier}
+}
+
+@ARTICLE{gmm1,
+	Author = {Falk, Tiago~H. and Chan, Wai-Yip},
+	Date-Added = {2019-04-15 13:16:24 -0400},
+	Date-Modified = {2019-04-15 13:16:24 -0400},
+	Isbn = {1070-9908},
+	Journal = {IEEE Signal Processing Letters},
+	Number = {2},
+	Pages = {108--111},
+	Publisher = {IEEE},
+	Title = {Nonintrusive speech quality estimation using Gaussian mixture models},
+	Ty = {JOUR},
+	Volume = {13},
+	Year = {2006}
+}
+
+@BOOK{Frazier1979-pb,
+  title    = "On Comprehending Sentences: Syntactic Parsing Strategies",
+  author   = "Frazier, Lyn",
+  year     =  1979,
+  language = "en"
+}
+
+@MISC{Truckenbrodt1999-vd,
+  title   = "On the Relation between Syntactic Phrases and Phonological Phrases",
+  author  = "Truckenbrodt, Hubert",
+  journal = "Linguistic Inquiry",
+  volume  =  30,
+  number  =  2,
+  pages   = "219--255",
+  year    =  1999
+}
+
+@MISC{Prince1993-ic,
+  title   = "Optimality Theory: Constraint Interaction in Generative Grammar",
+  author  = "Prince, Alan and Smolensky, Paul",
+  journal = "Optimality Theory in Phonology",
+  pages   = "1--71",
+  year    =  1993
+}
+
+@ARTICLE{Beckman1997-eu,
+  title   = "Guidelines for {ToBI} labelling",
+  author  = "Beckman, Mary~E. and Ayers, Gayle",
+  journal = "The OSU Research Foundation",
+  volume  =  3,
+  pages   = "30",
+  year    =  1997
+}
+
+@incollection{Bader1998-ts,
+  title={Prosodic influences on reading syntactically ambiguous sentences},
+  author={Bader, Markus},
+  booktitle={Reanalysis in sentence processing},
+  pages={1--46},
+  year={1998},
+  publisher={Springer}
+}
+
+@INPROCEEDINGS{Fodor2002-io,
+  title     = "Psycholinguistics cannot escape prosody",
+  booktitle = "Speech Prosody 2002, International Conference",
+  author    = "Fodor, Janet Dean",
+  year      =  2002
+}
+
+@MISC{Hedberg2017-er,
+  title   = "The meaning of intonation in yes-no questions in American English:
+             A corpus study",
+  author  = "Hedberg, Nancy and Sosa, Juan~M. and Görgülü, Emrah",
+  journal = "Corpus Linguistics and Linguistic Theory",
+  volume  =  13,
+  number  =  2,
+  pages   = "321--368",
+  year    =  2017
+}
+
+@BOOK{Selkirk1986-hc,
+  title     = "Phonology and Syntax: The Relation Between Sound and Structure",
+  author    = "Selkirk, Elisabeth~O.",
+  abstract  = "A fundamentally new approach to the theory of phonology and its
+               relation to syntax is developed in this book, which is the first
+               to address the question of the relation between syntax and
+               phonology in a systematic way.This general theory differs from
+               its predecessors in the generative tradition in several
+               respects. By arguing that the intonational structure of a
+               sentence determines certain aspects of its stress pattern or
+               rhythmic structure, and not vice versa, it provides a novel view
+               of the intonation-stress relation. It also offers a new theory
+               of the focus-prosody relation that solves a variety of classic
+               puzzles and involves an appeal to the place of a focused
+               constituent in the predicate-argument structure of the sentence.
+               The book also includes other novel features, among them a
+               development of the metrical grid theory of stress (including a
+               complete treatment of English word stress in this framework),
+               the representation of juncture in terms of ``silent'' positions
+               in the metrical grid (with a treatment of sandhi in terms of
+               this rhythmic juncture), and a ``rhythmic'' nonsyntactic
+               approach to the basic phonology of function words in
+               EnglishElisabeth 0. Selkirk is Professor of Linguistics at the
+               University of Massachusetts, Amherst. This book is tenth in the
+               series, Current Studies in Linguistics.",
+  publisher = "MIT Press (MA)",
+  month     =  jan,
+  year      =  1986,
+  language  = "en"
+}
+
+@MISC{Kjelgaard1999-xd,
+  title   = "Prosodic Facilitation and Interference in the Resolution of
+             Temporary Syntactic Closure Ambiguity",
+  author  = "Kjelgaard, Margaret M and Speer, Shari~R",
+  journal = "Journal of Memory and Language",
+  volume  =  40,
+  number  =  2,
+  pages   = "153--194",
+  year    =  1999
+}
+
+@ARTICLE{Cuetos1988-tm,
+  title    = "Cross-linguistic differences in parsing: restrictions on the use
+              of the Late Closure strategy in Spanish",
+  author   = "Cuetos, F and Mitchell, D~C",
+  journal  = "Cognition",
+  volume   =  30,
+  number   =  1,
+  pages    = "73--105",
+  month    =  oct,
+  year     =  1988,
+  language = "en"
+}
+
+
+@MISC{Frazier1998-uk,
+  title  = "Journal of Psycholinguistic Research",
+  author = "Frazier, Lyn",
+  volume =  27,
+  number =  2,
+  pages  = "123--146",
+  year   =  1998
+}

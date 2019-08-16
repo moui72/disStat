@@ -1,0 +1,27 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1563133650102.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "A63E8BC4",
+    "lastKnownWriteTime" : 1565910301,
+    "last_content_update" : 1565910301,
+    "path" : "~/GitHub/disStat/drafts/2-background.Rmd",
+    "project_path" : "drafts/2-background.Rmd",
+    "properties" : {
+        "cursorPosition" : "321,0",
+        "docOutlineVisible" : "1",
+        "ignored_words" : "Fodor,ldquo,rdquo,uar,GCat,PCat,formedness,mis,emsp,mech,XPs,modTree,argTree,CallHome,hc,BinMin,Optimality\n",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

@@ -1,0 +1,4 @@
+"0","comp <- anova(irt.full,irt.noRand)"
+"0","row.names(comp) <- c(""No random effects"", ""Full"")"
+"0",""
+"0","kable(comp,caption=""Full model vs. no random effects"",col.names=cols,escape=F)"

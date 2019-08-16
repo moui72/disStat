@@ -1,0 +1,8 @@
+"0","raw_rs_file <- read_csv(""../csvs/merged.csv"")"
+"0","raw_rs <- subset(raw_rs_file,!isFiller & Leading < 15000)"
+"0","raw_rs$reading <- raw_rs$Reading"
+"0","raw_rs$Reading <- ifelse(raw_rs$reading == 1, ""Cold"", ""Previewed"")"
+"0","ggplot(raw_rs, aes(Leading, fill = Reading)) +"
+"0","  geom_histogram(binwidth = 400,position=""dodge"",color=""black"") +"
+"0","  scale_fill_manual(values=c(""black"",""white"")) +"
+"0","  ggtitle(""Distribution of delay by reading"", subtitle = ""Bin size = 400ms"")"

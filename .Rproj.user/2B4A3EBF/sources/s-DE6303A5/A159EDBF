@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1563133277656.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "A159EDBF",
+    "lastKnownWriteTime" : 1565298186,
+    "last_content_update" : 1565298186367,
+    "path" : "~/GitHub/disStat/drafts/3-method.Rmd",
+    "project_path" : "drafts/3-method.Rmd",
+    "properties" : {
+        "cursorPosition" : "442,0",
+        "docOutlineSize" : "120",
+        "docOutlineVisible" : "1",
+        "ignored_words" : "dcb,dcbp,upsamp,csv,dr,sp,del,Sona,irt,intra,appExp,appFill,addlinespace,irb,irtDis,png,foveal,saccades,ballistically,saccadic,dtcs,rccc,evsdtcr,json,csvs,sita,Intra\n",
+        "last_setup_crc32" : "",
+        "scrollLine" : "347"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

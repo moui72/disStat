@@ -1,0 +1,7 @@
+"0","pdom <- xtabs(~condition+pdom,data=mdata)%>% prop.table(margin=1)"
+"0","pdom.r1 <- xtabs(~condition+pdom,data=subset(mdata,Reading==1))%>% prop.table(margin=1)"
+"0","pdom.r2 <- xtabs(~condition+pdom,data=subset(mdata,Reading==2))%>% prop.table(margin=1)"
+"0",""
+"0","odom <- xtabs(~condition + odom ,data=mdata) %>% prop.table(margin=1)"
+"0","odom.r1 <- xtabs(~condition + odom,data=subset(mdata,Reading==1))%>% prop.table(margin=1)"
+"0","odom.r2 <- xtabs(~condition + odom,data=subset(mdata,Reading==2))%>% prop.table(margin=1)"

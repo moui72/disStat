@@ -1,0 +1,138 @@
+---
+title: "_results_salvage"
+author: "Tyler Peckenpaugh"
+date: "6/11/2019"
+output: html_document
+---
+
+# q in filler models
+
+```{r}
+library(readr)
+library(lme4)
+irt_fillers <- subset(read_csv("export/all_data.csv"), isFiller)
+mean.irtByQ <- aggregate(
+  irt_fillers$irt, 
+  by=list("Q"=irt_fillers$Condition_Q),
+  FUN=mean
+)
+mean.irtByPP <- aggregate(
+  irt_fillers$irt, 
+  by=list("+PP"=irt_fillers$Condition_GP),
+  FUN=mean
+)
+mean.irtByQnPP <- aggregate(
+  irt_fillers$irt, 
+  by=list("Q"=irt_fillers$Condition_Q,"+PP"=irt_fillers$Condition_GP),
+  FUN=mean
+)
+fillerModel.q <- lmer(
+  irt ~ Condition_Q + (1 |Participant) + (1 |Item), 
+  data=irt_fillers, 
+  REML=F
+)
+fillerModel.pp <- lmer(
+  irt ~ Condition_GP + (1 |Participant) + (1 |Item), 
+  data=irt_fillers, 
+  REML=F
+)
+fillerModel <- lmer(
+  irt ~ Condition_Q * Condition_GP + (1|Participant) + (1 |Item), 
+  data=irt_fillers,
+  REML=F
+)
+fillerModel.ppNoInt <- lmer(
+  irt ~ Condition_Q + Condition_GP + (1|Participant) + (1 |Item), 
+  data=irt_fillers,
+  REML=F
+)
+```
+# old dom tab
+
+```{r domsetup}
+pdom <- xtabs(~condition+pdom,data=mdata)%>% prop.table(margin=1)
+pdom.r1 <- xtabs(~condition+pdom,data=subset(mdata,Reading==1))%>% prop.table(margin=1)
+pdom.r2 <- xtabs(~condition+pdom,data=subset(mdata,Reading==2))%>% prop.table(margin=1)
+
+odom <- xtabs(~condition + odom ,data=mdata) %>% prop.table(margin=1)
+odom.r1 <- xtabs(~condition + odom,data=subset(mdata,Reading==1))%>% prop.table(margin=1)
+odom.r2 <- xtabs(~condition + odom,data=subset(mdata,Reading==2))%>% prop.table(margin=1)
+```
+
+```{r domtab}
+
+# todo -- both readings, 1 break per table, just dom
+pp1domn <- cbind(pdom.r1,pdom.r2)* 100
+objdomn <- cbind(odom.r1,odom.r2)* 100
+domtab<-cbind(pp1domn,objdomn)
+kable(
+  domtab, 
+  caption="Break dominance (%) by condition",
+  col.names=c(rep(c("Not dominant", "Dominant"), 4)),
+  align="c",
+  digits=1
+) %>%
+  add_header_above(c(" "=1,rep(c("Reading 1" = 2, "Reading 2" = 2),2))) %>%
+  add_header_above(c(" "=1,c("PP1" = 4, "OBJ" = 4))) %>%
+  column_spec(5,border_right = 1) %>%
+  kable_styling(latex_options = c("hold_position"))
+```
+
+# old pros table
+
+Table \ref{tab:pp1gp} shows the presence of OBJ and PP1 breaks by condition for both readings of the experimental item recordings.
+
+```{r byGPall}
+
+
+pp1tab<-xtabs(PP1 ~ Condition_GP + Condition_Q, data=mdata)
+objtab<-xtabs(OBJ ~ Condition_GP + Condition_Q, data=mdata)
+tot<-as.data.frame(xtabs( ~ Condition_GP + Condition_Q, data=mdata))
+
+
+pp1<-as.data.frame(pp1tab)
+pp1$tot<-tot$Freq
+pp1$pct <- pp1$Freq/pp1$tot
+pp1$pretty <- paste0(
+  pp1$Freq, 
+  " (", 
+  sprintf("%.1f",pp1$pct * 100), 
+  "%)"
+)
+pp1disp <- pp1 %>%
+  subset(select=c(
+    "Condition_GP",
+    "Condition_Q",
+    "pretty"
+  )) %>% 
+  spread(Condition_Q,pretty)
+
+obj<-as.data.frame(objtab)
+obj$tot<-tot$Freq
+obj$pct <- obj$Freq/obj$tot
+obj$pretty <- paste0(
+  obj$Freq, 
+  " (", 
+  sprintf("%.1f",obj$pct * 100), 
+  "%)"
+)
+objdisp <- obj %>%
+  subset(select=c(
+    "Condition_GP",
+    "Condition_Q",
+    "pretty"
+  )) %>% 
+  spread(Condition_Q,pretty)
+
+pp1obj <- cbind(pp1disp,objdisp[2:3])
+pp1obj[[1]] <- c("+GP","-GP")
+```
+```{r pp1gp}
+
+kable(
+  pp1obj,
+  caption="Percentage of recordings containing PP1/OBJ break by condition",
+  col.names = c("", "D", "Q","D", "Q")
+) %>% 
+  add_header_above(c(" "=1,"PP1 Break"=2,"OBJ Break"=2)) %>% kable_styling(latex_options = c("hold_position"))
+```

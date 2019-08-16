@@ -1,0 +1,132 @@
+"0","adata<-mdata"
+"0","if(!""reading"" %in% names(adata)){"
+"0","  adata$reading <- adata$Reading"
+"0","}"
+"0","loadfonts(device=""win"")"
+"2","Arial Black already registered with windowsFonts().
+"
+"2","Arial already registered with windowsFonts().
+"
+"2","Bahnschrift already registered with windowsFonts().
+"
+"2","Calibri already registered with windowsFonts().
+"
+"2","Calibri Light already registered with windowsFonts().
+"
+"2","Cambria already registered with windowsFonts().
+"
+"2","Candara already registered with windowsFonts().
+"
+"2","Comic Sans MS already registered with windowsFonts().
+"
+"2","Consolas already registered with windowsFonts().
+"
+"2","Constantia already registered with windowsFonts().
+"
+"2","Corbel already registered with windowsFonts().
+"
+"2","Courier New already registered with windowsFonts().
+"
+"2","Digital-7 Mono already registered with windowsFonts().
+"
+"2","Ebrima already registered with windowsFonts().
+"
+"2","Franklin Gothic Medium already registered with windowsFonts().
+"
+"2","Gabriola already registered with windowsFonts().
+"
+"2","Gadugi already registered with windowsFonts().
+"
+"2","Georgia already registered with windowsFonts().
+"
+"2","HoloLens MDL2 Assets already registered with windowsFonts().
+"
+"2","Impact already registered with windowsFonts().
+"
+"2","Ink Free already registered with windowsFonts().
+"
+"2","Javanese Text already registered with windowsFonts().
+"
+"2","Leelawadee UI already registered with windowsFonts().
+"
+"2","Leelawadee UI Semilight already registered with windowsFonts().
+"
+"2","Lucida Console already registered with windowsFonts().
+"
+"2","Lucida Sans Unicode already registered with windowsFonts().
+"
+"2","Malgun Gothic already registered with windowsFonts().
+"
+"2","Malgun Gothic Semilight already registered with windowsFonts().
+"
+"2","Marlett already registered with windowsFonts().
+"
+"2","Microsoft Himalaya already registered with windowsFonts().
+"
+"2","Microsoft Yi Baiti already registered with windowsFonts().
+"
+"2","Microsoft New Tai Lue already registered with windowsFonts().
+"
+"2","Microsoft PhagsPa already registered with windowsFonts().
+"
+"2","Microsoft Sans Serif already registered with windowsFonts().
+"
+"2","Microsoft Tai Le already registered with windowsFonts().
+"
+"2","Mongolian Baiti already registered with windowsFonts().
+"
+"2","MV Boli already registered with windowsFonts().
+"
+"2","Myanmar Text already registered with windowsFonts().
+"
+"2","Nirmala UI already registered with windowsFonts().
+"
+"2","Nirmala UI Semilight already registered with windowsFonts().
+"
+"2","Palatino Linotype already registered with windowsFonts().
+"
+"2","Segoe MDL2 Assets already registered with windowsFonts().
+"
+"2","Segoe Print already registered with windowsFonts().
+"
+"2","Segoe Script already registered with windowsFonts().
+"
+"2","Segoe UI already registered with windowsFonts().
+"
+"2","Segoe UI Light already registered with windowsFonts().
+"
+"2","Segoe UI Semibold already registered with windowsFonts().
+"
+"2","Segoe UI Semilight already registered with windowsFonts().
+"
+"2","Segoe UI Black already registered with windowsFonts().
+"
+"2","Segoe UI Emoji already registered with windowsFonts().
+"
+"2","Segoe UI Historic already registered with windowsFonts().
+"
+"2","Segoe UI Symbol already registered with windowsFonts().
+"
+"2","SimSun-ExtB already registered with windowsFonts().
+"
+"2","Sylfaen already registered with windowsFonts().
+"
+"2","Symbol already registered with windowsFonts().
+"
+"2","Tahoma already registered with windowsFonts().
+"
+"2","Times New Roman already registered with windowsFonts().
+"
+"2","Trebuchet MS already registered with windowsFonts().
+"
+"2","Verdana already registered with windowsFonts().
+"
+"2","Webdings already registered with windowsFonts().
+"
+"2","Wingdings already registered with windowsFonts().
+"
+"0","adata$Reading <- paste(""Reading"", adata$reading)"
+"0",""
+"0","pdata <- subset(adata, r1DelCat != ""NORMAL"")"
+"2","Error in eval(e, x, parent.frame()) : object 'r1DelCat' not found
+"

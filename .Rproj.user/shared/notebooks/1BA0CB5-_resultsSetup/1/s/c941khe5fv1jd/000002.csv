@@ -1,0 +1,5 @@
+"0","irt_data$ID <- paste0(irt_data$Participant,""-"",irt_data$Item)"
+"0","mdata$ID <- paste0(mdata$SID,""-"",mdata$IID)"
+"0",""
+"0","irt_data <- subset(irt_data, ID %in% mdata$ID)"
+"0","mdata <- subset(mdata,ID %in% irt_data$ID)"

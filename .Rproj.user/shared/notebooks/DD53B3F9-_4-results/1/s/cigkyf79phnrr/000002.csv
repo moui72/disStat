@@ -1,0 +1,5 @@
+"0","kable("
+"0","  meansByConditionS, "
+"0","  caption = ""Means (s) by condition"","
+"0","  digits = 2"
+"0",")%>% kable_styling(latex_options = ""hold_position"")"

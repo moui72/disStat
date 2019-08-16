@@ -1,0 +1,32 @@
+
+
+### Difference in delay across paired readings
+
+Overall, each recording pair (n = `r diffDis$n`) has a mean difference in delay (DelDif = previewed delay - cold delay) of `r round(diffDis$mean/1000,1)`s (sd = `r round(diffDis$sd/1000,1)`s), with a minumum of `r round(diffDis$min/1000,1)`s and a max of `r round(diffDis$max/1000,1)`s. The median DelDif is `r round(diffDis$median/1000,1)`s. The distribution DelDif is shown in Figure \ref{fig:deddif}.
+
+```{r deddif, fig.cap="Distribution of DelDif"}
+ggplot(na.omit(diffs), aes(diffs)) +
+  geom_histogram(binwidth = 250,color="white",fill="black") +
+  labs(x="Difference in delay", y="Count",
+       title="Distribution of difference in delay", subtitle="Bin width = 250ms")
+```
+
+If we calculate the mean delay difference by participant, we find a mean participant DelDef of `r round(diffsByP.props$mean/1000,1)`s. Each participant's DelDif is &le; `r diffsByP.props$min`ms and &ge; `r round( diffsByP.props$max/1000,1)`s, with a median of `r round(diffsByP.props$median/1000,2)`s. Table \ref{tab:difsbyp} shows these values.
+
+```{r difsbyp}
+kable(
+  diffsByP[order(diffsByP[,2]),],
+  row.names=F,
+  digits = 0,
+  caption="Delay differences by participant",
+  longtab=T
+)%>% kable_styling(latex_options = c("hold_position", "repeat_header"))
+```
+
+The distribution of the participants' DelDifs can be found in Figure \ref{fig:difhistbyp}.
+
+```{r difhistbyp, fig.cap="Mean difference in delay by participant"}
+ggplot(diffsByP, aes(`Mean difference in delay (ms)`/1000)) +
+  geom_histogram(binwidth = 0.5,color="white",fill="black") +
+  labs(x="Mean difference in delay", y="Count",title="Mean difference in delay by participant", subtitle="Bin size = 0.5s")
+```

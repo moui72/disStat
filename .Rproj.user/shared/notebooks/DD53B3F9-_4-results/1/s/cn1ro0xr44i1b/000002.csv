@@ -1,0 +1,4 @@
+"0","both.pp1Mod<- glmer(PP1~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=mdata,family=binomial)"
+"0","both.objMod<- glmer(OBJ~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=mdata,family=binomial)"
+"0","both.pdomMod<- glmer(pdom~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=mdata,family=binomial)"
+"0","both.odomMod<- glmer(odom~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=mdata,family=binomial)"
