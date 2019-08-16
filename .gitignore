@@ -8,3 +8,4 @@ recordings*
 *.rdx
 *.RData
 *.rds
+.Rproj.user

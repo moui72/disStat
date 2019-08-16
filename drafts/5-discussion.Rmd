@@ -38,7 +38,7 @@ theme_set(
     )
 )
 ccombo <- read_csv("export/ccombo.csv")
-rownames(ccombo)<-c("Both", "OBJ", "PP1")
+rownames(ccombo)<-c("Both", "OBJ break only", "PP1 break only")
 ```
 # General discussion
 
@@ -81,10 +81,10 @@ To be more explicit, for this explanation to work, the prosodic structures in @d
 
 The prosodic structure of @dhi does not mandate any major break, because there is no change in syntactic branching directory and no other reason to mandate a break there. That is, the PP1 break differentiates the two syntactic structures and signals the attachment site of PP2. 
  
-For the interrogatives, though, this contrast is obscured by the need to apply a rising prosodic contour over the final nuclear accent in the sentence: i.e., PP2, resulting in not a change in syntactic branching direction, but the anticipation of a tonal change, which might sound very similar to a prosodic break. The symbol "\uparrow" indicates the start of the rising contour.
+For the interrogatives, though, this contrast is obscured by the need to apply a rising prosodic contour over the final nuclear accent in the sentence: i.e., PP2, resulting in not a change in syntactic branching direction, but the anticipation of a tonal change, which might sound very similar to a prosodic break. The symbol "$\Uparrow$" indicates the start of the rising contour.
 
-  (@qlo) *Q+GP*: Had he crammed [~OBJ~ the newspapers] [~PP1~ under the sofa] % [~PP2~ into the \uparrow trashcan]?
-  (@qhi) *Q-GP*: Had he crammed [~OBJ~ the newspapers] [~PP1~ under the sofa] [~PP2~ in the \uparrow guestroom]?
+  (@qlo) *Q+GP*: Had he crammed [~OBJ~ the newspapers] [~PP1~ under the sofa] % [~PP2~ into the $\Uparrow$ trashcan]?
+  (@qhi) *Q-GP*: Had he crammed [~OBJ~ the newspapers] [~PP1~ under the sofa] [~PP2~ in the $\Uparrow$ guestroom]?
 
 The critical issue here is that in (@qhi), the absence of a syntactically-motivated break might be obscured by the hesitation necessitated by preparing to start the final-rising contour of a question two words later. It's not impossible that the need to make the mechanical preparation necessary to execute a rising contour could result in a hesitation or pause at the preceding syntactic juncture most welcoming to it, the PP1 break position. 
 
