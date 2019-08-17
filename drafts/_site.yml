@@ -7,6 +7,8 @@ output:
   bookdown::word_document2: default
   bookdown::pdf_book:
     latex_engine: xelatex  
+    includes:
+      in_header: preamble.tex
   bookdown::gitbook:
     lib_dir: assets
     config:

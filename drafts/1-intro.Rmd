@@ -7,70 +7,398 @@ knitr::opts_chunk$set(
   fig.pos="H"
 )
 ```
+\pagenumbering{arabic}
 <!--
 %Dissertation introduction
 %This is the first content section
 %Previous section: Front matter
 %Following section: Background
 -->
-# Introduction
+# Introduction and background
 
-This paper presents a study on human sentence processing, or parsing, and on the parsing of a particular sort of ambiguity. Parsing is assumed to be the projection of structure by a reader or listener over a string (which obviously lacks inherent structure). Following the sort of model of parsing put forward by, e.g., @kimball1973seven, @frazier1978sausage, and @frazier1996construal, this study assumes that parsing is done online and that most material must be incorporated into the structure being built as soon as it is encountered. This can lead to mis-parses, where the parser has guessed wrong about how to incorporate a given phrase with a temporarily ambiguous structure, and then encounters material that cannot be incorporated into the current structure. When this happens, the parser must discard part or all of its pending structure and try again to incorporate the material encountered so far. This sort of parser crash is often called a garden path.
+\begin{note}
+This section represents a combination of what was the start of chapter 1 (introduction) and the start of chapter 2 (background). It is mostly text you've read, but substantially reorganized, and should be skimmed and discussed.
+\end{note}
 
-The study being reported is concerned with certain sentences that contain such a temporarily ambiguous prepositional phrase (PP1), followed by another PP (PP2) which interferes with what is assumed to be the default interpretation of PP1: as an argument of the verb. The reasons for that assumption are discussed in Section \@ref(mech), but for now it suffices to understand that (@cramiGPy) represents a difficult to comprehend sentence (a garden path), while (@cramiGPn) presents no such difficulty.
+\comment{This paragraph was \P 1 chapter 1}
+This paper presents a study on human sentence processing, or parsing, and on the parsing of a particular sort of ambiguity. Parsing is assumed to be the projection of structure by a reader or listener over a string (which obviously lacks inherent structure). Following the sort of model of parsing put forward by, e.g., @kimball1973seven, @frazier1978sausage, and @frazier1996construal, this study assumes that parsing is done online and that most material must be incorporated into the structure being built as soon as it is encountered. This can lead to mis-parses, where the parser has guessed wrong about how to incorporate a given phrase with a temporarily ambiguous structure, and then encounters material that cannot be incorporated into the current structure. When this happens, the parser must \replaced{reanalyze the material that had so far been processed, in order to come upa structure that can accomodate both the new and old material grammatically}{discard part or all of its pending structure and try again to incorporate the material encountered so far}. This sort of parser crash is \deleted{often} called a garden path.
 
-(@cramiGPy) He had planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ into his briefcase].
+\comment{From here until next note, was introductory section of chapter 2}
+\deleted{As briefly mentioned earlier, }“\replaced{G}{g}arden path effects” occur when a temporarily ambiguous sentence resolves in such a way that the structure initially preferred by the parser is incompatible with how the sentence actually continues. These parsing errors have traditionally been attributed to structurally-focused parsing preferences [@kimball1973seven; @frazier1978sausage; @Frazier1979-pb] that ignore semantic content on the first pass. @Frazier1979-pb formulates several of these, including the following two which are widely accepted in one form or another:
 
-(@cramiGPn) He had planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ of his filing cabinet].
+  (@MinAtt) *Minimal attachment*
+  Attach incoming material into the phrase-marker being constructed using the fewest nodes consistent with the well-formedness rules of the language under analysis [@Frazier1979-pb p.24]
+  
+  (@LateClo) *Late closure*
+  When possible, attach incoming material into the clause currently being parse\added{d} [@Frazier1979-pb p.20]
 
-Before the details of the current research can be outlined, it is first necessary to explain some of the terms and mechanisms involved. This chapter is concerned with doing so.
+Because these strategies ignore semantic and pragmatic plausibility and the parser typically does not know what material might be further on in the string, mis-parses at temporarily ambiguous regions can occur, resulting in garden paths. *Minimal Attachment* is important to this study and will be revisited later on.
 
-## What is a garden path?
+An example is the commonly studied garden path sentence, “The horse raced past the barn fell” [@bever1970]. Here, the initial parse incorrectly assumes that the matrix subject is the unmodified NP the horse, per Minimal Attachment, and takes the matrix verb to be raced, as in the sentence, “The horse raced past the finish line.” 
 
-The occurrence of garden-path (GP) effects are generally attributed to a clash between structure-first parsing strategies, e.g., @Frazier1979-pb's *Minimal Attachment*, and the actual intended structure of the sentence in question.
+  (@hbf) The horse raced past the barn fell [@bever1970]
+      a) [~S~ [~NP~ The horse] [~VP~ raced past the barn]] &emsp; ??? &emsp; [~VP~ fell]
+      b) [~S~ [~NP~ The horse raced past the barn] [~VP~  fell]]
 
-(@ma) **Minimal Attachment**: Attach incoming material into the phrase-marker being constructed using the fewest nodes consistent with the well-formedness rules of the language under analysis [@Frazier1979-pb].
+An attempted parse resulting in structure (@hbf a) crashes, as it is not possible to incorporate the final word fell in a grammatical way. Reanalysis is required, with the grammatical parse being (@hbf b) where the matrix subject is *the horse raced past the barn*, a noun phrase (NP) containing a reduced relative clause *raced past the barn*. Thus *fell* can be incorporated as the matrix verb, with a structure comparable to, “The horse (that was) raced past the barn was hungry.”
 
-If we assume that the parser builds structure by following these types of constraints or rules in a programmatic way, without concern for meaning, it is easy to see how one might end up with a parse that denotes an implausible situation, or even an ungrammatical sentence. An example is the commonly studied garden path sentence, &ldquo;The horse raced past the barn fell,&rdquo; [@bever1970]. Here, the initial parse incorrectly assumes that the matrix subject is the unmodified NP the horse, per *Minimal Attachment*, and takes the matrix verb to be raced, as in the sentence, &ldquo;The horse raced past the finish line.&rdquo;
+\deleted{There is an ongoing debate in the literature about what parsing model best fits the empirical facts. This study follows [@frazier1996construal] in assuming that structure-first parsing strategies are at play, in addition to a primary vs. non-primary relation distinction that determines how immediately a phrase must be incorporated into a parse, allowing for some material to be incorporated later and thereby make use of additional information that is not available for immediate parsing decisions.}
 
+\comment{Back to what was chapter 1, $\P$ 2}
+The study being reported is concerned with certain sentences that contain \deleted{such} a temporarily ambiguous prepositional phrase (PP1), followed by another (PP2) which \replaced{causes the expected parse to crash}{interferes with what is assumed to be the default interpretation of PP1} \added{Specifically, it is expected that PP1 in} (@cramiGPy) \added{will initially be interpreted as the goal of \em{cram}, but that parse will fail when it is realized that PP2 cannot plausibly modify \em{drawer}.}
 
-(@hbf) The horse raced past the barn fell [@bever1970]
-    a) [~S~ [~NP~ The horse] [~VP~ raced past the barn]] &emsp; ??? &emsp; [~VP~ fell]
-    b) [~S~ [~NP~ The horse raced past the barn] [~VP~  fell]]
+\comment{examples moved up slightly}
+(@cramiGPy) He had planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ in\deleted{to} his briefcase].
 
+(@cramiGPn) He had planned to cram the paperwork [~PP1~ in the drawer \deleted{]} [~PP2~ of his filing cabinet]\added{]}.
 
-The attempted parse represented in structure (@hbf) crashes, as it is not possible to incorporate the final word fell in a grammatical way. In order to obtain the grammatical parse, (@hbf b) where the matrix subject is the horse raced past the barn, almost the entire structure of (@hbf a) must be discarded. The subject is not the horse, and the main verb is not raced. Rather, the subject is a noun phrase (NP) containing a reduced relative clause raced past the barn. Only after remediation can fell be properly incorporated as the matrix verb. This finally results in a grammatical sentence, with a structure comparable to, "The horse (that was) raced past the barn was hungry." Garden-path effects can result any time the assumptions made by the parser clash with the actual structure of a sentence. 
+This contrasts with the similar sentence in (@cramiGPn) where PP2 can plausibly modify *drawer* and so the parse where *in the drawer* is the goal argument is accepted and *of his filing cabinet* is incoporated as a modifier within PP1.}{: as an argument of the verb. The reasons for that assumption are discussed in Section \@ref(mech), but for now it suffices to understand that (@cramiGPy) represents a difficult to comprehend sentence (a garden path), while (@cramiGPn) presents no such difficulty.}
 
-## PP-attachment garden paths
+((examples were here))
 
-The type of garden-path sentence that this study is concerned with centers around the temporarily ambiguous attachment sites for a prepositional phrase (PP). Consider:
+\deleted{Before the details of the current research can be outlined, it is first necessary to explain some of the terms and mechanisms involved. This chapter is concerned with doing so.}
 
-(@cramGPy) He had planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ into his briefcase].
+\begin{note}
+Sections 1.1 and 1.2 are redundant and have been removed. They are incorporated into the above.
+\end
 
-(@cramGPn) He had planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ of his filing cabinet].
+## Motivations for the current {#obs}
 
-The sentences in (@cramGPy) and (@cramGPn) contain a temporary ambiguity with regard to the attachment site of *in the drawer* (PP1). It can either attach as an argument of the verb (i.e., *the paperwork* is being crammed *in the drawer*), or else as a modifier of the direct object (i.e., *the paperwork in the drawer* is being crammed *into his briefcase*). Sentence (@cramGPy) differs from (@cramGPn) in the ultimate resolution of that ambiguity, although in both cases PP1 is ambiguous until the preposition heading PP2 (*into* or *of*) is encountered.
+\comment{Adapted from what was \S 1.3}
 
-In (@cramGPy), PP1 must ultimately attach as the goal argument of the verb, in order for a plausible parse to be obtained. This is likely to cause some difficulty for the reader or listener of the sentence, if structure-first parsing strategies like *Minimal Attachment* are obeyed. The parser will have attached PP1 as the verb's goal argument, not knowing PP2 was to come. The resulting parse crashes, because with PP1 filling the goal argument slot, PP2 has nowhere to attach but as a modifier of the noun in PP1 (\*[~NP~ *the drawer into his briefcase*]), or else as a modifier of the verb/sentence (\*[~VP~ *he did so into his briefcase*]), neither of which is grammatical. The preference for VP attachment of PP1 in these kinds of sentences is supported by experimental data in studies like, e.g., @raynerEtAl1983 and @cliftonEtAl1991
+\added{The current study was initially motivated by an observation discovered by Janet Dean Fodor and Dianne Bradley, and originally reported in @qp2. That observation is that a garden path sentence like} (@cramiGPy) \added{repeated here as} (@dec) \added{is, for whatever reason, not as difficult to process when presented as an interrogative, as in} (@intr), \replaced{rather than a declarative.}{These attachment ambiguities which are difficult to parse in the declarative, appear to be less difficult to parse when presented in polar interrogative context. Consider again the somewhat difficult to process sentence in (@cramiGPy), repeated below as (@dec) for convenience.}
 
-The other sentence, (@cramGPn), should not represent any difficulty. In that case, PP1 can, and in fact must, attach as the goal argument, since the subsequent PP *of her filing cabinet* cannot plausibly attach as a sentential modifier, nor a verbal argument or modifier, and the sentence is incomplete without a goal argument of *cram*. By examining these sentences, the study proposed aims to expand understanding of human sentence processing in general, and specifically the relationship between syntactic structure and prosodic structure. Further, this will explore any contrast there might be in the impact of declarative and interrogative contexts on parsing, which has been under studied.
+  (@dec) He had planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ in\deleted{to} his briefcase].
 
-## An observation {#obs}
+  (@intr) Had he planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ in\deleted{to} his briefcase]?
 
-These attachment ambiguities which are difficult to parse in the declarative, appear to be less difficult to parse when presented in polar interrogative context. Consider again the somewhat difficult to process sentence in (@cramGPy), repeated below as (@dec) for convenience.
+@qp2 \added{attempted to find a behavioral correlate of this intuition by looking at variation in reading time of sentence like} (@dec) and (@intr), \added{but the results were inconclusive. The current study continues that line of research by looking at similar sentences, while also attempting to control additional factors that may have led to} @qp2's \added{inconclusive results. One such concern is that} (@dec) \added{relies on the implausibility of a drawer within a briefcase, i.e., real world knowledge, in order to disambiguated the appropriate attachment sites for PP1 and PP2. Real world knowledge and beliefs of what is or is not plausible varies between speakers and may not always be reliable as a trigger for reanalysis. The current study makes use of carefully constructed sentences (the criteria by which they were constructed is detailed in Section \@ref(mat)) which do not rely on plausibility or pragmatics to disambiguated the PP attachment sites, but instead make use of syntactic disambiguation by including a PP2 that cannot grammatically be incorporated into PP1, as in} (@syndis).
 
-  (@dec) He had planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ into his  briefcase].
+  (@syndis) He had planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ *into* his briefcase].
+  
+\added{The change from pragmatically disambiguation to syntactic disambiguation creates an important distinction between the original observation in} @qp2 \added{and what the current study is considering. It cannot be assumed that the intuition about} (@dec) vs. (@intr) \added{necessarily extends to cases like} (@syndis), \added{and so one of the questions the current study asks is whether the intuition can be shown to extend to syntactically disambiguated cases that are similar to the pragmatically disambiguated cases for which the observation was first made. In order to keep clear this fine but important difference, a convention is adopted throughout this document where the intuited amelioration of the garden path effect in pragmatically disambiguated cases is referred to as the 2016 intuition, while the possiblity that the intuition extends to syntactically disambiguated cases is referred to as the current hypothesis.}
 
-The mechanics of this garden path are discussed in section \@ref(mech). The point to consider here is that, according to the intuition of many native speakers of American English, the difficulty of (@dec) is at least somewhat lessened in (@intr):
+\comment{these are new to this chapter, but are taken from the discussion chapter, where we discussed them}
+  (@intui) *The \added{2016} intuition:* Certain pragmatically disambiguated prepositional phrase (PP) attachment ambiguities which are difficult to parse in the declarative are less difficult to parse when presented as yes-no interrogatives (e.g., Jed crammed the newspapers under the sofa in the trashcan).
+  
+  (@hypoi) *The current hypothesis:* The intuition may be extensible to PP attachment ambiguities that are syntactically disambiguated in addition to those that are pragmatically disambiguated (e.g., Had he planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ into his briefcase]?).
 
-  (@intr) Had he planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ into his briefcase]?
+\deleted{While both sentences contain a temporary ambiguity for the attachment of PPs occurring in string-linear sequence at the end of an utterance, it is more likely in (@intr) that a listener or reader will come away with a plausible interpretation on the first try. This study explores the factors involved in why that is, and seeks to uncover a behavioral correlate of this intuition. If the existence and mechanics of this effect can be pinned down, it will lend insight into what information the parser has access to when making decisions, or when repairing broken parses. This initial observation reveals a robust program of research with many interwoven questions.}
 
-That is, while both sentences contain a temporary ambiguity for the attachment of PPs occurring in string-linear sequence at the end of an utterance, it is more likely in (@intr) that a listener or reader will come away with a plausible interpretation on the first try. This study explores the factors involved in why that is, and seeks to uncover a behavioral correlate of this intuition. If the existence and mechanics of this effect can be pinned down, it will lend insight into what information the parser has access to when making decisions, or when repairing broken parses. This initial observation reveals a robust program of research with many interwoven questions. 
+\replaced{In addition to exploring the possible extensibility of the 2016 intuition, the current study is interested in}{One might also ask} what property or properties of polar questions might lead to an easier parsing of garden paths, or at least to the perception that they are easier to parse \replaced{when compared to}{as polar questions than as} declaratives. Because there are minimal differences between the polar question and declarative version of \replaced{declarative versions of these sentences}{a given sentence}, it is \replaced{fairly easy}{reasonable} to assume that the cause lies in one of two domains: the prosodic changes triggered by the use of question intonation, or the pragmatic and semantic properties that are not shared across the versions. 
 
-One of the many questions is: does there exist some behavior that is correlated with the intuitive reduction in difficulty of parsing sentences like (@intr) as opposed to (@dec) that can be measured? @qp2 represents one attempt to find such a correlate, and this paper continues that search.
-
-One might also ask what property or properties of polar questions might lead to an easier parsing of garden paths, or at least to the perception that they are easier to parse as polar questions than as declaratives. Because there are minimal differences between the polar question and declarative version of a given sentence, it is fairly easy to assume that the cause lies in one of two domains: the prosodic changes triggered by the use of question intonation, or the pragmatic and semantic properties that are not shared across the versions. 
-
-An obvious reflex of the former possibility is another question: how are the various versions of these sentences actually pronounced? This question is deceptively difficult to answer; the reported study seeks to answer it, but while the recordings collected provide some insight, more work is likely needed to satisfactorily provide an answer.
+An obvious reflex of the former possibility is another question: how are the various versions of these sentences actually pronounced\added{, prosodically}? \deleted{This question is deceptively difficult to answer;} \replaced{T}{t}he reported study seeks to answer it, but while the recordings collected provide some insight, more work is likely needed to satisfactorily provide an answer.
 
 Likewise, the latter possibility leads one to wonder: what are the semantic and pragmatic differences between a polar question and its declarative counterpart? This question can be approach in a more theoretical way, and has been to some degree in the literature. That said, it remains to be determined how those properties could lead to an easier parsing process, and whether or not a satisfactory explanation for the intuition at large can be pulled from these differences. 
+
+## Structural overview of the ambiguity relevant to this study {#mech}
+
+\comment{the following is adapted from what was $\S 2.1$}
+\added{The 2016 intuition and the current hypothesis are both concerned with a temporarily ambiguous sequence of PPs at the end of a sentence. This section will discuss what the possible attachment sites for those PPs are and which structures ultimately do and do not work.}
+
+\added{The example in} (@aa) \added{shows a pragmatically disambiguated sentence with an argument-PP2. The initial parse (a) is implausible, resulting in structural reanalysis to the prefereable parse in (b).}
+
+  (@aa) Jed crammed the newspapers under the sofa in the \replaced{wastebasket}{trashcan}. 
+  a) $\#$ … [~VP~ crammed [~NP~ the newspapers]  
+      [~PP1~ under [~NP~ the sofa [~PP2~ in the wastebasket]]]  
+  b) $\checkmark$ … [~VP~ crammed [~NP~ the newspapers [~PP1~ under [~NP~ the sofa ]] 
+      [~PP2~ in the \replaced{wastebasket}{trashcan}]] 
+    *"$\#$" indicates a structure with an implausible reading*
+
+\replaced{The initial parse is expected to be (a) because of}{In parsing (@aa a), there is} a \deleted{fairly strong} bias (due to *Minimal Attachment*, or some variation thereof), which favors a structure where the first PP attaches into the verb phrase (VP) as an argument of the verb, i.e., [~VP~ V NP PP1], which leaves nowhere for the second PP to attach but as a modifier of the noun phrase (NP) inside PP1 ([~PP1~ *under* [~NP~ *the sofa* [~PP2~ *in the trashcan*]]]). This initial parse (@aa a) is pragmatically implausible, as one does not generally find sofas inside wastebaskets. Reanalysis is required to bring about the correct parse (@aa b), where PP1 attaches as an NP modifier of the direct object and so allows PP2 to attach as a VP argument, resulting in a structure such as [~VP~ V [~NP~ N PP1] PP2], i.e., where it is the newspapers under the sofa that are being crammed in the trashcan. 
+
+\added{It is important to be clear on how the sentences of concerned are structured. As a matter of terminology, the current study categorizes the sentences being discussed into two groups based on the status of the PP2 they contain: (a) cases where PP2 is an argument are Arg-type sentences, and (b) cases where PP2 is a modifier are Mod-type sentences. In practice, Arg sentences are garden paths, because PP2 must fill the goal role that PP1 is expected to have filled as just discussed. Mod sentences are not garden paths, because PP2 can modify the NP within PP1 and become part of the goal, and therefore need not disrupt PP1 from being the goal.}
+
+\comment{this example has been moved up}
+  (@pp2t) **PP2 Status**
+    (a) *PP2 Argument* (Arg) \linebreak
+    He had planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ into his briefcase].
+    (b) *PP2 Modifier* (Mod) \linebreak
+    He had planned to cram the paperwork [~PP1~ in the drawer [~PP2~ of his filing cabinet]].
+
+In order for the differing parsing process for (@pp2t a) and (@pp2t b) to be explained by a strictly structurally based model of parsing, certain assumptions \deleted{would} have to be made about the syntax. A simple way to get the explanation to work is to assume that all arguments of a verb are syntactic sisters to the verb, resulting in a three-way branching VP for ditransitive verbs. In this case, in order to avoid postulating extra nodes that would be required for PP1 to be a modifier, *Minimal Attachment* dictates that PP1 should be assumed to fill the argument slot. This is not how modern syntactic theory assumes the structure looks, as three-way branching is proscribed. Figures \@ref(fig:modTree) and \@ref(fig:argTree) show the presumed \deleted{modern} structure[^trees] of these sentence\deleted{, graphically}. 
+
+[^trees]: Note that when the internal structure of an NP is not relevant (no PP is within it) it is not drawn, i.e. [NP newspapers] is shorthand for [NP [N' [N newspapers]]].
+
+\begin{figure}[H]
+  \centering
+  \begin{forest}
+    where n children=0{tier=word,font=\normalsize}{}
+    \footnotesize
+    [\dots
+      [VP 
+        [V' 
+          [V' 
+            [V [cram]] 
+            [DP 
+              [D' 
+                [D [the]] 
+                [NP [newspapers]]
+                ]
+              ]
+            ]
+          ]
+          [PP1
+            [P' 
+              [P [under]] 
+              [DP 
+                [D'
+                  [D [the]] 
+                  [NP
+                    [N'
+                      [N' [N [sofa]]]
+                      [PP2$_{Mod}$
+                        [P'
+                          [P [from]] 
+                          [DP 
+                            [D' 
+                              [D [the]] 
+                              [NP [thrift store]]
+                            ]
+                          ]
+                        ]
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  \end{forest}
+  \caption{Syntactic tree of an illustrative example sentence with an ambiguous PP1 and a modifier-PP2 (Mod).}
+  \label{fig:modTree}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \begin{forest}
+    where n children=0{tier=word,font=\normalsize}{}
+    \footnotesize
+    [\dots
+      [VP 
+        [V' 
+          [V' 
+            [V [cram]] 
+            [DP 
+              [D' 
+                [D [the]] 
+                [NP 
+                  [N' 
+                    [N [newspapers]]
+                  ] 
+                  [PP1 
+                    [P'
+                      [P [under]] 
+                      [DP 
+                        [D' 
+                          [D [the]] 
+                          [NP [sofa]]
+                        ]
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+          [PP2$_{Arg}$
+            [P' 
+              [P [into]] 
+              [DP 
+                [D'
+                  [D [the]] 
+                  [NP [wastebasket]]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  \end{forest}
+  \caption{Syntactic tree of an illustrative example sentence with an ambiguous PP1 and an argument-PP2 (Arg).}
+  \label{fig:argTree}
+\end{figure}
+
+\deleted{Note that}\replaced{T}{t}he most pronounced structural difference between the two structures is that in the sentence with a \added{modifier-}PP2 \replaced{(Mod)}{Modifier} the major disjuncture \deleted{, i.e., change in branching direction,} comes \replaced{fairly}{much} earl\replaced{y}{ier}, just after the object NP *the newspapers*. For the \deleted{Arg} sentences with \added{argument-}PP2s \added{(Arg)}, the \replaced{major disjuncture}{branch direction change} is \deleted{much} later, just after PP1 \added{(}*under the sofa*\added{)}.
+
+\deleted{This paper is not interested in the particularities of syntactic theory, and it also is not necessary to rely on *Minimal Attachment* to make the necessary distinction, though it very likely does play a role. Instead, we can focus on distinction added to parsing theory in Construal [@frazier1996construal]: that of primary vs. non-primary relations.} 
+
+\deleted{This study is focused on the impact of Speech Act, i.e., where a sentence is interrogative (Q) or declarative (D), in a particular sort of garden path. Specifically, it is concerned with garden path sentences containing a temporary ambiguity that centers on the attachment of two prepositional phrases (PPs) occurring in string-linear sequence at the end of an sentence, e.g., “When we saw her, the nanny had seated the cranky little boy [~PP1~ on the swing] [~PP2~ in his stroller].” }
+
+\replaced{It bears mentioning}{Note} that *Minimal Attachment* as defined by [@Frazier1979-pb] is somewhat at odds with recent developments in syntactic theory, e.g., obligatory binary branching [cf. @chomsky2014minimalist, p. 62]. As originally postulated, *Minimal Attachment* \replaced{relies on}{assumes that} a verb with multiple internal arguments incorporat\replaced{es}{ing} each of those arguments as a sister (i.e., a ternary branching structure \comment{new figure: ternary tree} as in \@ref(fig:threetree)). 
+
+\begin{figure}
+  \centering
+  \begin{forest}
+    where n children=0{tier=word,font=\normalsize}{}
+    \footnotesize
+    [VP
+      [V]
+      [DP]
+      [PP]
+    ]
+  \end{forest}
+  \caption{Illustrative syntactic tree of a ternary-branching VP.}
+  \label{fig:threetree}
+\end{figure}
+
+With current theories \added{of syntax} where binary branching is obligatory, two XPs (NP and PP) cannot both be syntactic sisters of the verb, and the structures are assumed to be as shown in the trees presented earlier (Figures \@ref(fig:modTree) and \@ref(fig:argTree)) so it becomes less clear that the VP attachment site for PP1 actually creates fewer nodes than the lower NP attachment site. Nonetheless, the preference for VP attachment in these kinds of sentences is there, be it due to Minimal Attachment, a preference for arguments over non-arguments, or something else, as evidenced by experimental data from e.g., @raynerEtAl1983 and @cliftonEtAl1991.
+
+\deleted{This study is focused on the impact of Speech Act (interrogative vs. declarative) and its interaction with a trailing sequence of  prepositional phrases (PPs), where the second is of two possible types. The contrasting types of PP2 shown in (@pp2t) are (a) a PP2 which must be an argument, and (b) one which can be a modifier.}
+    
+\deleted{PP1, *in the drawer*, is the same in both (@pp2t a) and (@pp2t b), and is ambiguous on first encounter, as it could modify the paperwork or it could be the goal of cram. In (@pp2t a), however, PP2 must ultimately be interpreted as the goal of the verb *cram* because *into his briefcase* cannot modify *the drawer*. Because *cram* only accepts one goal, this means that PP1 in (@pp2t a) has to end up as a modifier of *the paperwork*.  In (@pp2t b), on the other hand, PP2 *of his filing cabinet* can (in this case, must) modify *the drawer*, and so in the drawer can and does end up as the goal of cram. The difference in PP2 Status between (@pp2t a) and (@pp2t b) results in different structures, which I argue are reached by different parsing mechanisms. Namely, (@pp2t a) should, by hypothesis, result in a parse which initially incorporates PP1 as the goal argument of *cram* but then fails and triggers reanalysis when PP2 is encountered. Conversely, (@pp2t b) should by hypothesis allow a straightforward parse where PP1 is initially and ultimately slotted in as the goal of *cram*, since PP2 poses no issue when interpreted as a modifier of *the drawer*. This means (@pp2t b) should not trigger reanalysis. Where (@pp2t a) is a so-called garden path sentence, (@pp2t b) is not. In what follows, I will use the term "argument attachment of PP2" to mean the garden path case, i.e., a sentence that is presumed to require reanalysis, and "modifier attachment of PP2" to mean the straightforwardly parsed case where PP1 is the goal argument.}
+
+\replaced{Rather than worry about}{This paper is not interested in} the particularities of syntactic theory\deleted{,} and \replaced{it also is not necessary to rely on}{the exact formulation of} *Minimal Attachment*, \replaced{an appeal can be made to}{make the necessary distinction, though it very likely does play a role. Instead, we can focus on} \added{a} distinction added to parsing theory in *Construal* [@frazier1996construal]: that of primary vs. non-primary relations. \comment{collapsed two \P into one}The \replaced{impetus behind adding this} additional machinery \added{added} to the theory of parsing is independently motivated: while structure-first decision making seems to hold for the parsing of many structures, there are some that seem to \replaced{follow different rules}{flout them}. *Construal* illustrates this by way of relative clause (RC) attachment in constructions like (@rc).
+
+  (@rc) [~NP1~ The daughter~i~] of [~NP2~ the colonel~j~] [~RC~ who~i/j~ was standing on the balcony] ...
+
+The RC in (@rc) can modify either NP1, the daughter, or NP2 the colonel. A structure-first parsing system, together with the widely agreed upon structural parsing strategy *Late Closure*, \replaced{predict}{would be expected to manifest as} a consistent preference for the local attachment of the RC in (@rc), i.e., the structure where the RC modifies NP2. Instead, what \deleted{Frazier and Clifton describe, based on} a number of studies [e.g., @clifton1988restrictions; @Cuetos1988-tm] \added{find} is a pattern where the preferred structure depends on the relationship between NP1 and NP2. \deleted{They}@frazier1996construal describe five categories of relationship, and a gradient of preferred RC attachment, from NP1 preference to NP2 preference.
+
+  (@rcrel) __RC Attachment by NP1-NP2 relation__ [@frazier1996construal]
+      a) *Material* \linebreak
+      The table of wood [~RC~ that was from Galicia]
+      a) *Quantity* \linebreak
+      The glass of wine [~RC~ you liked]
+      a) *Relational* (friend, enemy, son, and other argument taking NPs, e.g., picture-NPs) \linebreak
+      The son of the woman [~RC~ that was dying]
+      a) *Possessive* \linebreak
+      The car of the company [~RC~ that was falling apart]
+      a) *Non-accompaniment* with \linebreak
+      The girl with the hat [~RC~ that looked funny]
+
+@frazier1996construal \replaced{cite studies showing}{report} that (@rcrel a-b) type configurations favor NP1 RC attachment, (@rcrel e) type configurations favor NP2 RC attachment, while (@rcrel c-d) are intermediate. They argue that this gradient cannot be readily explained by structural parsing, and instead make use of a mechanism they call \deleted{structural} association. RCs, rather than being immediately slotted into a tree in a specific way, are associated with a thematic domain, i.e., the maximal projection of whatever lexical item last assigned theta-roles, together with associated functional projections; in the case of the examples in (@rcrel), the last theta assigner is NP2, and its domain extends up to the DP that contains NP1. This is a \replaced{later}{looser} parsing decision that allows the syntactic structure to be decided \deleted{on later,} after semantic information becomes available: the RC can ultimately modify whichever member of the thematic domain is appropriate. 
+
+The crucial issue that distinguishes cases where structural association vs. structural parsing is appropriate is the idea of primary vs. non-primary relations. Frazier and Clifton formalize this distinction as (@primrel).
+
+\comment{citation moved and quotation marks added to show this is a direct quote}
+  (@primrel) "Primary phrases and relations include 
+    a) The subject and main predicate of any (+ or -) finite clause
+    a) Complements and obligatory constituents of primary phrases"
+  [@frazier1996construal, p. 41]
+
+RC attachment undergoes association because the relationship between a modifier and whatever is modified is a non-primary relation, and a relative clause is by definition a modifier and not an argument. Circling back to the PP-attachment that this study is concerned with, the argument vs. modifier distinction is precisely what distinguishes the two possible statuses of PP2 shown \added{and illustrated} in (@pp2t) and repeated here as (@pp2tr).
+
+  (@pp2tr) **PP2 types**
+    (a) *PP2 Argument* (Arg)
+    He had planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ into his briefcase].
+    (b) *PP2 Modifier* (Mod)
+    He had planned to cram the paperwork [~PP1~ in the drawer [~PP2~ of his filing cabinet]].
+
+Without locking down the exact syntactic structures that (@pp2tr) represents, we can nonetheless say that the parser would seek to immediately incorporate PP1 into the tree in both cases. The infinitival (-finite) clause headed by *cram* is a primary phrase, and so its obligatory constituents hold primary relationships with *cram*. *Cram* takes an obligatory goal argument, so the parser cannot wait for semantic information to inform its association, it must make its best guess based on the principles of structural parsing, and attach it as an argument, as that property is what is forcing the immediate decision to be made. When PP2 is encountered, reanalysis will be required, in the case of (@pp2tr a), or it will not be, in the case of (@pp2tr b).
+
+<!-- THIS IS WHERE I STOPPED -->
+## Interrogativity
+\added{This section returns to the questions raised by the 2016 intuition discussed in Section \@ref(obs) about why certain interrogative garden paths of the sort just discussed might appear to be easier to parse than similar declarative ones.}
+
+  (@d) He had planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ in\deleted{to} his briefcase].
+  (@q) Had he planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ in\deleted{to} his briefcase]?
+
+\replaced{Specifically,}{The question that must be asked, then, is} what exactly differs between (@d) and (@q)? Syntactically, very little: the position of the subject he and the auxiliary had have been reversed.
+
+\deleted{Semantically, or perhaps it is better to say pragmatically, there are a number of differences, which \replaced{are}{I will} perfunctorily discuss\added{ed}. The details may not be quite \replaced{right}{write}, as the focus of this paper lies elsewhere, but it’s important to be aware of the general ideas presented.}
+
+The \added{semantic, or perhaps more accurately} pragmatic\added{,} differences between (@d) and (@q) lie with the presuppositions the sentences carry with them, and with the placement of focus. The declarative in (@d) has few presuppositions beyond the existence of the actors and objects involved (the referents of *he*, *paperwork*, *drawer* and *briefcase*), and that these actors and objects can be involved in *cramming*. The presuppositions of (@q) are a super set of those of (@d): a yes/no question additionally presupposes that the listener knows the answer to the question, for one. Further presuppositions might exist, depending on where the focus lies within the sentence. 
+
+Focus in a declarative like (@d) is typically broad, meaning no element is having attention called to it. A polar question like (@q), however, will typically receive narrow focus on one element, so that when uttered, one element is more prominent than the others. The focused element becomes the part of the sentence that the question is about. Focus can fall on any of the lexical or referential elements (subject, matrix verb, infinitival verb, object NP, or the NP of either PP1 or PP2) of the sentence, or the auxiliary verb. \added{Bold facing indicates verbal emphasis in order to locate focus.}
+
+  (@foc1) **Had** he planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ into his briefcase]?
+  (@foc2) Had **he** planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ into his briefcase]?
+  (@foc3) Had he **planned** to cram the paperwork [~PP1~ in the drawer] [~PP2~ into his briefcase]?
+  (@foc4) Had he planned to **cram** the paperwork [~PP1~ in the drawer] [~PP2~ into his briefcase]?
+  (@foc5) Had he planned to cram the **paperwork** [~PP1~ in the drawer] [~PP2~ into his briefcase]?
+  (@foc6) Had he planned to cram the paperwork [~PP1~ in the **drawer**] [~PP2~ into his briefcase]?
+  (@foc7) Had he planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ into **his** briefcase]?
+  (@foc8) Had he planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ into his **briefcase**]?
+  
+In (@foc1), with focus on the auxiliary, the question is about the entire proposition, and whether or not it is true. In this case, there are not any additional presuppositions. In (@foc2), with focus on *he*, the question is asking about whether the referent of *he* is the actor who performed the action described; in this case, the entire predicate is presupposed: someone *had planned to cram the paper in the drawer into his briefcase*, but was it *him*? Skipping ahead to (@foc6), with focus on *drawer*, the question is instead about which *paperwork* this is all happening to: *the paperwork in the drawer*, or some other stack of paperwork? In this case, it is presupposed that the referent of *he* was the one who *had planned to cram some paperwork into his briefcase*, and only the exact referent of *the paperwork* is not presupposed. For each other location of focus, the presuppositional content is similarly complementary to whichever element is focused and therefore being asked about. 
+
+This set of pragmatic differences between (@d) and (@q) might very well be the source of the intuition that (@q) is easier to comprehend than (@d), but that is not the only possibility. Another significant difference between the two Speech Acts is the prosody and intonational melody. While dialects of English differ, there is typically a difference in melody between a declarative and question, and in many American English dialects, the interrogative is pronounced with a final rise, while the declarative exhibits just a series of down-steps. This difference is the one that the current study explores, to see if it can readily explain the intuitive difference in processing difficulty.
+
+## Prosody of questions vs. declaratives
+
+In pursuing the possibility that it is the intonation and prosody of polar interrogatives which creates the intuitive contrast that this study investigates, we must consider what question intonation actually sounds like. It is generally agreed that in American English, the intonation of a polar (yes/no) question has the property of a final rise. Indeed, this has been confirmed in corpus studies such as @Hedberg2017-er who found that 79.8% of the 410 American English yes/no questions in their study (ten-minute phone conversations from  the CallHome Corpus of American English and  the Fisher English Corpus) had a &ldquo;low-rise nuclear contour&rdquo; (L\*H-H%, L\*H-$\uparrow$H%, or L\*L-H%)[^uar]. To briefly explain their ToBI notation, a tone T is either L for low or H for high; T\* is anchored to the stressed syllable, and T- and T% are boundary tones (intermediate phrase boundary and intonational phrase boundary respectively). See, e.g., *Guidelines for ToBI labeling* [@Beckman1997-eu] for a more thorough explanation of ToBI. An additional 10.7% of the @Hedberg2017-er data had a &ldquo;high-rise nuclear contour&rdquo; (the authors categorizes the following tunes as &ldquo;high-rise nuclear contours:&rdquo; H\*H-H%, or !H\*L-L%). That leaves only 9.5% spread across the other 5 categories (High-fall, Rise-fall, Low-fall, Fall-rise, and Level). Only 5.6% of the data showed a falling contour. According to the authors' analyses, these contours occur on the final main stress of a sentence and thereafter. In the case of the types of sentences examined in the current study,that would result in a rising contour on the head noun of the final PP.
+
+[^uar]: @Hedberg2017-er use $\uparrow$ to indicate an up-step, which is not standardly transcribed with ToBI.
+
+  (@rise) Did Jed cram the newspapers under the sofa in the	[~L\*H-H%~ guestroom].
+
+The need to prepare for that rising tone might make a prosodic break before the PP more likely, and thus ease reanalysis or even encourage a different prosodic chunking which might encourage argument attachment.
+
+A brief informal survey found that most speakers maintain low tones on prior stresses, although some had a H tone on the subject noun. It also varied between speakers and between sentences as to whether there is a prosodic boundary (marked by a low tone and/or pause) immediately before the rise (after PP1) or not. 
+
+The prosodic structures found in the data collected for the current study are discussed in \@ref(results-prosody).
+
+## Can prosody affect parsing?
+
+A number of studies have shown that in listening to speech, prosodic cues appear to help reduce the frequency with which incorrect parsing (i.e., a garden path) occurs. For example, @Kjelgaard1999-xd conducted a study using digital manipulation of  recorded speech to create three versions of sentences containing a garden path temporary ambiguity (discussed above). They recorded speakers saying sentences with natural prosody, such as the following pair:
+
+  (@ec) [When Roger leaves] the house is dark. (Early closure)
+  (@lc)	[When Roger leaves the house] it's dark. (Late closure)
+  
+They then cross-spliced these together to make several versions. One version had prosodic cues which cooperated with the intended reading of the sentence; another attempted to have &ldquo;neutral&rdquo; prosody; and the third used intentionally misleading prosody. The initial fragment of each was then presented to participants (the portion from the beginning of the sentence to the word house in (@ec - @lc) and they were asked to agree or disagree with whether a visually presented word, either *is* or *it's* was likely to be the next word in the sentence. Participants gave more accurate and speedier judgments when the prosodic cues lined up with the correct parsing. The results of this study, as well as a growing body of literature, suggest that that prosodic information can (or perhaps must) be used by the parser in making processing decisions.
+
+Consider @Fodor2002-io analysis of relative clause attachment preference. This concerns sentences such as (@servant):
+
+  (@servant) Someone shot the servant~N1~ of the actress~N2~ [~RC~ who was on the balcony].
+
+The relative clause (RC) who was on the balcony can attach either locally (low, modifying N2), making it *the actress* who was *on the balcony*, or higher up (non-locally, modifying N1), so that we understand *the servant* to be the one who was *on the balcony*. In these sorts of sentences, @Cuetos1988-tm found a 60% preference for low attachment in English speakers, but only a 40% preference for low attachment in Spanish speakers. In apparent violation of the general preference for local attachment, some languages, like French and Spanish (and Russian, but not Romanian or Brazilian Portuguese, so this is not a general feature of Romance languages), prefer to attach relative clauses higher, while others more often obey Late Closure (e.g., Swedish, Egyptian Arabic, and English). This non-local preference is weakened in cases where the ambiguous RC is short (one prosodic word). @Fodor2002-io asserts that these tendencies exist in both listening to spoken words (under conditions where a particular parse is not favored by the explicit prosody) and in silent reading.
+
+Fodor notes that other researchers have shown the presence and absence of prosodic breaks to influence parsing decisions, and specifically that the presence of a prosodic break before the RC in sentences like (@servant) encourages high attachment. Fodor leverages this in order to explain the difference in RC attachment site tendency between languages. She argues that the phenomenon can be neatly account for by linking attachment site preference to the likelihood of a prosodic break before the RC. This difference in prosodic tendency, in turn, can be explained using a constraints-based approach. Consider Selkirk's [-@Selkirk1986-hc] alignment constraints:
+
+  (@align) Align($\alpha$Cat, E; $\beta$Cat, E)
+    a. Align (GCat, E; PCat, E)
+    b. Align (PCat, E; GCat, E) 
+    c. Align (PCat, E; PCat, E)
+  *GCat ranges over morphological and syntactic categories; PCat ranges over prosodic categories; E = Right or Left [@Selkirk1986-hc, p. 6]*
+
+
+@Truckenbrodt1999-vd provides a prose-based formalization of the same idea. \deleted{He describes what I will call *Align~R~* which can be easily generalized to described what I will call *Align~L~*, the same constraint except that it calls for aligning phrases at their left edges rather than their right edges.}
+
+  (@alignxp) **Align-XP/R** \linebreak
+  For each XP there is a PP such that the right edge of the XP coincides with the right edge of the PP, where XP is a maximal projection and PP is a Phonological Phrase. This constraint represents the end based mapping assumption for Major Phonological Phrases in English, whose right end is supposed to align with the right end of Maximal Projections [@Truckenbrodt1999-vd, p. 223].
+
+Essentially, @Selkirk1986-hc argues that relative ranking of alignment constraints for the left edge of phrases (*Align-XP/L*) with those for the right edge of phrases (*Align-XP/R*) can impact the distribution of prosodic breaks. These alignment constraints dictate that the edges of prosodic units (and thus the location of prosodic breaks) should align with the edges of syntactic constituents. Because the prosodic break that encourages high attachment is one which aligns with the left edge of the RC, postulating that *Align~L~* is ranked above *Align~R~* in languages like French that prefer high attachment can account for that preference (remember that a prosodic break in that place has been shown to encourage a high attachment interpretation). In languages where low attachment is preferred, we can assume that *Align~R~* is ranked higher, and thus a prosodic break is more likely to occur after the RC than before.
+
+The same sort of argument can explain the difference in tendency between long and short RCs. Consider Selkirk's [-@selkirk2011-hp] *BinMin* defined below.
+
+  (@binmin)	**BinMin($\phi$)** \linebreak
+  A $\phi$ (phonological phrase) must consist of at least two $\omega$ (phonological words).  
+  
+If we assume, in Optimality Theoretic [@Prince1993-ic] terms, that a constraint like *BinMin* is ranked above *Align~L~*, then it seems quite reasonable to assume that  a prosodic break before a short RC (which would encourage high attachment) is much less likely than before a long RC. That is, when the RC is short, its left edge is prevented from aligning with the beginning of a prosodic phrase (it violates *Align~L~*) by the higher ranked BinMin. Longer RCs can have their left edge align with the start of a prosodic phrase, and thus can have the high-attachment encouraging prosodic break.
+
+## Predictions for the current study
+
+This study is concerned with a number of issues. First: is attachment in any way encoded in the speech signal? I hypothesize, following e.g., @schafer2000intonational, that we can use prosody to diagnose attachment site. Assume the following basic configuration:
+
+  (@cfg) SUBJ V OBJ PP1 PP2
+
+I suggest that argument attachment of PP2 will be marked by a prosodic boundary between PP1 and PP2 (for discussion of what constitutes a prosodic boundary, see e.g., @streeter1978acoustic and @salverda2003role). Modifier attachment of PP2, on the other hand, will lack any substantial boundary marking in that position; instead, a break after the object is expected.
+
+  (@hypa) *Hypothesis 1* \hfill\linebreak
+  Argument attachment of PP2 is marked by a dominant prosodic break between PP1 and PP2.
+
+The second issue: what factors impact immediate on-line parsing, and what factors only affect later, post-parse considerations? To address this, the study will employ the double reading paradigm of @fodor2019center (more on double reading in the methods section). For example, if first-pass parsing ignores semantic information, then implausible parses should be more frequent in Reading 1 of a sentence with argument-PP2 than in a second reading of the same sentence.
+
+  (@hypb) *Hypothesis 2* \linebreak
+  A first reading of a sentence where PP2 is a goal argument will exhibit less natural prosody (more hesitation at and within the PP2 region) than:
+    * A first reading of a sentence where PP2 is a modifier
+    * A second reading of a sentence where PP2 is a goal argument 
+
+*Hypothesis 2* and *3* together make a third prediction: readers should struggle more on the cold reading of a GP sentence to obtain a plausible structure, and thus the appropriate prosody, than on a previewed reading.
+
+  (@hypd) *Hypothesis 3* \linebreak
+  A first reading of a sentence with an argument-PP2 will more often be produced with prosodic structure that represents an implausible or ungrammatical parse of the string (PP2 incorrectly attached as a modifier), whereas a second reading sentence will more often be pronounced with the prosodic structure that represents the intended parse (argument attachment of PP2).
+
+Note that *hypothesis 3* can’t be applied in cases where the reader fails to successfully and fluently produce the sentence.
+
+Finally, I investigate the intuition described in Section \@ref(obs) originally discovered by Dr. Janet Dean Fodor and Dr. Dianne Bradley: that these sentences are not as difficult to parse when encountered in interrogative, as opposed to declarative, context.
+
+  (@hype) *Hypothesis 4* \linebreak
+  Reading 1 of a declarative sentence with an argument-PP2 will exhibit less natural prosody (more hesitation at and after the disambiguating region) and be more likely to be produced with prosodic structure that represents an implausible or ungrammatical parse of the string than a Reading 1 of an interrogative sentence with an argument-PP2.
+
+The findings presented in this study do not successfully answer all of the questions asked here, but do help guide future work in directions that will.
+

@@ -89,7 +89,7 @@ In order for the differing parsing process for (@pp2t a) and (@pp2t b) to be exp
                   [NP
                     [N'
                       [N' [N [sofa]]]
-                      [PP2_{Mod}
+                      [PP2$_{Mod}$
                         [P'
                           [P [from]] 
                           [DP 
@@ -146,7 +146,7 @@ In order for the differing parsing process for (@pp2t a) and (@pp2t b) to be exp
               ]
             ]
           ]
-          [PP2_{Arg}
+          [PP2$_{Arg}$
             [P' 
               [P [into]] 
               [DP 
@@ -205,6 +205,24 @@ RC attachment undergoes association because the relationship between a modifier 
     He had planned to cram the paperwork [~PP1~ in the drawer [~PP2~ of his filing cabinet]].
 
 Without locking down the exact syntactic structures that (@pp2tr) represents, we can nonetheless say that the parser would seek to immediately incorporate PP1 into the tree in both cases. The infinitival (-finite) clause headed by *cram* is a primary phrase, and so its obligatory constituents hold primary relationships with *cram*. *Cram* takes an obligatory goal argument, so the parser cannot wait for semantic information to inform its association, it must make its best guess based on the principles of structural parsing, and attach it as an argument, as that property is what is forcing the immediate decision to be made. When PP2 is encountered, reanalysis will be required, in the case of (@pp2tr a), or it will not be, in the case of (@pp2tr b).
+
+
+<!--
+((from ch1))
+## PP-attachment garden paths
+
+The type of garden-path sentence that this study is concerned with centers around the temporarily ambiguous attachment sites for a prepositional phrase (PP). Consider:
+
+(@cramGPy) He had planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ into his briefcase].
+
+(@cramGPn) He had planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ of his filing cabinet].
+
+The sentences in (@cramGPy) and (@cramGPn) contain a temporary ambiguity with regard to the attachment site of *in the drawer* (PP1). It can either attach as an argument of the verb (i.e., *the paperwork* is being crammed *in the drawer*), or else as a modifier of the direct object (i.e., *the paperwork in the drawer* is being crammed *into his briefcase*). Sentence (@cramGPy) differs from (@cramGPn) in the ultimate resolution of that ambiguity, although in both cases PP1 is ambiguous until the preposition heading PP2 (*into* or *of*) is encountered.
+
+In (@cramGPy), PP1 must ultimately attach as the goal argument of the verb, in order for a plausible parse to be obtained. This is likely to cause some difficulty for the reader or listener of the sentence, if structure-first parsing strategies like *Minimal Attachment* are obeyed. The parser will have attached PP1 as the verb's goal argument, not knowing PP2 was to come. The resulting parse crashes, because with PP1 filling the goal argument slot, PP2 has nowhere to attach but as a modifier of the noun in PP1 (\*[~NP~ *the drawer into his briefcase*]), or else as a modifier of the verb/sentence (\*[~VP~ *he did so into his briefcase*]), neither of which is grammatical. The preference for VP attachment of PP1 in these kinds of sentences is supported by experimental data in studies like, e.g., @raynerEtAl1983 and @cliftonEtAl1991
+
+The other sentence, (@cramGPn), should not represent any difficulty. In that case, PP1 can, and in fact must, attach as the goal argument, since the subsequent PP *of her filing cabinet* cannot plausibly attach as a sentential modifier, nor a verbal argument or modifier, and the sentence is incomplete without a goal argument of *cram*. By examining these sentences, the study proposed aims to expand understanding of human sentence processing in general, and specifically the relationship between syntactic structure and prosodic structure. Further, this will explore any contrast there might be in the impact of declarative and interrogative contexts on parsing, which has been under studied.
+-->
 
 ## Interrogativity
 

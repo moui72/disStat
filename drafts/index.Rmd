@@ -14,15 +14,12 @@ fontsize: 12pt
 mainfont: Georgia
 lot: true
 lof: true
-geometry:
-  - margin=1in
+geometry: "left=1in,right=2in,top=1in,bottom=1in,marginparwidth=1.5in"
 header-includes:
-  - \usepackage{float}
   - \usepackage[linguistics]{forest}
   - \usepackage{longtable}
   - \usepackage{booktabs}
   - \usepackage{setspace}\doublespacing
-
 ---
 ```{r echo=FALSE}
 knitr::opts_chunk$set(
@@ -36,7 +33,6 @@ knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown', "lme4", "lmerTest"
 ), 'packages.bib')
 ```
-
 
 <!--
 ## TODO

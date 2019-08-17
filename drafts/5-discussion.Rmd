@@ -44,11 +44,11 @@ rownames(ccombo)<-c("Both", "OBJ break only", "PP1 break only")
 
 This chapter will review the questions motivating this study and discuss the extent to which those questions are answered, or not. It will then go on to develop further questions, and propose further studies to explore those new questions and the ones left unanswered here. Finally, it will summarize the findings and the current standing of this area of research.
 
-Recall that the primary motivation for this study was the possibility that PP-attachment garden paths are easier to understand for speakers of American English when presented in the interrogative, as opposed to the declarative. In Section \@ref(obs), a distinction was made between the intuition first outlined in @qp2 and the current hypothesis. For terminological clarity, this chapter will make use of the following definitions:
+Recall that the primary motivation for this study was the possibility that PP-attachment garden paths are easier to understand for speakers of American English when presented in the interrogative, as opposed to the declarative. In Section \@ref(obs), a distinction was made between the intuition first outlined in @qp2 and the current hypothesis. For terminological clarity, recall the definitions originally given in \@ref(obs):
 
-  (@intu) *The Intuition:* Certain pragmatically disambiguated prepositional phrase (PP) attachment ambiguities which are difficult to parse in the declarative are less difficult to parse when presented as yes-no interrogatives (e.g., Jed crammed the newspapers under the sofa in the trashcan).
+  (@intu) *The 2016 intuition:* Certain pragmatically disambiguated prepositional phrase (PP) attachment ambiguities which are difficult to parse in the declarative are less difficult to parse when presented as yes-no interrogatives (e.g., Jed crammed the newspapers under the sofa in the trashcan).
   
-  (@hypo) *The current hypothesis:* The *Intuition* may be extensible to PP attachment ambiguities that are syntactically disambiguated in addition to those that are pragmatically disambiguated (e.g., Had he planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ into his briefcase]?).
+  (@hypo) *The current hypothesis:* The intuition may be extensible to PP attachment ambiguities that are syntactically disambiguated in addition to those that are pragmatically disambiguated (e.g., Had he planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ into his briefcase]?).
 
 The goal of this study was to establish whether there is evidence for (@hypo), and to explore the implications of those findings for possible explainations of (@intu).
 
@@ -64,10 +64,14 @@ This section looks at the evidence for and against some of the possible explanat
 
 The prosodic phrasings produced by participants in this study varied systematically by PP2 Status. This is an interesting finding in and of itself, adding to the growing literature that shows a link between syntactic structure and prosodic phrasing.A possible explanation for the intuitive effect of interogativity on parsing garden paths is provided in the work by @Bader1998-ts. Bader demonstrates that it is easier to recover a parse that “behave[s] alike prosodically” to a given failed parse, because the reanalysis does not require prosodic reconstruction and only the syntax needs to be repaired. In the case of the intuition this study is concerned with, this would mean that if sentences were more similar across the Arg vs. Mod PP2 Status in the interrogative than in the declarative, the intuitive reduction in difficulty of reanalysis would naturally follow. 
 
-The findings of this study show that there is no one-to-one mapping between prosodic structure and the four sentence types defined by the design of the study (Q Arg, D Arg, Q Mod, D Mod). Rather, there are gradient differences in occurence for each pattern for a given sentence type. Table \@ref(tab:combobr) shows the distribution of the possible simple break patterns (PP2 break only, OBJ break only, or both breaks, with the negligible number of cases of neither break omitted) as a function of sentence type for Reading 2 only.
+The findings of this study show that there is no one-to-one mapping between prosodic structure and the four sentence types defined by the design of the study (Q Arg, D Arg, Q Mod, D Mod). Rather, there are gradient differences in occurence for each pattern for a given sentence type. Table \@ref(tab:combobr) shows the distribution of the possible simple break patterns (PP2 break only, OBJ break only, or both breaks, with the negligible number of cases of neither break omitted) as a function of sentence type for Reading 2 only. These data are a subset of the data reported in Section \@ref(bbr) Table \@ref(tab:r2combobreaksBycondpre).
 
 ```{r combobr}
-kable(ccombo,caption="Percent occurrence of simple break patterns in Reading 2 as a function of sentence type.", col.names=c("D","Q","D","Q"),align="c") %>%
+kable(
+  ccombo,
+  caption="Percent occurrence of simple break patterns in Reading 2 as a function of sentence type.", 
+  col.names=c("D","Q","D","Q"),
+  align="c") %>%
   add_header_above(c(" "=1,"Mod" = 2, "Arg"=2)) %>%
   column_spec(1,bold=T) %>% kable_styling(latex_options = "hold_position")
 ```
