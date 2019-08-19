@@ -1,6 +1,5 @@
 .DS_Store
 recordings*
-*.tex
 *.md
 *.log
 .DS_Store

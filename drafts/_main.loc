@@ -1,13 +1,15 @@
 \ChangesListline {comment}{Commented}{This paragraph was \P 1 chapter 1}{1}
-\ChangesListline {replaced}{Replaced}{reanalyze the material that had so far been processed, in order to come upa structure that can accomodate both the new and old material grammatically}{2}
-\ChangesListline {deleted}{Deleted}{often}{2}
-\ChangesListline {comment}{Commented}{From here until next note, was introductory section of chapter 2}{2}
-\ChangesListline {deleted}{Deleted}{As briefly mentioned earlier, }{2}
-\ChangesListline {replaced}{Replaced}{G}{2}
-\ChangesListline {added}{Added}{d}{2}
+\ChangesListline {replaced}{Replaced}{reanalyze the material that had so far been processed, in order to come upa structure that can accomodate both the new and old material grammatically}{1}
+\ChangesListline {deleted}{Deleted\nobreakspace {}(JDF)}{often}{1}
+\ChangesListline {comment}{Commented}{From here until next note, was introductory section of chapter 2}{1}
+\ChangesListline {deleted}{Deleted}{As briefly mentioned earlier, }{1}
+\ChangesListline {replaced}{Replaced}{G}{1}
+\ChangesListline {added}{Added\nobreakspace {}(JDF)}{d}{2}
+\ChangesListline {added}{Added\nobreakspace {}(JDF)}{(MA)}{2}
 \ChangesListline {deleted}{Deleted}{There is an ongoing debate in the literature about what parsing model best fits the empirical facts. This study follows [@frazier1996construal] in assuming that structure-first parsing strategies are at play, in addition to a primary vs. non-primary relation distinction that determines how immediately a phrase must be incorporated into a parse, allowing for some material to be incorporated later and thereby make use of additional information that is not available for immediate parsing decisions.}{3}
 \ChangesListline {comment}{Commented}{Back to what was chapter 1, $\P $ 2}{3}
 \ChangesListline {deleted}{Deleted}{such}{3}
+\ChangesListline {deleted}{Deleted\nobreakspace {}(JDF)}{PP}{3}
 \ChangesListline {replaced}{Replaced}{causes the expected parse to crash}{3}
 \ChangesListline {added}{Added}{Specifically, it is expected that PP1 in}{3}
 \ChangesListline {added}{Added}{will initially be interpreted as the goal of \em {cram}, but that parse will fail when it is realized that PP2 cannot plausibly modify \em {drawer}.}{3}
@@ -15,5 +17,156 @@
 \ChangesListline {deleted}{Deleted}{to}{3}
 \ChangesListline {deleted}{Deleted}{]}{3}
 \ChangesListline {added}{Added}{]}{3}
+\ChangesListline {added}{Added}{This contrasts with the similar sentence in}{3}
+\ChangesListline {replaced}{Replaced}{where PP2 can plausibly modify *drawer* and so the parse where *in the drawer* is the goal argument is accepted and *of his filing cabinet* is incoporated as a modifier within PP1.}{3}
 \ChangesListline {deleted}{Deleted}{Before the details of the current research can be outlined, it is first necessary to explain some of the terms and mechanisms involved. This chapter is concerned with doing so.}{4}
 \ChangesListline {comment}{Commented}{Adapted from what was \S 1.3}{4}
+\ChangesListline {added}{Added}{The current study was initially motivated by an observation discovered by Janet Dean Fodor and Dianne Bradley, and originally reported in @qp2. That observation is that a garden path sentence like}{4}
+\ChangesListline {added}{Added}{repeated here as}{4}
+\ChangesListline {added}{Added}{is, for whatever reason, not as difficult to process when presented as an interrogative, as in}{4}
+\ChangesListline {replaced}{Replaced}{rather than a declarative.}{4}
+\ChangesListline {deleted}{Deleted}{to}{4}
+\ChangesListline {deleted}{Deleted}{to}{4}
+\ChangesListline {added}{Added}{attempted to find a behavioral correlate of this intuition by looking at variation in reading time of sentence like}{4}
+\ChangesListline {added}{Added}{but the results were inconclusive. The current study continues that line of research by looking at similar sentences, while also attempting to control additional factors that may have led to}{4}
+\ChangesListline {added}{Added}{inconclusive results. One such concern is that}{4}
+\ChangesListline {added}{Added}{relies on the implausibility of a drawer within a briefcase, i.e., real world knowledge, in order to disambiguated the appropriate attachment sites for PP1 and PP2. Real world knowledge and beliefs of what is or is not plausible varies between speakers and may not always be reliable as a trigger for reanalysis. The current study makes use of carefully constructed sentences (the criteria by which they were constructed is detailed in Section}{5}
+\ChangesListline {added}{Added}{) which do not rely on plausibility or pragmatics to disambiguated the PP attachment sites, but instead make use of syntactic disambiguation by including a PP2 that cannot grammatically be incorporated into PP1, as in}{5}
+\ChangesListline {added}{Added}{The change from pragmatically disambiguation to syntactic disambiguation creates an important distinction between the original observation in}{5}
+\ChangesListline {added}{Added}{and what the current study is considering. It cannot be assumed that the intuition about}{5}
+\ChangesListline {added}{Added}{necessarily extends to cases like}{5}
+\ChangesListline {added}{Added}{and so one of the questions the current study asks is whether the intuition can be shown to extend to syntactically disambiguated cases that are similar to the pragmatically disambiguated cases for which the observation was first made. In order to keep clear this fine but important difference, a convention is adopted throughout this document where the intuited amelioration of the garden path effect in pragmatically disambiguated cases is referred to as the 2016 intuition, while the possiblity that the intuition extends to syntactically disambiguated cases is referred to as the current hypothesis.}{5}
+\ChangesListline {comment}{Commented}{these are new to this chapter, but are taken from the discussion chapter, where we discussed them on 8/16}{5}
+\ChangesListline {added}{Added}{2016}{5}
+\ChangesListline {deleted}{Deleted}{While both sentences contain a temporary ambiguity for the attachment of PPs occurring in string-linear sequence at the end of an utterance, it is more likely in (@intr) that a listener or reader will come away with a plausible interpretation on the first try. This study explores the factors involved in why that is, and seeks to uncover a behavioral correlate of this intuition. If the existence and mechanics of this effect can be pinned down, it will lend insight into what information the parser has access to when making decisions, or when repairing broken parses. This initial observation reveals a robust program of research with many interwoven questions.}{6}
+\ChangesListline {replaced}{Replaced}{In addition to exploring the possible extensibility of the 2016 intuition, the current study is interested in}{6}
+\ChangesListline {replaced}{Replaced}{when compared to}{6}
+\ChangesListline {replaced}{Replaced}{declarative versions of these sentences}{6}
+\ChangesListline {replaced}{Replaced}{fairly easy}{6}
+\ChangesListline {added}{Added}{, prosodically}{6}
+\ChangesListline {deleted}{Deleted}{This question is deceptively difficult to answer;}{6}
+\ChangesListline {replaced}{Replaced}{T}{6}
+\ChangesListline {comment}{Commented}{the following is adapted from what was $\S 2.1$}{7}
+\ChangesListline {added}{Added}{The 2016 intuition and the current hypothesis are both concerned with a temporarily ambiguous sequence of PPs at the end of a sentence. This section will discuss what the possible attachment sites for those PPs are and which structures ultimately do and do not work.}{7}
+\ChangesListline {added}{Added}{The example in}{7}
+\ChangesListline {added}{Added}{shows a pragmatically disambiguated sentence with an argument-PP2. The initial parse (a) is implausible, resulting in structural reanalysis to the prefereable parse in (b).}{7}
+\ChangesListline {replaced}{Replaced}{wastebasket}{7}
+\ChangesListline {replaced}{Replaced}{wastebasket}{7}
+\ChangesListline {replaced}{Replaced}{The initial parse is expected to be (a) because of}{7}
+\ChangesListline {deleted}{Deleted}{fairly strong}{7}
+\ChangesListline {added}{Added\nobreakspace {}(JDF)}{Structural}{8}
+\ChangesListline {replaced}{Replaced}{r}{8}
+\ChangesListline {added}{Added}{It is important to be clear on how the sentences of concerned are structured. As a matter of terminology, the current study categorizes the sentences being discussed into two groups based on the status of the PP2 they contain: (a) cases where PP2 is an argument are Arg-type sentences, and (b) cases where PP2 is a modifier are Mod-type sentences. In practice, Arg sentences are garden paths, because PP2 must fill the goal role that PP1 is expected to have filled as just discussed. Mod sentences are not garden paths, because PP2 can modify the NP within PP1 and become part of the goal, and therefore need not disrupt PP1 from being the goal.}{8}
+\ChangesListline {comment}{Commented}{this example has been moved up}{8}
+\ChangesListline {deleted}{Deleted}{would}{8}
+\ChangesListline {deleted}{Deleted}{modern}{9}
+\ChangesListline {deleted}{Deleted}{, graphically}{9}
+\ChangesListline {deleted}{Deleted}{Note that}{10}
+\ChangesListline {replaced}{Replaced}{T}{10}
+\ChangesListline {added}{Added}{modifier-}{10}
+\ChangesListline {replaced}{Replaced}{(Mod)}{10}
+\ChangesListline {deleted}{Deleted}{, i.e., change in branching direction,}{10}
+\ChangesListline {replaced}{Replaced}{fairly}{10}
+\ChangesListline {replaced}{Replaced}{y}{10}
+\ChangesListline {deleted}{Deleted}{Arg}{10}
+\ChangesListline {added}{Added}{argument-}{10}
+\ChangesListline {added}{Added}{(Arg)}{10}
+\ChangesListline {replaced}{Replaced}{major disjuncture}{10}
+\ChangesListline {deleted}{Deleted}{much}{10}
+\ChangesListline {added}{Added}{(}{10}
+\ChangesListline {added}{Added}{)}{10}
+\ChangesListline {deleted}{Deleted}{This paper is not interested in the particularities of syntactic theory, and it also is not necessary to rely on *Minimal Attachment* to make the necessary distinction, though it very likely does play a role. Instead, we can focus on distinction added to parsing theory in Construal [@frazier1996construal]: that of primary vs. non-primary relations.}{12}
+\ChangesListline {deleted}{Deleted}{This study is focused on the impact of Speech Act, i.e., where a sentence is interrogative (Q) or declarative (D), in a particular sort of garden path. Specifically, it is concerned with garden path sentences containing a temporary ambiguity that centers on the attachment of two prepositional phrases (PPs) occurring in string-linear sequence at the end of an sentence, e.g., “When we saw her, the nanny had seated the cranky little boy [\nobreakspace {}PP1\nobreakspace {} on the swing] [\nobreakspace {}PP2\nobreakspace {} in his stroller].” }{12}
+\ChangesListline {replaced}{Replaced}{It bears mentioning}{12}
+\ChangesListline {replaced}{Replaced}{relies on}{12}
+\ChangesListline {replaced}{Replaced}{es}{12}
+\ChangesListline {comment}{Commented}{new figure: ternary tree}{12}
+\ChangesListline {added}{Added}{of syntax}{12}
+\ChangesListline {deleted}{Deleted}{This study is focused on the impact of Speech Act (interrogative vs. declarative) and its interaction with a trailing sequence of prepositional phrases (PPs), where the second is of two possible types. The contrasting types of PP2 shown in (@pp2t) are (a) a PP2 which must be an argument, and (b) one which can be a modifier.}{13}
+\ChangesListline {deleted}{Deleted}{PP1, *in the drawer*, is the same in both (@pp2t a) and (@pp2t b), and is ambiguous on first encounter, as it could modify the paperwork or it could be the goal of cram. In (@pp2t a), however, PP2 must ultimately be interpreted as the goal of the verb *cram* because *into his briefcase* cannot modify *the drawer*. Because *cram* only accepts one goal, this means that PP1 in (@pp2t a) has to end up as a modifier of *the paperwork*. In (@pp2t b), on the other hand, PP2 *of his filing cabinet* can (in this case, must) modify *the drawer*, and so in the drawer can and does end up as the goal of cram. The difference in PP2 Status between (@pp2t a) and (@pp2t b) results in different structures, which I argue are reached by different parsing mechanisms. Namely, (@pp2t a) should, by hypothesis, result in a parse which initially incorporates PP1 as the goal argument of *cram* but then fails and triggers reanalysis when PP2 is encountered. Conversely, (@pp2t b) should by hypothesis allow a straightforward parse where PP1 is initially and ultimately slotted in as the goal of *cram*, since PP2 poses no issue when interpreted as a modifier of *the drawer*. This means (@pp2t b) should not trigger reanalysis. Where (@pp2t a) is a so-called garden path sentence, (@pp2t b) is not. In what follows, I will use the term "argument attachment of PP2" to mean the garden path case, i.e., a sentence that is presumed to require reanalysis, and "modifier attachment of PP2" to mean the straightforwardly parsed case where PP1 is the goal argument.}{13}
+\ChangesListline {replaced}{Replaced}{Rather than worry about}{13}
+\ChangesListline {deleted}{Deleted}{,}{14}
+\ChangesListline {replaced}{Replaced}{it also is not necessary to rely on}{14}
+\ChangesListline {replaced}{Replaced}{an appeal can be made to}{14}
+\ChangesListline {added}{Added}{a}{14}
+\ChangesListline {comment}{Commented}{collapsed two \P into one}{14}
+\ChangesListline {deleted}{Deleted}{The impetus behind adding this}{14}
+\ChangesListline {replaced}{Replaced}{T}{14}
+\ChangesListline {deleted}{Deleted}{to the theory of parsing}{14}
+\ChangesListline {replaced}{Replaced}{follow different rules}{14}
+\ChangesListline {replaced}{Replaced}{predict}{14}
+\ChangesListline {deleted}{Deleted\nobreakspace {}(JDF)}{the}{14}
+\ChangesListline {deleted}{Deleted}{Frazier and Clifton describe, based on}{14}
+\ChangesListline {added}{Added\nobreakspace {}(JDF)}{empirical}{14}
+\ChangesListline {added}{Added}{find}{14}
+\ChangesListline {deleted}{Deleted}{They}{14}
+\ChangesListline {replaced}{Replaced}{cite studies showing}{15}
+\ChangesListline {deleted}{Deleted}{structural}{15}
+\ChangesListline {replaced}{Replaced}{later}{15}
+\ChangesListline {deleted}{Deleted}{on later,}{15}
+\ChangesListline {comment}{Commented\nobreakspace {}(JDF)}{citation moved and quotation marks added to show this is a direct quote}{15}
+\ChangesListline {added}{Added\nobreakspace {}(JDF)}{and illustrated}{16}
+\ChangesListline {comment}{Commented}{this bit has been reworked}{16}
+\ChangesListline {added}{Added\nobreakspace {}(JDF)}{of the PP1 attachment}{16}
+\ChangesListline {added}{Added}{, due to the fact that PP2 must be the goal of *cram* and therefore takes the syntactic position that PP1 had been filling}{16}
+\ChangesListline {added}{Added}{This section returns to the questions raised by the 2016 intuition discussed in Section}{16}
+\ChangesListline {added}{Added}{about why certain interrogative garden paths of the sort just discussed might appear to be easier to parse than similar declarative ones.}{16}
+\ChangesListline {deleted}{Deleted}{to}{17}
+\ChangesListline {deleted}{Deleted}{to}{17}
+\ChangesListline {replaced}{Replaced}{Specifically,}{17}
+\ChangesListline {replaced}{Replaced}{are}{17}
+\ChangesListline {added}{Added\nobreakspace {}(JDF)}{ed briefly here}{17}
+\ChangesListline {replaced}{Replaced}{right}{17}
+\ChangesListline {deleted}{Deleted}{The details may not be quite \replaced {right}{write}, as the focus of this paper lies elsewhere, but it’s important to be aware of the general ideas presented.}{17}
+\ChangesListline {added}{Added}{semantic, or perhaps more accurately}{17}
+\ChangesListline {added}{Added}{,}{17}
+\ChangesListline {replaced}{Replaced}{different from}{17}
+\ChangesListline {added}{Added}{and also may not presuppose the referent of a focused element. The use of focus introduces alternative possibilities for what might be filling a given role, i.e., in (@foc5) where focus is on *paperwork*, the question is whether it was paperwork that was crammed into the drawer, and so the existence of paperwork is not necessary if the answer to the question turns out to be "no."}{17}
+\ChangesListline {added}{Added}{Bold facing indicates verbal emphasis in order to locate focus.}{18}
+\ChangesListline {added}{Added}{when compared to the declarative counterpart of the sentence}{18}
+\ChangesListline {added}{Added}{2016}{19}
+\ChangesListline {replaced}{Replaced}{though the details of how that would work are not entirely clear,}{19}
+\ChangesListline {replaced}{Replaced}{2016 intuition}{19}
+\ChangesListline {added}{Added}{motivated}{19}
+\ChangesListline {deleted}{Deleted}{investigates}{19}
+\ChangesListline {deleted}{Deleted}{(yes/no)}{19}
+\ChangesListline {replaced}{Replaced\nobreakspace {}(JDF)}{In}{20}
+\ChangesListline {added}{Added\nobreakspace {}(JDF)}{as in}{20}
+\ChangesListline {added}{Added\nobreakspace {}(JDF)}{final}{20}
+\ChangesListline {added}{Added}{This is possibility is revisted and more fully explained in Section}{20}
+\ChangesListline {comment}{Commented}{this was a pilot study I conducted with friends and family}{20}
+\ChangesListline {replaced}{Replaced}{survey}{20}
+\ChangesListline {deleted}{Deleted}{A brief informal \replaced {survey}{investigation of the wave forms of recordings of several native speakers of American English} found that most speakers maintain low tones on prior stresses, although some had a H tone on the subject noun. It also varied between speakers and between sentences as to whether there is a prosodic boundary (marked by a low tone and/or pause) immediately before the rise (after PP1) or not.}{21}
+\ChangesListline {deleted}{Deleted\nobreakspace {}(JDF)}{garden path}{21}
+\ChangesListline {deleted}{Deleted}{(discussed above)}{21}
+\ChangesListline {added}{Added\nobreakspace {}(JDF)}{which could result in a garden path}{21}
+\ChangesListline {added}{Added\nobreakspace {}(JDF)}{(not bracketed in presentation to the participants)}{21}
+\ChangesListline {deleted}{Deleted}{(or perhaps must)}{21}
+\ChangesListline {added}{Added\nobreakspace {}(JDF)}{the analysis by}{22}
+\ChangesListline {deleted}{Deleted\nobreakspace {}(JDF)}{analysis}{22}
+\ChangesListline {added}{Added\nobreakspace {}(JDF)}{s in English}{22}
+\ChangesListline {added}{Added}{, an example of the differing RC attachment preferences across languages pointed out by}{22}
+\ChangesListline {added}{Added}{and discussed in Section}{22}
+\ChangesListline {deleted}{Deleted}{low, }{22}
+\ChangesListline {replaced}{Replaced}{non-locally (}{22}
+\ChangesListline {replaced}{Replaced}{it is}{22}
+\ChangesListline {deleted}{Deleted}{to be the one}{22}
+\ChangesListline {replaced}{Replaced}{While *Late Closure* predicts local/low attachment i}{22}
+\ChangesListline {added}{Added\nobreakspace {}(JDF)}{both}{22}
+\ChangesListline {deleted}{Deleted\nobreakspace {}(JDF)}{both}{22}
+\ChangesListline {deleted}{Deleted\nobreakspace {}(JDF)}{the presence and absence of prosodic breaks to influence parsing decisions, and specifically}{22}
+\ChangesListline {deleted}{Deleted}{He describes what I will call *Align\nobreakspace {}R\nobreakspace {}* which can be easily generalized to described what I will call *Align\nobreakspace {}L\nobreakspace {}*, the same constraint except that it calls for aligning phrases at their left edges rather than their right edges.}{23}
+\ChangesListline {added}{Added\nobreakspace {}(JDF)}{in examples like}{24}
+\ChangesListline {added}{Added\nobreakspace {}(JDF)}{RC}{24}
+\ChangesListline {replaced}{Replaced\nobreakspace {}(JDF)}{Consider}{24}
+\ChangesListline {deleted}{Deleted}{following}{24}
+\ChangesListline {added}{Added}{in Figures}{24}
+\ChangesListline {comment}{Commented}{example 35 replaced by figures}{24}
+\ChangesListline {replaced}{Replaced}{I suggest}{25}
+\ChangesListline {replaced}{Replaced}{the question of whether the 2016 intuition}{26}
+\ChangesListline {replaced}{Replaced}{can be shown to extend to the syntactically disambiguated sentences used in this study is returned to with *hypothesis 4*}{26}
+\ChangesListline {added}{Added}{These hypothesis are returned to in Chapter}{27}
+\ChangesListline {replaced}{Replaced}{the current}{27}
+\ChangesListline {replaced}{Replaced\nobreakspace {}(JDF)}{settle all of the issues raised}{27}
+\ChangesListline {replaced}{Replaced\nobreakspace {}(JDF)}{it is hoped that they}{27}
+\ChangesListline {replaced}{Replaced\nobreakspace {}(JDF)}{may do so}{27}

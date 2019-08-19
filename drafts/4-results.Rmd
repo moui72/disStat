@@ -58,7 +58,7 @@ sto <- function (SentenceType) {
 }
 
 ```
-# Results and discussion
+# Results and discussion {#res}
 
 This section reports various descriptions and analyses of the recordings obtained, and the relevance of those findings to the research questions motivating this study. The reported results include the effect of Speech Act (declarative/D vs. interrogative/Q) and PP2 Status (argument/Arg vs. modifier/Mod) on the location of prosodic breaks, as well as on time spent reflecting upon a sentence between readings, which I call inter-reading time (IRT). In order to evaluate the extent to which participants adhered to the protocol as intended, i.e., began to read immediately for Reading 1 as opposed to producing a considered reading in Reading 2, the delay for which a sentence is displayed before a participant begins to read it is compared for Reading 1  (R1 delay) vs. Reading 2 (R2 delay). The prosodic patterns for participants with especially fast and especially slow R1 delays are presented as a way of investigating the extent to which individual differences might impact those patterns, and as a further exploration of the success of the protocol instructions in producing the intended behavior. A finding on the apparent processing cost of interrogative context when compared to declarative context among the filler sentences is also reported.
 
@@ -977,7 +977,7 @@ This lingering ambiguity could have increased wIRT somewhat because the reader, 
 
 It could also be a simpler explanation: the fact that *of* is only two characters, whereas *from* and *into*/*onto* are all four characters, participants may have recognized a pattern, wherein they could be sure that a two-character PP2 head meant the sentence did not have the difficult properties of some of the ones with four-character PP2 heads (most notably the *into*/*onto* cases), and eliminated some of the needed study time.
 
-### The processing cost of interrogativity
+### The processing cost of interrogativity {#qslow}
 
 ```{r}
 library(scales)
