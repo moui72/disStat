@@ -157,9 +157,10 @@ The RC in (@rc) can modify either NP1, the daughter, or NP2 the colonel. A struc
 
 The crucial issue that distinguishes cases where structural association vs. structural parsing is appropriate is the idea of primary vs. non-primary relations. Frazier and Clifton formalize this distinction as (@primrel).
 
-  (@primrel) Primary phrases and relations include [@frazier1996construal, p. 41]
+  (@primrel) Primary phrases and relations include 
     a) The subject and main predicate of any (+ or -) finite clause
     a) Complements and obligatory constituents of primary phrases
+  [@frazier1996construal, p. 41]
 
 
 RC attachment undergoes association because the relationship between a modifier and whatever is modified is a non-primary relation, and a relative clause is by definition a modifier and not an argument. Circling back to the PP-attachment that this study is concerned with, the argument vs. modifier distinction is precisely what distinguishes the two possible statuses of PP2 shown in (@pp2t) and repeated here as (@pp2tr).
