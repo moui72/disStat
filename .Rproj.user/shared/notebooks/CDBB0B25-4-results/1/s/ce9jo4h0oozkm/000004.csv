@@ -1,0 +1,13 @@
+"0","mdata_raw <- read_csv(""../csvs/got_prosody.csv"")"
+"2","Parsed with column specification:
+cols(
+  .default = col_character(),
+  Condition_GP = [33mcol_logical()[39m,
+  IID = [32mcol_double()[39m,
+  Condition_Q = [33mcol_logical()[39m,
+  SID = [32mcol_double()[39m,
+  Reading = [32mcol_double()[39m
+)
+"
+"2","See spec(...) for full column specifications.
+"

@@ -1,0 +1,6 @@
+"0","mtable <- with(na.omit(inter_item_timings),tapply(inter_reading, mean.sd)"
+"0","row.names(mtable) <- c(""-GP"",""+GP"")"
+"2","Error: unexpected symbol in:
+""mtable <- with(na.omit(inter_item_timings),tapply(inter_reading, mean.sd)
+row.names""
+"

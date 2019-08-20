@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1562610213722.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "26F98390",
+    "lastKnownWriteTime" : 1565200924,
+    "last_content_update" : 1565200924942,
+    "path" : "~/dissertation/drafts/4-results.Rmd",
+    "project_path" : "drafts/4-results.Rmd",
+    "properties" : {
+        "cursorPosition" : "946,126",
+        "docOutlineSize" : "135",
+        "docOutlineVisible" : "1",
+        "last_setup_crc32" : "",
+        "scrollLine" : "927"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

@@ -1,0 +1,8 @@
+"0","fillerModel.q <- lmer(
+  irt ~ Condition_Q + (1 +Condition_Q|Participant) + (1+Condition_Q |Item), 
+  data=irt_fillers, 
+  REML=F
+)
+"
+"2","boundary (singular) fit: see ?isSingular
+"

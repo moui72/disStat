@@ -1,0 +1,4 @@
+"0","ggplot(groupedMeans, aes(x=condition,y=`mean(irt)`)) + geom_bar(stat=identity)```
+"
+"2","Error: attempt to use zero-length variable name
+"

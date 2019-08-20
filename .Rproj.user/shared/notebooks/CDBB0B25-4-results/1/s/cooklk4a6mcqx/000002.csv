@@ -1,0 +1,1 @@
+"0","kable(allpros,caption=""Prosodic pattern by reading"")%>% kable_styling(latex_options = ""hold_position"")"

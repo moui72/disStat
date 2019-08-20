@@ -1,0 +1,3 @@
+"0","obj <- glmer(OBJ~Condition_GP*Condition_Q+Reading+(1|IID)+(1|SID),data=mdata,family=binomial)"
+"0","pp <- glmer(PP1~Condition_GP*Condition_Q+Reading+(1|IID)+(1|SID),data=mdata,family=binomial)"
+"0","tab_model(obj,pp)"

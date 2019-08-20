@@ -1,0 +1,3 @@
+"0","gmean <- mean(inter_item_timings_new$irt)"
+"0","gsd<-sd(inter_item_timings_new$irt)"
+"0","gmax<-gmean+3*gsd"

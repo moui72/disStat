@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1551041857229.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "D475140A",
+    "lastKnownWriteTime" : 21474836480,
+    "last_content_update" : 1551041857229,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "D03C5CF2",
+        "caption" : "wdp",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=wdp&cache_key=D03C5CF2",
+        "displayedObservations" : 1042,
+        "environment" : "",
+        "object" : "wdp",
+        "preview" : 0,
+        "totalObservations" : 1042,
+        "variables" : 20
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

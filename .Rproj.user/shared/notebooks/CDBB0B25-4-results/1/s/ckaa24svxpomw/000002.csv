@@ -1,0 +1,4 @@
+"0","kable(bothrbothb,caption=""Breaks (%) by condition"",align=""c"") %>%"
+"0","  add_header_above(c("" ""=1,rep(c(""Non-garden path"" = 2, ""Garden path""=2),2))) %>%"
+"0","  add_header_above(c("" ""=1, ""Reading 1"" = 4, ""Reading 2"" = 4)) %>%"
+"0","  column_spec(1,bold=T)%>% kable_styling(latex_options = ""hold_position"")"

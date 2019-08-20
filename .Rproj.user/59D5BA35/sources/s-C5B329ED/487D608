@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1564425729169.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "487D608",
+    "lastKnownWriteTime" : 1565205485,
+    "last_content_update" : 1565205485229,
+    "path" : "~/dissertation/drafts/99-append.Rmd",
+    "project_path" : "drafts/99-append.Rmd",
+    "properties" : {
+        "cursorPosition" : "73,19",
+        "last_setup_crc32" : "55F13765dab191b2",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

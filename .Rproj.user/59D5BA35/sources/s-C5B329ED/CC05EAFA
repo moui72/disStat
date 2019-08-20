@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1558454626113.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "CC05EAFA",
+    "lastKnownWriteTime" : 1565211906,
+    "last_content_update" : 1565211909495,
+    "path" : "~/dissertation/drafts/index.Rmd",
+    "project_path" : "drafts/index.Rmd",
+    "properties" : {
+        "cursorPosition" : "28,31",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

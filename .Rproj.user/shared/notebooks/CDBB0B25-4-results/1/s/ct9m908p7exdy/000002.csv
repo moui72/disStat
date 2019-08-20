@@ -1,0 +1,55 @@
+"0","knitr::opts_chunk$set("
+"2","Error in save(list = names(.GlobalEnv), file = outfile, version = version,  : 
+  cannot open file '/Users/tyler/dissertation/drafts/_main_cache/latex/irt_setup_93155cfaa0bbae2a6fd406c1ecff661d.rdb': No such file or directory
+"
+"2","Error in .Internal(quit(save, status, runLast)) : 
+  Error in save(list = names(.GlobalEnv), file = outfile, version = version,  : 
+  cannot open file '/Users/tyler/dissertation/drafts/_main_cache/latex/irt_setup_93155cfaa0bbae2a6fd406c1ecff661d.rdb': No such file or directory
+"
+"0","  echo=FALSE, "
+"2","Error: unexpected ',' in ""  echo=FALSE,""
+"
+"0","  warning=FALSE, "
+"2","Error: unexpected ',' in ""  warning=FALSE,""
+"
+"0","  message=FALSE, "
+"2","Error: unexpected ',' in ""  message=FALSE,""
+"
+"0","  fig.height = 3, "
+"2","Error: unexpected ',' in ""  fig.height = 3,""
+"
+"0","  fig.pos=""H"""
+"0",")"
+"2","Error: unexpected ')' in "")""
+"
+"0","options(tinytex.verbose = TRUE)"
+"0","bgcolor <- ""#ffffff"""
+"0","par(bg = bgcolor)"
+"0","kable <- function(data,...) {"
+"0","  knitr::kable(data, booktabs = TRUE,...)"
+"0","}"
+"0","library(readr)"
+"0","library(huxtable)"
+"0","library(dplyr)"
+"0","library(tidyr)"
+"0","library(knitr)"
+"0","library(ggplot2)"
+"0","library(ggthemes)"
+"0","library(jsonlite)"
+"0","library(kableExtra)"
+"0","library(psych)"
+"0","library(lme4)"
+"0","### global plot themeing"
+"0","theme_set("
+"0","  theme_tufte() + "
+"0","    theme("
+"0","      plot.background = element_rect(fill = bgcolor,color=bgcolor),"
+"0","      panel.border = element_blank()"
+"0","    )"
+"2","Error: Incomplete expression:   theme_tufte() + 
+    theme(
+      plot.background = element_rect(fill = bgcolor,color=bgcolor),
+      panel.border = element_blank()
+    )
+)
+"

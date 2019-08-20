@@ -1,0 +1,4 @@
+"0","ggplot(irt_data, aes(wirt.log10)) +"
+"0","  geom_histogram(binwidth = 0.1, color=""white"",fill=""#333333"") + theme_tufte() +"
+"0","  xlab(""Common log of wIRT"") + ylab(""Frequency"") + "
+"0","  ggtitle(""Distribution of Common Log of wIRT"", subtitle=""Bin size = 0.1"")"

@@ -1,0 +1,8 @@
+"0","br_rows <- c(""No break"", ""Break"")"
+"0","pp1br <- xtabs(~PP1 + Condition_Q, mdata)"
+"0","row.names(pp1br) <- br_rows"
+"0","pp1br.r1 <- xtabs(~PP1 + Condition_Q, subset(mdata, Reading==1))"
+"0","row.names(pp1br.r1) <- br_rows        "
+"0","pp1br.r2 <- xtabs(~PP1 + Condition_Q, subset(mdata, Reading==2))"
+"0","row.names(pp1br.r2) <- br_rows"
+"0","kable(pp1br, caption=""Both readings"",col.names=c(""-Q"",""+Q""))"

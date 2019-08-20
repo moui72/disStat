@@ -1,0 +1,55 @@
+"0","mdata <- read_csv(""../drafts/export/prosody_data.csv"")"
+"2","Parsed with column specification:
+cols(
+  .default = col_character(),
+  Participant = [32mcol_double()[39m,
+  OBJ = [33mcol_logical()[39m,
+  Condition_GP = [33mcol_logical()[39m,
+  V = [33mcol_logical()[39m,
+  IID = [32mcol_double()[39m,
+  PP1 = [33mcol_logical()[39m,
+  Condition_Q = [33mcol_logical()[39m,
+  SID = [32mcol_double()[39m,
+  Reading = [32mcol_double()[39m,
+  STRUG = [33mcol_logical()[39m,
+  pdom = [33mcol_logical()[39m,
+  odom = [33mcol_logical()[39m,
+  Order.x = [32mcol_double()[39m,
+  LIST.x = [32mcol_double()[39m,
+  Order.y = [32mcol_double()[39m,
+  LIST.y = [32mcol_double()[39m
+)
+"
+"2","See spec(...) for full column specifications.
+"
+"0","raw_rs_file <- read_csv(""../csvs/merged.csv"")"
+"2","Parsed with column specification:
+cols(
+  Filename = [31mcol_character()[39m,
+  Leading = [32mcol_double()[39m,
+  Trailing = [32mcol_double()[39m,
+  Length = [32mcol_double()[39m,
+  isFiller = [33mcol_logical()[39m,
+  Condition_Q = [33mcol_logical()[39m,
+  Condition_GP = [33mcol_logical()[39m,
+  Participant = [32mcol_double()[39m,
+  Item = [32mcol_double()[39m,
+  `Utterance length` = [32mcol_double()[39m,
+  Reading = [32mcol_double()[39m
+)
+"
+"0","raw_rs_file$UID <- as.factor(with(raw_rs_file, paste(Participant,Item,Reading,sep=""-"")))"
+"0","raw_rs_file <- subset(raw_rs_file,UID %in% mdata$UID)"
+"0","raw_rs <- subset(raw_rs_file,!isFiller)"
+"0","raw_rs$reading <- raw_rs$Reading"
+"0","r1data <- subset(raw_rs, reading == 1)"
+"0","r1delByP <- aggregate(r1data$Leading,by=list(""Participant"" = r1data$Participant), FUN=median)"
+"0","r1delByP$r1DelCat <- ifelse(r1delByP$x < lodel, ""FAST"", ifelse("
+"0","  r1delByP$x > hidel, ""SLOW"", ""NORMAL"""
+"0","))"
+"0","catdes <- sprintf(""FAST median R1 delay $\\\\leq$ %0.2fs. SLOW median R1 delay $>$ %0.2fs"",lodel/1000,hidel/1000)"
+"0","tab <- table(r1delByP$r1DelCat)"
+"0","tab[c(1,3)] %>% "
+"0","  kable(col.names=c(""Delay category"", ""n""), caption=""Participants by Reading 1 delay category"") %>% "
+"0","  kable_styling(full_width = F,latex_options = c(""hold_position"")) %>% "
+"0","  footnote(catdes,escape = F)"

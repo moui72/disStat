@@ -1,0 +1,1 @@
+{"frames":[{"character_number":0,"end_character_number":0,"end_line_number":0,"file":"","func":"anova(full, norandom)","line_number":0},{"character_number":0,"end_character_number":0,"end_line_number":0,"file":"","func":"anova.lmerModLmerTest(full, norandom)","line_number":0}],"message":"Error in anova.lmerModLmerTest(full, norandom) : \n  object 'norandom' not found\n"}

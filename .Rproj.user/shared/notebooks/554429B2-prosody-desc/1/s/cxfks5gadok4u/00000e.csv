@@ -1,0 +1,5 @@
+"0","odom <- xtabs(~condition + odom ,data=mdata)"
+"0","odom.r1 <- xtabs(~condition + odom,data=subset(mdata,Reading==1))"
+"0","odom.r2 <- xtabs(~condition + odom,data=subset(mdata,Reading==2))"
+"0","kable(odom, caption=""Both readings"","
+"0","      col.names = c(""OBJ Not Dominant"", ""OBJ Dominant""))"

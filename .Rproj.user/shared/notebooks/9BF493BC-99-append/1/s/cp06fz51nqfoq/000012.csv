@@ -1,0 +1,291 @@
+"0","library(readr)"
+"0","library(stringr)"
+"0","library(tidyr)"
+"0","fpp <- read_csv(""../csvs/src/filler-items+pp.csv"")"
+"0","fnp <- read_csv(""../csvs/src/filler-items-pp.csv"")"
+"0","fpp$asp <- word(fpp$FDY,3)"
+"0","fnp$asp <- word(fnp$FDN,3)"
+"0","fpp$aspGroup <-fpp$asp %in% c(""wanted"",""planned"",""intended"",""wanted"")"
+"0","fnp$aspGroup <-fnp$asp %in% c(""wanted"",""planned"",""intended"",""wanted"")"
+"0","fpp <- fpp %>% arrange(-aspGroup,asp) "
+"0","fnp <- fnp %>% arrange(-aspGroup,asp) "
+"0","items <- cbind(fpp[1:3],fnp[2:5])"
+"0","names(items) <- c(""no"",""+PP D"",""+PP Q"",""-PP D"",""-PP Q"",""asp"",""aspGroup"")"
+"0","fitems <- items %>% "
+"0","  gather(key=""version"",value=""text"",-asp,-no,-aspGroup) %>%"
+"0","  arrange(-aspGroup,asp,no)"
+"0","ppy<-subset(fitems,grepl(""+PP"",version))"
+"0","ppy[c(""version"",""text"")] %>% "
+"0","  kable("
+"0","    col.names=c(""Version"", ""Text""),"
+"0","    booktab=T,"
+"0","    linesep = c("""",""\\addlinespace""),"
+"0","    longtable=T,"
+"0","    caption=""Filler items with trailing PPs"""
+"0","  ) %>% "
+"0","  kable_styling(latex_options = c(""hold_position"",""repeat_header""))"
+"1","
+------------------------------------------
+ version                text              
+--------- --------------------------------
+  +PP D     He had intended to enter the  
+           expenses from the trip into a  
+                    spreadsheet.          
+
+  +PP Q     Had he intended to enter the  
+           expenses from the trip into a  
+                    spreadsheet?          
+
+  -PP D    He had intended to do the work 
+           that the boss asked a coworker 
+                       to do.             
+
+  -PP Q    Had he intended to do the work 
+           that the boss asked a coworker 
+                       to do?             
+
+  +PP D     He had intended to sell his   
+            collection of baseball cards  
+                from his childhood.       
+
+  +PP Q     Had he intended to sell his   
+            collection of baseball cards  
+                from his childhood?       
+
+  -PP D    He had intended to replace the 
+            crackers he ate while he was  
+                   house sitting.         
+
+  -PP Q    Had he intended to replace the 
+            crackers he ate while he was  
+                   house sitting?         
+
+  +PP D     She had planned to tell the   
+            student in private about his  
+                   failing grade.         
+
+  +PP Q     Had she planned to tell the   
+            student in private about his  
+                   failing grade?         
+
+  -PP D      She had planned to finish    
+             preparing dinner while the   
+               guests were chatting.      
+
+  -PP Q      Had she planned to finish    
+             preparing dinner while the   
+               guests were chatting?      
+
+  +PP D    She had planned to pack a ham  
+           sandwich on rye bread into her 
+                     lunchbox.            
+
+  +PP Q    Had she planned to pack a ham  
+           sandwich on rye bread into her 
+                     lunchbox?            
+
+  -PP D       She had planned to build    
+            herself a new computer when   
+               she got her paycheck.      
+
+  -PP Q       Had she planned to build    
+            herself a new computer when   
+               she got her paycheck?      
+
+  +PP D    She had wanted to complete the 
+             race for charity in record   
+                       time.              
+
+  +PP Q    Had she wanted to complete the 
+             race for charity in record   
+                       time?              
+
+  -PP D     She had wanted to bring her   
+           son when she attended the next 
+                    conference.           
+
+  -PP Q     Had she wanted to bring her   
+           son when she attended the next 
+                    conference?           
+
+  +PP D    She had wanted to find a rare  
+           butterfly on their hike in the 
+                    rainforest.           
+
+  +PP Q    Had she wanted to find a rare  
+           butterfly on their hike in the 
+                    rainforest?           
+
+  -PP D      She had wanted to tell her   
+            friends that she was selling  
+                 her vacation home.       
+
+  -PP Q      Had she wanted to tell her   
+            friends that she was selling  
+                 her vacation home?       
+
+  +PP D     She had decided to break the  
+              class into teams of six     
+                   students each.         
+
+  +PP Q     Had she decided to break the  
+              class into teams of six     
+                   students each?         
+
+  -PP D       He had decided to do the    
+               needed repairs on the      
+              broken-down van himself.    
+
+  -PP Q       Had he decided to do the    
+               needed repairs on the      
+              broken-down van himself?    
+
+  +PP D     She had decided to instruct   
+           the staff on proper etiquette  
+                 for formal dining.       
+
+  +PP Q     Had she decided to instruct   
+           the staff on proper etiquette  
+                 for formal dining?       
+
+  -PP D    He had decided to advise that  
+             his newest patient seek a    
+                  second opinion.         
+
+  -PP Q    Had he decided to advise that  
+             his newest patient seek a    
+                  second opinion?         
+
+  +PP D     He had forgotten to try the   
+                famous pastry in the      
+           restaurant of the fancy hotel. 
+
+  +PP Q     Had he forgotten to try the   
+                famous pastry in the      
+           restaurant of the fancy hotel? 
+
+  -PP D     She had forgotten to report   
+            that the clerk was ignoring   
+                    her request.          
+
+  -PP Q     Had she forgotten to report   
+            that the clerk was ignoring   
+                    her request?          
+
+  +PP D     He had forgotten to tack the  
+            pamphlet on hygiene onto the  
+                   notice board.          
+
+  +PP Q     Had he forgotten to tack the  
+            pamphlet on hygiene onto the  
+                   notice board?          
+
+  -PP D    She had forgotten to lock the  
+            gate that was supposed to be  
+                    kept closed.          
+
+  -PP Q    Had she forgotten to lock the  
+            gate that was supposed to be  
+                    kept closed?          
+
+  +PP D     She had meant to arrange the  
+            files in alphabetical order   
+                   for her boss.          
+
+  +PP Q     Had she meant to arrange the  
+            files in alphabetical order   
+                   for her boss?          
+
+  -PP D    She had meant to write up the  
+            performance reviews to give   
+                   her employees.         
+
+  -PP Q    Had she meant to write up the  
+            performance reviews to give   
+                   her employees?         
+
+  +PP D       She had meant to place a    
+           suggestion box onto the front  
+                desk of the clinic.       
+
+  +PP Q       Had she meant to place a    
+           suggestion box onto the front  
+                desk of the clinic?       
+
+  -PP D     She had meant to try to get   
+           the program to run on the new  
+                 operating system.        
+
+  -PP Q     Had she meant to try to get   
+           the program to run on the new  
+                 operating system?        
+
+  +PP D    He had needed to request some  
+            money from his father-in-law  
+                  for the remodel.        
+
+  +PP Q    Had he needed to request some  
+            money from his father-in-law  
+                  for the remodel?        
+
+  -PP D     He had needed to upgrade his  
+             ticket when he changed his   
+                    travel plan.          
+
+  -PP Q     Had he needed to upgrade his  
+             ticket when he changed his   
+                    travel plan?          
+
+  +PP D    He had needed to set the vegan 
+           cookies onto serving trays for 
+                     the party.           
+
+  +PP Q    Had he needed to set the vegan 
+           cookies onto serving trays for 
+                     the party?           
+
+  -PP D     He had needed to beg to get   
+             his old job back when his    
+                 investment failed.       
+
+  -PP Q     Had he needed to beg to get   
+             his old job back when his    
+                 investment failed?       
+
+  +PP D     He had remembered to add the  
+           section into the handboook for 
+                    the meeting.          
+
+  +PP Q     Had he remembered to add the  
+           section into the handboook for 
+                    the meeting?          
+
+  -PP D    He had remembered to tell the  
+            office manager to order more  
+                  coffee filters.         
+
+  -PP Q    Had he remembered to tell the  
+            office manager to order more  
+                  coffee filters?         
+
+  +PP D    He had remembered to move the  
+             gifts from the baby shower   
+                   onto the bed.          
+
+  +PP Q    Had he remembered to move the  
+             gifts from the baby shower   
+                   onto the bed?          
+
+  -PP D    He had remembered to circulate 
+             the latest job posting his   
+                 company had sent.        
+
+  -PP Q    Had he remembered to circulate 
+             the latest job posting his   
+                 company had sent?        
+------------------------------------------
+
+"
+"2","Error in if (!kable_format %in% c(""html"", ""latex"")) { : 
+  argument is of length zero
+"

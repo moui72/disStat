@@ -1,0 +1,6 @@
+"0","hist("
+"0","  subset(allparts, irt > gmin)$irt, "
+"0","  breaks=16,"
+"0","  xlab=""Raw IRT"","
+"0","  main=""Raw IRT, all Parts, short excluded"""
+"0",")"

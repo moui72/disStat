@@ -1,0 +1,3 @@
+"0","stargazer(full,no_interaction,header=F,type=""latex"",covariate.labels = c(""Garden path"",""Interrogative"",""Interaction""),dep.var.labels = ""Common log of IRT"",title = ""Mixed effects model"")"
+"2","Error: $ operator not defined for this S4 class
+"

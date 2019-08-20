@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1556474616560.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "348CFB82",
+    "lastKnownWriteTime" : 1565211536,
+    "last_content_update" : 1565211536125,
+    "path" : "~/dissertation/drafts/5-discussion.Rmd",
+    "project_path" : "drafts/5-discussion.Rmd",
+    "properties" : {
+        "cursorPosition" : "136,241",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

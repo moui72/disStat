@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1565206271630.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "EDF52D3A",
+    "lastKnownWriteTime" : 1565206286,
+    "last_content_update" : 1565206286854,
+    "path" : "~/dissertation/drafts/0-frontmatter.Rmd",
+    "project_path" : "drafts/0-frontmatter.Rmd",
+    "properties" : {
+        "cursorPosition" : "3,21",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 10,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
