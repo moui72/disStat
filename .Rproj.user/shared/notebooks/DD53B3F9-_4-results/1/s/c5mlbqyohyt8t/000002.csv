@@ -1,0 +1,4 @@
+"0",""
+"0","comp <-anova(irt.full,irt.noInteraction)"
+"0","row.names(comp) <- c(""No interaction"", ""Full"")"
+"0","kable(comp,caption=""Full model vs. no interaction"",col.names=cols,escape=F)"

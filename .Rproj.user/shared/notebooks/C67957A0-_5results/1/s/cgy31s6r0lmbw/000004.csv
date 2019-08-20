@@ -1,0 +1,8 @@
+"0",""
+"0","diffs <- raw_rs[c(""Reading"",""Leading"",""Participant"",""Item"",""isFiller"",""Condition_Q"",""Condition_GP"")]  %>% spread(Reading,Leading)"
+"0",""
+"0","diffs$diffs <- diffs$Previewed-diffs$Cold"
+"0","diffDis<- describe(diffs$diffs)"
+"0","diffsByP<-aggregate(diffs~Participant,data=diffs,FUN=function(x){round(mean(x))})"
+"0","colnames(diffsByP) <- c(""Participant"", ""Mean difference in delay (ms)"")"
+"0","diffsByP.props <- describe(diffsByP$`Mean difference in delay (ms)`)"

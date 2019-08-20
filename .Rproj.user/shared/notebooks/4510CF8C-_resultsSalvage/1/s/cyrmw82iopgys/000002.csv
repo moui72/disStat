@@ -1,0 +1,56 @@
+"0","library(readr)"
+"0","library(lme4)"
+"0","irt_fillers <- subset(read_csv(""export/all_data.csv""), isFiller)"
+"2","Parsed with column specification:
+cols(
+  .default = col_double(),
+  Gender = [31mcol_character()[39m,
+  Semester = [31mcol_character()[39m,
+  DOTW = [31mcol_character()[39m,
+  DATE = [31mcol_character()[39m,
+  isFiller = [33mcol_logical()[39m,
+  Condition_Q = [33mcol_logical()[39m,
+  Condition_GP = [33mcol_logical()[39m,
+  File_pair = [31mcol_character()[39m,
+  cond = [31mcol_character()[39m,
+  Q = [31mcol_character()[39m,
+  GP = [31mcol_character()[39m
+)
+"
+"2","See spec(...) for full column specifications.
+"
+"0","mean.irtByQ <- aggregate("
+"0","  irt_fillers$irt, "
+"0","  by=list(""Q""=irt_fillers$Condition_Q),"
+"0","  FUN=mean"
+"0",")"
+"0","mean.irtByPP <- aggregate("
+"0","  irt_fillers$irt, "
+"0","  by=list(""+PP""=irt_fillers$Condition_GP),"
+"0","  FUN=mean"
+"0",")"
+"0","mean.irtByQnPP <- aggregate("
+"0","  irt_fillers$irt, "
+"0","  by=list(""Q""=irt_fillers$Condition_Q,""+PP""=irt_fillers$Condition_GP),"
+"0","  FUN=mean"
+"0",")"
+"0","fillerModel.q <- lmer("
+"0","  irt ~ Condition_Q + (1 |Participant) + (1 |Item), "
+"0","  data=irt_fillers, "
+"0","  REML=F"
+"0",")"
+"0","fillerModel.pp <- lmer("
+"0","  irt ~ Condition_GP + (1 |Participant) + (1 |Item), "
+"0","  data=irt_fillers, "
+"0","  REML=F"
+"0",")"
+"0","fillerModel <- lmer("
+"0","  irt ~ Condition_Q * Condition_GP + (1|Participant) + (1 |Item), "
+"0","  data=irt_fillers,"
+"0","  REML=F"
+"0",")"
+"0","fillerModel.ppNoInt <- lmer("
+"0","  irt ~ Condition_Q + Condition_GP + (1|Participant) + (1 |Item), "
+"0","  data=irt_fillers,"
+"0","  REML=F"
+"0",")"

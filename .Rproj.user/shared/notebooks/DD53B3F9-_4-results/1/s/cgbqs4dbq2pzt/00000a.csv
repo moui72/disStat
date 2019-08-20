@@ -1,0 +1,7 @@
+"0","kable("
+"0","  pp1,"
+"0","  caption=""PP1 break by condition and reading"","
+"0","  col.names = c("""", ""D"", ""Q"",""D"", ""Q"")"
+"0",") %>% "
+"0","  add_header_above(c("" ""=1,""Reading 1""=2,""Reading 2""=2)) %>% "
+"0","  kable_styling(latex_options = c(""hold_position""))"

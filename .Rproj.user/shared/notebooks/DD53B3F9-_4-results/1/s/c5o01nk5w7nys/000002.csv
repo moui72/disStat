@@ -1,0 +1,1 @@
+"0","kable(meansByVerb[,c(1,6:8)],caption=""Effect of GP on wIRT by verb"", digits=1) %>% kable_styling(latex_options = ""hold_position"")"

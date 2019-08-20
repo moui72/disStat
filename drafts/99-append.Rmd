@@ -162,7 +162,7 @@ Please work with the assumption that “prosodic boundary” in what follows is 
   * Weakest break? Please indicate which of the breaks (columns E-G where you indicated YES) you think is weakest. If two breaks are of equal strength and are weaker than a third, indicate NONE as weakest. If two breaks are of equal strength and are stronger than a third, indicate that third break as weakest. If all breaks are the same strength, indicate NONE as weakest
   * Struggle?: Indicate whether or not the speaker appears to have had difficulty reading the sentence. This should be relative to their baseline reading fluency, so if a person is hesitant every time, hesitance should not be enough to indicate a struggle.
   * Start of struggle: indicate the region in which you first notice the speaker struggling.
-  *Question?: indicate simply whether or not the recording sounds like a question, prosodically (e.g. final rise is present).
+  *Question?: indicate simply whether or not the recording sounds like a question, prosodically (e.g., final rise is present).
 
 
 \clearpage

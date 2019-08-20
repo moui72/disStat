@@ -1,0 +1,8 @@
+"0","metaTable<-xtabs(~agg+hpf, meta[meta$success,])"
+"0","row.names(metaTable)<-c(""Lowest VAD rejection rate"",""..."",""..."",""Highest VAD rejection rate"")"
+"0","kable("
+"0","  metaTable, "
+"0","  col.names = c(""No HPF"", ""HPF at 200Hz"", ""HPF at 400Hz""),"
+"0","  caption=""VAD rejection rate and high pass filter (HPF) values"","
+"0","  booktab=T"
+"0",") %>% kable_styling(latex_options = ""hold_position"")"

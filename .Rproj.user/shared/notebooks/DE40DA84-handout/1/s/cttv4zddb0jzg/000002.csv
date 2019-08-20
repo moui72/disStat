@@ -1,0 +1,4 @@
+"0",""
+"0","p2lv<-prop.table(xtabs(~two_level_prosody+condition,data=subset(mdata,Reading==2)),margin = 2) * 100"
+"0",""
+"0","kable(p2lv, digits = 1, caption=""Reading 1 prosodic pattern type by condition"") %>% kable_styling()"

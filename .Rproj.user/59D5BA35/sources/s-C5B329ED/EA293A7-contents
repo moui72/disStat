@@ -1,3 +1,14 @@
+@article{kimball1973seven,
+  title={Seven principles of surface structure parsing in natural language},
+  author={Kimball, John},
+  journal={Cognition},
+  volume={2},
+  number={1},
+  pages={15--47},
+  year={1973},
+  publisher={Elsevier}
+}
+
 @book{den2006relators,
   title={Relators and linkers: The syntax of predication, predicate inversion, and copulas},
   author={Den Dikken, Marcel},

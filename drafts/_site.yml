@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 title: "PP-attachment ambiguities"
 author: "Tyler J. Peckenpaugh"
 date: "`r Sys.Date()`"
@@ -11,4 +12,21 @@ output:
     lib_dir: assets
     config:
       fontsettings:
+=======
+title: "PP-attachment ambiguities"
+author: "Tyler J. Peckenpaugh"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+bibliography: [refs.bib, packages.bib]
+output: 
+  bookdown::word_document2: default
+  bookdown::pdf_book:
+    latex_engine: xelatex  
+    includes:
+      in_header: preamble.tex
+  bookdown::gitbook:
+    lib_dir: assets
+    config:
+      fontsettings:
+>>>>>>> 79bfc5b94867e35d2ad1441c78980d5ce458e791
         family: serif

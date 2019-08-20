@@ -1,0 +1,22 @@
+\newenvironment{note}
+    {\begin{center}
+    \begin{tabular}{|p{0.9\textwidth}|}
+    \hline
+    \singlespacing\\
+    }
+    { 
+    \\\\\hline
+    \end{tabular} 
+    \end{center}
+    }
+    
+\makeatletter
+\preto\@marginparreset{\singlespacing}
+\makeatother
+
+\usepackage[commentmarkup=margin,draft]{changes}
+
+\pagenumbering{roman}
+
+
+\definecolor{dgreen}{RGB}{10,200,120}
