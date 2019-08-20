@@ -6161,4 +6161,40 @@ Changes not staged for commit:
 	[31mdeleted:    docs/_main.pdf[m
 
 ]0;~/dissertation]1337;RemoteHost=tyler@Tylers-MacBook-Air.local]1337;CurrentDir=/Users/tyler/dissertation]133;D;0]133;ATylers-MacBook-Air:dissertation tyler$ ]133;Bgit commit -am "f[Kcleaning"
-]133;C;
+]133;C;[master 1f06e90] cleaning
+]0;~/dissertation]1337;RemoteHost=tyler@Tylers-MacBook-Air.local]1337;CurrentDir=/Users/tyler/dissertation]133;D;0]133;ATylers-MacBook-Air:dissertation tyler$ ]133;Bgit pull
+]133;C;Already up to date.
+]0;~/dissertation]1337;RemoteHost=tyler@Tylers-MacBook-Air.local]1337;CurrentDir=/Users/tyler/dissertation]133;D;0]133;ATylers-MacBook-Air:dissertation tyler$ ]133;Bgit status
+]133;C;On branch master
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   .Rproj.user/59D5BA35/console06/9405888F[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+]0;~/dissertation]1337;RemoteHost=tyler@Tylers-MacBook-Air.local]1337;CurrentDir=/Users/tyler/dissertation]133;D;0]133;ATylers-MacBook-Air:dissertation tyler$ ]133;Bgit add --all
+]133;C;]0;~/dissertation]1337;RemoteHost=tyler@Tylers-MacBook-Air.local]1337;CurrentDir=/Users/tyler/dissertation]133;D;0]133;ATylers-MacBook-Air:dissertation tyler$ ]133;Bgit status
+]133;C;On branch master
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	[32mmodified:   .Rproj.user/59D5BA35/console06/9405888F[m
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   .Rproj.user/59D5BA35/console06/9405888F[m
+	[31mmodified:   .Rproj.user/59D5BA35/sources/prop/DFBC0728[m
+	[31mmodified:   .Rproj.user/59D5BA35/sources/s-C5B329ED/D4ACF524[m
+	[31mmodified:   .Rproj.user/59D5BA35/sources/s-C5B329ED/D4ACF524-contents[m
+	[31mmodified:   .gitignore[m
+
+]0;~/dissertation]1337;RemoteHost=tyler@Tylers-MacBook-Air.local]1337;CurrentDir=/Users/tyler/dissertation]133;D;0]133;ATylers-MacBook-Air:dissertation tyler$ ]133;Bgit add --all

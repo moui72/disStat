@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-
 .RData
 .Ruserdata
-=======
->>>>>>> 79bfc5b94867e35d2ad1441c78980d5ce458e791
 .DS_Store
 recordings*
 *.md
@@ -11,11 +7,6 @@ recordings*
 .DS_Store
 *.rdb
 *.rdx
-<<<<<<< HEAD
-**/*_*/
-*.rds
-=======
 *.RData
 *.rds
 .Rproj.user
->>>>>>> 79bfc5b94867e35d2ad1441c78980d5ce458e791
