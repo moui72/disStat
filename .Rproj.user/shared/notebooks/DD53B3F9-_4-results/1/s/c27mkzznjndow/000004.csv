@@ -1,8 +1,0 @@
-"0","totDisp <- tot %>% as.data.frame() %>%"
-"0","  spread(Condition_Q,Freq) "
-"0","totDisp[[1]] <- c(""-GP"", ""+GP"")"
-"0","kable("
-"0","  totDisp,"
-"0","  col.names=c("" "", ""D"", ""Q""),"
-"0","  caption=""N by condition"""
-"0",") %>% kable_styling(latex_options = c(""hold_position""))"

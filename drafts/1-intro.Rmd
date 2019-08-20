@@ -63,13 +63,11 @@ The study being reported is concerned with certain sentences that contain \delet
 
 \added{This contrasts with the similar sentence in} (@cramiGPn) \replaced{where PP2 can plausibly modify *drawer* and so the parse where *in the drawer* is the goal argument is accepted and *of his filing cabinet* is incoporated as a modifier within PP1.}{: as an argument of the verb. The reasons for that assumption are discussed in Section \@ref(mech), but for now it suffices to understand that (@cramiGPy) represents a difficult to comprehend sentence (a garden path), while (@cramiGPn) presents no such difficulty.}
 
-((examples were here))
+\deleted{((examples were here))}
 
 \deleted{Before the details of the current research can be outlined, it is first necessary to explain some of the terms and mechanisms involved. This chapter is concerned with doing so.}
 
-\begin{note}
-Sections 1.1 and 1.2 are redundant and have been removed. They are incorporated into the above.
-\end
+\deleted{Sections 1.1 and 1.2 are redundant and have been removed. They are incorporated into the above.}
 
 ## Motivations for the current {#obs}
 

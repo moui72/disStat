@@ -1,6 +1,0 @@
-"0","r2data<-subset(mdata,Reading==2)"
-"0","pp1Mod<- glmer(PP1~Condition_Q*Condition_GP+(1|IID)+(1|SID),data=r2data,family=binomial)"
-"2","Model failed to converge with max|grad| = 0.0333434 (tol = 0.001, component 1)"
-"0","objMod<- glmer(OBJ~Condition_Q*Condition_GP+(1|IID)+(1|SID),data=r2data,family=binomial)"
-"0","pdomMod<- glmer(pdom~Condition_Q*Condition_GP+(1|IID)+(1|SID),data=r2data,family=binomial)"
-"0","odomMod<- glmer(odom~Condition_Q*Condition_GP+(1|IID)+(1|SID),data=r2data,family=binomial)"

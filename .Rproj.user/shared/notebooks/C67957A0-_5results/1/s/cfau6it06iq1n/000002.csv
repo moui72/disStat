@@ -1,5 +1,0 @@
-"0","ggplot(na.omit(diffs), aes(diffs)) +"
-"0","  geom_histogram(binwidth = 500,color=""white"",fill=""black"") +"
-"0","  labs(x=""Difference in delay"", y=""Count"",title=""Distribution of difference in delay"",subtitle=""Bin width = 500ms"")"
-"2","Error: `data` must be a data frame, or other object coercible by `fortify()`, not a list
-"

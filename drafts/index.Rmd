@@ -21,7 +21,7 @@ header-includes:
   - \usepackage{booktabs}
   - \usepackage{setspace}\doublespacing
 ---
-```{r echo=FALSE}
+```{r echo=FALSE, warning=F,error=F}
 knitr::opts_chunk$set(
 	echo = FALSE,
 	fig.height = 3,

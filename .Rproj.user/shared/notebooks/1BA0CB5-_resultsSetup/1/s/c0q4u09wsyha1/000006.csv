@@ -1,3 +1,0 @@
-"0","kable(ccombo,caption=""Combined breaks by condition in Reading 2 only"",align=""c"") %>%"
-"0","  add_header_above(c("" ""=1,""Non-garden path"" = 2, ""Garden path""=2)) %>%"
-"0","  column_spec(1,bold=T)%>% kable_styling(latex_options = ""hold_position"")"

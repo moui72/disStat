@@ -1,8 +1,0 @@
-"0","metaTable<-xtabs(~agg+hpf, meta[meta$success,])"
-"0","row.names(metaTable)<-c(""Lowest rejection rate"",""..."",""..."",""Highest rejection rate"")"
-"0","kable("
-"0","  metaTable, "
-"0","  col.names = c(""No HPF"", ""HPF at 200Hz"", ""HPF at 400Hz""),"
-"0","  caption=""Rejection rate and HPF values"","
-"0","  booktab=T"
-"0",")"

@@ -1,5 +1,0 @@
-"0","kable("
-"0","  pmeansByCondition[c(1:5)],"
-"0","  caption=""Mean wIRT (ms) by condition and participant"","
-"0","  longtable=T"
-"0",")%>% kable_styling(latex_options = c(""hold_position"", ""repeat_header""))"
