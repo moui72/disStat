@@ -1,1714 +1,4 @@
 
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cigb4zdemm2av/000008.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cigkyf79phnrr/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cigkyf79phnrr/000003.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cigkyf79phnrr/000003.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cigkyf79phnrr/000003.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cimy4urr5e2zs/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cinlcs095w3uk/000005.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cinlcs095w3uk/000006.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cinlcs095w3uk/000006.png[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cinlcs095w3uk/000006.snapshot[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/ciqiw6md706iq/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cjaomacjx5hy5/000006.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cjaomacjx5hy5/000007.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cjaomacjx5hy5/000007.png[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cjaomacjx5hy5/000007.snapshot[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/ck6p8754f5n10/000006.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/ck6p8754f5n10/000007.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/ck6p8754f5n10/000007.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/ck6p8754f5n10/000007.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cknr5oye9t6xs/000006.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cknr5oye9t6xs/000007.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cknr5oye9t6xs/000007.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cknr5oye9t6xs/000007.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cl0c73nwyq5yh/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cma0qs7w4paa4/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cma0qs7w4paa4/000003.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cma0qs7w4paa4/000003.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cma0qs7w4paa4/000003.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cmj96vx6w1mlc/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cmmhuj49uzmbs/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cna2v4do9wtgv/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/coi3g15s38rr1/000006.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/coi3g15s38rr1/000007.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/coi3g15s38rr1/000007.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/coi3g15s38rr1/000008.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cp5ohbro9ykmr/000006.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cp5ohbro9ykmr/000007.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cp5ohbro9ykmr/000007.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cph7rl932jnm2/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/crp9f4j99r35t/000006.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/crp9f4j99r35t/000007.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/crp9f4j99r35t/000007.png[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/crp9f4j99r35t/000007.snapshot[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/crsxx0dm9w4al/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cvrsolxvgkptj/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cvyvx1tumowwr/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cwfama0v9ub29/000004.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cx3js6cz9pcqn/000006.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cx3js6cz9pcqn/000007.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cx3js6cz9pcqn/000007.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cx3js6cz9pcqn/000007.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cx6sl1gfx1jcz/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cxxj5ol900wkv/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cxxj5ol900wkv/000003.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cxxj5ol900wkv/000003.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/cxxj5ol900wkv/000004.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/czgtyfxg53kdt/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/bootstrap-theme.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/bootstrap-theme.css.map[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/bootstrap-theme.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/bootstrap.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/bootstrap.css.map[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/bootstrap.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/cerulean.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/cosmo.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/darkly.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/flatly.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/fonts/Lato.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/fonts/LatoBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/fonts/LatoItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/fonts/NewsCycle.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/fonts/NewsCycleBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSans.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansBoldItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansLight.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansLightItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/fonts/Raleway.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/fonts/RalewayBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/fonts/Roboto.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/fonts/RobotoBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/fonts/RobotoLight.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/fonts/RobotoMedium.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansPro.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansProBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansProItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansProLight.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/fonts/Ubuntu.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/journal.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/lumen.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/paper.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/readable.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/sandstone.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/simplex.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/spacelab.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/united.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/css/yeti.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.eot[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.svg[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.woff[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.woff2[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/js/bootstrap.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/js/bootstrap.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/js/npm.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/shim/html5shiv.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/bootstrap-3.3.5/shim/respond.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/jquery-1.11.3/jquery.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/1BA0CB5-_resultsSetup/1/s/lib/kePrint-0.0.1/kePrint.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/2B4A3EBF247B2594/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/2B4A3EBF2C480E45/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/2B4A3EBF3498A93/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/2B4A3EBF753D08A8/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/2B4A3EBFAF7DD18F/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/2B4A3EBFB2E81C97/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/2B4A3EBFCAF3751/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/2B4A3EBFDDE79CC6/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/2B4A3EBFEB35EDA7/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/c611sftsoui5e/000004.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/c611sftsoui5e/000005.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/c611sftsoui5e/000005.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/c611sftsoui5e/000005.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/c611sftsoui5e/000006.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/cm2uvl0ahtgko_t/_rs_chunk_plot_001.png[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/coozpl9b00rd5_t/_rs_chunk_plot_001.png[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/ctp5whg4zwpz3_t/_rs_chunk_plot_001.png[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/cu6lcwsnjid65_t/_rs_chunk_plot_001.png[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/bootstrap-theme.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/bootstrap-theme.css.map[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/bootstrap-theme.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/bootstrap.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/bootstrap.css.map[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/bootstrap.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/cerulean.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/cosmo.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/darkly.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/flatly.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/fonts/Lato.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/fonts/LatoBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/fonts/LatoItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/fonts/NewsCycle.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/fonts/NewsCycleBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSans.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansBoldItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansLight.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansLightItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/fonts/Raleway.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/fonts/RalewayBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/fonts/Roboto.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/fonts/RobotoBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/fonts/RobotoLight.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/fonts/RobotoMedium.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansPro.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansProBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansProItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansProLight.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/fonts/Ubuntu.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/journal.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/lumen.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/paper.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/readable.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/sandstone.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/simplex.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/spacelab.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/united.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/css/yeti.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.eot[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.svg[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.woff[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.woff2[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/js/bootstrap.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/js/bootstrap.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/js/npm.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/shim/html5shiv.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/bootstrap-3.3.5/shim/respond.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/jquery-1.11.3/jquery.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/2EDECD28-4-results/1/s/lib/kePrint-0.0.1/kePrint.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/3425B6F3-irt-data/1/2B4A3EBFB117C507/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/3425B6F3-irt-data/1/s/c3h9mipuh90ec/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/3425B6F3-irt-data/1/s/c3h9mipuh90ec/000003.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/3425B6F3-irt-data/1/s/c3h9mipuh90ec/000003.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/3425B6F3-irt-data/1/s/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/3425B6F3-irt-data/1/s/csetup_chunk/000032.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/2B4A3EBF195C6195/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/2B4A3EBF1C499805/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/2B4A3EBF247B2594/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/2B4A3EBF2C480E45/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/2B4A3EBF753D08A8/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/2B4A3EBF7D3E3228/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/2B4A3EBFCAF3751/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/2B4A3EBFDE6303A5/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/2B4A3EBFEC14C03E/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/bootstrap-theme.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/bootstrap-theme.css.map[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/bootstrap-theme.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/bootstrap.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/bootstrap.css.map[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/bootstrap.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/cerulean.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/cosmo.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/darkly.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/flatly.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/fonts/Lato.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/fonts/LatoBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/fonts/LatoItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/fonts/NewsCycle.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/fonts/NewsCycleBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSans.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansBoldItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansLight.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansLightItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/fonts/Raleway.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/fonts/RalewayBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/fonts/Roboto.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/fonts/RobotoBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/fonts/RobotoLight.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/fonts/RobotoMedium.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansPro.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansProBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansProItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansProLight.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/fonts/Ubuntu.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/journal.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/lumen.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/paper.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/readable.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/sandstone.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/simplex.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/spacelab.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/united.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/css/yeti.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.eot[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.svg[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.woff[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.woff2[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/js/bootstrap.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/js/bootstrap.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/js/npm.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/shim/html5shiv.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/bootstrap-3.3.5/shim/respond.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/jquery-1.11.3/jquery.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/35735ADD-5-discussion/1/s/lib/kePrint-0.0.1/kePrint.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/4510CF8C-_resultsSalvage/1/2B4A3EBFDDE79CC6/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/4510CF8C-_resultsSalvage/1/s/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/4510CF8C-_resultsSalvage/1/s/cyrmw82iopgys/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/755AA8AA-_validity-prep/1/2B4A3EBF63351142/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/755AA8AA-_validity-prep/1/s/c26qsoyvmfys6/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/755AA8AA-_validity-prep/1/s/c26qsoyvmfys6/000003.error[m
-	[32mnew file:   .Rproj.user/shared/notebooks/755AA8AA-_validity-prep/1/s/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/755AA8AA-_validity-prep/1/s/czwjpbzhl7wur/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/82E9A4DA-999-references/1/2B4A3EBF2C480E45/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/82E9A4DA-999-references/1/2B4A3EBFCAF3751/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/82E9A4DA-999-references/1/s/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/2B4A3EBF195C6195/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/2B4A3EBF1A036F43/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/2B4A3EBF1C499805/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/2B4A3EBF1FFBDA6C/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/2B4A3EBF247B2594/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/2B4A3EBF2C480E45/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/2B4A3EBF753D08A8/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/2B4A3EBFCAF3751/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/2B4A3EBFCB34F7E6/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/cy2l7i8d819sy/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/cy2l7i8d819sy/000003.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/cy2l7i8d819sy/000003.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/cy2l7i8d819sy/000003.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/bootstrap-theme.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/bootstrap-theme.css.map[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/bootstrap-theme.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/bootstrap.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/bootstrap.css.map[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/bootstrap.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/cerulean.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/cosmo.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/darkly.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/flatly.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/fonts/Lato.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/fonts/LatoBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/fonts/LatoItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/fonts/NewsCycle.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/fonts/NewsCycleBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSans.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansBoldItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansLight.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansLightItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/fonts/Raleway.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/fonts/RalewayBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/fonts/Roboto.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/fonts/RobotoBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/fonts/RobotoLight.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/fonts/RobotoMedium.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansPro.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansProBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansProItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansProLight.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/fonts/Ubuntu.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/journal.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/lumen.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/paper.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/readable.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/sandstone.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/simplex.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/spacelab.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/united.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/css/yeti.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.eot[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.svg[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.woff[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.woff2[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/js/bootstrap.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/js/bootstrap.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/js/npm.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/shim/html5shiv.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/bootstrap-3.3.5/shim/respond.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/jquery-1.11.3/jquery.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AC69DA1-99-append/1/s/lib/kePrint-0.0.1/kePrint.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/2B4A3EBF195C6195/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/2B4A3EBF1A036F43/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/2B4A3EBF1C499805/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/2B4A3EBF247B2594/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/2B4A3EBF253A773D/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/2B4A3EBF2C480E45/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/2B4A3EBF4417A83D/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/2B4A3EBF63351142/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/2B4A3EBF6F013958/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/2B4A3EBF753D08A8/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/2B4A3EBFA719DE91/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/2B4A3EBFAF7DD18F/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/2B4A3EBFB2E81C97/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/2B4A3EBFB698A721/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/2B4A3EBFCAF3751/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/2B4A3EBFDDE79CC6/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/2B4A3EBFE29A9002/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/2B4A3EBFE847181/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/2B4A3EBFF6A38F1C/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/c4yk0bfn7w2rb/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/c4yk0bfn7w2rb/000003.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/c4yk0bfn7w2rb/000003.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/c4yk0bfn7w2rb/000003.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/ccf9b9txj6i72/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/bootstrap-theme.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/bootstrap-theme.css.map[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/bootstrap-theme.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/bootstrap.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/bootstrap.css.map[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/bootstrap.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/cerulean.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/cosmo.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/darkly.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/flatly.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/fonts/Lato.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/fonts/LatoBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/fonts/LatoItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/fonts/NewsCycle.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/fonts/NewsCycleBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSans.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansBoldItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansLight.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansLightItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/fonts/Raleway.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/fonts/RalewayBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/fonts/Roboto.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/fonts/RobotoBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/fonts/RobotoLight.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/fonts/RobotoMedium.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansPro.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansProBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansProItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansProLight.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/fonts/Ubuntu.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/journal.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/lumen.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/paper.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/readable.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/sandstone.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/simplex.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/spacelab.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/united.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/css/yeti.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.eot[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.svg[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.woff[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.woff2[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/js/bootstrap.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/js/bootstrap.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/js/npm.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/shim/html5shiv.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/bootstrap-3.3.5/shim/respond.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/jquery-1.11.3/jquery.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/ACEEFD04-3-method/1/s/lib/kePrint-0.0.1/kePrint.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/2B4A3EBF63351142/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/c26qsoyvmfys6/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/c26qsoyvmfys6/000003.error[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/cancq2n5i2hze/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/cancq2n5i2hze/000003.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/cancq2n5i2hze/000003.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/cancq2n5i2hze/000003.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/cc5vbqfj99n98/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/cc5vbqfj99n98/000003.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/cc5vbqfj99n98/000003.png[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/cc5vbqfj99n98/000003.snapshot[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/czwjpbzhl7wur/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/bootstrap-theme.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/bootstrap-theme.css.map[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/bootstrap-theme.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/bootstrap.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/bootstrap.css.map[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/bootstrap.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/cerulean.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/cosmo.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/darkly.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/flatly.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/fonts/Lato.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/fonts/LatoBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/fonts/LatoItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/fonts/NewsCycle.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/fonts/NewsCycleBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSans.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansBoldItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansLight.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansLightItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/fonts/Raleway.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/fonts/RalewayBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/fonts/Roboto.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/fonts/RobotoBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/fonts/RobotoLight.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/fonts/RobotoMedium.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansPro.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansProBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansProItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansProLight.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/fonts/Ubuntu.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/journal.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/lumen.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/paper.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/readable.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/sandstone.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/simplex.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/spacelab.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/united.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/css/yeti.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.eot[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.svg[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.woff[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.woff2[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/js/bootstrap.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/js/bootstrap.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/js/npm.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/shim/html5shiv.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/bootstrap-3.3.5/shim/respond.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/jquery-1.11.3/jquery.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/AF398BD3-_delDif/1/s/lib/kePrint-0.0.1/kePrint.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/C67957A0-_5results/1/s/cfau6it06iq1n/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/C67957A0-_5results/1/s/cfau6it06iq1n/000003.error[m
-	[32mnew file:   .Rproj.user/shared/notebooks/C67957A0-_5results/1/s/cgy31s6r0lmbw/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/C67957A0-_5results/1/s/cgy31s6r0lmbw/000003.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/C67957A0-_5results/1/s/cgy31s6r0lmbw/000003.png[m
-	[32mnew file:   .Rproj.user/shared/notebooks/C67957A0-_5results/1/s/cgy31s6r0lmbw/000004.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/C67957A0-_5results/1/s/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/C67957A0-_5results/1/s/cjnytwbqcwek0/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/C67957A0-_5results/1/s/cjnytwbqcwek0/000003.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/C67957A0-_5results/1/s/cjnytwbqcwek0/000003.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/C67957A0-_5results/1/s/csetup_chunk/000004.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/C67957A0-_5results/1/s/csetup_chunk/000005.error[m
-	[32mnew file:   .Rproj.user/shared/notebooks/C7342E14-index/1/2B4A3EBF195C6195/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/C7342E14-index/1/2B4A3EBF1C499805/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/C7342E14-index/1/2B4A3EBF247B2594/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/C7342E14-index/1/2B4A3EBF2C480E45/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/C7342E14-index/1/2B4A3EBFAF7DD18F/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/C7342E14-index/1/2B4A3EBFB698A721/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/C7342E14-index/1/2B4A3EBFCAF3751/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/C7342E14-index/1/2B4A3EBFDDE79CC6/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/C7342E14-index/1/2B4A3EBFE847181/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/C7342E14-index/1/2B4A3EBFEC14C03E/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/C7342E14-index/1/s/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/2B4A3EBF7D3E3228/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/2B4A3EBFC62BCE51/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/2B4A3EBFDADFD52D/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/c3ei2xhv3fkd1/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/c3ei2xhv3fkd1/000003.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/c3ei2xhv3fkd1/000003.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/c3ei2xhv3fkd1/000003.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/c3ei2xhv3fkd1/000004.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/c6mjoeoufrhwq/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/c9u51th97lga7/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/c9u51th97lga7/000003.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/c9u51th97lga7/000003.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/c9u51th97lga7/000003.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/c9u51th97lga7/000004.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/cqjl65q4hhh9r/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/cqjl65q4hhh9r/000003.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/cqjl65q4hhh9r/000003.png[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/cqjl65q4hhh9r/000003.snapshot[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/cvbe9c10o8rhc/000022.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/cvbe9c10o8rhc/000023.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/cvbe9c10o8rhc/000023.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/cvbe9c10o8rhc/000023.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/cvbe9c10o8rhc/000024.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/bootstrap-theme.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/bootstrap-theme.css.map[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/bootstrap-theme.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/bootstrap.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/bootstrap.css.map[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/bootstrap.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/cerulean.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/cosmo.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/darkly.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/flatly.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/fonts/Lato.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/fonts/LatoBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/fonts/LatoItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/fonts/NewsCycle.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/fonts/NewsCycleBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSans.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansBoldItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansLight.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansLightItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/fonts/Raleway.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/fonts/RalewayBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/fonts/Roboto.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/fonts/RobotoBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/fonts/RobotoLight.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/fonts/RobotoMedium.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansPro.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansProBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansProItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansProLight.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/fonts/Ubuntu.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/journal.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/lumen.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/paper.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/readable.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/sandstone.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/simplex.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/spacelab.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/united.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/css/yeti.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.eot[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.svg[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.woff[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.woff2[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/js/bootstrap.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/js/bootstrap.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/js/npm.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/shim/html5shiv.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/bootstrap-3.3.5/shim/respond.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/jquery-1.11.3/jquery.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/CF35A458-r1delcat/1/s/lib/kePrint-0.0.1/kePrint.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/D30239-0-frontmatter/1/2B4A3EBF1C499805/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/D30239-0-frontmatter/1/2B4A3EBF247B2594/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/D30239-0-frontmatter/1/2B4A3EBFEC14C03E/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/D30239-0-frontmatter/1/s/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/D6D62152-1-intro/1/2B4A3EBF195C6195/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/D6D62152-1-intro/1/2B4A3EBF247B2594/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/D6D62152-1-intro/1/2B4A3EBF2C480E45/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/D6D62152-1-intro/1/s/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/2B4A3EBFAF7DD18F/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c0zthskppdgnd/000006.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c1565912o2kvx/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c1565912o2kvx/000003.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c1565912o2kvx/000003.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c1565912o2kvx/000003.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c1565912o2kvx/000004.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c1jscamabi0v6/00000a.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c1jscamabi0v6/00000b.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c1jscamabi0v6/00000b.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c1jscamabi0v6/00000b.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c1jscamabi0v6/00000c.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c1la5840evffx/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c1la5840evffx/000003.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c1la5840evffx/000003.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c1mqdbywm1k0o/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c1mqdbywm1k0o/000003.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c1mqdbywm1k0o/000003.png[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c27mkzznjndow/000004.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c27mkzznjndow/000005.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c27mkzznjndow/000005.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c27mkzznjndow/000005.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c2joa9s65uhxr/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c3k63wgfv24nc/000006.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c3kglaj75s3ny/00000a.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c3kglaj75s3ny/00000b.error[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c3rb8zcctlsvz/00000a.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c3rb8zcctlsvz/00000b.error[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c5behurxsvbsx/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c5behurxsvbsx/000003.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c5behurxsvbsx/000003.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c5behurxsvbsx/000003.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c5mlbqyohyt8t/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c5mlbqyohyt8t/000003.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c5mlbqyohyt8t/000003.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c5mlbqyohyt8t/000004.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c5o01nk5w7nys/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c5o01nk5w7nys/000003.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c5o01nk5w7nys/000003.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/c5o01nk5w7nys/000003.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cbi0p4pth0aw0/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cbvniegzp94uo/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/ccijbgidkruz2/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cd4jut7a5kwcd/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cd4jut7a5kwcd/000003.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cd4jut7a5kwcd/000003.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cd4jut7a5kwcd/000003.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cdk9r2i9cgagf/000006.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cdk9r2i9cgagf/000007.error[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/ceejk2k8pms0v/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cfa0fydlyh5ja/000010.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cfa0fydlyh5ja/000011.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cfa0fydlyh5ja/000011.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cfa0fydlyh5ja/000011.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cgbqs4dbq2pzt/00000a.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cgbqs4dbq2pzt/00000b.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cgbqs4dbq2pzt/00000b.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cgbqs4dbq2pzt/00000b.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cgizcbqndh25o/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/chw6vtl1yknlr/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/chw6vtl1yknlr/000003.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/chw6vtl1yknlr/000003.png[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/chw6vtl1yknlr/000003.snapshot[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/chw6vtl1yknlr/000004.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cicbruc33fzuw/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cicbruc33fzuw/000003.error[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cigkyf79phnrr/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cigkyf79phnrr/000003.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cigkyf79phnrr/000003.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cigkyf79phnrr/000003.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cinlcs095w3uk/000005.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cinlcs095w3uk/000006.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cinlcs095w3uk/000006.png[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cinlcs095w3uk/000006.snapshot[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/clqrsukt7x8iz/000008.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/clqrsukt7x8iz/000009.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/clqrsukt7x8iz/000009.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/clqrsukt7x8iz/000009.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/clv2mhgurqsg3/000004.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cma0qs7w4paa4/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cma0qs7w4paa4/000003.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cma0qs7w4paa4/000003.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cma0qs7w4paa4/000003.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cmdowts2guk3u/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cmtc939ue1g90/00000a.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cmtc939ue1g90/00000b.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cmtc939ue1g90/00000b.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cmtc939ue1g90/00000b.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cn1ro0xr44i1b/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cn9jxu0u82duu/00000a.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cn9jxu0u82duu/00000b.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cn9jxu0u82duu/00000b.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cn9jxu0u82duu/00000b.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cna2v4do9wtgv/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cplrwg26srd9v/00000a.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cplrwg26srd9v/00000b.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cplrwg26srd9v/00000b.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cplrwg26srd9v/00000b.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cplrwg26srd9v/00000c.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cq954hi0dvfu7/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/crcmg6uvyy5lk/00000c.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/crsxx0dm9w4al/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/ct4th6d4r45fr/00000a.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/ct4th6d4r45fr/00000b.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/ct4th6d4r45fr/00000b.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/ct4th6d4r45fr/00000b.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/ct4th6d4r45fr/00000c.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cx6sl1gfx1jcz/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cxxj5ol900wkv/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cxxj5ol900wkv/000003.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cxxj5ol900wkv/000003.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/cxxj5ol900wkv/000004.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/czgtyfxg53kdt/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/bootstrap-theme.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/bootstrap-theme.css.map[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/bootstrap-theme.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/bootstrap.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/bootstrap.css.map[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/bootstrap.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/cerulean.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/cosmo.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/darkly.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/flatly.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/fonts/Lato.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/fonts/LatoBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/fonts/LatoItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/fonts/NewsCycle.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/fonts/NewsCycleBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSans.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansBoldItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansLight.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansLightItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/fonts/Raleway.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/fonts/RalewayBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/fonts/Roboto.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/fonts/RobotoBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/fonts/RobotoLight.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/fonts/RobotoMedium.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansPro.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansProBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansProItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansProLight.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/fonts/Ubuntu.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/journal.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/lumen.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/paper.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/readable.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/sandstone.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/simplex.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/spacelab.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/united.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/css/yeti.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.eot[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.svg[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.woff[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.woff2[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/js/bootstrap.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/js/bootstrap.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/js/npm.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/shim/html5shiv.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/bootstrap-3.3.5/shim/respond.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/jquery-1.11.3/jquery.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DD53B3F9-_4-results/1/s/lib/kePrint-0.0.1/kePrint.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/2B4A3EBF4C6770C5/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/2B4A3EBF7D3E3228/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/cafs6nvrawqnc/00001e.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/chunks.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/cttv4zddb0jzg/000002.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/cttv4zddb0jzg/000003.html[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/cttv4zddb0jzg/000003.json[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/cttv4zddb0jzg/000003.metadata[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/cttv4zddb0jzg/000004.csv[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/bootstrap-theme.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/bootstrap-theme.css.map[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/bootstrap-theme.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/bootstrap.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/bootstrap.css.map[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/bootstrap.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/cerulean.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/cosmo.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/darkly.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/flatly.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/fonts/Lato.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/fonts/LatoBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/fonts/LatoItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/fonts/NewsCycle.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/fonts/NewsCycleBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSans.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansBoldItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansLight.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/fonts/OpenSansLightItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/fonts/Raleway.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/fonts/RalewayBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/fonts/Roboto.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/fonts/RobotoBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/fonts/RobotoLight.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/fonts/RobotoMedium.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansPro.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansProBold.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansProItalic.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/fonts/SourceSansProLight.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/fonts/Ubuntu.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/journal.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/lumen.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/paper.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/readable.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/sandstone.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/simplex.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/spacelab.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/united.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/css/yeti.min.css[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.eot[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.svg[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.ttf[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.woff[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/fonts/glyphicons-halflings-regular.woff2[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/js/bootstrap.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/js/bootstrap.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/js/npm.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/shim/html5shiv.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/bootstrap-3.3.5/shim/respond.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/jquery-1.11.3/jquery.min.js[m
-	[32mnew file:   .Rproj.user/shared/notebooks/DE40DA84-handout/1/s/lib/kePrint-0.0.1/kePrint.js[m
-	[32mnew file:   _bookdown_files/irt-data_files/figure-html/log10winsorizedIRT-1.png[m
-	[32mnew file:   _bookdown_files/irt-data_files/figure-html/rawIRThist-1.png[m
-	[32mnew file:   _bookdown_files/irt-data_files/figure-html/winsorizedIRT-1.png[m
-	[32mnew file:   _bookdown_files/irt-data_files/figure-latex/deddif-1.pdf[m
-	[32mnew file:   _bookdown_files/irt-data_files/figure-latex/delayComparison-1.pdf[m
-	[32mnew file:   _bookdown_files/irt-data_files/figure-latex/difhistbyp-1.pdf[m
-	[32mnew file:   _bookdown_files/irt-data_files/figure-latex/interactinplot-1.pdf[m
-	[32mnew file:   _bookdown_files/irt-data_files/figure-latex/irtzoomLft-1.pdf[m
-	[32mnew file:   _bookdown_files/irt-data_files/figure-latex/log10wins-1.pdf[m
-	[32mnew file:   _bookdown_files/irt-data_files/figure-latex/rawIRThist-1.pdf[m
-	[32mnew file:   _bookdown_files/irt-data_files/figure-latex/wIRT-1.pdf[m
-	[32mnew file:   _bookdown_files/irt-data_files/figure-latex/zoomRgt-1.pdf[m
-	[32mnew file:   _bookdown_files/lmer-combined-winsorized_files/figure-html/hist-1.png[m
-	[32mnew file:   _bookdown_files/lmer-combined-winsorized_files/figure-html/hist-2.png[m
-	[32mnew file:   _bookdown_files/lmer-combined-winsorized_files/figure-html/hist-3.png[m
-	[32mnew file:   _delDif.Rmd[m
-	[32mnew file:   _main.Rmd[m
-	[32mnew file:   _main.pdf[m
-	[32mnew file:   _validity-prep.Rmd[m
-	[32mnew file:   docs/_main.pdf[m
-	[32mnew file:   drafts/.Rhistory[m
-	[32mmodified:   drafts/0-frontmatter.Rmd[m
-	[32mmodified:   drafts/1-intro.Rmd[m
-	[32mmodified:   drafts/3-method.Rmd[m
-	[32mmodified:   drafts/4-results.Rmd[m
-	[32mmodified:   drafts/5-discussion.Rmd[m
-	[32mmodified:   drafts/99-append.Rmd[m
-	[32mmodified:   drafts/Rplot001.pdf[m
-	[32mrenamed:    drafts/2-background.Rmd -> drafts/_2-background.Rmd[m
-	[32mnew file:   drafts/_4-results.Rmd[m
-	[32mnew file:   drafts/_5results.Rmd[m
-	[32mnew file:   drafts/_bk4-results.Rmd[m
-	[32mnew file:   drafts/_bookdown_files/4-results_files/figure-html/bdom-1.png[m
-	[32mnew file:   drafts/_bookdown_files/4-results_files/figure-html/bothbreaks2-1.png[m
-	[32mnew file:   drafts/_bookdown_files/4-results_files/figure-html/delayComparison-1.png[m
-	[32mnew file:   drafts/_bookdown_files/4-results_files/figure-html/facet-1.png[m
-	[32mnew file:   drafts/_bookdown_files/4-results_files/figure-html/interactionplot-1.png[m
-	[32mnew file:   drafts/_bookdown_files/4-results_files/figure-html/wIRT-1.png[m
-	[32mnew file:   drafts/_main.aux[m
-	[32mnew file:   drafts/_main.loc[m
-	[32mnew file:   drafts/_main.lof[m
-	[32mnew file:   drafts/_main.lot[m
-	[32mnew file:   drafts/_main.out[m
-	[32mnew file:   drafts/_main.pdf[m
-	[32mnew file:   drafts/_main.soc[m
-	[32mnew file:   drafts/_main.tex[m
-	[32mnew file:   drafts/_main.toc[m
-	[32mnew file:   drafts/_main.utf8.tmp.html[m
-	[32mnew file:   drafts/_resultsSalvage.Rmd[m
-	[32mnew file:   drafts/_resultsSetup.Rmd[m
-	[32mmodified:   drafts/bdom.pdf[m
-	[32mmodified:   drafts/bothbreaks2.pdf[m
-	[32mnew file:   drafts/deldis.pdf[m
-	[32mmodified:   drafts/facet.pdf[m
-	[32mmodified:   drafts/index.Rmd[m
-	[32mmodified:   drafts/interact.pdf[m
-	[32mmodified:   drafts/packages.bib[m
-	[32mnew file:   drafts/preamble.tex[m
-	[32mmodified:   drafts/refs.bib[m
-	[32mnew file:   drafts/results.tex[m
-	[32mmodified:   drafts/wIRT.pdf[m
-	[32mnew file:   preamble.tex[m
-	[32mnew file:   reports/handout-2_cache/docx/__packages[m
-	[32mnew file:   reports/handout-2_cache/html/__packages[m
-	[32mnew file:   reports/median_files/figure-latex/facet-1.pdf[m
-	[32mnew file:   reports/r1delcat_files/figure-latex/facet-1.pdf[m
-
-Unmerged paths:
-  (use "git add/rm <file>..." as appropriate to mark resolution)
-
-	[31mboth added:      .Rhistory[m
-	[31madded by them:   .Rproj.user/2B4A3EBF/viewer_history/viewhtml31d01b4d4870/lib/kePrint-0.0.1/kePrint.js[m
-	[31madded by us:     .Rproj.user/shared/notebooks/1A366C94-prosody-data/1/s/lib/kePrint-0.0.1/kePrint.js[m
-	[31madded by us:     .Rproj.user/shared/notebooks/4253D8C8-3-method/1/s/cbfosopbttw7d/000005.png[m
-	[31mboth added:      .Rproj.user/shared/notebooks/paths[m
-	[31mboth modified:   .gitignore[m
-	[31mboth deleted:    docs/assets/kePrint-0.0.1/kePrint.js[m
-	[31mboth added:      drafts/_bookdown.yml[m
-	[31mboth added:      drafts/_site.yml[m
-
-Changes not staged for commit:
-  (use "git add/rm <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
-	[31mmodified:   .Rproj.user/59D5BA35/console06/9405888F[m
-	[31mmodified:   .Rproj.user/59D5BA35/sources/prop/42369CF7[m
-	[31mmodified:   .Rproj.user/59D5BA35/sources/prop/DE10F90C[m
-	[31mmodified:   .Rproj.user/59D5BA35/sources/prop/DF84FC5C[m
-	[31mmodified:   .Rproj.user/59D5BA35/sources/s-C5B329ED/26F98390[m
-	[31mmodified:   .Rproj.user/59D5BA35/sources/s-C5B329ED/26F98390-contents[m
-	[31mmodified:   .Rproj.user/59D5BA35/sources/s-C5B329ED/348CFB82[m
-	[31mmodified:   .Rproj.user/59D5BA35/sources/s-C5B329ED/348CFB82-contents[m
-	[31mmodified:   .Rproj.user/59D5BA35/sources/s-C5B329ED/487D608[m
-	[31mmodified:   .Rproj.user/59D5BA35/sources/s-C5B329ED/487D608-contents[m
-	[31mmodified:   .Rproj.user/59D5BA35/sources/s-C5B329ED/89AEABF9[m
-	[31mmodified:   .Rproj.user/59D5BA35/sources/s-C5B329ED/89AEABF9-contents[m
-	[31mmodified:   .Rproj.user/59D5BA35/sources/s-C5B329ED/BE7798CD[m
-	[31mmodified:   .Rproj.user/59D5BA35/sources/s-C5B329ED/BE7798CD-contents[m
-	[31mmodified:   .Rproj.user/59D5BA35/sources/s-C5B329ED/CC05EAFA[m
-	[31mmodified:   .Rproj.user/59D5BA35/sources/s-C5B329ED/CC05EAFA-contents[m
-	[31mmodified:   .Rproj.user/59D5BA35/sources/s-C5B329ED/D4ACF524[m
-	[31mmodified:   .Rproj.user/59D5BA35/sources/s-C5B329ED/D4ACF524-contents[m
-	[31mmodified:   .Rproj.user/59D5BA35/sources/s-C5B329ED/EA293A7[m
-	[31mmodified:   .Rproj.user/59D5BA35/sources/s-C5B329ED/EA293A7-contents[m
-	[31mmodified:   .Rproj.user/59D5BA35/sources/s-C5B329ED/EDF52D3A[m
-	[31mmodified:   .Rproj.user/59D5BA35/sources/s-C5B329ED/EDF52D3A-contents[m
-	[31mdeleted:    _bookdown_files/irt-data_files/figure-html/log10winsorizedIRT-1.png[m
-	[31mdeleted:    _bookdown_files/irt-data_files/figure-html/rawIRThist-1.png[m
-	[31mdeleted:    _bookdown_files/irt-data_files/figure-html/winsorizedIRT-1.png[m
-	[31mdeleted:    _bookdown_files/irt-data_files/figure-latex/deddif-1.pdf[m
-	[31mdeleted:    _bookdown_files/irt-data_files/figure-latex/delayComparison-1.pdf[m
-	[31mdeleted:    _bookdown_files/irt-data_files/figure-latex/difhistbyp-1.pdf[m
-	[31mdeleted:    _bookdown_files/irt-data_files/figure-latex/interactinplot-1.pdf[m
-	[31mdeleted:    _bookdown_files/irt-data_files/figure-latex/irtzoomLft-1.pdf[m
-	[31mdeleted:    _bookdown_files/irt-data_files/figure-latex/log10wins-1.pdf[m
-	[31mdeleted:    _bookdown_files/irt-data_files/figure-latex/rawIRThist-1.pdf[m
-	[31mdeleted:    _bookdown_files/irt-data_files/figure-latex/wIRT-1.pdf[m
-	[31mdeleted:    _bookdown_files/irt-data_files/figure-latex/zoomRgt-1.pdf[m
-	[31mdeleted:    _bookdown_files/lmer-combined-winsorized_files/figure-html/hist-1.png[m
-	[31mdeleted:    _bookdown_files/lmer-combined-winsorized_files/figure-html/hist-2.png[m
-	[31mdeleted:    _bookdown_files/lmer-combined-winsorized_files/figure-html/hist-3.png[m
-	[31mdeleted:    docs/_main.pdf[m
-
-]0;~/dissertation]1337;RemoteHost=tyler@Tylers-MacBook-Air.local]1337;CurrentDir=/Users/tyler/dissertation]133;D;0]133;ATylers-MacBook-Air:dissertation tyler$ ]133;Bgit commit -am "f[Kcleaning"
-]133;C;[master 1f06e90] cleaning
-]0;~/dissertation]1337;RemoteHost=tyler@Tylers-MacBook-Air.local]1337;CurrentDir=/Users/tyler/dissertation]133;D;0]133;ATylers-MacBook-Air:dissertation tyler$ ]133;Bgit pull
-]133;C;Already up to date.
-]0;~/dissertation]1337;RemoteHost=tyler@Tylers-MacBook-Air.local]1337;CurrentDir=/Users/tyler/dissertation]133;D;0]133;ATylers-MacBook-Air:dissertation tyler$ ]133;Bgit status
-]133;C;On branch master
-Your branch is ahead of 'origin/master' by 4 commits.
-  (use "git push" to publish your local commits)
-
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
-	[31mmodified:   .Rproj.user/59D5BA35/console06/9405888F[m
-
-no changes added to commit (use "git add" and/or "git commit -a")
-]0;~/dissertation]1337;RemoteHost=tyler@Tylers-MacBook-Air.local]1337;CurrentDir=/Users/tyler/dissertation]133;D;0]133;ATylers-MacBook-Air:dissertation tyler$ ]133;Bgit add --all
-]133;C;]0;~/dissertation]1337;RemoteHost=tyler@Tylers-MacBook-Air.local]1337;CurrentDir=/Users/tyler/dissertation]133;D;0]133;ATylers-MacBook-Air:dissertation tyler$ ]133;Bgit status
-]133;C;On branch master
-Your branch is ahead of 'origin/master' by 4 commits.
-  (use "git push" to publish your local commits)
-
-Changes to be committed:
-  (use "git reset HEAD <file>..." to unstage)
-
-	[32mmodified:   .Rproj.user/59D5BA35/console06/9405888F[m
-
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
-	[31mmodified:   .Rproj.user/59D5BA35/console06/9405888F[m
-	[31mmodified:   .Rproj.user/59D5BA35/sources/prop/DFBC0728[m
-	[31mmodified:   .Rproj.user/59D5BA35/sources/s-C5B329ED/D4ACF524[m
-	[31mmodified:   .Rproj.user/59D5BA35/sources/s-C5B329ED/D4ACF524-contents[m
-	[31mmodified:   .gitignore[m
-
-]0;~/dissertation]1337;RemoteHost=tyler@Tylers-MacBook-Air.local]1337;CurrentDir=/Users/tyler/dissertation]133;D;0]133;ATylers-MacBook-Air:dissertation tyler$ ]133;Bgit add --all
-]133;C;]0;~/dissertation]1337;RemoteHost=tyler@Tylers-MacBook-Air.local]1337;CurrentDir=/Users/tyler/dissertation]133;D;0]133;ATylers-MacBook-Air:dissertation tyler$ ]133;Bgit commit -m "omg cleaning"
-]133;C;[master fef9d80] omg cleaning
- 5 files changed, 41 insertions(+), 23 deletions(-)
-]0;~/dissertation]1337;RemoteHost=tyler@Tylers-MacBook-Air.local]1337;CurrentDir=/Users/tyler/dissertation]133;D;0]133;ATylers-MacBook-Air:dissertation tyler$ ]133;Bgit status
-]133;C;On branch master
-Your branch is ahead of 'origin/master' by 5 commits.
-  (use "git push" to publish your local commits)
-
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
-	[31mmodified:   .Rproj.user/59D5BA35/console06/9405888F[m
-
-no changes added to commit (use "git add" and/or "git commit -a")
-]0;~/dissertation]1337;RemoteHost=tyler@Tylers-MacBook-Air.local]1337;CurrentDir=/Users/tyler/dissertation]133;D;0]133;ATylers-MacBook-Air:dissertation tyler$ ]133;Bgit pull
-]133;C;Already up to date.
-]0;~/dissertation]1337;RemoteHost=tyler@Tylers-MacBook-Air.local]1337;CurrentDir=/Users/tyler/dissertation]133;D;0]133;ATylers-MacBook-Air:dissertation tyler$ ]133;Bgit push
-]133;C;Counting objects: 903, done.
-Delta compression using up to 4 threads.
-Compressing objects:   0% (1/735)   Compressing objects:   1% (8/735)   Compressing objects:   2% (15/735)   Compressing objects:   3% (23/735)   Compressing objects:   4% (30/735)   Compressing objects:   5% (37/735)   Compressing objects:   6% (45/735)   Compressing objects:   7% (52/735)   Compressing objects:   8% (59/735)   Compressing objects:   9% (67/735)   Compressing objects:  10% (74/735)   Compressing objects:  11% (81/735)   Compressing objects:  12% (89/735)   Compressing objects:  13% (96/735)   Compressing objects:  14% (103/735)   Compressing objects:  15% (111/735)   Compressing objects:  16% (118/735)   Compressing objects:  17% (125/735)   Compressing objects:  18% (133/735)   Compressing objects:  19% (140/735)   Compressing objects:  20% (147/735)   Compressing objects:  21% (155/735)   Compressing objects:  22% (162/735)   Compressing objects:  23% (170/735)   Compressing objects:  24% (177/735)   Compressing objects:  25% (184/735)   Compressing objects:  26% (192/735)   Compressing objects:  27% (199/735)   Compressing objects:  28% (206/735)   Compressing objects:  29% (214/735)   Compressing objects:  30% (221/735)   Compressing objects:  31% (228/735)   Compressing objects:  32% (236/735)   Compressing objects:  33% (243/735)   Compressing objects:  34% (250/735)   Compressing objects:  35% (258/735)   Compressing objects:  36% (265/735)   Compressing objects:  37% (272/735)   Compressing objects:  38% (280/735)   Compressing objects:  39% (287/735)   Compressing objects:  40% (294/735)   Compressing objects:  41% (302/735)   Compressing objects:  42% (309/735)   Compressing objects:  43% (317/735)   Compressing objects:  44% (324/735)   Compressing objects:  45% (331/735)   Compressing objects:  46% (339/735)   Compressing objects:  47% (346/735)   Compressing objects:  48% (353/735)   Compressing objects:  49% (361/735)   Compressing objects:  50% (368/735)   Compressing objects:  51% (375/735)   Compressing objects:  52% (383/735)   Compressing objects:  53% (390/735)   Compressing objects:  54% (397/735)   Compressing objects:  55% (405/735)   Compressing objects:  56% (412/735)   Compressing objects:  57% (419/735)   Compressing objects:  58% (427/735)   Compressing objects:  59% (434/735)   Compressing objects:  60% (441/735)   Compressing objects:  61% (449/735)   Compressing objects:  62% (456/735)   Compressing objects:  63% (464/735)   Compressing objects:  64% (471/735)   Compressing objects:  65% (478/735)   Compressing objects:  66% (486/735)   Compressing objects:  67% (493/735)   Compressing objects:  68% (500/735)   Compressing objects:  69% (508/735)   Compressing objects:  70% (515/735)   Compressing objects:  71% (522/735)   Compressing objects:  72% (530/735)   Compressing objects:  73% (537/735)   Compressing objects:  74% (544/735)   Compressing objects:  75% (552/735)   Compressing objects:  76% (559/735)   Compressing objects:  77% (566/735)   Compressing objects:  78% (574/735)   Compressing objects:  79% (581/735)   Compressing objects:  80% (588/735)   Compressing objects:  81% (596/735)   Compressing objects:  82% (603/735)   Compressing objects:  83% (611/735)   Compressing objects:  84% (618/735)   Compressing objects:  85% (625/735)   Compressing objects:  86% (633/735)   Compressing objects:  87% (640/735)   Compressing objects:  88% (647/735)   Compressing objects:  89% (655/735)   Compressing objects:  90% (662/735)   Compressing objects:  91% (669/735)   Compressing objects:  92% (677/735)   Compressing objects:  93% (684/735)   Compressing objects:  94% (691/735)   Compressing objects:  95% (699/735)   Compressing objects:  96% (706/735)   Compressing objects:  97% (713/735)   Compressing objects:  98% (721/735)   Compressing objects:  99% (728/735)   Compressing objects: 100% (735/735)   Compressing objects: 100% (735/735), done.
-Writing objects:   0% (1/903)   Writing objects:   1% (10/903)   Writing objects:   2% (19/903)   Writing objects:   3% (29/903)   Writing objects:   4% (38/903)   Writing objects:   5% (46/903)   Writing objects:   6% (55/903)   Writing objects:   7% (64/903)   Writing objects:   8% (73/903)   Writing objects:   9% (82/903)   Writing objects:  10% (91/903)   Writing objects:  11% (100/903)   Writing objects:  12% (109/903)   Writing objects:  13% (120/903)   Writing objects:  14% (127/903)   Writing objects:  15% (136/903)   Writing objects:  16% (145/903)   Writing objects:  17% (154/903)   Writing objects:  18% (163/903)   Writing objects:  19% (172/903)   Writing objects:  20% (181/903)   Writing objects:  21% (190/903)   Writing objects:  22% (199/903)   Writing objects:  23% (209/903)   Writing objects:  24% (218/903)   Writing objects:  25% (226/903)   Writing objects:  26% (235/903)   Writing objects:  27% (244/903)   Writing objects:  28% (253/903)   Writing objects:  29% (263/903)   Writing objects:  30% (271/903)   Writing objects:  31% (280/903)   Writing objects:  32% (289/903)   Writing objects:  33% (298/903)   Writing objects:  34% (308/903)   Writing objects:  35% (317/903)   Writing objects:  36% (326/903)   Writing objects:  37% (335/903)   Writing objects:  38% (344/903)   Writing objects:  39% (353/903)   Writing objects:  40% (362/903)   Writing objects:  41% (371/903)   Writing objects:  42% (380/903)   Writing objects:  43% (390/903)   Writing objects:  44% (398/903)   Writing objects:  45% (407/903)   Writing objects:  46% (416/903)   Writing objects:  47% (425/903)   Writing objects:  48% (434/903)   Writing objects:  49% (443/903)   Writing objects:  50% (452/903)   Writing objects:  51% (461/903)   Writing objects:  52% (470/903)   Writing objects:  53% (479/903)   Writing objects:  54% (489/903)   Writing objects:  55% (497/903)   Writing objects:  56% (506/903)   Writing objects:  57% (515/903)   Writing objects:  58% (524/903)   Writing objects:  59% (533/903)   Writing objects:  60% (542/903)   Writing objects:  61% (551/903)   Writing objects:  62% (560/903)   Writing objects:  63% (569/903)   Writing objects:  64% (578/903)   Writing objects:  65% (587/903)   Writing objects:  66% (596/903)   Writing objects:  67% (606/903)   Writing objects:  68% (615/903)   Writing objects:  69% (624/903)   Writing objects:  70% (633/903)   Writing objects:  71% (642/903)   Writing objects:  72% (651/903)   Writing objects:  73% (660/903)   Writing objects:  74% (669/903)   Writing objects:  75% (678/903)   Writing objects:  76% (687/903)   Writing objects:  77% (696/903)   Writing objects:  78% (705/903)   Writing objects:  79% (714/903)   Writing objects:  80% (723/903)   Writing objects:  81% (732/903)   Writing objects:  82% (741/903)   Writing objects:  83% (750/903)   Writing objects:  84% (759/903)   Writing objects:  85% (768/903)   Writing objects:  86% (777/903)   Writing objects:  87% (786/903)   Writing objects:  88% (795/903)   Writing objects:  89% (804/903)   Writing objects:  90% (813/903)   Writing objects:  91% (822/903)   Writing objects:  92% (831/903)   Writing objects:  93% (840/903)   Writing objects:  94% (849/903)   Writing objects:  95% (858/903)   Writing objects:  96% (867/903)   Writing objects:  97% (876/903)   Writing objects:  98% (885/903)   Writing objects:  99% (894/903)   Writing objects: 100% (903/903)   Writing objects: 100% (903/903), 1.63 MiB | 7.40 MiB/s, done.
-Total 903 (delta 168), reused 0 (delta 0)
-remote: Resolving deltas:   0% (0/168)[Kremote: Resolving deltas:   1% (2/168)[Kremote: Resolving deltas:   2% (4/168)[Kremote: Resolving deltas:   4% (7/168)[Kremote: Resolving deltas:   9% (16/168)[Kremote: Resolving deltas:  11% (19/168)[Kremote: Resolving deltas:  12% (21/168)[Kremote: Resolving deltas:  13% (22/168)[Kremote: Resolving deltas:  15% (26/168)[Kremote: Resolving deltas:  17% (29/168)[Kremote: Resolving deltas:  19% (33/168)[Kremote: Resolving deltas:  20% (34/168)[Kremote: Resolving deltas:  27% (46/168)[Kremote: Resolving deltas:  39% (66/168)[Kremote: Resolving deltas:  42% (72/168)[Kremote: Resolving deltas:  43% (73/168)[Kremote: Resolving deltas:  44% (74/168)[Kremote: Resolving deltas:  45% (76/168)[Kremote: Resolving deltas:  46% (78/168)[Kremote: Resolving deltas:  57% (97/168)[Kremote: Resolving deltas:  59% (100/168)[Kremote: Resolving deltas:  61% (104/168)[Kremote: Resolving deltas:  63% (106/168)[Kremote: Resolving deltas:  66% (112/168)[Kremote: Resolving deltas:  67% (114/168)[Kremote: Resolving deltas:  68% (115/168)[Kremote: Resolving deltas:  69% (117/168)[Kremote: Resolving deltas:  71% (120/168)[Kremote: Resolving deltas:  72% (121/168)[Kremote: Resolving deltas:  73% (123/168)[Kremote: Resolving deltas:  74% (125/168)[Kremote: Resolving deltas:  85% (143/168)[Kremote: Resolving deltas:  86% (145/168)[Kremote: Resolving deltas:  87% (147/168)[Kremote: Resolving deltas:  88% (149/168)[Kremote: Resolving deltas:  89% (150/168)[Kremote: Resolving deltas:  90% (152/168)[Kremote: Resolving deltas:  91% (153/168)[Kremote: Resolving deltas:  92% (155/168)[Kremote: Resolving deltas:  93% (157/168)[Kremote: Resolving deltas:  95% (160/168)[Kremote: Resolving deltas:  96% (162/168)[Kremote: Resolving deltas:  97% (164/168)[Kremote: Resolving deltas:  98% (166/168)[Kremote: Resolving deltas: 100% (168/168)[Kremote: Resolving deltas: 100% (168/168), completed with 6 local objects.[K
-To github.com:moui72/disStat.git
-   79bfc5b..fef9d80  master -> master
-]0;~/dissertation]1337;RemoteHost=tyler@Tylers-MacBook-Air.local]1337;CurrentDir=/Users/tyler/dissertation]133;D;0]133;ATylers-MacBook-Air:dissertation tyler$ ]133;Bsetwd[K[K[K[K[K
-]133;C;]0;~/dissertation]1337;RemoteHost=tyler@Tylers-MacBook-Air.local]1337;CurrentDir=/Users/tyler/dissertation]133;D;1]133;ATylers-MacBook-Air:dissertation tyler$ ]133;Bbash: /Users/tyler/git-completion.bash: No such file or directory
-bash: /Users/tyler/wp-completion.bash: No such file or directory
-[K]133;D;0]133;ATylers-MacBook-Air:dissertation tyler$ ]133;Bpython pyMergeChanges.py
-]133;C;/usr/local/Cellar/python@2/2.7.16/Frameworks/Python.framework/Versions/2.7/Resources/Python.app/Contents/MacOS/Python: can't open file 'pyMergeChanges.py': [Errno 2] No such file or directory
-]0;~/dissertation]1337;RemoteHost=tyler@Tylers-MacBook-Air.local]1337;CurrentDir=/Users/tyler/dissertation]133;D;2]133;ATylers-MacBook-Air:dissertation tyler$ ]133;Bpython pyMergeChanges.py;9D[K[K[KpyMergeChanges.py[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K/u[KLibrary/TeX/texmf-di[K[K[K[K[K[K[K[K[K[K[KinyTe[Kex/[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K./Lib[K[K[K[K[K/Library/TeX/[K[K[Ki[K[K[K[K[K[K[K[K[K[K[Kll Library
-]133;C;ls: Library: No such file or directory
-]0;~/dissertation]1337;RemoteHost=tyler@Tylers-MacBook-Air.local]1337;CurrentDir=/Users/tyler/dissertation]133;D;1]133;ATylers-MacBook-Air:dissertation tyler$ ]133;Bll Library/Library
-]133;C;total 0
-drwxr-xr-x   13 root  admin   416 Nov 19  2018 [1m[36mApplication Support[39;49m[0m
-drwxr-xr-x   10 root  wheel   320 Nov 19  2018 [1m[36mAudio[39;49m[0m
-drwxrwxrwt    6 root  admin   192 Nov 19  2018 [30m[42mCaches[39;49m[0m
-drwxr-xr-x    2 root  wheel    64 Aug 17  2018 [1m[36mColorPickers[39;49m[0m
-drwxr-xr-x    4 root  wheel   128 Nov 19  2018 [1m[36mColorSync[39;49m[0m
-drwxr-xr-x    2 root  wheel    64 Aug 20  2018 [1m[36mComponents[39;49m[0m
-drwxr-xr-x    3 root  wheel    96 Aug 17  2018 [1m[36mCompositions[39;49m[0m
-drwxr-xr-x    2 root  wheel    64 Aug 20  2018 [1m[36mContextual Menu Items[39;49m[0m
-drwxr-xr-x@   3 root  wheel    96 Apr 22 11:54 [1m[36mCoreAnalytics[39;49m[0m
-drwxr-xr-x    3 root  wheel    96 Aug 30  2018 [1m[36mCoreMediaIO[39;49m[0m
-drwxr-xr-x   51 root  wheel  1632 Jan  7  2019 [1m[36mDesktop Pictures[39;49m[0m
-drwxr-xr-x    4 root  admin   128 Apr 15 12:47 [1m[36mDeveloper[39;49m[0m
-drwxr-xr-x    3 root  wheel    96 Aug 20  2018 [1m[36mDirectoryServices[39;49m[0m
-drwxr-xr-x   10 root  wheel   320 Nov 19  2018 [1m[36mDocumentation[39;49m[0m
-drwxr-xr-x   12 root  wheel   384 Apr 15 12:48 [1m[36mExtensions[39;49m[0m
-drwxr-xr-x    3 root  wheel    96 Sep 21  2018 [1m[36mFilesystems[39;49m[0m
-drwxrwxr-t  186 root  admin  5952 May 21 12:55 [1m[36mFonts[39;49m[0m
-drwxr-xr-x   11 root  wheel   352 Nov 19  2018 [1m[36mFrameworks[39;49m[0m
-drwxr-xr-x@   2 root  wheel    64 Aug 17  2018 [1m[36mGPUBundles[39;49m[0m
-drwxr-xr-x    3 root  wheel    96 Aug 17  2018 [1m[36mGraphics[39;49m[0m
-drwxr-xr-x    8 root  wheel   256 Sep 21  2018 [1m[36mImage Capture[39;49m[0m
-drwxr-xr-x    2 root  wheel    64 Aug 29  2018 [1m[36mInput Methods[39;49m[0m
-drwxr-xr-x    4 root  wheel   128 Nov 19  2018 [1m[36mInternet Plug-Ins[39;49m[0m
-drwxr-xr-x    4 root  wheel   128 Sep 21  2018 [1m[36mJava[39;49m[0m
-drwxr-xr-x    2 root  wheel    64 Aug 17  2018 [1m[36mKeyboard Layouts[39;49m[0m
-drwxr-xr-x    9 root  wheel   288 Aug 14 09:56 [1m[36mKeychains[39;49m[0m
-drwxr-xr-x    4 root  wheel   128 Nov 19  2018 [1m[36mLaunchAgents[39;49m[0m
-drwxr-xr-x    9 root  wheel   288 Mar 19 14:29 [1m[36mLaunchDaemons[39;49m[0m
-drwxr-xr-x    6 root  wheel   192 Nov 19  2018 [1m[36mLogs[39;49m[0m
-drwxr-xr-x@   3 root  wheel    96 Aug 22  2018 [1m[36mMessageTracer[39;49m[0m
-drwxr-xr-x    3 root  wheel    96 Aug 21  2018 [1m[36mMessages[39;49m[0m
-drwxr-xr-x   37 root  wheel  1184 Sep 21  2018 [1m[36mModem Scripts[39;49m[0m
-drwxr-xr-x    5 root  wheel   160 Aug 20  2018 [1m[36mOpenDirectory[39;49m[0m
-drwxr-xr-x    7 root  wheel   224 Nov 19  2018 [1m[36mPDF Services[39;49m[0m
-drwxr-xr-x    3 root  wheel    96 Aug 17  2018 [1m[36mPerl[39;49m[0m
-drwxr-xr-x    3 root  wheel    96 Feb 20  2019 [1m[36mPreferencePanes[39;49m[0m
-drwxr-xr-x   55 root  wheel  1760 Aug 22 14:01 [1m[36mPreferences[39;49m[0m
-dr-xr-xr-x    8 root  wheel   256 Aug 21 17:42 [1m[36mPrinters[39;49m[0m
-drwxr-xr-t    3 root  wheel    96 Feb 20  2019 [1m[36mPrivilegedHelperTools[39;49m[0m
-drwxr-xr-x    3 root  wheel    96 Aug 17  2018 [1m[36mPython[39;49m[0m
-drwxr-xr-x    4 root  wheel   128 Sep 21  2018 [1m[36mQuickLook[39;49m[0m
-drwxr-xr-x    4 root  wheel   128 Sep 21  2018 [1m[36mQuickTime[39;49m[0m
-drwxrwxr-x   14 root  admin   448 Nov 19  2018 [1m[36mReceipts[39;49m[0m
-drwxr-xr-x    4 root  wheel   128 Aug 17  2018 [1m[36mRuby[39;49m[0m
-drwxr-xr-x    3 root  wheel    96 Sep 21  2018 [1m[36mSandbox[39;49m[0m
-drwxr-xr-x    3 root  wheel    96 Aug 17  2018 [1m[36mScreen Savers[39;49m[0m
-drwxr-xr-x    2 root  wheel    64 Aug 17  2018 [1m[36mScriptingAdditions[39;49m[0m
-drwxr-xr-x   10 root  wheel   320 Sep 21  2018 [1m[36mScripts[39;49m[0m
-drwxr-xr-x    4 root  wheel   128 Nov 19  2018 [1m[36mSecurity[39;49m[0m
-drwxr-xr-x    3 root  wheel    96 Aug 17  2018 [1m[36mSpeech[39;49m[0m
-drwxr-xr-x    4 root  wheel   128 Sep 21  2018 [1m[36mSpotlight[39;49m[0m
-drwxr-xr-x@   3 root  wheel    96 Nov 19  2018 [1m[36mStagedExtensions[39;49m[0m
-drwxr-xr-x    2 root  wheel    64 Aug 17  2018 [1m[36mStartupItems[39;49m[0m
-drwxr-xr-x    4 root  wheel   128 Nov 19  2018 [1m[36mSystemMigration[39;49m[0m
-drwxr-xr-x    2 root  wheel    64 Aug 17  2018 [1m[36mSystemProfiler[39;49m[0m
-drwxr-xr-x    7 root  wheel   224 Apr  1 12:35 [1m[36mTeX[39;49m[0m
-drwxr-xr-x@   8 root  wheel   256 Aug 21 17:43 [1m[36mUpdates[39;49m[0m
-drwxr-xr-x    8 root  wheel   256 Aug 17  2018 [1m[36mUser Pictures[39;49m[0m
-drwxr-xr-x    4 root  wheel   128 Aug 30  2018 [1m[36mVideo[39;49m[0m
-drwxr-xr-x    5 root  wheel   160 Aug 17  2018 [1m[36mWebServer[39;49m[0m
-drwxr-xr-x   14 root  wheel   448 Mar 19 14:27 [1m[36mWidgets[39;49m[0m
-]0;~/dissertation]1337;RemoteHost=tyler@Tylers-MacBook-Air.local]1337;CurrentDir=/Users/tyler/dissertation]133;D;0]133;ATylers-MacBook-Air:dissertation tyler$ ]133;Bll /Library/TeX/[K
-]133;C;total 0
-drwxr-xr-x  8 root  wheel  256 Apr  1 12:35 [1m[36mDistributions[39;49m[0m
-lrwxr-xr-x  1 root  wheel   38 Apr  1 12:35 [1m[35mDocumentation[39;49m[0m -> Distributions/.DefaultTeX/Contents/Doc
-lrwxr-xr-x  1 root  wheel   45 Apr  1 12:35 [1m[35mLocal[39;49m[0m -> Distributions/.DefaultTeX/Contents/TexmfLocal
-lrwxr-xr-x  1 root  wheel   39 Apr  1 12:35 [1m[35mRoot[39;49m[0m -> Distributions/.DefaultTeX/Contents/Root
-lrwxr-xr-x  1 root  wheel   29 Apr  1 12:35 [1m[35mtexbin[39;49m[0m -> Distributions/Programs/texbin
-]0;~/dissertation]1337;RemoteHost=tyler@Tylers-MacBook-Air.local]1337;CurrentDir=/Users/tyler/dissertation]133;D;0]133;ATylers-MacBook-Air:dissertation tyler$ ]133;Bll /Library/TeX/Local 
-]133;C;lrwxr-xr-x  1 root  wheel  45 Apr  1 12:35 [1m[35m/Library/TeX/Local[39;49m[0m -> Distributions/.DefaultTeX/Contents/TexmfLocal
-]0;~/dissertation]1337;RemoteHost=tyler@Tylers-MacBook-Air.local]1337;CurrentDir=/Users/tyler/dissertation]133;D;0]133;ATylers-MacBook-Air:dissertation tyler$ ]133;Bll /Library/TeX/Local [K[K[K[K[K[KD
-Distributions/ Documentation/ 
-]133;D;0]133;ATylers-MacBook-Air:dissertation tyler$ ]133;Bll /Library/TeX/Distributions/
-]133;C;total 64
-drwxr-xr-x  3 root  wheel     96 Nov  5  2017 [1m[36mPrograms[39;49m[0m
--rw-r--r--  1 root  wheel  31302 Nov  5  2017 TeXDist-description.rtf
-drwxr-xr-x  3 root  wheel     96 Nov  5  2017 [1m[36mTeXLive-2017-Basic.texdist[39;49m[0m
-drwxr-xr-x  3 root  wheel     96 Apr  1 12:35 [1m[36mTeXLive-2018.texdist[39;49m[0m
-]0;~/dissertation]1337;RemoteHost=tyler@Tylers-MacBook-Air.local]1337;CurrentDir=/Users/tyler/dissertation]133;D;0]133;ATylers-MacBook-Air:dissertation tyler$ ]133;Bcd /Library/
-]133;C;]0;/Library]1337;RemoteHost=tyler@Tylers-MacBook-Air.local]1337;CurrentDir=/Library]133;D;0]133;ATylers-MacBook-Air:Library tyler$ ]133;Bll
-]133;C;total 0
-drwxr-xr-x   13 root  admin   416 Nov 19  2018 [1m[36mApplication Support[39;49m[0m
-drwxr-xr-x   10 root  wheel   320 Nov 19  2018 [1m[36mAudio[39;49m[0m
-drwxrwxrwt    6 root  admin   192 Nov 19  2018 [30m[42mCaches[39;49m[0m
-drwxr-xr-x    2 root  wheel    64 Aug 17  2018 [1m[36mColorPickers[39;49m[0m
-drwxr-xr-x    4 root  wheel   128 Nov 19  2018 [1m[36mColorSync[39;49m[0m
-drwxr-xr-x    2 root  wheel    64 Aug 20  2018 [1m[36mComponents[39;49m[0m
-drwxr-xr-x    3 root  wheel    96 Aug 17  2018 [1m[36mCompositions[39;49m[0m
-drwxr-xr-x    2 root  wheel    64 Aug 20  2018 [1m[36mContextual Menu Items[39;49m[0m
-drwxr-xr-x@   3 root  wheel    96 Apr 22 11:54 [1m[36mCoreAnalytics[39;49m[0m
-drwxr-xr-x    3 root  wheel    96 Aug 30  2018 [1m[36mCoreMediaIO[39;49m[0m
-drwxr-xr-x   51 root  wheel  1632 Jan  7  2019 [1m[36mDesktop Pictures[39;49m[0m
-drwxr-xr-x    4 root  admin   128 Apr 15 12:47 [1m[36mDeveloper[39;49m[0m
-drwxr-xr-x    3 root  wheel    96 Aug 20  2018 [1m[36mDirectoryServices[39;49m[0m
-drwxr-xr-x   10 root  wheel   320 Nov 19  2018 [1m[36mDocumentation[39;49m[0m
-drwxr-xr-x   12 root  wheel   384 Apr 15 12:48 [1m[36mExtensions[39;49m[0m
-drwxr-xr-x    3 root  wheel    96 Sep 21  2018 [1m[36mFilesystems[39;49m[0m
-drwxrwxr-t  186 root  admin  5952 May 21 12:55 [1m[36mFonts[39;49m[0m
-drwxr-xr-x   11 root  wheel   352 Nov 19  2018 [1m[36mFrameworks[39;49m[0m
-drwxr-xr-x@   2 root  wheel    64 Aug 17  2018 [1m[36mGPUBundles[39;49m[0m
-drwxr-xr-x    3 root  wheel    96 Aug 17  2018 [1m[36mGraphics[39;49m[0m
-drwxr-xr-x    8 root  wheel   256 Sep 21  2018 [1m[36mImage Capture[39;49m[0m
-drwxr-xr-x    2 root  wheel    64 Aug 29  2018 [1m[36mInput Methods[39;49m[0m
-drwxr-xr-x    4 root  wheel   128 Nov 19  2018 [1m[36mInternet Plug-Ins[39;49m[0m
-drwxr-xr-x    4 root  wheel   128 Sep 21  2018 [1m[36mJava[39;49m[0m
-drwxr-xr-x    2 root  wheel    64 Aug 17  2018 [1m[36mKeyboard Layouts[39;49m[0m
-drwxr-xr-x    9 root  wheel   288 Aug 14 09:56 [1m[36mKeychains[39;49m[0m
-drwxr-xr-x    4 root  wheel   128 Nov 19  2018 [1m[36mLaunchAgents[39;49m[0m
-drwxr-xr-x    9 root  wheel   288 Mar 19 14:29 [1m[36mLaunchDaemons[39;49m[0m
-drwxr-xr-x    6 root  wheel   192 Nov 19  2018 [1m[36mLogs[39;49m[0m
-drwxr-xr-x@   3 root  wheel    96 Aug 22  2018 [1m[36mMessageTracer[39;49m[0m
-drwxr-xr-x    3 root  wheel    96 Aug 21  2018 [1m[36mMessages[39;49m[0m
-drwxr-xr-x   37 root  wheel  1184 Sep 21  2018 [1m[36mModem Scripts[39;49m[0m
-drwxr-xr-x    5 root  wheel   160 Aug 20  2018 [1m[36mOpenDirectory[39;49m[0m
-drwxr-xr-x    7 root  wheel   224 Nov 19  2018 [1m[36mPDF Services[39;49m[0m
-drwxr-xr-x    3 root  wheel    96 Aug 17  2018 [1m[36mPerl[39;49m[0m
-drwxr-xr-x    3 root  wheel    96 Feb 20  2019 [1m[36mPreferencePanes[39;49m[0m
-drwxr-xr-x   55 root  wheel  1760 Aug 22 14:01 [1m[36mPreferences[39;49m[0m
-dr-xr-xr-x    8 root  wheel   256 Aug 21 17:42 [1m[36mPrinters[39;49m[0m
-drwxr-xr-t    3 root  wheel    96 Feb 20  2019 [1m[36mPrivilegedHelperTools[39;49m[0m
-drwxr-xr-x    3 root  wheel    96 Aug 17  2018 [1m[36mPython[39;49m[0m
-drwxr-xr-x    4 root  wheel   128 Sep 21  2018 [1m[36mQuickLook[39;49m[0m
-drwxr-xr-x    4 root  wheel   128 Sep 21  2018 [1m[36mQuickTime[39;49m[0m
-drwxrwxr-x   14 root  admin   448 Nov 19  2018 [1m[36mReceipts[39;49m[0m
-drwxr-xr-x    4 root  wheel   128 Aug 17  2018 [1m[36mRuby[39;49m[0m
-drwxr-xr-x    3 root  wheel    96 Sep 21  2018 [1m[36mSandbox[39;49m[0m
-drwxr-xr-x    3 root  wheel    96 Aug 17  2018 [1m[36mScreen Savers[39;49m[0m
-drwxr-xr-x    2 root  wheel    64 Aug 17  2018 [1m[36mScriptingAdditions[39;49m[0m
-drwxr-xr-x   10 root  wheel   320 Sep 21  2018 [1m[36mScripts[39;49m[0m
-drwxr-xr-x    4 root  wheel   128 Nov 19  2018 [1m[36mSecurity[39;49m[0m
-drwxr-xr-x    3 root  wheel    96 Aug 17  2018 [1m[36mSpeech[39;49m[0m
-drwxr-xr-x    4 root  wheel   128 Sep 21  2018 [1m[36mSpotlight[39;49m[0m
-drwxr-xr-x@   3 root  wheel    96 Nov 19  2018 [1m[36mStagedExtensions[39;49m[0m
-drwxr-xr-x    2 root  wheel    64 Aug 17  2018 [1m[36mStartupItems[39;49m[0m
-drwxr-xr-x    4 root  wheel   128 Nov 19  2018 [1m[36mSystemMigration[39;49m[0m
-drwxr-xr-x    2 root  wheel    64 Aug 17  2018 [1m[36mSystemProfiler[39;49m[0m
-drwxr-xr-x    7 root  wheel   224 Apr  1 12:35 [1m[36mTeX[39;49m[0m
-drwxr-xr-x@   8 root  wheel   256 Aug 21 17:43 [1m[36mUpdates[39;49m[0m
-drwxr-xr-x    8 root  wheel   256 Aug 17  2018 [1m[36mUser Pictures[39;49m[0m
-drwxr-xr-x    4 root  wheel   128 Aug 30  2018 [1m[36mVideo[39;49m[0m
-drwxr-xr-x    5 root  wheel   160 Aug 17  2018 [1m[36mWebServer[39;49m[0m
-drwxr-xr-x   14 root  wheel   448 Mar 19 14:27 [1m[36mWidgets[39;49m[0m
-]0;/Library]1337;RemoteHost=tyler@Tylers-MacBook-Air.local]1337;CurrentDir=/Library]133;D;0]133;ATylers-MacBook-Air:Library tyler$ ]133;Bcd TinyTeX
-]133;C;bash: cd: TinyTeX: No such file or directory
-]0;/Library]1337;RemoteHost=tyler@Tylers-MacBook-Air.local]1337;CurrentDir=/Library]133;D;1]133;ATylers-MacBook-Air:Library tyler$ ]133;Bcd lo[K[K~/dissertation/
-]133;C;]0;~/dissertation]1337;RemoteHost=tyler@Tylers-MacBook-Air.local]1337;CurrentDir=/Users/tyler/dissertation]133;D;0]133;ATylers-MacBook-Air:dissertation tyler$ ]133;Bcd drafts/
-]133;C;]0;~/dissertation/drafts]1337;RemoteHost=tyler@Tylers-MacBook-Air.local]1337;CurrentDir=/Users/tyler/dissertation/drafts]133;D;0]133;ATylers-MacBook-Air:drafts tyler$ ]133;Bll
-]133;C;total 13272
--rw-r--r--   1 tyler  staff    1452 Aug 20 14:17 0-frontmatter.Rmd
--rw-r--r--   1 tyler  staff   49942 Aug 20 14:17 1-intro.Rmd
--rw-r--r--   1 tyler  staff  637571 Jul  8 13:59 1-intro.html
--rw-r--r--   1 tyler  staff   31358 Apr 28 14:04 1-intro.pdf
--rw-r--r--   1 tyler  staff  643621 Jul  8 13:59 2-background.html
--rw-r--r--   1 tyler  staff   44765 Apr 30 11:20 2-background.log
--rw-r--r--   1 tyler  staff   57595 Jul  8 13:59 2-background.pdf
--rw-r--r--   1 tyler  staff   44515 Aug 20 11:47 3-method.Rmd
--rw-r--r--   1 tyler  staff  656957 Jul  8 13:59 3-method.html
--rw-r--r--   1 tyler  staff   48361 May  3 12:07 3-method.log
--rw-r--r--   1 tyler  staff  123808 Jul  8 13:59 3-method.pdf
--rw-r--r--   1 tyler  staff   51447 Aug 20 11:47 4-results.Rmd
--rw-r--r--@  1 tyler  staff  668427 Jul  8 13:59 4-results.html
--rw-r--r--   1 tyler  staff   59544 May  3 12:07 4-results.log
--rw-r--r--@  1 tyler  staff  136919 Jul  8 13:59 4-results.pdf
--rw-r--r--   1 tyler  staff   19134 Aug 20 13:23 5-discussion.Rmd
--rw-r--r--   1 tyler  staff   10099 Aug 20 11:47 99-append.Rmd
--rw-r--r--   1 tyler  staff  121156 Jul  8 13:59 99-append.pdf
--rw-r--r--   1 tyler  staff     143 Aug  5 11:56 999-references.Rmd
--rw-r--r--   1 tyler  staff     845 Aug 20 15:09 Rplot001.pdf
--rw-r--r--   1 tyler  staff   36310 Aug 20 11:47 _2-background.Rmd
--rw-r--r--   1 tyler  staff   37394 Aug 20 11:47 _4-results.Rmd
--rw-r--r--   1 tyler  staff   21925 Aug 20 11:47 _5results.Rmd
--rw-r--r--   1 tyler  staff   40452 Aug 20 11:47 _bk4-results.Rmd
--rw-r--r--   1 tyler  staff      63 Aug 20 12:15 _bookdown.yml
-drwxr-xr-x   3 tyler  staff      96 Aug 20 15:10 [1m[36m_bookdown_files[39;49m[0m
--rw-r--r--@  1 tyler  staff    2696 May 21 13:37 _fluency.Rmd
--rw-r--r--   1 tyler  staff   44589 May 21 13:49 _main.Rmd
--rw-r--r--   1 tyler  staff   55368 Aug 20 15:10 _main.aux
--rw-r--r--   1 tyler  staff   24939 Aug 20 15:10 _main.loc
--rw-r--r--   1 tyler  staff    1898 Aug 20 15:10 _main.lof
--rw-r--r--   1 tyler  staff   76750 Aug 20 15:10 _main.log
--rw-r--r--   1 tyler  staff    4220 Aug 20 15:10 _main.lot
--rw-r--r--   1 tyler  staff     675 Aug 20 15:10 _main.rds
--rw-r--r--   1 tyler  staff      45 Aug 20 15:10 _main.soc
--rw-r--r--   1 tyler  staff    5153 Aug 20 15:10 _main.toc
--rw-r--r--   1 tyler  staff   49514 Aug 20 11:47 _main.utf8.tmp.html
--rw-r--r--   1 tyler  staff    3388 Aug 20 11:47 _resultsSalvage.Rmd
--rw-r--r--   1 tyler  staff   42978 Aug 20 11:47 _resultsSetup.Rmd
--rw-r--r--   1 tyler  staff     263 Aug 20 12:41 _site.yml
--rw-r--r--   1 tyler  staff   56107 Jul 15 12:50 apa.csl
--rw-r--r--@  1 tyler  staff   27424 Aug  7 15:49 arg-tree.png
--rw-r--r--   1 tyler  staff   16580 Aug 20 15:09 bdom.pdf
--rw-r--r--   1 tyler  staff   19344 Aug  5 11:56 bdom.png
--rw-r--r--   1 tyler  staff   12888 Aug 20 15:09 bothbreaks2.pdf
--rw-r--r--   1 tyler  staff    4458 Aug  5 11:56 bothbreaks2.png
--rw-r--r--   1 tyler  staff   12174 Jul 15 12:50 breakpat1.png
--rw-r--r--   1 tyler  staff   10677 Jul 15 12:50 breakpat2.png
--rw-r--r--   1 tyler  staff   21758 Aug  5 11:56 breakpos.png
--rw-r--r--   1 tyler  staff    5064 Aug 20 15:09 deldis.pdf
--rw-r--r--   1 tyler  staff  921716 Jul  8 13:59 diss.html
--rw-r--r--   1 tyler  staff    1011 Jun  3 14:30 diss.rds
--rw-r--r--   1 tyler  staff  468271 Jul  8 13:59 diss.zip
--rw-r--r--   1 tyler  staff   13071 Jul 31 18:57 dissertation-procedure-2.svg
--rw-r--r--   1 tyler  staff   15812 Aug  5 11:56 dissertation-procedure-editable2.svg
--rw-r--r--   1 tyler  staff   41453 Aug  5 11:56 dissertation-procedure.eps
--rw-r--r--   1 tyler  staff   39023 Jun  3 14:30 dissertation-procedure.png
--rw-r--r--@  1 tyler  staff   25501 May 21 10:42 dissertation-procedure.svg
--rw-r--r--   1 tyler  staff   28003 Aug  5 11:56 distance-to-cr.png
-drwxr-xr-x  10 tyler  staff     320 Aug  5 11:56 [1m[36mexport[39;49m[0m
--rw-r--r--   1 tyler  staff    5342 Aug 20 15:09 facet.pdf
--rw-r--r--   1 tyler  staff   37420 Aug  5 11:56 facet.png
--rw-r--r--   1 tyler  staff    1180 Aug 20 15:09 index.Rmd
--rw-r--r--   1 tyler  staff    4835 Aug 20 15:09 interact.pdf
--rw-r--r--   1 tyler  staff   21686 Aug  5 11:56 interact.png
--rw-r--r--   1 tyler  staff  745829 Jul  8 13:59 intro.html
--rw-r--r--   1 tyler  staff   32492 Aug  5 11:56 item_diagram.png
--rw-r--r--@  1 tyler  staff   25719 Aug  7 15:49 mod-tree.png
--rw-r--r--   1 tyler  staff    1638 Aug 20 15:09 packages.bib
--rw-r--r--   1 tyler  staff     367 Aug 20 14:32 preamble.tex
--rw-r--r--@  1 tyler  staff   73997 Aug  7 13:54 procedure-diagram.png
--rw-r--r--   1 tyler  staff   13200 Aug 20 11:47 refs.bib
--rw-r--r--   1 tyler  staff   16926 Aug 20 11:47 results.tex
--rw-r--r--   1 tyler  staff   13347 Aug 20 15:09 wIRT.pdf
--rw-r--r--   1 tyler  staff   22341 Aug  5 11:56 wIRT.png
-]0;~/dissertation/drafts]1337;RemoteHost=tyler@Tylers-MacBook-Air.local]1337;CurrentDir=/Users/tyler/dissertation/drafts]133;D;0]133;ATylers-MacBook-Air:drafts tyler$ ]133;B/usr/local/Li[K[K[K[K[K[K[K[Ktyl[K[K[K[K[K[K[KUsers/tyler/Library/TinyTeX/
-bin/          texmf-config/ texmf-dist/   texmf-local/  texmf-var/    tlpkg/        
-]133;D;0]133;ATylers-MacBook-Air:drafts tyler$ ]133;B/Users/tyler/Library/TinyTeX/texmf-dist/scripts/changes/pyMergeChanges.py 
-]133;C;
-    pymergechanges: Merge commits made with changes package into text
-    Copyright (C) 2018  Y. Cui
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-pymergechanges: Merge commits made with changes package into text
-
-Requires Python version 3; Tested on Python 3.6.6
-
-Supported commands: added, deleted, replaced, highlight
-Usage: python pyMergeChanges.py [-arh] <Input File> <Output File>
-<Output File> will be overwritten and must be different than <Input File>.
-Options:
-    -a: accept all added, deleted and replaced
-    -r: reject all added, deleted and replaced
-    -h: remove all highlights
-If no option is given, runs interactively.
-
-Created on Wed Dec  5 20:28:40 2018
-
-
-]0;~/dissertation/drafts]1337;RemoteHost=tyler@Tylers-MacBook-Air.local]1337;CurrentDir=/Users/tyler/dissertation/drafts]133;D;1]133;ATylers-MacBook-Air:drafts tyler$ ]133;B/Users/tyler/Library/TinyTeX/texmf-dist/scripts/changes/pyMergeChanges.py ./1-intro..Rmd ./1-intro-rev.m[KRmd
-]133;C;Running in interactive mode. 
-
-******** In Line 20 :
- \comment{margin notes represent my running commentary}
-
-
-** comment commit ** 
-\comment{margin notes represent my running commentary}
-[r]emove or [k]eep or [b]reak ? ^CTraceback (most recent call last):
-  File "/Users/tyler/Library/TinyTeX/texmf-dist/scripts/changes/pyMergeChanges.py", line 253, in <module>
-    answer = ask2()
-  File "/Users/tyler/Library/TinyTeX/texmf-dist/scripts/changes/pyMergeChanges.py", line 91, in ask2
-    ans = input('[r]emove or [k]eep or [b]reak ? ').lower()
-KeyboardInterrupt
-]0;~/dissertation/drafts]1337;RemoteHost=tyler@Tylers-MacBook-Air.local]1337;CurrentDir=/Users/tyler/dissertation/drafts]133;D;1]133;ATylers-MacBook-Air:drafts tyler$ ]133;B/Users/tyler/Library/TinyTeX/texmf-dist/scripts/changes/pyMergeChanges.py ./1-intro..Rmd ./1-intro-rev.Rmd -a
-]133;C;Unknown parameter: /
-]0;~/dissertation/drafts]1337;RemoteHost=tyler@Tylers-MacBook-Air.local]1337;CurrentDir=/Users/tyler/dissertation/drafts]133;D;1]133;ATylers-MacBook-Air:drafts tyler$ ]133;B/Users/tyler/Library/TinyTeX/texmf-dist/scripts/changes/pyMergeChanges.py ./1-intro..Rmd ./1-intro-rev.Rmd -a[K[K[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C ./1-intro[1@.[A]133;D;0]133;ATylers-MacBook-Air:drafts tyler$ ]133;B[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C- ./1-intr[1@o[A]133;D;0]133;ATylers-MacBook-Air:drafts tyler$ ]133;B[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ca ./1-int[1@r[A]133;D;0]133;ATylers-MacBook-Air:drafts tyler$ ]133;B[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
-
-]133;C;Accepting all added, deleted and replaced
-
-******** In Line 20 :
- \comment{margin notes represent my running commentary}
-
-
-** comment commit ** 
-\comment{margin notes represent my running commentary}
-Kept.
-
-Result: 
-\comment{margin notes represent my running commentary}
-
-
-
-******** In Line 22 :
- \added{New text from Tyler looks like this}
-
-
-** add commit ** 
-\added{New text from Tyler looks like this}
-Accepted.
-
-Result: 
-New text from Tyler looks like this
-
-
-
-******** In Line 24 :
- \added[id=JDF]{New text based on JDF's specific suggestions looks like this}
-
-
-** add commit ** 
-\added[id=JDF]{New text based on JDF's specific suggestions looks like this}
-Accepted.
-
-Result: 
-New text based on JDF's specific suggestions looks like this
-
-
-
-******** In Line 26 :
- \deleted{Text that Tyler is suggesting be deleted looks like this}
-
-
-** delete commit ** 
-\deleted{Text that Tyler is suggesting be deleted looks like this}
-Accepted.
-
-Result is empty line and not stored.
-
-******** In Line 32 :
- \comment{This paragraph was \P 1 chapter 1}
-
-
-** comment commit ** 
-\comment{This paragraph was \P 1 chapter 1}
-Kept.
-
-Result: 
-\comment{This paragraph was \P 1 chapter 1}
-
-
-
-******** In Line 33 :
- This paper presents a study on human sentence processing, or parsing, and on the parsing of a particular sort of ambiguity. Parsing is assumed to be the projection of structure by a reader or listener over a string (which obviously lacks inherent structure). Following the sort of model of parsing put forward by, e.g., @kimball1973seven, @frazier1978sausage, and @frazier1996construal, this study assumes that parsing is done online and that most material must be incorporated into the structure being built as soon as it is encountered. This can lead to mis-parses, where the parser has guessed wrong about how to incorporate a given phrase with a temporarily ambiguous structure, and then encounters material that cannot be incorporated into the current structure. When this happens, the parser must \replaced{reanalyze the material that had so far been processed, in order to come upa structure that can accomodate both the new and old material grammatically}{discard part or all of its pending structure and try again to incorporate the material encountered so far}. This sort of parser crash is \deleted[id=JDF]{often} called a garden path.
-
-
-** delete commit ** 
-\deleted[id=JDF]{often}
-Accepted.
-
-** replace commit ** 
-\replaced{reanalyze the material that had so far been processed, in order to come upa structure that can accomodate both the new and old material grammatically}{discard part or all of its pending structure and try again to incorporate the material encountered so far}
-Accepted.
-
-Result: 
-This paper presents a study on human sentence processing, or parsing, and on the parsing of a particular sort of ambiguity. Parsing is assumed to be the projection of structure by a reader or listener over a string (which obviously lacks inherent structure). Following the sort of model of parsing put forward by, e.g., @kimball1973seven, @frazier1978sausage, and @frazier1996construal, this study assumes that parsing is done online and that most material must be incorporated into the structure being built as soon as it is encountered. This can lead to mis-parses, where the parser has guessed wrong about how to incorporate a given phrase with a temporarily ambiguous structure, and then encounters material that cannot be incorporated into the current structure. When this happens, the parser must reanalyze the material that had so far been processed, in order to come upa structure that can accomodate both the new and old material grammatically. This sort of parser crash is called a garden path.
-
-
-
-******** In Line 35 :
- \comment{From here until next note, was introductory section of chapter 2}
-
-
-** comment commit ** 
-\comment{From here until next note, was introductory section of chapter 2}
-Kept.
-
-Result: 
-\comment{From here until next note, was introductory section of chapter 2}
-
-
-
-******** In Line 36 :
- \deleted{As briefly mentioned earlier, }“\replaced{G}{g}arden path effects” occur when a temporarily ambiguous sentence resolves in such a way that the structure initially preferred by the parser is incompatible with how the sentence actually continues. These parsing errors have traditionally been attributed to structurally-focused parsing preferences [@kimball1973seven; @frazier1978sausage; @Frazier1979-pb] that ignore semantic content on the first pass. @Frazier1979-pb formulates several of these, including the following two which are widely accepted in one form or another:
-
-
-** delete commit ** 
-\deleted{As briefly mentioned earlier, }
-Accepted.
-
-** replace commit ** 
-\replaced{G}{g}
-Accepted.
-
-** replace commit ** 
-\replaced{G}{g}
-Accepted.
-
-Result: 
-“Garden path effects” occurGrily ambiguous sentence resolves in such a way that the structure initially preferred by the parser is incompatible with how the sentence actually continues. These parsing errors have traditionally been attributed to structurally-focused parsing preferences [@kimball1973seven; @frazier1978sausage; @Frazier1979-pb] that ignore semantic content on the first pass. @Frazier1979-pb formulates several of these, including the following two which are widely accepted in one form or another:
-
-
-
-******** In Line 42 :
-   When possible, attach incoming material into the clause currently being parse\added[id=JDF]{d} [@Frazier1979-pb p.20]
-
-
-** add commit ** 
-\added[id=JDF]{d}
-Accepted.
-
-Result: 
-  When possible, attach incoming material into the clause currently being parsed [@Frazier1979-pb p.20]
-
-
-
-******** In Line 44 :
- Because these strategies ignore semantic and pragmatic plausibility and the parser typically does not know what material might be further on in the string, mis-parses at temporarily ambiguous regions can occur, resulting in garden paths. *Minimal Attachment* \added[id=JDF]{(MA)} is important to this study and will be revisited later on.
-
-
-** add commit ** 
-\added[id=JDF]{(MA)}
-Accepted.
-
-Result: 
-Because these strategies ignore semantic and pragmatic plausibility and the parser typically does not know what material might be further on in the string, mis-parses at temporarily ambiguous regions can occur, resulting in garden paths. *Minimal Attachment* (MA) is important to this study and will be revisited later on.
-
-
-
-******** In Line 54 :
- \deleted{There is an ongoing debate in the literature about what parsing model best fits the empirical facts. This study follows [@frazier1996construal] in assuming that structure-first parsing strategies are at play, in addition to a primary vs. non-primary relation distinction that determines how immediately a phrase must be incorporated into a parse, allowing for some material to be incorporated later and thereby make use of additional information that is not available for immediate parsing decisions.}
-
-
-** delete commit ** 
-\deleted{There is an ongoing debate in the literature about what parsing model best fits the empirical facts. This study follows [@frazier1996construal] in assuming that structure-first parsing strategies are at play, in addition to a primary vs. non-primary relation distinction that determines how immediately a phrase must be incorporated into a parse, allowing for some material to be incorporated later and thereby make use of additional information that is not available for immediate parsing decisions.}
-Accepted.
-
-Result is empty line and not stored.
-
-******** In Line 56 :
- \comment{Back to what was chapter 1, $\P$ 2}
-
-
-** comment commit ** 
-\comment{Back to what was chapter 1, $\P$ 2}
-Kept.
-
-Result: 
-\comment{Back to what was chapter 1, $\P$ 2}
-
-
-
-******** In Line 57 :
- The study being reported is concerned with certain sentences that contain \deleted{such} a temporarily ambiguous prepositional phrase (PP1), followed by another \deleted[id=JDF]{PP} (PP2) which \replaced{causes the expected parse to crash}{interferes with what is assumed to be the default interpretation of PP1} \added{Specifically, it is expected that PP1 in} (@cramiGPy) \added{will initially be interpreted as the goal of \em{cram}, but that parse will fail when it is realized that PP2 cannot plausibly modify \em{drawer}.}
-
-
-** add commit ** 
-\added{Specifically, it is expected that PP1 in}
-Accepted.
-
-** add commit ** 
-\added{will initially be interpreted as the goal of \em{cram}
-Accepted.
-
-** delete commit ** 
-\deleted{such}
-Accepted.
-
-** delete commit ** 
-\deleted[id=JDF]{PP}
-Accepted.
-
-** replace commit ** 
-\replaced{causes the expected parse to crash}{interferes with what is assumed to be the default interpretation of PP1}
-Accepted.
-
-Result: 
-The study being reported is concerned with certain sentences that contain a temporarily ambiguous prepositional phrase (PP1), followed by another (PP2) which \replaced{causes the expected parse causes the expected parse to crashP1 in (@cramiGPy) will initially be interpreted as the goal of \em{cram, but that parse will fail when it is realized that PP2 cannot plausibly modify \em{drawer}.}
-
-
-
-******** In Line 59 :
- \comment{examples moved up slightly}
-
-
-** comment commit ** 
-\comment{examples moved up slightly}
-Kept.
-
-Result: 
-\comment{examples moved up slightly}
-
-
-
-******** In Line 60 :
- (@cramiGPy) He had planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ in\deleted{to} his briefcase].
-
-
-** delete commit ** 
-\deleted{to}
-Accepted.
-
-Result: 
-(@cramiGPy) He had planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ in his briefcase].
-
-
-
-******** In Line 62 :
- (@cramiGPn) He had planned to cram the paperwork [~PP1~ in the drawer \deleted{]} [~PP2~ of his filing cabinet]\added{]}.
-
-
-** add commit ** 
-\added{]}
-Accepted.
-
-** delete commit ** 
-\deleted{]}
-Accepted.
-
-Result: 
-(@cramiGPn) He had planned to cram the paperwork [~PP1~ in the drawer [~PP2~ of his filing cabinet]].
-
-
-
-******** In Line 64 :
- \added{This contrasts with the similar sentence in} (@cramiGPn) \replaced{where PP2 can plausibly modify *drawer* and so the parse where *in the drawer* is the goal argument is accepted and *of his filing cabinet* is incoporated as a modifier within PP1.}{: as an argument of the verb. The reasons for that assumption are discussed in Section \@ref(mech), but for now it suffices to understand that (@cramiGPy) represents a difficult to comprehend sentence (a garden path), while (@cramiGPn) presents no such difficulty.}
-
-
-** add commit ** 
-\added{This contrasts with the similar sentence in}
-Accepted.
-
-** replace commit ** 
-\replaced{where PP2 can plausibly modify *drawer* and so the parse where *in the drawer* is the goal argument is accepted and *of his filing cabinet* is incoporated as a modifier within PP1.}{: as an argument of the verb. The reasons for that assumption are discussed in Section \@ref(mech), but for now it suffices to understand that (@cramiGPy) represents a difficult to comprehend sentence (a garden path), while (@cramiGPn) presents no such difficulty.}
-Accepted.
-
-Result: 
-This contrasts with the similar sentence in (@cramiGPn) \replacewhere PP2 can plausibly modify *drawer* and so the parse where *in the drawer* is the goal argument is accepted and *of his filing cabinet* is incoporated as a modifier within PP1.
-
-
-******** In Line 66 :
- \deleted{((examples were here))}
-
-
-** delete commit ** 
-\deleted{((examples were here))}
-Accepted.
-
-Result is empty line and not stored.
-
-******** In Line 68 :
- \deleted{Before the details of the current research can be outlined, it is first necessary to explain some of the terms and mechanisms involved. This chapter is concerned with doing so.}
-
-
-** delete commit ** 
-\deleted{Before the details of the current research can be outlined, it is first necessary to explain some of the terms and mechanisms involved. This chapter is concerned with doing so.}
-Accepted.
-
-Result is empty line and not stored.
-
-******** In Line 70 :
- \deleted{Sections 1.1 and 1.2 are redundant and have been removed. They are incorporated into the above.}
-
-
-** delete commit ** 
-\deleted{Sections 1.1 and 1.2 are redundant and have been removed. They are incorporated into the above.}
-Accepted.
-
-Result is empty line and not stored.
-
-******** In Line 74 :
- \comment{Adapted from what was \S 1.3}
-
-
-** comment commit ** 
-\comment{Adapted from what was \S 1.3}
-Kept.
-
-Result: 
-\comment{Adapted from what was \S 1.3}
-
-
-
-******** In Line 76 :
- \added{The current study was initially motivated by an observation discovered by Janet Dean Fodor and Dianne Bradley, and originally reported in @qp2. That observation is that a garden path sentence like} (@cramiGPy) \added{repeated here as} (@dec) \added{is, for whatever reason, not as difficult to process when presented as an interrogative, as in} (@intr), \replaced{rather than a declarative.}{These attachment ambiguities which are difficult to parse in the declarative, appear to be less difficult to parse when presented in polar interrogative context. Consider again the somewhat difficult to process sentence in (@cramiGPy), repeated below as (@dec) for convenience.}
-
-
-** add commit ** 
-\added{The current study was initially motivated by an observation discovered by Janet Dean Fodor and Dianne Bradley, and originally reported in @qp2. That observation is that a garden path sentence like}
-Accepted.
-
-** add commit ** 
-\added{repeated here as}
-Accepted.
-
-** add commit ** 
-\added{is, for whatever reason, not as difficult to process when presented as an interrogative, as in}
-Accepted.
-
-** replace commit ** 
-\replaced{rather than a declarative.}{These attachment ambiguities which are difficult to parse in the declarative, appear to be less difficult to parse when presented in polar interrogative context. Consider again the somewhat difficult to process sentence in (@cramiGPy), repeated below as (@dec) for convenience.}
-Accepted.
-
-Result: 
-The current study was initially motivated by an observation discovered by Janet Dean Fodor and Dianne Bradley, and originally reported in @qp2. That observation is that a garden path sentence like (@cramiGPy) repeated here as (@dec) is, for whatever reason, not as difficult to process when presented as an interrogative, as in (@intr), \replaced{rather than a rather than a declarative.
-
-
-******** In Line 78 :
-   (@dec) He had planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ in\deleted{to} his briefcase].
-
-
-** delete commit ** 
-\deleted{to}
-Accepted.
-
-Result: 
-  (@dec) He had planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ in his briefcase].
-
-
-
-******** In Line 80 :
-   (@intr) Had he planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ in\deleted{to} his briefcase]?
-
-
-** delete commit ** 
-\deleted{to}
-Accepted.
-
-Result: 
-  (@intr) Had he planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ in his briefcase]?
-
-
-
-******** In Line 82 :
- @qp2 \added{attempted to find a behavioral correlate of this intuition by looking at variation in reading time of sentence like} (@dec) and (@intr), \added{but the results were inconclusive. The current study continues that line of research by looking at similar sentences, while also attempting to control additional factors that may have led to} @qp2's \added{inconclusive results. One such concern is that} (@dec) \added{relies on the implausibility of a drawer within a briefcase, i.e., real world knowledge, in order to disambiguated the appropriate attachment sites for PP1 and PP2. Real world knowledge and beliefs of what is or is not plausible varies between speakers and may not always be reliable as a trigger for reanalysis. The current study makes use of carefully constructed sentences (the criteria by which they were constructed is detailed in Section} \@ref(mat)\added{) which do not rely on plausibility or pragmatics to disambiguated the PP attachment sites, but instead make use of syntactic disambiguation by including a PP2 that cannot grammatically be incorporated into PP1, as in} (@syndis).
-
-
-** add commit ** 
-\added{attempted to find a behavioral correlate of this intuition by looking at variation in reading time of sentence like}
-Accepted.
-
-** add commit ** 
-\added{but the results were inconclusive. The current study continues that line of research by looking at similar sentences, while also attempting to control additional factors that may have led to}
-Accepted.
-
-** add commit ** 
-\added{inconclusive results. One such concern is that}
-Accepted.
-
-** add commit ** 
-\added{relies on the implausibility of a drawer within a briefcase, i.e., real world knowledge, in order to disambiguated the appropriate attachment sites for PP1 and PP2. Real world knowledge and beliefs of what is or is not plausible varies between speakers and may not always be reliable as a trigger for reanalysis. The current study makes use of carefully constructed sentences (the criteria by which they were constructed is detailed in Section}
-Accepted.
-
-** add commit ** 
-\added{) which do not rely on plausibility or pragmatics to disambiguated the PP attachment sites, but instead make use of syntactic disambiguation by including a PP2 that cannot grammatically be incorporated into PP1, as in}
-Accepted.
-
-Result: 
-@qp2 attempted to find a behavioral correlate of this intuition by looking at variation in reading time of sentence like (@dec) and (@intr), but the results were inconclusive. The current study continues that line of research by looking at similar sentences, while also attempting to control additional factors that may have led to @qp2's inconclusive results. One such concern is that (@dec) relies on the implausibility of a drawer within a briefcase, i.e., real world knowledge, in order to disambiguated the appropriate attachment sites for PP1 and PP2. Real world knowledge and beliefs of what is or is not plausible varies between speakers and may not always be reliable as a trigger for reanalysis. The current study makes use of carefully constructed sentences (the criteria by which they were constructed is detailed in Section \@ref(mat)) which do not rely on plausibility or pragmatics to disambiguated the PP attachment sites, but instead make use of syntactic disambiguation by including a PP2 that cannot grammatically be incorporated into PP1, as in (@syndis).
-
-
-
-******** In Line 86 :
- \added{The change from pragmatically disambiguation to syntactic disambiguation creates an important distinction between the original observation in} @qp2 \added{and what the current study is considering. It cannot be assumed that the intuition about} (@dec) vs. (@intr) \added{necessarily extends to cases like} (@syndis), \added{and so one of the questions the current study asks is whether the intuition can be shown to extend to syntactically disambiguated cases that are similar to the pragmatically disambiguated cases for which the observation was first made. In order to keep clear this fine but important difference, a convention is adopted throughout this document where the intuited amelioration of the garden path effect in pragmatically disambiguated cases is referred to as the 2016 intuition, while the possiblity that the intuition extends to syntactically disambiguated cases is referred to as the current hypothesis.}
-
-
-** add commit ** 
-\added{The change from pragmatically disambiguation to syntactic disambiguation creates an important distinction between the original observation in}
-Accepted.
-
-** add commit ** 
-\added{and what the current study is considering. It cannot be assumed that the intuition about}
-Accepted.
-
-** add commit ** 
-\added{necessarily extends to cases like}
-Accepted.
-
-** add commit ** 
-\added{and so one of the questions the current study asks is whether the intuition can be shown to extend to syntactically disambiguated cases that are similar to the pragmatically disambiguated cases for which the observation was first made. In order to keep clear this fine but important difference, a convention is adopted throughout this document where the intuited amelioration of the garden path effect in pragmatically disambiguated cases is referred to as the 2016 intuition, while the possiblity that the intuition extends to syntactically disambiguated cases is referred to as the current hypothesis.}
-Accepted.
-
-Result: 
-The change from pragmatically disambiguation to syntactic disambiguation creates an important distinction between the original observation in @qp2 and what the current study is considering. It cannot be assumed that the intuition about (@dec) vs. (@intr) necessarily extends to cases like (@syndis), and so one of the questions the current study asks is whether the intuition can be shown to extend to syntactically disambiguated cases that are similar to the pragmatically disambiguated cases for which the observation was first made. In order to keep clear this fine but important difference, a convention is adopted throughout this document where the intuited amelioration of the garden path effect in pragmatically disambiguated cases is referred to as the 2016 intuition, while the possiblity that the intuition extends to syntactically disambiguated cases is referred to as the current hypothesis.
-
-
-
-******** In Line 88 :
- \comment{these are new to this chapter, but are taken from the discussion chapter, where we discussed them on 8/16}
-
-
-** comment commit ** 
-\comment{these are new to this chapter, but are taken from the discussion chapter, where we discussed them on 8/16}
-Kept.
-
-Result: 
-\comment{these are new to this chapter, but are taken from the discussion chapter, where we discussed them on 8/16}
-
-
-
-******** In Line 89 :
-   (@intui) *The \added{2016} intuition:* Certain pragmatically disambiguated prepositional phrase (PP) attachment ambiguities which are difficult to parse in the declarative are less difficult to parse when presented as yes-no interrogatives (e.g., Jed crammed the newspapers under the sofa in the trashcan).
-
-
-** add commit ** 
-\added{2016}
-Accepted.
-
-Result: 
-  (@intui) *The 2016 intuition:* Certain pragmatically disambiguated prepositional phrase (PP) attachment ambiguities which are difficult to parse in the declarative are less difficult to parse when presented as yes-no interrogatives (e.g., Jed crammed the newspapers under the sofa in the trashcan).
-
-
-
-******** In Line 93 :
  \deleted{While both sentences contain a temporary ambiguity for the attachment of PPs occurring in string-linear sequence at the end of an utterance, it is more likely in (@intr) that a listener or reader will come away with a plausible interpretation on the first try. This study explores the factors involved in why that is, and seeks to uncover a behavioral correlate of this intuition. If the existence and mechanics of this effect can be pinned down, it will lend insight into what information the parser has access to when making decisions, or when repairing broken parses. This initial observation reveals a robust program of research with many interwoven questions.}
 
 
