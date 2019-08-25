@@ -95,13 +95,14 @@ Some of the expected 3072 recordings (32 participants x 48 items (16 experimenta
 
 For experimental items, 978 recordings were subjected to prosodic analysis, constituting 95.6% of the utterances elicited. Because IRT data considered utterances in pairs (Reading 1/Reading 2) rather than separately, the database for response timing took in 489 data points.
 
+\comment{this table has had the order of the rows reversed}
 ```{r rvtab, echo=F}
 library(tidyr)
 tot<-as.data.frame(xtabs( ~ PP2Status + SpeechAct, data=mdata))
 gtot <- tot
 
 totDisp <- gtot %>% as.data.frame() %>%
-  spread(SpeechAct,Freq) 
+  spread(SpeechAct,Freq) %>% arrange(desc(PP2Status))
 
 
 kable(
@@ -173,12 +174,7 @@ tot<-as.data.frame(xtabs( ~  PP2Status + SpeechAct, data=r1data))
 pp1<-as.data.frame(pp1tab)
 pp1$tot<-tot$Freq
 pp1$pct <- pp1$Freq/pp1$tot
-pp1$pretty <- paste0(
-  pp1$Freq, 
-  " (", 
-  sprintf("%.1f",pp1$pct * 100), 
-  "%)"
-)
+pp1$pretty <- sprintf("%s (%d)",percent(pp1$pct),pp1$Freq)
 pp1disp <- pp1 %>%
   subset(select=c(
     "PP2Status",
@@ -215,11 +211,14 @@ In what follows, the distribution of OBJ breaks and PP1 breaks are reported as a
 
   (@breakpos) !["... stick the letter % in the mailbox % into the proper stack."](breakpos.png)
 
-As noted in section \@ref(sita), the results reported are based on the subjective judgments of a trained linguist who was naive to the purposes and hypotheses underlying the research.
+As noted in section \@ref(sita), the results reported are based on the subjective judgments of a trained linguist who was naive to the purposes and hypotheses underlying the research. A second linguist provided judgements over a subset of the recordings, and a comparison between their judgments is available in Section \@ref(rel) above.
 
 ### Individual break patterns
 
+\comment{this table has had its formatting changed so that freq is in parenthesis and percentage is not, and the order of the rows have been reversed}
 ```{r obj}
+names(obj)[2:5] <- c(2:5)
+obj <-obj %>%  arrange(desc(PP2Status))
 kable(
   obj,
   caption="Percent occurrence of OBJ break (frequency of occurrence in parenthesis) as a function of sentence type and Reading.",
@@ -232,7 +231,10 @@ kable(
 
 The presence of the OBJ break was sensitive to both Speech Act and reading, with Reading 2 showing a different distribution across the D vs. Q distinction than the Reading 1 recordings. 
 
+\comment{this table has been updated to have the order of the rows reversed}
 ```{r pp1}
+names(pp1)[2:5] <- c(2:5)
+pp1 <-pp1 %>%  arrange(desc(PP2Status))
 kable(
   pp1,
   caption="Percent occurrence of PP1 break (frequency of occurrence in parenthesis) as a function of sentence type and Reading.",
@@ -259,8 +261,9 @@ qpros<-table(qdata$simple2lvl,qdata$SpeechAct) %>%
 dpros<-table(ddata$simple2lvl,ddata$SpeechAct) %>%
   prop.table(margin=2) %>% apply(2,percent)
 
-ccombo<-as.data.frame(cbind(dpros,qpros))
+r2combo<-as.data.frame(cbind(dpros,qpros))
 
+write_csv(r2combo,"export/ccombo.csv")
 
 r1pdata<-droplevels(subset(mdata,Reading==1 & simple2lvl != "NEITHER"))
 qdata <- subset(r1pdata,PP2Status=="Arg")
@@ -272,10 +275,10 @@ qpros<-table(qdata$simple2lvl,qdata$SpeechAct) %>%
 dpros<-table(ddata$simple2lvl,ddata$SpeechAct) %>%
   prop.table(margin=2) %>% apply(2,percent)
 
-cccombo<-as.data.frame(cbind(dpros,qpros))
+r1combo<-as.data.frame(cbind(dpros,qpros))
 
 
-bothrbothb <- cbind(ccombo,cccombo)
+bothrbothb <- cbind(r1combo,r2combo)
 bothrbothb <- bothrbothb %>% as_tibble(.name_repair = "unique")
 row.names(bothrbothb) <- c("2Both","1OBJ","3PP1")
 bothrbothb<-arrange(bothrbothb,row.names(bothrbothb))
@@ -283,7 +286,7 @@ row.names(bothrbothb) <- c("OBJ only","Both","PP1 only")
 
 ```
 
-
+\comment{this table has been corrected for the Reading label of columns}
 ```{r bothbreaks}
 kable(
   bothrbothb,
@@ -297,7 +300,7 @@ kable(
 
 ```
 
-Table \@ref(tab:bothbreaks) shows that for Arg sentences, there are very few instances with the OBJ-only pattern (0.8% in declaratives, 2.5% in interrogatives); whereas that pattern is fairly frequent for Mod sentences (31.1% in declaratives, 31.4% in interrogatives). The pattern with both breaks is somewhat more common for Arg sentences (72.1% in declaratives, 71.7% in interrogatives) than Mod (54.1% in declaratives, 43.0% in interrogatives). The PP1-only pattern occurs at about the same rate in Arg interrogatives (25.8%) as in Mod interrogatives (25.6%) and Arg declaratives (27%), but is noticeably less common for Mod declaratives (14.8%). These proportions are visually represented in figure \@ref(fig:bothbreaks2).
+Table \@ref(tab:bothbreaks) shows that for Mod sentences the OBJ-only pattern is relatively frequet (31.1% in declaratives, 31.4% in interrogatives), wheres for Arg sentences there are very few instances with the OBJ-only pattern (0.8% in declaratives, 2.5% in interrogatives). The pattern with both breaks is less common for  Mod (54.1% in declaratives, 43.0% in interrogatives) sentences than for Arg sentences (72.1% in declaratives, 71.7% in interrogatives). The PP1-only pattern occurs at about the same rate in Mod interrogatives (25.6%) as in Arg declaratives (27%) and Arg interrogatives (25.8%), but is noticeably less common for Mod declaratives (14.8%). These proportions are visually represented in figure \@ref(fig:bothbreaks2).
 
 ```{r bothbreaks2, fig.cap="Break pattern as a function of sentence type and Reading.",fig.pos="!H", fig.height=3.5}
 
@@ -700,7 +703,8 @@ tab <- tab %>% select(Pattern,everything())
 
 tab <- rbind(r1tab,tab)
 ```
-```{r r2split}
+\comment{big ugly table has been omitted}
+```{r r2split, include = F}
 tab %>% kable(
   align="c",
   caption="Break pattern by sentence type and R1 delay category.",
