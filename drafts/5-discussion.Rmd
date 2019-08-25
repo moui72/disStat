@@ -109,6 +109,10 @@ If the PP1 break is treated as the main indicator of the prosodic structure, the
 
 \added[id=JDF]{If the above explanation proves not to be viable in subsequent study,} \replaced[id=JDF]{a}{A}nother possibility to consider is that the intuition itself is illusory in nature, i.e., it is not the case that interrogative PP-attachment garden paths (\added[id=JDF]{either} pragmatically or syntactically disambiguated) are easier to parse than declarative ones\added{,} but only appear to be so. \deleted{Perhaps the Q Arg sentences are not actually easier to parse, but \added{only} appear to be}\replaced{. B}{, b}ecause the added complexity of the interrogative version is distracting the reader with a different sort of difficulty. It may be that \added[id=JDF]{readers} are being distracted by the processing cost of interrogativity, and thereby are less sensitive to the cost of reanalysis. While the parser is struggling with two additive increases to complexity as compared to D Mod sentences (i.e., Arg PP2 Status and interrogative context) the reader is aware only of the more immediately obvious difference, that of interrogativity, and fails to \deleted[id=JDF]{consciously} notice the structural reanalysis that the parser is undertaking.
 
+### A semantic/pragmatic explanation
+
+To do
+
 ## Conclusions {#confound}
 
 In this section, I will discuss some of the \added[id=JDF]{potential} issues \replaced[id=JDF]{raised by}{with} the current study, and what I see as fruitful avenues for future \replaced[id=JDF]{research}{study}.
