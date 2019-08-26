@@ -1,7 +1,0 @@
-"0","mtable <- with(na.omit(subset(inter_item_timings,!is_filler)),tapply(inter_reading, condition, mean))"
-"0","mstable <-  aggregate(inter_reading ~ condition + participant, data=inter_item_timings, mean)"
-"0","mitable <- aggregate(inter_reading ~ condition + item, data=inter_item_timings, mean)"
-"0","mitable<-spread(mitable, key=condition, value=inter_reading, fill = NA, convert = FALSE)"
-"0","mstable<-spread(mstable, key=condition, value=inter_reading, fill = NA, convert = FALSE)"
-"0","mstable$pattern <- mstable$`+GP +Q` - mstable$`-GP +Q` < mstable$`+GP -Q` - mstable$`-GP -Q` "
-"0","mitable$pattern <- mitable$`+GP +Q` - mitable$`-GP +Q` < mitable$`+GP -Q` - mitable$`-GP -Q` "

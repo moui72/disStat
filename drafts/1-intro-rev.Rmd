@@ -355,7 +355,8 @@ The same sort of argument can explain the difference in tendency between long an
 If \deleted{we assume}, in Optimality Theoretic [@Prince1993-ic] terms, \deleted{that} a constraint like *BinMin* is ranked above *Align~L~*, then it seems quite reasonable to assume that  a prosodic break before a short RC (which would encourage high attachment) is much less likely than before a long RC. That is, when the RC is short, its left edge is prevented from aligning with the beginning of a prosodic phrase (it violates *Align~L~*) by the higher ranked BinMin\added{, because it needs more material in order to achieve a length of at least two phonological words, and so must borrow some for the preceding NP. Longer RCs can have their left edge align with the start of a prosodic phrase, and thus can have the high-attachment encouraging prosodic break\added{, because they have enough phonological content to stand alone}.
 
 
-## Predictions for the current study
+## Predictions for the current study {#pred}
+
 \comment{not all changes to this section are well represented by annotation; we should read it together}
 \replaced{The experimental study presented here addresses}{This study is concerned with} a number of issues. First: is \added{syntactic phrase} attachment in any way encoded in the speech signal? I hypothesize, following e.g., @schafer2000intonational \added{as noted above that it is, and therefore} that \deleted{we can use} prosody \added{can be used} to diagnose attachment site. Consider the basic configuration in Figures \@ref(fig:smallmod) and \@ref(fig:smallarg) \added{below}.
 
@@ -414,10 +415,25 @@ If \deleted{we assume}, in Optimality Theoretic [@Prince1993-ic] terms, \deleted
   \end{minipage}
 \end{figure}
 
-\replaced[id=TJP]{The predictions made here rely on there being an ideal prosodic structure for the sentences tested to compare them with. Following @Fodor2002-io, a major disruption to the syntax like the one after PP1,}{I suggest that argument attachment of PP2} \added{as in Figure} \@ref(fig:smallarg), \replaced{should}{will} be marked by a prosodic boundary between PP1 and PP2. \replaced{On the other hand, m}{M}odifier attachment of PP2\deleted{, on the other hand,} will lack any substantial boundary marking in that position \added{unless it is necessitated for length reasons}; instead, a break after the object is expected.
+\replaced[id=TJP]{The predictions made here rely on there being an ideal prosodic structure for the sentences tested to compare them with. Following @Fodor2002-io, a major disruption to the syntax like the one after PP1,}{I suggest that argument attachment of PP2} \added{as in Figure} \@ref(fig:smallarg), \replaced{should}{will} be marked by a prosodic boundary between PP1 and PP2. \replaced{On the other hand, m}{M}odifier attachment of PP2\deleted{, on the other hand,} will lack any substantial boundary marking in that position \added{unless it is necessitated for length reasons}; instead, a break after the object is expected. \added{These expectations are shown in} (@breakpatMod) and (@breakpatArg), \added{where "$\vert$" a less prominent or no break and "$\|$" represents a linguistically motivated prosodic break.}
 
-  *Running assumption about syntax-to-prosody mapping* 
-  Argument attachment of PP2 is marked by a dominant prosodic break between PP1 and PP2.
+\singlespacing
+
+  (@breakpatMod)
+\begin{tabular}{ccccccc}
+  & & & \small OBJ Break & & \small PP1 Break & \\
+  \dots & stick & the letter & $\||$ & in the mailbox & $\vert$ & of the proper stack \\
+  & & \footnotesize Direct object & & \footnotesize PP1 & & \footnotesize vice president. \\
+\end{tabular}
+
+  (@breakpatArg)
+\begin{tabular}{ccccccc}
+  & & & \small OBJ Break & & \small PP1 Break & \\
+  \dots & stick & the letter & $\vert$ & in the mailbox & $\|$ & onto the proper stack. \\
+  & & \footnotesize Direct object & & \footnotesize PP1 & & \footnotesize PP2 \\
+\end{tabular}
+
+\doublespacing
 
 \replaced{An}{The second} issue \replaced{that is addressed is}{:} what factors impact immediate on-line parsing, and what factors only affect later, post-parse considerations? To address this, the study will employ the double reading paradigm of @fodor2019center (more on double reading in the methods section). For example, if first-pass parsing ignores semantic information, then \added{semantically} implausible parses should be more frequent in Reading 1 of a sentence with argument-PP2 than in a second reading of the same sentence.
 

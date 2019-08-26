@@ -1,7 +1,0 @@
-"0","ggplot(irt_data, aes(win_irt)) +"
-"0","  histSettings + "
-"0","  xlab(""wIRT"") + ylab(""Frequency"") + "
-"0","  ggtitle("
-"0","    ""Distribution of wIRT (ms)"", "
-"0","    subtitle=""Bin size = 500ms"""
-"0","  )"

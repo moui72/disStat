@@ -1,3 +1,0 @@
-"0","meansByConditionS <- meansByCondition"
-"0","meansByConditionS$`D` <- meansByConditionS$`D`/1000"
-"0","meansByConditionS$`Q` <- meansByConditionS$`Q`/1000"

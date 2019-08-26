@@ -1,6 +1,0 @@
-"0","if(!""reading"" %in% names(adata)){"
-"0","  adata$reading <- adata$Reading"
-"0","}"
-"0","loadfonts(device=""win"")"
-"2","Error in windowsFonts() : could not find function ""windowsFonts""
-"

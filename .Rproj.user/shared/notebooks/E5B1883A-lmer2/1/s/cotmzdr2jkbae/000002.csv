@@ -1,2 +1,0 @@
-"0","gee.byP <- geeglm(inter_reading.log10 ~ GP_condition * Q_condition,id=participant,data=inter_item_timings)"
-"0","gee.byI <- geeglm(inter_reading.log10 ~ GP_condition * Q_condition,id=item,data=inter_item_timings)"

@@ -1,1 +1,0 @@
-{"frames":[{"character_number":0,"end_character_number":0,"end_line_number":0,"file":"","func":"residuals(models.timing.Sense)","line_number":0}],"message":"Error in residuals(models.timing.Sense) : \n  object 'models.timing.Sense' not found\n"}

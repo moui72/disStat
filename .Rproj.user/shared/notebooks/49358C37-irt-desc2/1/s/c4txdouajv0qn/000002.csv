@@ -1,7 +1,0 @@
-"0","mtable <- with(na.omit(inter_item_timings),tapply(inter_reading, condition, mean))"
-"0","sdtable <- with(na.omit(inter_item_timings),tapply(inter_reading, condition, sd))"
-"0","ctable <- rbind(mtable,sdtable)"
-"0","row.names(ctable) <- c(""Mean"", ""SD"")"
-"0","decl <- round(mtable[""-Q +GP""] - mtable[""-Q -GP""],2)"
-"0","int <- round(mtable[""+Q +GP""] - mtable[""+Q -GP""],2)"
-"0","diffGPQ <- decl - int"

@@ -1,8 +1,8 @@
 {
-    "cursorPosition" : "332,2",
+    "cursorPosition" : "105,32",
     "docOutlineSize" : "120",
     "docOutlineVisible" : "1",
-    "ignored_words" : "dcb,dcbp,upsamp,csv,dr,sp,del,Sona,irt,intra,appExp,appFill,addlinespace,irb,irtDis,png,foveal,saccades,ballistically,saccadic,dtcs,rccc,evsdtcr,json,csvs,sita,Intra\n",
+    "ignored_words" : "dcb,dcbp,upsamp,csv,dr,sp,del,Sona,irt,intra,appExp,appFill,addlinespace,irb,irtDis,png,foveal,saccades,ballistically,saccadic,dtcs,rccc,evsdtcr,json,csvs,sita,Intra,reqGoal,ength,McConkie,Rayner\n",
     "last_setup_crc32" : "",
-    "scrollLine" : "329"
+    "scrollLine" : "98"
 }

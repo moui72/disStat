@@ -1,7 +1,0 @@
-"0","kable("
-"0","  pp1obj,"
-"0","  caption=""Reading 2 recordings containing PP1/OBJ break by condition"","
-"0","  col.names = c("""", ""D"", ""Q"",""D"", ""Q"")"
-"0",") %>% "
-"0","  add_header_above(c("" ""=1,""PP1 Break""=2,""OBJ Break""=2)) %>% "
-"0","  kable_styling(latex_options = c(""hold_position""))"

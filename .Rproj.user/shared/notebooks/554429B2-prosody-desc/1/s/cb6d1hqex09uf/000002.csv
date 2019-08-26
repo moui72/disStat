@@ -1,4 +1,0 @@
-"0","prosodies.full <- xtabs(~ prosody +condition, mdata)"
-"0","prosodies.r1 <- xtabs(~ prosody +condition, subset(mdata,Reading==1))"
-"0","prosodies.r2 <- xtabs(~ prosody +condition, subset(mdata,Reading==2))"
-"0","kable(prosodies.full, caption = ""Both readings"")"

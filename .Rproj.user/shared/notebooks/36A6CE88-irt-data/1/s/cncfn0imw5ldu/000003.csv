@@ -1,6 +1,0 @@
-"0","kable("
-"0","  pmeansByCondition[c(1:5)],"
-"0","  caption=""Means (ms) by condition and participant"","
-"0","  booktab=T,"
-"0","  longtab=T"
-"0",")"

@@ -1,7 +1,0 @@
-"0","groupses<-addmargins(with(inter_item_timings[!duplicated(inter_item_timings$Participant),],table(list,Sorder)))"
-"0","row.names(groupses) <- c(paste(""Group"",1:4),""Split Total"")"
-"0","kable(groupses, caption=""Group/order totals after attrition"", align=""c"","
-"0","      col.names = c(""Split AB"",""Split BA"",""Group Total"")) %>%"
-"0","  column_spec(1,bold=T) %>%"
-"0","  column_spec(4,border_left=T,italic = T) %>%"
-"0","  row_spec(5,extra_css=""border-top:1px solid #333333"",italic = T)"

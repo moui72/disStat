@@ -1,7 +1,0 @@
-"0","pdom <- xtabs(~condition+pdom,data=mdata)"
-"0","pdom.r1 <- xtabs(~condition+pdom,data=subset(mdata,Reading==1))"
-"0","pdom.r2 <- xtabs(~condition+pdom,data=subset(mdata,Reading==2))"
-"0","kable("
-"0","  pdom, caption=""Both readings"","
-"0","  col.names = c(""PP1 Not Dominant"", ""PP1 Dominant"")"
-"0",")"

@@ -1,4 +1,0 @@
-"0","mtable <- with(na.omit(subset(inter_item_timings,!is_filler)),tapply(inter_reading, condition, mean))"
-"0","kable(mtable, align=""r"",col.names = c(""mean"")) %>%"
-"0","  kable_styling(bootstrap_options = c(""striped"",full_width=F,position=""left"")) %>%"
-"0","  column_spec(1,bold=T)"

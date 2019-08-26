@@ -1,5 +1,0 @@
-"0","irt.noItem.compared <-anova(full,norandom)
-"
-"2","Error in anova.lmerModLmerTest(full, norandom) : 
-  object 'norandom' not found
-"

@@ -1,6 +1,0 @@
-"0","xdata <- subset(adata,r1DelCat != ""NORMAL"")"
-"0","r1df <- ftable(xtabs(~Participant + simple2lvl + r1DelCat, subset(xdata,Reading==1))) %>% as.data.frame"
-"0","r2df <- ftable(xtabs(~Participant + simple2lvl + r1DelCat, subset(xdata,Reading==2))) %>% as.data.frame"
-"0","dfs <- subset(r1df %>% spread(simple2lvl,Freq), BOTH + OBJ + PP1 > 0)"
-"0","dfs <- cbind(""r1""=dfs,""r2""=subset(r2df %>% spread(simple2lvl,Freq), BOTH + OBJ + PP1 > 0))"
-"0","# just delete rows in df where all 3 freqs are 0"

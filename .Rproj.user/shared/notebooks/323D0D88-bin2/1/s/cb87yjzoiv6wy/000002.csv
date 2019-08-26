@@ -1,7 +1,0 @@
-"0","lrm.QI.simple <- glmer("
-"0","  HtOrMs_QI~reading + Condition_GP * Condition_Q + (1 | SID) + (1 | IID), "
-"0","  data=mdata,"
-"0","  family=binomial"
-"0","  )"
-"2","Error in eval(predvars, data, env) : object 'reading' not found
-"

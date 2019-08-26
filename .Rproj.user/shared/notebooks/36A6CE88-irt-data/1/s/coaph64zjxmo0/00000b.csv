@@ -1,7 +1,0 @@
-"0","kable("
-"0","  diffsByP[order(diffsByP[,2]),],"
-"0","  digits = 0,"
-"0","  caption=""Delay differences by participant"","
-"0","  booktab=T,"
-"0","  longtab=T"
-"0",")"
