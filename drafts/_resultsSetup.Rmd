@@ -592,7 +592,11 @@ odomMod<- glmer(odom~Condition_Q*Condition_GP+(1|IID)+(1|SID),data=r2data,family
 ```
 
 ```{r prosmodelsPre,cache=T}
-both.pp1Mod<- glmer(PP1~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=mdata,family=binomial)
+both.pp1Mod.full<- glmer(PP1~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=mdata,family=binomial)
+both.pp1Mod.red1<- glmer(PP1~Reading+Condition_Q+Condition_GP+(1|IID)+(1|SID),data=mdata,family=binomial)
+both.pp1Mod.red2<- glmer(PP1~Condition_Q+Condition_GP+(1|IID)+(1|SID),data=mdata,family=binomial)
+```
+```{r}
 both.objMod<- glmer(OBJ~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=mdata,family=binomial)
 both.pdomMod<- glmer(pdom~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=mdata,family=binomial)
 both.odomMod<- glmer(odom~Reading+Condition_Q*Condition_GP+(1|IID)+(1|SID),data=mdata,family=binomial)

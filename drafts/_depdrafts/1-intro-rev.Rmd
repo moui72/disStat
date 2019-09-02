@@ -28,7 +28,7 @@ This paper presents a study on human sentence processing, or parsing, and on the
   (@LateClo) *Late closure* \linebreak\nopagebreak
   When possible, attach incoming material into the clause currently being parsed [@Frazier1979-pb p.20]
 
-Because these strategies ignore semantic and pragmatic plausibility and the parser typically does not know what material might \replaced{occur}{be} further on in the \added{word} string, mis-parses at temporarily ambiguous regions can occur\replaced{.}{, resulting in garden paths.} Minimal Attachment (MA) is important to \replaced{the present}{this} study and will be revisited \replaced{later on.}{in Section} \@ref(mech).
+Because these strategies ignore semantic and pragmatic plausibility and the parser typically does not know what material might \replaced{occur}{be} further on in the \added{word} string, mis-parses at temporarily ambiguous regions can occur\replaced{.}{, resulting in garden paths.} Minimal Attachment (MA) is important to \replaced{the present}{this} study and will be revisited.
 
 An example is the commonly studied garden path sentence, “The horse raced past the barn fell” [@bever1970]. Here, the initial parse incorrectly assumes that the matrix subject is the unmodified NP *the horse*, per Minimal Attachment, and takes the matrix verb to be *raced*, as in the sentence, *The horse raced past the finish line*.
 
@@ -72,7 +72,7 @@ In addition to exploring the possible extensibility of the 2016 intuition, the c
 
 An obvious reflex of the former possibility is another question: how are the various versions of these sentences actually pronounced, prosodically? \deleted{T}{t}he reported study seeks to answer \replaced{this}{it}, but while the recordings collected provide some insight, more work is likely needed to \deleted{satisfactorily} provide a\replaced{a fully satisfactory}{n} answer.
 
-Likewise, the latter possibility \replaced{raises the question: exactly}{leads one to wonder:} what are the semantic and pragmatic differences between a polar question and its declarative counterpart? This question \replaced{has been}{can be} approach\added{ed} in \replaced{the}{a more} theoretical \deleted{way, and has been to some degree in the} literature \added{(see, e.g.} @fiengo \added{)}. \replaced{Nevertheless}{That said}, it remains to be determined how those properties could lead to an easier \added{or more difficult} parsing process\deleted{, and whether or not a satisfactory explanation for the intuition at large can be pulled from these differences}.}
+Likewise, the latter possibility \replaced{raises the question: exactly}{leads one to wonder:} what are the semantic and pragmatic differences between a polar question and its declarative counterpart? This question \replaced{has been}{can be} approach\added{ed} in \replaced{the}{a more} theoretical \deleted{way, and has been to some degree in the} literature \added{(see, e.g.} @fiengo \added{)}. \replaced{Nevertheless}{That said}, it remains to be determined how those properties could lead to an easier \added{or more difficult} parsing process\deleted{, and whether or not a satisfactory explanation for the intuition at large can be pulled from these differences}.
 
 ## Structural overview of the ambiguity relevant to this study {#mech}
 
