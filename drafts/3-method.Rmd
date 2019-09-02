@@ -68,7 +68,7 @@ if(is_html_output() || is_latex_output()){
 
 ```
 
-\added{As previously mentioned, the current study was motivated by an observation first reported in} @qp2. The experimental stimuli \added{used in the current study} were based on \replaced{the materials from that study}{\added{an} earlier \deleted{pilot} study exploring \replaced{this same}{a similar} phenomenon @qp2,} with several adjustments made to accommodate the objectives of the current study. The sequence of parts for each of the basic items was always the same, shown in (@itemdiag)\added{. Note that the material starting with the infinitival verb, e.g., \em{cram} until the end of sentence will be referred to as the construction throughout this and later chapters, as labeled in the example below}.
+\added{As previously mentioned, the current study was motivated by an observation first reported in} @qp2. The experimental stimuli \added{used in the current study} were based on \replaced{the materials from that study}{\added{an} earlier \deleted{pilot} study exploring \replaced{this same}{a similar} phenomenon @qp2,} with several adjustments made to accommodate the objectives of the current study. The sequence of parts for each of the basic items was always the same, shown in (@itemdiag). Note that the material starting with the infinitival verb, e.g., *cram* until the end of sentence will be referred to as the construction throughout this and later chapters, as labeled in the example below.
 
 \singlespacing
   (@itemdiag) 
@@ -85,7 +85,7 @@ if(is_html_output() || is_latex_output()){
 
 All four versions of any given quadruple used the same introductory material, the only difference arising through the necessary inversion of auxiliary and matrix subject, as required by the Speech Act factor. Across quadruples, subjects alternated between *she* and *he*, with half using one and half using the other; the auxiliary was always *had*. The matrix verb did not vary within a quadruple, but did vary between quadruples; for any given quadruple, the matrix verb was one of four verbs of mental state (*decide*, *intend*, *plan*, or *want*). \added{The rationale for the use of these mental state verbs are discussed later in this section.}
 
-The verb within the construction did not vary within a quadruple, but a given quadruple could have one of four verbs: *cram*, *put*, *set* or *stick* The construction verb form was always infinitival. Each construction verb appeared in four different quadruples, and was paired once with each matrix verb, to create 16 unique pairings of matrix verb to construction verb. Thus, for matrix verb *decide*, for example, *decided to cram*, *decided to put*, *decided to set*, and *decided to stick*; and for construction verb *cram*, *decided to cram*, *intended to cram*, *wanted to cram*, and *planned to cram*. 
+A given quadruple had one of four construction verbs: *cram*, *put*, *set* or *stick* The construction verb form was always infinitival. Each construction verb appeared in four different quadruples, and was paired once with each matrix verb, to create 16 unique pairings of matrix verb to construction verb. Thus, for matrix verb *decide*, for example, *decided to cram*, *decided to put*, *decided to set*, and *decided to stick*; and for construction verb *cram*, *decided to cram*, *intended to cram*, *wanted to cram*, and *planned to cram*. 
 
 The word order and content of the construction was the same across all versions of a quadruple, with the exception of the content of PP2 which varied across the PP2 Status factor: The Arg versions of a quadruple had a PP2 which was headed by *into* or *onto*, while the Mod versions had a PP2 which was headed by *of* or *from.* 
 
@@ -95,19 +95,19 @@ PP1 was the same across versions of a given quadruple, e.g., *cram the paperwork
 
 [^aux]: Note that the use of an auxiliary also eliminates length differences across D vs. Q versions of a quadruple: if an auxiliary verb were not present, interrogative versions of a basic item would have an extra word, the result of so-called *do*-support, that would not appear in the declaratives (e.g., *he crammed* … vs. *did he cram* …?)
 
-The purpose of including introductory matrix verbs \added{(e.g., \em{intended})} was to reduce the oddity of the polar interrogative versions of each quadruple. It seems odd to ask, “Did Mary put the jelly beans in the window onto a fancy dish?” because, when it is clear that the speaker already knows so much about the situation, it becomes difficult to imagine a pragmatically plausible context where such a question would be asked. Such sentences might well be described as “prosecutorial[^dcbp].” Arguably, this is somewhat mitigated by the addition of a verb like *intended*: rather than asking about facts that we already seem to know, we are instead asking about an actor’s mental state with regard to those facts. Even if we know the facts of the situation, we do not necessarily know, for instance, whether it was the result of a decision, some third party’s action, or mere happenstance. Another adjustment made in order to make the polar interrogative versions of each quadruple more pragmatically acceptable limited the amount of detail in the experimental sentences, so that fewer adjectives and adverbs were included compared to the items employed in @qp2, and subjects were always third person nominative pronouns (*he* or *she*).
+The purpose of including introductory matrix verbs (e.g., *intended*) was to reduce the oddity of the polar interrogative versions of each quadruple. It seems odd to ask, “Did Mary put the jelly beans in the window onto a fancy dish?” because, when it is clear that the speaker already knows so much about the situation, it becomes difficult to imagine a pragmatically plausible context where such a question would be asked. Such sentences might well be described as “prosecutorial[^dcbp].” Arguably, this is somewhat mitigated by the addition of a verb like *intended*: rather than asking about facts that we already seem to know, we are instead asking about an actor’s mental state with regard to those facts. Even if we know the facts of the situation, we do not necessarily know, for instance, whether it was the result of a decision, some third party’s action, or mere happenstance. Another adjustment made in order to make the polar interrogative versions of each quadruple more pragmatically acceptable limited the amount of detail in the experimental sentences, so that fewer adjectives and adverbs were included compared to the items employed in @qp2, and subjects were always third person nominative pronouns (*he* or *she*).
 
-Importantly, the construction verb was always one which demanded a goal argument. Where some of the verbs used in the items employed by @qp2 only optionally took a goal, the current study used only verbs which require a goal argument\added{: \em{cram, put, set} or \em{stick}}. Verbs that optionally take a goal \added{(e.g., \em{hide})} might result in a parse where PP1 is not immediately incorporated as the goal argument, which would mean that PP2 would not necessarily force reanalysis. Consider the contrasting sub-categorization of the verbs in (@optg) and (@oblg):
+Importantly, the construction verb was always one which demanded a goal argument. Where some of the verbs used in the items employed by @qp2 only optionally took a goal, the current study used only verbs which require a goal argument: *cram*, *put*, *set*, or *stick*. Verbs that optionally take a goal (e.g., *hide*) might result in a parse where PP1 is not immediately incorporated as the goal argument, which would mean that PP2 would not necessarily force reanalysis. Consider the contrasting sub-categorization of the verbs *hide* and *cram* shown in (@optg) and (@oblg):
 
-  (@optg) __Optional goal__ (*hide*) \\*
-  The gangsters had hidden the shotguns in a U-Haul truck. \\*
+  (@optg) __Optional goal__ (*hide*) \linebreak\nopagebreak
+  The gangsters had hidden the shotguns in a U-Haul truck. \linebreak\nopagebreak
   $\checkmark$ The gangsters had hidden the shotguns.
   
-  (@oblg) __Obligatory goal__ (*put*) \\*
-  The gangsters had put the shotguns in a U-Haul truck. \\*
+  (@oblg) __Obligatory goal__ (*put*) \linebreak\nopagebreak
+  The gangsters had put the shotguns in a U-Haul truck. \linebreak\nopagebreak
   $*$ The gangsters had put the shotguns.
 
-A verb like *hide*, as in (@optg), can take a goal, but can also be used without one. A verb like *put*, on the other hand, as in (@oblg), really must have a goal \added{even if not fully detailed (e.g. \em{put down})}. The use of verbs that require[^reqGoal] a goal argument in the current study maximized the likelihood of a robust garden path effect in the Arg versions, when PP2 triggered reanalysis. The four construction verbs used in this study were: *cram*, *put*, *set* and *stick*. \added{While certain constructions containing these verbs do exist where no goal is needed (e.g., "the student had needed to \em{cram} all night"; "the narrator had set the scene"; "the disgruntled worker decided to stick with the program"; and others), it is arguable whether such instances should be considered the same lexical item as the ones being used here, and in any case all experimental items used in the current study would be rendered ungrammatical by the omission of the goal argument, as shown in} (@oblg).
+A verb like *hide*, as in (@optg), can take a goal, but can also be used without one. A verb like *put*, on the other hand, as in (@oblg), really must have a goal even if not fully detailed (e.g. *put down*). The use of verbs that require a goal argument in the current study maximized the likelihood of a robust garden path effect in the Arg versions, when PP2 triggered reanalysis. The four construction verbs used in this study were: *cram*, *put*, *set* and *stick*. While certain constructions containing these verbs do exist where no goal is needed (e.g., *he student had needed to cram all night*; *the narrator had set the scene*; *the disgruntled worker decided to stick with the program*; etc.), it is arguable whether such instances should be considered the same lexical item as the ones being used here, and in any case all experimental items used in the current study would be rendered ungrammatical by the omission of the goal argument, as with the example in (@oblg).
 
 Another important consideration was ensuring that the Arg versions had a PP2 which definitively disambiguated the attachment site of PP1 \added{from the goal argument role to being a modifier of the object; i.e.,} that reanalysis was forced. 
 
@@ -234,8 +234,18 @@ In \added{a study by} @spanmcr\added{, in} order to determine what information w
 The relevant question for the study at hand is as follows: how much of the sentence will the reader have seen and processed when a given word is being spoken? A typical item \added{from the current study} is displayed in (@dtc), with the words expected to be fixated underlined, numbered by presumed fixation sequence, and labeled. The number of characters (including spaces) intervening before the start of the disambiguating region (the left edge of PP2) is displayed below each label. These counts are calculated from the initial character of the fixated word to the initial character of the disambiguating region; the actual fixation site is likely to be closer to the center of the word, meaning the distance would be shortened by a few (1-4) characters, depending on the length of the fixated word.
 
   (@dtc)
-  
-  ![](distance-to-cr.png)
+\begingroup
+  \setlength{\tabcolsep}{1pt}
+  \begin{tabular}{lllll|l}
+    He had & 
+    \underline{intended} to & 
+    \underline{stick} the & 
+    \underline{letter} in the & 
+    \underline{mailbox} \  & onto the \underline{proper stack} \\
+    & \footnotesize 1-INITIAL & \footnotesize 2-VERB & \footnotesize 3-OBJ & \footnotesize 4-PP1 & \footnotesize DISAMBIGUATION-PP2 \\
+    & 45 & 32 & 22 & 7 & 0
+\end{tabular}
+\endgroup
   
 Table \@ref(tab:dtcs) \replaced{presents}{describes} these distances \added{averaged} across items all experimental items. Note that these values do not vary across condition, because \added{the initial fixation is located}{counting starts} after both the subject and auxiliary verb, and \added{the counts} end\deleted{s} before PP2\replaced{. T}{, and t}he only changes across versions are subject-auxiliary inversion and the content of PP2 \added{which fall outside the string of material over which these counts were calculated}. 
 
@@ -342,7 +352,16 @@ To verify the accuracy of the computer measurement, timings were collected by ha
 A trained linguist informant naive to the research being conducted listened to \added{the 978} recordings \added{of experimental items (note that `r 1024-978` recordings were missing or omitted, as discussed in Section} \@ref(data)\added{)} and reported the presence or absence of breaks in certain regions of \replaced{each}{the} sentence, as well as several other judgments \added{(e.g., the relative strength of these breaks, whether or not the reader struggled, and whether or not the reader used final-rise)}. \added{Analyses of some of these judgments (e.g., the presence or absence of the OBJ and PP1 break) are reported in Chapter} \@ref(res), \added{while others lacked interesting results and were not reported (e.g., the presence or absence of the V break).} \replaced{The rater}{She} was instructed to familiarize herself with a speaker's speech patterns before rating any recordings by listening to 6 filler item recordings from that speaker. She was given a diagram of the sentences as in (@bpos), as well as full plain-text lists of all items.
 
   (@bpos)
-  ![](breakpos.png)
+  \begingroup
+    \setlength{\tabcolsep}{1pt}
+    \begin{tabular}{cccccccc}
+      & & \footnotesize V Break & & \footnotesize OBJ Break & & \footnotesize PP1 Break & \\
+      She had & wanted to set & \% & the textbooks & \% & on the top shelf & \% & into the file box. \\
+      \cmidrule(r){2-2} \cmidrule(r){4-4} \cmidrule(r){6-6} \cmidrule(r){8-8} 
+      & \footnotesize V Region & & \footnotesize OBJ Region & & \footnotesize PP1 Region & & PP2 Region \\
+    \end{tabular}
+  \endgroup
+
 
 \replaced{The rater}{She} was asked to report on whether or not she heard a prosodic boundary directly following the region labeled **OBJ**, and directly \deleted{after the} following \added{the region} labeled **PP1**. \replaced{Instruction regarding how to define}{The following definition of} prosodic break was provided \added{by way of the following prose}:
 

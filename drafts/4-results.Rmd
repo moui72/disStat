@@ -209,7 +209,16 @@ obj<-cbind(r1obj,r2obj[2:3])
 
 In what follows, the distribution of OBJ breaks and PP1 breaks are reported as a function of the four sentence types created by the materials design (D/Q x Arg/Mod), for each of Reading 1 and Reading 2. Then, the patterns of breaks over the two positions are considered, before moving to statistical analysis. Note that while breaks after the \added{infinitival} construction verb were reported, these breaks were exceptionally rare and occurred in only 8% of recordings, so they have been set aside. The break locations are indicated with a % symbol in (@breakpos).
 
-  (@breakpos) !["... stick the letter % in the mailbox % into the proper stack."](breakpos.png)
+  (@breakpos)
+  \begingroup
+    \setlength{\tabcolsep}{1pt}
+    \begin{tabular}{cccccccc}
+      & & \footnotesize V Break & & \footnotesize OBJ Break & & \footnotesize PP1 Break & \\
+      She had & wanted to set & \% & the textbooks & \% & on the top shelf & \% & into the file box. \\
+      \cmidrule(r){2-2} \cmidrule(r){4-4} \cmidrule(r){6-6} \cmidrule(r){8-8} 
+      & \footnotesize V Region & & \footnotesize OBJ Region & & \footnotesize PP1 Region & & PP2 Region \\
+    \end{tabular}
+  \endgroup
 
 As noted in section \@ref(sita), the results reported are based on the subjective judgments of a trained linguist who was naive to the purposes and hypotheses underlying the research. A second linguist provided judgements over a subset of the recordings, and a comparison between their judgments is available in Section \@ref(rel) above.
 
@@ -333,7 +342,7 @@ ggsave("bothbreaks2.pdf",height=3.75,device=cairo_pdf)
 
 The relative strength of the PP1 and OBJ breaks was also collected. Figure \@ref(fig:bdom) incorporates this information, where “PP1 dominance” means that the PP1 break was reported to be stronger than the OBJ break; “OBJ” dominance means the opposite; and “Equal strength” means that neither break was reported to be stronger than the other (the 5 instances with no breaks were again omitted).
 
-\replaced{For both the analysis where relative strength is ignored, and the analysis of break dominance}{When looking at the combined break patterns}, \replaced{the data can be thought of as existing in of}{one can think of there being} three bins: the PP1 \added{(only or dominant)} bin, the OBJ \added{(only or dominant)} bin, and a neutral \added{(both breaks present or neither break dominant)}  bin between them. In Section \@ref(bbr), the neutral bin containing instances of both breaks occurring is robust. \replaced{The}{This} break dominance analysis \added{in Figure} \@ref(fig:bdom) distributes most of those cases that have both breaks into either the OBJ or PP1 bin, depending on which break is more prominent. When the breaks are of equal strength, they remain in the middle bin, but there are much fewer \deleted{such} cases \replaced{of "neither dominant" for the strength-sensitive data}{when looking at} \added{than of "both breaks present" for the}{instead of} simple occurrence \added{data}. 
+\replaced{For both the analysis where relative strength is ignored, and the analysis of break dominance}{When looking at the combined break patterns}, \replaced{the data can be thought of as existing in one of}{one can think of there being} three bins: the PP1 \added{(only or dominant)} bin, the OBJ \added{(only or dominant)} bin, and a neutral \added{(both breaks present or neither break dominant)}  bin between them. In Section \@ref(bbr), the neutral bin containing instances of both breaks occurring is robust. \replaced{The}{This} break dominance analysis \added{in Figure} \@ref(fig:bdom) distributes most of those cases that have both breaks into either the OBJ or PP1 bin, depending on which break is more prominent. When the breaks are of equal strength, they remain in the middle bin, but there are much fewer \deleted{such} cases \replaced{of "neither dominant" for the strength-sensitive data}{when looking at} \added{than of "both breaks present" for the}{instead of} simple occurrence \added{data}. 
 
 ```{r bdom, fig.cap="Percent break dominance occurence as a function of sentence type and Reading.",fig.pos="!H", fig.height=3.5}
 library(ggplot2)
@@ -362,7 +371,7 @@ ggsave("bdom.pdf",device=cairo_pdf)
 
 ```
 
-Figure \@ref(fig:bdom) clearly shows a robust effect of PP2 Status \added{(Mod or Arg)} on break dominance, and little to no impact of Reading or Speech Act \added{(Q or D)}. \added{A dominant break after PP1 is frequent for all Arg sentences, both declaratives and questions, and in both Reading 1 and Reading 2. It is less fredquent for Mod sentences in both Reading 1 and Reading 2.} \added[id=TJP]{The higher relative frequency of PP1 break dominance in Arg sentences compared to Mod sentences is expected, since it represents a linguistically motivated prosodic break in the Arg cases. For the Mod sentences, there is no linguistic motivation for the PP1 break, so it makes sense for it to be less frequent and less dominant in Mod sentences. It is noteworthy and puzzling that the patterns do not differ greatly across the two readings, as one would expect difficulty getting the prosody right on the first try for the difficult sentences being tested in the current study.}
+Figure \@ref(fig:bdom) clearly shows a robust effect of PP2 Status \added{(Mod or Arg)} on break dominance, and little to no impact of Reading or Speech Act \added{(Q or D)}. \added{A dominant break after PP1 is frequent for all Arg sentences, both declaratives and questions, and in both Reading 1 and Reading 2. It is less frequent for Mod sentences in both Reading 1 and Reading 2.} \added[id=TJP]{The higher relative frequency of PP1 break dominance in Arg sentences compared to Mod sentences is expected, since it represents a linguistically motivated prosodic break in the Arg cases. For the Mod sentences, there is no linguistic motivation for the PP1 break, so it makes sense for it to be less frequent and less dominant in Mod sentences. It is noteworthy and puzzling that the patterns do not differ greatly across the two readings, as one would expect difficulty getting the prosody right on the first try for the difficult sentences being tested in the current study.}
 
 ### Regression models of prosodic break patterns
 
@@ -406,10 +415,10 @@ Table \@ref(tab:objMod) shows a reduced model, predicting the occurrence of an O
 
 ```{r objMod}
 csv <- 'Outcome: OBJ break (REDUCED),Estimate,Std. Error,p
-"D Mod, Reading 1 (Intercept)",1.39,0.45,< 0.01
+"Mod, Reading 1 (Intercept)",1.39,0.45,< 0.01
 Reading 2,0.11,0.23,0.62
 Arg,-1.98,0.5,< 0.001
-Reading 2 x Arg,0.81,0.32,< 0.05'
+Reading 2:Arg,0.81,0.32,< 0.05'
 
 tab <- read_csv(csv)
 
@@ -426,7 +435,7 @@ The log odds[^logodds] of an OBJ break for Mod Reading 1 is 1.39 (std. error = 0
 
 The OBJ break is expected to occur more often in Mod cases, because that break marks the argument attachment (and therefore a change in branching direction) of PP1.
 
-[^logodds]:  Log odds is, in this case, the natural log of the odds ratio, so the log odds of A is log~e~(P(A)/P(¬A)). A log odds of 1.39 translates to an odds ratio of 4.01:1 (1.39^e^=4.01) and a probability of 80% (4.01/(1+4.01)=0.80).
+[^logodds]:  Log odds is, in this case, the natural log of the odds ratio, so the log odds of A is log~e~(P(A)/P(¬A)). A log odds of 1.39 translates to an odds ratio of 4.01:1 (e^1.39^=4.01) and a probability of 80% (4.01/(1+4.01)=0.80).
 
 The full model for predicting PP1 also showed significance only for the intercept and the effect of PP2 Status.
 
@@ -741,18 +750,24 @@ Throughout the analysis of break patterns, PP2 Status was the most robust predic
 \singlespacing
 
   (@breakpatMod2)
-\begin{tabular}{ccccccc}
-  & & & \small OBJ Break & & \small PP1 Break & \\
-  \dots & stick & the letter & $\||$ & in the mailbox & $\vert$ & of the proper stack \\
-  & & \footnotesize Direct object & & \footnotesize PP1 & & \footnotesize vice president. \\
-\end{tabular}
+  \begingroup
+    \setlength{\tabcolsep}{1pt}
+    \begin{tabular}{ccccccc}
+      & & & \small OBJ Break & & \small PP1 Break & \\
+      \dots & stick & the letter & $\||$ & in the mailbox & $\vert$ & of the proper stack \\
+      & & \footnotesize Direct object & & \footnotesize PP1 & & \footnotesize vice president. \\
+    \end{tabular}
+  \endgroup
 
   (@breakpatArg2)
-\begin{tabular}{ccccccc}
-  & & & \small OBJ Break & & \small PP1 Break & \\
-  \dots & stick & the letter & $\vert$ & in the mailbox & $\|$ & onto the proper stack. \\
-  & & \footnotesize Direct object & & \footnotesize PP1 & & \footnotesize PP2 \\
-\end{tabular}
+  \begingroup
+    \setlength{\tabcolsep}{1pt}
+    \begin{tabular}{ccccccc}
+      & & & \small OBJ Break & & \small PP1 Break & \\
+      \dots & stick & the letter & $\vert$ & in the mailbox & $\|$ & onto the proper stack. \\
+      & & \footnotesize Direct object & & \footnotesize PP1 & & \footnotesize PP2 \\
+    \end{tabular}
+  \endgroup
 
 \doublespacing
 
@@ -760,12 +775,12 @@ The break patterns observed in the data just discussed mostly do reflect the exp
 
 That Reading 2 is a significant predictor \replaced{of both OBJ break dominance and PP1 break dominance}{in 3 of the 4 analyses where its inclusion is possible} (see Section \@ref(domReg)) supports, at least provisionally, hypotheses 1 and 2 from Section \@ref(pred), repeated below.
 
-  (@hypb2) *Hypothesis 1* \\*
+  (@hypb2) *Hypothesis 1* \linebreak\nopagebreak
   A first reading of a sentence where PP2 is a goal argument (Arg) will exhibit less natural prosody (more hesitation at and within the PP2 region) than:
     a. A first reading of a sentence where PP2 is a modifier (Mod)
     b. A second reading of a sentence where PP2 is a goal argument (Arg)
     
-  (@hypd2) *Hypothesis 2* \\*
+  (@hypd2) *Hypothesis 2* \linebreak\nopagebreak
   A first reading of a sentence where PP2 is a goal argument (Arg) will more often be produced with prosodic structure that represents an implausible or ungrammatical parse of the string (PP2 incorrectly attached as a modifier), whereas a second reading of that sentence will more often be pronounced with the prosodic structure that represents the intended parse (argument attachment of PP2).
   
 \replaced{The present study did not specifically attempt to assess}{It is difficult to know} whether a given reading represents more or less natural prosody \added{for these constructions.}\deleted{, but g}\added{G}iven that there is a difference between readings, it seems most likely that Reading 2 is the more natural of the two since it represents a considered reading, rather than \deleted{a hurried} one \added{without as much preview}. *Hypotheses 1-2* are supported only \replaced{on the}{if that} assumption \replaced{that this is so}{is accepted}.
@@ -777,7 +792,7 @@ That Reading 2 is a significant predictor \replaced{of both OBJ break dominance 
 
 That a prosodic break also frequently occurs between phrases when \replaced{not linguistically motivated, i.e., the PP1 break in Mod versions of sentences or the OBJ break in Arg versions of sentences,}{there is no change in branching direction} is mitigated somewhat by the fact that such breaks are usually weaker than the ones that do represent such a change. It is likely that these breaks are actually there for non-syntactic reasons; the end of a phrase represents a reasonable time for the speaker to take a breath or pause briefly for \replaced{phonological length}{processing} reasons. It is also likely that some readers are simply producing a break after each phrase \added{as a strategy for dealing with difficult to comprehend sentences}.
 
-Speech act is a significant predictor of PP1 break dominance (β=0.31, std. error = 0.15, p < 0.05, see Section \@ref(bdomReg))., but not of any of the other \added{prosodic} outcomes \added{jjust discussed}. It is plausible that the PP1 break is more likely to be dominant in questions than in declaratives because of the need to begin the sentence final rise of question intonation. That there is \replaced{no observed}{never an} interaction between Speech Act and PP2 Status is discouraging for the hypothesis that \replaced{what}{it’s the *prosody* of questions that} make\added{s} the Arg cases seem easier in the interrogative cases compared to the declarative \added{is the prosody of questions.
+Speech act is a significant predictor of PP1 break dominance (β=0.31, std. error = 0.15, p < 0.05, see Section \@ref(bdomReg))., but not of any of the other \added{prosodic} outcomes \added{jjust discussed}. It is plausible that the PP1 break is more likely to be dominant in questions than in declaratives because of the need to begin the sentence final rise of question intonation. That there is \replaced{no observed}{never an} interaction between Speech Act and PP2 Status is discouraging for the hypothesis that \replaced{what}{it’s the *prosody* of questions that} make\added{s} the Arg cases seem easier in the interrogative cases compared to the declarative \added{is the prosody of questions}.
 
 ## Inter-reading time {#irt}
 
@@ -899,7 +914,7 @@ FULL MODEL,Estimate,Std. Error,p
 D Mod (Intercept),6.32,0.59,< 0.001
 Q,0.29,0.3,0.34
 Arg,0.42,0.3,0.17
-Q x Arg,0.08,0.43,0.85
+Q : Arg,0.08,0.43,0.85
 '
 
 tab <- read_csv(csv)
@@ -932,11 +947,11 @@ tab %>% kable(
   kable_styling(latex_options = "hold_position")
 ```
 
-The difference between the reduced and full model was not statistically significant (AIC~FULL~=9103.5, AIC~REDUCED~=9101.6, $\chi^2$(1)=0.04, p > 0.8). \replaced{These results are not supportive of \em{Hypothesis 4} formalized in Section} \@ref(pred)\added{, as statistical significance was expected for the interaction of Speech Act with PP2 Status if interrogative context is indeed ameliorating for PP-attachment garden paths, compared to declarative context for the same construction. Discussion of that is returned to in Section} \@ref(irtdiscuss) \added{below}
+The difference between the reduced and full model was not statistically significant (AIC~FULL~=9103.5, AIC~REDUCED~=9101.6, $\chi^2$(1)=0.04, p > 0.8). These results are not supportive of *Hypothesis 4* formalized in Section \@ref(pred)\added{, as statistical significance was expected for the interaction of Speech Act with PP2 Status if interrogative context is indeed ameliorating for PP-attachment garden paths, compared to declarative context for the same construction. Discussion of that is returned to in Section} \@ref(irtdiscuss) \added{below.}
 
 ### On PP2 heads {#pp2h}
 
-As mentioned in the items description (section 3.4), half of the items used *of* for the head of PP2 in the Mod cases, while half used *from.* In the Arg condition, half used *into* and half used *onto* to head PP2. An analysis that \replaced{attempts to predict IRT by}{looks at the identity of} the PP2 head \added{(e.g., \em{into} vs. \em{from})} found that while *into* and *onto* do not behave differently \added{from each other}, *of* and *from* do. Starting from a maximally complex model that included the lexical identity of the matrix verb, the construction verb, the head of PP1, and the head of PP2, as well as Speech Act and PP2 Status, the model that best predicted wIRT was one that is essentially the same as the reduced model just reported (i.e., with Speech Act and PP2 Status as predictors), except \added{that} it substitutes the lexical identity of the PP2 head for PP2 Status, with *into* and *onto* collapsed into one level used as the reference level (intercept). 
+As mentioned in the items description (section 3.4), half of the items used *of* for the head of PP2 in the Mod cases, while half used *from.* In the Arg condition, half used *into* and half used *onto* to head PP2. An analysis that \replaced{attempts to predict IRT by}{looks at the identity of} the PP2 head (e.g., *into* vs. *from*) found that while *into* and *onto* do not behave differently \added{from each other}, *of* and *from* do. Starting from a maximally complex model that included the lexical identity of the matrix verb, the construction verb, the head of PP1, and the head of PP2, as well as Speech Act and PP2 Status, the model that best predicted wIRT was one that is essentially the same as the reduced model just reported (i.e., with Speech Act and PP2 Status as predictors), except \added{that} it substitutes the lexical identity of the PP2 head for PP2 Status, with *into* and *onto* collapsed into one level used as the reference level (intercept). 
 
 
 ```{r pp2hd}
@@ -955,7 +970,7 @@ tab %>% kable(
   caption=
     "Linear mixed effects regression model predicting wIRT by Speech Act and PP2 head."
 ) %>% 
-  kable_styling(latex_options = "hold_position")
+  kable_styling(latex_options = "hold_position") %>% save_kable("pp2heads.pdf")
 ```
 
 Sentences where PP2 was headed by *\replaced{of}{from}* typically had wIRTs that were 0.84s faster than sentences where PP2 was headed by *into*/*onto*; when the PP2 head was *from*, wIRT was only 0.08s faster than for *into*/*onto*, a difference that is not statistically significant (p > 0.7).
@@ -1014,7 +1029,7 @@ mean.irtByQnPP <- aggregate(
 
 It is worth \replaced{noting}{taking note of the fact} that the mean wIRT for interrogative versions (6.7s) of the experimental sentences in the reported study was longer than for the declaratives (6.4s). While this finding was not statistically significant, @qp2 found that whole-sentence silent reading times for interrogatives were longer than for declaratives; and @mehler1963some provided a very early report of the processing cost of interrogativity: a so-called kernel sentence, i.e., a simple declarative, was easier to recall verbatim than \replaced{were}{was} a number of sentences that he considered to be syntactic transformations of that kernel sentence (K): negative (N), polar question (Q), passive (P), and combinations thereof: NQ, NP, QP and NPQ. Mehler found that accurate recall was more frequent for K sentences (300/460, `r percent(300/460)`) than for the other sentences types, with interrogatives (210/460, `r percent(210/460)`) being recalled accurately at a lower rate than the two other individual transformations (234/460, `r percent(234/460)` for N; 243/460, `r percent(243/460)` for P).
 
-The filler sentences in this study were designed in two versions, interrogative (Q) and declarative (D), so as to provide a diagnostic of the interrogative effect on IRT \replaced{outside the construction of interest}{independent of the experimental question}. A linear mixed effects regression model predicting wIRT for filler items by interrogativity with crossed random intercepts (participant and item) found that wIRT is increased by 0.4s for interrogatives (std. error = 0.2; p < 0.05); declaratives had a mean wIRT of 6.2s, while interrogatives had a mean wIRT of 6.6s. Half of the fillers had a sequence of two PPs at the end \added{of the sentence} to mirror the experimental items: a model predicting wIRT by the presence of those PPs found minimal effect on wIRT (β=0.01, std. error = 0.22, p = 0.96). This indicates that the presence of a string of PPs does not independently affect the apparent processing cost of interrogativity.
+The filler sentences in this study were designed in two versions, interrogative (Q) and declarative (D), so as to provide a diagnostic of the interrogative effect on IRT \replaced{outside the construction of interest}{independent of the experimental question}. A linear mixed effects regression model predicting wIRT for filler items by Speech Act with random intercepts for participant and item found that wIRT is increased by 0.4s for interrogatives (std. error = 0.2; p < 0.05); declaratives had a mean wIRT of 6.2s, while interrogatives had a mean wIRT of 6.6s. Half of the fillers had a sequence of two PPs at the end \added{of the sentence} to mirror the experimental items: a model predicting wIRT by the presence of those PPs found minimal effect on wIRT (β=0.01, std. error = 0.22, p = 0.96). This indicates that the presence of a string of PPs does not independently affect the apparent processing cost of interrogativity.
 
 Interrogative status itself appears to increase the time needed for participants to feel they have satisfactorily studied a sentence in order to read it aloud correctly. This is consistent with the @mehler1963some and @qp2 findings that interrogatives are in some way more complicated or difficult than declaratives.
 
