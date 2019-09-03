@@ -71,7 +71,7 @@ In addition to exploring the possible extensibility of the 2016 Intuition, the c
 
 An obvious reflex of the former possibility is another question: how are the various versions of these sentences actually pronounced, prosodically? {t}he reported study seeks to answer tthis the recordings collected provide some insight, more work is likely needed to provide a\replaced{a fully satisfactory answer.
 
-Likewise, the latter possibility raises the question: exactly what are the semantic and pragmatic differences between a polar question and its declarative counterpart? This question has been approached in the theoretical \deletedure (see, e.g. @fiengo ). Nevertheless, it remains to be determined how those properties could lead to an easier or more difficult parsing process.
+Likewise, the latter possibility raises the question: exactly what are the semantic and pragmatic differences between a polar question and its declarative counterpart? This question has been approached in the theoretical literature (see, e.g. @fiengo ). Nevertheless, it remains to be determined how those properties could lead to an easier or more difficult parsing process.
 
 ## Structural overview of the ambiguity relevant to this study {#mech}
 
@@ -113,7 +113,7 @@ The most pronounced structural difference between the two structures is that in 
 
 It bears mentioning that Minimal Attachment as defined by @Frazier1979-pb is somewhat at odds with recent developments in syntactic theory, e.g., obligatory binary branching\added{; three-way branching is proscribed} [cf. @chomsky2014minimalist, p. 62]. As originally postulated, Minimal Attachment relies on a verb with multiple internal arguments incorporating each of those arguments as a sister (i.e., a ternary branching structure as in \added{Figure} \@ref(fig:threetree) \added{above}). <!-- stopped 9/2 -->
 
-Within current theories of syntax, where binary branching is obligatory, two XPs (NP and PP) cannot both be syntactic sisters of the verb, and the structures are assumed to be as shown in {)} so it becomes less clear that the VP attachment site for PP1 actually creates fewer nodes than the lower NP attach,er Minimal Attachment. Nonetheless, studies by, e.g., @raynerEtAl1983, @cliftonEtAl1991, and others, show that a preference for VP attachment of a PP in contexts such as the one the current study addresses exists, whether that preference is best explained by Minimal Attachment, or a preference for arguments over non-arguments, or some other mechanism.
+Within current theories of syntax, where \deleted{binary} branching is obligator\replaced{ily binary}{y}, two XPs (\added{e.g.,} NP and PP) cannot both be syntactic sisters of the verb, so structures as bracketed in (@aa) \replaced{are impossible}{assumed to be as shown in}. \added{Instead, the structures would be} as shown in Figures \@ref(fig:modTree) and \@ref(fig:argTree) below, \added{in which case} it becomes less clear that the VP attachment site for PP1 actually creates fewer nodes than the lower NP attach as per Minimal Attachment. Nonetheless, \added{empirical} studies by, e.g., @raynerEtAl1983, @cliftonEtAl1991, and others, show that a preference for VP attachment of a PP \added{does exist} in contexts such as the current study addresses, whether that preference is best explained by Minimal Attachment, or a preference for arguments over non-arguments, or some other mechanism.
 
 [^trees]: Note that when the internal structure of an NP is not relevant (no PP is within it) it is not drawn in these figures, i.e., [NP newspapers] is shorthand for [NP [N' [N newspapers]]].
 
@@ -165,7 +165,7 @@ Within current theories of syntax, where binary branching is obligatory, two XPs
       ]
     ]
   \end{forest}
-  \caption{Syntactic tree of an illustrative example sentence with an ambiguous PP1 and a modifier-PP2 (Mod).}
+  \caption{Syntactic tree of an illustrative example sentence with a (temporarily) PP1 and a modifier-PP2 (Mod).}
   \label{fig:modTree}
 \end{figure}
 
@@ -216,7 +216,7 @@ Within current theories of syntax, where binary branching is obligatory, two XPs
       ]
     ]
   \end{forest}
-  \caption{Syntactic tree of an illustrative example sentence with an ambiguous PP1 and an argument-PP2 (Arg).}
+  \caption{Syntactic tree of an illustrative example sentence with a (temporarily) ambiguous PP1 and an argument-PP2 (Arg).}
   \label{fig:argTree}
 \end{figure}
 
@@ -224,14 +224,14 @@ Setting the particularities of syntactic theory aside now,, an appeal can be mad
 
   (@primrel) "Primary phrases and relations include 
     a) The subject and main predicate of any (+ or -) finite clause
-    a) Complements and obligatory constituents of primary phrases"
+    a) Complements and obligatory constituents of primary phrases"\linebreak\nopagebreak
   [@frazier1996construal, p. 41]
 
 This additional contrast is independently motivated: Frazier and Clifton illustrate this by way of relative clause (RC) attachment in constructions like (@rc).
 
-  (@rc) The journalist interviewed [~NP1~ The daughter~i~] of [~NP2~ the colonel~j~] [~RC~ who~i/j~ had an accident] [@frazier1996construal, p. 71].
+  (@rc) The journalist interviewed [~NP1~ the daughter~i~] of [~NP2~ the colonel~j~] [~RC~ who~i/j~ had an accident]. [@frazier1996construal, p. 71].
 
-The RC in (@rc) can modify either NP1, *the daughter*, or NP2 *the colonel*. Late Closure(see (@LateClo)) predicts a consistent preference for local attachment of the RC in (@rc), i.e.(seeere the RC modifies NP2. This is because Late Closure dictates that the NP2 phrase not be closed until material that cannot, for one reason or another, be incorporated into that phrase is encountered. Since the RC can modify NP2, Late Closure predicts that it will. Instead, what a number of empirical studies [e.g., @clifton1988restrictions; @Cuetos1988-tm] find is a pattern where the preferred structure depends on the relationship between NP1 and NP2. @frazier1996construal describe five categories of relationship, and a gradient of preferred RC attachment, from NP1 preference to NP2 preference.
+The RC in (@rc) can modify either NP1, *the daughter*, or NP2 *the colonel*. Late Closure(see (@LateClo)\added{, above}) predicts a consistent preference for local attachment of the RC in (@rc), i.e.(seeere the RC modifies NP2. This is because Late Closure dictates that the NP2 phrase not be closed until \added{necessary, i.e., until} material that cannot, for one reason or another, be incorporated into that phrase is encountered. Since the RC can modify NP2, Late Closure predicts that it will. Instead, what a number of empirical studies [e.g., @clifton1988restrictions; @Cuetos1988-tm] find is a pattern where the preferred structure depends on the relationship between NP1 and NP2. @frazier1996construal describe five categories of relationship, and a gradient of preferred RC attachment, from NP1 preference to NP2 preference.
 
   (@rcrel) __RC Attachment by NP1-NP2 relation__ [@frazier1996construal, p. 31] \linebreak\nopagebreak
       a) *Material* \linebreak\nopagebreak
@@ -245,11 +245,11 @@ The RC in (@rc) can modify either NP1, *the daughter*, or NP2 *the colonel*. Lat
       a) *Non-accompaniment* with \linebreak\nopagebreak
       The girl with the hat [~RC~ that looked funny]
 
-@frazier1996construal cite studies showing that (@rcrel a-b) type configurations favor NP1 RC attachment, (@rcrel e) type configurations favor NP2 RC attachment, while (@rcrel c-d) are intermediate. They argue that this gradient cannot be readily explained by structural parsing, and instead they make use of a mechanism they call association. RCs, rather than being immediately slotted into a tree in a specific way, are associated with a thematic domain, i.e., the maximal projection of whatever lexical item last assigned theta-roles, together with associated functional projections; in the case of the examples in (@rcrel), the last theta assigner is NP2, and its domain extends up to the DP that contains NP1. \replaceAssociationter parsing decision that allows the syntactic structure to be decided after semantic information becomes available: the RC can ultimately modify whichever member of the thematic domain is appropriate. 
+@frazier1996construal cite \added{experimental} studies showing that (@rcrel a-b) type configurations favor NP1 RC attachment, (@rcrel e) type configurations favor NP2 RC attachment, while (@rcrel c-d) are intermediate. They argue that this gradient cannot be readily explained by structural parsing, and instead they make use of a mechanism they call association. RCs, rather than being immediately slotted into a tree in a specific way, are associated with a thematic domain, i.e., the maximal projection of whatever lexical item last assigned theta-roles, together with associated functional projections\replaced{. In}{; in} the case of the examples in (@rcrel), the last theta assigner is NP2, and its domain extends up to the DP that contains NP1. A later parsing decision is made \replaced{by association, which}{that} allows the syntactic structure to be decided after semantic information becomes available: the RC can ultimately modify whichever member of the thematic domain is appropriate. 
 
-The factor that determines when association or structural parsing is appropriate is the distinction between primary vs. non-primary relations. Frazier and Clifton's formalization of this distinction was previously mentioned as (@primrel) above. \comment{Moved the formalization from here to above.}
+The factor that determines \replaced{whether}{when} association or structural parsing is appropriate is the distinction between primary vs. non-primary relations. Frazier and Clifton's formalization of this distinction \added{is given in their definition of primary relations} in (@primrel) above\added{, and all other relations are non-primary}. 
 
-RC attachment undergoes association because relative clauses are by definition modifiers, and the relationship between a modifier and whatever is modified is a non-primary relation\deleteded{Returning now}{Circling back} to the PP-attachment construction that this study Returning nowifier distinction is precisely what distinguishes the two possible roles of PP2 shown in (@pp2t), repeated here as (@pp2tr).
+RC attachment undergoes association because relative clauses are by definition modifiers, and the relationship between a modifier and whatever \replaced{it}{is} \replaced{modifies}{modified} is a non-primary relation. Returning now to the PP-attachment construction that this study Returning nowifier distinction is precisely what distinguishes the two possible roles of PP2 shown in (@pp2t), repeated here as (@pp2tr).
 
   (@pp2tr) **PP2 types**
     (a) *PP2 Argument* (Arg)
@@ -257,12 +257,12 @@ RC attachment undergoes association because relative clauses are by definition m
     (b) *PP2 Modifier* (Mod)
     He had planned to cram the paperwork [~PP1~ in the drawer [~PP2~ of his filing cabinet]].
 
- The infinitival clause headed by *cram* is a primary phrase, and so its obligatory constituents hold primary relationships with *cram*. As such, association is not available as a mechanism and structural parsing must occur, without semantic information being available. Thus, PP1 is initially interpreted as the goal of *cram*. Then, in the case of (@pp2tr a), when PP2 is encountered, PP1 must be removed from its syntactic position and be reanalyzed as a modifier of the object NP in order to allow PP2 to fill the goal argument Then, i of (@pp2tr b), no reanalysis is necessary because PP2 can modify *the drawer* and so does not need to dislodge PP1.
+The infinitival clause headed by *cram* is a primary phrase, and so its obligatory constituents hold primary relationships with *cram*. As such, association is not available as a mechanism and structural parsing must occur, without semantic information being available. Thus, PP1 is initially interpreted as the goal \added{argument} of *cram*. Then, in the case of (@pp2tr a), when PP2 is encountered, PP1 must be removed from \replaced{that}{its} syntactic position and be reanalyzed as a modifier of the object NP in order to allow PP2 to fill the goal argument position \added{because} *into his briefcase* \added{is necessarily directional, by virtue of the semantics of *into*, and cannot be a locative modifier of} \comment{italicized text breaks my added/deleted notations and so are not marked as such, even when added} *drawer*. In the case of (@pp2tr b), no reanalysis is necessary because PP2 (*of his filing cabinet*) \replaced{is viable as a modifier of}{can modify} *the drawer* and so does not need to dislodge PP1.
 
 
 ## Interrogativity {#intg}
 
-This section returns to the questions raised by the 2016 Intuition discussed in Section \@ref(obs) about why certain garden paths of the sort just discussed might appear to be easier to parse in interrogative constructions than in otherwise similar declarative ones (see examples (@d) and (@q) ).
+This section returns to the questions raised by the 2016 Intuition discussed in Section \@ref(obs) about why certain garden paths of the sort just discussed might appear to be easier to parse in interrogative constructions than in otherwise similar declarative ones (see examples (@d) and (@q)).
 
 \comment[id=TJP]{on second thought, I think these need to stay}
   (@d) He had planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ in his briefcase].
@@ -270,59 +270,59 @@ This section returns to the questions raised by the 2016 Intuition discussed in 
 
 What exactly differs between (@d) and (@q)? Syntactically, very little: the position of the subject *he* and the auxiliary *had* have been reversed, but the words that follow are identical.
 
-The semantic, or perhaps more accurately pragmatic, differences between (@d) and (@q) lie with the presuppositions the sentences carry with them, which may vary with the placement of focus, marked phonologically in spoken language. The exact phonetic properties of focus, and the semantic and syntactic consequences of it, are widely studied and debated. For an excellent overview of the topic, see @ladd, pp.213-23. The assumptions made about focus in this dissertation are about English only, and are more or less compatible with a Focus-to-Accent model as described by Ladd, which distinguishes "the semantic/pragmatic notion 'focus' from the phonetic/phonological notion 'accent' and -- crucially -- [...] allows focus to apply to portions of utterances larger than individual words" [@ladd p. 217]. This results in sentential stress being split into two related but independent components: where focus lies within the sentence, and how it is conveyed with regard to the location of accent.
+The semantic, or perhaps more accurately pragmatic, differences between (@d) and (@q) lie with the presuppositions the sentences carry with them, which may vary with the placement of focus, marked phonologically in spoken language. The exact phonetic properties of focus, and the semantic and syntactic consequences of it, are widely studied and debated. For an excellent overview of the topic, see @ladd, pp.213-23. The assumptions made about focus in this dissertation \replaced{concern}{are about} English only, and are more or less compatible with a Focus-to-Accent model as described by Ladd, which distinguishes "the semantic/pragmatic notion 'focus' from the phonetic/phonological notion 'accent' and -- crucially -- [...] allows focus to apply to portions of utterances larger than individual words" [@ladd p. 217]. This results in sentential stress being split into two related but independent components: \added{(a)} where focus lies within the sentence, and \added{(b)} how \replaced{focus}{it} is conveyed with regard to the location of \added{a phonological} accent.
 
-The declarative in (@d) has few presuppositions beyond the existence of the actors and objects involved (the referents of *he*, *paperwork*, *drawer* and *briefcase*), and that these actors and objects can be involved in *cramming*. The presuppositions of (@q) are different from those of (@d): for instance, a yes/no question additionally presupposes that the listener does or may know the answer to the question.Further presuppositions may exist, depending on where the focus lies within the sentence. 
+The declarative in (@d) has few presuppositions beyond the existence of the actors and objects involved (the referents of *he*, *paperwork*, *drawer* and *briefcase*), and that these actors and objects can be involved in *cramming*. The presuppositions of (@q) are different from those of (@d): for instance, a yes/no question additionally presupposes that the listener does or may know the answer to the question. Further presuppositions may exist, depending on where the focus lies within the sentence. 
 
-Focus in a declarative like (@d) is typically wide, i.e., no element is having special attention called to it. A polar question like (@q), however, will often receive narrower focus on one word or phrase, so that when uttered, that word or phrase is more prominent than the others. The focused element becomes the part of the sentence that the question is about. Focus can fall on any of the lexical or referential elements in the sentence (subject, auxiliary verb, matrix verb, infinitival verb, object NP, or the NP of either PP1 or PP2) or any part of one of these. Words in all capital letters indicates verbal emphasis signifying focus.
+Focus in a declarative like (@d) is typically wide, i.e., no element is having special attention called to it. A polar question like (@q), however, will often receive narrower focus on one word or phrase, so that when uttered, that word or phrase is more prominent than the others. The focused element becomes the part of the sentence that the question is about. Focus can fall on any of the lexical or referential elements in the sentence (subject, auxiliary verb, matrix verb, infinitival verb, object NP, or the NP of either PP1 or PP2, or any part of one of these). \added{In the examples below,} words in all capital letters indicate verbal emphasis signifying focus.
 
 \singlespacing
-  (@foc1) HAD he planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ into his briefcase]?
-  (@foc2) Had HE planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ into his briefcase]?
-  (@foc3) Had he PLANNED to cram the paperwork [~PP1~ in the drawer] [~PP2~ into his briefcase]?
-  (@foc4) Had he planned to CRAM the paperwork [~PP1~ in the drawer] [~PP2~ into his briefcase]?
-  (@foc5) Had he planned to cram the PAPERWORK [~PP1~ in the drawer] [~PP2~ into his briefcase]?
-  (@foc6) Had he planned to cram the paperwork [~PP1~ in the DRAWER] [~PP2~ into his briefcase]?
-  (@foc7) Had he planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ into HIS briefcase]?
-  (@foc8) Had he planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ into his BRIEFCASE]?
+  (@foc)  a. HAD he planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ into his briefcase]?
+          b. Had HE planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ into his briefcase]?
+          c. Had he PLANNED to cram the paperwork [~PP1~ in the drawer] [~PP2~ into his briefcase]?
+          d. Had he planned to CRAM the paperwork [~PP1~ in the drawer] [~PP2~ into his briefcase]?
+          e. Had he planned to cram the PAPERWORK [~PP1~ in the drawer] [~PP2~ into his briefcase]?
+          f. Had he planned to cram the paperwork [~PP1~ in the DRAWER] [~PP2~ into his briefcase]?
+          g. Had he planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ into HIS briefcase]?
+          h. Had he planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ into his BRIEFCASE]?
   
 \doublespacing
   
-In (@foc1), with focus on the auxiliary, the question encompasses the entire proposition, and asks whether or not it is true. In this case, there are not any additional presuppositions when compared to the declarative counterpart of the sentence. In (@foc2), with focus on *he*, the question is asking about whether the referent of *he* is the actor who performed the action described; in this case, the entire predicate is presupposed: someone *had planned to cram the paper in the drawer into his briefcase*, but was it *him*? In (@foc6), with focus on *drawer*, the question is instead about which paperwork this is all happening to: the paperwork that is in the drawer, or some other stack of paperwork? In this case, it is presupposed that the referent of *he* was the one who had planned to cram some paperwork into his briefcase, and only the exact referent of *the paperwork* is not presupposed. For each other location of focus, the Presuppositional content is similarly complementary to whichever element is focused and therefore being asked about. 
+In (@foc a), with focus on the auxiliary, the question encompasses the entire proposition, and asks whether or not it is true. In this case, there are not any additional presuppositions when compared to the declarative counterpart of the sentence. In (@foc b), with focus on *he*, the question is asking about whether the referent of *he* is the actor who performed the action described; in this case, the entire predicate is presupposed: someone had planned to cram the paperwork in the drawer into his briefcase, but was it him? In (@foc f), with focus on *drawer*, the question is instead about which paperwork this is all happening to: the paperwork that is in the drawer, or some other stack of paperwork? In this case, it is presupposed that the referent of *he* was the one who had planned to cram some paperwork into his briefcase, and only the exact referent of *the paperwork* is not presupposed. For each other location of focus, the Presuppositional content is similarly complementary to whichever element is focused and therefore being asked about. 
 
-This set of pragmatic differences between (@d) and (@q) might be the source of the 2016 Intuition that (@q) is easier to comprehend than (@d), but it is not it is not entirely clear why, and itsibility. Another significant difference between the two sentences is the rhythm and intonational melody (which, taken together, make up the prosody). While dialects of English may differ prosodically, there is typically a difference in melody between a declarative and a question, and in many American English dialects, the interrogative is pronounced with a final rise, while the declarative exhibits just a series of down-steps. This difference is the one that the current study explores, to see if it can \replaced{be shown to correlate with a difference in processing difficulty in syntactically disambiguate declarative and interrogative PP-attachment garden paths, and by extension lend insight into the 2016 Intuition.
+This set of pragmatic differences between (@d) and (@q) might be the source of the 2016 Intuition that (@q) is easier to comprehend than (@d), but it is not it is not entirely clear why, and itsibility. Another significant difference between the two sentences is the rhythm and intonational melody (which \deleted{taken} together make up the prosody). While dialects of English may differ prosodically, there is typically a difference in melody between a declarative and a question, and in many American English dialects, the interrogative is pronounced with a final rise, while the declarative exhibits just a series of down-steps. This difference is the one that the current study explores, to see if it can \replaced{be shown to correlate with a difference in processing difficulty in syntactically disambiguated declarative and interrogative PP-attachment garden paths, and by extension lend insight into the 2016 Intuition.
 
 
 ## Prosody of questions vs. declaratives
 
-In pursuing the possibility that it is the prosody of polar interrogatives which creates the 2016 Intuition tIhis study it is important to consider the details of question intonation actually sounds like. It is generally agreed that in American English, the intonation of a polar question has exhibits a final rise. This has been confirmed in corpus studies such as @Hedberg2017-er who found that 79.8% of the 410 American English yes/no questions in their study (ten-minute phone conversations from  the CallHome Corpus of American English and the Fisher English Corpus) had a &ldquo;low-rise nuclear contour&rdquo; (L\*H-H%, L\*H-$\uparrow$H%, or L\*L-H%)[^uar]. In their ToBI notation, a tone T is coded either L for low or H for high; T\* is anchored to the stressed syllable, and T- and T% are boundary tones (intermediate phrase boundary and intonational phrase boundary respectively). See *Guidelines for ToBI labeling* [@Beckman1997-eu] for a more thorough explanation of ToBI. An additional 10.7% of the @Hedberg2017-er data had a &ldquo;high-rise nuclear contour&rdquo; (the authors categorize the following tunes as high-rise nuclear contours: H\*H-H%, or !H\*L-L%). That leaves only 9.5% spread across the other 5 categories (High-fall, Rise-fall, Low-fall, Fall-rise, and Level). Only 5.6% of the total data showed any sort of falling contour. According to the authors' analyses, final high-rise contours occur on the final main stress of a sentence and thereafter. In the case of the types of sentences examined in the current study, that would result in a rising contour on the head noun of the final PP as in (@rise), regardless of whether the final PP is a Mod or an Arg.
+In pursuing the possibility that it is the prosody of polar interrogatives which creates the 2016 Intuition tIhis study it is important to consider the details of question intonation actually sounds like. It is generally agreed that in American English, the intonation of a polar question \deleted{has} exhibits a final rise. This has been confirmed in corpus studies such as @Hedberg2017-er who found that 79.8% of the 410 American English yes/no questions in their study (ten-minute phone conversations from  the CallHome Corpus of American English and the Fisher English Corpus) had a &ldquo;low-rise nuclear contour&rdquo; (L\*H-H%, L\*H-$\uparrow$H%, or L\*L-H%)[^uar]. In their ToBI notation, a tone T is coded either L for low or H for high; T\* is anchored to the stressed syllable, and T- and T% are boundary tones (intermediate phrase boundary and intonational phrase boundary respectively). See *Guidelines for ToBI labeling* [@Beckman1997-eu] for a more thorough explanation of ToBI. An additional 10.7% of the @Hedberg2017-er data had a &ldquo;high-rise nuclear contour&rdquo; (the authors categorize the following tunes as high-rise nuclear contours: H\*H-H%, or !H\*L-L%). That leaves only 9.5% spread across the other 5 categories (High-fall, Rise-fall, Low-fall, Fall-rise, and Level). Only 5.6% of the total data showed any sort of falling contour. According to the authors' analyses, final high-rise contours occur on the final main stress of a sentence and thereafter. In the case of the types of sentences examined in the current study, that would result in a rising contour on the head noun of the final PP as in (@rise), regardless of whether the final PP is a Mod or an Arg.
 
 [^uar]: @Hedberg2017-er use $\uparrow$ to indicate an up-step, which is not standardly transcribed with ToBI.
 
-  (@rise) Did Jed cram the newspapers under the sofa in the	[~L\*H-H%~ guestroom].
+  (@rise) Did Jed cram the newspapers under the sofa in the	[~L\*H-H%~ guestroom]?
 
 The need to prepare for that final rising tone might make a prosodic break before the PP more likely, and thus ease reanalysis or even encourage a different prosodic chunking which might encourage argument attachment. This possibility is revisited and more fully explained in Section \@ref(prep).
 
-The prosodic structures observed in the data collected for the current study are discussed in \@ref(results-prosody). \comment{This has been moved up} For discussion of what constitutes a prosodic boundary, see e.g., @streeter1978acoustic and @salverda2003role. 
+The prosodic structures observed in the data collected for the current study are discussed in \@ref(results-prosody). For discussion of what constitutes a prosodic boundary, see e.g., @streeter1978acoustic and @salverda2003role. 
 
 
-## Evidence that prosody can affect syntactic parsing
-\comment{Section title has been updated}
+## Evidence that prosody can affect syntactic parsing {#prosyn}
 
-A number of studies have shown that in listening to speech, prosodic cues help reduce the frequency with which incorrect parsing (i.e., a garden path) occurs. For example, @Kjelgaard1999-xd conducted a study using digital manipulation of  recorded speech to create three versions of sentences containing a temporary ambiguity which could result in a garden path. They recorded speakers saying sentences with natural prosody, such as the following pair (not bracketed in presentation to the \replaced{speakers}{speakers
+A number of studies have shown that in listening to speech, prosodic cues help reduce the frequency with which incorrect parsing (i.e., a garden path) occurs. For example, @Kjelgaard1999-xd conducted a study using digital manipulation of  recorded speech to create three versions of sentences containing a temporary ambiguity which could result in a garden path. They recorded speakers saying sentences with natural prosody, such as the following pair (not bracketed in presentation to the speakers):
+
   (@ec) [When Roger leaves] the house is dark. (Early closure)
   (@lc)	[When Roger leaves the house] it's dark. (Late closure)
   
-They then cross-spliced these together to make several versions. One version had prosodic cues which cooperated with the intended reading of the sentence; another attempted to have &ldquo;neutral&rdquo; prosody; and the third used intentionally misleading prosody which favored the garden path. The initial fragment of each (the portion from the beginning of the sentence to the word *house* in (@ec) and (@lc)) was then presented to participants \replacewhoked to agree or disagree with whether a visually presented word, either *is* or *it's* was likely to be the next word in the sentence. Participants gave more accurate and speedier judgments when the visually presented word was compatible with the structure indicated by the prosodic cues. The results of this study, as well as a growing body of literature, suggest that \deletedc information can indeed be used by the parser in making processing decisions.
+They then cross-spliced these together to make several versions. One version had prosodic cues which cooperated with the intended reading of the sentence; another \replaced{aimed}{attempted} to have &ldquo;neutral&rdquo; prosody; and the third used intentionally misleading prosody which favored the garden path. The initial fragment of each (the portion from the beginning of the sentence to the word *house* in (@ec) and (@lc)) was then presented to participants who were asked to agree or disagree with whether a visually presented word, either *is* or *it's* was likely to be the next word in the sentence. Participants gave more accurate and speedier judgments when the visually presented word was compatible with the structure indicated by the prosodic cues. The results of this study, as well as a growing body of literature, suggest that information can indeed be used by the parser in making processing decisions.
 
- @Fodor2002-io \replaced{invoked prosody in an exinvoked prosody in an explanation of differing relative clause attachment preferencest by @frazier1996construal and discussed above in Section \@ref(mech). This concerns sentences such as English (@servant) and Spanish (@esprc):
+ @Fodor2002-io \replaced{invoked prosody in an exinvoked prosody in an explanation of differing relative clause attachment preferencest by @frazier1996construal and discussed above in Section \@ref(mech). This \added{specifically} concern\replaced{ed}{s} sentences such as English (@servant) and Spanish (@esprc):
 
   (@servant) Someone shot the servant~N1~ of the actress~N2~ [~RC~ who was on the balcony].
-  (@esprc) Alguien disparó contra la criada de la actriz que estaba en el balcón.
+  (@esprc) Alguien disparó contra la criada~N1~ de la actriz~N2~ [~RC~ que estaba en el balcón].
 
-The relative clause in (@servant) *who was on the balcony*, can attach either locally (modifying N2), making it *the actress* who was *on the balcony*, or non-locally (so that it is *the servant* who was *on the balcony*. While Late Closure predicts local/low attachment in these structures, @Cuetos1988-tm found a 60% preference for local/low attachment for the English materials, but only a 40% preference for local/low attachment in Spanish \deletedarent violation of the general preference for local/low attachment, some languages, like Spanish (and French and Russian, but not Romanian or Brazilian Portuguese, so this is not a general feature exclusive to Romance languages), prefer to attach relative clauses higher, while others more often obey Late Closure as in English (e.g., Swedish and Egyptian Arabic). Interestingly, the non-local preference in languages like Spanish is weakened in cases where the ambiguous RC is short (one prosodic word), which is compatible with its being attributable to prosodic phrasing; see below). @Fodor2002-io maintains that these tendencies exist both in listening to spoken sentences, with and without explicit prosody and in silent reading.
+The relative clause in (@servant) *who was on the balcony*, can attach either low/locally (modifying N2), making it *the actress* who was *on the balcony*, or high/non-locally (modifying N1) so that it is *the servant* who was *on the balcony*. While Late Closure predicts local/low attachment in these structures, @Cuetos1988-tm found a 60% preference for local/low attachment for the English materials, but only a 40% preference for local/low attachment in Spanish. \added{Thus, in apparent} violation of the general preference for local/low attachment, some languages, like Spanish (also French and Russian, though not Romanian or Brazilian Portuguese, so this is not a general feature exclusive to Romance languages), prefer to attach relative clauses higher, while others more often obey Late Closure as in English (e.g., Swedish and Egyptian Arabic). Interestingly, the non-local preference in languages like Spanish is weakened in cases where the ambiguous RC is short (one prosodic word), which is compatible with its being attributable to prosodic phrasing\deleted{; see below}). @Fodor2002-io maintains that these tendencies exist both in listening to spoken sentences, with and without explicit prosody, and in silent reading.
 
-Other researchers, e.g., @maynell1999effect, have shown that the presence or absence of a prosodic break before an RC {phenomenon} can be neatly explained by linking attachment site preference to the likelihood of a prosodic break before the RC. This difference in prosodic tendency, in turn, can be explained using a constraint-based approach. Consider Selkirk's [-@Selkirk1986-hc] alignment constraints:
+Other researchers, e.g., @maynell1999effect, have shown that the presence or absence of a prosodic break before an RC encourages high or low attachment respectively. Fodor leverages this in order to explain the differences in RC attachment site tendency between languages. She argues that cross-language differences can be neatly explained by linking attachment site preference to the likelihood of a prosodic break before the RC. This difference in prosodic tendency, in turn, can be explained using a constraint-based approach. Consider Selkirk's [-@Selkirk1986-hc] alignment constraints:
 
   (@align) Align($\alpha$Cat, E; $\beta$Cat, E)
     a. Align (GCat, E; PCat, E)
@@ -331,25 +331,24 @@ Other researchers, e.g., @maynell1999effect, have shown that the presence or abs
     *GCat ranges over morphological and syntactic categories; PCat ranges over prosodic categories; E = Right or Left [@Selkirk1986-hc, p. 6]*
 
 
-@Truckenbrodt1999-vd provides a prose-based formalization of this general idea for English. 
+@Truckenbrodt1999-vd provides a prose-based formulation of this general idea for English. 
 
   (@alignxp) **Align-XP/R** \linebreak\nopagebreak
   For each XP there is a PP such that the right edge of the XP coincides with the right edge of the PP, where XP is a maximal projection and PP is a Phonological Phrase. This constraint represents the end based mapping assumption for Major Phonological Phrases in English, whose right end is supposed to align with the right end of Maximal Projections [@Truckenbrodt1999-vd, p. 223].
 
- The ranking of alignment coThedge of phrases (*Align-XP/L*) with those for the right edge of phrases (*Align-XP/R*) can impact the distribution of prosodic breaks. These alignment constraints dictate that the edges of prosodic units (and thus the location of prosodic breaks) should align with the edges of syntactic constituents. Because the prosodic break that encourages high attachment aligns with the left edge of the RC in examples like (@esprc), *Align-XP/L* is postulated to be ranked above *Align-XP/R* in languages like Spanish that prefer high attachment since a prosodic break in that place has been shown to encourage a high attachment interpretation [@maynell1999effect]. In languages where low RC attachment is preferred, *Align-XP/R* can be postulated to be ranked higher, and thus a prosodic break is more likely to occur after the RC than before it.
+The ranking of alignment of alignment constraints for the left edge of phrases (*Align-XP/L*) relative to those for the right edge of phrases (*Align-XP/R*) can impact the distribution of prosodic breaks. These alignment constraints dictate that the edges of prosodic units (and thus the location of prosodic breaks) should align with the edges of syntactic constituents. Because the prosodic break that encourages high attachment aligns with the left edge of the RC in examples like (@esprc), *Align-XP/L* is postulated to be ranked above *Align-XP/R* in languages like Spanish that prefer high\added{/non-local RC} attachment since a prosodic break in that place has been shown to encourage a high attachment interpretation [@maynell1999effect]. In languages where low\added{/local} RC attachment is preferred, *Align-XP/R* can be postulated to be ranked higher, and thus a prosodic break is more likely to occur after the RC than before it.
 
 The same sort of argument can explain the difference in tendency between long and short RCs. Consider Selkirk's [-@selkirk2011-hp] *BinMin* defined below.
 
   (@binmin)	**BinMin($\phi$)** \linebreak\nopagebreak
   A $\phi$ (phonological phrase) must consist of at least two $\omega$ (phonological words).  
   
-If , in Optimality Theoretic [@Prince1993-ic] terms, a constraint like *BinMin* is ranked above *Align~L~*, then it seems quite reasonable to assume that  a prosodic break before a short RC (which would encourage high attachment) is much less likely than before a long RC. That is, when the RC is short, its left edge is prevented from aligning with the beginning of a prosodic phrase (it violates *Align~L~*) by the higher ranked BinMin, because it needs more material in order to achieve a length of at least two phonological words, and so must appropriate some from the preceding NP. Longer RCs can have their left edge align with the start of a prosodic phrase, and thus can have the high-attachment encouraging prosodic break, as they have enough phonological content to stand alone.
+If, in Optimality Theoretic [@Prince1993-ic] terms, a constraint like *BinMin* is ranked above *Align~L~*, then it seems quite reasonable to assume that a prosodic break (which would encourage high attachment) is much less likely before a short RC than before a long RC. That is, when the RC is short, its left edge is prevented from aligning with the beginning of a prosodic phrase (it violates *Align~L~*) by the higher ranked BinMin, because it needs more material in order to achieve a length of at least two phonological words, and so must appropriate some from the preceding NP. Longer RCs can have their left edge align with the start of a prosodic phrase, and thus can have the high-attachment encouraging prosodic break, as they have enough phonological content to stand alone.
 
 
 ## Predictions for the current study {#pred}
 
-\comment{not all changes to this section are well represented by annotation; we should read it together}
-The experimental study presented here addresses a number of issues. First: is syntactic phrase attachment in any way encoded in the speech signal? I hypothesize, following e.g., @schafer2000intonational as noted above that it is, and therefore that \deleted{we can used to diagnose attachment site. Consider the basic configuration in Figures \@ref(fig:smallmod) and \@ref(fig:smallarg) below.
+The experimental study presented here addresses a number of issues. First: is syntactic phrase attachment in any way encoded in the speech signal? I hypothesize \added{that it is}, following e.g., @schafer2000intonational as noted above that it is, and therefore that \deleted{we can used to diagnose attachment site. Consider the basic configuration in Figures \@ref(fig:smallmod) and \@ref(fig:smallarg) below.
 
 
 \begin{figure}[h!]
@@ -368,8 +367,8 @@ The experimental study presented here addresses a number of issues. First: is sy
                 [N$_{OBJ}$]
               ]
               [PP1
-                [NP$_{OBJ}$
-                  [N$_{OBJ}$]
+                [NP
+                  [N]
                   [PP2]
                 ]
               ]
@@ -406,7 +405,7 @@ The experimental study presented here addresses a number of issues. First: is sy
   \end{minipage}
 \end{figure}
 
-The predictions made here rely on there being an ideal prosodic structure for the sentences tested to compare them with. Following @Fodor2002-io, a major disruption to the syntax like the one after PP1, as in Figure \@ref(fig:smallarg), \replaceshoulded by a prosodic boundary between PP1 and PP2. On the other hand, modifier attachment of PP2\deletedck any substantial boundary marking in that position unless it is necessitated for length reasons; instead, a break after the object is expected. These expectations are shown in (@breakpatMod) and (@breakpatArg), where "$\vert$" a less prominent or no break and "$\|$" represents a linguistically motivated prosodic break.
+The syntax shown in Figures \@ref(fig:smallmod) and \@ref(fig:smallarg), together with the assumptions discussed in the previous Section (\@ref(prosyn)) predict linguistically motivated prosodic boundaries after object NP in the Mod case, and after PP1 in the Arg case, provided other factors (e.g., phrase length) do not prevent those breaks. This is illustrated in (@breakpatMod) and (@breakpatArg), where "$\|$" indicates a linguistically motivated prosodic boundary.
 
 \singlespacing
 
@@ -414,8 +413,7 @@ The predictions made here rely on there being an ideal prosodic structure for th
   \begingroup
     \setlength{\tabcolsep}{2pt}
     \begin{tabular}{ccccccc}
-      & & & \small OBJ Break & & \small PP1 Break & \\
-      \dots & stick & the letter & $\|$ & in the mailbox & $\vert$ & of the proper stack \\
+      \dots & stick & the letter & $\|$ & in the mailbox &  & of the proper stack \\
       & & \footnotesize Direct object & & \footnotesize PP1 & & \footnotesize vice president. \\
     \end{tabular}
   \endgroup
@@ -424,18 +422,17 @@ The predictions made here rely on there being an ideal prosodic structure for th
   \begingroup
     \setlength{\tabcolsep}{2pt}
     \begin{tabular}{ccccccc}
-      & & & \small OBJ Break & & \small PP1 Break & \\
-      \dots & stick & the letter & $\vert$ & in the mailbox & $\|$ & onto the proper stack. \\
+      \dots & stick & the letter & & in the mailbox & $\|$ & onto the proper stack. \\
       & & \footnotesize Direct object & & \footnotesize PP1 & & \footnotesize PP2 \\
     \end{tabular}
   \endgroup
 
 \doublespacing
 
-An issue that is addressed is what factors impact immediate on-line parsing, and what factors only affect later, post-parse considerations? To address this, the study will employ the double reading paradigm of @fodor2019center (more on double reading in the methods section). For example, if first-pass parsing ignores semantic information, then semantically implausible parses should be more frequent in Reading 1 of a sentence with argument-PP2 than in a second reading of the same sentence.
+An issue that is addressed is what factors impact immediate on-line parsing, and what factors only affect later, post-parse considerations? To address this, the study will employ the double reading paradigm of @fodor2019center (more on double reading in Chapter \@ref(method)). For example, if first-pass parsing ignores semantic information, then semantically implausible parses should be more frequent in Reading 1 of a sentence with argument-PP2 than in a second reading of the same sentence.
 
   (@hypb) *Hypothesis 1*
-  A first reading of a sentence where PP2 is a goal argument (Arg) will exhibit less natural prosody (more hesitation at and within the PP2 region) than:
+  A first reading of a sentence where PP2 is a goal argument (Arg) will be more likely to exhibit less natural prosody (more hesitation at and within the PP2 region) than either:
     a. A first reading of a sentence where PP2 is a modifier (Mod)
     b. A second reading of a sentence where PP2 is a goal argument (Arg)
     
@@ -447,14 +444,14 @@ An issue that is addressed is what factors impact immediate on-line parsing, and
   (@hype) *Hypothesis 3* 
   Reading 1 of a declarative sentence with an argument-PP2 will exhibit less natural prosody (more hesitation at and after the disambiguating region) and be more likely to be produced with prosodic structure that represents an implausible or ungrammatical parse of the string than a Reading 1 of an interrogative sentence with an argument-PP2.
   
-Finally, the question of whether the 2016 Intuition described in Section \@ref(obs) can be shown to extend to the syntactically disambiguated sentences tested in the present study is formalized as *hypothesis 4*. This hypothesis presumes that IRT reflects processing difficulty.
+Finally, the question of whether the 2016 Intuition described in Section \@ref(obs) can be shown to extend to the syntactically disambiguated sentences tested in the present study is formalized as *Hypothesis 4*. This hypothesis presumes that IRT is a reliable reflection of processing difficulty.
 
   (@hypd) *Hypothesis 4*
   The inter-reading time (IRT) will be longer for Arg sentences that are declarative than for:
     a. Arg sentences that are interrogative
     b. Mod sentence that are interrogative or declarative
 
-Note that these hypotheses are not applicable in cases where the reader fails to successfully and fluently produce the sentence. 
+Note that these hypotheses are not applicable in cases where the reader doess not succeed in fluently producing the sentence at all. 
 
 These hypotheses are returned to in Chapter \@ref(res). The findings from the current study that will be presented \replacein what followssuccessfully settle all of the issues raised here, but it is hoped that they will help guide future work in directions that may do so.
 

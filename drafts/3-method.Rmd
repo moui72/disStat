@@ -23,7 +23,7 @@ kable<-function (data,...){
 
 ```
 
-# Methodology 
+# Methodology {#method}
 
 This \replaced{chapter describes}{section outlines} the methodology employed for the \deleted{reported} study \added{reported in Chapter} \@ref(res). The protocol outlined is referred to as the *Double Reading Procedure* and was first implemented by @fodor2019center. Under this protocol, participants are asked to read aloud \added{a} visually presented sentence\deleted{s} twice, once without taking any time to preview sentence content (Reading 1), and then again after unlimited preview (Reading 2).
 
