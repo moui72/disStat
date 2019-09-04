@@ -335,7 +335,7 @@ ggplot(adata,
   scale_fill_brewer(breaks=c("OBJ", "BOTH", "PP1"), palette="Greys")
 
 ggsave("bothbreaks2.pdf",height=3.75,device=cairo_pdf)
-
+dev.off()
 ```
 
 ### Break Dominance
@@ -368,7 +368,7 @@ ggplot(adata,
   scale_fill_brewer(breaks=c("PP1", "Equal strength", "OBJ"), palette="Greys") 
 
 ggsave("bdom.pdf",device=cairo_pdf)
-
+dev.off()
 ```
 
 Figure \@ref(fig:bdom) clearly shows a robust effect of PP2 Status \added{(Mod or Arg)} on break dominance, and little to no impact of Reading or Speech Act \added{(Q or D)}. \added{A dominant break after PP1 is frequent for all Arg sentences, both declaratives and questions, and in both Reading 1 and Reading 2. It is less frequent for Mod sentences in both Reading 1 and Reading 2.} \added[id=TJP]{The higher relative frequency of PP1 break dominance in Arg sentences compared to Mod sentences is expected, since it represents a linguistically motivated prosodic break in the Arg cases. For the Mod sentences, there is no linguistic motivation for the PP1 break, so it makes sense for it to be less frequent and less dominant in Mod sentences. It is noteworthy and puzzling that the patterns do not differ greatly across the two readings, as one would expect difficulty getting the prosody right on the first try for the difficult sentences being tested in the current study.}
@@ -595,11 +595,14 @@ ggplot(raw_rs, aes(Leading/1000, fill = Reading)) +
   ylab("Frequency") 
 
 ggsave("deldis.pdf",device=cairo_pdf())
+dev.off()
 ```
 
 As a way of analyzing the protocol, and the extent to which participants performed as expected, participants were categorized based on their median R1 delay. In what follows, a fast median R1 delay was shorter than or equal to 0.9s, and a slow one was longer than 1.05s, resulting in 12 participants per category. Ten participants had R1 delays between those values, categorized as "normal," and set aside. The calculations for categorizing participants were done over Reading 1 of experimental items (n = 489). Note that while R1 delay category (i.e., fast or slow) is a property of R1 delay, data for both readings is nonetheless explored within these categories.
 
 ```{r facet, fig.cap="Plot of pattern proportions as a function of sentence type.",fig.height=3.5,fig.pos="H"}
+
+
 
 hidel <- 1051
 lodel <- 901
@@ -627,7 +630,7 @@ ggplot(pdata,
   scale_fill_brewer(breaks=c("PP1", "BOTH", "OBJ"), palette="Greys")
 
 ggsave("facet.pdf",device=cairo_pdf())
-
+dev.off()
 ```
 
 ```{r rsplit}
@@ -736,10 +739,9 @@ dfs$deltaBOTH <- dfs$r1.BOTH - dfs$r2.BOTH
 dfs$deltaBothCat <- ifelse(dfs$deltaBOTH > 0, "Decrease",ifelse(dfs$deltaBOTH < 0,"Increase","No change"))
 ```
 
-There is a statically significant difference between the number of cases where both breaks were produced across the fast (44) vs. slow (65) category for Reading 1 ($\chi$^2^(1) = 4.05, p < 0.05), but not for Reading 2 ($\chi$^2^(1) = 1.86, p = 0.17). There was also a statically significant difference in the occurrence of both breaks \replaced{for Arg compared to Mod sentences}{across PP2 Status} for Reading 2 \added{with}in the slow R1 delay category ($\chi$^2^(1) = 3.97, p < 0.05), but comparisons across other factors represent\added{ed} in Table \@ref(tab:arg) did not yield significant results. The maximum count per cell in the table is 96 (12 participants per category, 8 items per PP2 Status), ignoring missing items.
-\comment{table 4.15 omitted}
-
 In cases where R1 delay was small, readers were more likely to produce only one break \added{(PP1 or OBJ)} than if R1 delay was fast. A possible explanation is that \added{for recordings in} the slow \replaced{category}{starters} \added{readers} were more prone to hesitation in general, or perhaps\added{, contrary to instructions,} were using both the delay time \replaced{as well as}{and} the\deleted{ir} extra \deleted{break} time \added{created via hesitation} to look ahead. The significant effect of PP2 Status for \added{the} slow \replaced{category}{starters} in Reading 2 could be due to the \replaced{reader}{slow starters} not fully understanding the Arg sentences prior to Reading 2, thus increasing their likelihood of hesitation\added{; i.e., where the fast category represents confident readers, the slow category represents less confident readers. As a result of the reader's increased difficulty in Reading 1 for the recordings in the slow category, the effect of processing difficulty is not limited to Reading 1 but in fact spills over into Reading 2. The slow category represents readers who are never able to fully comprehend the sentence, and thus hesitate more frequently.}
+
+\added{Mixed effects logistic regression models found no significant effect of R1 Delay Category for PP1 break dominance or OBJ break dominance. Ultimately, variation in R1 delay does not seem to be of concern.}
 
 ## Discussion of prosodic break patterns
 
@@ -815,6 +817,7 @@ ggplot(irt_data, aes(wirt/1000)) +
     subtitle="Bin size = 0.5s"
   )
 ggsave("wIRT.pdf",device=cairo_pdf)
+dev.off()
 
 ```
 
@@ -898,7 +901,7 @@ ggplot(
     subtitle = "Error bars represent one standard error"
   )
 ggsave("interact.pdf",device=cairo_pdf())
-
+dev.off()
 ```
 
 The two slopes are only very slightly divergent. Notably, both Speech Act and PP2 Status appear to have main effects on wIRT, with interrogatives attracting longer (6.7s) IRTs than declaratives (6.4s), and sentences with argument PP2s having substantially longer IRTs (6.7s) than those with modifier PP2s (6.3s).

@@ -377,7 +377,7 @@ This strict procedure was implemented to hinder the informant from recognizing a
 
 ### Reliability {#rel}
 
-A second trained linguist\added{, also naive to the purpose of the research,} repeated the task over 120 recordings selected from 8 participants (two from each group, one per ordering). Even number experimental items were used from 4 participants, and odd numbered from the other 4. There were 8 recordings missing from the 128 selected, so the reliability task resulted in judgments over 120 recordings. The first informant also blindly re-rated those 120, with the recording name obscured and instructions not to revisit her original ratings. Reliability scores (percent of recordings agreed upon) are reported in Table \@ref(tab:validity).
+A second trained linguist\added{, also naive to the purpose of the research,} repeated the task over 120 recordings selected from 8 participants (two from each group, one per ordering). Even number experimental items were used from 4 participants, and odd numbered from the other 4. There were 8 recordings missing from the 128 selected, so the reliability task resulted in judgments over 120 recordings. The first informant also blindly re-rated those 120, with the recording name obscured and instructions not to revisit her original ratings. Reliability scores (percent of recordings agreed upon) and Cohen's Kappa (K) are reported in Table \@ref(tab:validity). Cohen’s Kappa adjusts the measure of agreement so that it takes into account the level of agreement that would be expected to occur by chance alone based on the judges' rates of using the category labels. 
 
 ```{r validitySetup}
 library(irr)

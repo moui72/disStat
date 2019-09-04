@@ -9,15 +9,33 @@ knitr::opts_chunk$set(
 
 \raggedright
 # Abstract {-}
+Certain English sentences containing temporary PP-attachment ambiguities, both in the declarative and interrogative, e.g. “She had planned to cram the paperwork in the drawer into her briefcase,” appear to present parsing difficulty in the way that is typically called a “garden path.” Interestingly, it appears intuitively to be easier to process an interrogative sentence with this sort of temporary ambiguity than it is to process a declarative sentence with the same temporary ambiguity, e.g. “Had she planned to cram the paperwork in the drawer into her briefcase?” The study presented here represents an attempt to find a behavior that correlates with this intuitive difference in processing difficulty. Ultimately, no such behavior is detected.
 
-*Abstract is a work in progress.* This paper reports a study on the effect of interrogativity on the oral reading of temporarily ambiguous prepositional phrases (PPs). Specifically, it looks at sentences ending in a of two PPs, where the first is interpretable as the goal argument of the preceding verb, and the status of the second (PP2 Status) is manipulated to either necessarily be the goal argument of that verb (Arg), forcing reanalysis, or not (Mod), allowing the original parse to stand. No evidence is found that interrogativity impacts the difficulty of understanding the Arg-type sentences, despite an intuitive decrease in difficulty when those sentences are presented in an interrogative context. A double-reading protocol is employed, where participants are asked to read a sentence first without preview (Reading 1), and then after unlimited preview (Reading 2).A robust effect of PP2 Status is found for the prosodic phrasing of the target sentences, and an effect of interrogativity on the study time between Readings, Inter-Reading Time (IRT), is reported.
+The experiment reported employs the Double Reading Paradigm (Fodor, Macaulay, Ronkos, Callahan, and Peckenpaugh, 2019). Participants were asked to read a visually presented sentence twice, once without taking any time to preview sentence content (Reading 1), and then again after unlimited preview (Reading 2). The basic experimental items were created in a 2 x 2 design with one factor being Speech Act (interrogative/Q vs. declarative/D) and the other being PP2 Status, i.e., PP2 was either a PP1 which must be an argument of the verb (Arg) or else one which is interpreted as a modifier (Mod) of the preceding phrase (PP1). The PP2 Status factor can be thought of as a distinction between difficult to process sentences like the one mentioned above (Arg), and syntactically similar sentences that pose no particular processing difficulty (Mod) like, “She had planned to cram the paperwork in the drawer of her filing cabinet.”
+
+Recordings of each reading were subjected to prosodic description by a linguist who was naive to the research questions being considered. Those descriptions were then analyzed statistically and the prosodic boundary patterns reported as a function of Speech Act and PP2 Status.
+
+Another analysis was conducted which concerned the amount of time the participants spent studying a sentence after Reading 1 but before beginning Reading 2. This measure is referred to as inter-reading time (IRT) and was hypothesized to but ultimately did not reflect a behavioral correlate to the motivating intuition, in the form of an interaction between Speech Act and PP2 Status. If a correlate had been found, it would have taken the form of an interaction between the two factors showing that Arg PP2 Status increased IRT to a greater extent for declaratives than for interrogatives, but no statistically significant interaction between Speech Act and PP2 Status was found.
+
+Further studies are proposed for finding a behavioral correlate of the motivating intuition, and explanations for why the intuition is not reflected in IRT and why the intuition itself exists are also offered. Ancillary findings suggest that interrogatives are more difficult to process than declaratives in general, and that inter-reading time (IRT) can be used as a measure of processing difficulty.
+
 
 # Acknowledgements {-}
 
-TBD
+The completion of this dissertation would have been impossible without the help of my friends, family, colleagues, and most of all, my committee of advisers. The timing of its completion could not have been more difficult for me or for the chair of my committee, Janet Fodor. To Janet, I say: thank you for your endurance, your wisdom, and your patience. 
 
-## About this draft {-}
+Much of the burden that stemmed from the difficult timing fell onto the plate of my second adviser, Dianne Bradley. To Dianne, I say: thank you for your tireless effort, your support, and your encouragement.
+	
+It is stereotypically believed, far and wide, that linguists are bad at math. This shortcoming is true of me, if not all my fellows. The burden of this fell mostly upon my third adviser, Martin Chodorow. To Martin, I say: thank you for your kindness, your teaching, and your forgiveness.
 
-This represents the document that will be defended on August 29th. The goal is to deposit before September 16, after incorporating whatever revisions are requested. 
+I am also indebted in particular to my closest friend and partner, Tally Callahan. She endured many restless nights, grumpy days, unhinged panic attacks, and worse. Thank you, Tally, for helping me see this through.
+
+In a more practical way, I am indebted to Eva Fernandez and Nathacia Lucena. Without them, data collection would have been infinitely more difficult. Thank you for the use of your lab! And, to Bill Haddican, for his advice on handling the syntax of the construction I studied.
+
+I also want to thank my parents and my sister for the love and encouragement. It was an extremely difficult time for us as a family, and especially for my father. For your understanding of the limitations on my time that writing this dissertation entailed, thank you. 
+
+Special thanks to my brother-in-law, Kurtiss Hare, for his help on the Python coding I did. Also, thank you to my friends Corbin Neuhauser and Kathryn O’Shields for their input on the matters at large, as well as their camaraderie. Likewise, Burke Blackman, Pablo Gonzalez, and Michael Madden, for friendship and encouragement. 
+
+Last, but not least, Laurie Bruce: thank you for going above and beyond when I asked for a favor!
 
 \pagebreak

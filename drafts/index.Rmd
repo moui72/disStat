@@ -4,7 +4,7 @@ author: "Tyler J. Peckenpaugh"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
-classoption: "oneside,final"
+classoption: "oneside"
 bibliography: [refs.bib, packages.bib]
 csl: apa.csl
 biblio-style: "apalike"
@@ -14,7 +14,7 @@ fontsize: 12pt
 mainfont: Georgia
 lot: true
 lof: true
-geometry: "margin=1in"
+geometry: "top=1in,bottom=1in,left=1in,right=2in"
 header-includes:
   - \usepackage[linguistics]{forest}
   - \usepackage{longtable}
