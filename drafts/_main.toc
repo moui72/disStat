@@ -42,18 +42,18 @@
 \contentsline {section}{\numberline {4.1}Behavioral correlate for the 2016 intuition and the current hypothesis?}{66}{section.4.1}% 
 \contentsline {section}{\numberline {4.2}On possible explanations for the intuition}{66}{section.4.2}% 
 \contentsline {subsection}{\numberline {4.2.1}A prosodic account}{66}{subsection.4.2.1}% 
-\contentsline {subsection}{\numberline {4.2.2}A processing illusion}{69}{subsection.4.2.2}% 
-\contentsline {subsection}{\numberline {4.2.3}A semantic/pragmatic explanation}{70}{subsection.4.2.3}% 
+\contentsline {subsection}{\numberline {4.2.2}Hesitations vs.\nobreakspace {}prosodic breaks}{69}{subsection.4.2.2}% 
+\contentsline {subsection}{\numberline {4.2.3}A processing illusion}{70}{subsection.4.2.3}% 
+\contentsline {subsection}{\numberline {4.2.4}A semantic/pragmatic explanation}{70}{subsection.4.2.4}% 
 \contentsline {section}{\numberline {4.3}Conclusions and future directions}{71}{section.4.3}% 
 \contentsline {subsection}{\numberline {4.3.1}Inter-item reading time (IRT) findings}{71}{subsection.4.3.1}% 
-\contentsline {subsection}{\numberline {4.3.2}Hesitations vs.\nobreakspace {}prosodic breaks}{71}{subsection.4.3.2}% 
-\contentsline {subsection}{\numberline {4.3.3}Future work}{72}{subsection.4.3.3}% 
-\contentsline {subsubsection}{\numberline {4.3.3.1}Embedded questions}{72}{subsubsection.4.3.3.1}% 
-\contentsline {subsubsection}{\numberline {4.3.3.2}Event-related potentials}{73}{subsubsection.4.3.3.2}% 
-\contentsline {subsection}{\numberline {4.3.4}Summary}{74}{subsection.4.3.4}% 
-\contentsline {chapter}{\numberline {A}Experimental items}{76}{appendix.A}% 
-\contentsline {chapter}{\numberline {B}Filler items}{79}{appendix.B}% 
-\contentsline {chapter}{\numberline {C}Recruitment notice}{83}{appendix.C}% 
-\contentsline {chapter}{\numberline {D}Instructions to participants}{84}{appendix.D}% 
-\contentsline {chapter}{\numberline {E}Instructions for prosodic coding}{86}{appendix.E}% 
-\contentsline {chapter}{References}{88}{appendix*.6}% 
+\contentsline {subsection}{\numberline {4.3.2}Future work}{71}{subsection.4.3.2}% 
+\contentsline {subsubsection}{\numberline {4.3.2.1}Embedded questions}{71}{subsubsection.4.3.2.1}% 
+\contentsline {subsubsection}{\numberline {4.3.2.2}Event-related potentials}{72}{subsubsection.4.3.2.2}% 
+\contentsline {subsection}{\numberline {4.3.3}Summary}{74}{subsection.4.3.3}% 
+\contentsline {chapter}{\numberline {A}Experimental items}{75}{appendix.A}% 
+\contentsline {chapter}{\numberline {B}Filler items}{78}{appendix.B}% 
+\contentsline {chapter}{\numberline {C}Recruitment notice}{82}{appendix.C}% 
+\contentsline {chapter}{\numberline {D}Instructions to participants}{83}{appendix.D}% 
+\contentsline {chapter}{\numberline {E}Instructions for prosodic coding}{85}{appendix.E}% 
+\contentsline {chapter}{References}{87}{appendix*.6}% 
