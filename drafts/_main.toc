@@ -1,0 +1,59 @@
+\contentsline {chapter}{Abstract}{vi}{chapter*.4}% 
+\contentsline {chapter}{Acknowledgements}{viii}{chapter*.5}% 
+\contentsline {chapter}{\numberline {1}Introduction and background}{1}{chapter.1}% 
+\contentsline {section}{\numberline {1.1}Motivations for the current study}{3}{section.1.1}% 
+\contentsline {section}{\numberline {1.2}Structural overview of the ambiguity relevant to this study}{6}{section.1.2}% 
+\contentsline {section}{\numberline {1.3}Interrogativity}{12}{section.1.3}% 
+\contentsline {section}{\numberline {1.4}Prosody of questions vs.\nobreakspace {}declaratives}{14}{section.1.4}% 
+\contentsline {section}{\numberline {1.5}Evidence that prosody can affect syntactic parsing}{15}{section.1.5}% 
+\contentsline {section}{\numberline {1.6}Predictions for the current study}{17}{section.1.6}% 
+\contentsline {chapter}{\numberline {2}Methodology}{20}{chapter.2}% 
+\contentsline {section}{\numberline {2.1}Materials}{21}{section.2.1}% 
+\contentsline {subsection}{\numberline {2.1.1}Experimental items}{21}{subsection.2.1.1}% 
+\contentsline {subsection}{\numberline {2.1.2}Fillers}{26}{subsection.2.1.2}% 
+\contentsline {subsection}{\numberline {2.1.3}Length}{27}{subsection.2.1.3}% 
+\contentsline {section}{\numberline {2.2}Participants recruitment}{27}{section.2.2}% 
+\contentsline {section}{\numberline {2.3}Location}{28}{section.2.3}% 
+\contentsline {section}{\numberline {2.4}Equipment and software}{28}{section.2.4}% 
+\contentsline {section}{\numberline {2.5}Versions of the experiment}{29}{section.2.5}% 
+\contentsline {section}{\numberline {2.6}Procedure}{29}{section.2.6}% 
+\contentsline {subsection}{\numberline {2.6.1}On look-ahead}{31}{subsection.2.6.1}% 
+\contentsline {section}{\numberline {2.7}Measurements of utterance timing}{35}{section.2.7}% 
+\contentsline {section}{\numberline {2.8}Prosodic judgments}{38}{section.2.8}% 
+\contentsline {subsection}{\numberline {2.8.1}Reliability}{40}{subsection.2.8.1}% 
+\contentsline {chapter}{\numberline {3}Results and discussion}{42}{chapter.3}% 
+\contentsline {section}{\numberline {3.1}Data for analysis}{43}{section.3.1}% 
+\contentsline {section}{\numberline {3.2}Prosodic break patterns}{44}{section.3.2}% 
+\contentsline {subsection}{\numberline {3.2.1}Individual break patterns}{45}{subsection.3.2.1}% 
+\contentsline {subsection}{\numberline {3.2.2}Combined break patterns}{45}{subsection.3.2.2}% 
+\contentsline {subsection}{\numberline {3.2.3}Break Dominance}{47}{subsection.3.2.3}% 
+\contentsline {subsection}{\numberline {3.2.4}Regression models of prosodic break patterns}{48}{subsection.3.2.4}% 
+\contentsline {subsubsection}{\numberline {3.2.4.1}Break occurrence}{49}{subsubsection.3.2.4.1}% 
+\contentsline {subsubsection}{\numberline {3.2.4.2}Break dominance}{51}{subsubsection.3.2.4.2}% 
+\contentsline {subsection}{\numberline {3.2.5}On Reading 1 delay}{53}{subsection.3.2.5}% 
+\contentsline {section}{\numberline {3.3}Discussion of prosodic break patterns}{55}{section.3.3}% 
+\contentsline {section}{\numberline {3.4}Inter-reading time}{58}{section.3.4}% 
+\contentsline {subsection}{\numberline {3.4.1}Data cleanup}{59}{subsection.3.4.1}% 
+\contentsline {subsection}{\numberline {3.4.2}Analysis of IRT data}{59}{subsection.3.4.2}% 
+\contentsline {subsection}{\numberline {3.4.3}On PP2 heads}{61}{subsection.3.4.3}% 
+\contentsline {subsection}{\numberline {3.4.4}Discussion of IRT results}{62}{subsection.3.4.4}% 
+\contentsline {subsection}{\numberline {3.4.5}The processing cost of interrogativity}{64}{subsection.3.4.5}% 
+\contentsline {chapter}{\numberline {4}General discussion}{65}{chapter.4}% 
+\contentsline {section}{\numberline {4.1}Behavioral correlate for the 2016 intuition and the current hypothesis?}{66}{section.4.1}% 
+\contentsline {section}{\numberline {4.2}On possible explanations for the intuition}{66}{section.4.2}% 
+\contentsline {subsection}{\numberline {4.2.1}A prosodic account}{66}{subsection.4.2.1}% 
+\contentsline {subsection}{\numberline {4.2.2}A processing illusion}{69}{subsection.4.2.2}% 
+\contentsline {subsection}{\numberline {4.2.3}A semantic/pragmatic explanation}{70}{subsection.4.2.3}% 
+\contentsline {section}{\numberline {4.3}Conclusions and future directions}{71}{section.4.3}% 
+\contentsline {subsection}{\numberline {4.3.1}Inter-item reading time (IRT) findings}{71}{subsection.4.3.1}% 
+\contentsline {subsection}{\numberline {4.3.2}Hesitations vs.\nobreakspace {}prosodic breaks}{71}{subsection.4.3.2}% 
+\contentsline {subsection}{\numberline {4.3.3}Future work}{72}{subsection.4.3.3}% 
+\contentsline {subsubsection}{\numberline {4.3.3.1}Embedded questions}{72}{subsubsection.4.3.3.1}% 
+\contentsline {subsubsection}{\numberline {4.3.3.2}Event-related potentials}{73}{subsubsection.4.3.3.2}% 
+\contentsline {subsection}{\numberline {4.3.4}Summary}{74}{subsection.4.3.4}% 
+\contentsline {chapter}{\numberline {A}Experimental items}{76}{appendix.A}% 
+\contentsline {chapter}{\numberline {B}Filler items}{79}{appendix.B}% 
+\contentsline {chapter}{\numberline {C}Recruitment notice}{83}{appendix.C}% 
+\contentsline {chapter}{\numberline {D}Instructions to participants}{84}{appendix.D}% 
+\contentsline {chapter}{\numberline {E}Instructions for prosodic coding}{86}{appendix.E}% 
+\contentsline {chapter}{References}{88}{appendix*.6}% 
