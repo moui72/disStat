@@ -1,0 +1,181 @@
+---
+always_allow_html: yes
+---
+```{r disc,echo=F,warning=F,message=F}
+knitr::opts_chunk$set(
+  echo=FALSE, 
+  warning=FALSE, 
+  message=FALSE, 
+  fig.height = 3, 
+  fig.pos="H"
+)
+options(tinytex.verbose = TRUE)
+bgcolor <- "#ffffff"
+par(bg = bgcolor)
+
+kable <- function(data,...) {
+  knitr::kable(data, booktabs = TRUE,...)
+}
+
+library(readr)
+library(huxtable)
+library(dplyr)
+library(tidyr)
+library(knitr)
+library(ggplot2)
+library(ggthemes)
+library(jsonlite)
+library(kableExtra)
+library(psych)
+library(lme4)
+
+### global plot themeing
+theme_set(
+  theme_tufte() + 
+    theme(
+      plot.background = element_rect(fill = bgcolor,color=bgcolor),
+      panel.border = element_blank()
+    )
+)
+ccombo <- read_csv("export/ccombo.csv")
+ccombo$order <- c(2,1,3)
+ccombo <- ccombo %>% arrange(order) %>% as.data.frame()
+ccombo$order <- NULL
+rownames(ccombo)<-c("OBJ break only", "Both breaks", "PP1 break only")
+```
+# General discussion
+
+This chapter will review the questions motivating the experimental study just reported and discuss the extent to which those questions are answered, or not. It will then go on to develop further questions, and propose further studies to explore those new questions and the ones left unanswered here. Finally, it will summarize the findings and the current standing of this area of research.
+
+Recall that the primary motivation for this study was the possibility that PP-attachment garden paths are easier to understand for speakers of American English when presented in the interrogative, as opposed to the declarative. In Section \@ref(obs), a distinction was made between the intuition first outlined in @qp2 and the current hypothesis. For terminological clarity, recall the definitions originally given in \@ref(obs):
+
+  (@intu) *The 2016 Intuition:* Certain pragmatically disambiguated prepositional phrase (PP) attachment ambiguities which are difficult to parse in the declarative are less difficult to parse when presented as yes-no interrogatives (e.g., *Jed had crammed the newspapers under the sofa in the trashcan*, vs. *Had Jed crammed the newspapers under the sofa in the trashcan?*)
+  
+  (@hypo) *The Current Hypothesis:* The 2016 Intuition may be extensible to PP attachment ambiguities that are syntactically disambiguated in addition to those that are pragmatically disambiguated (e.g., *He had planned to cram the paperwork in the drawer into his briefcase*, vs. *Had he planned to cram the paperwork in the drawer into his briefcase?*).
+
+The goal of this study was to establish whether there is evidence for (@hypo), and to explore the implications of those findings for possible explanations of (@intu).
+
+## Behavioral correlate for the 2016 intuition and the current hypothesis?
+
+Ultimately, no evidence has been found to support the Current Hypothesis, that the 2016 Intuition can be extended to syntactically disambiguated sentences. Mixed-effect regression analyses were not able to detect statistical significance for the interaction between Speech Act and PP2 Status. This does not, of course, negate the 2016 Intuition; it simply means that we have not yet found a behavior that can be said with certainty to correspond to that intuition. Future research should pursue the possibility that IRT (Inter-reading Time) is not the ideal measure for detecting any behavioral correlate of the processing difference for PP-attachment garden paths between interrogatives and declaratives.
+
+## On possible explanations for the intuition
+
+This section considers the evidence for and against some of the possible explanations for the 2016 Intuition reported in @qp2. While evidence of a behavioral correlate has not been found, it is nonetheless interesting to consider the source of the intuition itself.
+
+### A prosodic account {#prep}
+
+The prosodic phrasings produced by participants in this study varied systematically by PP2 Status (Arg vs. Mod, where Arg is the garden path case). This is an interesting finding in and of itself, adding to the growing literature that shows a link between syntactic structure and prosodic phrasing. A possible explanation for the intuitive effect of interrogativity on parsing garden paths is provided in the work by @Bader1998-ts. Bader demonstrates that it is easier to recover from a failed parse that “behave[s] alike prosodically” to a given failed parse, because the reanalysis does not require prosodic reconstruction and only the syntax needs to be repaired. In the case of the 2016 Intuition, e prosodically similar across the Arg vs. Mod PP2 Status in the interrogative than in the declarative, the intuited reduction in difficulty of reanalysis would naturally follow. This is not relevant, of course, unless the 2016 Intuition is eventually confirmed, despite the inconclusive results of @qp2.
+
+The findings of the current study show that there is no one-to-one mapping between prosodic structure and the four sentence types tested in this study (Q Arg, D Arg, Q Mod, D Mod). Rather, for each Sentence Type, gradient differences in occurrence of each pattern were observed. Recall that a break after the object region is referred to as the object break (OBJ), and one after the PP1 region is referred to as the PP1 break (PP1). 
+
+(@bpos2)
+  \begingroup
+    \setlength{\tabcolsep}{1pt}
+    \begin{tabular}{cccccccc}
+      & & \footnotesize V Break & & \footnotesize OBJ Break & & \footnotesize PP1 Break & \\
+      She had & wanted to set & \% & the textbooks & \% & on the top shelf & \% & into the file box. \\
+      \cmidrule(r){2-2} \cmidrule(r){4-4} \cmidrule(r){6-6} \cmidrule(r){8-8} 
+      & \footnotesize V Region & & \footnotesize OBJ Region & & \footnotesize PP1 Region & & PP2 Region \\
+    \end{tabular}
+  \endgroup
+
+If the prosodic structures shown in (@dlo), (@dhi), (@qlo) and (@qhi) (see below) are assumed to be phonologically ideal, then an explanation for the 2016 intuition (and by extension, the same explanation for syntactically disambiguated cases) presents itself. The symbol "%" is being used in these examples to represent a prominent prosodic break.
+
+  (@dlo) *D Arg*: He had crammed [~OBJ~ the newspapers] [~PP1~ under the sofa] % [~PP2~ into the trashcan].
+  (@dhi) *D Mod*: He had crammed [~OBJ~ the newspapers] % [~PP1~ under the sofa [~PP2~ in the guestroom]].
+
+The two declarative versions differ from each other in that the Arg case is ideally pronounced with a prominent break after PP1 (*under the sofa*) to mark the goal argument attachment of PP2; whereas the Mod case does not require that break in the ideal pronunciation (though it may sometimes occur for length reasons). That is, the PP1 break in the D Arg case differentiates the two syntactic structures and signals the attachment site of PP2 as higher than PP2. 
+ 
+For the interrogatives, though, this contrast is possibly obscured by the need to apply a rising prosodic contour over the final nuclear accent in the sentence: i.e., the noun within PP2 in both Arg and Mod. The effect on melody that the speaker's anticipation of a tonal change (due to final-rise question melody) has might sound very similar to a prosodic break. The symbol "$\Uparrow$" in (@qlo) and (@qhi) indicates the start of the rising contour, and "$\Rightarrow$" the point in the string where preparation might begin.
+
+  (@qlo) *Q Arg*: Had he crammed [~OBJ~ the newspapers] [~PP1~ under the sofa] %$\Rightarrow$ [~PP2~ into the $\Uparrow$ trashcan]?
+  (@qhi) *Q Mod*: Had he crammed [~OBJ~ the newspapers] [~PP1~ under the sofa $\Rightarrow$ [~PP2~ in the $\Uparrow$ guestroom]]?
+
+The critical issue here is that in (@qhi), the absence of a syntactically-motivated break before PP2 might be obscured by the hesitation necessitated by preparing to start the final-rising contour of the question two words later. It is not impossible that the need to make the articulatory preparation necessary to execute a rising contour could result in a hesitation or pause at the preceding syntactic juncture most welcoming to it, the PP1 break position. While in (@qhi) PP2 is a sub-constituent of PP1, and so the final phrase of the VP is actually PP1, the final nuclear accent in (@qhi) still falls on the NP within PP2. Thus the final high rise is anchored to the same phrase in both interrogative versions (Arg and Mod), and is unable to disambiguate any confusion about the presence or absence of a true prosodic boundary before PP2.
+
+If the PP1 break is treated as the main indicator of the prosodic structure, then the smaller difference across PP2 Status for interrogatives (`r 25.8-25.6`%) than for declaratives (`r 27-14.8`%) does, though perhaps weakly, leave open the door for the @Bader1998-ts style explanation of the hunch that interrogative PP-attachment garden paths are easier to comprehend than declarative ones. Ultimately, though, logistic regression models showed no significant effect of the interaction between Speech Act and PP2 Status (no bias toward higher Arg PP2 attachment in interrogatives than declaratives), so it is safest to assume that the numerical difference is just noise, and that the explanation for the intuition is not prosodic.
+
+### Hesitations vs. prosodic breaks
+
+An issue with the findings of this study is the difficulty in differentiating between linguistically-motivated prosodic breaks and hesitations. As shown by the reliability data reported in Section \@ref(rel), linguistically trained judges will not necessarily be able to agree where breaks fall and which breaks are stronger, perhaps in part because of the difficulty in differentiating between prosodic breaks and hesitations. 
+
+It can be difficult to capture a prosodic break in physical terms (see, e.g., @ladd), and there is no guarantee that examining the wave forms instrumentally would fare any better than judges' intuitions in distinguishing between hesitation and true prosodic boundaries. That said, it may be possible to find means to distinguish the two sorts of breaks: for instance, it might be that boundary tones or segmental lengthening are typically not part of a hesitation break, but are a part of a prosodic break, for example.
+
+It is possible that the results of the current study were impacted by issues with prosodic coding related to this difficulty in distinguishing between prosodic phenomena. Table \@ref(tab:combobr) shows the distribution of the possible break patterns (PP2 break only, OBJ break only, or both breaks, with the negligible number of cases of neither break omitted) as a function of sentence type for Reading 2 only. These data are a subset of the data reported in Section \@ref(bbr) Table \@ref(tab:bothbreaks).
+
+```{r combobr}
+library(dplyr)
+library(kableExtra)
+
+kable(
+  ccombo,
+  caption="Percent occurrence of break patterns in Reading 2 as a function of sentence type.", 
+  col.names=c("D","Q","D","Q"),
+  align="c") %>%
+  add_header_above(c(" "=1,"Mod" = 2, "Arg"=2)) %>%
+  column_spec(1,bold=T) %>% kable_styling(latex_options = "hold_position")
+```
+
+While there is a larger drop in the number of utterances with both breaks from Arg to Mod for questions (71.7% - 43.0%) than for declaratives (72.1% - 54.1%), the opposite is true for the pattern with a PP1 break by itself (25.8% - 25.6%, vs. 27.0% - 14.8%). There is an argument to be made that the OBJ break in the Arg versions is not a true prosodic break but merely a hesitation due to a moment of confusion or for length reasons. Note that the phrase lengths within the sentence materials for the current study were similar across items and may have influenced the optimal prosodic phrasing and therefore the presence or absence of some of the breaks discussed here. For explanations of length effects on syntactic parsing see, e.g., @lengthCCFL, @webman2016phrase, and @nazik.
+
+In \@ref(erp) I propose that an event-related potential (ERP) paradigm might hold the key for distinguishing between true prosodic boundaries and hesitation.
+
+### A processing illusion
+
+If the above explanation of a null result proves not to be viable in subsequent study, a possibility to consider is that the intuition itself is illusory in nature, i.e., it is not the case that interrogative PP-attachment garden paths (either pragmatically or syntactically disambiguated) are easier to parse than declarative ones, but only appear to be so because the added complexity of the interrogative version is distracting the reader with a different sort of difficulty. That is, it may be that readers are being distracted by the processing cost of interrogativity, and thereby are less sensitive to the cost of reanalysis. While the parser is struggling with two additive increases to complexity as compared to the D Mod sentences (i.e., Arg PP2 Status and interrogative status), the reader is aware only of the more immediately obvious difference, that of interrogativity, and fails to notice the structural reanalysis that the parser is undertaking.
+
+### A semantic/pragmatic explanation
+
+As discussed in Section \@ref(intg), there are substantial pragmatic and semantic differences between the interrogative and declarative versions of the construction the current study addresses. It is possible that those difference, rather than or in addition to the prosodic differences, are what lead to the 2016 Intuition. The differing properties of focus between questions and declaratives, the differing sets of presuppositions for questions and declaratives, or some other semantic properties of questions that differ from those of declaratives may be leading to an amelioration of processing difficulty or leading to the processing illusion just mentioned.
+
+## Conclusions and future directions {#confound}
+
+In this section, I will discuss some of the potential issues raised by the current study, and what I see as fruitful avenues for future research.
+
+### Inter-item reading time (IRT) findings
+
+A number of interesting findings are supported by IRT and the Double Reading paradigm used in the current study. 
+
+While IRT did not detect a behavioral correlate of the motivating hunch for this study, it did show a robust effect of PP2 Status (Arg vs. Mod), indicating that it may yet be a useful diagnostic for parsing difficulty in general.
+
+The IRT data reported also support prior findings that interrogatives are generally slower to process or more difficult to comprehend than related declaratives as noted by @mehler1963some and @qp2 (see Section \@ref(qslow) above). .
+
+The fact that reading (Reading 1 vs. Reading 2) did have an effect on prosodic phrasing also supports the finding of @fodor2019center that Reading 1 and Reading 2 in a Double Reading paradigm have different properties and can provide different sorts of psycho-linguistic evidence; thus item preview should be tightly controlled and documented in all such future studies.
+
+### Future work
+
+Some future studies that could further this line of research are outlined below.
+
+#### Embedded questions
+
+The explanation for the intuition that PP-attachment garden paths are less difficult to parse as interrogatives than as declaratives presumably must either be prosodic, or else semantic/pragmatic. It seems very unlikely that the minor syntactic difference across the two sentence types (i.e., subject-auxiliary inversion) could be the reason for a difference in perceived ease of understanding. More plausibly, it is either the difference in the intonational contour between the two sentences types, or else it is some aspect of the meaning or meta-linguistic difference between interrogatives and declaratives. The study reported here has shown evidence that the intuition cannot easily be explained entirely by the prosodic differences between questions and declaratives; that possibility remains weak at best. It seems that the most important next step in explaining the aforementioned intuition would be to look at the same phenomenon in embedded questions vs. embedded declarative clauses, where prosody would not be at play but the semantic/pragmatic differences should remain. For example:
+
+  (@embed_qgp) *Em Q Arg:* He asked her if she had decided to cram the old newspapers under the couch in the wastebasket.
+  (@embed_qct) *Em Q Mod:* He asked her if she had decided to cram the old newspapers under the couch in the guestroom.  
+  
+  (@embed_dgp) *Em D Arg:* She told him that she had decided to cram the old newspapers under the couch in the wastebasket.
+  (@embed_dct) *Em D Mod:* She told him that she had decided to cram the old newspapers under the couch in the guestroom.
+
+The prosody of an embedded question, as in (@embed_qgp), does not differ from that of a sentence like (@embed_dgp); but, the semantic properties and some of the pragmatic properties of the embedded clause in (@embed_qgp) are the same as in the Q Arg sentences from the study just reported.
+
+#### Event-related potentials {#erp}
+
+An event-related potential study of the phenomenon could provide a number of useful insights. It has been shown that the closure-positive shift (CPS), an ERP component that is elicited by the presence of a prosodic break or a comma, is present even in silent reading [@cps]. Together with the well known P600 (a positive amplitude shift approximately 600ms after the anomaly), associated with syntactic anomalies [@p600] and N400 (a negative amplitude shift approximately 400ms after the anomaly), associated with semantic anomalies [@n400] create a set of measures that have a number of important implications for research on the phenomena at hand. 
+
+Specifically, it might be that these ERP components can be used to:
+
+  A. Distinguish between hesitation and linguistically motivated prosodic breaks.
+  
+  B. If (A) proves fruitful, provide reference data with which to train either linguists or computer models to better distinguish between the two types of breaks.
+  
+  C. Determine whether the disambiguation style of @qp2 compared to the current study differs in terms of being syntactic or semantic.
+  
+To accomplish (A), one could time lock an ERP measure to the PP1 break position for the voice of a participant who is reading sentence like this for the current study aloud, and examine the resulting potentials. If a CPS is detected, that might be taken to mean that the participant has determined that a break there is linguistically motivated, and the recording of their voice might be scrutinized as an example of a true prosodic break. If an N400 or P600 is detected, that might mean that any break at that position should be considered a hesitation rather than a linguistically motivated break. It is also possible for these components to co-occur: @p600addscps found that the CPS and P600 components can be additive. In that case, it might be that the participant has both been garden-pathed and also felt that a break was linguistically motivated. The recordings created in the pursuit of (A), if they could be plausibly thought to represent the two categories of prosodic breaks, could then be studied and/or used to train either linguists or computer models to better distinguish hesitation from prosodic breaks. See @andrew for discussion of the use of computer models to categorize prosodic events.
+
+Finally, (C) would follow much the same methodology, and would seek to find a difference between, e.g., *in* PP2 disambiguation compared to *into* disambiguating PP2s. If N400 components were found to occur at the PP1 break position for @qp2 type sentences but P600 were found to occur there for the types of sentences tested in the current study, that finding would support the idea that the two are disambiguated in a different fashion. Other patterns are also possible, and it might be found that some items in each study are disambiguated in a way that triggers an N400 component while others trigger a P600 component. Whatever the findings, they could prove useful for refining the items used in the future of the PP-attachment research paradigm.
+
+### Summary
+
+In sum, the current study has not found evidence that supports the extension of the 2016 Intuition that interrogative garden paths are easier to process than declarative garden paths to syntactically disambiguated items. This is similar to the null findings of @qp2. Evidence has been found of an effect on Inter-reading time (IRT) of the Mod vs. Arg attachment of PP2 in both declarative and interrogative cases. Also established here is an effect of Speech Act on the IRT for filler items. There are systematic differences in the way that the different sentence types are prosodically structured, but the correspondence between sentence type and prosodic pattern is gradient rather than categorical. It is possible that a Bader-type account can explain the intuition investigation, or that it is illusory, or that the intuition is due to semantic or pragmatic factors, or to any combination of such factors. Further study via behavioral, eye-tracking, or ERP methodology are likely to be fruitful in further understanding the phenomenon.
+
