@@ -578,7 +578,7 @@ tab %>% kable(
 
 For both OBJ dominance and PP2 dominance, the main effect of Speech Act is non-significant, but its inclusion marginally improves the fit of each model. Even when limited to only Reading 2 data, Speech Act does not interact with PP2 Status, which is again supportive of a non-prosodic explanation for the motivating intuition. That there is a robust effect of PP2 Status is reassuring evidence that prosody is sensitive to syntax, and that the study's item construction is motivating the intended parse.
 
-### On Reading 1 delay
+### On Reading 1 delay {#r1del}
 
 Reading 1 (R1) delay is the amount of time between the initial display of a sentence and the start of phonation. Participants' median R1 delay ranged from 0.6s to 1.6s with a standard deviation of 0.25s. The distribution of R1 delay was notably different than that of R2 delay, shown in Figure \@ref(fig:delayComparison) which indicates that participants were adhering to the protocol at least most of the time.
 
@@ -775,7 +775,7 @@ Throughout the analysis of break patterns, PP2 Status was the most robust predic
 
 The break patterns observed in the data just discussed mostly do reflect the expectations laid out in (@breakpatMod2) and (@breakpatArg2): PP1 is the dominant break in a majority of Arg cases for both Readings, and OBJ is dominant in less than half of Arg cases for both Readings (see Figure \@ref(fig:bdom) above). Conversely, for Mod cases, OBJ is the dominant break in a majority of cases and PP1 in less than half, across both Readings.
 
-That Reading 2 is a significant predictor \replaced{of both OBJ break dominance and PP1 break dominance}{in 3 of the 4 analyses where its inclusion is possible} (see Section \@ref(domReg)) supports, at least provisionally, hypotheses 1 and 2 from Section \@ref(pred), repeated below.
+That Reading 2 is a significant predictor of both OBJ break dominance and PP1 break dominance (see Section \@ref(bdomReg)) supports, at least provisionally, hypotheses 1 and 2 from Section \@ref(pred), repeated below.
 
   (@hypb2) *Hypothesis 1* \linebreak\nopagebreak
   A first reading of a sentence where PP2 is a goal argument (Arg) will exhibit less natural prosody (more hesitation at and within the PP2 region) than:

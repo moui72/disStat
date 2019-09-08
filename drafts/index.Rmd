@@ -1,5 +1,5 @@
 ---
-title: "Prepositional phrase attachment ambiguities in declarative and interrogative contexts: Oral reading data"
+title: "Prepositional phrase attachment ambiguities   \nin declarative and interrogative contexts:  \nOral reading data"
 author: "Tyler J. Peckenpaugh"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -14,7 +14,8 @@ fontsize: 12pt
 mainfont: Georgia
 lot: true
 lof: true
-geometry: "top=1in,bottom=1in,left=1in,right=2in"
+geometry: "margin=1in"
+indent: 15pt
 header-includes:
   - \usepackage[linguistics]{forest}
   - \usepackage{longtable}
