@@ -104,8 +104,7 @@ rownames(versiontab)[1:4]<-paste("Version", rownames(versiontab))
 versiontab[1:4,1:2] %>% kable(
   caption="Number of participants per version-order combination.",
   col.names = c("1", "2"),
-  align="c",
-  booktab=T
+  align="c"
 ) %>% kable_styling() %>% 
   add_header_above(c(" "=1, "Order"=2)) %>%
   kable_styling(latex_options = c("hold_position"))
