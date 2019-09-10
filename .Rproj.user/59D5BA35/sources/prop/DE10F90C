@@ -1,7 +1,8 @@
 {
-    "cursorPosition" : "787,507",
+    "cursorPosition" : "531,20",
     "docOutlineSize" : "135",
     "docOutlineVisible" : "1",
+    "ignored_words" : "interactionplot,IRTs,hyp,redirt,pred,ccccccc,Prosodic,ToBI,Mehler,delayComparison,exps,irt,locatives,locative,parti,vtab,Winsorized,wIRT,sd,xtra,rvtab,sita,cccccccc,bothbreaks,bdom,disambiguator,lookahead,LRTs,Akaike,aic,lme,fullobjmod,objMod,logodds,fodom,odom,pdom\n",
     "last_setup_crc32" : "",
-    "scrollLine" : "786"
+    "scrollLine" : "0"
 }

@@ -1,19 +1,9 @@
-\newenvironment{note}
-    {\begin{center}
-    \begin{tabular}{|p{0.9\textwidth}|}
-    \hline
-    \singlespacing\\
-    }
-    { 
-    \\\\\hline
-    \end{tabular} 
-    \end{center}
-    }
-    
-\makeatletter
-\preto\@marginparreset{\singlespacing}
-\makeatother
-
-\usepackage[commentmarkup=margin]{changes}
-
 \pagenumbering{roman}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{eqparbox}
+\usepackage{stmaryrd}
+\usepackage{pdfpages}
+\newcommand{\myframebox}[2][Dia]{\setlength{\fboxsep}{2.5ex}\raisebox{\dimexpr-\height + 1.0ex}{\fcolorbox{black}{white}{\eqmakebox[#1]{\enspace #2\enspace}}}}
+
+\setlength\parindent{24pt}\setlength{\parskip}{0.0pt plus 1.0pt}

@@ -1,23 +1,66 @@
-```{r echo=FALSE}
-knitr::opts_chunk$set(
-	echo = FALSE,
-	fig.height = 3,
-	message = FALSE,
-	warning = FALSE
-)
-```
+\pagenumbering{gobble}
+\centering
 
-\raggedright
-# Abstract {-}
+\vspace*{2.0in}
 
-\large Prepositional phrase attachment ambiguities in declarative and interrogative contexts: Oral reading data\par
+\uppercase{Prepositional phrase attachment ambiguities \\ in declarative and interrogative contexts: \\ Oral reading data}
 
-\normalsize 
-Certain English sentences containing multiple prepositional phrases (e.g., *She had planned to cram the paperwork in the drawer into her briefcase*) have been reported to be prone to mis-parsing of a kind that is standardly called a “garden path.” The mis-parse stems from the temporary ambiguity of the first prepositional phrase (PP1: *in the drawer*), which tends to be interpreted initially as the goal argument of the verb *cram.* If the sentence ended there, that would be correct. But that analysis is overridden when the second prepositional phrase (PP2: *into her briefcase*) is encountered, since the *into* phrase can only be interpreted as the goal argument of the verb. Thus, PP2 necessarily supplants PP1’s initially assigned position as goal, and PP1 must be reanalyzed as a modifier of the object NP (*the paperwork*).  
+\vspace{0.5in}
 
-Interrogative versions of the same sentence structure (*Had she planned to cram the paperwork in the drawer into her briefcase?*) may have a different profile. They have been informally judged to be easier to process than their declarative counterparts, because they are less susceptible to the initial garden path analysis. The study presented here represents an attempt to find a behavioral correlate of this intuitive difference in processing difficulty.  
+by
 
-The experiment employs the Double Reading Paradigm (Fodor, Macaulay, Ronkos, Callahan, and Peckenpaugh, 2019). Participants were asked to read aloud a visually presented sentence twice, first without taking any time at all to preview the sentence content (Reading 1), and then again after unlimited preview (Reading 2). The experimental items were created in a 2 x 2 design with one factor being Speech Act (declarative vs. interrogative) and the other being PP2 Status, i.e., PP2 could only be an argument of the verb (Arg), as above, or else PP2 could be interpreted as a modifier (Mod) of the NP within the preceding PP, as in *She had / Had she planned to cram the paperwork in the drawer of her filing cabinet(?)*.  
+\vspace{0.5in}
+
+\uppercase{Tyler Peckenpaugh}
+
+\vfill 
+
+A dissertation submitted to the Graduate Faculty in Linguistics in partial fulfillment of the \\ requirements for the degree of Doctor of Philosophy, The City University of New York 
+
+\vspace{0.5in}
+
+2019
+
+\pagebreak
+
+\pagenumbering{roman}
+\vspace*{4in}
+\vfill
+
+\copyright 2019\\
+Tyler J. Peckenpaugh\\
+All rights reserved\\
+
+\pagebreak
+
+\includepdf[pages=1]{approval-page.pdf}
+
+\pagebreak
+
+ABSTRACT
+
+\vspace{0.25in}
+
+Prepositional phrase attachment ambiguities in declarative and interrogative contexts: Oral reading data
+
+\vspace{0.25in}
+
+by 
+
+Tyler Peckenpaugh
+
+\vspace{0.5in}
+
+\raggedright 
+Advisor: Janet Dean Fodor
+
+\vspace{0.5in}
+
+Certain English sentences containing multiple prepositional phrases (e.g., \textit{She had planned to cram the paperwork in the drawer into her briefcase}) have been reported to be prone to mis-parsing of a kind that is standardly called a “garden path.” The mis-parse stems from the temporary ambiguity of the first prepositional phrase (PP1: \textit{in the drawer}), which tends to be interpreted initially as the goal argument of the verb cram. If the sentence ended there, that would be correct. But that analysis is overridden when the second prepositional phrase (PP2: \textit{into her briefcase}) is encountered, since the \textit{into} phrase can only be interpreted as the goal argument of the verb. Thus, PP2 necessarily supplants PP1’s initially assigned position as goal, and PP1 must be reanalyzed as a modifier of the object NP (\textit{the paperwork}).  
+
+Interrogative versions of the same sentence structure (\textit{Had she planned to cram the paperwork in the drawer into her briefcase?}) may have a different profile. They have been informally judged to be easier to process than their declarative counterparts, because they are less susceptible to the initial garden path analysis. The study presented here represents an attempt to find a behavioral correlate of this intuitive difference in processing difficulty.
+
+The experiment employs the Double Reading Paradigm (Fodor, Macaulay, Ronkos, Callahan, and Peckenpaugh, 2019). Participants were asked to read aloud a visually presented sentence twice, first without taking any time at all to preview the sentence content (Reading 1), and then again after unlimited preview (Reading 2). The experimental items were created in a 2 x 2 design with one factor being Speech Act (declarative vs. interrogative) and the other being PP2 Status, i.e., PP2 could only be an argument of the verb (Arg), as above, or else PP2 could be interpreted as a modifier (Mod) of the NP within the preceding PP, as in \textit{She had / Had she planned to cram the paperwork in the drawer of her filing cabinet(?)}.  
 
 Participants' recordings of Reading 1 and Reading 2 were subjected to prosodic coding by a linguist who was naive to the research question. Distributions of prosodic boundaries were statistically analyzed to extract any significant differences in prosodic boundary patterns as a function of Speech Act, Reading, or PP2 Status. Results indicated a significant effect of PP2 Status across all analyses of prosodic phrasing, and a significant effect of Reading for the two analyses of prosodic phrasing that incorporated boundary strength. Speech Act was not a significant predictor, except in one of the four total analyses of prosodic phrasing reported.    
 
@@ -25,16 +68,19 @@ Another analysis concerned the amount of time a participant spent silently study
 
 Further studies seeking behavioral evidence of the informal intuition motivating this research are proposed. Also offered are possible explanations for why the intuition is apparently so strong for some English speakers, and why, if so, it is not reflected in IRT. Significant ancillary findings are that interrogatives are in general more difficult to process than corresponding declaratives. Also, inter-reading time (IRT) in the Double Reading paradigm is a useful measure of sentence processing difficulty given that within the declarative sentences, the garden-path (Arg) versions showed significantly longer IRTs than the non-garden-path (Mod) versions. 
 
-  processing difficulty.
+\pagebreak
 
+\centering 
+ACKNOWLEDGEMENTS
 
-# Acknowledgements {-}
+\vspace{0.5in}
+\raggedright
 
 The completion of this dissertation would have been impossible without the help of my friends, family, colleagues, and most of all, my committee of advisers. The timing of its completion could not have been more difficult for me or for the chair of my committee, Janet Fodor. To Janet, I say: thank you for your endurance, your wisdom, and your patience. 
 
 Much of the burden that stemmed from the difficult timing fell onto the plate of my second adviser, Dianne Bradley. To Dianne, I say: thank you for your tireless effort, your support, and your encouragement.
 	
-It is stereotypically believed, far and wide, that linguists are bad at math. This shortcoming is true of me, if not all my fellows. The burden of this fell mostly upon my third adviser, Martin Chodorow. To Martin, I say: thank you for your kindness, your readiness to explain, and your forgiveness for my many mistakes.
+It is stereo-typically believed, far and wide, that linguists are bad at math. This shortcoming is true of me, if not all my fellows. The burden of this fell mostly upon my third adviser, Martin Chodorow. To Martin, I say: thank you for your kindness, your readiness to explain, and your forgiveness for my many mistakes.
 
 I am also indebted in particular to my closest friend and partner, Tally Callahan. She endured many restless nights, grumpy days, unhinged panic attacks, and worse. Thank you, Tally, for helping me see this through.
 

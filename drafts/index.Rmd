@@ -1,21 +1,18 @@
 ---
-title: "Prepositional phrase attachment ambiguities   \nin declarative and interrogative contexts:  \nOral reading data"
-author: "Tyler J. Peckenpaugh"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
-classoption: "oneside, final"
+classoption: "oneside"
 bibliography: [refs.bib, packages.bib]
 csl: apa.csl
 biblio-style: "apalike"
 always_allow_html: yes
 biblo-title: "References"
-fontsize: 12pt
+fontsize: 11pt
 mainfont: Georgia
 lot: true
 lof: true
 geometry: "margin=1in"
-indent: 15pt
 header-includes:
   - \usepackage[linguistics]{forest}
   - \usepackage{longtable}
@@ -34,14 +31,4 @@ knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown', "lme4", "lmerTest"
 ), 'packages.bib')
 ```
-
-<!--
-## TODO
-  
-  * Abstract
-  * Acknowledgements
-  * First citation *per chapter* should include all authors (rather than et al)
-    * Currently, technical (LaTeX) difficulties are preventing this
-  * Utterance legnth analysis?
--->
 \pagebreak

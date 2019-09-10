@@ -47,7 +47,7 @@ fitems[c(4:5)] %>%
 
 # Filler items {#appFill}
 
-## Fillers items with trailing PPs in Q/D pairs {-}
+### Fillers items with trailing PPs in Q/D pairs {-}
 
 ```{r}
 library(readr)
@@ -90,7 +90,7 @@ ppy[c("version","text")] %>%
 
 \newpage
 
-## Fillers items without trailing PPs in Q/D pairs {-}
+### Fillers items without trailing PPs in Q/D pairs {-}
 
 ```{r}
 ppn<-subset(fitems,grepl("-PP",version,fixed=F)) 
@@ -134,7 +134,7 @@ Label <- c("Start", "Next", "Done")
 Position <- c("Left shift", "Right shift", "Thumb pad")
 Description <- c("Revewal a sentence and begin your reading.", "End your first reading.", "End your second reading and prepare for the next sentence.")
 keyTable <- data.frame(Label,Position,Description)
-kable(keyTable,booktabs=T,caption="Table of keyboard mappings") %>%
+kable(keyTable,booktabs=T) %>%
   kable_styling(latex_options = "hold_position")
 
 ```
@@ -156,7 +156,15 @@ For each recording, please respond in the spreadsheet using the following guidel
 
 For columns E-K, Consider a given sentence to be divided into regions, as in the following example:
 
-  ![](breakpos.png)
+\begingroup
+  \setlength{\tabcolsep}{1pt}
+  \begin{tabular}{cccccccc}
+    & & \footnotesize V Break & & \footnotesize OBJ Break & & \footnotesize PP1 Break & \\
+    She had & wanted to set & \% & the textbooks & \% & on the top shelf & \% & into the file box. \\
+    \cmidrule(r){2-2} \cmidrule(r){4-4} \cmidrule(r){6-6} \cmidrule(r){8-8} 
+    & \footnotesize V Region & & \footnotesize OBJ Region & & \footnotesize PP1 Region & & PP2 Region \\
+  \end{tabular}
+\endgroup
 
 Please work with the assumption that “prosodic boundary” in what follows is any subset of the following features, clustered in such a way as to trigger your intuition that a new prosodic element (of any size) is beginning: pitch change, volume change, segmental lengthening, or pause.
 

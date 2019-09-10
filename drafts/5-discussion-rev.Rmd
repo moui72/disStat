@@ -127,7 +127,13 @@ If the above explanation of a null result proves not to be viable in subsequent 
 
 ### A semantic/pragmatic explanation
 
-As discussed in Section \@ref(intg), there are substantial pragmatic and semantic differences between the interrogative and declarative versions of the construction the current study addresses. It is possible that those difference, rather than or in addition to the prosodic differences, are what lead to the 2016 Intuition. The differing properties of focus between questions and declaratives, the differing sets of presuppositions for questions and declaratives, or some other semantic properties of questions that differ from those of declaratives may be leading to an amelioration of processing difficulty or leading to the processing illusion just mentioned.
+As discussed in Section \@ref(intg), there are substantial pragmatic and semantic differences between the interrogative and declarative versions of the Double PP construction. It is worth considering the possibility that those differences might have been what led to the 2016 Intuition. For example, it could be that when narrow focus leads to the presupposition of most of the content of a polar question, the semantic processing load for the listener or reader is reduced, and thus the extra processing difficulty of the garden-path effect is not swamped by other grammatical processing, as it might be in a sentence without narrow focus.
+
+A possible method for exploring this potential explanation would be to test declarative sentences with marked narrow focus as in (@nd) (where capital letters indicate verbal emphasis). 
+
+  (@nd) He had crammed the NEWSPAPERS under the sofa in the guestroom.
+ 
+It would be predicted that, if narrow focus where the ameliorating factor, a declarative sentence such as (@nd) should be likewise ameliorated, just as in the interrogative cases. However, there are several issues that would need to be dealt with in order for such an experiment to be decisive. For instance, narrow focus is less easily made pragmatically appropriate in declaratives than in interrogatives, so some clarifying context would be necessary to create felicitous declarative materials. 
 
 ## Conclusions and future directions {#confound}
 

@@ -1,10 +1,13 @@
 site: bookdown::bookdown_site
 output: 
+  indent: true
   bookdown::word_document2: default
   bookdown::pdf_book:
     latex_engine: xelatex  
+    keep_tex: true
     includes:
       in_header: preamble.tex
+      before_body: _title.Rmd
   bookdown::gitbook:
     lib_dir: assets
     config:
