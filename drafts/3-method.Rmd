@@ -35,7 +35,7 @@ While the questions \added{addressed} in the current study \deleted{here} are di
 
 In total there were 16 experimental items each constructed in 4 versions, and 32 filler items each constructed in two versions. The design decisions are discussed in detail in this section.
 
-### Experimental items
+### Experimental items {#exps}
 
 The basic experimental items were created in a 2 x 2 design with one factor being Speech Act (declarative/D vs. interrogative/Q) and the other being PP2 Status, i.e., PP2 was either a prepositional phrase which must be a modifier (Mod) of the preceding phrase, or else one which must be an argument of the verb (Arg). A full list of experimental items is available in Appendix \@ref(appExp).
 
@@ -164,7 +164,7 @@ All filler items had the same sort of introductory material as the experimental 
 
 Control over filler pair length was slightly less stringent. They ranged from 63 to 79 characters and 12 to 14 words. Length was never different within a filler pair, since only the Speech Act factor was implemented in the construction of fillers.
 
-## Participants recruitment
+## Participants recruitment {#parti}
 
 All participants in the \added{current study} were undergraduate students enrolled at CUNY's Queens College in Psychology 101[^irb] who participated for course credit. Self-reported age ranged from 18 to 25 years. Participants were recruited \added{via} a software system designed for university participant pools. Students saw a recruitment notice on the system website (see Appendix \@ref(rec)), and were able to schedule their own appointment time within a range of hours offered.
 
@@ -174,7 +174,7 @@ The 35 participants recruited reported themselves to be native speakers of Ameri
 
 ## Location
 
-All data were collected in a private room with only the experimenter and participant present. While every effort was undertaken to ensure a quiet environment, intrusive noise from passersby or neighboring rooms were sometimes unavoidable. This resulted in some unusable or partially unusable recordings (detailed in section \@ref(irtDis) of the results chapter).
+All data were collected in a private room with only the experimenter and participant present. While every effort was undertaken to ensure a quiet environment, intrusive noise from passersby or neighboring rooms were sometimes unavoidable. This resulted in some unusable or partially unusable recordings (see Section \@ref(data)).
 
 ## Equipment and software
 
@@ -224,11 +224,11 @@ The nature of Reading 1 is less clear. Because participants were free to set the
 
 In order to clearly understand the results of this double reading study, it is important to understand the mechanics of reading. Specifically, we would want to know at what point during the reading of a temporarily ambiguous sentence the participant will become aware of the existence of a disambiguating PP2, since this is when it will be realized that the initial parse may crash. The work of several decades on the time course of silent reading is thoroughly summarized in @rayner2012psychology. They describe reading as consisting of a series of fixations, during each of which foveal vision takes in a small region of the visual field, and saccades where the eyes move ahead ballistically (i.e., on a planned trajectory that cannot be interrupted). As a consequence of the ballistic property of saccadic movement and the additional finding that landing sites (fixations) are not random, it can be inferred that at least some look-ahead is available, i.e., a reader must know something about what is coming in order to plan a suitable landing site. The primary predictor of fixation point seems to be a word's length in characters, meaning that word boundary information (represented orthographically by spaces in languages like English) must be available at the periphery of attention, i.e., within the perceptual span. Some details on the perceptual span, or the information that can be accessed by the eyes at any given time, is discussed in brief here, with special attention to its relevance for the study at hand.
 
-@rayner2012psychology discuss a number of studies that explore the size and properties of the perceptual span, the most fruitful of those studies being based on a gaze-contingent moving-window technique. In this technique, text is presented on a video monitor while the reader's eye movements are being monitered via eye-tracking equipment. A computer constantly samples the position of the reader’s eyes and updates the display accordingly. The mutilation of text outside a window of clear text creates a so-called moving window around the reader’s point of fixation is created. By manipulating the size of this window, it has been found that reading speed is maximized when information is available about 15 characters to either side of the fixation site  (it turns out this is actually asymmetric, and the window need only extend about 4 characters in the direction of what has already been read, i.e., to the left for English readers). 
+@rayner2012psychology discuss a number of studies that explore the size and properties of the perceptual span, the most fruitful of those studies being based on a gaze-contingent moving-window technique. In this technique, text is presented on a video monitor while the reader's eye movements are being monitered via eye-tracking equipment. A computer constantly samples the position of the reader’s eyes and updates the display accordingly. The mutilation of text outside a window of clear text creates a so-called moving window around the reader’s point of fixation is created. By manipulating the size of this window, it has been found that reading speed is maximized when information is available about 15 characters to either side of the fixation site  (it turns out this is actually asymmetric, and the window need only extend about 4 characters in the direction of what has already been read for optimal reading time to proceed, i.e., to the left for English readers). 
 
-In \added{a study by} @spanmcr\added{, in} order to determine what information was available at the periphery of the perceptual span, the amount of information outside a window of clear text known to be smaller than the ideal (e.g., 21 characters, 10 to either side) was manipulated. When all \added{other} characters and spaces were replaced with *X*, essentially destroying all information outside the window, reading was slower than when character spaces were maintained\deleted{,} but all other information was obscured. Improvements in reading speed \deleted{also} occurred when \replaced{the original} characters \added{outside the moving window} were replaced with characters that had similar shape (i.e., the same pattern of ascenders and descenders) as the character they replaced, with and without spaces. Using these techniques and manipulating the size of the window, \replaced{McConkie and Rayner}{they} were able to determine that it is only word boundary information that is available at the extreme edge of the perceptual span; character shape (ascenders and descenders) is available about 10 characters out from the fixation point, and character identity is available more or less only for the fixated word.
+In a study by @spanmcr, in order to determine what information was available at the periphery of the perceptual span, the amount of information outside a window of clear text known to be smaller than the ideal (e.g., 21 characters, 10 to either side) was manipulated. When all other characters and spaces were replaced with *X*, essentially destroying all information outside the window, reading was slower than when character spaces were maintained but all other information was obscured. Improvements in reading speed also occurred when the original characters outside the moving window were replaced with characters that had similar shape (i.e., the same pattern of ascenders and descenders) as the character they replaced, with and without spaces. Using these techniques and manipulating the size of the window, McConkie and Rayner were able to determine that it is only word boundary information that is available at the extreme edge of the perceptual span; character shape (ascenders and descenders) is available about 10 characters out from the fixation point, and character identity is available more or less only for the fixated word.
 
-The relevant question for the study at hand is as follows: how much of the sentence will the reader have seen and processed when a given word is being spoken? A typical item \added{from the current study} is displayed in (@dtc), with the words most likely to be fixated underlined, numbered by presumed fixation sequence, and labeled. The number of characters (including spaces) intervening before the start of the disambiguating region (the left edge of PP2) is displayed below each label. These counts are calculated from the initial character of the fixated word to the initial character of the disambiguating region; the actual fixation site is likely to be closer to the center of the word, meaning the distance would be shortened by a few (1-4) characters, depending on the length of the fixated word.
+The relevant question for the study at hand is as follows: how much of the sentence will the reader have seen and processed when a given word is being spoken? A typical item from the current study is displayed in (@dtc), with the words most likely to be fixated underlined, numbered by presumed fixation sequence, and labeled. The number of characters (including spaces) intervening before the start of the disambiguating region (the left edge of PP2) is displayed below each label. These counts are calculated from the initial character of the fixated word to the initial character of the disambiguating region; the actual fixation site is likely to be closer to the center of the word, meaning the distance would be shortened by a few (1-4) characters, depending on the length of the fixated word.
 
   (@dtc)
 \begingroup
@@ -244,9 +244,8 @@ The relevant question for the study at hand is as follows: how much of the sente
 \end{tabular}
 \endgroup
   
-Table \@ref(tab:dtcs) \replaced{presents}{describes} these distances \added{averaged} across items all experimental items. Note that these values do not vary across condition, because the initial fixation is located after both the subject and auxiliary verb, and \added{the counts} end\deleted{s} before PP2\replaced{. T}{, and t}he only changes across versions are subject-auxiliary inversion and the content of PP2 \added{which fall outside the string of material over which these counts were calculated}. 
+Table \@ref(tab:dtcs) presents these distances averaged across items all experimental items. Note that these values do not vary across condition, because the initial fixation is located after both the subject and auxiliary verb, and the counts end before PP2. The only changes across versions are subject-auxiliary inversion and the content of PP2 which fall outside the string of material over which these counts were calculated. 
 
-\comment{table caption revised}
 ```{r dtcs}
 csv <- '
 Median,46,34.5,25.5,7.5
@@ -270,11 +269,11 @@ if(is_html_output() || is_latex_output()){
 }
 ```
 
-From the presumed initial fixation point, the distance to disambiguation ranges from 45 to 50 characters, with a median of 46 characters. Recall that word boundary information is available \added{only} 15 to 18 characters to the right of fixation, \replaced{thus the}{we can be certain that} the disambiguating region is far out of view until several fixations in.
+From the presumed initial fixation point, the distance to disambiguation ranges from 45 to 50 characters, with a median of 46 characters. Recall that word boundary information is available only 15 to 18 characters to the right of fixation, thus the disambiguating region is far out of view until several fixations in.
 
-When does the reader become aware of the existence of PP2? When fixated on the direct object head noun, the range of distance is 21 to 27 characters, with a median of 25.5: PP2's content is still outside of view, even in the case of the smallest distance, and adjusting it to be a few characters smaller to account for the fact that fixation is likely to occur closer to the center of a word rather than on its first character. At most, the presence of the first few characters of PP2’s preposition may be available, but certainly not the character space after it. The distance from the presumed \replaced{fourth}{PP1} fixation point (the head noun within \replaced{PP1}{that PP}) \added{to the disambiguating region,} ranges from 5 to 9 characters, with a median between 7 and 8 characters. Thus, we can say with some certainty that the reader of a sentence such as (@dtc) will be aware that another phrase, one which starts with a 4-character word, remains to be incorporated into the parse sometime after processing of the direct object, and before processing of PP1.
+When does the reader become aware of the existence of PP2? When fixated on the direct object head noun, the range of distance is 21 to 27 characters, with a median of 25.5: PP2's content is still outside of view, even in the case of the smallest distance, and adjusting it to be a few characters smaller to account for the fact that fixation is likely to occur closer to the center of a word rather than on its first character. At most, the presence of the first few characters of PP2’s preposition may be available, but certainly not the character space after it. The distance from the presumed fourth fixation point (the head noun within PP1) to the disambiguating region, ranges from 5 to 9 characters, with a median between 7 and 8 characters. Thus, we can say with some certainty that the reader of a sentence such as (@dtc) will be aware that another phrase, one which starts with a 4-character word, remains to be incorporated into the parse sometime after processing of the direct object, and before processing of PP1.
 
-There is yet another \replaced{factor}{piece} to consider: the so-called eye-voice span (EVS), and the fact that the readers in this study are reading aloud rather than silently. According to @evs, when reading aloud the voice is typically behind the eyes by some 10-20 characters (M = 16.2 characters, SD = 5.2 characters). Adjusting Table \@ref(tab:dtcs) by subtracting 16 from each cell, we can approximate the position of the voice when the disambiguating region comes within the perceptual span. These values are shown in Table \@ref(tab:evsdtcr).
+There is yet another factor to consider: the so-called eye-voice span (EVS), and the fact that the readers in this study are reading aloud rather than silently. According to @evs, when reading aloud the voice is typically behind the eyes by some 10-20 characters (M = 16.2 characters, SD = 5.2 characters). Adjusting Table \@ref(tab:dtcs) by subtracting 16 from each cell, we can approximate the position of the voice when the disambiguating region comes within the perceptual span. These values are shown in Table \@ref(tab:evsdtcr).
 
 
 ```{r evsdtcr}
@@ -301,7 +300,7 @@ if(is_html_output() || is_latex_output()){
 }
 ```
 
-It is likely, then, \added{that} an oral reader's voice would actually still be on the object when the eyes' fixation begins to provide information of some kind about the existence of PP2, and will still be pronouncing PP1 when the eyes are first fixated on PP2. This raises a question about any prosodic breaks produced after the object, because it is difficult to distinguish between an intentional prosodic break at that point, and one arising from the reader using a natural \added{position for a} break \replaced{to}{for} hesitate \replaced{due to}{related to} the garden path effect of discovering the disambiguating PP2. \added{This property of oral reading calls into question the status of OBJ breaks to be reported in Chapter} \@ref(res) \added{with regard to whether they are linguistically motivated prosodic boundaries, or represent hesitation due to the processing difficulty experienced when PP2 is first observed by the reader.}
+It is likely, then, that an oral reader's voice would actually still be on the object when the eyes' fixation begins to provide information of some kind about the existence of PP2, and will still be pronouncing PP1 when the eyes are first fixated on PP2. This raises a question about any prosodic breaks produced after the object, because it is difficult to distinguish between an intentional prosodic break at that point, and one arising from the reader using a natural position for a break to hesitate due to the garden path effect of discovering the disambiguating PP2. This property of oral reading calls into question the status of OBJ breaks to be reported in Chapter \@ref(res) with regard to whether they are linguistically motivated prosodic boundaries, or represent hesitation due to the processing difficulty experienced when PP2 is first observed by the reader.
 
 ## Measurements of utterance timing {#method-irt}
 
@@ -334,7 +333,7 @@ A plausible set of measurements was required to meet the following criteria:
 
   B. *Minimum leading silence:* A leading silence ("delay") of more than 120ms. Even a very fast simple reaction time should not permit a delay shorter than 120ms, so a shorter delay likely means an inaccurate set of measurements has been returned.
 
-  C. *Maximum edge silence:* Maximum trailing and leading silence lengths of less than 95% of the file's length total was also used, in order to filter out recordings that did not represent a valid trial. Very long silences less than this very conservative threshold that impact the IRT are dealt with in the data clean-up rather than via phonation detection, as described in the results section of this paper (see section \@ref(irtDis)).
+  C. *Maximum edge silence:* Maximum trailing and leading silence lengths of less than 95% of the file's length total was also used, in order to filter out recordings that did not represent a valid trial. Very long silences less than this very conservative threshold that impact the IRT are dealt with in the data clean-up rather than via phonation detection, as described in the results section of this paper (see Section \@ref(data)).
 
 With 32 participants reading 48 items (experimental plus filler), twice each, there are an expected number of `r 32*48*2` recordings; due to system crashes at the time of data collection, `r 32*48*2 - nrow(meta)` recordings are missing. Of the `r nrow(meta)` recordings subjected to this treatment, `r nrow(meta[meta$success & !is.na(meta$agg),])` resulted in plausible timings[^handset]. A review of those that did not result in plausible timings found 9 recordings that were too noisy for computer analysis, but still usable, and those timings were recorded by hand.
 
@@ -360,19 +359,20 @@ A linguistically trained informant naive to the research being conducted, listen
   \endgroup
 
 
-\replaced{The rater}{She} was asked to report on whether or not she heard a prosodic boundary directly following the region labeled **OBJ**, and directly \deleted{after the} following \added{the region} labeled **PP1**. Note that throughout this dissertation, the word "break" is used interchangeably with the word "boundary" when referring to prosodic boundaries. It should be noted that a prosodic break represents only one kind of prosodic boundary, but the judgements elicited for this study do not distinguish between different sorts of boundaries, and it proves useful to employ the term "break" as a shortcut in some instances. \replaced{Instruction regarding how to define}{The following definition of} prosodic boundary was provided \added{by way of the following prose}:
+The informant was asked to report on whether or not she heard a prosodic boundary directly following the region labeled **OBJ**, and directly following the region labeled **PP1**. Note that throughout this dissertation, the word "break" is used interchangeably with the word "boundary" when referring to prosodic boundaries. It should be noted that the properties of prosodic boundaries vary, and break may not always be an appropriate descriptor, but the details of how prosodic boundaries are expressed fall outside the scope of the current work. The judgments elicited for this study rely solely on the coder's intuitive judgments, and it proves useful to employ the term "break" as a shortcut in some instances. There is a noteworthy difficulty in differentiating between hesitation and true prosodic boundaries. This matter is returned to in Section \@ref(hesi). Instruction regarding how to define prosodic boundary was provided to the coder by way of the following prose:
 
 >Please work with the assumption that “prosodic boundary” in what follows is any subset of the following features, clustered in such a way as to trigger your intuition that a new prosodic element (of any size) is beginning: pitch change, volume change, segmental lengthening, or pause.
 
-The decision to use loose intuitive judgments of prosodic phenomena, rather than an automatic computer-based classification system or an established standard like ToBI, is based on (a) the fact that prosodic phenomena are difficult to phonetically describe (cf. @choi2005finding), and computer performance is typically worse than human informants, and (b) the fact that the level of detailed offered by more robust sytems is simply not necessary for the analyses pursued here.
+The decision to use loose intuitive judgments of prosodic phenomena, rather than an automatic computer-based classification system or an established standard like ToBI, is based on (a) the fact that prosodic phenomena are difficult to phonetically describe (cf. @choi2005finding), and computer performance is typically worse than human informants, and (b) the fact that the level of detail offered by more robust systems such as ToBI is simply not necessary for the analyses pursued here, and would have greatly increased the level of expertise needed from the informant.
 
-Detailed instructions on the order in which items should be coded, both within speaker and across speakers, were also provided. The result was that she never listened to both readings of a sentence in sequence; she never listened to two Reading 1 versions of different sentences in sequence; and she never listened to the sentences in the same order for a different participans. The instructions given to the informant and the set of judgments requested can be found in Appendix \@ref(RA).
+
+Detailed instructions on the order in which items should be coded, both within speaker and across speakers, were also provided. The result was that she never listened to both readings of a sentence in sequence; she never listened to two Reading 1 versions of different sentences in sequence; and she never listened to the sentences in the same order for a different participants. The instructions given to the informant and the set of judgments requested can be found in Appendix \@ref(RA).
 
 The prosodic coding procedure was designed to hinder the informant from recognizing any patterns in the data, e.g., systematic differences between Readings 1 and 2. It also mitigated any ordering effects that might occur in the data or as a result of the informant's own process. The familiarization process via filler items allowed the informant to judge the existence of breaks relative to the typical cadence and fluency of a given speaker, prior to exposure to any of the experimental items for that speaker.
 
 ### Reliability {#rel}
 
-A second linguistically trained inromant, also naive to the purpose of the research,} repeated the task over 120 recordings selected from 8 participants (two from each group, one per ordering). Even numbered experimental items were used from 4 participants, and odd numbered from the other 4. There were 8 recordings missing from the 128 selected, so the reliability task resulted in judgments over 120 recordings. The first informant also blindly re-rated those 120, with the recording name obscured and instructions not to revisit her original ratings. Reliability scores (percent of recordings agreed upon) and Cohen's Kappa (K) are reported in Table \@ref(tab:validity). Cohen’s Kappa adjusts the measure of agreement so that it takes into account the level of agreement that would be expected to occur by chance alone based on the judges' rates of using the category labels. 
+A second linguistically trained informant, also naive to the purpose of the research, repeated the task over 120 recordings selected from 8 participants (two from each group, one per ordering). Even numbered experimental items were used from 4 participants, and odd numbered from the other 4. There were 8 recordings missing from the 128 selected, so the reliability task resulted in judgments over 120 recordings. The first informant also blindly re-rated those 120, with the recording name obscured and instructions not to revisit her original ratings. Reliability scores (percent of recordings agreed upon) and Cohen's Kappa (K) are reported in Table \@ref(tab:validity). Cohen’s Kappa adjusts the measure of agreement so that it takes into account the level of agreement that would be expected to occur by chance alone based on the judges' rates of using the category labels. 
 
 ```{r validitySetup}
 library(irr)
@@ -442,22 +442,18 @@ comps <- cbind(labels,comps)
 ```
 
 ```{r validity}
-t<-kable(
+kable(
   comps[,c(1,3:5)],
-  caption="Percent agreement between informants (inter-rater) and first and second codings by the primary informant (intra-rater).", 
+  caption="Percent agreement between informants (inter-rater) and first and second coding by the primary informant (intra-rater).", 
   booktab=T, 
-  digits=2,
   align="c",
-  escape=knitr::is_latex_output(),
   col.names=c(" ","OBJ","PP1","Break strength")
-) 
-
-t %>%
-  kable_styling(latex_options = c("hold_position")) %>%
+) %>%
   column_spec(1, bold = T) %>%
   row_spec(c(1:2,4:5), hline_after = F) %>%
   collapse_rows(columns = 1, latex_hline = "major")  %>%
-  footnote("*** p < 0.001; ** p < 0.01; * p < 0.05, ^ p < 0.1") 
+  footnote("*** p < 0.001; ** p < 0.01; * p < 0.05, ^ p < 0.1") %>%
+  kable_styling(latex_options = c("hold_position"))
 
 ```
 
@@ -466,16 +462,15 @@ The lower intra-rater agreement for relative break strength was likely impacted 
 ```{r agreements}
 csv <- "
 Kappa (K) value,Implications for reliability
-0 < K $\\leq$ 0.40,Unreliable distinction
+0.00 < K $\\leq$ 0.40,Unreliable distinction
 0.40 < K $\\leq$ 0.60,Questionably reliable distinction with only moderate agreement
 0.60 < K $\\leq$ 0.80,Reliable distinction with substantial agreement
-0.80 < K $\\leq$ 1.0,Highly reliable distinction
+0.80 < K $\\leq$ 1.00,Highly reliable distinction
 "
 tab <- read_csv(csv, col_names = T)
 
-t<-tab %>% kable(
+tab %>% kable(
   escape=F,
-  format="latex",
   align="rl", 
   caption="Stratification of kappa values and implications for reliability",
   booktab=T

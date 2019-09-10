@@ -96,13 +96,13 @@ The critical issue here is that in (@qhi), the absence of a syntactically-motiva
 
 If the PP1 break is treated as the main indicator of the prosodic structure, then the smaller difference across PP2 Status for interrogatives (`r 25.8-25.6`%) than for declaratives (`r 27-14.8`%) does, though perhaps weakly, leave open the door for the @Bader1998-ts style explanation of the hunch that interrogative PP-attachment garden paths are easier to comprehend than declarative ones. Ultimately, though, logistic regression models showed no significant effect of the interaction between Speech Act and PP2 Status (no bias toward higher Arg PP2 attachment in interrogatives than declaratives), so it is safest to assume that the numerical difference is just noise, and that the explanation for the intuition is not prosodic.
 
-### Hesitations vs. prosodic breaks
+### Hesitations vs. prosodic breaks {#hesi}
 
 An issue with the findings of this study is the difficulty in differentiating between linguistically-motivated prosodic breaks and hesitations. As shown by the reliability data reported in Section \@ref(rel), linguistically trained judges will not necessarily be able to agree where breaks fall and which breaks are stronger, perhaps in part because of the difficulty in differentiating between prosodic breaks and hesitations. 
 
 It can be difficult to capture a prosodic break in physical terms (see, e.g., @ladd), and there is no guarantee that examining the wave forms instrumentally would fare any better than judges' intuitions in distinguishing between hesitation and true prosodic boundaries. That said, it may be possible to find means to distinguish the two sorts of breaks: for instance, it might be that boundary tones or segmental lengthening are typically not part of a hesitation break, but are a part of a prosodic break, for example.
 
-It is possible that the results of the current study were impacted by issues with prosodic coding related to this difficulty in distinguishing between prosodic phenomena. Table \@ref(tab:combobr) shows the distribution of the possible break patterns (PP2 break only, OBJ break only, or both breaks, with the negligible number of cases of neither break omitted) as a function of sentence type for Reading 2 only. These data are a subset of the data reported in Section \@ref(bbr) Table \@ref(tab:bothbreaks).
+It is possible that the results of the current study were impacted by issues with prosodic coding related to this difficulty in distinguishing between prosodic phenomena. Table \@ref(tab:combobr) shows the distribution of the possible break patterns (PP2 break only, OBJ break only, or both breaks, with the negligible number of cases of neither break omitted) as a function of sentence type for Reading 2 only. These data are a subset of the data reported in Section \@ref(results-prosody), Table \@ref(tab:bothbreaks).
 
 ```{r combobr}
 library(dplyr)

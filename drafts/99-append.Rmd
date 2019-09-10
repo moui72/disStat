@@ -47,6 +47,8 @@ fitems[c(4:5)] %>%
 
 # Filler items {#appFill}
 
+## Fillers items with trailing PPs in Q/D pairs {-}
+
 ```{r}
 library(readr)
 library(stringr)
@@ -59,8 +61,8 @@ fnp <- read_csv("../csvs/src/filler-items-pp.csv")
 fpp$asp <- word(fpp$FDY,3)
 fnp$asp <- word(fnp$FDN,3)
 
-fpp$aspGroup <-fpp$asp %in% c("wanted","planned","intended","wanted")
-fnp$aspGroup <-fnp$asp %in% c("wanted","planned","intended","wanted")
+fpp$aspGroup <-fpp$asp %in% c("decided","planned","intended","wanted")
+fnp$aspGroup <-fnp$asp %in% c("decided","planned","intended","wanted")
 
 fpp <- fpp %>% arrange(-aspGroup,asp) 
 fnp <- fnp %>% arrange(-aspGroup,asp) 
@@ -73,27 +75,30 @@ fitems <- items %>%
   gather(key="version",value="text",-asp,-no,-aspGroup) %>%
   arrange(-aspGroup,asp,no)
 
-ppy<-subset(fitems,grepl("+PP",version))
+ppy<-subset(fitems,grepl("+PP",fitems$version,fixed=T)==TRUE)
 
 ppy[c("version","text")] %>% 
   kable(
+    row.names=F,
     col.names=c("Version", "Text"),
     booktab=T,
     linesep = c("","\\addlinespace"),
-    longtable=T,
-    caption="Filler items with trailing PPs"
+    longtable=T
   ) %>% 
   kable_styling(latex_options = c("hold_position","repeat_header"))
 ```
 
 \newpage
 
-```{r}
-ppn<-subset(fitems,grepl("-PP",version)) 
+## Fillers items without trailing PPs in Q/D pairs {-}
 
-ppn[c(3:4)]%>% 
-  kable(col.names=c("Version", "Text"),booktab=T,linesep = c("","\\addlinespace"),longtable=T, 
-        caption="Filler items with no trailing PPs") %>% 
+```{r}
+ppn<-subset(fitems,grepl("-PP",version,fixed=F)) 
+
+ppn[c("version","text")]%>% 
+  kable(
+    row.names=F,
+    col.names=c("Version", "Text"),booktab=T,linesep = c("","\\addlinespace"),longtable=T) %>% 
   kable_styling(latex_options = c("hold_position","repeat_header"))
 ```
 
