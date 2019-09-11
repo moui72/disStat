@@ -85,8 +85,6 @@ ggsave("wIRT.pdf",device=cairo_pdf)
 
 Overall mean for IRT was 6.5s (sd = 3.8). The longest IRT was 22.2s and the shortest was 0.7s. Median IRT was 6.1s.
 
-[^xtra]: The two 5-count cells include 2 additional participants whose data were collected in pursuit of another full set (i.e., towards an expansion to 40 participants) that was not completed due to a lack of participant sign-ups.
-
 ```{r vtab, echo=F}
 library(kableExtra)
 library(readr)

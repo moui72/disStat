@@ -15,6 +15,8 @@ knitr::opts_chunk$set(echo = F,warning = F,message=F)
 
 # Experimental items {#appExp}
 
+### Experimental items in four versions {-}
+
 ```{r}
 library(readr)
 library(tidyr)
@@ -38,8 +40,8 @@ fitems$PP2Status <- word(fitems$version,2)
 fitems <-  fitems %>% arrange(asp,v,PP2Status,text)
 
 fitems[c(4:5)] %>% 
-  kable(col.names=c("Version", "Text"), booktab=T, linesep = c("","","","\\addlinespace"), longtable=T,
-        caption="Experimental items in four versions") %>% 
+  kable(col.names=c("Version", "Text"), 
+        booktab=T, linesep = c("","","","\\addlinespace"), longtable=T) %>% 
   kable_styling(latex_options = c("hold_position","repeat_header"))
 ```
 
@@ -132,7 +134,7 @@ You will be asked about your reading habits and then asked to read complex sente
 ```{r keytab, echo=F}
 Label <- c("Start", "Next", "Done")
 Position <- c("Left shift", "Right shift", "Thumb pad")
-Description <- c("Revewal a sentence and begin your reading.", "End your first reading.", "End your second reading and prepare for the next sentence.")
+Description <- c("Reveal a sentence and begin your reading.", "End your first reading.", "End your second reading and prepare for the next sentence.")
 keyTable <- data.frame(Label,Position,Description)
 kable(keyTable,booktabs=T) %>%
   kable_styling(latex_options = "hold_position")

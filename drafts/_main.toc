@@ -44,10 +44,11 @@
 \contentsline {subsubsection}{\numberline {4.3.2.2}Event-related potentials}{64}{subsubsection.4.3.2.2}% 
 \contentsline {subsection}{\numberline {4.3.3}Summary}{65}{subsection.4.3.3}% 
 \contentsline {chapter}{\numberline {A}Experimental items}{66}{appendix.A}% 
+\contentsline {subsection}{Experimental items in four versions}{66}{section*.4}% 
 \contentsline {chapter}{\numberline {B}Filler items}{68}{appendix.B}% 
-\contentsline {subsection}{Fillers items with trailing PPs in Q/D pairs}{68}{section*.4}% 
-\contentsline {subsection}{Fillers items without trailing PPs in Q/D pairs}{70}{section*.5}% 
+\contentsline {subsection}{Fillers items with trailing PPs in Q/D pairs}{68}{section*.5}% 
+\contentsline {subsection}{Fillers items without trailing PPs in Q/D pairs}{70}{section*.6}% 
 \contentsline {chapter}{\numberline {C}Recruitment notice}{71}{appendix.C}% 
 \contentsline {chapter}{\numberline {D}Instructions to participants}{72}{appendix.D}% 
 \contentsline {chapter}{\numberline {E}Instructions for prosodic coding}{74}{appendix.E}% 
-\contentsline {chapter}{References}{76}{appendix*.6}% 
+\contentsline {chapter}{References}{76}{appendix*.7}% 
