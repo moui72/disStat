@@ -40,8 +40,11 @@ fitems$PP2Status <- word(fitems$version,2)
 fitems <-  fitems %>% arrange(asp,v,PP2Status,text)
 
 fitems[c(4:5)] %>% 
-  kable(col.names=c("Version", "Text"), 
-        booktab=T, linesep = c("","","","\\addlinespace"), longtable=T) %>% 
+  kable(
+    col.names=c("Version", "Text"), 
+    booktab=T, linesep = c("","","","\\addlinespace"), longtable=T,
+    caption = "Experimental items in four version, organized by introductory verb"
+  ) %>% 
   kable_styling(latex_options = c("hold_position","repeat_header"))
 ```
 
@@ -85,7 +88,8 @@ ppy[c("version","text")] %>%
     col.names=c("Version", "Text"),
     booktab=T,
     linesep = c("","\\addlinespace"),
-    longtable=T
+    longtable=T,
+    caption="Fillers items with trailing PPs in Q/D pairs"
   ) %>% 
   kable_styling(latex_options = c("hold_position","repeat_header"))
 ```
@@ -100,7 +104,9 @@ ppn<-subset(fitems,grepl("-PP",version,fixed=F))
 ppn[c("version","text")]%>% 
   kable(
     row.names=F,
-    col.names=c("Version", "Text"),booktab=T,linesep = c("","\\addlinespace"),longtable=T) %>% 
+    col.names=c("Version", "Text"),booktab=T,
+    linesep = c("","\\addlinespace"),longtable=T,
+    caption="Fillers items without trailing PPs in Q/D pairs") %>% 
   kable_styling(latex_options = c("hold_position","repeat_header"))
 ```
 
@@ -184,7 +190,9 @@ Please work with the assumption that “prosodic boundary” in what follows is 
 
 \clearpage
 
-# Additional prosodic data
+# Additional prosodic data {#proApp}
+
+The break occurrence data below represent what was used for the analyses of break dominance reported in Section \@ref(results-prosody) prior to incorporating judgements of relative break strength.
 
 \centering
 
@@ -254,10 +262,6 @@ dpros<-cbind(dpros[1:3],dpros[4:6])
 
 r2combo<-as.data.frame(cbind(dpros,qpros))
 
-
-
-write_csv(r2combo,"export/ccombo.csv")
-
 r1pdata<-droplevels(subset(mdata,Reading==1 & simple2lvl != "NEITHER"))
 qdata <- subset(r1pdata,PP2Status=="Arg")
 ddata <- subset(r1pdata,PP2Status=="Mod")
@@ -290,36 +294,34 @@ r2combo<-arrange(r2combo,row.names(r2combo))
 bothrbothb<-arrange(bothrbothb,row.names(bothrbothb))
 row.names(r1combo) <- c("OBJ only","Both","PP1 only")
 row.names(r2combo) <- c("OBJ only","Both","PP1 only")
-write_csv(r2combo,"export/ccombo.csv")
+
 ```
 
 ```{r r1bothbreaks}
 kable(
   r1combo,
   align="c",
-  col.names=rep(c("D","Q"),2)
+  col.names=rep(c("D","Q"),2),
+  caption="Percent occurrence of break patterns as a function of sentence type, for Reading 1"
 ) %>%
   add_header_above(c(" " =1, "Mod"=2,"Arg"=2)) %>%
   column_spec(1,bold=T)%>% kable_styling(latex_options = "hold_position")
 
 ```
-
-Table: Percent occurrence of both boundaries as a function of sentence type for Reading 1
 
 ```{r r2bothbreaks}
 kable(
   r2combo,
   align="c",
-  col.names=rep(c("D","Q"),2)
+  col.names=rep(c("D","Q"),2),
+  caption="Percent occurrence of break patterns as a function of sentence type, for Reading 2"
 ) %>%
   add_header_above(c(" " =1, "Mod"=2,"Arg"=2)) %>%
   column_spec(1,bold=T)%>% kable_styling(latex_options = "hold_position")
 
 ```
 
-Table: Percent occurrence of both boundaries as a function of sentence type for Reading 2
-
-```{r bothbreaks2, fig.pos="!H", fig.height=3.5}
+```{r bothbreaks2, fig.cap="Figure: Break pattern as a function of sentence type and Reading.", fig.pos="!H", fig.height=3.5}
 
 mdata$SentenceType <- paste(mdata$SpeechAct,mdata$PP2Status)
 adata <- subset(mdata,simple2lvl!="NEITHER")
@@ -338,8 +340,7 @@ ggplot(adata,
   labs(fill="Pattern",x=" ",y=" ") +
   facet_grid(cols = vars(reading)) +
   scale_y_continuous(labels=scales::percent) + 
-  scale_fill_brewer(breaks=c("OBJ", "BOTH", "PP1"), palette="Greys") +
-  ggtitle("Figure: Break pattern as a function of sentence type and Reading.")
+  scale_fill_brewer(breaks=c("OBJ", "BOTH", "PP1"), palette="Greys")
 
 ggsave("bothbreaks2.pdf",height=3.75,device=cairo_pdf)
 # dev.off()

@@ -64,7 +64,11 @@ sto <- function (SentenceType) {
 
 \setlength\parindent{24pt}\setlength{\parskip}{0.0pt plus 1.0pt}
 
-This chapter reports various descriptions and analyses of the recordings obtained, and the relevance of those findings to the research questions motivating this study. The reported results include the effect of Speech Act (declarative/D vs. interrogative/Q) and PP2 Status (modifier/Mod vs. argument/Arg) on the location of prosodic breaks, as well as on time spent by a participant considering a sentence between readings, i.e., the inter-reading time (IRT). In order to evaluate the extent to which participants adhered to the protocol as intended, i.e., began to read immediately for Reading 1 as opposed to producing a considered reading for Reading 2, the delay for which a sentence is displayed before a participant begins to read it is compared for Reading 1 (R1 delay) vs. Reading 2 (R2 delay). The prosodic patterns for participants with especially fast and especially slow R1 delays are presented as a way of investigating the extent to which individual differences might impact those patterns, and as a further exploration of the success of the protocol instructions in producing the intended behavior. A finding on the apparent processing cost of interrogative context when compared to declarative context among the filler sentences is also reported.
+This chapter reports various descriptions and analyses of the recordings obtained, and offers comments on the relevance of those findings to the research questions motivating this study. The reported analyses focus in the first instance on the impact of Speech Act (declarative/D vs. interrogative/Q) and PP2 Status (modifier/Mod vs. argument/Arg) on the location of prosodic phrase boundaries. The effects of those same factors are also examined for the time spent by a participant considering sentence meaning between first and second readings, i.e., the inter-reading time (IRT). 
+
+An ancillary analysis, likewise made available by the materials design, probes the apparent processing costs inherent to interrogative vs. declarative contexts, among the filler sentences, for which temporary ambiguity is not at issue. 
+
+Finally, to inform future research, two exploratory analyses are undertaken. In order to evaluate the extent to which participants adhered to the Double Reading protocol as intended, an analysis took advantage of participant variability in the time taken to reading any sentence. Was Reading 1 always a non-previewed pronunciation, as opposed to Reading 2's considered pronunciation? The prosodic patterns for participants with faster and slower Reading 1 (R1) delays are presented as a way of investigating the extent to which individual differences might impact prosodic phrasing, and as a further exploration of the success of the protocol instructions in producing the intended behavior. An analysis also explored the difference in IRT produced by sentences with a given PP2 head preposition; that analysis found a difference in behavior between the Mod PP2 heads *of* and *from*, but no difference between the Arg heads *into* and *onto*.
 
 ## Planned analyses
 
@@ -73,19 +77,6 @@ There are two types of planned analyses presented in this section. Two primary p
 ### Data for analysis {#data}
 
 Data for 32 participants in total were analyzed. Given 4 versions of the experiment and 2 possible orderings there would ideally be 4 participants per version-order combination. Due to the exclusion of some participants discussed in Section \@ref(parti), the actual distribution was as shown in \@ref(tab:vtab).
-
-IRTs below 0.25s (n = 2) and above 25.0s (n = 5) were assumed to be implausible and omitted from the analyses reported below. Experimental data were then Winsorized by participant to bring data below the 2.5% and above the 97.5% threshold to the value at those thresholds, resulting in the distribution as shown in figure \@ref(fig:wIRT) (n = 489).
-
-```{r wIRT,fig.cap="Distribution of IRT."}
-irt_data <- read_csv("export/irt_data.csv")
-ggplot(irt_data, aes(wirt/1000)) +
-  geom_histogram(binwidth = 0.5,color="white",fill="#333333") + 
-  labs(subtitle="Bin size = 0.5s",xlab="IRT (seconds)",ylab="Frequency")
-ggsave("wIRT.pdf",device=cairo_pdf)
-# dev.off()
-```
-
-Overall mean for IRT was 6.5s (sd = 3.8). The longest IRT was 22.2s and the shortest was 0.7s. Median IRT was 6.1s.
 
 ```{r vtab, echo=F}
 library(kableExtra)
@@ -112,10 +103,25 @@ versiontab[1:4,1:2] %>% kable(
   kable_styling(latex_options = c("hold_position"))
 ```
 
+IRTs below 0.25s (n = 2) and above 25.0s (n = 5) were assumed to be implausible and omitted from the analyses reported below. Experimental data were then Winsorized by participant to bring data below the 2.5% and above the 97.5% threshold to the value at those thresholds, resulting in the distribution as shown in Figure \@ref(fig:wIRT) (n = 489). That figure makes evident the great variability and positive skew in observed IRT values (range 0.7 to 22.2s; 6.5s (sd = 3.8); median 6.1).
+
+```{r wIRT,fig.cap="Distribution of IRT values for experimental sentences."}
+irt_data <- read_csv("export/irt_data.csv")
+ggplot(irt_data, aes(wirt/1000)) +
+  geom_histogram(binwidth = 0.5,color="white",fill="#333333") + 
+  labs(subtitle="Bin size = 0.5s",xlab="Inter-reading time (IRT) in seconds.",ylab="Frequency")
+ggsave("wIRT.pdf",device=cairo_pdf)
+# dev.off()
+```
+
 Some of the expected 3072 recordings (32 participants x 2 readings x 48 items, 16 experimental and 32 filler) could not be used due to intrusive background noise during the recording session. Additionally, data were also excluded from analysis if either of a Reading 1/Reading 2 pair was missing; 9 such incomplete pairs were excluded. Without analyzable data from both members of a pair, it is difficult to determine the extent to which the elicitation protocol was executed as intended (i.e., the extent of preview for Reading 1 vs. Reading 2). The number of recordings per sentence type included in the analyses that follow were distributed as shown in Table \@ref(tab:rvtab); if no data had been omitted, the expected count per sentence type was 256.
 
 ```{r rvtab, echo=F}
 library(tidyr)
+library(dplyr)
+library(kableExtra)
+library(readr)
+mdata<-read_csv("export/prosody_data.csv")
 tot<-as.data.frame(xtabs( ~ PP2Status + SpeechAct, data=mdata))
 gtot <- tot
 
@@ -135,7 +141,7 @@ For experimental items, 978 recordings were subjected to prosodic analysis, cons
 
 ### Prosodic boundary patterns {#results-prosody}
 
-This section will report the prosodic phrasings found in the recordings collected, and the extent to which those patterns are or are not influenced by the design parameters of the study (Speech Act and PP2 Status), as well as which reading (Reading 1 or Reading 2) a given recording represents. These data are reported first descriptively (i.e., in terms of frequency), and then using regression models to calculate the statistical significance of whatever patterns emerge from the data. Finally, a summary of findings and their implications for the hypothesis motivating this study is provided.
+This section reports the prosodic phrasings judged to be present in the recordings of experimental items, and the extent to which those patterns are influenced by the design parameters of the study (Speech Act and PP2 Status), as well as which reading (Reading 1 or Reading 2) a given recording represents. These data are reported first descriptively (i.e., in terms of occurrence frequency), and then using regression models to calculate the statistical significance of whatever patterns emerge from the data. Finally, a summary of findings and their implications for the hypothesis motivating this study is provided.
 
 ```{r byGPr2}
 library(scales)
@@ -222,7 +228,9 @@ obj<-cbind(r1obj,r2obj[2:3])
 
 ```
 
-In what follows, the distribution of OBJ boundaries and PP1 boundaries are reported as a function of the four sentence types created by the materials design (D/Q x Mod/Arg), for each of Reading 1 and Reading 2. Then, the patterns of boundaries over the two positions are considered, before moving to statistical analysis. Note that while judgments about the potential boundary after the infinitival construction verb were collected, reports of these were exceptionally rare (occurring in only 8% of recordings), and thus have been set aside. The break locations are indicated with a % symbol in (@breakpos), which was previously provided in Section \@ref(sita) as (@bpos) and is repeated here for convenience.
+In what follows, the distribution of OBJ boundaries and PP1 boundaries are first reported, separately for the four sentence types created by the materials design (D/Q x Mod/Arg), for each of Reading 1 and Reading 2. Then, the patterns of boundaries over the two positions are considered, before moving to statistical analysis. 
+
+Note that while judgments about the potential boundary after the infinitival construction verb were collected, reports of these were sufficiently uncommon (occurring in only 8% of recordings) to warrant their treatment as noise, and so were set aside. The break locations are indicated with a % symbol in (@breakpos), which was previously provided in Section \@ref(sita) as (@bpos) and is repeated here for convenience.
 
   (@breakpos)
   \begingroup
@@ -234,8 +242,8 @@ In what follows, the distribution of OBJ boundaries and PP1 boundaries are repor
       & \footnotesize V Region & & \footnotesize OBJ Region & & \footnotesize PP1 Region & & PP2 Region \\
     \end{tabular}
   \endgroup
-
-The occurrence of the OBJ boundary was somewhat less frequent for Reading 1 of Arg sentences (`r (57.7+56.7)/2`%) than for Reading 2 of Arg sentences (`r (73.0+74.2)/2`%).
+  
+Examination of prosodic phrasings begins with counts of the rate at which prosodic breaks were judged to be present after each of the OBJ and PP1 sentence regions: Table \@ref(tab:obj) below summarizes these data, for the OBJ breaks:
 
 ```{r obj}
 names(obj)[2:5] <- c(2:5)
@@ -250,7 +258,9 @@ kable(
   kable_styling(latex_options = c("hold_position"))
 ```
 
-The PP1 break was almost always present for cases where PP2 was an argument (98.7% occurrence, overall). That boundary was present substantially less often (68.0%) for cases where PP2 could be interpreted as a modifier. Speech Act and reading did not appear to impact the overall distribution of the PP1 break.
+A boundary following the OBJ region was more likely overall for Mod sentences (77.8% occurrence rate) than for Arg (65.2%), though that contrast was more sharply drawn for Reading 1 of Arg sentences (57.2%) than for Reading 2 (73.6%).
+
+Data of the same kind, now for the rates at which prosodic breaks were judged to be present after the PP1 sentence regions, are summarized in Table \@ref(tab:pp1) below.  Those data allow the following generalization to be drawn: Reversing the pattern for OBJ, a boundary after PP1 was judged to be present substantially less often for Mod sentences (68.0% occurrence rate) than for Arg; for the latter type, the PP1 break was present in virtually all utterances (98.7%).  Moreover, for breaks at this position, there appeared to be no influence whatsoever of other factors in the design (Speech Act, Reading).  
 
 ```{r pp1}
 names(pp1)[2:5] <- c(2:5)
@@ -265,36 +275,9 @@ kable(
   kable_styling(latex_options = c("hold_position"))
 ```
 
-When looking at both breaks together, a sentence could have one of four patterns: both the OBJ and PP1 break present; only OBJ present; only PP1 present; or neither break present. There were only 5 cases where neither was present, and those were omitted in all subsequent reports of prosodic patterns.
+Looking at both OBJ and PP1 breaks, taken together, it is clear that the total number of breaks judged present for any sentence type within a given reading substantially exceeds the number of recorded utterances.  For example, for declarative sentences with PP2 as modifier (D/Mod) produced as Reading 1, 179 construction-internal prosodic breaks occurred (95 OBJ + 84 PP1), cf. 123 recordings; thus, 45.5% of those utterances carried both breaks.  Considering all four sentences types produced as Readings 1 and Reading 2, two-break prosodic phrasing patterns were judged to have occurred in 43.0% to 72.1% of recordings.  Appendix \@ref(proApp) provides two tables and an accompanying figure spelling out the distribution of OBJ-only, PP1-only, and OBJ+PP1 break patterns.  Five cases where no phrasing break was judged present were omitted in subsequent reports of prosodic patterns.
 
-There was very little difference across readings, with the following generalizations of the data shown in Table \@ref(tab:bothbreaks) (and its companion Figure \@ref(fig:bothbreaks2)) holding for both Reading 1 and Reading 2. For Mod sentences the OBJ-only pattern is relatively frequent (31.1% in declaratives, 31.4% in interrogatives), wheres for Arg sentences there are very few instances with the OBJ-only pattern (0.8% in declaratives, 2.5% in interrogatives). The pattern with both breaks is less common for  Mod (54.1% in declaratives, 43.0% in interrogatives) sentences than for Arg sentences (72.1% in declaratives, 71.7% in interrogatives). The PP1-only pattern occurs at about the same rate in Mod interrogatives (25.6%) as in Arg declaratives (27%) and Arg interrogatives (25.8%), but is noticeably less common for Mod declaratives (14.8%). These proportions are visually represented in Figure \@ref(fig:bothbreaks2).
-
-```{r bothbreaks2, fig.cap="Break pattern as a function of sentence type and Reading.",fig.pos="!H", fig.height=3.5}
-
-mdata$SentenceType <- paste(mdata$SpeechAct,mdata$PP2Status)
-adata <- subset(mdata,simple2lvl!="NEITHER")
-adata$reading <- paste("Reading", adata$Reading)
-
-ggplot(adata,    
-    aes(
-      x=reorder(SentenceType, sto(SentenceType)),
-      y=..count..,
-      fill=reorder(
-        simple2lvl,
-        ifelse(simple2lvl=="PP1", 3, ifelse(simple2lvl=="OBJ",1,2))
-      )
-    )) +
-  geom_bar(position="fill",color="black",width=0.5) +
-  labs(fill="Pattern",x=" ",y=" ") +
-  facet_grid(cols = vars(reading)) +
-  scale_y_continuous(labels=scales::percent) + 
-  scale_fill_brewer(breaks=c("OBJ", "BOTH", "PP1"), palette="Greys")
-
-ggsave("bothbreaks2.pdf",height=3.75,device=cairo_pdf)
-# dev.off()
-```
-
-The relative strength of the PP1 and OBJ boundaries was also collected. Figure \@ref(fig:bdom) incorporates this information, where PP1-dominance means that the PP1 boundary was reported to be stronger than the OBJ break; OBJ-dominance means the reverse; and “Equal strength” means that neither boundary was reported to be stronger than the other (the 5 instances with no breaks were again omitted). These distributions are shown in Table \@ref(tab:dombreaks).
+For the questions pursued in the current study, the analysis that is most germane is one considering break dominance rather than simple break occurrence. Tables \@ref(tab:r1dombreaks), \@ref(tab:r2dombreaks), and Figure \@ref(fig:bdom) below therefore incorporate the informant’s judgments about the relative strength of the PP1 and OBJ prosodic phrasing boundaries. PP1-dominance means that the PP1 boundary was reported to be stronger than the OBJ break boundary (or that only the PP1 boundary occurred); OBJ-dominance means the reverse; and “Equal strength” means that neither boundary was reported to be stronger than the other. 
 
 ```{r bdomprep}
 library(ggplot2)
@@ -384,9 +367,7 @@ kable(
 
 ```
 
-Considering the data in terms of dominance rather than simple occurrence results in the categorization of most of the cases of both boundaries being present as either PP1-dominant or OBJ-dominant. 
-
-```{r bdom, fig.cap="Percent break dominance occurence as a function of sentence type and Reading.",fig.pos="!H", fig.height=3.5}
+```{r bdom, fig.cap="Percent break dominance occurrence as a function of sentence type and Reading.",fig.pos="!H", fig.height=3.5}
 library(ggplot2)
 library(ggthemes)
 library(extrafont)
@@ -413,12 +394,13 @@ ggsave("bdom.pdf",device=cairo_pdf)
 # dev.off()
 ```
 
-Figure \@ref(fig:bdom) clearly shows a robust effect of PP2 Status (Mod or Arg) on break dominance, and little to no impact of Reading or Speech Act (D or Q). A dominant break after PP1 is frequent for all Arg sentences, both declaratives and questions, and in both Reading 1 and Reading 2. It is less frequent for Mod sentences in both Reading 1 and Reading 2. The higher relative frequency of PP1 break dominance in Arg sentences compared to Mod sentences is expected, since it represents a syntactically motivated prosodic break in the Arg cases. For the Mod sentences, there is no syntactic motivation for the PP1 break, so it makes sense for it to be less frequent and less dominant in Mod sentences. 
-  It is noteworthy and puzzling that the patterns do not differ greatly across the two readings, as one would expect difficulty getting the prosody right on the first try for the difficult sentences being tested in the current study. It may be that the disambiguating preposition, *into* came into view while the participant was still pronouncing an earlier portion of the sentence (due to the Eye-Voice Span, see Section \@ref(look-ahead)). Since the disambiguator is a preposition and thus a function word, it can be processed very quickly, and so it's possible that even very limited lookahead allowed some readers to come to the correct parse on their first reading.
+The data here clearly show a robust effect of PP2 Status (Mod or Arg) on break dominance, and little to no impact of Reading or Speech Act (D or Q). A dominant break after PP1 is frequent for all Arg sentences, both declaratives and questions, and in both Reading 1 and Reading 2. It is less frequent for Mod sentences in both Reading 1 and Reading 2. The higher relative frequency of PP1 break dominance in Arg sentences compared to Mod sentences is expected, since it represents a syntactically motivated prosodic break in the Arg cases. For the Mod sentences, there is no syntactic motivation for the PP1 break, so it makes sense for it to be less frequent and less dominant in Mod sentences. 
 
-A number of mixed effects logistic regression models support the general observations above. Models predicting PP1 break, OBJ break, PP1 break dominance and OBJ break dominance are reported. All models include random intercepts for participant and item, but due to convergence errors, no random slopes for any predictors are included. 
+It is both noteworthy and puzzling that the patterns do not differ greatly across the two readings, as one would expect difficulty getting the prosody right on the first try for the difficult sentences being tested in the current study. It may be that the disambiguating preposition, *into* came into view while the participant was still pronouncing an earlier portion of the sentence (due to the Eye-Voice Span, see Section \@ref(look-ahead)). Since the disambiguator is a preposition and thus a function word, it can be processed very quickly, and so it's possible that even very limited lookahead allowed some readers to come to the correct parse on their first reading.
 
-The intercept always represents the Mod sentence type, which is not expected to present any particular difficulty to the reader, since Mod PP2 Status is compatible with what is assumed to be the running parse when it is encountered (i.e., PP1 has been interpreted as the goal argument of the verb, and PP2 does not disrupt that interpretation). For those models where Speech Act is included in the model, the intercept represents the declarative sentence type. In this way, the more complex sentence types are compared to the simplest one represented in the model. If Reading is included in a model, the intercept represents Reading 1.
+A number of mixed effects logistic regression models support the general observations above. Models predicting PP1 break, OBJ break, OBJ break dominance and PP1 break dominance are reported. All models include random intercepts for participant and item, but due to convergence errors, no random slopes for any predictors are included. 
+
+The intercept always represents the Mod sentence type, which is not expected to present any particular difficulty to the reader, since sentences with PP2 taking the role of a modifier are compatible with what is assumed to be the running parse when PP2 is encountered (i.e., PP1 has been interpreted as the goal argument of the verb, and PP2 does not disrupt that interpretation). For those models where Speech Act is included in the model, the intercept represents the declarative sentence type. In this way, the more complex sentence types are compared to the simplest one represented in the model. If Reading is included in a model, the intercept represents Reading 1.
 
 For each analysis, a reduced model and the full model (i.e., the model containing all predictors of interest), when it converged, are reported. In each case, the reported reduced model is the simplest nested model[^nested] that did not represent a statistically significant worse fit according to likelihood ratio tests (LRTs) than the next most complex model. This model selection process was used for each of the four analyses that follow (OBJ and PP1 boundary occurrence, OBJ and PP1 break dominance). All reported models represent statistically significant improvement over a minimal model, which was a model with only an intercept and random effects (no fixed effects). That comparison is reported for each selected reduced model, as well as the Akaike Information Criterion (AIC[^aic]) value for the selected model and the minimal model. All regression models were run using the lme4 R package (@R-lme4).
 
@@ -450,7 +432,7 @@ tab %>% kable(
 
 ```
 
-Table \@ref(tab:objMod) shows a reduced model, predicting the occurrence of an OBJ break with estimates for the coefficients of the fixed effects of Reading 2, PP2 and the interaction between Reading and PP2 Status. The removal of Speech Act as a predictors revealed the Reading $\times$ PP2 Status interaction to become a significant predictor. The model that included PP2 Status and its interaction with Reading provided a statistically significantly better fit than a minimal model (AIC~Minimal~=1068.0, AIC~Reduced~=1031.6, $\chi^2$(3)=42.34, p < .001).
+Table \@ref(tab:objMod) shows a reduced model, predicting the occurrence of an OBJ break with estimates for the coefficients of the fixed effects of Reading 2, PP2 and the interaction between Reading and PP2 Status. The removal of Speech Act as a predictor revealed the Reading $\times$ PP2 Status interaction to become a significant predictor. The model that included PP2 Status and its interaction with Reading provided a statistically significantly better fit than a minimal model (AIC~Minimal~=1068.0, AIC~Reduced~=1031.6, $\chi^2$(3)=42.34, p < .001).
 
 ```{r objMod}
 csv <- 'Outcome: OBJ break (Reduced),Estimate,Std. Error,p
@@ -470,9 +452,7 @@ tab %>% kable(
 
 ```
 
-The log odds[^logodds] of an OBJ break for Mod Reading 1 is 1.39 (std. error = 0.45, p < .01). The log odds of that break increased in Reading 2 but the increase was not statistically significant. PP2 arguments reduced the log odds of an OBJ break compared to PP2 modifiers by a robust amount, but less so in Reading 2 than in Reading 1.
-
-The OBJ break is expected to occur more often in Mod cases, because that break marks the argument attachment (and therefore a change in branching direction) of PP1.
+The log odds[^logodds] of an OBJ break for Mod Reading 1 is 1.39 (std. error = 0.45, p < .01). The log odds of that break increased modestly in Reading 2 but the increase was not statistically significant. PP2 arguments reduced the log odds of an OBJ break compared to PP2 modifiers, robustly, but less so in Reading 2 than in Reading 1. As noted earlier, the OBJ break is expected to occur more often in Mod cases, because that break marks PP1 attachment as an argument of the verb.
 
 [^logodds]:  Log odds is, in this case, the natural log of the odds ratio, so the log odds of A is log~e~(P(A)/P(¬A)). A log odds of 1.39 translates to an odds ratio of 4.01:1 (e^1.39^=4.01) and a probability of 80% (4.01/(1+4.01)=0.80).
 
@@ -520,7 +500,7 @@ tab %>% kable(
   kable_styling(latex_options = "hold_position")
 ```
 
-Sentences with argument PP2s had greatly increased log odds of a PP1 break compared to ones with modifier PP2s. This is again expected, because the PP1 break is indicating the change in branching direction for argument attachment of PP2. That Speech Act is not a relevant predictor is evidence against a prosodic explanation of the motivating intuition for this study; we would expect both a main effect of Speech Act and definitely an interaction between Speech Act and PP2 Status, if the prosody were more (or less) different across the PP2 Status factor for interrogatives than for declaratives.
+Sentences with argument PP2s had greatly increased log odds of a PP1 break compared to those with modifier PP2s. This is again expected, because the PP1 break is responsive to the syntactic discontinuity required for the argument attachment of PP2. That Speech Act is not a relevant predictor is evidence against a prosodic explanation of the motivating intuition for this study; we would expect both a main effect of Speech Act and definitely an interaction between Speech Act and PP2 Status, if the prosody were more (or less) different across the PP2 Status factor for interrogatives than for declaratives.
 
 Models were also run for predicting break dominance. The full model predicting OBJ break dominance is shown in Table \@ref(tab:fodom).
 
@@ -567,11 +547,10 @@ tab %>% kable(
   kable_styling(latex_options = "hold_position")
 ```
 
-PP1 break dominance and OBJ break dominance are not entirely complementary, because it is possible for both breaks to have equal prominence. As such, models predicting PP1 were also explored. 
+PP1 break dominance and OBJ break dominance are not entirely complementary, because it is possible for the two breaks to have equal prominence (as happens, say, when prosodic
+phrasing marks out parenthetic content). Thus, models predicting PP1 dominance were also explored. 
 
-The full model predicting PP1 break dominance failed to converge, so only the reduced model is reported.
-
-Table \@ref(tab:pdom) reports the best model for predicting PP1 break dominance. Unlike the model for predicting OBJ break dominance, the best model for predicting PP1 break dominance includes Speech Act as a predictor. The best model is one with fixed effects for reading, Speech Act, and PP2 Status.
+The full model predicting PP1 break dominance failed to converge, so only the reduced model is reported. Table \@ref(tab:pdom) reports the best model for predicting PP1 break dominance. Unlike the model for predicting OBJ break dominance, the best model for predicting PP1 break dominance includes Speech Act as a predictor, as well as Reading, and PP2 Status.
 
 ```{r pdom}
 csv <- '
@@ -594,14 +573,14 @@ tab %>% kable(
 
 This model was better than a minimal model according to LRT (AIC~Minimal~=1290.4, AIC~Reduced~=1078.8, $\chi^2$(3)=217.59, p < .001). PP1 break dominance was much more likely for sentences with argument PP2s than sentences with modifier PP2s, with interrogatives having slightly increased log odds of PP1 break dominance. Log odds of PP1 break dominance were slightly less in Reading 2 than Reading 1. There were no significant interaction terms.
 
-Because reading was a significant predictor for 3 of the 4 models reported, and there are theoretical reasons to believe that Reading 2 is more representative of the natural or intended prosody of the reader, models were also run predicting PP1-dominance and OBJ-dominance for Reading 2 data only. In both cases, the best model had the same structure: fixed effects of Speech Act and PP2 Status, with no interaction term.
+Because reading was a significant predictor for 3 of the 4 models reported, and there are reasons to believe that Reading 2 is more representative of the natural or intended prosody of the sentences at issue, models were also run predicting OBJ-dominance and PP1-dominance for Reading 2 data only. In both cases, the best model had the same structure: fixed effects of Speech Act and PP2 Status, with no interaction term.
 
 ```{r r2dom}
 csv <- '
 ,Estimate,Std. Err,p,Estimate,Std. Err,p
-D Mod (Intercept),0.66,0.24,< 0.01,-0.97,0.27,< .001
-Q,-0.3,0.22,0.16,0.35,0.22,.1
-Arg,-2.07,0.24,< 0.001,2.15,0.24,< .001
+D Mod (Intercept),0.66,0.24,< .01,-0.97,0.27,< .001
+Q,-0.3,0.22,.16,0.35,0.22,.10
+Arg,-2.07,0.24,< .001,2.15,0.24,< .001
 '
 
 tab <- read_csv(csv)
@@ -615,13 +594,13 @@ tab %>% kable(
   kable_styling(latex_options = "hold_position")
 ```
 
-For both OBJ-dominance and PP1-dominance, the main effect of Speech Act is non-significant, but its inclusion marginally improves the fit of each model. Even when limited to only Reading 2 data, Speech Act does not interact with PP2 Status, which is again supportive of a non-prosodic explanation for the motivating intuition. That there is a robust effect of PP2 Status is reassuring evidence that prosody is sensitive to syntax, and that the study's item construction is motivating the intended parse.
+For both OBJ-dominance and PP1-dominance, the main effect of Speech Act failed to reach significance, but its inclusion marginally improves the fit of each model. Even when limited to only Reading 2 data, Speech Act does not interact with PP2 Status, which is again supportive of a non-prosodic explanation for the motivating intuition. That there is a robust effect of PP2 Status is reassuring evidence that prosody is indeed sensitive to syntax, and that the study's material design has driven both the intended initial parse and re-analysis for the Arg sentence-types, where PP2 takes the role of goal argument to the construction verb.
 
 ### Inter-reading time {#irt}
 
-Inter-reading time is the amount of time after the completion of Reading 1 and before the beginning of phonation of Reading 2. The details of how this was measured and defined can be found in Section \@ref(method-irt). IRT is meant to provide an estimate of how much difficulty the reader has in processing a given sentence. If a reader spends more time studying a sentence prior to reading it aloud a second time, the IRT will be longer, which can be taken as an indicator of processing load on the first reading.
+Inter-reading time[^irtp] is the time elapsing between the completion of Reading 1 and before the start Reading 2 phonation. The details of how this was measured and defined can be found in Section \@ref(method-irt). Possibly, IRT can provide an estimate of how much difficulty the reader has in processing a given sentence. If a reader spends more time studying a sentence prior to reading it aloud a second time, the IRT is longer; it is thus a possible indicator of processing difficulty.
 
-Since IRT is a measure across pairs of recordings (Reading 1/Reading 2), so the number of data analyzed in this section are half as many as those in the prosody analyses.
+[^irtp]: Since IRT is a measure across pairs of recordings (Reading 1/Reading 2), the number of data analyzed in this section are half as many as those in the prosody analyses.
 
 ```{r}
 irt_props <- describe(irt_data$irt)
@@ -699,11 +678,11 @@ ggsave("interact.pdf",device=cairo_pdf())
 # dev.off()
 ```
 
-Figure \@ref(fig:interactionplot) shows the mean IRT as a function of sentence type. The two slopes are only very slightly divergent. PP2 Status has a statistically significant effect on IRT: sentences with argument PP2s having substantially longer IRTs (6.7s) than those with modifier PP2s (6.3s). The effect of Speech Act was not statistically significant, though interrogatives attracted longer (6.7s) IRTs than declaratives (6.4s), and including Speech Act as a predictor of IRT improved the predictive power of the model. This is discussed in more detail below.
+Figure \@ref(fig:interactionplot) graphs mean IRT values as a function of sentence type. The two slopes diverge minimally. PP2 Status has a statistically significant effect on IRT: sentences with argument PP2s having substantially longer IRTs (6.73s) on average than those with modifier PP2s (6.34s). The effect of Speech Act was not statistically significant, though interrogatives attracted longer (6.66s) IRTs than declaratives (6.40s), and including Speech Act as a predictor of IRT improved the predictive power of the model. This is discussed in more detail below.
 
 Regression models support the observations above. All models discussed include random intercepts for participant and item. Models with random slopes did not converge, and so random slopes were not included.
 	
-The full model for predicting IRT included fixed effects of Speech Act and PP2 Status and the interaction between them. This model is shown in table \@ref(tab:hyp).
+The full model for predicting IRT included fixed effects of Speech Act and PP2 Status and their interaction. This model is shown in Table \@ref(tab:hyp).
 
 
 ```{r hyp}
@@ -725,7 +704,7 @@ tab %>% kable(
   kable_styling(latex_options = "hold_position")
 ```
 
-Of the nested models (those with subsets of the full model), the best model according to likelihood ratio testing (LRT) was the one with only the fixed effect of PP2 Status, shown in Table \@ref(tab:redirt), i.e., the difference between the reduced and full model was not statistically significant (AIC~Full~=2347.8, AIC~Reduced~=2346.2, $\chi^2$(2)=2.41, p = .3). The improvement of fit of the reduced model over a minimal model with only an intercept and random effects was statistically significant (AIC~Reduced~=2346.2, AIC~Minimal~=2348.7, $\chi^2$(1)=4.51, p < .05), indicating a robust main effect of PP2 Status on IRT.
+Of the nested models (those with subsets of the full model), the best model according to likelihood ratio testing (LRT) was the one with only the fixed effect of PP2 Status, shown in Table \@ref(tab:redirt). The improvement of fit of the reduced model over a minimal model with only an intercept and random effects was statistically significant (AIC~Reduced~=2346.2, AIC~Minimal~=2348.7, $\chi^2$(1)=4.51, p < .05), indicating a robust main effect of PP2 Status on IRT.
 
 ```{r redirt}
 csv <- '
@@ -744,13 +723,13 @@ tab %>% kable(
   kable_styling(latex_options = "hold_position")
 ```
 
-These results are not supportive of *Hypothesis 3* formalized in Section \@ref(pred), as statistical significance was expected for the interaction of Speech Act with PP2 Status if interrogative context is indeed ameliorating for PP-attachment garden paths, compared to declarative context for the same construction.
+These results are not supportive of *Hypothesis 3* formalized in Section \@ref(pred), as statistical significance was expected for the interaction of Speech Act with PP2 Status under the assumption that interrogative context ameliorates processing difficulty for PP-attachment garden paths, vs. declarative context for the same construction.
 
-### Discussion of primary planned analyses
+### Discussion of planned analyses
 
-Throughout the analysis of prosodic phrasing patterns, PP2 Status was the most robust predictor of OBJ and PP1 boundary occurrence and their relative strengths. The OBJ break was more frequent and more frequently dominant for sentences with a PP2 that was an argument than those with a PP2 that could be a modifier; conversely, the PP1 break was more frequent and more frequently dominant for sentences with a PP2 that was interpretable as a modifier than those with a PP2 that was an argument.
+Throughout the analysis of prosodic phrasing patterns, PP2 Status was the most robust predictor of OBJ and PP1 boundary occurrence and their relative strengths. The PP1 break was more frequent and more frequently dominant for sentences with a PP2 that was an argument than those with a PP2 that could be a modifier; conversely, the OBJ break was more frequent and more frequently dominant for sentences with a PP2 that was interpretable as a modifier than those with a PP2 that was an argument.
 
-Returning to the predictions discussed in \@ref(pred), recall the contrast made there between linguistically motivated prosodic breaks and other breaks or pauses. The Arg and Mod sentences differ with regard to where the linguistically motivated breaks fall. These expectations are shown in (@breakpatMod2) and (@breakpatArg2) (originally shown in Chapter 1 and repeated here for convenience), where "$\|$" represents a linguistically motivated prosodic break.
+Returning to the predictions discussed in Section \@ref(pred), recall the contrast made there between syntactically motivated prosodic breaks and other breaks or pauses. The Arg and Mod sentences differ with regard to where such breaks are expected to fall. These expectations are shown in (@breakpatMod2) and (@breakpatArg2) (originally formulated in Chapter 1 and repeated here for convenience), where "$\|$" represents a syntactically motivated prosodic break.
 
 \singlespacing
 
@@ -778,14 +757,14 @@ Consider again *Hypotheses 1* and *2* from Section \@ref(pred), repeated below.
 
   (@hypb2) *Hypothesis 1* (Prosodic Errors)\linebreak\nopagebreak
   A first reading of a sentence where PP2 is a goal argument (Arg) will be more likely to exhibit less natural prosody (e.g., more hesitation at and within the PP2 region) than either:
-    a. Either reading of a sentence where PP2 is a modifier (Mod)
+    a. A first reading of a sentence where PP2 is a modifier (Mod)
     b. A second reading of a sentence where PP2 is a goal argument (Arg)
     
 While the present study did not specifically attempt to assess whether a given reading represents more or less natural prosody for these constructions, given that there is a difference between readings, it seems most likely that Reading 2 is the more natural of the two since it represents a considered reading, rather than a hurried one without as much preview. *Hypotheses 1* is fully supported only on the assumption that this is so. The robust effect of PP2 Status throughout all of the regression models of prosodic phrasing, however, suggests that at least the (a) portion of the both *Hypothesis 1* above and *Hypothesis 2* below are supported, if reading is disregarded. That Reading 2 is a significant predictor of both OBJ-dominance and PP1-dominance supports the (b) portions of these two hypotheses.
     
   (@hypd2) *Hypothesis 2* (Prosody/Syntax Mismatch)\linebreak\nopagebreak
-  A first reading of a sentence where PP2 is a goal argument (Arg) will more often be produced with prosodic structure that represents an implausible or ungrammatical parse of the string (i.e., PP2 incorrectly attached as a modifier).
-    a. Either reading of a sentence where PP2 is a modifier (Mod)
+  A first reading of a sentence where PP2 is a goal argument (Arg) will more often be produced with prosodic structure that represents an implausible or ungrammatical parse of the string (i.e., PP2 incorrectly attached as a modifier) than either:
+    a. A first reading of a sentence where PP2 is a modifier (Mod)
     b. A second reading of a sentence where PP2 is a goal argument (Arg)
 
 *Hypothesis 2* is fairly well supported: the (a) portion by the significant effect of PP2 Status on OBJ-dominant and PP1-dominant pronunciations, and the (b) portion by the significance of Reading on the same. That said, the results do not represent a perfect correlation. Setting Reading 1 aside, Arg sentences (whether D or Q) were found to have the Arg-optimal pronunciation in almost 80% of recordings (PP1-dominant pronunciations), leaving some 22% of pronunciations as prosody/syntax mismatches (OBJ-dominant). For Mod sentences (whether Q or D), the picture is similar, but with a weaker contrast: prosodic coding identifies the Mod-optimal pronunciation in some 64% of recordings (OBJ-dominant). That leaves nearly one-third of pronunciations as prosody/syntax mismatches (PP1-dominant). Given the assumption that for Reading 2 a participant should already know the structure of the sentence and its interpretation, it is not entirely clear why some Reading 2 pronunciations still do not represent to the expected pattern. 

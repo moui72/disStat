@@ -38,12 +38,6 @@
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -81,7 +75,7 @@
     \preauthor{}\postauthor{}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-09-11}
+    \date{2019-09-12}
 
 \pagenumbering{roman}
 \usepackage{xcolor}
@@ -198,7 +192,7 @@ ACKNOWLEDGEMENTS
 
 \setlength\parindent{24pt}\setlength{\parskip}{0.0pt plus 1.0pt}
 
-The completion of this dissertation would have been impossible without the help of my friends, family, colleagues, and most of all, my committee of advisors. The timing of its completion could not have been more difficult for me or for the chair of my committee, Janet Fodor. To Janet, I say: thank you for your endurance, your wisdom, and your patience. I'm so grateful that you have stuck with me through all the hardship we have both dealt with this past year.
+The completion of this dissertation would have been impossible without the help of my friends, family, colleagues, and most of all, my committee of advisors. The timing of its completion could not have been more difficult for me or for the chair of my committee, Janet Dean Fodor. To Janet, I say: thank you for your endurance, your wisdom, and your patience. I'm so grateful that you have stuck with me through all the hardship we have both dealt with this past year.
 
 Much of the burden that stemmed from the difficult timing fell onto my second adviser, Dianne Bradley. To Dianne, I say: thank you for your tireless effort, your support, and your encouragement. There is absolutely no possible world in which I completed this dissertation without you. Your efforts, your wit, and your timely comfort kept me going when I thought I could go no further.
 	
@@ -206,11 +200,11 @@ It has been said that linguists are bad at math. This shortcoming is true of me,
 
 I am also indebted in particular to my closest friend and partner, Tally Callahan. She endured many restless nights, grumpy days, unhinged panic attacks, and worse. Thank you, Tally, for helping me see this through.
 
-In a more practical way, I am indebted to Eva Fernandez and Nathacia Lucena. Without them, data collection would have been infinitely more difficult. Thank you for the use of your lab! And, to Bill Haddican, for his advice on handling the syntax of the construction I studied. 
+In a more practical way, I am indebted to Eva Fern\'{a}ndez and Nathacia Lucena. Without them, data collection would have been infinitely more difficult. Thank you for the use of your lab! And, to Bill Haddican, for his advice on handling the syntax of the construction I studied. 
 
 I must also profusely thank my informants: Sita Carraturo, who surely went above and beyond; Danielle Ronkos, who has also been an important source of support; and Rachel Zane, who helped me despite my nonsense. Special thanks to my brother-in-law, Kurtiss Hare, for his help with my Python coding.
 
-I also want to thank my parents and my sister for the love and encouragement. It was an extremely difficult time for us as a family, and especially for my father. For your understanding of the limitations on my time that writing this dissertation entailed, thank you. 
+I also want to thank my parents and my sister for their love and encouragement. It was an extremely difficult time for us as a family, and especially for my father. For your understanding of the limitations on my time that writing this dissertation entailed, thank you. 
 
 Also, thank you to my friends Corbin Neuhauser and Kathryn O’Shields for their input on the matters at large, as well as their camaraderie. Likewise, Burke Blackman, Pablo Gonzalez, and Michael Madden, for friendship and encouragement.
 
@@ -338,21 +332,21 @@ The 2016 Intuition and the current hypothesis are both concerned with a temporar
 \tightlist
 \item
   He crammed the paperwork in the drawer in his briefcase.
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    \(\#\) \ldots{} {[}\textsubscript{VP} crammed {[}\textsubscript{NP} the paperwork{]} {[}\textsubscript{PP1} in {[}\textsubscript{NP} the drawer {[}\textsubscript{PP2} in his briefcase{]}{]}{]}
+  \item
+    \(\checkmark\) \ldots{} {[}\textsubscript{VP} crammed {[}\textsubscript{NP} the paperwork {[}\textsubscript{PP1} in {[}\textsubscript{NP} the drawer {]}{]} {[}\textsubscript{PP2} in his briefcase{]}{]} \linebreak\nopagebreak
+    \emph{``\(\#\)'' indicates a structure with an implausible reading}
+  \end{enumerate}
 \end{enumerate}
 
-\begin{enumerate}
-\def\labelenumi{\alph{enumi})}
-\tightlist
-\item
-  \(\#\) \ldots{} {[}\textsubscript{VP} crammed {[}\textsubscript{NP} the paperwork{]} {[}\textsubscript{PP1} in {[}\textsubscript{NP} the drawer {[}\textsubscript{PP2} in his briefcase{]}{]}{]}
-\item
-  \(\checkmark\) \ldots{} {[}\textsubscript{VP} crammed {[}\textsubscript{NP} the paperwork {[}\textsubscript{PP1} in {[}\textsubscript{NP} the drawer {]}{]} {[}\textsubscript{PP2} in his briefcase{]}{]} \linebreak\nopagebreak
-  \emph{``\(\#\)'' indicates a structure with an implausible reading}
-\end{enumerate}
+The initial parse is expected to be (12 a) because of a bias (due to Minimal Attachment, or some variation thereof, see (1) above), which favors a structure where the first PP attaches into the verb phrase (VP) as an argument of the verb, i.e., {[}\textsubscript{VP} V NP PP1{]} with PP1 denoting the goal, which leaves nowhere for the second PP to attach but as a modifier of the noun phrase (NP) inside PP1 ({[}\textsubscript{PP1} \emph{under} {[}\textsubscript{NP} \emph{the sofa} {[}\textsubscript{PP2} \emph{in the wastebasket}{]}{]}{]}). This initial parse (12 a) is pragmatically implausible, since sofas are generally not found inside wastebaskets. Structural reanalysis is required to bring about the only plausible parse (12 b), where PP1 attaches as a modifier of the direct object NP and so allows PP2 to attach to the VP as a goal argument, resulting in a structure such as {[}\textsubscript{VP} V {[}\textsubscript{NP} N PP1{]} PP2{]}, i.e., where it is the paperwork in the drawer that is being crammed in his briefcase.
 
-The initial parse is expected to be (12 a) because of a bias (due to Minimal Attachment, or some variation thereof, see (1) above), which favors a structure where the first PP attaches into the verb phrase (VP) as an argument of the verb, i.e., {[}\textsubscript{VP} V NP PP1{]} with PP1 denoting the goal, which leaves nowhere for the second PP to attach but as a modifier of the noun phrase (NP) inside PP1 ({[}\textsubscript{PP1} \emph{under} {[}\textsubscript{NP} \emph{the sofa} {[}\textsubscript{PP2} \emph{in the wastebasket}{]}{]}{]}). This initial parse (12 a) is pragmatically implausible, since sofas are generally not found inside wastebaskets. Structural reanalysis is required to bring about the only plausible parse (12 b), where PP1 attaches as an NP modifier of the direct object and so allows PP2 to attach to the VP as a goal argument, resulting in a structure such as {[}\textsubscript{VP} V {[}\textsubscript{NP} N PP1{]} PP2{]}, i.e., where it is the paperwork in the drawer that is being crammed in his briefcase.
-
-Regarding the ambiguity of the preposition \emph{in} which heads PP1 in (13) below: Gehrke (2006) discusses its semantics and notes that it has two interpretations in some varieties of English, including standard American English. These interpretations accord with the ambiguity of the two possible attachment sites for PP1 in examples such as (13) below. The standard reading of \emph{in} is locative, as in (13 a), where that reading is forced by the unambiguous directional reading of PP2's \emph{into} which must ultimately fill the goal argument position. In contexts of directed motion (as with a verb like \emph{cram} in example 13), however, a directional reading of \emph{in} is licensed; thus, in (13 b) where PP2 is headed by \emph{of}, which cannot be directional and so cannot be the goal argument, PP1 is interpreted as the goal (Gehrke notes that English is exceptional among Germanic languages with respect to the ambiguity of \emph{in}, which typically require some form of overt marking for the directional interpretation).
+Regarding the ambiguity of the preposition \emph{in} which heads PP1 in (13) below: Gehrke (2006) discusses its semantics and notes that it has two interpretations in some varieties of English, including standard American English. These interpretations accord with the ambiguity of the two possible attachment sites for PP1 in examples such as (13) below. The standard reading of \emph{in} in this context is locative, as in (13 a), where that reading is forced by the unambiguous directional reading of \emph{into} in PP2, which must ultimately fill the goal argument position. In contexts of directed motion (as with a verb like \emph{cram} in example (13)), however, a directional reading of \emph{in} is licensed; thus, in (13 b) where PP2 is headed by \emph{of}, which cannot be directional and so cannot be the goal argument, PP1 is interpreted as the goal. (Gehrke notes that English is exceptional among Germanic languages with respect to the ambiguity of \emph{in}, which typically require some form of overt marking for the directional interpretation.)
 
 \begin{enumerate}
 \def\labelenumi{(\arabic{enumi})}
@@ -373,7 +367,7 @@ Regarding the ambiguity of the preposition \emph{in} which heads PP1 in (13) bel
   \end{enumerate}
 \end{enumerate}
 
-For clarity in what follows, the current study categorizes the sentence types being discussed into two groups based on the status of the PP2 they contain: (a) cases where PP2 is an argument of the verb are referred to as Arg-type sentences, and (b) cases where PP2 is a modifier of the preceding noun are called Mod-type sentences; see (13) above. As noted, it is the Arg sentences that are generally reported to be garden paths, because PP2 must fill the goal role that PP1 is initially expected to have filled, as just discussed. Mod sentences are not likely to result in a garden path, because PP2 can modify the NP within PP1 to become part of the goal, and therefore need not disrupt PP1's attachment as the goal.
+For clarity in what follows, the current study categorizes these sentences into two categories based on the status of the PP2 they contain: (a) cases where PP2 is an argument of the verb are referred to as Arg-type sentences, and (b) cases where PP2 is a modifier of the preceding noun are called Mod-type sentences; see (13) above. As noted, it is the Arg sentences that are generally reported to be garden paths, because PP2 must fill the goal role that PP1 is initially expected to have filled, as just discussed. Mod sentences are not likely to result in a garden path, because PP2 can modify the NP within PP1 to become part of the goal, and therefore need not disrupt PP1's attachment as the goal.
 
 In order for the differing parsing process for (13 a) and (13 b) to be explained by a strictly structure based model of parsing, certain assumptions have to be made about the syntax. A simple way to achieve it is to assume that all arguments of a verb are syntactic sisters to the verb, resulting in a three-way branching VP for ditransitive verbs such as \emph{cram} ; see Figure \ref{fig:threetree}. In this case, in order to avoid postulating extra nodes that would be required for PP1 to be a modifier of the object NP, Minimal Attachment dictates that PP1 should be assumed to fill the verb's goal argument slot. Note that while both \emph{into} and \emph{onto} are employed as disambiguator for Arg sentences, for the sake of clarity, discussion throughout this dissertation are limited to examples of \emph{into}.
 
@@ -605,13 +599,11 @@ This section returns to the questions raised by the 2016 Intuition discussed in 
 
 What exactly differs between (18) and (19)? Syntactically, very little: the position of the subject \emph{he} and the auxiliary \emph{had} have been reversed, but the words that follow are identical.
 
-The semantic, or perhaps more accurately pragmatic, differences between (18) and (19) lie with the presuppositions the sentences carry with them, which may vary with the placement of focus, marked phonologically in spoken language. The exact phonetic properties of focus, and the semantic and syntactic consequences of it, are widely studied and debated. For an excellent overview of the topic, see Ladd (2008), pp.213-23. The assumptions made about focus in this dissertation concern English only, and are more or less compatible with a Focus-to-Accent model as described by Ladd, which distinguishes ``the semantic/pragmatic notion `focus' from the phonetic/phonological notion `accent' and -- crucially -- {[}\ldots{}{]} allows focus to apply to portions of utterances larger than individual words'' (Ladd, 2008, p. 217). This results in sentential stress being split into two related but independent components: (a) where focus lies within the sentence, and (b) how focus is conveyed with regard to the location of a phonological accent.
+The semantic, or perhaps more accurately pragmatic, differences between (18) and (19) lie with the presuppositions the sentences carry with them, which may vary with the placement of focus, marked phonologically in spoken language. The exact phonetic properties of focus, and the semantic and syntactic consequences of it, are widely studied and debated. For an excellent overview of the topic, see Ladd (2008), pp.213-23. The assumptions made about focus in this dissertation concern English only, and are more or less compatible with a Focus-to-Accent model as described by Ladd, which distinguishes ``the semantic/pragmatic notion `focus' from the phonetic/phonological notion `accent' and -- crucially -- {[}\ldots{]} allows focus to apply to portions of utterances larger than individual words'' (Ladd, 2008, p. 217). This results in sentential stress being split into two related but independent components: (a) where focus lies within the sentence, and (b) how focus is conveyed with regard to the location of a phonological accent.
 
 The declarative in (18) has few presuppositions beyond the existence of the actors and objects involved (the referents of \emph{he}, \emph{paperwork}, \emph{drawer} and \emph{briefcase}), and that these actors and objects can be involved in \emph{cramming}. The presuppositions of (19) are different from those of (18): for instance, a yes/no question additionally presupposes that the listener does or may know the answer to the question. Further presuppositions may exist, depending on where the focus lies within the sentence.
 
 Focus in a declarative like (18) is typically wide, i.e., no element is having special attention called to it. A polar question like (19), however, will often receive narrower focus on one word or phrase, so that when uttered, that word or phrase is more prominent than the others. The focused element becomes the part of the sentence that the question is about. Focus can fall on any of the lexical or referential elements in the sentence (subject, auxiliary verb, matrix verb, infinitival verb, object NP, or the NP of either PP1 or PP2, or any part of one of these). In the examples below, a small sample of possible focus locations are shown, with words in all capital letters indicating verbal emphasis signifying focus.
-
-\singlespacing
 
 \begin{enumerate}
 \def\labelenumi{(\arabic{enumi})}
@@ -630,8 +622,6 @@ Focus in a declarative like (18) is typically wide, i.e., no element is having s
     Had he planned to cram the paperwork {[}\textsubscript{PP1} in the drawer{]} {[}\textsubscript{PP2} into HIS briefcase{]}?
   \end{enumerate}
 \end{enumerate}
-
-\doublespacing
 
 In (20 a), with focus on the auxiliary, the question encompasses the entire proposition, and asks whether or not it is true. In this case, there are not any additional presuppositions when compared to the declarative counterpart of the sentence. In (20 b), with focus on \emph{he}, the question is asking about whether the referent of \emph{he} is the actor who performed the action described; in this case, the entire predicate is presupposed: someone had planned to cram the paperwork in the drawer into his briefcase, but was it him? In (20 c), with focus on \emph{drawer}, the question is instead about which paperwork this is all happening to: the paperwork that is in the drawer, or some other stack of paperwork? In this case, it is presupposed that the referent of \emph{he} was the one who had planned to cram some paperwork into his briefcase, and only the exact referent of \emph{the paperwork} is not presupposed. For each other location of focus, the presuppositional content is similarly complementary to whichever element is focused and therefore being asked about.
 
@@ -814,7 +804,7 @@ The sentence in (28) is only grammatical with Arg syntax (i.e., PP2 must be the 
   \end{enumerate}
 \item
   \emph{Hypothesis 2} (Prosody/Syntax Mismatch)\linebreak\nopagebreak
-  A first reading of a sentence where PP2 is a goal argument (Arg) will more often be produced with prosodic structure that represents an implausible or ungrammatical parse of the string (i.e., PP2 incorrectly attached as a modifier).
+  A first reading of a sentence where PP2 is a goal argument (Arg) will more often be produced with prosodic structure that represents an implausible or ungrammatical parse of the string (i.e., PP2 incorrectly attached as a modifier) than either:
 
   \begin{enumerate}
   \def\labelenumii{\alph{enumii}.}
@@ -913,7 +903,7 @@ The word order and content of the construction was the same across all versions 
 
 PP1 was the same across versions of a given quadruple, e.g., \emph{stick the large check in the envelope} (see Table \ref{tab:sentences}'s illustrative example). That is, PP1 was identical (and temporarily ambiguous) in every version of a given quadruple, being interpretable as either the goal argument of the construction verb or as a modifier of the object NP. However, in Arg versions of a quadruple, an argument interpretation of PP1 cannot be sustained when PP2 is encountered. In those cases, PP2 must fill the goal argument slot and PP1 must be a modifier. The working assumptions about parsing discussed earlier, i.e., that the parser will initially postulate PP1 to be the goal argument due to the primary status of arguments, predicts that (all and only) Arg versions of a quadruple will require reanalysis. Between quadruples, the preposition that headed PP1 varied, but was always one which was compatible with it being a goal argument or a modifier of the object: \emph{in} in 8 cases, \emph{on} in 7 cases, and in one case, \emph{under.}
 
-A benefit of using a complex verb cluster (auxiliary + matrix participle + infinitive; see (32) above) rather than a single verb\footnote{Note that the use of an auxiliary also eliminates length differences across D vs.~Q versions of a quadruple: if an auxiliary verb were not present, interrogative versions of a basic item would have an extra word, the result of so-called \emph{do}-support, that would not appear in the declaratives (e.g., \emph{he crammed} \ldots{} vs.~\emph{did he cram} \ldots{}?)} was that the differences between declarative and interrogative versions of a quadruple were isolated to the left extremity of the introductory material of the sentence: i.e., only the position of the subject and the auxiliary were affected, meaning that the construction itself and several words prior to it were completely untouched by the Speech Act manipulation. The construction is in a sense buffered from changes triggered by Speech Act, and is only affected by the PP2 Status manipulation.
+A benefit of using a complex verb cluster (auxiliary + matrix participle + infinitive; see (32) above) rather than a single verb\footnote{Note that the use of an auxiliary also eliminates length differences across D vs.~Q versions of a quadruple: if an auxiliary verb were not present, interrogative versions of a basic item would have an extra word, the result of so-called \emph{do}-support, that would not appear in the declaratives (e.g., \emph{he crammed} \ldots{} vs.~\emph{did he cram} \ldots?)} was that the differences between declarative and interrogative versions of a quadruple were isolated to the left extremity of the introductory material of the sentence: i.e., only the position of the subject and the auxiliary were affected, meaning that the construction itself and several words prior to it were completely untouched by the Speech Act manipulation. The construction is in a sense buffered from changes triggered by Speech Act, and is only affected by the PP2 Status manipulation.
 
 The purpose of including introductory matrix verbs (e.g., \emph{intended}) was to reduce the oddity of the polar interrogative versions of each quadruple. It seems odd to ask, ``Did Mary put the jelly beans in the window onto a fancy dish?'' because, when it is clear that the speaker already knows so much about the situation, it becomes difficult to imagine a pragmatically plausible context where such a question would be asked. Such sentences might well be described as ``prosecutorial.''\footnote{Thank you to Dr.~Dianne Bradley for making this observation, and for the very clever ``prosecutorial'' descriptor.} Arguably, this problem is somewhat mitigated by the addition of a verb like \emph{intended}: rather than asking about facts that we already seem to know, we are instead asking about an actor's mental state with regard to those facts. Even if we know the facts of the situation, we do not necessarily know, for instance, whether it was the result of a decision, some third party's action, or mere happenstance. Another adjustment made in order to make the polar interrogative versions of each quadruple more pragmatically acceptable limited the amount of detail in the experimental sentences, so that fewer adjectives and adverbs were included compared to the items employed in Peckenpaugh (2016), and subjects were always third person nominative pronouns (\emph{he} or \emph{she}).
 
@@ -977,7 +967,7 @@ Q -PP & Had she forgotten to report that the clerk was ignoring her request?\\
 \end{tabular}
 \end{table}
 
-All filler items had the same sort of introductory material as the experimental items (\emph{he/she} + \emph{had} + mental state past participle verb). The past participle was either one of the four mental state verbs used for the experimental items (\emph{decide}, \emph{intend}, \emph{plan}, \emph{want}), or one of four additional verbs of mental state (\emph{forgot}, \emph{mean}, \emph{need}, \emph{remember}), with each of the 8 past participles being used twice in +PP fillers and twice in -PP fillers, for a total of 4 times each. This meant that a participant saw 6 instances each of \emph{decide}, \emph{intend}, \emph{plan}, and \emph{want}, (i.e., twice in experimental items, 4 times in filler items) but only 4 instances of the filler-only mental state verbs. Fillers used both mental state verbs from the experimental items as well as other similar verbs in order to prevent the experimental items being identifiable through their sentence-initial content, and to avoid extreme amounts of repetition for any given lexical item.
+All filler items had the same sort of introductory material as the experimental items (\emph{he/she} + \emph{had} + mental state past participle verb). The past participle was either one of the four mental state verbs used for the experimental items (\emph{decide}, \emph{intend}, \emph{plan}, \emph{want}), or one of four additional verbs of mental state (\emph{forgot}, \emph{mean}, \emph{need}, \emph{remember}), with each of the 8 past participles being used twice in +PP fillers and twice in -PP fillers, for a total of 4 times each. This meant that a participant saw 8 instances each of \emph{decide}, \emph{intend}, \emph{plan}, and \emph{want}, (i.e., four times in experimental items, 4 times in filler items) but only 4 instances of the filler-only mental state verbs. Fillers used both mental state verbs from the experimental items as well as other similar verbs in order to prevent the experimental items being identifiable through their sentence-initial content, and to avoid extreme amounts of repetition for any given lexical item.
 
 \hypertarget{length}{%
 \subsection{Length}\label{length}}
@@ -1078,7 +1068,7 @@ The relevant question for the study at hand is as follows: how much of the sente
   \endgroup
 \end{enumerate}
 
-Table \ref{tab:dtcs} presents these distances averaged across items all experimental items. Note that these values do not vary across condition, because the initial fixation is located after both the subject and auxiliary verb, and the counts end before PP2. The only changes across versions are subject-auxiliary inversion and the content of PP2 which fall outside the string of material over which these counts were calculated.
+Table \ref{tab:dtcs} presents these distances averaged across all experimental items. Note that these values do not vary across condition, because the initial fixation is located after both the subject and auxiliary verb, and the counts end before PP2. The only changes across versions are subject-auxiliary inversion and the content of PP2 which fall outside the string of material over which these counts were calculated.
 
 \begin{table}[!h]
 
@@ -1123,7 +1113,7 @@ It is likely, then, that an oral reader's voice would actually still be on the o
 
 The elicitation protocol described earlier asked participants to read each sentence twice, once with no preview at all (Reading 1), and then again without any time pressure (Reading 2). Reading 1 (R1) delay is the elapsed time after a sentence is first displayed and when the participant begins speaking. Reading 2 (R2) delay is the same measure, now taken from the start of the second recording, which begins after the key press terminating the inter-item instruction slide. Inter-reading time (IRT) is a measure of the time elapsing between when a participant stops speaking after R1 and when speaking resumes for R2. IRT includes but is not synonymous with R2 delay, because IRT also includes the elapsed time after the participant stops speaking and the end of the first recording. Recall that the experiment was self-paced, and the participant might spend time studying the sentence after completing the first reading but before advancing to the next screen. For this reason, IRT is necessarily calculated across both recordings.
 
-Utterance timing measurements made use of Voice Activity Detection (VAD) software, which reports whether a given interval in a sound file contains speech-like noise. It is worth making clear that while VAD was employed, most of the measurements of interest actually focused on the inverse, i.e., the spans of time in a recording that did not contain speech-like noise. For each recording, the time elapsing from the beginning of the recording to phonation onset and offset was found using VAD; then, R1 delay, R2 delay, and IRT were calculated as a function of each recording's length and the VAD-reported onset and offset of phonation.
+Utterance timing measurements made use of Voice Activity Detection (VAD) software, which reports whether a given interval in a sound file contains speech-like sound. It is worth making clear that while VAD was employed, most of the measurements of interest actually focused on the inverse, i.e., the spans of time in a recording that did not contain speech-like noise. For each recording, the time elapsing from the beginning of the recording to phonation onset and offset was found using VAD; then, R1 delay, R2 delay, and IRT were calculated as a function of each recording's length and the VAD-reported onset and offset of phonation.
 
 The specific software used included a Python script developed by the author and Google's WebRTC VAD. The recordings were 44.1kHz WAV files down-sampled to 8kHz via SOX\footnote{Google's VAD API only accepts WAV files with sample rates that are a multiple of 8kHz. It ultimately down-samples all files to 8kHz, regardless of the input sampling rate.}. Google's VAD system uses Gaussian Mixture Models to make probabilistic decisions as to whether a given audio frame should be considered speech or noise (see Falk \& Chan (2006) for a complete description). Google's implementation takes one parameter called aggressiveness: a 4-tier setting for the level of confidence necessary to label a given interval speech. The implementation codes this setting on a 0-3 scale, where 0 is the most lenient (most likely to label a frame as speech) and 3 is the most stringent (most likely to label a frame as noise).
 
@@ -1137,7 +1127,7 @@ B. \emph{Minimum leading silence:} A leading silence (``delay'') of more than 12
 
 C. \emph{Maximum edge silence:} Maximum trailing and leading silence lengths of less than 95\% of the file's length total was also used, in order to filter out recordings that did not represent a valid trial. Very long silences less than this very conservative threshold that impact the IRT are dealt with in the data clean-up rather than via phonation detection, as described in the results section of this paper (see Section \ref{data}).
 
-With 32 participants reading 48 items (experimental plus filler), twice each, there are an expected number of 3072 recordings; due to system crashes at the time of data collection, 71 recordings are missing. Of the 3001 recordings subjected to this treatment, 2976 resulted in plausible timings{[}\^{}handset{]}. A review of those that did not result in plausible timings found 9 recordings that were too noisy for computer analysis, but still usable, and those timings were recorded by hand.
+With 32 participants reading 48 items (experimental plus filler), twice each, there are an expected number of 3072 recordings; due to system crashes at the time of data collection, 71 recordings are missing. Of the 3001 recordings subjected to this treatment, 2976 resulted in plausible timings. A review of those that did not result in plausible timings found 9 recordings that were too noisy for computer analysis, but still usable, and those timings were recorded by hand.
 
 To verify the accuracy of the computer measurement, timings were collected by hand for 240 recordings. There was a significant positive correlation between hand-measured and computer-measured timings (r(118)=0.87, p \textless{} .001), with a median difference of 0.4s (SD = 1.5)\footnote{Hand measurement was done to the nearest half second, so a fair amount of error is to be expected.}.
 
@@ -1171,7 +1161,7 @@ Please work with the assumption that ``prosodic boundary'' in what follows is an
 
 The decision to use loose intuitive judgments of prosodic phenomena, rather than an automatic computer-based classification system or an established standard like ToBI (Tones and Break Indices, Beckman \& Ayers (1997)), is based on (a) the fact that prosodic phenomena are difficult to phonetically describe (cf.~Choi, Hasegawa-Johnson, \& Cole (2005)), and computer performance is typically worse than that of human informants, and (b) the fact that the level of detail offered by more standard systems such as ToBI was simply not necessary for the analyses pursued here, and would have greatly increased the level of expertise needed from the informant.
 
-Detailed instructions on the order in which items should be coded, both within speaker and across speakers, were also provided. The result was that she never listened to both readings of a sentence in sequence; she never listened to two Reading 1 versions of different sentences in sequence; and she never listened to the sentences in the same order for a different participants. The instructions given to the informant and the set of judgments requested can be found in full in Appendix \ref{RA}.
+Detailed instructions on the order in which items should be coded, both within speaker and across speakers, were also provided. The result was that she never listened to both readings of a sentence in sequence; she never listened to two Reading 1 versions of different sentences in sequence; and she never listened to the sentences in the same order for a different participant. The instructions given to the informant and the set of judgments requested can be found in full in Appendix \ref{RA}.
 
 The prosodic coding procedure was designed to downplay any patterns in the data, e.g., systematic differences between Readings 1 and 2. It also mitigated any ordering effects that might occur in the data or as a result of the informant's process, whether conscious or unconcious. The familiarization process via filler items allowed the informant to judge the existence of breaks relative to the typical cadence and fluency of a given speaker, prior to exposure to any of the experimental items for that speaker.
 
@@ -1230,7 +1220,11 @@ It is unfortunate that inter-rater reliability is so poor, and that intra-rater 
 
 \setlength\parindent{24pt}\setlength{\parskip}{0.0pt plus 1.0pt}
 
-This chapter reports various descriptions and analyses of the recordings obtained, and the relevance of those findings to the research questions motivating this study. The reported results include the effect of Speech Act (declarative/D vs.~interrogative/Q) and PP2 Status (modifier/Mod vs.~argument/Arg) on the location of prosodic breaks, as well as on time spent by a participant considering a sentence between readings, i.e., the inter-reading time (IRT). In order to evaluate the extent to which participants adhered to the protocol as intended, i.e., began to read immediately for Reading 1 as opposed to producing a considered reading for Reading 2, the delay for which a sentence is displayed before a participant begins to read it is compared for Reading 1 (R1 delay) vs.~Reading 2 (R2 delay). The prosodic patterns for participants with especially fast and especially slow R1 delays are presented as a way of investigating the extent to which individual differences might impact those patterns, and as a further exploration of the success of the protocol instructions in producing the intended behavior. A finding on the apparent processing cost of interrogative context when compared to declarative context among the filler sentences is also reported.
+This chapter reports various descriptions and analyses of the recordings obtained, and offers comments on the relevance of those findings to the research questions motivating this study. The reported analyses focus in the first instance on the impact of Speech Act (declarative/D vs.~interrogative/Q) and PP2 Status (modifier/Mod vs.~argument/Arg) on the location of prosodic phrase boundaries. The effects of those same factors are also examined for the time spent by a participant considering sentence meaning between first and second readings, i.e., the inter-reading time (IRT).
+
+An ancillary analysis, likewise made available by the materials design, probes the apparent processing costs inherent to interrogative vs.~declarative contexts, among the filler sentences, for which temporary ambiguity is not at issue.
+
+Finally, to inform future research, two exploratory analyses are undertaken. In order to evaluate the extent to which participants adhered to the Double Reading protocol as intended, an analysis took advantage of participant variability in the time taken to reading any sentence. Was Reading 1 always a non-previewed pronunciation, as opposed to Reading 2's considered pronunciation? The prosodic patterns for participants with faster and slower Reading 1 (R1) delays are presented as a way of investigating the extent to which individual differences might impact prosodic phrasing, and as a further exploration of the success of the protocol instructions in producing the intended behavior. An analysis also explored the difference in IRT produced by sentences with a given PP2 head preposition; that analysis found a difference in behavior between the Mod PP2 heads \emph{of} and \emph{from}, but no difference between the Arg heads \emph{into} and \emph{onto}.
 
 \hypertarget{planned-analyses}{%
 \section{Planned analyses}\label{planned-analyses}}
@@ -1241,16 +1235,6 @@ There are two types of planned analyses presented in this section. Two primary p
 \subsection{Data for analysis}\label{data}}
 
 Data for 32 participants in total were analyzed. Given 4 versions of the experiment and 2 possible orderings there would ideally be 4 participants per version-order combination. Due to the exclusion of some participants discussed in Section \ref{parti}, the actual distribution was as shown in \ref{tab:vtab}.
-
-IRTs below 0.25s (n = 2) and above 25.0s (n = 5) were assumed to be implausible and omitted from the analyses reported below. Experimental data were then Winsorized by participant to bring data below the 2.5\% and above the 97.5\% threshold to the value at those thresholds, resulting in the distribution as shown in figure \ref{fig:wIRT} (n = 489).
-
-\begin{figure}
-\centering
-\includegraphics{4-results_files/figure-latex/wIRT-1.pdf}
-\caption{\label{fig:wIRT}Distribution of IRT.}
-\end{figure}
-
-Overall mean for IRT was 6.5s (sd = 3.8). The longest IRT was 22.2s and the shortest was 0.7s. Median IRT was 6.1s.
 
 \begin{table}[!h]
 
@@ -1269,6 +1253,14 @@ Version 4 & 2 & 5\\
 \bottomrule
 \end{tabular}
 \end{table}
+
+IRTs below 0.25s (n = 2) and above 25.0s (n = 5) were assumed to be implausible and omitted from the analyses reported below. Experimental data were then Winsorized by participant to bring data below the 2.5\% and above the 97.5\% threshold to the value at those thresholds, resulting in the distribution as shown in Figure \ref{fig:wIRT} (n = 489). That figure makes evident the great variability and positive skew in observed IRT values (range 0.7 to 22.2s; 6.5s (sd = 3.8); median 6.1).
+
+\begin{figure}
+\centering
+\includegraphics{4-results_files/figure-latex/wIRT-1.pdf}
+\caption{\label{fig:wIRT}Distribution of IRT values for experimental sentences.}
+\end{figure}
 
 Some of the expected 3072 recordings (32 participants x 2 readings x 48 items, 16 experimental and 32 filler) could not be used due to intrusive background noise during the recording session. Additionally, data were also excluded from analysis if either of a Reading 1/Reading 2 pair was missing; 9 such incomplete pairs were excluded. Without analyzable data from both members of a pair, it is difficult to determine the extent to which the elicitation protocol was executed as intended (i.e., the extent of preview for Reading 1 vs.~Reading 2). The number of recordings per sentence type included in the analyses that follow were distributed as shown in Table \ref{tab:rvtab}; if no data had been omitted, the expected count per sentence type was 256.
 
@@ -1291,9 +1283,11 @@ For experimental items, 978 recordings were subjected to prosodic analysis, cons
 \hypertarget{results-prosody}{%
 \subsection{Prosodic boundary patterns}\label{results-prosody}}
 
-This section will report the prosodic phrasings found in the recordings collected, and the extent to which those patterns are or are not influenced by the design parameters of the study (Speech Act and PP2 Status), as well as which reading (Reading 1 or Reading 2) a given recording represents. These data are reported first descriptively (i.e., in terms of frequency), and then using regression models to calculate the statistical significance of whatever patterns emerge from the data. Finally, a summary of findings and their implications for the hypothesis motivating this study is provided.
+This section reports the prosodic phrasings judged to be present in the recordings of experimental items, and the extent to which those patterns are influenced by the design parameters of the study (Speech Act and PP2 Status), as well as which reading (Reading 1 or Reading 2) a given recording represents. These data are reported first descriptively (i.e., in terms of occurrence frequency), and then using regression models to calculate the statistical significance of whatever patterns emerge from the data. Finally, a summary of findings and their implications for the hypothesis motivating this study is provided.
 
-In what follows, the distribution of OBJ boundaries and PP1 boundaries are reported as a function of the four sentence types created by the materials design (D/Q x Mod/Arg), for each of Reading 1 and Reading 2. Then, the patterns of boundaries over the two positions are considered, before moving to statistical analysis. Note that while judgments about the potential boundary after the infinitival construction verb were collected, reports of these were exceptionally rare (occurring in only 8\% of recordings), and thus have been set aside. The break locations are indicated with a \% symbol in (39), which was previously provided in Section \ref{sita} as (38) and is repeated here for convenience.
+In what follows, the distribution of OBJ boundaries and PP1 boundaries are first reported, separately for the four sentence types created by the materials design (D/Q x Mod/Arg), for each of Reading 1 and Reading 2. Then, the patterns of boundaries over the two positions are considered, before moving to statistical analysis.
+
+Note that while judgments about the potential boundary after the infinitival construction verb were collected, reports of these were sufficiently uncommon (occurring in only 8\% of recordings) to warrant their treatment as noise, and so were set aside. The break locations are indicated with a \% symbol in (39), which was previously provided in Section \ref{sita} as (38) and is repeated here for convenience.
 
 \begin{enumerate}
 \def\labelenumi{(\arabic{enumi})}
@@ -1312,7 +1306,7 @@ In what follows, the distribution of OBJ boundaries and PP1 boundaries are repor
     \endgroup
 \end{enumerate}
 
-The occurrence of the OBJ boundary was somewhat less frequent for Reading 1 of Arg sentences (57.2\%) than for Reading 2 of Arg sentences (73.6\%).
+Examination of prosodic phrasings begins with counts of the rate at which prosodic breaks were judged to be present after each of the OBJ and PP1 sentence regions: Table \ref{tab:obj} below summarizes these data, for the OBJ breaks:
 
 \begin{table}[!h]
 
@@ -1330,7 +1324,9 @@ Arg & 57.4\% (70) & 56.7\% (68) & 73.0\% (89) & 74.2\% (89)\\
 \end{tabular}
 \end{table}
 
-The PP1 break was almost always present for cases where PP2 was an argument (98.7\% occurrence, overall). That boundary was present substantially less often (68.0\%) for cases where PP2 could be interpreted as a modifier. Speech Act and reading did not appear to impact the overall distribution of the PP1 break.
+A boundary following the OBJ region was more likely overall for Mod sentences (77.8\% occurrence rate) than for Arg (65.2\%), though that contrast was more sharply drawn for Reading 1 of Arg sentences (57.2\%) than for Reading 2 (73.6\%).
+
+Data of the same kind, now for the rates at which prosodic breaks were judged to be present after the PP1 sentence regions, are summarized in Table \ref{tab:pp1} below. Those data allow the following generalization to be drawn: Reversing the pattern for OBJ, a boundary after PP1 was judged to be present substantially less often for Mod sentences (68.0\% occurrence rate) than for Arg; for the latter type, the PP1 break was present in virtually all utterances (98.7\%). Moreover, for breaks at this position, there appeared to be no influence whatsoever of other factors in the design (Speech Act, Reading).
 
 \begin{table}[!h]
 
@@ -1348,17 +1344,9 @@ Arg & 99.2\% (121) & 99.2\% (119) & 99.2\% (121) & 97.5\% (117)\\
 \end{tabular}
 \end{table}
 
-When looking at both breaks together, a sentence could have one of four patterns: both the OBJ and PP1 break present; only OBJ present; only PP1 present; or neither break present. There were only 5 cases where neither was present, and those were omitted in all subsequent reports of prosodic patterns.
+Looking at both OBJ and PP1 breaks, taken together, it is clear that the total number of breaks judged present for any sentence type within a given reading substantially exceeds the number of recorded utterances. For example, for declarative sentences with PP2 as modifier (D/Mod) produced as Reading 1, 179 construction-internal prosodic breaks occurred (95 OBJ + 84 PP1), cf.~123 recordings; thus, 45.5\% of those utterances carried both breaks. Considering all four sentences types produced as Readings 1 and Reading 2, two-break prosodic phrasing patterns were judged to have occurred in 43.0\% to 72.1\% of recordings. Appendix \ref{proApp} provides two tables and an accompanying figure spelling out the distribution of OBJ-only, PP1-only, and OBJ+PP1 break patterns. Five cases where no phrasing break was judged present were omitted in subsequent reports of prosodic patterns.
 
-There was very little difference across readings, with the following generalizations of the data shown in Table \ref{tab:bothbreaks} (and its companion Figure \ref{fig:bothbreaks2}) holding for both Reading 1 and Reading 2. For Mod sentences the OBJ-only pattern is relatively frequent (31.1\% in declaratives, 31.4\% in interrogatives), wheres for Arg sentences there are very few instances with the OBJ-only pattern (0.8\% in declaratives, 2.5\% in interrogatives). The pattern with both breaks is less common for Mod (54.1\% in declaratives, 43.0\% in interrogatives) sentences than for Arg sentences (72.1\% in declaratives, 71.7\% in interrogatives). The PP1-only pattern occurs at about the same rate in Mod interrogatives (25.6\%) as in Arg declaratives (27\%) and Arg interrogatives (25.8\%), but is noticeably less common for Mod declaratives (14.8\%). These proportions are visually represented in Figure \ref{fig:bothbreaks2}.
-
-\begin{figure}
-\centering
-\includegraphics{4-results_files/figure-latex/bothbreaks2-1.pdf}
-\caption{\label{fig:bothbreaks2}Break pattern as a function of sentence type and Reading.}
-\end{figure}
-
-The relative strength of the PP1 and OBJ boundaries was also collected. Figure \ref{fig:bdom} incorporates this information, where PP1-dominance means that the PP1 boundary was reported to be stronger than the OBJ break; OBJ-dominance means the reverse; and ``Equal strength'' means that neither boundary was reported to be stronger than the other (the 5 instances with no breaks were again omitted). These distributions are shown in Table \ref{tab:dombreaks}.
+For the questions pursued in the current study, the analysis that is most germane is one considering break dominance rather than simple break occurrence. Tables \ref{tab:r1dombreaks}, \ref{tab:r2dombreaks}, and Figure \ref{fig:bdom} below therefore incorporate the informant's judgments about the relative strength of the PP1 and OBJ prosodic phrasing boundaries. PP1-dominance means that the PP1 boundary was reported to be stronger than the OBJ break boundary (or that only the PP1 boundary occurred); OBJ-dominance means the reverse; and ``Equal strength'' means that neither boundary was reported to be stronger than the other.
 
 \begin{table}[!h]
 
@@ -1393,20 +1381,19 @@ PP1-dominant & 31.1\% (38) & 38.0\% (46) & 73.0\% (89) & 79.2\% (95)\\
 \end{tabular}
 \end{table}
 
-Considering the data in terms of dominance rather than simple occurrence results in the categorization of most of the cases of both boundaries being present as either PP1-dominant or OBJ-dominant.
-
 \begin{figure}
 \centering
 \includegraphics{4-results_files/figure-latex/bdom-1.pdf}
-\caption{\label{fig:bdom}Percent break dominance occurence as a function of sentence type and Reading.}
+\caption{\label{fig:bdom}Percent break dominance occurrence as a function of sentence type and Reading.}
 \end{figure}
 
-Figure \ref{fig:bdom} clearly shows a robust effect of PP2 Status (Mod or Arg) on break dominance, and little to no impact of Reading or Speech Act (D or Q). A dominant break after PP1 is frequent for all Arg sentences, both declaratives and questions, and in both Reading 1 and Reading 2. It is less frequent for Mod sentences in both Reading 1 and Reading 2. The higher relative frequency of PP1 break dominance in Arg sentences compared to Mod sentences is expected, since it represents a syntactically motivated prosodic break in the Arg cases. For the Mod sentences, there is no syntactic motivation for the PP1 break, so it makes sense for it to be less frequent and less dominant in Mod sentences.
-It is noteworthy and puzzling that the patterns do not differ greatly across the two readings, as one would expect difficulty getting the prosody right on the first try for the difficult sentences being tested in the current study. It may be that the disambiguating preposition, \emph{into} came into view while the participant was still pronouncing an earlier portion of the sentence (due to the Eye-Voice Span, see Section \ref{look-ahead}). Since the disambiguator is a preposition and thus a function word, it can be processed very quickly, and so it's possible that even very limited lookahead allowed some readers to come to the correct parse on their first reading.
+The data here clearly show a robust effect of PP2 Status (Mod or Arg) on break dominance, and little to no impact of Reading or Speech Act (D or Q). A dominant break after PP1 is frequent for all Arg sentences, both declaratives and questions, and in both Reading 1 and Reading 2. It is less frequent for Mod sentences in both Reading 1 and Reading 2. The higher relative frequency of PP1 break dominance in Arg sentences compared to Mod sentences is expected, since it represents a syntactically motivated prosodic break in the Arg cases. For the Mod sentences, there is no syntactic motivation for the PP1 break, so it makes sense for it to be less frequent and less dominant in Mod sentences.
 
-A number of mixed effects logistic regression models support the general observations above. Models predicting PP1 break, OBJ break, PP1 break dominance and OBJ break dominance are reported. All models include random intercepts for participant and item, but due to convergence errors, no random slopes for any predictors are included.
+It is both noteworthy and puzzling that the patterns do not differ greatly across the two readings, as one would expect difficulty getting the prosody right on the first try for the difficult sentences being tested in the current study. It may be that the disambiguating preposition, \emph{into} came into view while the participant was still pronouncing an earlier portion of the sentence (due to the Eye-Voice Span, see Section \ref{look-ahead}). Since the disambiguator is a preposition and thus a function word, it can be processed very quickly, and so it's possible that even very limited lookahead allowed some readers to come to the correct parse on their first reading.
 
-The intercept always represents the Mod sentence type, which is not expected to present any particular difficulty to the reader, since Mod PP2 Status is compatible with what is assumed to be the running parse when it is encountered (i.e., PP1 has been interpreted as the goal argument of the verb, and PP2 does not disrupt that interpretation). For those models where Speech Act is included in the model, the intercept represents the declarative sentence type. In this way, the more complex sentence types are compared to the simplest one represented in the model. If Reading is included in a model, the intercept represents Reading 1.
+A number of mixed effects logistic regression models support the general observations above. Models predicting PP1 break, OBJ break, OBJ break dominance and PP1 break dominance are reported. All models include random intercepts for participant and item, but due to convergence errors, no random slopes for any predictors are included.
+
+The intercept always represents the Mod sentence type, which is not expected to present any particular difficulty to the reader, since sentences with PP2 taking the role of a modifier are compatible with what is assumed to be the running parse when PP2 is encountered (i.e., PP1 has been interpreted as the goal argument of the verb, and PP2 does not disrupt that interpretation). For those models where Speech Act is included in the model, the intercept represents the declarative sentence type. In this way, the more complex sentence types are compared to the simplest one represented in the model. If Reading is included in a model, the intercept represents Reading 1.
 
 For each analysis, a reduced model and the full model (i.e., the model containing all predictors of interest), when it converged, are reported. In each case, the reported reduced model is the simplest nested model\footnote{A simpler model nested within a more complex model is one that includes a subset of the more complex model's predictors, e.g., OBJ Dominance as a function of PP2 Status is nested within OBJ Dominance as a function of Speech Act \(\times\) PP2 Status.} that did not represent a statistically significant worse fit according to likelihood ratio tests (LRTs) than the next most complex model. This model selection process was used for each of the four analyses that follow (OBJ and PP1 boundary occurrence, OBJ and PP1 break dominance). All reported models represent statistically significant improvement over a minimal model, which was a model with only an intercept and random effects (no fixed effects). That comparison is reported for each selected reduced model, as well as the Akaike Information Criterion (AIC\footnote{AIC is a representation of the amount of information lost by using a regression model to estimate data points. It is a measure that balances both the goodness of fit of a model and the simplicity of a model, guarding against over fitting and under fitting the data involved.}) value for the selected model and the minimal model. All regression models were run using the lme4 R package (Bates, Maechler, Bolker, \& Walker (2019)).
 
@@ -1433,7 +1420,7 @@ Q:Arg:Reading2 & 0.97 & 0.65 & .13\\
 \end{tabular}
 \end{table}
 
-Table \ref{tab:objMod} shows a reduced model, predicting the occurrence of an OBJ break with estimates for the coefficients of the fixed effects of Reading 2, PP2 and the interaction between Reading and PP2 Status. The removal of Speech Act as a predictors revealed the Reading \(\times\) PP2 Status interaction to become a significant predictor. The model that included PP2 Status and its interaction with Reading provided a statistically significantly better fit than a minimal model (AIC\textsubscript{Minimal}=1068.0, AIC\textsubscript{Reduced}=1031.6, \(\chi^2\)(3)=42.34, p \textless{} .001).
+Table \ref{tab:objMod} shows a reduced model, predicting the occurrence of an OBJ break with estimates for the coefficients of the fixed effects of Reading 2, PP2 and the interaction between Reading and PP2 Status. The removal of Speech Act as a predictor revealed the Reading \(\times\) PP2 Status interaction to become a significant predictor. The model that included PP2 Status and its interaction with Reading provided a statistically significantly better fit than a minimal model (AIC\textsubscript{Minimal}=1068.0, AIC\textsubscript{Reduced}=1031.6, \(\chi^2\)(3)=42.34, p \textless{} .001).
 
 \begin{table}[!h]
 
@@ -1451,9 +1438,7 @@ Reading2:Arg & 0.81 & 0.32 & < .05\\
 \end{tabular}
 \end{table}
 
-The log odds\footnote{Log odds is, in this case, the natural log of the odds ratio, so the log odds of A is log\textsubscript{e}(P(A)/P(¬A)). A log odds of 1.39 translates to an odds ratio of 4.01:1 (e\textsuperscript{1.39}=4.01) and a probability of 80\% (4.01/(1+4.01)=0.80).} of an OBJ break for Mod Reading 1 is 1.39 (std. error = 0.45, p \textless{} .01). The log odds of that break increased in Reading 2 but the increase was not statistically significant. PP2 arguments reduced the log odds of an OBJ break compared to PP2 modifiers by a robust amount, but less so in Reading 2 than in Reading 1.
-
-The OBJ break is expected to occur more often in Mod cases, because that break marks the argument attachment (and therefore a change in branching direction) of PP1.
+The log odds\footnote{Log odds is, in this case, the natural log of the odds ratio, so the log odds of A is log\textsubscript{e}(P(A)/P(¬A)). A log odds of 1.39 translates to an odds ratio of 4.01:1 (e\textsuperscript{1.39}=4.01) and a probability of 80\% (4.01/(1+4.01)=0.80).} of an OBJ break for Mod Reading 1 is 1.39 (std. error = 0.45, p \textless{} .01). The log odds of that break increased modestly in Reading 2 but the increase was not statistically significant. PP2 arguments reduced the log odds of an OBJ break compared to PP2 modifiers, robustly, but less so in Reading 2 than in Reading 1. As noted earlier, the OBJ break is expected to occur more often in Mod cases, because that break marks PP1 attachment as an argument of the verb.
 
 The full model for predicting PP1 boundary occurrence showed significance only for the intercept and the effect of PP2 Status.
 
@@ -1494,7 +1479,7 @@ Arg & 4.12 & 0.44 & < .001\\
 \end{tabular}
 \end{table}
 
-Sentences with argument PP2s had greatly increased log odds of a PP1 break compared to ones with modifier PP2s. This is again expected, because the PP1 break is indicating the change in branching direction for argument attachment of PP2. That Speech Act is not a relevant predictor is evidence against a prosodic explanation of the motivating intuition for this study; we would expect both a main effect of Speech Act and definitely an interaction between Speech Act and PP2 Status, if the prosody were more (or less) different across the PP2 Status factor for interrogatives than for declaratives.
+Sentences with argument PP2s had greatly increased log odds of a PP1 break compared to those with modifier PP2s. This is again expected, because the PP1 break is responsive to the syntactic discontinuity required for the argument attachment of PP2. That Speech Act is not a relevant predictor is evidence against a prosodic explanation of the motivating intuition for this study; we would expect both a main effect of Speech Act and definitely an interaction between Speech Act and PP2 Status, if the prosody were more (or less) different across the PP2 Status factor for interrogatives than for declaratives.
 
 Models were also run for predicting break dominance. The full model predicting OBJ break dominance is shown in Table \ref{tab:fodom}.
 
@@ -1536,11 +1521,10 @@ Arg & -2.32 & 0.18 & < .001\\
 \end{tabular}
 \end{table}
 
-PP1 break dominance and OBJ break dominance are not entirely complementary, because it is possible for both breaks to have equal prominence. As such, models predicting PP1 were also explored.
+PP1 break dominance and OBJ break dominance are not entirely complementary, because it is possible for the two breaks to have equal prominence (as happens, say, when prosodic
+phrasing marks out parenthetic content). Thus, models predicting PP1 dominance were also explored.
 
-The full model predicting PP1 break dominance failed to converge, so only the reduced model is reported.
-
-Table \ref{tab:pdom} reports the best model for predicting PP1 break dominance. Unlike the model for predicting OBJ break dominance, the best model for predicting PP1 break dominance includes Speech Act as a predictor. The best model is one with fixed effects for reading, Speech Act, and PP2 Status.
+The full model predicting PP1 break dominance failed to converge, so only the reduced model is reported. Table \ref{tab:pdom} reports the best model for predicting PP1 break dominance. Unlike the model for predicting OBJ break dominance, the best model for predicting PP1 break dominance includes Speech Act as a predictor, as well as Reading, and PP2 Status.
 
 \begin{table}[!h]
 
@@ -1560,7 +1544,7 @@ Arg & 2.20 & 0.17 & < .001\\
 
 This model was better than a minimal model according to LRT (AIC\textsubscript{Minimal}=1290.4, AIC\textsubscript{Reduced}=1078.8, \(\chi^2\)(3)=217.59, p \textless{} .001). PP1 break dominance was much more likely for sentences with argument PP2s than sentences with modifier PP2s, with interrogatives having slightly increased log odds of PP1 break dominance. Log odds of PP1 break dominance were slightly less in Reading 2 than Reading 1. There were no significant interaction terms.
 
-Because reading was a significant predictor for 3 of the 4 models reported, and there are theoretical reasons to believe that Reading 2 is more representative of the natural or intended prosody of the reader, models were also run predicting PP1-dominance and OBJ-dominance for Reading 2 data only. In both cases, the best model had the same structure: fixed effects of Speech Act and PP2 Status, with no interaction term.
+Because reading was a significant predictor for 3 of the 4 models reported, and there are reasons to believe that Reading 2 is more representative of the natural or intended prosody of the sentences at issue, models were also run predicting OBJ-dominance and PP1-dominance for Reading 2 data only. In both cases, the best model had the same structure: fixed effects of Speech Act and PP2 Status, with no interaction term.
 
 \begin{table}[!h]
 
@@ -1572,21 +1556,19 @@ Because reading was a significant predictor for 3 of the 4 models reported, and 
 \cmidrule(l{3pt}r{3pt}){2-4} \cmidrule(l{3pt}r{3pt}){5-7}
 \multicolumn{1}{c}{(Reading 2 only)} & \multicolumn{1}{c}{Estimate} & \multicolumn{1}{c}{Std. Err} & \multicolumn{1}{c}{p} & \multicolumn{1}{c}{Estimate} & \multicolumn{1}{c}{Std. Err} & \multicolumn{1}{c}{p}\\
 \midrule
-D Mod (Intercept) & 0.66 & 0.24 & < 0.01 & -0.97 & 0.27 & < .001\\
-Q & -0.30 & 0.22 & 0.16 & 0.35 & 0.22 & .1\\
-Arg & -2.07 & 0.24 & < 0.001 & 2.15 & 0.24 & < .001\\
+D Mod (Intercept) & 0.66 & 0.24 & < .01 & -0.97 & 0.27 & < .001\\
+Q & -0.30 & 0.22 & .16 & 0.35 & 0.22 & .10\\
+Arg & -2.07 & 0.24 & < .001 & 2.15 & 0.24 & < .001\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-For both OBJ-dominance and PP1-dominance, the main effect of Speech Act is non-significant, but its inclusion marginally improves the fit of each model. Even when limited to only Reading 2 data, Speech Act does not interact with PP2 Status, which is again supportive of a non-prosodic explanation for the motivating intuition. That there is a robust effect of PP2 Status is reassuring evidence that prosody is sensitive to syntax, and that the study's item construction is motivating the intended parse.
+For both OBJ-dominance and PP1-dominance, the main effect of Speech Act failed to reach significance, but its inclusion marginally improves the fit of each model. Even when limited to only Reading 2 data, Speech Act does not interact with PP2 Status, which is again supportive of a non-prosodic explanation for the motivating intuition. That there is a robust effect of PP2 Status is reassuring evidence that prosody is indeed sensitive to syntax, and that the study's material design has driven both the intended initial parse and re-analysis for the Arg sentence-types, where PP2 takes the role of goal argument to the construction verb.
 
 \hypertarget{irt}{%
 \subsection{Inter-reading time}\label{irt}}
 
-Inter-reading time is the amount of time after the completion of Reading 1 and before the beginning of phonation of Reading 2. The details of how this was measured and defined can be found in Section \ref{method-irt}. IRT is meant to provide an estimate of how much difficulty the reader has in processing a given sentence. If a reader spends more time studying a sentence prior to reading it aloud a second time, the IRT will be longer, which can be taken as an indicator of processing load on the first reading.
-
-Since IRT is a measure across pairs of recordings (Reading 1/Reading 2), so the number of data analyzed in this section are half as many as those in the prosody analyses.
+Inter-reading time\footnote{Since IRT is a measure across pairs of recordings (Reading 1/Reading 2), the number of data analyzed in this section are half as many as those in the prosody analyses.} is the time elapsing between the completion of Reading 1 and before the start Reading 2 phonation. The details of how this was measured and defined can be found in Section \ref{method-irt}. Possibly, IRT can provide an estimate of how much difficulty the reader has in processing a given sentence. If a reader spends more time studying a sentence prior to reading it aloud a second time, the IRT is longer; it is thus a possible indicator of processing difficulty.
 
 \begin{figure}
 \centering
@@ -1594,11 +1576,11 @@ Since IRT is a measure across pairs of recordings (Reading 1/Reading 2), so the 
 \caption{\label{fig:interactionplot}Mean IRT as a function of sentence type.}
 \end{figure}
 
-Figure \ref{fig:interactionplot} shows the mean IRT as a function of sentence type. The two slopes are only very slightly divergent. PP2 Status has a statistically significant effect on IRT: sentences with argument PP2s having substantially longer IRTs (6.7s) than those with modifier PP2s (6.3s). The effect of Speech Act was not statistically significant, though interrogatives attracted longer (6.7s) IRTs than declaratives (6.4s), and including Speech Act as a predictor of IRT improved the predictive power of the model. This is discussed in more detail below.
+Figure \ref{fig:interactionplot} graphs mean IRT values as a function of sentence type. The two slopes diverge minimally. PP2 Status has a statistically significant effect on IRT: sentences with argument PP2s having substantially longer IRTs (6.73s) on average than those with modifier PP2s (6.34s). The effect of Speech Act was not statistically significant, though interrogatives attracted longer (6.66s) IRTs than declaratives (6.40s), and including Speech Act as a predictor of IRT improved the predictive power of the model. This is discussed in more detail below.
 
 Regression models support the observations above. All models discussed include random intercepts for participant and item. Models with random slopes did not converge, and so random slopes were not included.
 
-The full model for predicting IRT included fixed effects of Speech Act and PP2 Status and the interaction between them. This model is shown in table \ref{tab:hyp}.
+The full model for predicting IRT included fixed effects of Speech Act and PP2 Status and their interaction. This model is shown in Table \ref{tab:hyp}.
 
 \begin{table}[!h]
 
@@ -1616,7 +1598,7 @@ Q:Arg & 0.08 & 0.43 & .85\\
 \end{tabular}
 \end{table}
 
-Of the nested models (those with subsets of the full model), the best model according to likelihood ratio testing (LRT) was the one with only the fixed effect of PP2 Status, shown in Table \ref{tab:redirt}, i.e., the difference between the reduced and full model was not statistically significant (AIC\textsubscript{Full}=2347.8, AIC\textsubscript{Reduced}=2346.2, \(\chi^2\)(2)=2.41, p = .3). The improvement of fit of the reduced model over a minimal model with only an intercept and random effects was statistically significant (AIC\textsubscript{Reduced}=2346.2, AIC\textsubscript{Minimal}=2348.7, \(\chi^2\)(1)=4.51, p \textless{} .05), indicating a robust main effect of PP2 Status on IRT.
+Of the nested models (those with subsets of the full model), the best model according to likelihood ratio testing (LRT) was the one with only the fixed effect of PP2 Status, shown in Table \ref{tab:redirt}. The improvement of fit of the reduced model over a minimal model with only an intercept and random effects was statistically significant (AIC\textsubscript{Reduced}=2346.2, AIC\textsubscript{Minimal}=2348.7, \(\chi^2\)(1)=4.51, p \textless{} .05), indicating a robust main effect of PP2 Status on IRT.
 
 \begin{table}[!h]
 
@@ -1632,14 +1614,14 @@ Arg & 0.46 & 0.21 & < .05\\
 \end{tabular}
 \end{table}
 
-These results are not supportive of \emph{Hypothesis 3} formalized in Section \ref{pred}, as statistical significance was expected for the interaction of Speech Act with PP2 Status if interrogative context is indeed ameliorating for PP-attachment garden paths, compared to declarative context for the same construction.
+These results are not supportive of \emph{Hypothesis 3} formalized in Section \ref{pred}, as statistical significance was expected for the interaction of Speech Act with PP2 Status under the assumption that interrogative context ameliorates processing difficulty for PP-attachment garden paths, vs.~declarative context for the same construction.
 
-\hypertarget{discussion-of-primary-planned-analyses}{%
-\subsection{Discussion of primary planned analyses}\label{discussion-of-primary-planned-analyses}}
+\hypertarget{discussion-of-planned-analyses}{%
+\subsection{Discussion of planned analyses}\label{discussion-of-planned-analyses}}
 
-Throughout the analysis of prosodic phrasing patterns, PP2 Status was the most robust predictor of OBJ and PP1 boundary occurrence and their relative strengths. The OBJ break was more frequent and more frequently dominant for sentences with a PP2 that was an argument than those with a PP2 that could be a modifier; conversely, the PP1 break was more frequent and more frequently dominant for sentences with a PP2 that was interpretable as a modifier than those with a PP2 that was an argument.
+Throughout the analysis of prosodic phrasing patterns, PP2 Status was the most robust predictor of OBJ and PP1 boundary occurrence and their relative strengths. The PP1 break was more frequent and more frequently dominant for sentences with a PP2 that was an argument than those with a PP2 that could be a modifier; conversely, the OBJ break was more frequent and more frequently dominant for sentences with a PP2 that was interpretable as a modifier than those with a PP2 that was an argument.
 
-Returning to the predictions discussed in \ref{pred}, recall the contrast made there between linguistically motivated prosodic breaks and other breaks or pauses. The Arg and Mod sentences differ with regard to where the linguistically motivated breaks fall. These expectations are shown in (40) and (41) (originally shown in Chapter 1 and repeated here for convenience), where ``\(\|\)'' represents a linguistically motivated prosodic break.
+Returning to the predictions discussed in Section \ref{pred}, recall the contrast made there between syntactically motivated prosodic breaks and other breaks or pauses. The Arg and Mod sentences differ with regard to where such breaks are expected to fall. These expectations are shown in (40) and (41) (originally formulated in Chapter 1 and repeated here for convenience), where ``\(\|\)'' represents a syntactically motivated prosodic break.
 
 \singlespacing
 
@@ -1685,7 +1667,7 @@ Consider again \emph{Hypotheses 1} and \emph{2} from Section \ref{pred}, repeate
   \def\labelenumii{\alph{enumii}.}
   \tightlist
   \item
-    Either reading of a sentence where PP2 is a modifier (Mod)
+    A first reading of a sentence where PP2 is a modifier (Mod)
   \item
     A second reading of a sentence where PP2 is a goal argument (Arg)
   \end{enumerate}
@@ -1699,13 +1681,13 @@ While the present study did not specifically attempt to assess whether a given r
 \tightlist
 \item
   \emph{Hypothesis 2} (Prosody/Syntax Mismatch)\linebreak\nopagebreak
-  A first reading of a sentence where PP2 is a goal argument (Arg) will more often be produced with prosodic structure that represents an implausible or ungrammatical parse of the string (i.e., PP2 incorrectly attached as a modifier).
+  A first reading of a sentence where PP2 is a goal argument (Arg) will more often be produced with prosodic structure that represents an implausible or ungrammatical parse of the string (i.e., PP2 incorrectly attached as a modifier) than either:
 
   \begin{enumerate}
   \def\labelenumii{\alph{enumii}.}
   \tightlist
   \item
-    Either reading of a sentence where PP2 is a modifier (Mod)
+    A first reading of a sentence where PP2 is a modifier (Mod)
   \item
     A second reading of a sentence where PP2 is a goal argument (Arg)
   \end{enumerate}
@@ -2030,13 +2012,17 @@ In sum, the current study has not found evidence that supports the extension of 
 \hypertarget{appExp}{%
 \chapter{Experimental items}\label{appExp}}
 
+\hypertarget{experimental-items-in-four-versions}{%
+\subsection*{Experimental items in four versions}\label{experimental-items-in-four-versions}}
+\addcontentsline{toc}{subsection}{Experimental items in four versions}
+
 \begin{longtable}{ll}
-\caption{\label{tab:unnamed-chunk-1}Experimental items in four versions}\\
+\caption{\label{tab:unnamed-chunk-1}Experimental items in four version, organized by introductory verb}\\
 \toprule
 Version & Text\\
 \midrule
 \endfirsthead
-\caption[]{\label{tab:unnamed-chunk-1}Experimental items in four versions \textit{(continued)}}\\
+\caption[]{\label{tab:unnamed-chunk-1}Experimental items in four version, organized by introductory verb \textit{(continued)}}\\
 \toprule
 Version & Text\\
 \midrule
@@ -2136,11 +2122,12 @@ D Mod & She had wanted to stick the golf clubs in the back room of their condo.\
 \addcontentsline{toc}{subsection}{Fillers items with trailing PPs in Q/D pairs}
 
 \begin{longtable}{ll}
+\caption{\label{tab:unnamed-chunk-2}Fillers items with trailing PPs in Q/D pairs}\\
 \toprule
 Version & Text\\
 \midrule
 \endfirsthead
-\multicolumn{2}{@{}l}{\textit{(continued)}}\\
+\caption[]{\label{tab:unnamed-chunk-2}Fillers items with trailing PPs in Q/D pairs \textit{(continued)}}\\
 \toprule
 Version & Text\\
 \midrule
@@ -2205,11 +2192,12 @@ Version & Text\\
 \addcontentsline{toc}{subsection}{Fillers items without trailing PPs in Q/D pairs}
 
 \begin{longtable}{ll}
+\caption{\label{tab:unnamed-chunk-3}Fillers items without trailing PPs in Q/D pairs}\\
 \toprule
 Version & Text\\
 \midrule
 \endfirsthead
-\multicolumn{2}{@{}l}{\textit{(continued)}}\\
+\caption[]{\label{tab:unnamed-chunk-3}Fillers items without trailing PPs in Q/D pairs \textit{(continued)}}\\
 \toprule
 Version & Text\\
 \midrule
@@ -2301,7 +2289,7 @@ The keys used during the experiment are clearly labeled, but the function of eac
 \toprule
 Label & Position & Description\\
 \midrule
-Start & Left shift & Revewal a sentence and begin your reading.\\
+Start & Left shift & Reveal a sentence and begin your reading.\\
 Next & Right shift & End your first reading.\\
 Done & Thumb pad & End your second reading and prepare for the next sentence.\\
 \bottomrule
@@ -2368,12 +2356,16 @@ Please work with the assumption that ``prosodic boundary'' in what follows is an
 
 \clearpage
 
-\hypertarget{additional-prosodic-data}{%
-\chapter{Additional prosodic data}\label{additional-prosodic-data}}
+\hypertarget{proApp}{%
+\chapter{Additional prosodic data}\label{proApp}}
+
+The break occurrence data below represent what was used for the analyses of break dominance reported in Section \ref{results-prosody} prior to incorporating judgements of relative break strength.
 
 \centering
 
 \begin{table}[!h]
+
+\caption{\label{tab:r1bothbreaks}Percent occurrence of break patterns as a function of sentence type, for Reading 1}
 \centering
 \begin{tabular}{>{\bfseries}lcccc}
 \toprule
@@ -2388,9 +2380,9 @@ PP1 only & 22.8\% (28) & 22.8\% (28) & 42.6\% (52) & 43.3\% (52)\\
 \end{tabular}
 \end{table}
 
-Table: Percent occurrence of both boundaries as a function of sentence type for Reading 1
-
 \begin{table}[!h]
+
+\caption{\label{tab:r2bothbreaks}Percent occurrence of break patterns as a function of sentence type, for Reading 2}
 \centering
 \begin{tabular}{>{\bfseries}lcccc}
 \toprule
@@ -2405,9 +2397,11 @@ PP1 only & 14.8\% (18) & 25.6\% (31) & 27.0\% (33) & 25.8\% (31)\\
 \end{tabular}
 \end{table}
 
-Table: Percent occurrence of both boundaries as a function of sentence type for Reading 2
-
+\begin{figure}
+\centering
 \includegraphics{99-append_files/figure-latex/bothbreaks2-1.pdf}
+\caption{\label{fig:bothbreaks2}Figure: Break pattern as a function of sentence type and Reading.}
+\end{figure}
 
 \hypertarget{references}{%
 \chapter*{References}\label{references}}

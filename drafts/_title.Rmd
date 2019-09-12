@@ -83,7 +83,7 @@ ACKNOWLEDGEMENTS
 
 \setlength\parindent{24pt}\setlength{\parskip}{0.0pt plus 1.0pt}
 
-The completion of this dissertation would have been impossible without the help of my friends, family, colleagues, and most of all, my committee of advisors. The timing of its completion could not have been more difficult for me or for the chair of my committee, Janet Fodor. To Janet, I say: thank you for your endurance, your wisdom, and your patience. I'm so grateful that you have stuck with me through all the hardship we have both dealt with this past year.
+The completion of this dissertation would have been impossible without the help of my friends, family, colleagues, and most of all, my committee of advisors. The timing of its completion could not have been more difficult for me or for the chair of my committee, Janet Dean Fodor. To Janet, I say: thank you for your endurance, your wisdom, and your patience. I'm so grateful that you have stuck with me through all the hardship we have both dealt with this past year.
 
 Much of the burden that stemmed from the difficult timing fell onto my second adviser, Dianne Bradley. To Dianne, I say: thank you for your tireless effort, your support, and your encouragement. There is absolutely no possible world in which I completed this dissertation without you. Your efforts, your wit, and your timely comfort kept me going when I thought I could go no further.
 	
@@ -91,11 +91,11 @@ It has been said that linguists are bad at math. This shortcoming is true of me,
 
 I am also indebted in particular to my closest friend and partner, Tally Callahan. She endured many restless nights, grumpy days, unhinged panic attacks, and worse. Thank you, Tally, for helping me see this through.
 
-In a more practical way, I am indebted to Eva Fernandez and Nathacia Lucena. Without them, data collection would have been infinitely more difficult. Thank you for the use of your lab! And, to Bill Haddican, for his advice on handling the syntax of the construction I studied. 
+In a more practical way, I am indebted to Eva Fern\'{a}ndez and Nathacia Lucena. Without them, data collection would have been infinitely more difficult. Thank you for the use of your lab! And, to Bill Haddican, for his advice on handling the syntax of the construction I studied. 
 
 I must also profusely thank my informants: Sita Carraturo, who surely went above and beyond; Danielle Ronkos, who has also been an important source of support; and Rachel Zane, who helped me despite my nonsense. Special thanks to my brother-in-law, Kurtiss Hare, for his help with my Python coding.
 
-I also want to thank my parents and my sister for the love and encouragement. It was an extremely difficult time for us as a family, and especially for my father. For your understanding of the limitations on my time that writing this dissertation entailed, thank you. 
+I also want to thank my parents and my sister for their love and encouragement. It was an extremely difficult time for us as a family, and especially for my father. For your understanding of the limitations on my time that writing this dissertation entailed, thank you. 
 
 Also, thank you to my friends Corbin Neuhauser and Kathryn O’Shields for their input on the matters at large, as well as their camaraderie. Likewise, Burke Blackman, Pablo Gonzalez, and Michael Madden, for friendship and encouragement.
 

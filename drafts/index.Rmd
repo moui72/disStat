@@ -12,6 +12,7 @@ fontsize: 11pt
 mainfont: Georgia
 lot: true
 lof: true
+indent: true
 geometry: "margin=1in"
 header-includes:
   - \usepackage[linguistics]{forest}
