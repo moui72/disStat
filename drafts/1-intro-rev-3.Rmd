@@ -14,7 +14,6 @@ knitr::opts_chunk$set(
 ```
 \pagenumbering{arabic}
 
-
 # Introduction and background
 
 \setlength\parindent{24pt}\setlength{\parskip}{0.0pt plus 1.0pt}
@@ -78,8 +77,8 @@ Likewise, the latter possibility raises the question: exactly what are the seman
 The 2016 Intuition and the current hypothesis are both concerned with a temporarily ambiguous sequence of PPs at the end of a sentence. The example in (@aa) shows a pragmatically disambiguated sentence with an argument-PP2. 
 
   (@aa) He crammed the paperwork in the drawer in his briefcase.
-  a) $\#$ … [~VP~ crammed [~NP~ the paperwork] [~PP1~ in [~NP~ the drawer [~PP2~ in his briefcase]]]
-  b) $\checkmark$ … [~VP~ crammed [~NP~ the paperwork [~PP1~ in [~NP~ the drawer ]]  [~PP2~ in his briefcase]] \linebreak\nopagebreak
+    a. $\#$ … [~VP~ crammed [~NP~ the paperwork] [~PP1~ in [~NP~ the drawer [~PP2~ in his briefcase]]]
+    b. $\checkmark$ … [~VP~ crammed [~NP~ the paperwork [~PP1~ in [~NP~ the drawer ]]  [~PP2~ in his briefcase]] \linebreak\nopagebreak
     *"$\#$" indicates a structure with an implausible reading*
 
 The initial parse is expected to be (@aa a) because of a bias (due to Minimal Attachment, or some variation thereof, see (@MinAtt) above), which favors a structure where the first PP attaches into the verb phrase (VP) as an argument of the verb, i.e., [~VP~ V NP PP1] with PP1 denoting the goal, which leaves nowhere for the second PP to attach but as a modifier of the noun phrase (NP) inside PP1 ([~PP1~ *under* [~NP~ *the sofa* [~PP2~ *in the wastebasket*]]]). This initial parse (@aa a) is pragmatically implausible, since sofas are generally not found inside wastebaskets. Structural reanalysis is required to bring about the only plausible parse (@aa b), where PP1 attaches as an NP modifier of the direct object and so allows PP2 to attach to the VP as a goal argument, resulting in a structure such as [~VP~ V [~NP~ N PP1] PP2], i.e., where it is the paperwork in the drawer that is being crammed in his briefcase.
@@ -266,7 +265,6 @@ The infinitival clause headed by *cram* is a primary phrase, and so its obligato
 
 This section returns to the questions raised by the 2016 Intuition discussed in Section \@ref(obs) about why certain garden paths of the sort just discussed might appear to be easier to parse in interrogative constructions than in otherwise similar declarative ones (see examples (@d) and (@q)).
 
-
   (@d) He had planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ in his briefcase].
   (@q) Had he planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ in his briefcase]?
 
@@ -278,19 +276,15 @@ The declarative in (@d) has few presuppositions beyond the existence of the acto
 
 Focus in a declarative like (@d) is typically wide, i.e., no element is having special attention called to it. A polar question like (@q), however, will often receive narrower focus on one word or phrase, so that when uttered, that word or phrase is more prominent than the others. The focused element becomes the part of the sentence that the question is about. Focus can fall on any of the lexical or referential elements in the sentence (subject, auxiliary verb, matrix verb, infinitival verb, object NP, or the NP of either PP1 or PP2, or any part of one of these). In the examples below, a small sample of possible focus locations are shown, with words in all capital letters indicating verbal emphasis signifying focus.
 
-\singlespacing
   (@foc)  
     a. HAD he planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ into his briefcase]?
     a. Had HE planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ into his briefcase]?
     a. Had he planned to cram the paperwork [~PP1~ in the DRAWER] [~PP2~ into his briefcase]?
     a. Had he planned to cram the paperwork [~PP1~ in the drawer] [~PP2~ into HIS briefcase]?
-  
-\doublespacing
-  
+
 In (@foc a), with focus on the auxiliary, the question encompasses the entire proposition, and asks whether or not it is true. In this case, there are not any additional presuppositions when compared to the declarative counterpart of the sentence. In (@foc b), with focus on *he*, the question is asking about whether the referent of *he* is the actor who performed the action described; in this case, the entire predicate is presupposed: someone had planned to cram the paperwork in the drawer into his briefcase, but was it him? In (@foc c), with focus on *drawer*, the question is instead about which paperwork this is all happening to: the paperwork that is in the drawer, or some other stack of paperwork? In this case, it is presupposed that the referent of *he* was the one who had planned to cram some paperwork into his briefcase, and only the exact referent of *the paperwork* is not presupposed. For each other location of focus, the presuppositional content is similarly complementary to whichever element is focused and therefore being asked about. 
 
 This set of pragmatic differences between (@d) and (@q) might be the source of the 2016 Intuition that (@q) is easier to comprehend than (@d), but it is not it is not immediately clear why that would be (see Section \@ref(sem) for one way in which it might), and that is not the only possibility. Another significant difference between the two sentences is the rhythm and intonational melody (which together make up the prosody). While dialects of English may differ prosodically, there is typically a difference in melody between a declarative and a question, and in many American English dialects, the interrogative is pronounced with a final rise, while the declarative exhibits just a series of down-steps. This difference is the one that the current study explores, to see if it can be shown to correlate with a difference in processing difficulty in syntactically disambiguated declarative and interrogative PP-attachment garden paths, and by extension lend insight into the 2016 Intuition.
-
 
 ## Prosody of questions vs. declaratives
 
