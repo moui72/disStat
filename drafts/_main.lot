@@ -1,30 +1,32 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {2.1}{\ignorespaces Illustrative experimental item, constructed in four versions.}}{20}{table.2.1}% 
-\contentsline {table}{\numberline {2.2}{\ignorespaces Illustrative filler items, constructed in two versions.}}{24}{table.2.2}% 
-\contentsline {table}{\numberline {2.3}{\ignorespaces Distance in characters from fixation to disambiguation of the current study's experimental.}}{31}{table.2.3}% 
-\contentsline {table}{\numberline {2.4}{\ignorespaces EVS-adjusted character distance to disambiguation in experimental items.}}{32}{table.2.4}% 
-\contentsline {table}{\numberline {2.5}{\ignorespaces Percent agreement between informants (inter-rater) and first and second coding by the primary informant (intra-rater).}}{36}{table.2.5}% 
-\contentsline {table}{\numberline {2.6}{\ignorespaces Stratification of kappa values and implications for reliability}}{37}{table.2.6}% 
+\contentsline {table}{\numberline {2.1}{\ignorespaces Illustrative experimental item, constructed in four versions.}}{19}{table.2.1}% 
+\contentsline {table}{\numberline {2.2}{\ignorespaces Illustrative filler items, constructed in two versions.}}{23}{table.2.2}% 
+\contentsline {table}{\numberline {2.3}{\ignorespaces Distance in characters from fixation to disambiguation of the current study's experimental.}}{30}{table.2.3}% 
+\contentsline {table}{\numberline {2.4}{\ignorespaces EVS-adjusted character distance to disambiguation in experimental items.}}{30}{table.2.4}% 
+\contentsline {table}{\numberline {2.5}{\ignorespaces Percent agreement between informants (inter-rater) and first and second coding by the primary informant (intra-rater).}}{35}{table.2.5}% 
+\contentsline {table}{\numberline {2.6}{\ignorespaces Stratification of kappa values and implications for reliability}}{35}{table.2.6}% 
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces Number of participants per version-order combination.}}{39}{table.3.1}% 
-\contentsline {table}{\numberline {3.2}{\ignorespaces Number of recordings analyzed, as a function of Speech Act and PP2 Status.}}{40}{table.3.2}% 
-\contentsline {table}{\numberline {3.3}{\ignorespaces Percent occurrence of OBJ boundary (frequency of occurrence in parenthesis) as a function of sentence type and Reading.}}{41}{table.3.3}% 
-\contentsline {table}{\numberline {3.4}{\ignorespaces Percent occurrence of PP1 boundary (frequency of occurrence in parenthesis) as a function of sentence type and Reading.}}{41}{table.3.4}% 
-\contentsline {table}{\numberline {3.5}{\ignorespaces Percent occurrence of both boundaries as a function of sentence type and Reading.}}{41}{table.3.5}% 
-\contentsline {table}{\numberline {3.6}{\ignorespaces Mixed effects logistic regression model predicting OBJ break occurrence (Full).}}{44}{table.3.6}% 
-\contentsline {table}{\numberline {3.7}{\ignorespaces Mixed effects logistic regression model predicting OBJ break occurrence (Reduced).}}{45}{table.3.7}% 
-\contentsline {table}{\numberline {3.8}{\ignorespaces Mixed effects logistic regression model predicting PP1 break occurrence (Full).}}{45}{table.3.8}% 
-\contentsline {table}{\numberline {3.9}{\ignorespaces Mixed effects logistic regression model predicting PP1 break occurrence (Reduced).}}{46}{table.3.9}% 
-\contentsline {table}{\numberline {3.10}{\ignorespaces Mixed effects logistic regression model predicting OBJ break dominance (Full).}}{46}{table.3.10}% 
-\contentsline {table}{\numberline {3.11}{\ignorespaces Mixed effects logistic regression model predicting OBJ break dominance (Reduced).}}{47}{table.3.11}% 
-\contentsline {table}{\numberline {3.12}{\ignorespaces Mixed effects logistic regression model predicting PP1 break dominance (Reduced).}}{47}{table.3.12}% 
-\contentsline {table}{\numberline {3.13}{\ignorespaces Mixed effects logistic regression models predicting break dominance in Reading 2 (Reduced).}}{47}{table.3.13}% 
-\contentsline {table}{\numberline {3.14}{\ignorespaces Linear mixed effects regression model predicting IRT by sentence type with interaction term (Full).}}{49}{table.3.14}% 
-\contentsline {table}{\numberline {3.15}{\ignorespaces Linear mixed effects regression model predicting IRT by sentence type (Reduced).}}{49}{table.3.15}% 
-\contentsline {table}{\numberline {3.16}{\ignorespaces Linear mixed effects regression model predicting IRT by Speech Act and PP2 head.}}{55}{table.3.16}% 
+\contentsline {table}{\numberline {3.1}{\ignorespaces Number of participants per version-order combination.}}{37}{table.3.1}% 
+\contentsline {table}{\numberline {3.2}{\ignorespaces Number of recordings analyzed, as a function of Speech Act and PP2 Status.}}{38}{table.3.2}% 
+\contentsline {table}{\numberline {3.3}{\ignorespaces Percent occurrence of OBJ boundary (frequency of occurrence in parenthesis) as a function of sentence type and Reading.}}{39}{table.3.3}% 
+\contentsline {table}{\numberline {3.4}{\ignorespaces Percent occurrence of PP1 boundary (frequency of occurrence in parenthesis) as a function of sentence type and Reading.}}{39}{table.3.4}% 
+\contentsline {table}{\numberline {3.5}{\ignorespaces Percent occurrence of boundary dominance as a function of sentence type for Reading 1.}}{40}{table.3.5}% 
+\contentsline {table}{\numberline {3.6}{\ignorespaces Percent occurrence of boundary dominance as a function of sentence type for Reading 2.}}{41}{table.3.6}% 
+\contentsline {table}{\numberline {3.7}{\ignorespaces Mixed effects logistic regression model predicting OBJ break occurrence (Full).}}{43}{table.3.7}% 
+\contentsline {table}{\numberline {3.8}{\ignorespaces Mixed effects logistic regression model predicting OBJ break occurrence (Reduced).}}{43}{table.3.8}% 
+\contentsline {table}{\numberline {3.9}{\ignorespaces Mixed effects logistic regression model predicting PP1 break occurrence (Full).}}{44}{table.3.9}% 
+\contentsline {table}{\numberline {3.10}{\ignorespaces Mixed effects logistic regression model predicting PP1 break occurrence (Reduced).}}{44}{table.3.10}% 
+\contentsline {table}{\numberline {3.11}{\ignorespaces Mixed effects logistic regression model predicting OBJ break dominance (Full).}}{44}{table.3.11}% 
+\contentsline {table}{\numberline {3.12}{\ignorespaces Mixed effects logistic regression model predicting OBJ break dominance (Reduced).}}{45}{table.3.12}% 
+\contentsline {table}{\numberline {3.13}{\ignorespaces Mixed effects logistic regression model predicting PP1 break dominance (Reduced).}}{45}{table.3.13}% 
+\contentsline {table}{\numberline {3.14}{\ignorespaces Mixed effects logistic regression models predicting break dominance in Reading 2 (Reduced).}}{46}{table.3.14}% 
+\contentsline {table}{\numberline {3.15}{\ignorespaces Linear mixed effects regression model predicting IRT by sentence type with interaction term (Full).}}{47}{table.3.15}% 
+\contentsline {table}{\numberline {3.16}{\ignorespaces Linear mixed effects regression model predicting IRT by sentence type (Reduced).}}{47}{table.3.16}% 
+\contentsline {table}{\numberline {3.17}{\ignorespaces Linear mixed effects regression model predicting IRT by Speech Act and PP2 head.}}{53}{table.3.17}% 
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces Percent occurrence of break patterns in Reading 2 as a function of sentence type.}}{61}{table.4.1}% 
+\contentsline {table}{\numberline {4.1}{\ignorespaces Percent occurence of boundaries (frequency in parenthesis) in Reading 2 as a function of sentence type.}}{60}{table.4.1}% 
+\addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
