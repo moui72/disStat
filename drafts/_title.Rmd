@@ -91,13 +91,17 @@ It has been said that linguists are bad at math. This shortcoming is true of me,
 
 I am also indebted in particular to my closest friend and partner, Tally Callahan. She endured many restless nights, grumpy days, unhinged panic attacks, and worse. Thank you, Tally, for helping me see this through.
 
+<<<<<<< HEAD
 In a more practical way, I am indebted to Eva Fern\'{a}ndez and Nathacia Lucena. Without them, data collection would have been infinitely more difficult. Thank you for the use of your lab! And, to Bill Haddican, for his advice on handling the syntax of the construction I studied. 
+=======
+In a more practical way, I am indebted to Eva Fern\`{a}ndez and Nathacia Lucena. Without them, data collection would have been infinitely more difficult. Thank you for the use of your lab! And, to Bill Haddican, for his advice on handling the syntax of the construction I studied. 
+>>>>>>> a8a4212c40c40e974d9bcfcf508869d9f70e2519
 
 I must also profusely thank my informants: Sita Carraturo, who surely went above and beyond; Danielle Ronkos, who has also been an important source of support; and Rachel Zane, who helped me despite my nonsense. Special thanks to my brother-in-law, Kurtiss Hare, for his help with my Python coding.
 
 I also want to thank my parents and my sister for their love and encouragement. It was an extremely difficult time for us as a family, and especially for my father. For your understanding of the limitations on my time that writing this dissertation entailed, thank you. 
 
-Also, thank you to my friends Corbin Neuhauser and Kathryn O’Shields for their input on the matters at large, as well as their camaraderie. Likewise, Burke Blackman, Pablo Gonzalez, and Michael Madden, for friendship and encouragement.
+Also, thank you to my friends Corbin Neuhauser and Kathryn O’Shields for their input on the matters at large, as well as their camaraderie. Likewise, Burke Blackman, Pablo Gonz\'{a}lez, and Michael Madden, for friendship and encouragement.
 
 Last but not least, thank you to Anne Lobeck and Kristen Denham, without whom I would never have discovered my passion for this field. Thank you, and keep inspiring your students!
 
