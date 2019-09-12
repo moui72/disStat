@@ -156,6 +156,7 @@ For each recording, please respond in the spreadsheet using the following guidel
 
 For columns E-K, Consider a given sentence to be divided into regions, as in the following example:
 
+\vspace{2cm}
 \begingroup
   \setlength{\tabcolsep}{1pt}
   \begin{tabular}{cccccccc}
@@ -165,6 +166,7 @@ For columns E-K, Consider a given sentence to be divided into regions, as in the
     & \footnotesize V Region & & \footnotesize OBJ Region & & \footnotesize PP1 Region & & PP2 Region \\
   \end{tabular}
 \endgroup
+\vspace{1cm}
 
 Please work with the assumption that “prosodic boundary” in what follows is any subset of the following features, clustered in such a way as to trigger your intuition that a new prosodic element (of any size) is beginning: pitch change, volume change, segmental lengthening, or pause.
 
@@ -180,4 +182,164 @@ Please work with the assumption that “prosodic boundary” in what follows is 
 
 \clearpage
 
+# Additional prosodic data
+
+\centering
+
+```{r r2combobreaksBycondpre}
+library(scales)
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(ggthemes)
+kable <- function(...) {
+  knitr::kable(booktab = TRUE,...)
+}
+
+### global plot themeing
+theme_set(
+  theme_tufte(base_size = 12) + 
+    theme(
+      plot.background = element_rect(fill = "white", color = "white"),
+      panel.border = element_blank(),
+      text = element_text(color="black"),
+      axis.text = element_text(color="black")
+    )
+)
+
+# sentence type order
+sto <- function (SentenceType) {
+  ifelse(SentenceType %in% c("D Arg", "Q Arg", "D Mod", "Q Mod"),
+    return(
+      ifelse(
+        SentenceType=="Q Arg",
+        length(SentenceType),
+        ifelse(
+          SentenceType=="D Arg",
+          length(SentenceType)-1,
+          ifelse(
+            SentenceType=="Q Mod",
+            length(SentenceType)-2,
+            length(SentenceType)-3
+          )
+        )
+      )
+    ),
+    return(1)
+  )
+}
+
+mdata<-read_csv("export/prosody_data.csv")
+
+r2pdata<-droplevels(subset(mdata,Reading==2 & simple2lvl != "NEITHER"))
+qdata <- subset(r2pdata,PP2Status=="Arg")
+ddata <- subset(r2pdata,PP2Status=="Mod")
+
+qfreq<-table(qdata$simple2lvl,qdata$SpeechAct) 
+qpct<-qfreq %>%
+  prop.table(margin=2) %>% apply(2,percent)
+
+qpros<-paste0(qpct, " (",qfreq,")")
+qpros<-cbind(qpros[1:3],qpros[4:6])
+
+dfreq<-table(ddata$simple2lvl,ddata$SpeechAct) 
+dpct<-dfreq %>%
+  prop.table(margin=2) %>% apply(2,percent)
+
+dpros<-paste0(dpct, " (",dfreq,")")
+dpros<-cbind(dpros[1:3],dpros[4:6])
+
+
+r2combo<-as.data.frame(cbind(dpros,qpros))
+
+
+
+write_csv(r2combo,"export/ccombo.csv")
+
+r1pdata<-droplevels(subset(mdata,Reading==1 & simple2lvl != "NEITHER"))
+qdata <- subset(r1pdata,PP2Status=="Arg")
+ddata <- subset(r1pdata,PP2Status=="Mod")
+
+qfreq<-table(qdata$simple2lvl,qdata$SpeechAct) 
+qpct<-qfreq %>%
+  prop.table(margin=2) %>% apply(2,percent)
+
+qpros<-paste0(qpct, " (",qfreq,")")
+qpros<-cbind(qpros[1:3],qpros[4:6])
+
+dfreq<-table(ddata$simple2lvl,ddata$SpeechAct) 
+dpct<-dfreq %>%
+  prop.table(margin=2) %>% apply(2,percent)
+
+dpros<-paste0(dpct, " (",dfreq,")")
+dpros<-cbind(dpros[1:3],dpros[4:6])
+
+
+r1combo<-as.data.frame(cbind(dpros,qpros))
+
+
+bothrbothb <- cbind(r1combo,r2combo)
+bothrbothb <- bothrbothb %>% as_tibble(.name_repair = "unique")
+row.names(bothrbothb) <- c("2Both","1OBJ","3PP1")
+row.names(r1combo) <- c("2Both","1OBJ","3PP1")
+row.names(r2combo) <- c("2Both","1OBJ","3PP1")
+r1combo<-arrange(r1combo,row.names(r1combo))
+r2combo<-arrange(r2combo,row.names(r2combo))
+bothrbothb<-arrange(bothrbothb,row.names(bothrbothb))
+row.names(r1combo) <- c("OBJ only","Both","PP1 only")
+row.names(r2combo) <- c("OBJ only","Both","PP1 only")
+write_csv(r2combo,"export/ccombo.csv")
+```
+
+```{r r1bothbreaks}
+kable(
+  r1combo,
+  align="c",
+  col.names=rep(c("D","Q"),2)
+) %>%
+  add_header_above(c(" " =1, "Mod"=2,"Arg"=2)) %>%
+  column_spec(1,bold=T)%>% kable_styling(latex_options = "hold_position")
+
+```
+
+Table: Percent occurrence of both boundaries as a function of sentence type for Reading 1
+
+```{r r2bothbreaks}
+kable(
+  r2combo,
+  align="c",
+  col.names=rep(c("D","Q"),2)
+) %>%
+  add_header_above(c(" " =1, "Mod"=2,"Arg"=2)) %>%
+  column_spec(1,bold=T)%>% kable_styling(latex_options = "hold_position")
+
+```
+
+Table: Percent occurrence of both boundaries as a function of sentence type for Reading 2
+
+```{r bothbreaks2, fig.pos="!H", fig.height=3.5}
+
+mdata$SentenceType <- paste(mdata$SpeechAct,mdata$PP2Status)
+adata <- subset(mdata,simple2lvl!="NEITHER")
+adata$reading <- paste("Reading", adata$Reading)
+
+ggplot(adata,    
+    aes(
+      x=reorder(SentenceType, sto(SentenceType)),
+      y=..count..,
+      fill=reorder(
+        simple2lvl,
+        ifelse(simple2lvl=="PP1", 3, ifelse(simple2lvl=="OBJ",1,2))
+      )
+    )) +
+  geom_bar(position="fill",color="black",width=0.5) +
+  labs(fill="Pattern",x=" ",y=" ") +
+  facet_grid(cols = vars(reading)) +
+  scale_y_continuous(labels=scales::percent) + 
+  scale_fill_brewer(breaks=c("OBJ", "BOTH", "PP1"), palette="Greys") +
+  ggtitle("Figure: Break pattern as a function of sentence type and Reading.")
+
+ggsave("bothbreaks2.pdf",height=3.75,device=cairo_pdf)
+# dev.off()
+```
 

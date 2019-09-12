@@ -18,6 +18,7 @@ header-includes:
   - \usepackage{longtable}
   - \usepackage{booktabs}
   - \usepackage{setspace}\doublespacing
+  - \usepackage{indentfirst}
 ---
 ```{r echo=FALSE, warning=F,error=F}
 knitr::opts_chunk$set(
@@ -32,3 +33,5 @@ knitr::write_bib(c(
 ), 'packages.bib')
 ```
 \pagebreak
+
+\setlength\parindent{24pt}\setlength{\parskip}{0.0pt plus 1.0pt}

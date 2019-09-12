@@ -56,40 +56,49 @@ Advisor: Janet Dean Fodor
 
 \vspace{0.5in}
 
+
+\setlength\parindent{24pt}\setlength{\parskip}{0.0pt plus 1.0pt}
+
 Certain English sentences containing multiple prepositional phrases (e.g., \textit{She had planned to cram the paperwork in the drawer into her briefcase}) have been reported to be prone to mis-parsing of a kind that is standardly called a “garden path.” The mis-parse stems from the temporary ambiguity of the first prepositional phrase (PP1: \textit{in the drawer}), which tends to be interpreted initially as the goal argument of the verb cram. If the sentence ended there, that would be correct. But that analysis is overridden when the second prepositional phrase (PP2: \textit{into her briefcase}) is encountered, since the \textit{into} phrase can only be interpreted as the goal argument of the verb. Thus, PP2 necessarily supplants PP1’s initially assigned position as goal, and PP1 must be reanalyzed as a modifier of the object NP (\textit{the paperwork}).  
 
 Interrogative versions of the same sentence structure (\textit{Had she planned to cram the paperwork in the drawer into her briefcase?}) may have a different profile. They have been informally judged to be easier to process than their declarative counterparts, because they are less susceptible to the initial garden path analysis. The study presented here represents an attempt to find a behavioral correlate of this intuitive difference in processing difficulty.
 
 The experiment employs the Double Reading Paradigm (Fodor, Macaulay, Ronkos, Callahan, and Peckenpaugh, 2019). Participants were asked to read aloud a visually presented sentence twice, first without taking any time at all to preview the sentence content (Reading 1), and then again after unlimited preview (Reading 2). The experimental items were created in a 2 x 2 design with one factor being Speech Act (declarative vs. interrogative) and the other being PP2 Status, i.e., PP2 could only be an argument of the verb (Arg), as above, or else PP2 could be interpreted as a modifier (Mod) of the NP within the preceding PP, as in \textit{She had / Had she planned to cram the paperwork in the drawer of her filing cabinet(?)}.  
 
-Participants' recordings of Reading 1 and Reading 2 were subjected to prosodic coding by a linguist who was naive to the research question. Distributions of prosodic boundaries were statistically analyzed to extract any significant differences in prosodic boundary patterns as a function of Speech Act, Reading, or PP2 Status. Results indicated a significant effect of PP2 Status across all analyses of prosodic phrasing, and a significant effect of Reading for the two analyses of prosodic phrasing that incorporated boundary strength. Speech Act was not a significant predictor, except in one of the four total analyses of prosodic phrasing reported.    
+Participants' recordings of Reading 1 and Reading 2 were subjected to prosodic coding by a linguist who was naive to the research question. Distributions of prosodic boundaries were statistically analyzed to extract any significant differences in prosodic boundary patterns as a function of Speech Act, Reading, or PP2 Status. Logistic mixed effect regression models indicated, as anticipated, a significant effect of PP2 Status across all analyses of prosodic phrasing, and a significant effect of Reading for both analyses of prosodic phrasing that included boundary strength. Speech Act was a significant predictor in one of prosodic phrasing, but the hypothesized interaction (between Speech Act and PP2 Status) was not significant in any model.
 
 Another analysis concerned the amount of time a participant spent silently studying a sentence after Reading 1 to be confident they had understood it before reading it aloud again (Reading 2). The time between readings is referred to as the inter-reading time (IRT). It was assumed that a longer IRT signifies greater processing difficulty of the sentence. Thus, IRT was hypothesized to provide a behavioral correlate of the intuitive judgement that the interrogative garden paths are easier to process than the declarative ones. If a correlate had been found, it would have taken the form of an interaction between the two factors (Speech Act and PP2 Status) such that the IRT difference between Arg and Mod sentence versions was smaller for interrogatives than for declaratives.  Ultimately, however, no statistically significant interaction between Speech Act and PP2 Status was found. 
 
-Further studies seeking behavioral evidence of the informal intuition motivating this research are proposed. Also offered are possible explanations for why the intuition is apparently so strong for some English speakers, and why, if so, it is not reflected in IRT. Significant ancillary findings are that interrogatives are in general more difficult to process than corresponding declaratives. Also, inter-reading time (IRT) in the Double Reading paradigm is a useful measure of sentence processing difficulty given that within the declarative sentences, the garden-path (Arg) versions showed significantly longer IRTs than the non-garden-path (Mod) versions. 
+Further studies seeking behavioral evidence of the informal intuition motivating this research are proposed. Also offered are possible explanations for why the intuition is apparently so strong for some English speakers, and why, if so, it is not reflected in IRT. Significant ancillary findings are that interrogatives are in general more difficult to process than corresponding declaratives. Also, inter-reading time (IRT) in the Double Reading paradigm is confirmed as a useful measure of sentence processing difficulty given that within the declarative sentences, the garden-path (Arg) versions showed significantly longer IRTs than the non-garden-path (Mod) versions. 
 
 \pagebreak
 
 \centering 
+
 ACKNOWLEDGEMENTS
 
 \vspace{0.5in}
+
 \raggedright
 
-The completion of this dissertation would have been impossible without the help of my friends, family, colleagues, and most of all, my committee of advisers. The timing of its completion could not have been more difficult for me or for the chair of my committee, Janet Fodor. To Janet, I say: thank you for your endurance, your wisdom, and your patience. 
+\setlength\parindent{24pt}\setlength{\parskip}{0.0pt plus 1.0pt}
 
-Much of the burden that stemmed from the difficult timing fell onto the plate of my second adviser, Dianne Bradley. To Dianne, I say: thank you for your tireless effort, your support, and your encouragement.
+The completion of this dissertation would have been impossible without the help of my friends, family, colleagues, and most of all, my committee of advisors. The timing of its completion could not have been more difficult for me or for the chair of my committee, Janet Fodor. To Janet, I say: thank you for your endurance, your wisdom, and your patience. I'm so grateful that you have stuck with me through all the hardship we have both dealt with this past year.
+
+Much of the burden that stemmed from the difficult timing fell onto my second adviser, Dianne Bradley. To Dianne, I say: thank you for your tireless effort, your support, and your encouragement. There is absolutely no possible world in which I completed this dissertation without you. Your efforts, your wit, and your timely comfort kept me going when I thought I could go no further.
 	
-It is stereo-typically believed, far and wide, that linguists are bad at math. This shortcoming is true of me, if not all my fellows. The burden of this fell mostly upon my third adviser, Martin Chodorow. To Martin, I say: thank you for your kindness, your readiness to explain, and your forgiveness for my many mistakes.
+It has been said that linguists are bad at math. This shortcoming is true of me, if not all my fellows. The burden of this fell mostly upon my third adviser, Martin Chodorow. To Martin, I say: thank you for your kindness, your readiness to explain, and your forgiveness for my many mistakes. You have always been ready to help, offer a kind word, and reassure me. I knew almost nothing about statistics before I met you, and I am grateful for all you've taught me.
 
 I am also indebted in particular to my closest friend and partner, Tally Callahan. She endured many restless nights, grumpy days, unhinged panic attacks, and worse. Thank you, Tally, for helping me see this through.
 
 In a more practical way, I am indebted to Eva Fernandez and Nathacia Lucena. Without them, data collection would have been infinitely more difficult. Thank you for the use of your lab! And, to Bill Haddican, for his advice on handling the syntax of the construction I studied. 
 
-I must also profusely thank my informants: Sita Carraturo, who surely went above and beyond; Danielle Ronkos, who has also been an important source of support; and Rachel Zane, who helped me despite my nonsense. Special thanks to my brother-in-law, Kurtiss Hare, for his help on the Python coding I did. 
+I must also profusely thank my informants: Sita Carraturo, who surely went above and beyond; Danielle Ronkos, who has also been an important source of support; and Rachel Zane, who helped me despite my nonsense. Special thanks to my brother-in-law, Kurtiss Hare, for his help with my Python coding.
 
 I also want to thank my parents and my sister for the love and encouragement. It was an extremely difficult time for us as a family, and especially for my father. For your understanding of the limitations on my time that writing this dissertation entailed, thank you. 
 
 Also, thank you to my friends Corbin Neuhauser and Kathryn O’Shields for their input on the matters at large, as well as their camaraderie. Likewise, Burke Blackman, Pablo Gonzalez, and Michael Madden, for friendship and encouragement.
+
+Last but not least, thank you to Anne Lobeck and Kristen Denham, without whom I would never have discovered my passion for this field. Thank you, and keep inspiring your students!
 
 \pagebreak

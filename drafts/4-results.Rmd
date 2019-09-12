@@ -62,6 +62,8 @@ sto <- function (SentenceType) {
 ```
 # Results and discussion {#res}
 
+\setlength\parindent{24pt}\setlength{\parskip}{0.0pt plus 1.0pt}
+
 This chapter reports various descriptions and analyses of the recordings obtained, and the relevance of those findings to the research questions motivating this study. The reported results include the effect of Speech Act (declarative/D vs. interrogative/Q) and PP2 Status (modifier/Mod vs. argument/Arg) on the location of prosodic breaks, as well as on time spent by a participant considering a sentence between readings, i.e., the inter-reading time (IRT). In order to evaluate the extent to which participants adhered to the protocol as intended, i.e., began to read immediately for Reading 1 as opposed to producing a considered reading for Reading 2, the delay for which a sentence is displayed before a participant begins to read it is compared for Reading 1 (R1 delay) vs. Reading 2 (R2 delay). The prosodic patterns for participants with especially fast and especially slow R1 delays are presented as a way of investigating the extent to which individual differences might impact those patterns, and as a further exploration of the success of the protocol instructions in producing the intended behavior. A finding on the apparent processing cost of interrogative context when compared to declarative context among the filler sentences is also reported.
 
 ## Planned analyses
@@ -85,15 +87,15 @@ ggsave("wIRT.pdf",device=cairo_pdf)
 
 Overall mean for IRT was 6.5s (sd = 3.8). The longest IRT was 22.2s and the shortest was 0.7s. Median IRT was 6.1s.
 
-[^xtra]: The two 5-count cells include 2 additional participants whose data were collected in pursuit of another full set (i.e., towards an expansion to 40 participants) that was not completed due to a lack of participant sign-ups.
-
 ```{r vtab, echo=F}
 library(kableExtra)
 library(readr)
 library(dplyr)
 
-
 mdata <- read_csv("export/prosody_data.csv")
+
+mdata$PP2Status <- ifelse(grepl("N",mdata$REC),"Mod","Arg")
+mdata$SpeechAct <- ifelse(grepl("Q",mdata$REC),"Q","D")
 
 versiontab <- mdata %>% 
   filter(!duplicated(Participant)) %>%
@@ -265,54 +267,6 @@ kable(
 
 When looking at both breaks together, a sentence could have one of four patterns: both the OBJ and PP1 break present; only OBJ present; only PP1 present; or neither break present. There were only 5 cases where neither was present, and those were omitted in all subsequent reports of prosodic patterns.
 
-```{r r2combobreaksBycondpre}
-r2pdata<-droplevels(subset(mdata,Reading==2 & simple2lvl != "NEITHER"))
-qdata <- subset(r2pdata,PP2Status=="Arg")
-ddata <- subset(r2pdata,PP2Status=="Mod")
-qpros<-table(qdata$simple2lvl,qdata$SpeechAct) %>%
-  prop.table(margin=2) %>% apply(2,percent)
-
-dpros<-table(ddata$simple2lvl,ddata$SpeechAct) %>%
-  prop.table(margin=2) %>% apply(2,percent)
-
-r2combo<-as.data.frame(cbind(dpros,qpros))
-
-write_csv(r2combo,"export/ccombo.csv")
-
-r1pdata<-droplevels(subset(mdata,Reading==1 & simple2lvl != "NEITHER"))
-qdata <- subset(r1pdata,PP2Status=="Arg")
-ddata <- subset(r1pdata,PP2Status=="Mod")
-qpros<-table(qdata$simple2lvl,qdata$SpeechAct) %>%
-  prop.table(margin=2) %>% apply(2,percent)
-
-
-dpros<-table(ddata$simple2lvl,ddata$SpeechAct) %>%
-  prop.table(margin=2) %>% apply(2,percent)
-
-r1combo<-as.data.frame(cbind(dpros,qpros))
-
-
-bothrbothb <- cbind(r1combo,r2combo)
-bothrbothb <- bothrbothb %>% as_tibble(.name_repair = "unique")
-row.names(bothrbothb) <- c("2Both","1OBJ","3PP1")
-bothrbothb<-arrange(bothrbothb,row.names(bothrbothb))
-row.names(bothrbothb) <- c("OBJ only","Both","PP1 only")
-
-```
-
-```{r bothbreaks}
-kable(
-  bothrbothb,
-  caption="Percent occurrence of both boundaries as a function of sentence type and Reading.",
-  align="c",
-  col.names=rep(c("D","Q"),4)
-) %>%
-  add_header_above(c(" "=1,rep(c("Mod" = 2, "Arg"=2),2))) %>%
-  add_header_above(c(" "=1, "Reading 1" = 4, "Reading 2" = 4)) %>%
-  column_spec(1,bold=T)%>% kable_styling(latex_options = "hold_position")
-
-```
-
 There was very little difference across readings, with the following generalizations of the data shown in Table \@ref(tab:bothbreaks) (and its companion Figure \@ref(fig:bothbreaks2)) holding for both Reading 1 and Reading 2. For Mod sentences the OBJ-only pattern is relatively frequent (31.1% in declaratives, 31.4% in interrogatives), wheres for Arg sentences there are very few instances with the OBJ-only pattern (0.8% in declaratives, 2.5% in interrogatives). The pattern with both breaks is less common for  Mod (54.1% in declaratives, 43.0% in interrogatives) sentences than for Arg sentences (72.1% in declaratives, 71.7% in interrogatives). The PP1-only pattern occurs at about the same rate in Mod interrogatives (25.6%) as in Arg declaratives (27%) and Arg interrogatives (25.8%), but is noticeably less common for Mod declaratives (14.8%). These proportions are visually represented in Figure \@ref(fig:bothbreaks2).
 
 ```{r bothbreaks2, fig.cap="Break pattern as a function of sentence type and Reading.",fig.pos="!H", fig.height=3.5}
@@ -340,7 +294,95 @@ ggsave("bothbreaks2.pdf",height=3.75,device=cairo_pdf)
 # dev.off()
 ```
 
-The relative strength of the PP1 and OBJ boundaries was also collected. Figure \@ref(fig:bdom) incorporates this information, where PP1-dominance means that the PP1 boundary was reported to be stronger than the OBJ break; OBJ-dominance means the reverse; and “Equal strength” means that neither boundary was reported to be stronger than the other (the 5 instances with no breaks were again omitted).
+The relative strength of the PP1 and OBJ boundaries was also collected. Figure \@ref(fig:bdom) incorporates this information, where PP1-dominance means that the PP1 boundary was reported to be stronger than the OBJ break; OBJ-dominance means the reverse; and “Equal strength” means that neither boundary was reported to be stronger than the other (the 5 instances with no breaks were again omitted). These distributions are shown in Table \@ref(tab:dombreaks).
+
+```{r bdomprep}
+library(ggplot2)
+library(ggthemes)
+library(extrafont)
+adata <- subset(mdata,simple2lvl!="NEITHER")
+adata$reading <- paste("Reading", adata$Reading)
+adata$dom <- ifelse(adata$pdom,"PP1",ifelse(adata$odom,"OBJ","Equal strength"))
+
+r2pdata<-droplevels(subset(adata,Reading==2 & simple2lvl != "NEITHER"))
+qdata <- subset(r2pdata,PP2Status=="Arg")
+ddata <- subset(r2pdata,PP2Status=="Mod")
+
+qfreq<-table(qdata$dom,qdata$SpeechAct) 
+qpct<-qfreq %>%
+  prop.table(margin=2) %>% apply(2,percent)
+
+qpros<-paste0(qpct, " (",qfreq,")")
+qpros<-cbind(qpros[1:3],qpros[4:6])
+
+dfreq<-table(ddata$dom,ddata$SpeechAct) 
+dpct<-dfreq %>%
+  prop.table(margin=2) %>% apply(2,percent)
+
+dpros<-paste0(dpct, " (",dfreq,")")
+dpros<-cbind(dpros[1:3],dpros[4:6])
+
+
+r2combo<-as.data.frame(cbind(dpros,qpros))
+
+
+
+r1pdata<-droplevels(subset(adata,Reading==1 & simple2lvl != "NEITHER"))
+qdata <- subset(r1pdata,PP2Status=="Arg")
+ddata <- subset(r1pdata,PP2Status=="Mod")
+
+qfreq<-table(qdata$dom,qdata$SpeechAct) 
+qpct<-qfreq %>%
+  prop.table(margin=2) %>% apply(2,percent)
+
+qpros<-paste0(qpct, " (",qfreq,")")
+qpros<-cbind(qpros[1:3],qpros[4:6])
+
+dfreq<-table(ddata$dom,ddata$SpeechAct) 
+dpct<-dfreq %>%
+  prop.table(margin=2) %>% apply(2,percent)
+
+dpros<-paste0(dpct, " (",dfreq,")")
+dpros<-cbind(dpros[1:3],dpros[4:6])
+
+
+r1combo<-as.data.frame(cbind(dpros,qpros))
+
+
+bothrbothb <- cbind(r1combo,r2combo)
+bothrbothb <- bothrbothb %>% as_tibble(.name_repair = "unique")
+row.names(bothrbothb) <- c("2Both","1OBJ","3PP1")
+row.names(r1combo) <- c("2Both","1OBJ","3PP1")
+row.names(r2combo) <- c("2Both","1OBJ","3PP1")
+r1combo<-arrange(r1combo,row.names(r1combo))
+r2combo<-arrange(r2combo,row.names(r2combo))
+bothrbothb<-arrange(bothrbothb,row.names(bothrbothb))
+row.names(r1combo) <- c("OBJ-dominant","Equal strength","PP1-dominant")
+row.names(r2combo) <- c("OBJ-dominant","Equal strength","PP1-dominant")
+
+```
+```{r r1dombreaks}
+kable(
+  r1combo,
+  caption="Percent occurrence of boundary dominance as a function of sentence type for Reading 1.",
+  align="c",
+  col.names=rep(c("D","Q"),2)
+) %>%
+  add_header_above(c(" " =1, "Mod"=2,"Arg"=2)) %>%
+  column_spec(1,bold=T)%>% kable_styling(latex_options = "hold_position")
+
+```
+```{r r2dombreaks}
+kable(
+  r2combo,
+  caption="Percent occurrence of boundary dominance as a function of sentence type for Reading 2.",
+  align="c",
+  col.names=rep(c("D","Q"),2)
+) %>%
+  add_header_above(c(" " =1, "Mod"=2,"Arg"=2)) %>%
+  column_spec(1,bold=T)%>% kable_styling(latex_options = "hold_position")
+
+```
 
 Considering the data in terms of dominance rather than simple occurrence results in the categorization of most of the cases of both boundaries being present as either PP1-dominant or OBJ-dominant. 
 

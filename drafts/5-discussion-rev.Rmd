@@ -41,9 +41,11 @@ ccombo <- read_csv("export/ccombo.csv")
 ccombo$order <- c(2,1,3)
 ccombo <- ccombo %>% arrange(order) %>% as.data.frame()
 ccombo$order <- NULL
-rownames(ccombo)<-c("OBJ break only", "Both breaks", "PP1 break only")
+rownames(ccombo)<-c("OBJ-dominant", "Equal strength", "PP1-dominant")
 ```
 # General discussion
+
+\setlength\parindent{24pt}\setlength{\parskip}{0.0pt plus 1.0pt}
 
 This chapter will review the questions motivating the experimental study just reported and discuss the extent to which those questions are answered, or not. It will then go on to develop further questions, and propose further studies to explore those new questions and the ones left unanswered here. Finally, it will summarize the findings and the current standing of this area of research.
 
@@ -94,7 +96,7 @@ For the interrogatives, though, this contrast is possibly obscured by the need t
 
 The critical issue here is that in (@qhi), the absence of a syntactically-motivated break before PP2 might be obscured by the hesitation necessitated by preparing to start the final-rising contour of the question two words later. It is not impossible that the need to make the articulatory preparation necessary to execute a rising contour could result in a hesitation or pause at the preceding syntactic juncture most welcoming to it, the PP1 break position. While in (@qhi) PP2 is a sub-constituent of PP1, and so the final phrase of the VP is actually PP1, the final nuclear accent in (@qhi) still falls on the NP within PP2. Thus the final high rise is anchored to the same phrase in both interrogative versions (Arg and Mod), and is unable to disambiguate any confusion about the presence or absence of a true prosodic boundary before PP2.
 
-If the PP1 break is treated as the main indicator of the prosodic structure, then the smaller difference across PP2 Status for interrogatives (`r 25.8-25.6`%) than for declaratives (`r 27-14.8`%) does, though perhaps weakly, leave open the door for the @Bader1998-ts style explanation of the hunch that interrogative PP-attachment garden paths are easier to comprehend than declarative ones. Ultimately, though, logistic regression models showed no significant effect of the interaction between Speech Act and PP2 Status (no bias toward higher Arg PP2 attachment in interrogatives than declaratives), so it is safest to assume that the numerical difference is just noise, and that the explanation for the intuition is not prosodic.
+If the PP1 dominance is treated as the main indicator of the prosodic structure, then the smaller difference across PP2 Status for interrogatives (`r 25.8-25.6`%) than for declaratives (`r 27-14.8`%) does, though perhaps weakly, leave open the door for the @Bader1998-ts style explanation of the hunch that interrogative PP-attachment garden paths are easier to comprehend than declarative ones. Ultimately, though, logistic regression models showed no significant effect of the interaction between Speech Act and PP2 Status (no bias toward higher Arg PP2 attachment in interrogatives than declaratives), so it is safest to assume that the numerical difference is just noise, and that the explanation for the intuition is not prosodic.
 
 ### Hesitations vs. prosodic breaks {#hesi}
 
@@ -102,7 +104,7 @@ An issue with the findings of this study is the difficulty in differentiating be
 
 It can be difficult to capture a prosodic break in physical terms (see, e.g., @ladd), and there is no guarantee that examining the wave forms instrumentally would fare any better than judges' intuitions in distinguishing between hesitation and true prosodic boundaries. That said, it may be possible to find means to distinguish the two sorts of breaks: for instance, it might be that boundary tones or segmental lengthening are typically not part of a hesitation break, but are a part of a prosodic break, for example.
 
-It is possible that the results of the current study were impacted by issues with prosodic coding related to this difficulty in distinguishing between prosodic phenomena. Table \@ref(tab:combobr) shows the distribution of the possible break patterns (PP2 break only, OBJ break only, or both breaks, with the negligible number of cases of neither break omitted) as a function of sentence type for Reading 2 only. These data are a subset of the data reported in Section \@ref(results-prosody), Table \@ref(tab:bothbreaks).
+It is possible that the results of the current study were impacted by issues with prosodic coding related to this difficulty in distinguishing between prosodic phenomena. Table \@ref(tab:combobr) shows the distribution of the possible break patterns (PP2 break only, OBJ break only, or both breaks, with the negligible number of cases of neither break omitted) as a function of sentence type for Reading 2 only.
 
 ```{r combobr}
 library(dplyr)
@@ -110,7 +112,7 @@ library(kableExtra)
 
 kable(
   ccombo,
-  caption="Percent occurrence of break patterns in Reading 2 as a function of sentence type.", 
+  caption="Percent occurence of boundaries (frequency in parenthesis) in Reading 2 as a function of sentence type.", 
   col.names=c("D","Q","D","Q"),
   align="c") %>%
   add_header_above(c(" "=1,"Mod" = 2, "Arg"=2)) %>%
@@ -125,9 +127,9 @@ In \@ref(erp) I propose that an event-related potential (ERP) paradigm might hol
 
 If the above explanation of a null result proves not to be viable in subsequent study, a possibility to consider is that the intuition itself is illusory in nature, i.e., it is not the case that interrogative PP-attachment garden paths (either pragmatically or syntactically disambiguated) are easier to parse than declarative ones, but only appear to be so because the added complexity of the interrogative version is distracting the reader with a different sort of difficulty. That is, it may be that readers are being distracted by the processing cost of interrogativity, and thereby are less sensitive to the cost of reanalysis. While the parser is struggling with two additive increases to complexity as compared to the D Mod sentences (i.e., Arg PP2 Status and interrogative status), the reader is aware only of the more immediately obvious difference, that of interrogativity, and fails to notice the structural reanalysis that the parser is undertaking.
 
-### A semantic/pragmatic explanation
+### A semantic/pragmatic explanation {#sem}
 
-As discussed in Section \@ref(intg), there are substantial pragmatic and semantic differences between the interrogative and declarative versions of the Double PP construction. It is worth considering the possibility that those differences might have been what led to the 2016 Intuition. For example, it could be that when narrow focus leads to the presupposition of most of the content of a polar question, the semantic processing load for the listener or reader is reduced, and thus the extra processing difficulty of the garden-path effect is not swamped by other grammatical processing, as it might be in a sentence without narrow focus.
+There are substantial pragmatic and semantic differences between the interrogative and declarative versions of the Double PP construction. It is worth considering the possibility that those differences might have been what led to the 2016 Intuition. Specifically, as discussed in Section \@ref(intg), to the extent that questions more often recieve narrow focus than do declaratives, it could be that the presupposition of most of the question reduces the semantic processing load for the listener or reader. Thus, extra processing capacity is freed up to deal with the garden-path.
 
 A possible method for exploring this potential explanation would be to test declarative sentences with marked narrow focus as in (@nd) (where capital letters indicate verbal emphasis). 
 

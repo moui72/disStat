@@ -1,8 +1,8 @@
 {
-    "cursorPosition" : "465,14",
+    "cursorPosition" : "375,479",
     "docOutlineSize" : "120",
     "docOutlineVisible" : "1",
-    "ignored_words" : "dcb,dcbp,upsamp,csv,dr,sp,del,Sona,irt,intra,appExp,appFill,addlinespace,irb,irtDis,png,foveal,saccades,ballistically,saccadic,dtcs,rccc,evsdtcr,json,csvs,sita,Intra,reqGoal,ength,McConkie,Rayner,leq,rl,exps,lllcllp,uous,Disam,uation,fsentences,parti,CUNY's,monitered,lllll,Falk,cccccccc,hesi\n",
-    "last_setup_crc32" : "29ACD27235e1b983",
-    "scrollLine" : "460"
+    "ignored_words" : "dcb,dcbp,upsamp,csv,dr,sp,del,Sona,irt,intra,appExp,appFill,addlinespace,irb,irtDis,png,foveal,saccades,ballistically,saccadic,dtcs,rccc,evsdtcr,json,csvs,sita,Intra,reqGoal,ength,McConkie,Rayner,leq,rl,exps,lllcllp,uous,Disam,uation,fsentences,parti,CUNY's,monitered,lllll,Falk,cccccccc,hesi,hb,RaP,Breen,et,al\n",
+    "last_setup_crc32" : "",
+    "scrollLine" : "363"
 }
