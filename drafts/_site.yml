@@ -1,6 +1,4 @@
-site: bookdown::bookdown_site
 output: 
-  indent: true
   bookdown::word_document2: default
   bookdown::pdf_book:
     latex_engine: xelatex  

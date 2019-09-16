@@ -1,8 +1,3 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
 ```{r echo=F}
 knitr::opts_chunk$set(
   echo=FALSE, 
@@ -12,10 +7,10 @@ knitr::opts_chunk$set(
   fig.pos="H"
 )
 ```
-\pagenumbering{arabic}
 
 # Introduction and background
 
+\pagenumbering{arabic}
 \setlength\parindent{24pt}\setlength{\parskip}{0.0pt plus 1.0pt}
 
 This paper presents a study on human sentence processing, or parsing, and on the parsing of a particular sort of ambiguity. Parsing is assumed to be the projection of structure by a reader or listener over a string of words (which lacks inherent structure). Following the models of parsing developed by, e.g.,  @kimball1973seven, @frazier1978sausage, and @Frazier1979-pb, this study assumes that parsing is done online , (i.e., during listening to or reading the word string) with the aim that most material is incorporated into the structure being built as soon as it is encountered. This can lead to mis-parses, where the parser has guessed wrong about how to incorporate a temporarily ambiguous phrase in the input, which becomes apparent when subsequent material is encountered which cannot be incorporated into the resulting structure. This sort of parsing crash is called a "garden path." When it happens, the parser must reanalyze the material that had so far been processed, in order to arrive at a structure that can accommodate both the new and the old material grammatically. 
@@ -26,7 +21,7 @@ In short: "Garden path" effects occur when temporarily ambiguous sentence resolv
   Attach incoming material into the phrase-marker being constructed using the fewest nodes consistent with the well-formedness rules of the language under analysis [@Frazier1979-pb p.24]
   
   (@LateClo) *Late closure* \linebreak\nopagebreak
-  When possible, attach incoming material into the clause currently being parsed [@Frazier1979-pb p.20]
+  When possible, attach incoming material into the clause or phrase currently being parsed [@Frazier1979-pb p.20]
 
 Because these strategies ignore semantic and pragmatic plausibility and the parser typically does not know what material might occur further on in the word string, mis-parses at temporarily ambiguous regions can occur. Minimal Attachment (MA) is important to the present study.
 

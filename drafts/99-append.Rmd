@@ -153,13 +153,13 @@ kable(keyTable,booktabs=T) %>%
 
 Before you begin describing the recordings for a given speaker, please familiarize yourself with that speaker. To do so, please listen to recordings numbered 46-48 and 24-27.
 
-Next, move on to describings the recordings numbered 1-16. Please listen to them in the following pattern: begin with either 1Y or 1X, and listen to the recordings sequentially (or reverse sequentially), and alternate between X and Y versions. Then, repeat the process for the inverse versions (X vs. Y). Please then listen to the next speaker, beginning with 16X or Y, and then listen in reverse sequence, alternating X vs. Y, and then again repeat for the other half. In this way, please alternate across speakers between listening to X or Y first as well as 1 or 16 first.
+Next, move on to describing the recordings numbered 1-16. Please listen to them in the following pattern: begin with either 1Y or 1X, and listen to the recordings sequentially (or reverse sequentially), and alternate between X and Y versions. Then, repeat the process for the inverse versions (X vs. Y). Please then listen to the next speaker, beginning with 16X or Y, and then listen in reverse sequence, alternating X vs. Y, and then again repeat for the other half. In this way, please alternate across speakers between listening to X or Y first as well as 1 or 16 first.
 
 For each recording, please respond in the spreadsheet using the following guidelines for the columns. Each recording should get its own row.
 
   * Speaker ID: This should be the name of the directory in which the recording exists.
-  * Recording ID: This should be the filename of the recording being described
-  * X or Y: This should be the last character of the filename, either X or Y.
+  * Recording ID: This should be the file name of the recording being described
+  * X or Y: This should be the last character of the file name, either X or Y.
   * First recording for speaker: This should indicate which recording you started with first, which will allow me to deduce the pattern you used to listened to the recordings, per above, e.g. 1X, 1Y, 16X or 16Y.
 
 For columns E-K, Consider a given sentence to be divided into regions, as in the following example:
@@ -192,7 +192,7 @@ Please work with the assumption that “prosodic boundary” in what follows is 
 
 # Additional prosodic data {#proApp}
 
-The break occurrence data below represent what was used for the analyses of break dominance reported in Section \@ref(results-prosody) prior to incorporating judgements of relative break strength.
+The break occurrence data below represent what was used for the analyses of break dominance reported in Section \@ref(results-prosody) prior to incorporating judgments of relative break strength.
 
 \centering
 
@@ -321,7 +321,7 @@ kable(
 
 ```
 
-```{r bothbreaks2, fig.cap="Figure: Break pattern as a function of sentence type and Reading.", fig.pos="!H", fig.height=3.5}
+```{r bothbreaks2, fig.cap="Break pattern as a function of sentence type and Reading.", fig.pos="!H", fig.height=3.5}
 
 mdata$SentenceType <- paste(mdata$SpeechAct,mdata$PP2Status)
 adata <- subset(mdata,simple2lvl!="NEITHER")

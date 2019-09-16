@@ -1,6 +1,6 @@
-\pagenumbering{gobble}
-\centering
 
+\centering
+\pagenumbering{roman}
 \vspace*{2.0in}
 
 \uppercase{Prepositional phrase attachment ambiguities \\ in declarative and interrogative contexts: \\ Oral reading data}
@@ -20,20 +20,19 @@ A dissertation submitted to the Graduate Faculty in Linguistics in partial fulfi
 \vspace{0.5in}
 
 2019
-
+\thispagestyle{empty}
 \pagebreak
 
-\pagenumbering{roman}
+\setcounter{page}{2}
 \vspace*{4in}
 \vfill
-
 \copyright 2019\\
 Tyler J. Peckenpaugh\\
 All rights reserved\\
 
 \pagebreak
 
-\includepdf[pages=1]{approval-page.pdf}
+\includegraphics{approval-page2.pdf}
 
 \pagebreak
 
@@ -91,11 +90,7 @@ It has been said that linguists are bad at math. This shortcoming is true of me,
 
 I am also indebted in particular to my closest friend and partner, Tally Callahan. She endured many restless nights, grumpy days, unhinged panic attacks, and worse. Thank you, Tally, for helping me see this through.
 
-<<<<<<< HEAD
 In a more practical way, I am indebted to Eva Fern\'{a}ndez and Nathacia Lucena. Without them, data collection would have been infinitely more difficult. Thank you for the use of your lab! And, to Bill Haddican, for his advice on handling the syntax of the construction I studied. 
-=======
-In a more practical way, I am indebted to Eva Fern\`{a}ndez and Nathacia Lucena. Without them, data collection would have been infinitely more difficult. Thank you for the use of your lab! And, to Bill Haddican, for his advice on handling the syntax of the construction I studied. 
->>>>>>> a8a4212c40c40e974d9bcfcf508869d9f70e2519
 
 I must also profusely thank my informants: Sita Carraturo, who surely went above and beyond; Danielle Ronkos, who has also been an important source of support; and Rachel Zane, who helped me despite my nonsense. Special thanks to my brother-in-law, Kurtiss Hare, for his help with my Python coding.
 

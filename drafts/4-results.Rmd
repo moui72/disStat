@@ -396,7 +396,7 @@ ggsave("bdom.pdf",device=cairo_pdf)
 
 The data here clearly show a robust effect of PP2 Status (Mod or Arg) on break dominance, and little to no impact of Reading or Speech Act (D or Q). A dominant break after PP1 is frequent for all Arg sentences, both declaratives and questions, and in both Reading 1 and Reading 2. It is less frequent for Mod sentences in both Reading 1 and Reading 2. The higher relative frequency of PP1 break dominance in Arg sentences compared to Mod sentences is expected, since it represents a syntactically motivated prosodic break in the Arg cases. For the Mod sentences, there is no syntactic motivation for the PP1 break, so it makes sense for it to be less frequent and less dominant in Mod sentences. 
 
-It is both noteworthy and puzzling that the patterns do not differ greatly across the two readings, as one would expect difficulty getting the prosody right on the first try for the difficult sentences being tested in the current study. It may be that the disambiguating preposition, *into* came into view while the participant was still pronouncing an earlier portion of the sentence (due to the Eye-Voice Span, see Section \@ref(look-ahead)). Since the disambiguator is a preposition and thus a function word, it can be processed very quickly, and so it's possible that even very limited lookahead allowed some readers to come to the correct parse on their first reading.
+It is both noteworthy and puzzling that the patterns do not differ greatly across the two readings, as one would expect difficulty getting the prosody right on the first try for the difficult sentences being tested in the current study. It may be that the disambiguating preposition, *into* came into view while the participant was still pronouncing an earlier portion of the sentence (due to the Eye-Voice Span, see Section \@ref(look-ahead)). Since the disambiguator is a preposition and thus a function word, it can be processed very quickly, and so it's possible that even very limited look-ahead allowed some readers to come to the correct parse on their first reading.
 
 A number of mixed effects logistic regression models support the general observations above. Models predicting PP1 break, OBJ break, OBJ break dominance and PP1 break dominance are reported. All models include random intercepts for participant and item, but due to convergence errors, no random slopes for any predictors are included. 
 
@@ -780,7 +780,7 @@ Returning to the predictions made in the first chapter, and indeed the intuition
 
 The prediction made by this hypothesis is essentially that IRT would show an effect of the interaction between PP2 Status and Speech Act, but no such significance was detected. It is possible that this is because IRT is not the proper measure for processing difficulty, but to make that claim one would have to explain why it nonetheless shows a robust effect of Arg PP2 Status (i.e., garden-path sentences exhibit longer IRTs than non-garden-path sentences). It seems more likely that IRT is a useful measure of processing difficulty, but that for some other reason, the intuition that the declarative instances of the Arg sentences are harder to process than the interrogative versions is not reflected in IRT.
 
-### An ancillary planned analysis, the processing cost of interrogativity {#qslow}
+### Ancillary analysis: The processing cost of interrogativity {#qslow}
 
 ```{r}
 library(scales)
@@ -804,25 +804,39 @@ mean.irtByQnPP <- aggregate(
 )
 ```
 
-It is worth noting that the mean IRT for interrogative versions (6.7s) of the experimental sentences in the reported study was longer than for the declaratives (6.4s). While this finding was not statistically significant, @qp2 found that whole-sentence silent reading times for interrogatives were longer than for declaratives; and @mehler1963some provided a very early report of the processing cost of interrogativity: a so-called kernel sentence, i.e., a simple declarative, was easier to recall verbatim than were a number of sentences that he considered to be syntactic transformations of that kernel sentence (K): negative (N), polar question (Q), passive (P), and combinations thereof: NQ, NP, QP and NPQ. Mehler found that accurate recall was more frequent for K sentences (300/460, `r percent(300/460)`) than for the other sentences types, with interrogatives (210/460, `r percent(210/460)`) being recalled accurately at a lower rate than the two other individual transformations (234/460, `r percent(234/460)` for N; 243/460, `r percent(243/460)` for P).
+It is worth noting that the mean IRT for interrogative versions (6.66s) of the experimental sentences in the reported study was numerically greater than for the declaratives (6.40s). While this finding was not statistically significant, @qp2 similarly found that whole-sentence silent reading times for interrogatives were longer than for declaratives; and @mehler1963some provided a very early report of the processing cost of interrogativity: a so-called kernel sentence, i.e., a simple declarative, was easier to recall verbatim than were a number of sentences that he considered to be syntactic transformations of that kernel sentence (K): negative (N), polar question (Q), passive (P), and combinations thereof: NQ, NP, QP and NPQ. Mehler found that accurate recall was more frequent for K sentences (`r percent(300/460)`) than for the other sentences types, with interrogatives (`r percent(210/460)`) being recalled accurately at a lower rate than the two other individual transformations (`r percent(234/460)` for N; `r percent(243/460)` for P).
 
-To further investigate the effect that interrogativity appears to have on processing, the filler sentences in this study were designed in two versions, interrogative (Q) and declarative (D), so as to provide a diagnostic of the interrogative effect on IRT outside the construction of interest. A linear mixed effects regression model predicting IRT for filler items by Speech Act with random intercepts for participant and item found that IRT is increased by 0.4s for interrogatives (std. error = 0.2; p < .05); declaratives had a mean IRT of 6.2s, while interrogatives had a mean IRT of 6.6s. Half of the fillers had a sequence of two PPs at the end of the sentence to mirror the experimental items: a model predicting IRT by the presence of those PPs found minimal effect on IRT ($\beta$=0.01, std. error = 0.22, p = .96). This indicates that the presence of a string of PPs does not independently affect the apparent processing cost of interrogativity.
+To further investigate the effect that interrogativity appears to have on processing, the filler sentences in this study were designed in two versions, interrogative (Q) and declarative (D), so as to provide a diagnostic of the interrogative effect on IRT outside the construction of interest and absent any syntactic ambiguity. A linear mixed effects regression model predicting IRT for filler items by Speech Act with random intercepts for participant and item found that IRT is increased by 0.37s for interrogatives (std. error = 0.2; p < .05); declaratives had a mean IRT of 6.18s, while interrogatives had a mean IRT of 6.55s. Half of the fillers had a sequence of two PPs at the end of the sentence to mirror the experimental items: a model predicting IRT by the presence of those PPs found a minimal effect on IRT ($\beta$=0.01, std. error = 0.22, p > .50). This indicates that the presence of a string of PPs does not independently affect the processing cost engendered by interrogativity.
 
 Interrogative status itself appears to increase the time needed for participants to feel they have satisfactorily studied a sentence in order to read it aloud correctly. This is consistent with the @mehler1963some and @qp2 findings that interrogatives are in some way more complicated or difficult than declaratives, and is an interesting finding, although not clearly related to the primary research question behind this study.
 
 ## Exploratory analyses    
 
-This section presents two exploratory analyses that were conducted in an effort to explain some of the surprising findings just reported. 
+This section presents two exploratory analyses that were conducted in pursuit of additional evidence bearing on certain aspects of the unexpected findings just reported. One looks at protocol adherence, to investigate whether the lack of effect of Reading on prosodic boundary occurrence can be attributed to look-ahead. The results of that analysis suggest that look-ahead was most likely not at play. 
 
-One looks at protocol adherence, to investigate whether the lack of effect of Reading on prosodic boundary occurrence can be attributed to look-ahead. The results of that analysis suggest that look-ahead was most likely not at play. 
-
-The second exploratory analysis looks at the identity of PP2-heads and finds that *of*-headed PP2s (which are categorized as Mod PP2 Status) corresponded to shorter IRTs than did *from*-headed PP2s (despite *from*-headed PP2s also being categorized as Mod).
+The second exploration examines the possible effects of the content PP2-heads and finds that *of*-headed PP2s (categorized as Mod under the PP2 Status factor of the material) afforded shorter IRTs than did *from*-headed PP2s, despite *from*-headed PP2s also being categorized as Mod.
 
 ### On Reading 1 delay {#r1del}
 
-Reading 1 (R1) delay is the amount of time between the initial display of a sentence and the start of phonation. Participants' median R1 delay ranged from 0.6s to 1.6s with a standard deviation of 0.25s. The distribution of R1 delay was notably different than that of R2 delay, as shown in Figure \@ref(fig:delayComparison), which indicates that participants were adhering to the protocol at least most of the time.
+Recall that Reading 1 (R1) delay is the time elapsing between the initial display of a sentence and the start of phonation, and that participants' median R1 delay ranged from 0.6s to 1.6s with a standard deviation of 0.25s. The distribution of R1 delay was notably different than that of R2 delay, as shown in Figure \@ref(fig:delayComparison), which of itself indicates that participants were adhering to the protocol at least most of the time.
 
 ```{r delayComparison,fig.pos="!h",fig.cap="Distributions of R1 delay and R2 delay"}
+library(readr)
+library(tidyr)
+library(dplyr)
+library(scales)
+
+hidel <- 1051
+lodel <- 901
+
+adata <- read_csv("../drafts/export/prosody_with_r1delcat.csv")
+adata$SentenceType <- paste(ifelse(adata$Condition_Q,"Q","D"),ifelse(adata$Condition_GP,"Arg","Mod"))
+adata$reading <- paste("Reading", adata$Reading)
+pdata <- subset(adata, r1DelCat != "NORMAL")
+
+adata$both <- adata$simple2lvl=="BOTH"
+
+catdes <- sprintf("FAST median R1 delay < %0.2fs. SLOW median R1 delay > %0.2fs",lodel/1000,hidel/1000)
 raw_rs_file <- read_csv("../csvs/merged.csv")
 raw_rs <- subset(raw_rs_file,!isFiller & Leading < 15000)
 raw_rs$reading <- raw_rs$Reading
@@ -838,41 +852,9 @@ ggsave("deldis.pdf",device=cairo_pdf())
 # dev.off()
 ```
 
-As a way of analyzing the protocol, and the extent to which participants performed as expected, participants were categorized based on their median R1 delay. In what follows, a *fast* median R1 delay was less than or equal to 0.9s, and a *slow* one was longer than 1.05s, resulting in 12 participants per category. Ten participants had R1 delays between those values and were set aside. The calculations for categorizing participants were done over Reading 1 of experimental items (n = 489). Note that while R1 delay category (i.e., *fast* or *slow*) is a property of R1 delay, data for both readings is nonetheless explored within these categories.
-
-```{r facet, fig.cap="Plot of pattern proportions as a function of sentence type.",fig.height=3.5,fig.pos="H"}
-
-hidel <- 1051
-lodel <- 901
-
-catdes <- sprintf("FAST median R1 delay < %0.2fs. SLOW median R1 delay > %0.2fs",lodel/1000,hidel/1000)
-
-adata <- read_csv("../drafts/export/prosody_with_r1delcat.csv")
-adata$SentenceType <- paste(ifelse(adata$Condition_Q,"Q","D"),ifelse(adata$Condition_GP,"Arg","Mod"))
-adata$reading <- paste("Reading", adata$Reading)
-pdata <- subset(adata, r1DelCat != "NORMAL")
-
-ggplot(pdata,    
-    aes(
-      x=reorder(SentenceType,sto(SentenceType)),
-      y=..count..,
-      fill=reorder(
-        simple2lvl,
-        ifelse(simple2lvl=="PP1", 1, ifelse(simple2lvl=="OBJ",3,2))
-      )
-    )) +
-  geom_bar(position="fill",color="black",width=0.5) +
-  labs(fill="Pattern",x=" ",y=" ",caption="FAST n=12, SLOW n = 12") +
-  facet_grid(rows = vars(reading),cols=vars(r1DelCat)) +
-  scale_y_continuous(labels=scales::percent) + 
-  scale_fill_brewer(breaks=c("PP1", "BOTH", "OBJ"), palette="Greys")
-
-ggsave("facet.pdf",device=cairo_pdf())
-# dev.off()
-```
+As a way of analyzing the protocol, and the extent to which participants performed as instructed, participants were categorized based on their median R1 delay. In what follows, a *fast* median R1 delay was less than or equal to 0.9s, and a *slow* one was longer than 1.05s, resulting in 12 participants per category. Ten participants had R1 delays falling between those values, and were set aside in this exploration of protocol adherence. The calculations for categorizing participants were done over Reading 1 of experimental items (n = 489). Note that while sub-group categorization (i.e., *fast* vs. *slow*) is strictly a property of R1 delay, data bearing on prosodic phrasing patterns for both readings is nonetheless examine in what follows.
 
 ```{r rsplit}
-adata$both <- adata$simple2lvl=="BOTH"
 
 r1data<-subset(adata,Reading==1)
 
@@ -955,17 +937,7 @@ tab <- tab %>% select(Pattern,everything())
 
 tab <- rbind(r1tab,tab)
 ```
-```{r r2split, include = F}
-tab %>% kable(
-  align="c",
-  caption="Break pattern by sentence type and R1 delay category.",
-  col.names=c(" ", rep(c("D Arg","D Mod", "Q Arg", "Q Mod"),2))
-) %>% kable_styling() %>%
-  column_spec(5,border_right = T) %>%
-  collapse_rows(columns = 1) %>%
-  add_header_above(c(" " = 1,"FAST (n=12)"=4,"SLOW (n=12)"=4)) %>%
-  pack_rows(index = c("Reading 1" = 6, "Reading 2" = 6))
-```
+
 ```{r r1catTesting}
 xdata <- subset(adata,r1DelCat != "NORMAL")
 r1df <- ftable(xtabs(~Participant + simple2lvl + r1DelCat, subset(xdata,Reading==1))) %>% as.data.frame
@@ -976,13 +948,38 @@ dfs$deltaBOTH <- dfs$r1.BOTH - dfs$r2.BOTH
 dfs$deltaBothCat <- ifelse(dfs$deltaBOTH > 0, "Decrease",ifelse(dfs$deltaBOTH < 0,"Increase","No change"))
 ```
 
-In cases where median R1 delay was short, readers were more likely to produce only one break (PP1 or OBJ) than if R1 delay was longer. A possible explanation is that for recordings in the *slow* category, readers were more prone to hesitation in general, or perhaps, contrary to instructions, were using both the delay time as well as extra time created via hesitation to look ahead. The significant effect of PP2 Status for the *slow* category in Reading 2 could be due to the reader not fully understanding the Arg sentences prior to Reading 2, thus increasing their likelihood of hesitation; i.e., where the fast category represents confident readers, the *slow* category represents less confident readers. As a result of the reader's increased difficulty in Reading 1 for the recordings in the *slow* category, the effect of processing difficulty is not limited to Reading 1 but in fact spills over into Reading 2. The *slow* category represents readers who are never able to fully comprehend the sentence, and thus hesitate more frequently.
+As is evident in illustrative figure \@ref(fig:facet) below (showing break occurrence data), readers were more likely to produce only one break (PP1 or OBJ) when median R1 delay was short, vs. when media R1 delay was slower. 
+
+```{r facet, fig.cap="Plot of pattern proportions as a function of sentence type.",fig.height=3.5,fig.pos="H"}
+library(ggplot2)
+library(ggthemes)
+
+ggplot(pdata,    
+    aes(
+      x=reorder(SentenceType,sto(SentenceType)),
+      y=..count..,
+      fill=reorder(
+        simple2lvl,
+        ifelse(simple2lvl=="PP1", 1, ifelse(simple2lvl=="OBJ",3,2))
+      )
+    )) +
+  geom_bar(position="fill",color="black",width=0.5) +
+  labs(fill="Pattern",x=" ",y=" ",caption="FAST n=12, SLOW n = 12") +
+  facet_grid(rows = vars(reading),cols=vars(r1DelCat)) +
+  scale_y_continuous(labels=scales::percent) + 
+  scale_fill_brewer(breaks=c("PP1", "BOTH", "OBJ"), palette="Greys")
+
+ggsave("facet.pdf",device=cairo_pdf())
+# dev.off()
+```
+
+A possible explanation is that for recordings in the *slow* category, readers were more prone to hesitation in general, or perhaps, contrary to instructions, were using both the delay time as well as extra time created via hesitation to look ahead. The significant effect of PP2 Status for the *slow* category in Reading 2 could be due to the reader not fully understanding the Arg sentences prior to Reading 2, thus increasing their likelihood of hesitation; i.e., where the fast category represents confident readers, the *slow* category represents less confident readers. As a result of the reader's increased difficulty in Reading 1 for the recordings in the *slow* category, the effect of processing difficulty is not limited to Reading 1 but in fact spills over into Reading 2. The *slow* category represents readers who are never able to fully comprehend the sentence, and thus hesitate more frequently.
 
 Mixed effects logistic regression models found no significant effect of R1 Delay Category for PP1 break dominance or OBJ break dominance. So, ultimately, variation in R1 delay does not seem to be of concern.
 
 ### On PP2 heads {#pp2h}
 
-As mentioned in the items description (Section \@ref(exps)), half of the items used *of* for the head of PP2 in the Mod cases, while half used *from.* In the Arg condition, half used *into* and half used *onto* to head PP2. An analysis that attempts to predict IRT by the PP2 head (e.g., *into* vs. *from*) found that while *into* and *onto* do not behave differently from each other, *of* and *from* do. Starting from a maximally complex model that included the lexical identity of the matrix verb, the construction verb, the head of PP1, and the head of PP2, as well as Speech Act and PP2 Status, the model that best predicted IRT was one that is essentially the same as the reduced model just reported (i.e., with Speech Act and PP2 Status as predictors), except that it substitutes the lexical identity of the PP2 head for PP2 Status, with *into* and *onto* collapsed into one level used as the reference level (intercept). 
+As mentioned in the items description (Section \@ref(exps)), half of the items used *of* for the head of PP2 in the Mod cases, while half used *from.* In the Arg condition, half used *into* and half used *onto* to head PP2. An analysis that attempts to predict IRT by the PP2 head (e.g., *into* vs. *from*) found that while *into* and *onto* do not behave differently from each other, *of* and *from* do. Starting from a maximally complex model that included the lexical identity of the matrix verb, the construction verb, the head of PP1, and the head of PP2, as well as Speech Act and PP2 Status, the model that best predicted IRT was one with Speech Act and PP2 head as predictors, with *into* and *onto* collapsed into one level of the PP2 head factor and used as the reference level (intercept). 
 
 ```{r pp2hd}
 csv <- '
@@ -1006,9 +1003,9 @@ tab %>% kable(
 
 Sentences where PP2 was headed by *of* typically had IRTs that were 0.84s faster than sentences where PP2 was headed by *into*/*onto*; when the PP2 head was *from*, IRT was only 0.08s faster than for *into*/*onto*, a difference that is not statistically significant (p > .50).
 
-It is clear from the above that the sentences containing argument PP2s tested here (ones headed by *into*/*onto*) result in longer IRT measures than those containing Mod PP2s ($\beta$ = 0.46, p < .05), but Speech Act and the interaction between the two factors are not a significant predictors of IRT (see Section \@ref(irt)). It then must be said that IRT does not represent a behavioral reflex of the intuition that interrogativity makes difficult to process PP2-attachment ambiguities easier.
+It is clear from the above that the sentences containing argument PP2s tested here (ones headed by *into*/*onto*) result in longer IRT measures than those containing Mod PP2s ($\beta$ = 0.46, p < .05), but Speech Act and the interaction between the two factors are not a significant predictors of IRT (see Section \@ref(irt)). Based on these findings, it does not appear that IRT represents a behavioral reflex of the intuition that the processing difficulty of PP2-attachment ambiguities is lessened in interrogative contexts vs. declarative contexts.
 
-What might explain the difference in PP2 heads' effect on IRT? For one, the *of*-headed PPs are marked by *of* as the possessors of the noun in the immediately preceding PP1; e.g., *on the roof rack of the minivan* could be re-cast as *on the minivan’s roof rack*. In contrast, the *from*-headed PP2s are all locatives, and in that sense are similar to cases with *into/onto*.  It is just that the *from* phrases are not the kind of locatives that can function as the goal arguments demanded by the construction verbs used in the study.  That is, even if these were to be used in some circumstances as directional rather than purely locative prepositions, they would function as sources rather than goals, e.g., *he moved the cows from the pasture to the barn*.
+What might explain the difference in PP2 heads' effect on IRT? It seems immediately relevant that the *of*-headed PPs in the experimental materials were all marked by *of* as the possessors of the noun in the immediately preceding PP1; e.g., *on the roof rack of the minivan* could be re-cast as *on the minivan’s roof rack*. In contrast, the *from*-headed PP2s are all locatives, and in that sense are similar to cases with *into/onto*.  It is just that the *from* phrases are not the kind of locatives that can function as the goal arguments demanded by the construction verbs used in the study.  That is, even if these were to be used in some circumstances as directional rather than purely locative prepositions, they would function as sources rather than goals, e.g., *he moved the cows from the pasture to the barn*.
 
 There might also be a simpler (and less interesting) explanation: because *of* is only two characters long, whereas *from* and *into*/*onto* are all four characters, participants may have recognized a pattern. For instance, they may have deduced that a two-character PP2 head meant the sentence did not have the difficult properties of some of the sentences with four-character PP2 heads (most notably the *into*/*onto* cases), which would have eliminated some of the needed study time.
 

@@ -367,7 +367,7 @@ A linguistically trained informant, naive to the research being conducted, liste
   \endgroup
 
 
-The informant was asked to report on whether she heard a prosodic boundary directly following the region labeled **OBJ**, and directly following the region labeled **PP1**. Note that throughout this dissertation, the word "break" is often used as shorthand when referring to prosodic boundaries. Importantly, it is not ised tp refer to other discontinuities such as hesitations or filler words like "um". Admittedly, however, there may have been times when the coder mislabled a hesitation as a boundary. This matter is returned to in Section \@ref(hesi). Instruction regarding how to define prosodic boundary was provided to the coder by way of the following prose:
+The informant was asked to report on whether she heard a prosodic boundary directly following the region labeled **OBJ**, and directly following the region labeled **PP1**. Note that throughout this dissertation, the word "break" is often used as shorthand when referring to prosodic boundaries. Importantly, it is not used to refer to other discontinuities such as hesitations or filler words like "um". Admittedly, however, there may have been times when the coder mislabeled a hesitation as a boundary. This matter is returned to in Section \@ref(hesi). Instruction regarding how to define prosodic boundary was provided to the coder by way of the following prose:
 
 >Please work with the assumption that “prosodic boundary” in what follows is any subset of the following features, clustered in such a way as to trigger your intuition that a new prosodic element (of any size) is beginning: pitch change, volume change, segmental lengthening, or pause.
 
@@ -375,7 +375,7 @@ The decision to use loose intuitive judgments of prosodic phenomena, rather than
 
 Detailed instructions on the order in which items should be coded, both within speaker and across speakers, were also provided. The result was that she never listened to both readings of a sentence in sequence; she never listened to two Reading 1 versions of different sentences in sequence; and she never listened to the sentences in the same order for a different participant. The instructions given to the informant and the set of judgments requested can be found in full in Appendix \@ref(RA).
 
-The prosodic coding procedure was designed to downplay any patterns in the data, e.g., systematic differences between Readings 1 and 2. It also mitigated any ordering effects that might occur in the data or as a result of the informant's process, whether conscious or unconcious. The familiarization process via filler items allowed the informant to judge the existence of breaks relative to the typical cadence and fluency of a given speaker, prior to exposure to any of the experimental items for that speaker.
+The prosodic coding procedure was designed to downplay any patterns in the data, e.g., systematic differences between Readings 1 and 2. It also mitigated any ordering effects that might occur in the data or as a result of the informant's process, whether conscious or unconscious. The familiarization process via filler items allowed the informant to judge the existence of breaks relative to the typical cadence and fluency of a given speaker, prior to exposure to any of the experimental items for that speaker.
 
 ### Reliability {#rel}
 

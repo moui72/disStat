@@ -112,7 +112,7 @@ library(kableExtra)
 
 kable(
   ccombo,
-  caption="Percent occurence of boundaries (frequency in parenthesis) in Reading 2 as a function of sentence type.", 
+  caption="Percent occurrence of boundaries (frequency in parenthesis) in Reading 2 as a function of sentence type.", 
   col.names=c("D","Q","D","Q"),
   align="c") %>%
   add_header_above(c(" "=1,"Mod" = 2, "Arg"=2)) %>%

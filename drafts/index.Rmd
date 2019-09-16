@@ -12,15 +12,14 @@ fontsize: 11pt
 mainfont: Georgia
 lot: true
 lof: true
-indent: true
 geometry: "margin=1in"
 header-includes:
   - \usepackage[linguistics]{forest}
   - \usepackage{longtable}
   - \usepackage{booktabs}
   - \usepackage{setspace}\doublespacing
-  - \usepackage{indentfirst}
 ---
+
 ```{r echo=FALSE, warning=F,error=F}
 knitr::opts_chunk$set(
 	echo = FALSE,
@@ -33,6 +32,3 @@ knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown', "lme4", "lmerTest"
 ), 'packages.bib')
 ```
-\pagebreak
-
-\setlength\parindent{24pt}\setlength{\parskip}{0.0pt plus 1.0pt}

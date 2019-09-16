@@ -1,7 +1,8 @@
 {
-    "cursorPosition" : "187,0",
+    "cursorPosition" : "194,13",
     "docOutlineSize" : "123",
     "docOutlineVisible" : "1",
+    "ignored_words" : "Greys,bothbreaks,pdf,appExp,csvs,src,csv,addlinespace,appFill,aspGroup\n",
     "last_setup_crc32" : "",
     "scrollLine" : "0"
 }
